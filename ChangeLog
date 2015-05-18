@@ -1,3 +1,10 @@
+2004-04-26  Mike Oliphant  <grip@nostatic.org>
+
+	* cdplay.c: fixed crash when clicking on rip column without a disc
+	  inserted (thanks to Michael Mauch for catching this)
+	* configure.in: upped version to 3.2.0
+
+
 2004-04-20  Mike Oliphant  <grip@nostatic.org>
 
 	* ja.po: updated (Takeshi Aihana)

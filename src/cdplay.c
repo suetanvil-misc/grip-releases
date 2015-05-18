@@ -528,18 +528,20 @@ static void ClickColumn(GtkTreeViewColumn *column,gpointer data)
 
   ginfo=(GripInfo *)data;
 
-  for(track=0;track<ginfo->disc.num_tracks;track++)
-    if(TrackIsChecked(&(ginfo->gui_info),track)) numsel++;
-  
-  if(ginfo->disc.num_tracks>1) {
-    check=(numsel<ginfo->disc.num_tracks/2);
+  if(ginfo->have_disc) {
+    for(track=0;track<ginfo->disc.num_tracks;track++)
+      if(TrackIsChecked(&(ginfo->gui_info),track)) numsel++;
+    
+    if(ginfo->disc.num_tracks>1) {
+      check=(numsel<ginfo->disc.num_tracks/2);
+    }
+    else {
+      check=(numsel==0);
+    }
+    
+    for(track=0;track<ginfo->disc.num_tracks;track++)
+      SetChecked(&(ginfo->gui_info),track,check);
   }
-  else {
-    check=(numsel==0);
-  }
-  
-  for(track=0;track<ginfo->disc.num_tracks;track++)
-    SetChecked(&(ginfo->gui_info),track,check);
 }
 
 static gboolean TracklistButtonPressed(GtkWidget *widget,GdkEventButton *event,

@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: grip 3.0.0\n"
-"POT-Creation-Date: 2004-04-15 11:24-0700\n"
+"POT-Creation-Date: 2004-04-23 09:26-0700\n"
 "PO-Revision-Date: 2002-04-25 19:20+0800\n"
 "Last-Translator: Merlin Ma <merlin@turbolinux.com.cn>\n"
 "Language-Team: Chinese (simplified) <i18n-translation@lists.linux.net.cn>\n"
@@ -570,7 +570,7 @@ msgstr ""
 msgid "Done\n"
 msgstr "完成\n"
 
-#: src/cdplay.c:221 src/cdplay.c:633
+#: src/cdplay.c:221 src/cdplay.c:635
 msgid "Error saving disc data\n"
 msgstr "保存光盘数据错误\n"
 
@@ -591,140 +591,140 @@ msgstr "曲目"
 msgid "Track"
 msgstr "曲目"
 
-#: src/cdplay.c:704
+#: src/cdplay.c:706
 msgid "Rotate play mode"
 msgstr "循环播放模式"
 
-#: src/cdplay.c:724
+#: src/cdplay.c:726
 msgid "Toggle loop play"
 msgstr "切换循环播放"
 
-#: src/cdplay.c:802 src/rip.c:230
+#: src/cdplay.c:804 src/rip.c:230
 msgid "Rip status"
 msgstr "抓轨状态"
 
-#: src/cdplay.c:869
+#: src/cdplay.c:871
 msgid "Play track / Pause play"
 msgstr "播放/暂停"
 
-#: src/cdplay.c:880
+#: src/cdplay.c:882
 msgid "Rewind"
 msgstr "倒退"
 
-#: src/cdplay.c:891
+#: src/cdplay.c:893
 msgid "FastForward"
 msgstr "快进"
 
-#: src/cdplay.c:901
+#: src/cdplay.c:903
 msgid "Go to previous track"
 msgstr "上一曲"
 
-#: src/cdplay.c:910
+#: src/cdplay.c:912
 msgid "Go to next track"
 msgstr "下一曲"
 
-#: src/cdplay.c:919
+#: src/cdplay.c:921
 msgid "Toggle play mode options"
 msgstr "切换放音模式选项"
 
-#: src/cdplay.c:929
+#: src/cdplay.c:931
 msgid "Next Disc"
 msgstr "下一光盘"
 
-#: src/cdplay.c:943
+#: src/cdplay.c:945
 msgid "Stop play"
 msgstr "停止放音"
 
-#: src/cdplay.c:953
+#: src/cdplay.c:955
 msgid "Eject disc"
 msgstr "弹出光盘"
 
-#: src/cdplay.c:962
+#: src/cdplay.c:964
 msgid "Scan Disc Contents"
 msgstr "扫描光盘内容"
 
-#: src/cdplay.c:970
+#: src/cdplay.c:972
 msgid "Toggle Volume Control"
 msgstr "切换音量控制"
 
-#: src/cdplay.c:979
+#: src/cdplay.c:981
 msgid "Toggle disc editor"
 msgstr "切换光盘编辑器"
 
-#: src/cdplay.c:989
+#: src/cdplay.c:991
 msgid "Initiate/abort DiscDB lookup"
 msgstr "初始化/取消光盘查询"
 
-#: src/cdplay.c:999
+#: src/cdplay.c:1001
 msgid "Toggle track display"
 msgstr "切换曲目显示"
 
-#: src/cdplay.c:1006
+#: src/cdplay.c:1008
 msgid "Exit Grip"
 msgstr "退出 Grip"
 
-#: src/cdplay.c:1172
+#: src/cdplay.c:1174
 msgid "Cannot fast forward while ripping"
 msgstr "抓轨过程中不能快进"
 
-#: src/cdplay.c:1202
+#: src/cdplay.c:1204
 msgid "Cannot rewind while ripping"
 msgstr "抓轨过程中不能倒退"
 
-#: src/cdplay.c:1232
+#: src/cdplay.c:1234
 msgid "Cannot switch discs while ripping"
 msgstr "抓轨过程中不能切换光盘"
 
-#: src/cdplay.c:1250
+#: src/cdplay.c:1252
 msgid "Eject disc\n"
 msgstr "弹出光盘\n"
 
-#: src/cdplay.c:1253
+#: src/cdplay.c:1255
 msgid "Cannot eject while ripping"
 msgstr "不能在抓轨过程中弹出光盘"
 
-#: src/cdplay.c:1263
+#: src/cdplay.c:1265
 msgid "Have disc -- ejecting\n"
 msgstr "有光盘──正在弹出\n"
 
-#: src/cdplay.c:1327
+#: src/cdplay.c:1329
 msgid "Cannot play while ripping"
 msgstr "抓轨过程中不能播放"
 
-#: src/cdplay.c:1388 src/cdplay.c:1418
+#: src/cdplay.c:1390 src/cdplay.c:1420
 msgid "Cannot switch tracks while ripping"
 msgstr "抓轨过程中不能改变曲目"
 
-#: src/cdplay.c:1509
+#: src/cdplay.c:1511
 msgid "Checking for a new disc\n"
 msgstr "正在检查新光盘\n"
 
-#: src/cdplay.c:1514
+#: src/cdplay.c:1516
 msgid "CDStat found a disc, checking tracks\n"
 msgstr "CDStat 发现光盘，正在检查曲目\n"
 
-#: src/cdplay.c:1517
+#: src/cdplay.c:1519
 msgid "We have a valid disc!\n"
 msgstr "光盘合法!\n"
 
-#: src/cdplay.c:1544
+#: src/cdplay.c:1546
 msgid "No non-zero length tracks\n"
 msgstr "没有非零长度的曲目\n"
 
-#: src/cdplay.c:1553
+#: src/cdplay.c:1555
 msgid "CDStat said no disc\n"
 msgstr "CDStat 说无光盘\n"
 
-#: src/cdplay.c:1702 src/cdplay.c:1724
+#: src/cdplay.c:1704 src/cdplay.c:1726
 #, c-format
 msgid "Current sector: %6d"
 msgstr "当前扇区: %6d"
 
-#: src/cdplay.c:1825
+#: src/cdplay.c:1827
 msgid "No Disc"
 msgstr "无光盘"
 
-#: src/cdplay.c:1877
+#: src/cdplay.c:1879
 msgid ""
 "This disc has been found on your secondary server,\n"
 "but not on your primary server.\n"
@@ -736,15 +736,15 @@ msgstr ""
 "\n"
 "您是否想提交此光盘信息？"
 
-#: src/cdplay.c:1904 src/cdplay.c:1912
+#: src/cdplay.c:1906 src/cdplay.c:1914
 msgid "Error: Unable to create temporary file"
 msgstr "错误: 无法创建临时文件"
 
-#: src/cdplay.c:1929
+#: src/cdplay.c:1931
 msgid "Error: Unable to write disc data"
 msgstr "错误: 无法写光盘数据"
 
-#: src/cdplay.c:1938
+#: src/cdplay.c:1940
 #, c-format
 msgid "Mailing entry to %s\n"
 msgstr "发送邮件到 %s\n"
