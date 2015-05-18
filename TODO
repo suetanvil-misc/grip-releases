@@ -1,0 +1,35 @@
+ o add ability to browse for rip/encode executables
+ o overall progress indicator for multi-track rips
+ o abort current track from multi-track rip
+ o command-line arguments for batch operation
+ o some way to get the track name in condensed mode (perhaps a tooltip?)
+ o support loading the data from multiple discs in a changer
+ o display/edit extended CDDB info
+ o allow ejecting when the tray is closed, but with no disc
+ o convert to GNU configure
+ o slider to move within a track
+ o add a timeout for CDDB lookup
+ o format the bug-report text
+ o check rip/encode result status and repeat if necessary
+ o avoid locking of drive
+ o update the track time properly when paused and the track is changed
+ o update the playtime during ripping/encoding?
+ o ability to select .wav files from disk for encoding
+ o digital playing of cds (through CDDA)
+ o add user auth support for http proxy
+ o allow per-song year specification?
+ o delete .wav if rip is aborted
+ o handle larger font sizes (esp. next to progress bars)
+ o better display of cdparanoia error status
+ o cut off leading "http://" if it is put in the proxy name
+ o size info as tooltip on rip/encode progress bar
+ o separate abort into rip abort and encode abort
+ o fix problem with long song names getting truncated in filenames
+ o remember previous position when smart-relocating on expand
+ o support multiple cdrom drives?
+ o remember Disk Editor toggle status
+ o ask if the whole disc should be ripped if no track is selected
+ o add an option "CD eject program"
+ o fix problem causing rip stopping and waiting when it shouldn't
+ o allow different file format for multi-artist cds
+ o wrap cddb output
