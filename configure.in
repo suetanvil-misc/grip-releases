@@ -2,7 +2,7 @@ AC_INIT(src/main.c)
 
 AM_CONFIG_HEADER(config.h)
 
-AM_INIT_AUTOMAKE(grip,2.98.3)
+AM_INIT_AUTOMAKE(grip,2.98.4)
 
 AM_MAINTAINER_MODE
 
@@ -13,6 +13,10 @@ GNOME_INIT
 AC_ARG_ENABLE(shared_cdpar,
 	[  --disable-shared-cdpar  use static cdparanoia lib],
         ,enable_shared_cdpar=yes)
+
+AC_ARG_ENABLE(cdpar,
+	[  --disable-cdpar         do not compile with cdparanoia],
+        , enable_cdpar=yes)
 
 AC_ARG_ENABLE(shared_id3,
 	[  --disable-shared-id3    use static id3lib],
@@ -35,8 +39,9 @@ ALL_LINGUAS=""
 AM_GNU_GETTEXT
 
 dnl do cdparanoia check
-AC_CHECK_HEADERS(cdda_interface.h cdda_paranoia.h)
-AC_CHECK_LIB(cdda_interface,main,
+if test "$enable_cdpar" = "yes"; then
+  AC_CHECK_HEADERS(cdda_interface.h cdda_paranoia.h)
+  AC_CHECK_LIB(cdda_interface,main,
     if test "$enable_shared_cdpar" = "yes"; then
       echo "using shared cdparanoia libraries"
       CDPAR_LIBS="-lcdda_interface -lcdda_paranoia"
@@ -44,6 +49,7 @@ AC_CHECK_LIB(cdda_interface,main,
       echo "using static cdparanoia libraries"
       CDPAR_LIBS="$prefix/lib/libcdda_interface.a $prefix/lib/libcdda_paranoia.a"
     fi)
+fi
 AC_SUBST(CDPAR_LIBS)
 
 id3_libs_bak=$LIBS

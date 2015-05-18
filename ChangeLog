@@ -1,3 +1,10 @@
+2002-01-23  Mike Oliphant  <oliphant@gtk.org>
+
+	* rip.c/rip.h/gripcfg.c: don't include gain analysis stuff if
+	  cdparanoia is not built in
+	* configure.in: added an option to disable cdparanoia
+	* configure.in/grip.spec: upped version to 2.98.4
+	
 2002-01-22  Mike Oliphant  <oliphant@gtk.org>
 
 	* grip.sgml: added more documentation
@@ -7,11 +14,12 @@
 	* gripcfg.c/grip.c/grip.h/rip.c: added disc filter command and
 	  album replay gain
 	* README: updated to reflect the new version
+	* configure.in/grip.spec: upped version to 2.98.3
 	
 2002-01-17  Mike Oliphant  <oliphant@gtk.org>
 
 	* grip.sgml/grip.c: added some more documentation
-	* configure.in/grip.spec: upped versiont to 2.98.2
+	* configure.in/grip.spec: upped version to 2.98.2
 
 2002-01-16  Mike Oliphant  <oliphant@gtk.org>
 

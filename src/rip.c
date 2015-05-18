@@ -43,9 +43,8 @@
 #include "grip_id3.h"
 #include "config.h"
 #include "common.h"
-#include "gain_analysis.h"
-
 #ifdef CDPAR
+#include "gain_analysis.h"
 #define size32 gint32
 #define size16 gint16
 #include <cdda_interface.h>
@@ -67,7 +66,9 @@ static void RipIsFinished(GripInfo *ginfo);
 static void CheckDupNames(GripInfo *ginfo);
 static int NextTrackToRip(GripInfo *ginfo);
 static gboolean RipNextTrack(GripInfo *ginfo);
+#ifdef CDPAR
 static void ThreadRip(void *arg);
+#endif
 static void AddToEncode(GripInfo *ginfo,int track);
 static gboolean MP3Encode(GripInfo *ginfo);
 
@@ -718,10 +719,12 @@ void UpdateRipProgress(GripInfo *ginfo)
       ginfo->ripping=FALSE;
       SetChecked(uinfo,ginfo->rip_track,FALSE);
 
+#ifdef CDPAR
       /* Get the title gain */
-      if(ginfo->calc_gain) {
+      if(ginfo->using_builtin_cdp && ginfo->calc_gain) {
 	ginfo->track_gain_adjustment=GetTitleGain();
       }
+#endif
 
       /* Do filtering of .wav file */
 
@@ -930,6 +933,7 @@ char *TranslateSwitch(char switch_char,void *data,gboolean *munge)
   case 'G':
     g_snprintf(res,PATH_MAX,"%s",ID3GenreString(enc_track->id3_genre));
     break;
+#ifdef CDPAR
   case 'r':
     g_snprintf(res,PATH_MAX,"%+6.2f",enc_track->track_gain_adjustment);
     *munge=FALSE;
@@ -938,6 +942,7 @@ char *TranslateSwitch(char switch_char,void *data,gboolean *munge)
     g_snprintf(res,PATH_MAX,"%+6.2f",enc_track->disc_gain_adjustment);
     *munge=FALSE;
     break;
+#endif
   default:
     *res='\0';
     break;
@@ -1020,9 +1025,11 @@ void DoRip(GtkWidget *widget,gpointer data)
     return;
   }
 
+#ifdef CDPAR
   /* Initialize gain calculation */
-  if(ginfo->calc_gain) 
+  if(ginfo->using_builtin_cdp && ginfo->calc_gain) 
     InitGainAnalysis(44100);
+#endif
 
   CheckDupNames(ginfo);
 
@@ -1077,9 +1084,11 @@ static gboolean RipNextTrack(GripInfo *ginfo)
 
   /* See if we are finished ripping */
   if(ginfo->rip_track==ginfo->disc.num_tracks) {
-    if(ginfo->calc_gain) {
+#ifdef CDPAR
+    if(ginfo->using_builtin_cdp && ginfo->calc_gain) {
       ginfo->disc_gain_adjustment=GetAlbumGain();
     }
+#endif
 
     if(ginfo->disc_filter_cmd)
       DoDiscFilter(ginfo);
@@ -1250,8 +1259,10 @@ void FillInTrackInfo(GripInfo *ginfo,int track,EncodeTrack *new_track)
   new_track->track_num=track;
   new_track->start_frame=ginfo->disc.track[track].start_frame;
   new_track->end_frame=ginfo->disc.track[track+1].start_frame-1;
+#ifdef CDPAR
   new_track->track_gain_adjustment=ginfo->track_gain_adjustment;
   new_track->disc_gain_adjustment=ginfo->disc_gain_adjustment;
+#endif
 
   /* Compensate for the gap before a data track */
   if((track<(ginfo->disc.num_tracks-1)&&

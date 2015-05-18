@@ -41,8 +41,10 @@ typedef struct _encode_track {
   int mins;
   int secs;
   int discid;
+#ifdef CDPAR
   double track_gain_adjustment;
   double disc_gain_adjustment;
+#endif
 } EncodeTrack;
 
 

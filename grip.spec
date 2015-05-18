@@ -1,5 +1,5 @@
 %define name grip
-%define version 2.98.3
+%define version 2.98.4
 %define release 1
 %define prefix /usr
 
