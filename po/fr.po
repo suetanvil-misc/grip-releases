@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: grip 2.98.7\n"
-"POT-Creation-Date: 2002-09-18 20:23-0700\n"
+"POT-Creation-Date: 2002-09-21 11:37-0700\n"
 "PO-Revision-Date: 2002-03-07 14:37+0100\n"
 "Last-Translator: Eric Lassauge <lassauge@mail.dotcom.fr>\n"
 "Language-Team: Gözer le maudit <gozer@mailoman.com>\n"
@@ -889,7 +889,7 @@ msgid "Cancel"
 msgstr "Annuler"
 
 #. Doh!
-#: src/id3.c:282
+#: src/id3.c:284
 msgid "unknown ID3 field\n"
 msgstr "Champ ID3 inconnu\n"
 

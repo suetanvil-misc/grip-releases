@@ -21,6 +21,8 @@
  */
 
 #include <stdio.h>
+#include <sys/types.h>
+#include <sys/stat.h>
 #include "grip_id3.h"
 #include "grip.h"
 

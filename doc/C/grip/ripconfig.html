@@ -17,7 +17,7 @@ REL="PREVIOUS"
 TITLE="Configuring Grip"
 HREF="configure.html"><LINK
 REL="NEXT"
-TITLE='The "MP3" config tab'
+TITLE='The "Encode" config tab'
 HREF="mp3config.html"></HEAD
 ><BODY
 CLASS="SECT1"
@@ -160,19 +160,6 @@ CLASS="GUILABEL"
 ><TT
 CLASS="GUILABEL"
 ><B
->Generic SCSI device</B
-></TT
-> &#8212; If you are
-	  using a SCSI drive, or an IDE drive under SCSI emulation, you need
-	  to specify the generic SCSI device to be used. Make sure that your
-	  user account has access to this device, or Grip will not be able
-	  to rip.</P
-></LI
-><LI
-><P
-><TT
-CLASS="GUILABEL"
-><B
 >Rip file format</B
 ></TT
 > &#8212; This allows to
@@ -183,6 +170,19 @@ HREF="gripswitches.html"
 >Configuration (%) switches</I
 ></A
 >.</P
+></LI
+><LI
+><P
+><TT
+CLASS="GUILABEL"
+><B
+>Generic SCSI device</B
+></TT
+> &#8212; If you are
+	  using a SCSI drive, or an IDE drive under SCSI emulation, you need
+	  to specify the generic SCSI device to be used. Make sure that your
+	  user account has access to this device, or Grip will not be able
+	  to rip.</P
 ></LI
 ></UL
 ><P
@@ -324,6 +324,18 @@ CLASS="GUILABEL"
 ><TT
 CLASS="GUILABEL"
 ><B
+>Delay before ripping</B
+></TT
+> &#8212; If this is
+	  selected, grip will delay 5 seconds before starting to rip. This
+	  can help with some drives (particularly some dvd drives) that take
+	  a while to spin up.</P
+></LI
+><LI
+><P
+><TT
+CLASS="GUILABEL"
+><B
 >Wav filter command</B
 ></TT
 > &#8212; This allows
@@ -404,7 +416,7 @@ HREF="configure.html"
 WIDTH="33%"
 ALIGN="right"
 VALIGN="top"
->The "MP3" config tab</TD
+>The "Encode" config tab</TD
 ></TR
 ></TABLE
 ></DIV

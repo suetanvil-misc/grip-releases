@@ -48,11 +48,11 @@
     <para>Grip is a cd-player and cd-ripper for the Gnome desktop. It has
     the ripping capabilities of cdparanoia builtin, but can also use
     external rippers (such as cdda2wav). It also provides an automated
-    frontend for MP3 encoders, letting you take a disc and transform it
-    easily straight into MP3s. Internet disc lookups are supported for
-    retrieving track information from disc database servers. Grip works with
-    DigitalDJ to provide a unified "computerized" version of your music
-    collection.</para>
+    frontend for MP3 (and other audio format) encoders, letting you take a
+    disc and transform it easily straight into MP3s. Internet disc lookups
+    are supported for retrieving track information from disc database
+    servers. Grip works with DigitalDJ to provide a unified "computerized"
+    version of your music collection.</para>
   </chapter>
   
   <chapter id="cdplayer">
@@ -541,18 +541,18 @@
 	</listitem>
 
 	<listitem>
+	  <para><guilabel>Rip file format</guilabel> &mdash; This allows to
+	    you configure the filename and path that Grip rips files to. The
+	    list of available switches can be found in <xref
+	    linkend="gripswitches">.</para>
+	</listitem>
+
+	<listitem>
 	  <para><guilabel>Generic SCSI device</guilabel> &mdash; If you are
 	  using a SCSI drive, or an IDE drive under SCSI emulation, you need
 	  to specify the generic SCSI device to be used. Make sure that your
 	  user account has access to this device, or Grip will not be able
 	  to rip.</para>
-	</listitem>
-
-	<listitem>
-	  <para><guilabel>Rip file format</guilabel> &mdash; This allows to
-	    you configure the filename and path that Grip rips files to. The
-	    list of available switches can be found in <xref
-	    linkend="gripswitches">.</para>
 	</listitem>
 
       </itemizedlist>
@@ -635,6 +635,13 @@
 	</listitem>
 
 	<listitem>
+	  <para><guilabel>Delay before ripping</guilabel> &mdash; If this is
+	  selected, grip will delay 5 seconds before starting to rip. This
+	  can help with some drives (particularly some dvd drives) that take
+	  a while to spin up.</para>
+	</listitem>
+
+	<listitem>
 	  <para><guilabel>Wav filter command</guilabel> &mdash; This allows
 	    you to specify a program (full path to executable, followed by
 	    the command-line) to run after a file has been ripped, but
@@ -654,13 +661,13 @@
     </sect1>
 
     <sect1 id="mp3config">
-      <title>The "MP3" config tab</title>
+      <title>The "Encode" config tab</title>
 
-      <para>This tab allows to you configure Grip's MP3-encoding
+      <para>This tab allows to you configure Grip's encoding
       capabilities.</para>
 
       <figure id="mp3config-image">
-	<title>The "MP3" config tab</title>
+	<title>The "Encode" config tab</title>
 	<screenshot>
 	  <graphic format="png" fileref="mp3config">
 	  </graphic>
@@ -674,20 +681,20 @@
 	</listitem>
 
 	<listitem>
-	  <para><guilabel>MP3 executable</guilabel> &mdash; This specifies
+	  <para><guilabel>Encoder executable</guilabel> &mdash; This specifies
 	  the full path to the executable program you wish to use for
 	  encoding.</para>
 	</listitem>
 
 	<listitem>
-	  <para><guilabel>MP3 command-line</guilabel> &mdash; This is the
+	  <para><guilabel>Encoder command-line</guilabel> &mdash; This is the
 	  command-line to be passed to the encoding program. The list of
 	  available switches can be found in <xref
 	  linkend="gripswitches">.</para>
 	</listitem>
 
 	<listitem>
-	  <para><guilabel>MP3 file format</guilabel> &mdash; This allows to
+	  <para><guilabel>Encode file format</guilabel> &mdash; This allows to
 	    you configure the filename and path that Grip encodes to. The
 	    list of available switches can be found in <xref
 	    linkend="gripswitches">.</para>
@@ -752,14 +759,14 @@
 	</listitem>
 
 	<listitem>
-	  <para><guilabel>MP3 'nice' value</guilabel> &mdash; This allows
+	  <para><guilabel>Encode 'nice' value</guilabel> &mdash; This allows
 	  you to set the 'nice' level to run encoding at. This changes the
 	  scheduling priorty of the process. The range goes from -20
 	  (highest priority) to 19 (lowest).</para>
 	</listitem>
 
 	<listitem>
-	  <para><guilabel>MP3 filter command</guilabel> &mdash; This allows
+	  <para><guilabel>Encode filter command</guilabel> &mdash; This allows
 	    you to specify a program (full path to executable, followed by
 	    the command-line) to run after a file has been encoded. The list
 	    of available switches can be found in <xref
@@ -783,17 +790,17 @@
 
       <itemizedlist>
 	<listitem>
-	  <para><guilabel>Add ID3 tags to MP3 files</guilabel> &mdash; If
-	  this option is checked, Grip will add ID3v1 tags to the MP3 files
-	  it encodes. ID3 tags are used to put song meta-data into an MP3
-	  file. You will want to disable this if you are encoding with a
-	  format other than MP3.</para>
+	  <para><guilabel>Add ID3 tags to encoded files</guilabel> &mdash;
+	  If this option is checked, Grip will add ID3v1 tags to the files
+	  it encodes. ID3 tags are used to put song meta-data into an
+	  encoded file. You will want to disable this if you are encoding
+	  with a format other than MP3.</para>
 	</listitem>
 
 	<listitem>
-	  <para><guilabel>Add ID3v2 tags to MP3 files</guilabel> &mdash;
+	  <para><guilabel>Add ID3v2 tags to encoded files</guilabel> &mdash;
 	  This option is only displayed if Grip has been compiled with ID3v2
-	  support. If it is checked, Grip will add ID3v2 tags to the MP3 files
+	  support. If it is checked, Grip will add ID3v2 tags to the files
 	  it encodes. ID3v2 tags remove the 20-character field length
 	  limitation imposed by ID3v1.</para>
 	</listitem>
@@ -1000,7 +1007,7 @@
       <para>Here is a list of the '%' switches used in command-lines.</para>
 
       <itemizedlist>
-	<listitem><para><guilabel>b</guilabel> &mdash; The bitrate that mp3s
+	<listitem><para><guilabel>b</guilabel> &mdash; The bitrate that files
 	  are being encoded at.  </para></listitem>
 
 	<listitem><para><guilabel>c</guilabel> &mdash; The CDrom device
@@ -1015,7 +1022,7 @@
 	    wave file being ripped.  </para></listitem>
 
 	<listitem><para><guilabel>m</guilabel> &mdash; The filename of the
-	    MP3 file being encoded.  </para></listitem>
+	    file being encoded.  </para></listitem>
 
 	<listitem><para><guilabel>t</guilabel> &mdash; The track
 	    number,beginning at 1, and zero-filled (ie: '03' for the third
@@ -1102,8 +1109,7 @@
       
       
       <listitem><para>Q: The progress bar doesn't seem to be completely
-	  accurate when doing an MP3 encode. Why can't it get it
-	  right?</para>
+	  accurate when encoding. Why can't it get it right?</para>
 	
 	<para>A: The progress bar is done based on the size of the output
 	  file. If you have the kbits/sec set properly, Grip should estimate
@@ -1111,14 +1117,22 @@
 	  (supported by encoders like LAME and xing) Grip has no way to
 	  accurately guess the file size.</para></listitem>
       
-      <listitem><para>Q: When I encode tracks, the MP3 progress bar never
+      <listitem><para>Q: When I try to rip, Grip skips some of the tracks I
+      have selected. That's not nice -- how can I make it stop?</para>
+	
+	<para>A: Some drives (particularly some dvd drives) take a while to
+	spin up, and get confused if ripping starts before they are
+	ready. Try enabling the "Delay before ripping" setting in <xref
+	linkend="ripconfig">.</para></listitem>
+      
+      <listitem><para>Q: When I encode tracks, the progress bar never
 	  does anything. What happened to progress?</para>
 	
-	<para>A: If your MP3 encoder doesn't accept an output filename (like
+	<para>A: If your encoder doesn't accept an output filename (like
 	  BladeEnc), or you haven't passed it one on the command-line, then
 	  it might not be outputting to the file Grip expects. Make sure
-	  that your MP3 file format is set to what your encoder is actually
-	  producing.</para></listitem>
+	  that your encoded file format is set to what your encoder is
+	  actually producing.</para></listitem>
       
       
       <listitem><para>Q: When Grip looks up disc information, it works, but

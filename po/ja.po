@@ -7,7 +7,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: grip 3.0.1\n"
-"POT-Creation-Date: 2002-09-18 20:23-0700\n"
+"POT-Creation-Date: 2002-09-21 11:37-0700\n"
 "PO-Revision-Date: 2002-06-30 19:06+0900\n"
 "Last-Translator: Takeshi Aihana <aihana@gnome.gr.jp>\n"
 "Language-Team: Japanese <gnome-translation@gnome.gr.jp>\n"
@@ -887,7 +887,7 @@ msgid "Cancel"
 msgstr "キャンセル"
 
 #. Doh!
-#: src/id3.c:282
+#: src/id3.c:284
 msgid "unknown ID3 field\n"
 msgstr "不明な ID3 フィールド\n"
 

@@ -20,10 +20,11 @@ To use Grip, you must have:
  o a net connection (if you want to use disc database lookup)
  o a CD player (surprise, surprise)
 
-Grip is designed to work closely with DigitalDJ, my SQL-based mp3 jukebox
-system (although it does not require it). DigitalDJ can be obtained from:
+Grip requires that you have at least a basic version of the Gnome desktop
+installed on your computer. In particular, make sure that you have libghttp
+installed. If you can't find it, I have mirrored a copy here:
 
-  http://www.nostatic.org/ddj
+  http://www.nostatic.org/grip/libghttp-1.0.9.tar.gz
 
 If you wish to have builtin cdparanoia support, or id3v2 support, you must
 have the appropriate packages on your system. You can find them here:
@@ -31,12 +32,10 @@ have the appropriate packages on your system. You can find them here:
  cdparanoia: http://xiph.org/paranoia/index.html
  id3v2: http://id3lib.sourceforge.net/
 
-Grip requires that you have at least a basic version of the Gnome desktop
-installed on your computer. You can find Gnome at:
+Grip is designed to work closely with DigitalDJ, my SQL-based mp3 jukebox
+system (although it does not require it). DigitalDJ can be obtained from:
 
- http://www.gnome.org/start/installing/index.php3
-
-In particular, make sure that you have libghttp installed.
+  http://www.nostatic.org/ddj
 
 
 Installation
@@ -92,7 +91,25 @@ Grip's usage is:
     --verbose                   Run in verbose (debug) mode
 
 
-For more information, see the online documentation.
+Getting Mor Help
+================
+
+For more information, see the online documentation within Grip. It can also
+be accessed locally in the source distribution. Load doc/C/grip/grip.html
+into an html viewer.
+
+If you need more help with Grip, your best resource is the Grip mailing
+list. You will find it at:
+
+  http://lists.sourceforge.net/mailman/listinfo/grip-users
+
+Be sure to check the mailing list archives for answers to any questions you
+may have.
+
+To report a bug with Grip, or to submit a patch. Please do so at the Grip
+section on sourceforge.net:
+
+  http://sourceforge.net/projects/grip
 
 ---
 Mike Oliphant (oliphant@gtk.org)

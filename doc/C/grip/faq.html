@@ -101,8 +101,7 @@ NAME="FAQ"
 ><LI
 ><P
 >Q: The progress bar doesn't seem to be completely
-	  accurate when doing an MP3 encode. Why can't it get it
-	  right?</P
+	  accurate when encoding. Why can't it get it right?</P
 ><P
 >A: The progress bar is done based on the size of the output
 	  file. If you have the kbits/sec set properly, Grip should estimate
@@ -112,14 +111,30 @@ NAME="FAQ"
 ></LI
 ><LI
 ><P
->Q: When I encode tracks, the MP3 progress bar never
+>Q: When I try to rip, Grip skips some of the tracks I
+      have selected. That's not nice -- how can I make it stop?</P
+><P
+>A: Some drives (particularly some dvd drives) take a while to
+	spin up, and get confused if ripping starts before they are
+	ready. Try enabling the "Delay before ripping" setting in <A
+HREF="ripconfig.html"
+>the section called <I
+>The "Rip" config tab</I
+> in the chapter called <I
+>Configuring Grip</I
+></A
+>.</P
+></LI
+><LI
+><P
+>Q: When I encode tracks, the progress bar never
 	  does anything. What happened to progress?</P
 ><P
->A: If your MP3 encoder doesn't accept an output filename (like
+>A: If your encoder doesn't accept an output filename (like
 	  BladeEnc), or you haven't passed it one on the command-line, then
 	  it might not be outputting to the file Grip expects. Make sure
-	  that your MP3 file format is set to what your encoder is actually
-	  producing.</P
+	  that your encoded file format is set to what your encoder is
+	  actually producing.</P
 ></LI
 ><LI
 ><P

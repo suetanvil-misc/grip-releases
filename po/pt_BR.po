@@ -7,7 +7,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: grip 3.0.0\n"
-"POT-Creation-Date: 2002-09-18 20:23-0700\n"
+"POT-Creation-Date: 2002-09-21 11:37-0700\n"
 "PO-Revision-Date: 2002-05-09 07:52+0900\n"
 "Last-Translator: Wellington Terumi Uemura <wellingtonuemura@hotmail.com>\n"
 "Language-Team: <@>\n"
@@ -889,7 +889,7 @@ msgid "Cancel"
 msgstr "Cancelar"
 
 #. Doh!
-#: src/id3.c:282
+#: src/id3.c:284
 msgid "unknown ID3 field\n"
 msgstr "Campo ID3 desconhecido\n"
 

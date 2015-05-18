@@ -4,9 +4,9 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: grip 2.99.0\n"
-"POT-Creation-Date: 2002-09-18 20:23-0700\n"
-"PO-Revision-Date: 2002-04-03 18:28+0200\n"
+"Project-Id-Version: grip 3.0.2\n"
+"POT-Creation-Date: 2002-09-21 11:37-0700\n"
+"PO-Revision-Date: 2002-09-19 23:02+0200\n"
 "Last-Translator: Götz Waschk <waschk@informatik.uni-rostock.de>\n"
 "Language-Team: German <de@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -22,13 +22,12 @@ msgid "GEOMETRY"
 msgstr "GEOMETRIE"
 
 #: src/main.c:64
-#, fuzzy
 msgid "Specify the config file to use (in your home dir)"
-msgstr "Gib das zu benutzende CD-ROM-Gerät an"
+msgstr "Gib die Konfigurationsdatei (im Heimatverzeichnis) an"
 
 #: src/main.c:65
 msgid "CONFIG"
-msgstr ""
+msgstr "CONFIG"
 
 #: src/main.c:73
 msgid "Specify the cdrom device to use"
@@ -117,7 +116,6 @@ msgid "About"
 msgstr "Über"
 
 #: src/grip.c:744
-#, fuzzy
 msgid ""
 "Your config file is out of date -- resetting to defaults.\n"
 "You will need to re-configure Grip.\n"
@@ -125,7 +123,7 @@ msgid ""
 msgstr ""
 "Deine Konfigurationsdatei ist veraltet -- zurücksetzen auf Standardwerte.\n"
 "Du musst Grip nun neu konfigurieren.\n"
-"Die alte Konfigurationsdatei wurde in  ~/.grip-old gespeichert."
+"Die alte Konfigurationsdatei wurde durch Anhängen von -old umbenannt."
 
 #: src/grip.c:814
 #, c-format
@@ -170,11 +168,11 @@ msgstr "Umgehe fehlerhafte CD-Auswurfsfunktion"
 
 #: src/gripcfg.c:136
 msgid "Poll disc drive for new disc"
-msgstr ""
+msgstr "Frage Laufwerk nach neuer CD"
 
 #: src/gripcfg.c:140
 msgid "Poll interval (seconds)"
-msgstr ""
+msgstr "Frageintervall (Sekunden)"
 
 #: src/gripcfg.c:148
 msgid "CD"
@@ -186,11 +184,11 @@ msgstr "Ripper:"
 
 #: src/gripcfg.c:209
 msgid "Ripping executable"
-msgstr "Ripper-Programm:"
+msgstr "Programm:"
 
 #: src/gripcfg.c:214
 msgid "Rip command-line"
-msgstr "Ripper-Kommandozeile"
+msgstr "Kommandozeile"
 
 #: src/gripcfg.c:225
 msgid "Disable paranoia"
@@ -254,7 +252,7 @@ msgstr "Verzögerung vor automatischen Auswurf"
 
 #: src/gripcfg.c:317
 msgid "Delay before ripping"
-msgstr ""
+msgstr "Verzögerung vorm Rippen"
 
 #: src/gripcfg.c:321
 msgid "Wav filter command"
@@ -277,19 +275,16 @@ msgid "Encoder:"
 msgstr "Kodierer:"
 
 #: src/gripcfg.c:391
-#, fuzzy
 msgid "Encoder executable"
-msgstr "MP3-Programm"
+msgstr "Kodierer"
 
 #: src/gripcfg.c:396
-#, fuzzy
 msgid "Encoder command-line"
-msgstr "MP3-Kommandozeile"
+msgstr "Kommandozeile"
 
 #: src/gripcfg.c:401
-#, fuzzy
 msgid "Encode file format"
-msgstr "Rip-Datei-Format"
+msgstr "Kodier-Dateiformat"
 
 #: src/gripcfg.c:409
 msgid "Encoder"
@@ -324,33 +319,28 @@ msgid "Number of CPUs to use"
 msgstr "Anzahl von CPUs verwenden"
 
 #: src/gripcfg.c:450
-#, fuzzy
 msgid "Encode 'nice' value"
-msgstr "Priorität des Rippers"
+msgstr "Priorität des Kodierers"
 
 #: src/gripcfg.c:454
-#, fuzzy
 msgid "Encode filter command"
-msgstr "CD-Filter-Kommando"
+msgstr "Kodier-Filter-Kommando"
 
 #: src/gripcfg.c:469
-#, fuzzy
 msgid "Encode"
-msgstr "Kodierer"
+msgstr "Kodiere"
 
 #: src/gripcfg.c:478
-#, fuzzy
 msgid "Add ID3 tags to encoded files"
-msgstr "Füge ID3-Tags zu MP3-Dateien hinzu"
+msgstr "Füge ID3-Tags zu kodierten Dateien hinzu"
 
 #: src/gripcfg.c:484
-#, fuzzy
 msgid "Add ID3v2 tags to encoded files"
-msgstr "Füge ID3v2-Tags zu MP3-Dateien hinzu"
+msgstr "Füge ID3v2-Tags zu kodierten Dateien hinzu"
 
 #: src/gripcfg.c:490
 msgid "Only tag files ending in '.mp3'"
-msgstr ""
+msgstr "Tags nur in '.mp3'-Dateien schreiben"
 
 #: src/gripcfg.c:494
 msgid "ID3 comment field"
@@ -600,9 +590,8 @@ msgid "Eject disc"
 msgstr "CD auswerfen"
 
 #: src/cdplay.c:900
-#, fuzzy
 msgid "Scan Disc Contents"
-msgstr "Inhaltsverzeichnis"
+msgstr "Lese CD-Verzeichnis"
 
 #: src/cdplay.c:908
 msgid "Toggle Volume Control"
@@ -885,7 +874,7 @@ msgid "Cancel"
 msgstr "Abbrechen"
 
 #. Doh!
-#: src/id3.c:282
+#: src/id3.c:284
 msgid "unknown ID3 field\n"
 msgstr "unbekanntes ID3-Feld\n"
 
@@ -964,14 +953,12 @@ msgid "Rip: Idle"
 msgstr "Rip: Leerlauf"
 
 #: src/rip.c:208
-#, fuzzy
 msgid "Enc: Trk 99 (99.9x)"
-msgstr "MP3: Trk 99 (99.9x)"
+msgstr "Kod: Trk 99 (99.9x)"
 
 #: src/rip.c:231 src/rip.c:895
-#, fuzzy
 msgid "Enc: Idle"
-msgstr "MP3: Leerlauf"
+msgstr "Kod: Leerlauf"
 
 #: src/rip.c:280
 msgid "Start sector"
@@ -1009,9 +996,9 @@ msgid "Check if we need to rip another track\n"
 msgstr "Prüfe, ob wir einen weiteren Track rippen müssen\n"
 
 #: src/rip.c:838
-#, fuzzy, c-format
+#, c-format
 msgid "Enc: Trk %d (%3.1fx)"
-msgstr "MP3: Trk %d (%3.1fx)"
+msgstr "Kod: Trk %d (%3.1fx)"
 
 #: src/rip.c:852
 #, c-format
@@ -1044,13 +1031,12 @@ msgstr ""
 "Prüfe Deine Rip-Einstellungen"
 
 #: src/rip.c:1087
-#, fuzzy
 msgid ""
 "Invalid encoder executable\n"
 "Check your encoder config"
 msgstr ""
-"Ungültiges Rip-Programm\n"
-"Prüfe Deine Rip-Einstellungen"
+"Ungültiges Kodier-Programm\n"
+"Prüfe Deine Kodierer-Einstellungen"
 
 #: src/rip.c:1120
 msgid ""
@@ -1114,14 +1100,13 @@ msgid "No free cpus\n"
 msgstr "Keine freien CPUs\n"
 
 #: src/rip.c:1434
-#, fuzzy, c-format
+#, c-format
 msgid "Enc track %d\n"
-msgstr "MP3 Track %d\n"
+msgstr "Kod Track %d\n"
 
 #: src/rip.c:1448
-#, fuzzy
 msgid "No write access to write encoded file"
-msgstr "Kein Schreibzugriff zum Schreiben der mp3-Datei"
+msgstr "Kein Schreibzugriff zum Schreiben der kodierten Datei"
 
 #: src/rip.c:1454
 #, c-format
@@ -1129,9 +1114,9 @@ msgid "%i: Encoding to %s\n"
 msgstr "%i: Kodiere zu %s\n"
 
 #: src/rip.c:1456
-#, fuzzy, c-format
+#, c-format
 msgid "Enc: Trk %d (0.0x)"
-msgstr "Rip: Trk %d (0.0x)"
+msgstr "Kod: Trk %d (0.0x)"
 
 #~ msgid "MP3 file format"
 #~ msgstr "MP3-Dateiformat"

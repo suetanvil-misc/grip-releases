@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: grip 3.0.0\n"
-"POT-Creation-Date: 2002-09-18 20:23-0700\n"
+"POT-Creation-Date: 2002-09-21 11:37-0700\n"
 "PO-Revision-Date: 2002-05-15 13:55+YEKST\n"
 "Last-Translator: Mishell Baranov <mishell@trg.ru>\n"
 "Language-Team: Russian <LL@li.org>\n"
@@ -1078,7 +1078,7 @@ msgstr "Отказаться"
 
 # src/id3.c:281
 #. Doh!
-#: src/id3.c:282
+#: src/id3.c:284
 msgid "unknown ID3 field\n"
 msgstr "неизвестное ID3 поле\n"
 

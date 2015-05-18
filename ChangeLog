@@ -1,3 +1,12 @@
+2002-09-21  Mike Oliphant  <oliphant@gtk.org>
+
+	* id3.c: added some #includes
+	* de.po: updated (Goetz Waschk)
+	* grip.sgml: MP3->Encoder, and added new config options
+	* doc/C: created new screenshots
+	* README: added pointers to get more help
+	* configure.in/grip.spec: upped version to 3.0.3	
+	
 2002-09-18  Mike Oliphant  <oliphant@gtk.org>
 
 	* ca.po: added (Jordi Mallach)

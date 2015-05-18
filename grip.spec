@@ -1,5 +1,5 @@
 %define name grip
-%define version 3.0.2
+%define version 3.0.3
 %define release 1
 %define prefix /usr
 
@@ -28,11 +28,11 @@ Epoch: 1
 %description
 Grip is a cd-player and cd-ripper for the Gnome desktop. It has the ripping
 capabilities of cdparanoia built in, but can also use external rippers (such
-as cdda2wav). It also provides an automated frontend for MP3 encoders,
-letting you take a disc and transform it easily straight into MP3s. Internet
-disc lookups are supported for retrieving track information from disc
-database servers. Grip works with DigitalDJ to provide a unified
-"computerized" version of your music collection.
+as cdda2wav). It also provides an automated frontend for MP3 (and other
+audio format) encoders, letting you take a disc and transform it easily
+straight into MP3s. Internet disc lookups are supported for retrieving track
+information from disc database servers. Grip works with DigitalDJ to provide
+a unified "computerized" version of your music collection.
 
 %description -l zh_CN
 Grip 是一个可以在 GNOME 桌面环境下运行的 CD 音乐播放器和抓轨器。它可以使用
