@@ -893,7 +893,7 @@ fi
 
 PACKAGE=grip
 
-VERSION=2.99.2
+VERSION=2.99.3
 
 if test "`cd $srcdir && pwd`" != "`pwd`" && test -f $srcdir/config.status; then
   { echo "configure: error: source directory already configured; run "make distclean" there first" 1>&2; exit 1; }
@@ -6429,7 +6429,7 @@ echo "configure:6410: checking what language compliance flags to pass to the C c
   fi
 
 
-ALL_LINGUAS="fr de zh_CN"
+ALL_LINGUAS="fr de zh_CN ja"
 # Extract the first word of "ranlib", so it can be a program name with args.
 set dummy ranlib; ac_word=$2
 echo $ac_n "checking for $ac_word""... $ac_c" 1>&6

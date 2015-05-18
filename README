@@ -25,6 +25,19 @@ system (although it does not require it). DigitalDJ can be obtained from:
 
   http://www.nostatic.org/ddj
 
+If you wish to have builtin cdparanoia support, or id3v2 support, you must
+have the appropriate packages on your system. You can find them here:
+
+ cdparanoia: http://xiph.org/paranoia/index.html
+ id3v2: http://id3lib.sourceforge.net/
+
+Grip requires that you have at least a basic version of the Gnome desktop
+installed on your computer. You can find Gnome at:
+
+ http://www.gnome.org/start/installing/index.php3
+
+In particular, make sure that you have libghttp installed.
+
 
 Installation
 ============
@@ -39,12 +52,6 @@ To install Grip, simply go through the following steps:
  o 'make'
  o become root if you are installing in a non-user directory
  o 'make install'
-
-If you wish to have builtin cdparanoia support, or id3v2 support, you must
-have the appropriate packages on your system. You can find them here:
-
- cdparanoia: http://xiph.org/paranoia/index.html
- id3v2: http://id3lib.sourceforge.net/
 
 Grip adds the following options that can be specified to configure:
 

@@ -1,3 +1,14 @@
+2002-04-11  Mike Oliphant  <oliphant@gtk.org>
+
+	* ja.po: added (thanks to Takeshi AIHANA for this)
+	* de.po: updated (thanks to Goetz Waschk for this)
+	* zn_CH.po: updated (thanks to Merlin Ma for this)
+	* grip.spec: structural changes an zh_CN translation (thanks to
+	  Merlin Ma for this)
+	* doc: updated some of the screenshots
+	* README: some additional info on dependencies
+	* configure.in/grip.spec: upped version to 2.99.3
+	
 2002-04-02  Mike Oliphant  <oliphant@gtk.org>
 
 	* rip.c: fixed a bug causing access checks to fail

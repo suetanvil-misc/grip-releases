@@ -1,112 +1,113 @@
-# SOME DESCRIPTIVE TITLE.
-# Copyright (C) YEAR Free Software Foundation, Inc.
-# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
-#
-#, fuzzy
+# grip ja.po.
+# Copyright (C) 2000-2002 Free Software Foundation, Inc.
+# TAKEDA Hirofumi <takepin@turbolinux.co.jp>, 2001.
+# Takeshi Aihana <aihana@gnome.gr.jp>, 2000-2002.
+# , no-wrap
+# 
 msgid ""
 msgstr ""
-"Project-Id-Version: PACKAGE VERSION\n"
+"Project-Id-Version: grip 2.99.2\n"
 "POT-Creation-Date: 2002-04-02 09:26-0800\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: Merlin Ma <merlin@turbolinux.com.cn>\n"
-"Language-Team: LANGUAGE <LL@li.org>\n"
+"PO-Revision-Date: 2002-04-04 00:35+0900\n"
+"Last-Translator: Takeshi Aihana <aihana@gnome.gr.jp>\n"
+"Language-Team: Japanese <gnome-translation@gnome.gr.jp>\n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=gb2312\n"
+"Content-Type: text/plain; charset=euc-jp\n"
 "Content-Transfer-Encoding: 8bit\n"
 
 #: src/main.c:54
 msgid "Specify the geometry of the main window"
-msgstr "指定主窗口的位置几何属性"
+msgstr "メインウィンドウの疤弥を回年する"
 
 #: src/main.c:55
 msgid "GEOMETRY"
-msgstr "几何属性"
+msgstr "GEOMETRY"
 
 #: src/main.c:63
 msgid "Specify the cdrom device to use"
-msgstr "指定CDROM设备"
+msgstr "蝗脱する CD-ROM デバイスを回年する"
 
 #: src/main.c:64 src/main.c:73
 msgid "DEVICE"
-msgstr "设备"
+msgstr "DEVICE"
 
 #: src/main.c:72
 msgid "Specify the generic scsi device to use"
-msgstr "指定通常使用的SCSI设备"
+msgstr "蝗脱する绕脱 SCSI デバイスを回年する"
 
 #: src/main.c:81
 msgid "Launch in \"small\" (cd-only) mode"
-msgstr "运行于小模式(CD-only)"
+msgstr "\"スモ〖ル\" モ〖ド (CD-ROM のみ) で弹瓢する"
 
 #: src/main.c:90
 msgid "\"Local\" mode -- do not look up disc info on the net"
-msgstr "运行于本地模式--不查询网络"
+msgstr "\"ロ〖カル\" モ〖ド -- インタ〖ネットから妒攫鼠を啼い圭わせない"
 
 #: src/main.c:99
 msgid "Do not do I/O redirection"
-msgstr "不做 I/O 重定向"
+msgstr "掐蜗/叫蜗の磊仑を乖わない"
 
 #: src/main.c:108
 msgid "Run in verbose (debug) mode"
-msgstr "运行于除错模式"
+msgstr "拒嘿モ〖ド (デバッグ脱) モ〖ドで弹瓢する"
 
 #: src/grip.c:145
 msgid "Grip"
-msgstr ""
+msgstr "Grip"
 
 #: src/grip.c:164
 #, c-format
 msgid "Error: Unable to initialize [%s]\n"
-msgstr "错误: 无法初始化 [%s]\n"
+msgstr "エラ〖: [%s] を介袋步できません\n"
 
 #: src/grip.c:190
 #, c-format
 msgid "Could not parse geometry string `%s'"
-msgstr "无法处理几何属性字串 %s"
+msgstr "回年した疤弥 '%s' を豺坚できませんでした"
 
 #: src/grip.c:240
 msgid ""
 "Work is in progress.\n"
 "Really shut down?"
 msgstr ""
-"正在工作中.\n"
-"真的要关闭吗?"
+"借妄面です。\n"
+"塑碰に姜位しますか々"
 
 #: src/grip.c:298
 msgid "Help"
-msgstr "帮助"
+msgstr "ヘルプ"
 
 #: src/grip.c:303
 msgid "Table Of Contents"
-msgstr "目录"
+msgstr "誊肌"
 
 #: src/grip.c:309
 msgid "Playing CDs"
-msgstr "播放CD"
+msgstr "不弛 CD の遍琳"
 
 #: src/grip.c:315
 msgid "Ripping CDs"
-msgstr "CD抓轨"
+msgstr "不弛 CD の磊り叫し"
 
 #: src/grip.c:321
 msgid "Configuring Grip"
-msgstr "配置Grip"
+msgstr "Grip の肋年"
 
 #: src/grip.c:327
 msgid "FAQ"
-msgstr "常见问题解答"
+msgstr "FAQ"
 
 #: src/grip.c:333
 msgid "Getting More Help"
-msgstr "获得更多帮助"
+msgstr "拒嘿なヘルプ"
 
 #: src/grip.c:339
 msgid "Reporting Bugs"
-msgstr "报告错误"
+msgstr "バグの鼠桂"
 
 #: src/grip.c:359
 msgid "About"
-msgstr "关于"
+msgstr "攫鼠"
 
 #: src/grip.c:707
 msgid ""
@@ -114,372 +115,373 @@ msgid ""
 "You will need to re-configure Grip.\n"
 "Your old config file has been saved in ~/.grip-old."
 msgstr ""
-"您的配置文件已经过期 -- 重新设定为缺省值.\n"
-"您可能需要重新配置 Grip.\n"
-"旧的配置文件已经被保存为 ~/.grip-old."
+"肋年ファイルの铜跟袋嘎が册ぎています -- デフォルトに提します。\n"
+"Grip を浩肋年する涩妥があります。\n"
+"概い肋年ファイルは ~/.grip-old として瘦赂しました。"
 
 #: src/grip.c:766
 #, c-format
 msgid "server is %s, port %d\n"
-msgstr "服务器是 %s, 端口 %d\n"
+msgstr "サ〖バ: %s  ポ〖ト戎规: %d\n"
 
 #: src/grip.c:786
 msgid "Error: Unable to save config file"
-msgstr "错误: 无法保存配置文件"
+msgstr "エラ〖: 肋年ファイルを瘦赂できません"
 
 #: src/gripcfg.c:94
 msgid "Config"
-msgstr "配置"
+msgstr "肋年"
 
 #: src/gripcfg.c:102
 msgid "CDRom device"
-msgstr "CDROM 设备"
+msgstr "CD-ROM デバイス"
 
 #: src/gripcfg.c:107
 msgid "Don't interrupt playback on exit/startup"
-msgstr "退出和启动的时候不中断放音"
+msgstr "姜位箕/弹瓢箕に浩栏充り哈みをしない"
 
 #: src/gripcfg.c:111
 msgid "Rewind when stopped"
-msgstr "停止时后退到曲首"
+msgstr "姜位箕に船き提す"
 
 #: src/gripcfg.c:116
 msgid "Startup with first track if not playing"
-msgstr "如果没有开始播放则从第一首开始"
+msgstr "浩栏しない箕に呵介のトラックから倡幌する"
 
 #: src/gripcfg.c:121
 msgid "Auto-play on disc insert"
-msgstr "CD插入时自动播放"
+msgstr "ディスク赁掐箕に极瓢弄に遍琳する"
 
 #: src/gripcfg.c:126
 msgid "Reshuffle before each playback"
-msgstr "每次播放前重新打乱播放次序"
+msgstr "浩栏する刨にシャッフルする"
 
 #: src/gripcfg.c:131
 msgid "Work around faulty eject"
-msgstr "修正错误的弹出"
+msgstr "稍紊箕にイジェクトする"
 
 #: src/gripcfg.c:138
 msgid "CD"
-msgstr "光盘"
+msgstr "CD"
 
 #: src/gripcfg.c:154
 msgid "Ripper:"
-msgstr "抓轨工具:"
+msgstr "磊り叫しツ〖ル:"
 
 #: src/gripcfg.c:199
 msgid "Ripping executable"
-msgstr "抓轨程序"
+msgstr "悸乖ファイル"
 
 #: src/gripcfg.c:204
 msgid "Rip command-line"
-msgstr "抓轨器运行参数"
+msgstr "オプション"
 
 #: src/gripcfg.c:215
 msgid "Disable paranoia"
-msgstr "禁用paranoia"
+msgstr "Paranoia 蝗脱稍材"
 
 #: src/gripcfg.c:220
 msgid "Disable extra paranoia"
-msgstr "禁用外部paranoia"
+msgstr "橙磨 Paranoia 蝗脱稍材"
 
 #: src/gripcfg.c:226
 msgid "Disable scratch"
-msgstr "禁用擦痕"
+msgstr "Scratch 蝗脱稍材"
 
 #: src/gripcfg.c:230
 msgid "detection"
-msgstr "侦测"
+msgstr "浮叫"
 
 #: src/gripcfg.c:234
 msgid "repair"
-msgstr "修复"
+msgstr "饯牲"
 
 #: src/gripcfg.c:242
 msgid "Calculate gain adjustment"
-msgstr "计算增益调整"
+msgstr "拇腊するゲインの纷换"
 
 #: src/gripcfg.c:250
 msgid "Rip file format"
-msgstr "抓轨文件格式"
+msgstr "磊り叫しファイルフォ〖マット"
 
 #: src/gripcfg.c:254
 msgid "Generic SCSI device"
-msgstr "常规SCSI设备"
+msgstr "办忍弄な SCSI デバイス"
 
 #: src/gripcfg.c:262
 msgid "Ripper"
-msgstr "抓轨工具"
+msgstr "磊り叫し"
 
 #: src/gripcfg.c:271
 msgid "Rip 'nice' value"
-msgstr "抓轨 'nice' 优先值"
+msgstr "庭黎刨 (nice 猛)"
 
 #: src/gripcfg.c:275
 msgid "Max non-encoded .wav's"
-msgstr "最大待编码的.wav文件数"
+msgstr "エンコ〖ドしない呵络ファイル眶"
 
 #: src/gripcfg.c:279
 msgid "Auto-rip on insert"
-msgstr "光盘插入自动抓轨"
+msgstr "赁掐箕に极瓢弄に磊り叫す"
 
 #: src/gripcfg.c:283
 msgid "Beep after rip"
-msgstr "抓轨完成后响铃"
+msgstr "窗位したらビ〖プ不を棠らす"
 
 #: src/gripcfg.c:288
 msgid "Auto-eject after rip"
-msgstr "抓轨完成后自动弹出光盘"
+msgstr "窗位したら极瓢弄にイジェクトする"
 
 #: src/gripcfg.c:292
 msgid "Auto-eject delay"
-msgstr "自动弹出延迟"
+msgstr "极瓢イジェクトまでの略怠箕粗"
 
 #: src/gripcfg.c:296
 msgid "Wav filter command"
-msgstr "WAV 过滤器命令"
+msgstr "フィルタコマンド(WAV)"
 
 #: src/gripcfg.c:301
 msgid "Disc filter command"
-msgstr "光盘过滤器命令"
+msgstr "フィルタコマンド(DISK)"
 
 #: src/gripcfg.c:309 src/gripcfg.c:436
 msgid "Options"
-msgstr "选项"
+msgstr "オプション"
 
 #: src/cdplay.c:259 src/gripcfg.c:316 src/rip.c:95
 msgid "Rip"
-msgstr "抓轨"
+msgstr "磊り叫し"
 
 #: src/gripcfg.c:331
 msgid "Encoder:"
-msgstr "编码器"
+msgstr "エンコ〖ダ:"
 
 #: src/gripcfg.c:366
 msgid "MP3 executable"
-msgstr "编码器程序"
+msgstr "悸乖ファイル"
 
 #: src/gripcfg.c:371
 msgid "MP3 command-line"
-msgstr "编码器运行参数"
+msgstr "オプション"
 
 #: src/gripcfg.c:376
 msgid "MP3 file format"
-msgstr "MP3 文件格式"
+msgstr "ファイルの今及"
 
 #: src/gripcfg.c:383
 msgid "Encoder"
-msgstr "编码器"
+msgstr "エンコ〖ダ"
 
 #: src/gripcfg.c:393
 msgid "Delete .wav after encoding"
-msgstr "编码后删除 .wav 文件"
+msgstr "エンコ〖ド窗位稿に .wav ファイルを猴近する"
 
 #: src/gripcfg.c:398
 msgid "Insert info into SQL database"
-msgstr "插入信息到SQL数据库"
+msgstr "SQLデ〖タベ〖スに纳裁する"
 
 #: src/gripcfg.c:402
 msgid "Create .m3u files"
-msgstr "创建 .m3u 文件"
+msgstr ".m3uファイルを侯喇する"
 
 #: src/gripcfg.c:407
 msgid "Use relative paths in .m3u files"
-msgstr "在 .m3u 文件中使用相对路径"
+msgstr ".m3uファイルの面に簇犯するディレクトリを蝗脱する"
 
 #: src/gripcfg.c:411
 msgid "M3U file format"
-msgstr "M3U 文件格式"
+msgstr "m3u ファイル今及"
 
 #: src/gripcfg.c:416
 msgid "Encoding bitrate (kbits/sec)"
-msgstr "编码比特率 (kbits/sec)"
+msgstr "エンコ〖ドビットレ〖ト(kbits/擅)"
 
 #: src/gripcfg.c:420
 msgid "Number of CPUs to use"
-msgstr "CPU 使用数目"
+msgstr "蝗脱する CPU の眶"
 
 #: src/gripcfg.c:424
 msgid "MP3 'nice' value"
-msgstr "编码器 'nice' 优先级"
+msgstr "庭黎刨 (nice 猛)"
 
 #: src/gripcfg.c:428
 msgid "MP3 filter command"
-msgstr "MP3 过滤器命令"
+msgstr "MP3 フィルタコマンド"
 
 #: src/gripcfg.c:443
 msgid "MP3"
-msgstr "编码"
+msgstr "MP3"
 
 #: src/gripcfg.c:452
 msgid "Add ID3 tags to MP3 files"
-msgstr "填入 ID3 标签到 MP3 文件"
+msgstr "ID3 タグを MP3 ファイルに纳裁する"
 
 #: src/gripcfg.c:458
 msgid "Add ID3v2 tags to MP3 files"
-msgstr "填入 ID3v2 标签到 MP3 文件"
+msgstr "ID3v2 タグを MP3 ファイルに纳裁する"
 
 #: src/gripcfg.c:463
 msgid "ID3 comment field"
-msgstr "ID3 注释信息"
+msgstr "ID3 コメント"
 
 #: src/gripcfg.c:470
 msgid "ID3"
-msgstr "标签"
+msgstr "ID3"
 
 #: src/gripcfg.c:487 src/gripcfg.c:507
 msgid "DB server"
-msgstr "数据库服务器"
+msgstr "DB サ〖バ"
 
 #: src/gripcfg.c:491 src/gripcfg.c:511
 msgid "CGI path"
-msgstr "CGI 路径"
+msgstr "CGI のパス"
 
 #: src/gripcfg.c:498
 msgid "Primary Server"
-msgstr "主服务器"
+msgstr "プライマリ"
 
 #: src/gripcfg.c:518
 msgid "Secondary Server"
-msgstr "从服务器"
+msgstr "セカンダリ"
 
 #: src/gripcfg.c:528
 msgid "DB Submit email"
-msgstr "DB 提交电子邮件"
+msgstr "DB 澄千メ〖ル"
 
 #: src/gripcfg.c:533
 msgid "Use freedb extensions"
-msgstr "使用 FreeDB 扩展"
+msgstr "FreeDB を蝗脱する"
 
 #: src/gripcfg.c:538
 msgid "Perform disc lookups automatically"
-msgstr "自动进行光盘查询"
+msgstr "ディスク攫鼠の极瓢艰评"
 
 #: src/gripcfg.c:546
 msgid "DiscDB"
-msgstr "CD数据库"
+msgstr "DiscDB"
 
 #: src/gripcfg.c:555
 msgid "Use proxy server"
-msgstr "使用代理服务器"
+msgstr "プロキシサ〖バを蝗う"
 
 #: src/gripcfg.c:562
 msgid "Get server from 'http_proxy' env. var"
-msgstr "从'http_proxy'变量指定代理服务器"
+msgstr "茨董恃眶 $http_proxy からサ〖バを艰评する"
 
 #: src/gripcfg.c:566
 msgid "Proxy server"
-msgstr "代理服务器"
+msgstr "プロキシサ〖バ"
 
 #: src/gripcfg.c:570
 msgid "Proxy port"
-msgstr "代理服务器端口"
+msgstr "プロキシポ〖ト"
 
 #: src/gripcfg.c:574
 msgid "Proxy username"
-msgstr "代理服务器用户名"
+msgstr "ユ〖ザ叹"
 
 #: src/gripcfg.c:580
 msgid "Proxy password"
-msgstr "代理服务器口令"
+msgstr "パスワ〖ド"
 
 #: src/gripcfg.c:588
 msgid "Proxy"
-msgstr "代理服务器"
+msgstr "プロキシ"
 
 #: src/gripcfg.c:597
 msgid "Email address"
-msgstr "电子邮件"
+msgstr "E-Mail アドレス"
 
 #: src/gripcfg.c:601
 msgid "CD update program"
-msgstr "CD 更新程序"
+msgstr "CD 构糠プログラム"
 
 #: src/gripcfg.c:606
 msgid "Do not lowercase filenames"
-msgstr "不要将文件名转换成小写字母"
+msgstr "井矢机のファイル叹を蝗脱しない"
 
 #: src/gripcfg.c:611
 msgid "Allow high bits in filenames"
-msgstr "允许文件名的高8位"
+msgstr "ファイル叹に络矢机を钓す"
 
 #: src/gripcfg.c:616
 msgid "Do not change spaces to underscores"
-msgstr "不要将空格转换成下划线"
+msgstr "鄂球をアンダ〖スコア (_) に恃垂しない"
 
 #: src/gripcfg.c:621
 msgid ""
 "Characters to not strip\n"
 "in filenames"
 msgstr ""
-"不去除文件名中的字符\n"
-" "
+"ファイル叹の矢机を\n"
+"没教しない"
 
 #: src/gripcfg.c:626
 msgid "Keep application minimum size"
-msgstr "保持应用程序窗口最小尺寸"
+msgstr "アプリケ〖ションを呵井サイズにする"
 
 #: src/gripcfg.c:633
 msgid "Misc"
-msgstr "杂项"
+msgstr "その戮"
 
 #: src/cddev.c:164 src/cddev.c:590
 #, c-format
 msgid "Drive status is %d\n"
-msgstr "驱动器状态是 %d\n"
+msgstr "ドライブの觉轮は %d です\n"
 
 #: src/cddev.c:166
 msgid "Drive doesn't support drive status check (assume CDS_NO_INFO)\n"
-msgstr "驱动器不支持状态检测(假定 CDS_NO_INFO)\n"
+msgstr ""
+"ドライブは觉轮チェックをサポ〖トしていません (CDE_NO_INFOと蛔われます)\n"
 
 #: src/cddev.c:169
 msgid "No disc\n"
-msgstr "无光盘\n"
+msgstr "ディスクがありません\n"
 
 #: src/cddev.c:270 src/cddev.c:279 src/cddev.c:296 src/cddev.c:323
 msgid "Error: Failed to read disc contents\n"
-msgstr "错误: 读取光盘目录失败\n"
+msgstr "エラ〖: ディスクの誊肌の粕みとりに己窃しました\n"
 
 #: src/cddev.c:593
 msgid "Drive doesn't support drive status check\n"
-msgstr "驱动器不支持状态检测\n"
+msgstr "ドライブはデバイスのステ〖タスチェックをサポ〖トしていません\n"
 
 #: src/cddev.c:614 src/cddev.c:618
 #, c-format
 msgid "Unlock failed: %d"
-msgstr "解锁失败: %d"
+msgstr "アンロックに己窃: %d"
 
 #: src/cddev.c:622
 msgid "CDIOCEJECT"
-msgstr ""
+msgstr "CDIOCEJECT"
 
 #: src/cdplay.c:95
 msgid "Aborted\n"
-msgstr "取消\n"
+msgstr "面贿しました\n"
 
 #: src/cdplay.c:103
 msgid "Cannot do lookup while ripping"
-msgstr "无法在抓轨过程中查询"
+msgstr "磊り叫し面に浮瑚はできません"
 
 #. "misc"
 #: src/cdplay.c:140
 msgid "Unknown Disc"
-msgstr "未知光盘"
+msgstr "稍汤なディスク"
 
 #: src/cdplay.c:144
 #, c-format
 msgid "Track %02d"
-msgstr "Track %02d"
+msgstr "トラック %02d"
 
 #: src/cdplay.c:208
 #, c-format
 msgid "Querying %s (through %s) for disc %02x.\n"
-msgstr "查询 %s (通过 %s) 对光盘 %02x.\n"
+msgstr "%s (%s を沸统 : ディスク %02x) の啼い圭わせ面です\n"
 
 #: src/cdplay.c:212
 #, c-format
 msgid "Querying %s for disc %02x.\n"
-msgstr "查询 %s 对于光盘 %02x.\n"
+msgstr "%s (DISC %02x) の啼い圭わせ面です\n"
 
 #: src/cdplay.c:224
 #, c-format
@@ -487,169 +489,169 @@ msgid ""
 "Match for \"%s / %s\"\n"
 "Downloading data...\n"
 msgstr ""
-"正在匹配 \"%s / %s\"\n"
-"正在下载数据...\n"
+"\"%s / %s\" が办米しました\n"
+"デ〖タのダウンロ〖ド面...\n"
 
 #: src/cdplay.c:231
 msgid "Done\n"
-msgstr "完成\n"
+msgstr "窗位\n"
 
 #: src/cdplay.c:235 src/cdplay.c:560
 msgid "Error saving disc data\n"
-msgstr "保存光盘数据错误\n"
+msgstr "ディスクデ〖タ瘦赂面のエラ〖\n"
 
 #: src/cdplay.c:241
 msgid "No match\n"
-msgstr "不匹配\n"
+msgstr "办米しませんでした\n"
 
 #: src/cdplay.c:259 src/cdplay.c:261
 msgid "Track"
-msgstr "曲目"
+msgstr "トラック"
 
 #: src/cdplay.c:259 src/cdplay.c:261
 msgid "Length "
-msgstr "长度"
+msgstr "遍琳箕粗"
 
 #: src/cdplay.c:261
 msgid "PL"
-msgstr ""
+msgstr "PL"
 
 #: src/cdplay.c:266
 msgid "Tracks"
-msgstr "曲目"
+msgstr "トラック"
 
 #: src/cdplay.c:631
 msgid "Rotate play mode"
-msgstr "循环播放模式"
+msgstr "浩栏モ〖ドの磊り仑え"
 
 #: src/cdplay.c:651
 msgid "Toggle loop play"
-msgstr "切换循环播放"
+msgstr "ル〖プ浩栏の磊り仑え"
 
 #: src/cdplay.c:735 src/rip.c:221
 msgid "Rip status"
-msgstr "抓轨状态"
+msgstr "磊り叫し觉斗"
 
 #: src/cdplay.c:807
 msgid "Play track / Pause play"
-msgstr "播放/暂停"
+msgstr "トラックの浩栏 / 匿贿"
 
 #: src/cdplay.c:818
 msgid "Rewind"
-msgstr "倒退"
+msgstr "船き提し"
 
 #: src/cdplay.c:829
 msgid "FastForward"
-msgstr "快进"
+msgstr "玲流り"
 
 #: src/cdplay.c:839
 msgid "Go to previous track"
-msgstr "上一曲"
+msgstr "涟のトラックに"
 
 #: src/cdplay.c:848
 msgid "Go to next track"
-msgstr "下一曲"
+msgstr "肌のトラックに"
 
 #: src/cdplay.c:857
 msgid "Toggle play mode options"
-msgstr "切换放音模式选项"
+msgstr "浩栏オプションの磊り仑え"
 
 #: src/cdplay.c:867
 msgid "Next Disc"
-msgstr "下一光盘"
+msgstr "肌のディスク"
 
 #: src/cdplay.c:881
 msgid "Stop play"
-msgstr "停止放音"
+msgstr "匿贿"
 
 #: src/cdplay.c:891
 msgid "Eject disc"
-msgstr "弹出光盘"
+msgstr "ディスクをイジェクト"
 
 #: src/cdplay.c:899
 msgid "Toggle Volume Control"
-msgstr "切换音量控制"
+msgstr "ボリュ〖ム拇腊の磊り仑え"
 
 #: src/cdplay.c:908
 msgid "Toggle disc editor"
-msgstr "切换光盘编辑器"
+msgstr "ディスクエディタの磊り仑え"
 
 #: src/cdplay.c:918
 msgid "Initiate/abort DiscDB lookup"
-msgstr "初始化/取消光盘查询"
+msgstr "DiscDB 浮瑚の钓材/敦贿"
 
 #: src/cdplay.c:928
 msgid "Toggle track display"
-msgstr "切换曲目显示"
+msgstr "トラック戎规山绩の磊り仑え"
 
 #: src/cdplay.c:936
 msgid "Exit Grip"
-msgstr "退出 Grip"
+msgstr "Grip の姜位"
 
 #: src/cdplay.c:939
 msgid "Exit GCD"
-msgstr "退出 GCD"
+msgstr "GCD の姜位"
 
 #: src/cdplay.c:1087
 msgid "Cannot fast forward while ripping"
-msgstr "抓轨过程中不能快进"
+msgstr "磊り叫し面に玲流りはできません"
 
 #: src/cdplay.c:1119
 msgid "Cannot rewind while ripping"
-msgstr "抓轨过程中不能倒退"
+msgstr "磊り叫し面に船き提しはできません"
 
 #: src/cdplay.c:1151
 msgid "Cannot switch discs while ripping"
-msgstr "抓轨过程中不能切换光盘"
+msgstr "磊り叫し面にディスクの蛤垂はできません"
 
 #: src/cdplay.c:1170
 msgid "Eject disc\n"
-msgstr "弹出光盘\n"
+msgstr "ディスクをイジェクトしてください\n"
 
 #: src/cdplay.c:1174
 msgid "Cannot eject while ripping"
-msgstr "不能在抓轨过程中弹出光盘"
+msgstr "磊り叫し面にイジェクトできません"
 
 #: src/cdplay.c:1185
 msgid "Have disc -- ejecting\n"
-msgstr "有光盘 -- 正在弹出\n"
+msgstr "ディスクがあります -- イジェクト面\n"
 
 #: src/cdplay.c:1249
 msgid "Cannot play while ripping"
-msgstr "抓轨过程中不能播放"
+msgstr "磊り叫し面に浩栏はできません"
 
 #: src/cdplay.c:1312 src/cdplay.c:1345
 msgid "Cannot switch tracks while ripping"
-msgstr "抓轨过程中不能改变曲目"
+msgstr "磊り叫し面にトラックの蛤垂はできません"
 
 #: src/cdplay.c:1431
 msgid "Checking for a new disc\n"
-msgstr "正在检查一张新光盘\n"
+msgstr "糠しいディスクをチェックする\n"
 
 #: src/cdplay.c:1436
 msgid "CDStat found a disc, checking tracks\n"
-msgstr "CDStat 发现光盘, 正在检查曲目\n"
+msgstr "CDStat はディスクを斧つけました。トラックをチェックします\n"
 
 #: src/cdplay.c:1439
 msgid "We have a valid disc!\n"
-msgstr "光盘合法!\n"
+msgstr "おかしなディスクがあります—\n"
 
 #: src/cdplay.c:1460
 msgid "No non-zero length tracks\n"
-msgstr "没有非零长度的曲目\n"
+msgstr "墓さが 0 でないトラックがありません\n"
 
 #: src/cdplay.c:1462
 msgid "CDStat said no disc\n"
-msgstr "CDStat 说无光盘\n"
+msgstr "CDStat よりディスクが痰いとの鼠桂です\n"
 
 #: src/cdplay.c:1559 src/cdplay.c:1581
 #, c-format
 msgid "Current sector: %6d"
-msgstr "当前扇区: %6d"
+msgstr "附哼のセクタ: %6d"
 
 #: src/cdplay.c:1688
 msgid "No Disc"
-msgstr "无光盘"
+msgstr "ディスクがありません"
 
 #: src/cdplay.c:1743
 msgid ""
@@ -658,139 +660,139 @@ msgid ""
 "\n"
 "Do you wish to submit this disc information?"
 msgstr ""
-"此光盘信息在从服务器中找到,\n"
-"但是没有在主服务器中找到.\n"
+"このディスクはプライマリサ〖バではなく、\n"
+"セカンダリサ〖バから斧つかりました。\n"
 "\n"
-"您是否想提交此光盘信息?"
+"このディスク攫鼠を流慨しますか々"
 
 #: src/cdplay.c:1771 src/cdplay.c:1779
 msgid "Error: Unable to create temporary file"
-msgstr "错误: 无法创建临时文件"
+msgstr "エラ〖: 侯度脱ファイルが侯喇できません"
 
 #: src/cdplay.c:1789
 msgid "Error: Unable to write disc data"
-msgstr "错误: 无法写光盘数据"
+msgstr "エラ〖: ディスクデ〖タを今き哈めません"
 
 #: src/cdplay.c:1798
 #, c-format
 msgid "Mailing entry to %s\n"
-msgstr "发送邮件到 %s\n"
+msgstr "エントリ %s をメ〖ル面です\n"
 
 #: src/dialog.c:44
 msgid "System Message"
-msgstr "系统消息"
+msgstr "システムˇメッセ〖ジ"
 
 #: src/discdb.c:187
 #, c-format
 msgid "URI is %s\n"
-msgstr "URI 是 %s\n"
+msgstr "URI = %s\n"
 
 #: src/discdb.c:231
 #, c-format
 msgid "Query is [%s]\n"
-msgstr "查询是 [%s]\n"
+msgstr "[%s] で浮瑚\n"
 
 #: src/discdb.c:245
 #, c-format
 msgid "Reply is [%s]\n"
-msgstr "回复是 [%s]\n"
+msgstr "[%s] は浩栏\n"
 
 #: src/discdb.c:653
 #, c-format
 msgid "Stat error %d on %s\n"
-msgstr "状态错误  %d 在 %s\n"
+msgstr "%d (%s) の Stat エラ〖\n"
 
 #: src/discdb.c:657
 #, c-format
 msgid "Creating directory %s\n"
-msgstr "创建目录 %s\n"
+msgstr "ディレクトリ %s が侯喇されました\n"
 
 #: src/discdb.c:662
 #, c-format
 msgid "Error: %s exists, but is a file\n"
-msgstr "错误: %s 已经存在, 但不是一个文件\n"
+msgstr "エラ〖: %s が赂哼していますが、これはファイルです\n"
 
 #: src/discdb.c:669
 #, c-format
 msgid "Error: Unable to open %s for writing\n"
-msgstr "错误: 无法打开 %s 进行写操作\n"
+msgstr "エラ〖: 今き哈みモ〖ドで %s ファイルを倡けません\n"
 
 #: src/discedit.c:65
 msgid "Disc title"
-msgstr "光盘标题"
+msgstr "タイトル"
 
 #. This should be the longest string in the track edit section
 #: src/discedit.c:68 src/discedit.c:152
 msgid "Track name"
-msgstr "音轨曲名"
+msgstr "トラック叹"
 
 #: src/discedit.c:86
 msgid "Disc artist"
-msgstr "光盘作者"
+msgstr "遍琳荚"
 
 #: src/discedit.c:103
 msgid "ID3 genre:"
-msgstr "ID3类别:"
+msgstr "ジャンル:"
 
 #: src/discedit.c:134
 msgid "Disc year"
-msgstr "出品日期"
+msgstr "扩侯钳"
 
 #: src/discedit.c:172
 msgid "Track artist"
-msgstr "曲目作者"
+msgstr "遍琳荚"
 
 #: src/discedit.c:189
 msgid "Split:"
-msgstr "分割:"
+msgstr "尸充:"
 
 #: src/discedit.c:193
 msgid "Title/Artist"
-msgstr "标题/作者"
+msgstr "タイトル/遍琳荚"
 
 #: src/discedit.c:200
 msgid "Artist/Title"
-msgstr "作者/标题"
+msgstr "遍琳踩/タイトル"
 
 #: src/discedit.c:208
 msgid "Split chars"
-msgstr "分割符"
+msgstr "尸充矢机"
 
 #: src/discedit.c:225
 msgid "Multi-artist"
-msgstr "多作者"
+msgstr "剩眶の遍琳荚"
 
 #: src/discedit.c:236
 msgid "Save disc info"
-msgstr "保存光盘信息"
+msgstr "ディスク攫鼠の瘦赂"
 
 #: src/discedit.c:245
 msgid "Submit disc info"
-msgstr "提交光盘信息"
+msgstr "ディスク攫鼠を流慨"
 
 #: src/discedit.c:344
 msgid "Error saving disc data"
-msgstr "保存光盘信息错误"
+msgstr "ディスクデ〖タの瘦赂面にエラ〖"
 
 #: src/discedit.c:346
 msgid "No disc present"
-msgstr "没有光盘"
+msgstr "ディスクがありません"
 
 #: src/discedit.c:485
 msgid ""
 "Cannot submit\n"
 "No disc is present"
 msgstr ""
-"不能提交\n"
-"没有光盘"
+"流慨できません\n"
+"附哼、ディスクはありません"
 
 #: src/discedit.c:498
 msgid "You must enter a disc title"
-msgstr "您必须输入一个标题"
+msgstr "このディスクのタイトルを掐蜗して布さい"
 
 #: src/discedit.c:504
 msgid "You must enter a disc artist"
-msgstr "您必须输入一个作者"
+msgstr "このディスクの遍琳荚を掐蜗して布さい"
 
 #: src/discedit.c:514
 msgid ""
@@ -802,6 +804,13 @@ msgid ""
 "\n"
 "Continue?"
 msgstr ""
+"睛脱の CDDB サ〖バにディスク攫鼠を流慨すると\n"
+"それらのサ〖バに网弊を涂えることになります。\n"
+"\n"
+"その洛わりにフリ〖な CDDB サ〖バを菇蜜することを\n"
+"お传めします。\n"
+"\n"
+"鲁けますか々"
 
 #: src/discedit.c:523
 msgid ""
@@ -810,271 +819,275 @@ msgid ""
 "\n"
 "Continue?"
 msgstr ""
+"E-Mailを蝗ってこのディスク攫鼠を\n"
+"流慨できます\n"
+"\n"
+"鲁けますか々"
 
 #: src/discedit.c:540
 msgid "Genre selection"
-msgstr "选择类别"
+msgstr "ジャンルの联买"
 
 #: src/discedit.c:544
 msgid ""
 "Submission requires a genre other than 'unknown'\n"
 "Please select a DiscDB genre below"
 msgstr ""
-"您需要指定具体的音乐类别\n"
-"请从下列选择一个DiscDB类别"
+"'稍汤' 笆嘲のジャンルを回年して布さい\n"
+"笆布の DiscDB ジャンルを办つ联买して布さい"
 
 #: src/discedit.c:554
 msgid "DiscDB genre"
-msgstr "DiscDB 类别"
+msgstr "DiscDB ジャンル"
 
 #: src/discedit.c:574
 msgid "Submit"
-msgstr "提交"
+msgstr "流慨"
 
 #: src/discedit.c:585
 msgid "Cancel"
-msgstr "取消"
+msgstr "キャンセル"
 
 #. Doh!
 #: src/id3.c:279
 msgid "unknown ID3 field\n"
-msgstr "未知的 ID3 域\n"
+msgstr "稍汤な ID3 フィ〖ルド\n"
 
 #: src/launch.c:120
 #, c-format
 msgid "Error: unable to translate filename. No such user as %s\n"
-msgstr "错误: 无法转换文件名. 无此用户 %s\n"
+msgstr "エラ〖: ファイル叹を恃垂できません。 %s というユ〖ザはありません\n"
 
 #: src/launch.c:239 src/rip.c:1274
 msgid "Exec failed\n"
-msgstr "执行失败\n"
+msgstr "悸乖に己窃しました\n"
 
 #: src/parsecfg.c:58
 msgid "Error: Bad entry type\n"
-msgstr "错误: 坏的项类型\n"
+msgstr "エラ〖: エントリの硷梧が稍赖です\n"
 
 #: src/parsecfg.c:84
 msgid "Error: Invalid config file\n"
-msgstr "错误: 非法的配置文件\n"
+msgstr "エラ〖: 肋年ファイルが赖しくありません\n"
 
 #: src/rip.c:104
 msgid "Rip+Encode"
-msgstr "抓轨后编码"
+msgstr "办崇侯喇"
 
 #: src/rip.c:106
 msgid "Rip and encode selected tracks"
-msgstr "抓轨和编码选中的曲目"
+msgstr "回年したトラックの磊り叫しとエンコ〖ド"
 
 #: src/rip.c:112
 msgid "Rip Only"
-msgstr "只抓轨"
+msgstr "磊り叫しのみ"
 
 #: src/rip.c:114
 msgid "Rip but do not encode selected tracks"
-msgstr "只抓轨不编码"
+msgstr "回年したトラックの磊り叫しのみ"
 
 #: src/rip.c:120
 msgid "Abort Rip and Encode"
-msgstr "停止抓轨和编码"
+msgstr "磊り叫しとエンコ〖ドを面贿する"
 
 #: src/rip.c:122
 msgid "Kill all active rip and encode processes"
-msgstr "杀掉所有抓轨和编码进程"
+msgstr "磊り叫しとエンコ〖ド借妄を链て姜位する"
 
 #: src/rip.c:130
 msgid "Abort Ripping Only"
-msgstr "仅取消抓轨"
+msgstr "磊り叫し借妄のみ面贿する"
 
 #: src/rip.c:132
 msgid "Kill rip process"
-msgstr "杀掉抓轨进程"
+msgstr "磊り叫し借妄を面贿する"
 
 #: src/rip.c:138
 msgid "DDJ Scan"
-msgstr "DDJ 扫描"
+msgstr "DDJ スキャン"
 
 #: src/rip.c:140
 msgid "Insert disc information into the DigitalDJ database"
-msgstr "插入光盘信息到 DigitalDJ 数据库"
+msgstr "ディスク攫鼠を DigitalDJ デ〖タベ〖スに纳裁します"
 
 #: src/rip.c:155
 msgid "Rip partial track"
-msgstr "抓取部分音轨"
+msgstr "トラックの尸充磊り叫し"
 
 #: src/rip.c:166
 msgid "Play"
-msgstr "放音"
+msgstr "浩栏"
 
 #: src/rip.c:173
 msgid "Current sector:      0"
-msgstr "当前扇区:      0"
+msgstr "附哼のセクタ:     0"
 
 #: src/rip.c:204 src/rip.c:212 src/rip.c:800
 msgid "Rip: Idle"
-msgstr "抓轨: 空闲"
+msgstr "磊り叫し: 略怠面"
 
 #: src/rip.c:208
 msgid "MP3: Trk 99 (99.9x)"
-msgstr "编码: 曲目 99 (99.9x)"
+msgstr "磊り叫し: 99妒誊 (99.9x)"
 
 #: src/rip.c:231 src/rip.c:884
 msgid "MP3: Idle"
-msgstr "编码: 空闲"
+msgstr "磊り叫し: 略怠面"
 
 #: src/rip.c:280
 msgid "Start sector"
-msgstr "起始扇区"
+msgstr "倡幌セクタ"
 
 #: src/rip.c:285
 msgid "End sector"
-msgstr "终止扇区"
+msgstr "姜位セクタ"
 
 #: src/rip.c:544
 msgid "Error: can't open m3u file\n"
-msgstr "错误: 不能打开m3u文件\n"
+msgstr "エラ〖: m3u ファイルを倡けません\n"
 
 #: src/rip.c:727
 #, c-format
 msgid "Rip: Trk %d (%3.1fx)"
-msgstr "抓轨: 曲目 %d (%3.1fx)"
+msgstr "磊り叫し: %d妒誊 (%3.1fx)"
 
 #: src/rip.c:758
 msgid "Rip finished\n"
-msgstr "完成抓轨\n"
+msgstr "磊り叫し姜位\n"
 
 #: src/rip.c:784
 #, c-format
 msgid "Rip partial %d  num wavs %d\n"
-msgstr ""
+msgstr "%d 尸充で %d改のwavに磊り叫し\n"
 
 #: src/rip.c:787
 #, c-format
 msgid "Next track is %d, total is %d\n"
-msgstr "下一首是 %d, 总共是 %d\n"
+msgstr "肌のトラックは %d 链婶で %d です\n"
 
 #: src/rip.c:793
 msgid "Check if we need to rip another track\n"
-msgstr "检查是否需要抓取其他曲目\n"
+msgstr "戮のトラックを磊り叫す涩妥があるか澄千してください\n"
 
 #: src/rip.c:828
 #, c-format
 msgid "MP3: Trk %d (%3.1fx)"
-msgstr "编码: 曲目 %d (%3.1fx)"
+msgstr "エンコ〖ド: %d妒誊 (%3.1fx)"
 
 #: src/rip.c:842
 #, c-format
 msgid "Finished encoding on cpu %d\n"
-msgstr "完成编码在处理器 %d\n"
+msgstr "CPU %d でのエンコ〖ドが姜位しました\n"
 
 #: src/rip.c:850
 #, c-format
 msgid "Deleting [%s]\n"
-msgstr "正在删除 [%s]\n"
+msgstr "[%s] を猴近面です\n"
 
 #: src/rip.c:892
 msgid "Ripping is finished\n"
-msgstr "抓轨完成\n"
+msgstr "磊り叫し姜位\n"
 
 #: src/rip.c:970 src/rip.c:976
 msgid "NoArtist"
-msgstr "无作者"
+msgstr "遍琳荚なし"
 
 #: src/rip.c:981
 msgid "NoTitle"
-msgstr "无标题"
+msgstr "タイトルなし"
 
 #: src/rip.c:1069
 msgid ""
 "Invalid rip executable\n"
 "Check your rip config"
 msgstr ""
-"非法的抓轨程序\n"
-"请检查你的抓轨器设置"
+"稍赖な磊り叫しがされています\n"
+"磊り叫しの肋年を澄千してください"
 
 #: src/rip.c:1076
 msgid ""
 "Invalid MP3 executable\n"
 "Check your MP3 config"
 msgstr ""
-"非法的编码程序\n"
-"请检查你的编码器设置"
+"稍赖なエンコ〖ドが悸乖されています\n"
+"エンコ〖ド肋年を澄千してください"
 
 #: src/rip.c:1109
 msgid ""
 "No tracks selected.\n"
 "Rip whole CD?\n"
 msgstr ""
-"没有选择曲目.\n"
-"抓取整张光盘吗?\n"
+"トラックが回年されていません。\n"
+"不弛 CD 链挛を磊り叫しますか々\n"
 
 #: src/rip.c:1126
 msgid "Ripping whole CD\n"
-msgstr "正在抓取整张光盘\n"
+msgstr "不弛 CD 链挛の磊り叫し\n"
 
 #: src/rip.c:1161
 msgid "In RipNextTrack\n"
-msgstr "在抓取下一轨\n"
+msgstr "肌のトラックを磊り叫し面\n"
 
 #: src/rip.c:1168
 #, c-format
 msgid "First checked track is %d\n"
-msgstr "第一个检查的曲目是 %d\n"
+msgstr "呵介にチェックしたトラックは %d です\n"
 
 #: src/rip.c:1178
 msgid "Ripping away!\n"
-msgstr ""
+msgstr "磊り叫し面贿—\n"
 
 #: src/rip.c:1213
 msgid "No write access to write wav file"
-msgstr "没有写 wav 文件的权限"
+msgstr "WAV ファイルに滦する今き哈み涪嘎がありません"
 
 #: src/rip.c:1217
 #, c-format
 msgid "Ripping track %d to %s\n"
-msgstr "正在抓取曲目 %d 到 %s\n"
+msgstr "トラック %d を %s に磊り叫し面\n"
 
 #: src/rip.c:1220
 #, c-format
 msgid "Rip: Trk %d (0.0x)"
-msgstr "抓轨: 曲目 %d (0.0x)"
+msgstr "磊り叫し: %d妒誊 (0.0x)"
 
 #: src/rip.c:1225
 #, c-format
 msgid "File %s has already been ripped. Skipping...\n"
-msgstr "文件 %s 已经抓过. 跳过...\n"
+msgstr "ファイル %s は贷に磊り叫し貉みです。スキップします...\n"
 
 #: src/rip.c:1239 src/rip.c:1450
 msgid "Out of space in output directory"
-msgstr "输出目录空间不足"
+msgstr "叫蜗するために涩妥な鄂き推翁がありません"
 
 #: src/rip.c:1303
 msgid "Calling CDPRip\n"
-msgstr "调用 CDPRip\n"
+msgstr "CDPRipを钙び叫しています。\n"
 
 #: src/rip.c:1379
 #, c-format
 msgid "Added track %d to encode list\n"
-msgstr "添加曲目 %d 到编码队列\n"
+msgstr "%d トラックをエンコ〖ドリストに纳裁しました\n"
 
 #: src/rip.c:1402
 msgid "No free cpus\n"
-msgstr "没有空闲的处理器\n"
+msgstr "CPUに鄂きがありません\n"
 
 #: src/rip.c:1418
 #, c-format
 msgid "MP3 track %d\n"
-msgstr "MP3 曲目 %d\n"
+msgstr "エンコ〖ド トラック %d\n"
 
 #: src/rip.c:1432
 msgid "No write access to write mp3 file"
-msgstr "没有写 mp3 文件的权限"
+msgstr "MP3 ファイルに滦する今き哈み涪嘎がありません"
 
 #: src/rip.c:1438
 #, c-format
 msgid "%i: Encoding to %s\n"
-msgstr "%i: 编码到 %s\n"
+msgstr "%i: %s へエンコ〖ディング面\n"
 
 #: src/rip.c:1440
 #, c-format
 msgid "MP3: Trk %d (0.0x)"
-msgstr "编码: 曲目 %d (0.0x)"
+msgstr "エンコ〖ド: %d妒誊 (0.0x)"

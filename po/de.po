@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: grip 2.99.0\n"
 "POT-Creation-Date: 2002-04-02 09:26-0800\n"
-"PO-Revision-Date: 2002-03-13 16:09+0100\n"
+"PO-Revision-Date: 2002-04-03 18:28+0200\n"
 "Last-Translator: Götz Waschk <waschk@informatik.uni-rostock.de>\n"
 "Language-Team: German <de@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -1037,7 +1037,7 @@ msgstr "Rippe los!\n"
 
 #: src/rip.c:1213
 msgid "No write access to write wav file"
-msgstr ""
+msgstr "Kein Schreibzugriff zum Schreiben der Wav-Datei"
 
 #: src/rip.c:1217
 #, c-format
@@ -1078,7 +1078,7 @@ msgstr "MP3 Track %d\n"
 
 #: src/rip.c:1432
 msgid "No write access to write mp3 file"
-msgstr ""
+msgstr "Kein Schreibzugriff zum Schreiben der mp3-Datei"
 
 #: src/rip.c:1438
 #, c-format
