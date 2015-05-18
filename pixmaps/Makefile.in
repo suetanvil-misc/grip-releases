@@ -120,7 +120,8 @@ ZVT_LIBS = @ZVT_LIBS@
 cflags_set = @cflags_set@
 cxxflags_set = @cxxflags_set@
 
-EXTRA_DIST = gripicon.png check.xpm enc1.xpm lowleft.xpm playnorm.xpm \
+EXTRA_DIST = gripicon.png gripicon.gif check.xpm enc1.xpm lowleft.xpm \
+	playnorm.xpm \
               rip0.xpm smile2.xpm stop.xpm discdb0.xpm enc2.xpm lowright.xpm \
 	      playpaus.xpm rip1.xpm smile3.xpm discdb1.xpm enc3.xpm mail.xpm \
 	      prevtrk.xpm rip2.xpm smile4.xpm upleft.xpm discdbwht.xpm \

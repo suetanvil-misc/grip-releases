@@ -1,3 +1,10 @@
+2002-01-16  Mike Oliphant  <oliphant@gtk.org>
+
+	* grip.spec: added Epoch: 1 to allow upgrading from redhat rpms
+	  (thanks to Tim Powers for this)
+	* grip.spec: put the Icon back
+	* configure.in/grip.spec: upped version to 2.98.1
+	
 2002-01-13  Mike Oliphant  <oliphant@gtk.org>
 
 	* discdb.c: don't overwrite with blank genre on lookup

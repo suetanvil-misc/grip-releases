@@ -1,5 +1,5 @@
 %define name grip
-%define version 2.98.0
+%define version 2.98.1
 %define release 1
 %define prefix /usr
 %define 
@@ -13,8 +13,9 @@ Group: Applications/Sound
 Source: http://www.nostatic/grip/grip-%{version}.tar.gz
 URL: http://www.nostatic.org/grip
 Packager: Mike Oliphant <oliphant@gtk.org>
-#Icon: gripicon.png
+Icon: gripicon.gif
 Buildroot: /tmp/%{name}-root
+Epoch: 1
 
 %description
 Grip is a cd-player and cd-ripper for Gnome. It has the ripping capabilities
