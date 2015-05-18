@@ -50,6 +50,7 @@ enum {
   TRACKLIST_N_COLUMNS
 };
 
+void MinMax(GtkWidget *widget,gpointer data);
 void SetCurrentTrackIndex(GripInfo *ginfo,int track);
 void SetChecked(GripGUI *uinfo,int track,gboolean checked);
 gboolean TrackIsChecked(GripGUI *uinfo,int track);
@@ -61,6 +62,7 @@ void LookupDisc(GripInfo *ginfo,gboolean manual);
 gboolean DiscDBLookupDisc(GripInfo *ginfo,DiscDBServer *server);
 GtkWidget *MakePlayOpts(GripInfo *ginfo);
 GtkWidget *MakeControls(GripInfo *ginfo);
+int GetLengthRipWidth(GripInfo *ginfo);
 void ResizeTrackList(GripInfo *ginfo);
 void MakeTrackPage(GripInfo *ginfo);
 void NextTrack(GripInfo *ginfo);

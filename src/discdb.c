@@ -257,7 +257,6 @@ gboolean DiscDBDoQuery(DiscInfo *disc,DiscDBServer *server,
 		       DiscDBHello *hello,DiscDBQuery *query)
 {
   int index;
-  CURL *curl_handle=NULL;
   GString *cmd;
   char *result,*inbuffer;
   char *dataptr;
@@ -283,9 +282,6 @@ gboolean DiscDBDoQuery(DiscInfo *disc,DiscDBServer *server,
   g_string_free(cmd,TRUE);
 
   if(!result) {
-    curl_easy_cleanup(curl_handle);
-    curl_global_cleanup();
-    
     return FALSE;
   }
 
@@ -486,19 +482,14 @@ static char *StrConvertEncoding(char *str,char *from,char *to,int max_len)
 {
   char *conv_str;
   gsize rb,wb;
-  int len;
 
   if(!str) return NULL;
 
   conv_str=g_convert(str,strlen(str),to,from,&rb,&wb,NULL);
 
-  len=strlen(conv_str);
-
-  if(len>max_len) len=max_len;
-
   if(!conv_str) return str;
 
-  g_snprintf(str,len,"%s",conv_str);
+  g_snprintf(str,max_len,"%s",conv_str);
 
   g_free(conv_str);
 

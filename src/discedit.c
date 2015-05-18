@@ -291,12 +291,8 @@ void UpdateMultiArtist(GtkWidget *widget,gpointer data)
   uinfo=&(ginfo->gui_info);
 
   if(!ginfo->ddata.data_multi_artist) {
-    gtk_window_set_policy(GTK_WINDOW(uinfo->app),FALSE,TRUE,
-			  uinfo->minimized||uinfo->keep_min_size);
-
     gtk_widget_hide(uinfo->multi_artist_box);
     UpdateGTK();
-    gtk_window_set_policy(GTK_WINDOW(uinfo->app),FALSE,TRUE,FALSE);
   }
   else {
     gtk_widget_show(uinfo->multi_artist_box);
@@ -312,14 +308,21 @@ void ToggleTrackEdit(GtkWidget *widget,gpointer data)
   uinfo=&(ginfo->gui_info);
 
   if(uinfo->track_edit_visible) {
-    gtk_window_set_policy(GTK_WINDOW(uinfo->app),FALSE,TRUE,
-			  uinfo->minimized||uinfo->keep_min_size);
+    gtk_window_resize(GTK_WINDOW(uinfo->app),
+                      uinfo->win_width,
+                      uinfo->win_height);
+
     gtk_widget_hide(uinfo->track_edit_box);
     UpdateGTK();
-    gtk_window_set_policy(GTK_WINDOW(uinfo->app),FALSE,TRUE,FALSE);
   }
   else {
+    if(uinfo->minimized) MinMax(NULL,(gpointer)ginfo);
+
     gtk_widget_show(uinfo->track_edit_box);
+
+    gtk_window_resize(GTK_WINDOW(uinfo->app),
+                      uinfo->win_width,
+                      uinfo->win_height_edit);
   }
 
   uinfo->track_edit_visible=!uinfo->track_edit_visible;

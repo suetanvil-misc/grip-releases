@@ -31,7 +31,7 @@
 #undef HAVE_GETTEXT
 
 /* Description */
-#undef HAVE_ID3LIB
+#undef HAVE_ID3V2
 
 /* Define to 1 if you have the <inttypes.h> header file. */
 #undef HAVE_INTTYPES_H

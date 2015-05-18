@@ -92,6 +92,7 @@ void TranslateString(char *instr,GString *outstr,
   char *trans_result;
   char *tok;
   struct passwd *pwd;
+  char *munge_str;
 
   if(*instr=='~') {
     instr++;
@@ -146,9 +147,13 @@ void TranslateString(char *instr,GString *outstr,
       else {
 	trans_result=trans_func(*instr,user_data,&do_munge);
 
-	if(do_munge) MungeString(trans_result,prefs);
-
-	g_string_append(outstr,trans_result);
+	if(do_munge && (munge_str=MungeString(trans_result,prefs))) {
+          g_string_append(outstr,munge_str);
+          
+          free(munge_str);
+        }
+        else
+          g_string_append(outstr,trans_result);
       }
     }
     else {
@@ -157,16 +162,34 @@ void TranslateString(char *instr,GString *outstr,
   }
 }
 
+/*
+  Munge a string to be suitable for filenames
+  We only support strings that can be converted to ISO-8859-1
+*/
+
 char *MungeString(char *str,StrTransPrefs *prefs)
 {
-  char *src,*dst;
+  unsigned char *src,*dst;
+  char *iso_str;
+  char *utf8_str;
+  gsize rb,wb;
 
-  for(src=dst=str;*src;src++) {
+  iso_str=g_convert(str,strlen(str),"ISO-8859-1","UTF-8",
+                    &rb,&wb,NULL);
+
+  if(!iso_str) {
+    return NULL;
+  }
+
+  for(src=dst=iso_str;*src;src++) {
     if((*src==' ')) {
       if(prefs->no_underscore) *dst++=' ';
       else *dst++='_';
     }
-    else if(*src & (1<<7) && prefs->allow_high_bits) *dst++=*src;
+    else if(*src & (1<<7)) {
+      if(prefs->allow_high_bits) *dst++=*src;
+      else continue;
+    }
     else if(!isalnum(*src)&&!strchr(prefs->allow_these_chars,*src)) continue;
     else {
       if(prefs->no_lower_case) *dst++=*src;
@@ -176,7 +199,16 @@ char *MungeString(char *str,StrTransPrefs *prefs)
 
   *dst='\0';
 
-  return str;
+  utf8_str=g_convert(iso_str,strlen(iso_str),"UTF-8","ISO-8859-1",
+                     &rb,&wb,NULL);
+
+  free(iso_str);
+
+  if(!utf8_str) {
+    return NULL;
+  }
+
+  return utf8_str;
 }
 
 int MakeTranslatedArgs(char *str,GString **args,int maxargs,
@@ -206,6 +238,26 @@ int MakeTranslatedArgs(char *str,GString **args,int maxargs,
 
 extern char *FindRoot(char *);
 
+void ArgsToLocale(GString **args)
+{
+  char *new_str;
+  GString *new_arg;
+  int pos;
+  int len;
+
+  for(pos=1;args[pos];pos++) {
+    new_str=g_locale_from_utf8(args[pos]->str,-1,NULL,&len,NULL);
+
+    if(new_str) {
+      new_arg=g_string_new(new_str);
+      
+      g_string_free(args[pos],TRUE);
+      
+      args[pos]=new_arg;
+    }
+  }
+}
+
 void TranslateAndLaunch(char *cmd,char *(*trans_func)(char,void *,gboolean *),
 			void *user_data,gboolean do_munge_default,
 			StrTransPrefs *prefs,void (*close_func)(void *),
@@ -220,6 +272,8 @@ void TranslateAndLaunch(char *cmd,char *(*trans_func)(char,void *,gboolean *),
   str=g_string_new(NULL);
 
   MakeTranslatedArgs(cmd,args,100,trans_func,user_data,do_munge_default,prefs);
+
+  ArgsToLocale(args);
 
   for(arg=1;args[arg];arg++) {
     char_args[arg]=args[arg]->str;

@@ -1,8 +1,29 @@
+2004-04-02  Mike Oliphant  <grip@nostatic.org>
+
+	* it.po: updated (Ceoldo Costantino)
+	* ja.po: updated (Takeshi Aihana)
+	* fi.po: updated (Flammie Pirinen)
+	* cdplay.c: make length and rip columns size appropriately in
+	  different languages
+	* cdplay.c: fixed bug in playlist support (Markus Kaufhold)
+	* discdb.c: fixed a string length calculation (Thomas Zajic)
+	* discdb.c: removed redundant curl cals (Markus Kaufhold)
+	* status_window.c: fixed a crash problem in certain locales
+	  (Markus Kaufhold)
+	* rip.c/launch.c: translate args of launched programs to locale
+	* grip.c/grip.h/discdb.c/cdplay.c: fixed resizing issues, and now
+	  window sizes and edit/volume/prog status are remembered
+	* grip.c/gripcfg.c/gripcfg.h/parsecfg.c: save ripper/encoder
+	  configurations individually
+	* grip.c: added i18n for a few more strings (Jordi Mallach)
+	* configure.in: upped version to 3.1.9
+	
 2004-03-27  Mike Oliphant  <grip@nostatic.org>
 
 	* de.po: updated (Götz Waschk)
 	* discdb.c: fixed a problem causing crashes on disc lookup
-	
+	* configure.in: upped version to 3.1.8
+
 2004-03-22  Mike Oliphant  <grip@nostatic.org>
 
 	* de.po: updated (Götz Waschk)

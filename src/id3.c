@@ -213,7 +213,7 @@ typedef struct _id3_tag {
   unsigned char genre;
 } ID3v1Tag;
 
-#ifdef HAVE_ID3LIB
+#ifdef HAVE_ID3V2
 
 #include <id3.h>
 
@@ -295,22 +295,26 @@ gboolean ID3v2TagFile(char *filename, char *title, char *artist, char *album,
 	  field = ID3Frame_GetField( frames[i], ID3FN_TEXT );
 
 	  if(field) {
-            if(!strcasecmp(id3v2_encoding,"utf-8")) {
+            /*            if(!strcasecmp(id3v2_encoding,"utf-8")) {
 	      ID3Field_SetUNICODE(field,(unicode_t *)c_data);
 	    }
 	    else {
-              /* If the encoding isn't unicode, convert it and put it
-                 as ascii */
+            */     
 
-              conv_str=g_convert(c_data,strlen(c_data),id3v2_encoding,
-                                 "utf-8",&rb,&wb,NULL);
+            /* Always encode pretending it is ascii */
+            
+            conv_str=g_convert(c_data,strlen(c_data),id3v2_encoding,
+                               "utf-8",&rb,&wb,NULL);
+            
+            if(!conv_str) {
+              printf("***convert failed\n");
 
-              if(!conv_str) conv_str=strdup(c_data);
+              conv_str=strdup(c_data);
+            }
 
-	      ID3Field_SetASCII(field,c_data);
-
-              g_free(conv_str);
-	    }
+            ID3Field_SetASCII(field,conv_str);
+            
+            g_free(conv_str);
 	  } else {
 	    retval = FALSE;
 	  }
@@ -352,7 +356,7 @@ gboolean ID3v2TagFile(char *filename, char *title, char *artist, char *album,
   return retval;
 }
 
-#endif /* HAVE_ID3LIB */
+#endif /* HAVE_ID3V2 */
 
 /* Add an ID3v1 tag to a file */
 

@@ -25,6 +25,7 @@
 #include "grip.h"
 #include "gripcfg.h"
 #include "dialog.h"
+#include "parsecfg.h"
 
 static void UseProxyChanged(GtkWidget *widget,gpointer data);
 static void RipperSelected(GtkWidget *widget,gpointer data);
@@ -57,8 +58,15 @@ static MP3Encoder encoder_defaults[]={{"bladeenc","-%b -QUIT %w %m","mp3"},
 				       "-o %m -a %a -l %d -t %n -b %b %w -N %t -G %g -d %y",
 				       "ogg"},
 				      {"flac","-V -o %m %w","flac"},
-				      {"other",""},
+				      {"other","",""},
 				      {"",""}
+};
+
+static CFGEntry encoder_cfg_entries[]={
+  {"name",CFG_ENTRY_STRING,256,NULL},
+  {"cmdline",CFG_ENTRY_STRING,256,NULL},
+  {"exe",CFG_ENTRY_STRING,256,NULL},
+  {"extension",CFG_ENTRY_STRING,10,NULL}
 };
 
 static void UseProxyChanged(GtkWidget *widget,gpointer data)
@@ -498,7 +506,7 @@ void MakeConfigPage(GripInfo *ginfo)
   gtk_box_pack_start(GTK_BOX(vbox),check,FALSE,FALSE,0);
   gtk_widget_show(check);
 
-#ifdef HAVE_ID3LIB
+#ifdef HAVE_ID3V2
   check=MakeCheckButton(NULL,&ginfo->doid3v2,
 			_("Add ID3v2 tags to encoded files"));
   gtk_box_pack_start(GTK_BOX(vbox),check,FALSE,FALSE,0);
@@ -519,7 +527,7 @@ void MakeConfigPage(GripInfo *ginfo)
   gtk_box_pack_start(GTK_BOX(vbox),entry,FALSE,FALSE,0);
   gtk_widget_show(entry);
 
-#ifdef HAVE_ID3LIB
+#ifdef HAVE_ID3V2
   entry=MakeStrEntry(NULL,ginfo->id3v2_encoding,
 		     _("ID3v2 Character set encoding"),16,TRUE);
   gtk_box_pack_start(GTK_BOX(vbox),entry,FALSE,FALSE,0);
@@ -689,11 +697,6 @@ void MakeConfigPage(GripInfo *ginfo)
   gtk_box_pack_start(GTK_BOX(vbox),entry,FALSE,FALSE,0);
   gtk_widget_show(entry);
 
-  check=MakeCheckButton(NULL,&(ginfo->gui_info.keep_min_size),
-			_("Keep application minimum size"));
-  gtk_box_pack_start(GTK_BOX(vbox),check,FALSE,FALSE,0);
-  gtk_widget_show(check);
-
   gtk_container_add(GTK_CONTAINER(page),vbox);
   gtk_widget_show(vbox);
 
@@ -720,6 +723,8 @@ static void RipperSelected(GtkWidget *widget,gpointer data)
   uinfo=&(ginfo->gui_info);
   rip=(Ripper *)gtk_object_get_user_data(GTK_OBJECT(widget));
 
+  SaveRipperConfig(ginfo,ginfo->selected_ripper);
+
   selected_ripper=rip-ripper_defaults;
 
   /* Don't overwrite if the selection hasn't changed */
@@ -745,14 +750,62 @@ static void RipperSelected(GtkWidget *widget,gpointer data)
 #endif
 
   if(!ginfo->using_builtin_cdp) {
-    if(strcmp(rip->name,"other")) {
-      FindExeInPath(rip->name, buf, sizeof(buf));
-      gtk_entry_set_text(GTK_ENTRY(uinfo->ripexename_entry), buf);
+    if(LoadRipperConfig(ginfo,ginfo->selected_ripper)) {
+      strcpy(buf,ginfo->ripexename);
+      gtk_entry_set_text(GTK_ENTRY(uinfo->ripexename_entry),buf);
+      strcpy(buf,ginfo->ripcmdline);
+      gtk_entry_set_text(GTK_ENTRY(uinfo->ripcmdline_entry),buf);
     }
-    else gtk_entry_set_text(GTK_ENTRY(uinfo->ripexename_entry),"");
-    
-    gtk_entry_set_text(GTK_ENTRY(uinfo->ripcmdline_entry),rip->cmdline);
+    else {
+      if(strcmp(rip->name,"other")) {
+        FindExeInPath(rip->name, buf, sizeof(buf));
+        gtk_entry_set_text(GTK_ENTRY(uinfo->ripexename_entry), buf);
+      }
+      else gtk_entry_set_text(GTK_ENTRY(uinfo->ripexename_entry),"");
+      
+      gtk_entry_set_text(GTK_ENTRY(uinfo->ripcmdline_entry),rip->cmdline);
+    }
   }
+}
+
+#define RIP_CFG_ENTRIES \
+    {"exe",CFG_ENTRY_STRING,256,ginfo->ripexename},\
+    {"cmdline",CFG_ENTRY_STRING,256,ginfo->ripcmdline},\
+    {"",CFG_ENTRY_LAST,0,NULL}
+
+gboolean LoadRipperConfig(GripInfo *ginfo,int ripcfg)
+{
+  char buf[256];
+  CFGEntry rip_cfg_entries[]={
+    RIP_CFG_ENTRIES
+  };
+
+#ifdef CDPAR
+  if(ripcfg==0) return;
+#endif
+
+  sprintf(buf,"%s/%s-%s",getenv("HOME"),ginfo->config_filename,
+          ripper_defaults[ripcfg].name);
+
+  return (LoadConfig(buf,"GRIP",2,2,rip_cfg_entries)==1);
+}
+
+void SaveRipperConfig(GripInfo *ginfo,int ripcfg)
+{
+  char buf[256];
+  CFGEntry rip_cfg_entries[]={
+    RIP_CFG_ENTRIES
+  };
+
+#ifdef CDPAR
+  if(ripcfg==0) return;
+#endif
+
+  sprintf(buf,"%s/%s-%s",getenv("HOME"),ginfo->config_filename,
+          ripper_defaults[ripcfg].name);
+
+  if(!SaveConfig(buf,"GRIP",2,rip_cfg_entries))
+    DisplayMsg(_("Error: Unable to save ripper config"));
 }
 
 static void EncoderSelected(GtkWidget *widget,gpointer data)
@@ -766,16 +819,63 @@ static void EncoderSelected(GtkWidget *widget,gpointer data)
   uinfo=&(ginfo->gui_info);
   enc=(MP3Encoder *)gtk_object_get_user_data(GTK_OBJECT(widget));
 
-  if(strcmp(enc->name,"other")) {
-    FindExeInPath(enc->name, buf, sizeof(buf));
-    gtk_entry_set_text(GTK_ENTRY(uinfo->mp3exename_entry),buf);
-  }
-  else gtk_entry_set_text(GTK_ENTRY(uinfo->mp3exename_entry),"");
-
-  gtk_entry_set_text(GTK_ENTRY(uinfo->mp3cmdline_entry),enc->cmdline);
-  gtk_entry_set_text(GTK_ENTRY(uinfo->mp3extension_entry),enc->extension);
+  SaveEncoderConfig(ginfo,ginfo->selected_encoder);
 
   ginfo->selected_encoder=enc-encoder_defaults;
+
+  if(LoadEncoderConfig(ginfo,ginfo->selected_encoder)) {
+    strcpy(buf,ginfo->mp3exename);
+    gtk_entry_set_text(GTK_ENTRY(uinfo->mp3exename_entry),buf);
+
+    strcpy(buf,ginfo->mp3cmdline);
+    gtk_entry_set_text(GTK_ENTRY(uinfo->mp3cmdline_entry),buf);
+
+    strcpy(buf,ginfo->mp3extension);
+    gtk_entry_set_text(GTK_ENTRY(uinfo->mp3extension_entry),buf);    
+  }
+  else {
+    if(strcmp(enc->name,"other")) {
+      FindExeInPath(enc->name, buf, sizeof(buf));
+      gtk_entry_set_text(GTK_ENTRY(uinfo->mp3exename_entry),buf);
+    }
+    else gtk_entry_set_text(GTK_ENTRY(uinfo->mp3exename_entry),"");
+    
+    gtk_entry_set_text(GTK_ENTRY(uinfo->mp3cmdline_entry),enc->cmdline);
+    gtk_entry_set_text(GTK_ENTRY(uinfo->mp3extension_entry),enc->extension);
+  }
+}
+
+#define ENCODE_CFG_ENTRIES \
+    {"exe",CFG_ENTRY_STRING,256,ginfo->mp3exename},\
+    {"cmdline",CFG_ENTRY_STRING,256,ginfo->mp3cmdline},\
+    {"extension",CFG_ENTRY_STRING,10,ginfo->mp3extension},\
+    {"",CFG_ENTRY_LAST,0,NULL}
+
+gboolean LoadEncoderConfig(GripInfo *ginfo,int encodecfg)
+{
+  char buf[256];
+  CFGEntry encode_cfg_entries[]={
+    ENCODE_CFG_ENTRIES
+  };
+
+  sprintf(buf,"%s/%s-%s",getenv("HOME"),ginfo->config_filename,
+          encoder_defaults[encodecfg].name);
+
+  return (LoadConfig(buf,"GRIP",2,2,encode_cfg_entries)==1);
+}
+
+void SaveEncoderConfig(GripInfo *ginfo,int encodecfg)
+{
+  char buf[256];
+  CFGEntry encode_cfg_entries[]={
+    ENCODE_CFG_ENTRIES
+  };
+
+  sprintf(buf,"%s/%s-%s",getenv("HOME"),ginfo->config_filename,
+          encoder_defaults[encodecfg].name);
+
+  if(!SaveConfig(buf,"GRIP",2,encode_cfg_entries))
+    DisplayMsg(_("Error: Unable to save encoder config"));
 }
 
 void FindExeInPath(char *exename, char *buf, int bsize)

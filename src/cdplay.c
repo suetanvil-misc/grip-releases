@@ -45,7 +45,6 @@ static void PlaylistChanged(GtkWindow *window,GtkWidget *widget,gpointer data);
 static void ToggleLoop(GtkWidget *widget,gpointer data);
 static void ChangePlayMode(GtkWidget *widget,gpointer data);
 static void ChangeTimeMode(GtkWidget *widget,gpointer data);
-static void MinMax(GtkWidget *widget,gpointer data);
 static void ToggleProg(GtkWidget *widget,gpointer data);
 static void ToggleControlButtons(GtkWidget *widget,GdkEventButton *event,
 				 gpointer data);
@@ -233,19 +232,57 @@ gboolean DiscDBLookupDisc(GripInfo *ginfo,DiscDBServer *server)
   return success;
 }
 
-void ResizeTrackList(GripInfo *ginfo)
+int GetLengthRipWidth(GripInfo *ginfo)
 {
   GtkWidget *track_list;
-  GtkTreeViewColumn *column;
-  int width;
+  int width,tot_width=0;
+  PangoLayout *layout;
 
   track_list=ginfo->gui_info.track_list;
 
   if(track_list) {
+    layout=gtk_widget_create_pango_layout(GTK_WIDGET(track_list),
+					_("Length"));
+
+    pango_layout_get_size(layout,&width,NULL);
+    
+    g_object_unref(layout);
+    
+    tot_width+=width;
+    
+    layout=gtk_widget_create_pango_layout(GTK_WIDGET(track_list),
+					_("Rip"));
+
+    pango_layout_get_size(layout,&width,NULL);
+    
+    g_object_unref(layout);
+
+    tot_width+=width;
+
+    tot_width/=PANGO_SCALE;
+
+    tot_width+=25;
+  }
+
+  return tot_width;
+}
+
+void ResizeTrackList(GripInfo *ginfo)
+{
+  GtkWidget *track_list;
+  GtkTreeViewColumn *column;
+  int tot_width=0;
+  PangoLayout *layout;
+
+  track_list=ginfo->gui_info.track_list;
+
+  if(track_list) {
+    tot_width=GetLengthRipWidth(ginfo);
+
     column=gtk_tree_view_get_column(GTK_TREE_VIEW(track_list),
 				    TRACKLIST_TRACK_COL);
     gtk_tree_view_column_set_fixed_width(column,track_list->
-					 allocation.width-100);
+					 allocation.width-tot_width);
   }
 }
 
@@ -291,7 +328,9 @@ void MakeTrackPage(GripInfo *ginfo)
 						  NULL);
 
   gtk_tree_view_column_set_sizing(column,GTK_TREE_VIEW_COLUMN_FIXED);
-  gtk_tree_view_column_set_fixed_width(column,WINWIDTH-100);
+  gtk_tree_view_column_set_fixed_width(column,
+                                       uinfo->win_width-
+                                       (GetLengthRipWidth(ginfo)+15));
 
   gtk_tree_view_append_column(GTK_TREE_VIEW(uinfo->track_list),column);
 
@@ -875,7 +914,7 @@ GtkWidget *MakeControls(GripInfo *ginfo)
   gtk_widget_set_style(button,uinfo->style_dark_grey);
   gtk_box_pack_start(GTK_BOX(hbox),button,TRUE,TRUE,0);
   g_signal_connect(G_OBJECT(button),"clicked",
-    		     G_CALLBACK(ToggleProg),(gpointer)uinfo);
+    		     G_CALLBACK(ToggleProg),(gpointer)ginfo);
   gtk_tooltips_set_tip(MakeToolTip(),button,
 		       _("Toggle play mode options"),NULL);
   gtk_widget_show(button);
@@ -926,7 +965,7 @@ GtkWidget *MakeControls(GripInfo *ginfo)
   button=ImageButton(GTK_WIDGET(uinfo->app),uinfo->vol_image);
   gtk_widget_set_style(button,uinfo->style_dark_grey);
   g_signal_connect(G_OBJECT(button),"clicked",
-  		     G_CALLBACK(ToggleVol),(gpointer)uinfo);
+  		     G_CALLBACK(ToggleVol),(gpointer)ginfo);
   gtk_tooltips_set_tip(MakeToolTip(),button,
 		       _("Toggle Volume Control"),NULL);
   gtk_box_pack_start(GTK_BOX(hbox),button,TRUE,TRUE,0);
@@ -955,7 +994,7 @@ GtkWidget *MakeControls(GripInfo *ginfo)
   button=ImageButton(GTK_WIDGET(uinfo->app),uinfo->minmax_image);
   gtk_widget_set_style(button,uinfo->style_dark_grey);
   g_signal_connect(G_OBJECT(button),"clicked",
-  		     G_CALLBACK(MinMax),(gpointer)uinfo);
+  		     G_CALLBACK(MinMax),(gpointer)ginfo);
   gtk_tooltips_set_tip(MakeToolTip(),button,
 		       _("Toggle track display"),NULL);
   gtk_box_pack_start(GTK_BOX(hbox),button,TRUE,TRUE,0);
@@ -994,14 +1033,18 @@ static void ChangeTimeMode(GtkWidget *widget,gpointer data)
   UpdateDisplay(ginfo);
 }
 
-static void MinMax(GtkWidget *widget,gpointer data)
+void MinMax(GtkWidget *widget,gpointer data)
 {
+  GripInfo *ginfo;
   GripGUI *uinfo;
 
-  uinfo=(GripGUI *)data;
+  ginfo=(GripInfo *)data;
+  uinfo=&(ginfo->gui_info);
 
   if(uinfo->minimized) {
     gtk_container_border_width(GTK_CONTAINER(uinfo->winbox),3);
+    gtk_box_set_child_packing(GTK_BOX(uinfo->winbox),
+                              uinfo->controls,FALSE,FALSE,0,GTK_PACK_START);
     gtk_widget_show(uinfo->notebook);
 
     CopyPixmap(GTK_PIXMAP(uinfo->lcd_smile_indicator),
@@ -1009,19 +1052,34 @@ static void MinMax(GtkWidget *widget,gpointer data)
     CopyPixmap(GTK_PIXMAP(uinfo->empty_image),
     GTK_PIXMAP(uinfo->lcd_smile_indicator));
 
-    gtk_widget_set_size_request(GTK_WIDGET(uinfo->app),WINWIDTH,WINHEIGHT);
+    gtk_widget_set_size_request(GTK_WIDGET(uinfo->app),
+                                WINWIDTH,WINHEIGHT);
+
+    gtk_window_resize(GTK_WINDOW(uinfo->app),
+                      uinfo->win_width,
+                      uinfo->win_height);
   }
   else {
     gtk_container_border_width(GTK_CONTAINER(uinfo->winbox),0);
+    gtk_box_set_child_packing(GTK_BOX(uinfo->winbox),uinfo->controls,
+                              TRUE,TRUE,0,GTK_PACK_START);
+
     gtk_widget_hide(uinfo->notebook);
 
     CopyPixmap(GTK_PIXMAP(uinfo->smile_indicator),
 	       GTK_PIXMAP(uinfo->lcd_smile_indicator));
 
-    gtk_widget_set_size_request(GTK_WIDGET(uinfo->app),MIN_WINWIDTH,
-				MIN_WINHEIGHT);
-    gtk_window_resize(GTK_WINDOW(uinfo->app),1,1);
-  
+    if(uinfo->track_edit_visible) ToggleTrackEdit(NULL,(gpointer)ginfo);
+    if(uinfo->volvis) ToggleVol(NULL,(gpointer)ginfo);
+    if(uinfo->track_prog_visible) ToggleProg(NULL,(gpointer)ginfo);
+
+    gtk_widget_set_size_request(GTK_WIDGET(uinfo->app),
+                                MIN_WINWIDTH,MIN_WINHEIGHT);
+
+    gtk_window_resize(GTK_WINDOW(uinfo->app),
+                      uinfo->win_width_min,
+                      uinfo->win_height_min);
+
     UpdateGTK();
   }
 
@@ -1030,22 +1088,24 @@ static void MinMax(GtkWidget *widget,gpointer data)
 
 static void ToggleProg(GtkWidget *widget,gpointer data)
 {
+  GripInfo *ginfo;
   GripGUI *uinfo;
 
-  uinfo=(GripGUI *)data;
+  ginfo=(GripInfo *)data;
+  uinfo=&(ginfo->gui_info);
 
   if(uinfo->track_prog_visible) {
-    gtk_window_set_policy(GTK_WINDOW(uinfo->app),FALSE,TRUE,
-			  uinfo->minimized||uinfo->keep_min_size);
     gtk_widget_hide(uinfo->playopts);
-    UpdateGTK();
-    gtk_window_set_policy(GTK_WINDOW(uinfo->app),FALSE,TRUE,FALSE);
   }
   else {
     gtk_widget_show(uinfo->playopts);
   }
 
   uinfo->track_prog_visible=!uinfo->track_prog_visible;
+
+  if(uinfo->minimized) {
+    MinMax(NULL,ginfo);
+  }
 }
 
 static void ToggleControlButtons(GtkWidget *widget,GdkEventButton *event,
@@ -1056,13 +1116,9 @@ static void ToggleControlButtons(GtkWidget *widget,GdkEventButton *event,
   uinfo=&((GripInfo *)data)->gui_info;
 
   if(uinfo->control_buttons_visible) {
-    gtk_window_set_policy(GTK_WINDOW(uinfo->app),
-			  FALSE,TRUE,TRUE);
     gtk_widget_hide(uinfo->control_button_box);
 
     UpdateGTK();
-    gtk_window_set_policy(GTK_WINDOW(uinfo->app),
-			  FALSE,TRUE,FALSE);
   }
   else {
     gtk_widget_show(uinfo->control_button_box);
@@ -1073,22 +1129,24 @@ static void ToggleControlButtons(GtkWidget *widget,GdkEventButton *event,
 
 static void ToggleVol(GtkWidget *widget,gpointer data)
 {
+  GripInfo *ginfo;
   GripGUI *uinfo;
 
-  uinfo=(GripGUI *)data;
+  ginfo=(GripInfo *)data;
+  uinfo=&(ginfo->gui_info);
 
   if(uinfo->volvis) {
-    gtk_window_set_policy(GTK_WINDOW(uinfo->app),FALSE,TRUE,
-			  uinfo->minimized||uinfo->keep_min_size);
     gtk_widget_hide(uinfo->volume_control);
-    UpdateGTK();
-    gtk_window_set_policy(GTK_WINDOW(uinfo->app),FALSE,TRUE,FALSE);
   }
   else {
     gtk_widget_show(uinfo->volume_control);
   }
 
   uinfo->volvis=!uinfo->volvis;
+
+  if(uinfo->minimized) {
+    MinMax(NULL,ginfo);
+  }
 }
 
 static void SetVolume(GtkWidget *widget,gpointer data)
@@ -1395,16 +1453,12 @@ static void InitProgram(GripInfo *ginfo)
     if(!tmp || !*tmp) {
       mode=PM_NORMAL;
     }
-    else {
-      plist=
-        strdup(gtk_entry_get_text(GTK_ENTRY(ginfo->gui_info.playlist_entry)));
-      tok=plist;
-    }
-
-    free(plist);
   }
 
   if(mode==PM_PLAYLIST) {
+    plist=
+      strdup(gtk_entry_get_text(GTK_ENTRY(ginfo->gui_info.playlist_entry)));
+
     ginfo->prog_totaltracks=0;
 
     tok=strtok(plist,",");
@@ -1414,6 +1468,8 @@ static void InitProgram(GripInfo *ginfo)
 
       tok=strtok(NULL,",");
     }
+
+    free(plist);
   }
   else {
     ginfo->prog_totaltracks=ginfo->disc.num_tracks;
@@ -1543,13 +1599,27 @@ void UpdateDisplay(GripInfo *ginfo)
 
   uinfo=&(ginfo->gui_info);
   disc=&(ginfo->disc);
-
-
-  if(old_width && (old_width != uinfo->track_list->allocation.width)) {
-    ResizeTrackList(ginfo);
+  
+  if(!uinfo->minimized) {
+    if(uinfo->track_edit_visible) {
+      gtk_window_get_size(GTK_WINDOW(uinfo->app),&uinfo->win_width,
+                          &uinfo->win_height_edit);
+    }
+    else
+      gtk_window_get_size(GTK_WINDOW(uinfo->app),&uinfo->win_width,
+                          &uinfo->win_height);
+    
+    if(old_width &&
+       (old_width != uinfo->track_list->allocation.width)) {
+      ResizeTrackList(ginfo);
+    }
+    
+    old_width=uinfo->track_list->allocation.width;
   }
-
-  old_width=uinfo->track_list->allocation.width;
+  else {
+    gtk_window_get_size(GTK_WINDOW(uinfo->app),&uinfo->win_width_min,
+                        &uinfo->win_height_min);
+  }
 
   if(!ginfo->looking_up) {
     if(discdb_counter%2)
@@ -1813,8 +1883,6 @@ void UpdateTracks(GripInfo *ginfo)
   }
 
   ginfo->first_time=0;
-
-  ResizeTrackList(ginfo);
 }
 
 void SubmitEntry(gint reply,gpointer data)

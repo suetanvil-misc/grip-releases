@@ -115,13 +115,20 @@ void DoSaveConfig(GripInfo *ginfo);
 {"no_underscore",CFG_ENTRY_BOOL,0,&ginfo->sprefs.no_underscore},\
 {"allow_high_bits",CFG_ENTRY_BOOL,0,&ginfo->sprefs.allow_high_bits},\
 {"allow_these_chars",CFG_ENTRY_STRING,256,ginfo->sprefs.allow_these_chars},\
-{"keep_min_size",CFG_ENTRY_BOOL,0,&uinfo->keep_min_size},\
 {"num_cpu",CFG_ENTRY_INT,0,&ginfo->edit_num_cpu},\
 {"kbits_per_sec",CFG_ENTRY_INT,0,&ginfo->kbits_per_sec},\
 {"selected_encoder",CFG_ENTRY_INT,0,&ginfo->selected_encoder},\
 {"selected_ripper",CFG_ENTRY_INT,0,&ginfo->selected_ripper},\
 {"play_mode",CFG_ENTRY_INT,0,&ginfo->play_mode},\
 {"playloop",CFG_ENTRY_BOOL,0,&ginfo->playloop},\
+{"win_width",CFG_ENTRY_INT,0,&uinfo->win_width},\
+{"win_height",CFG_ENTRY_INT,0,&uinfo->win_height},\
+{"win_height_edit",CFG_ENTRY_INT,0,&uinfo->win_height_edit},\
+{"win_width_min",CFG_ENTRY_INT,0,&uinfo->win_width_min},\
+{"win_height_min",CFG_ENTRY_INT,0,&uinfo->win_height_min},\
+{"vol_vis",CFG_ENTRY_BOOL,0,&uinfo->volvis},\
+{"track_edit_vis",CFG_ENTRY_BOOL,0,&uinfo->track_edit_visible},\
+{"track_prog_vis",CFG_ENTRY_BOOL,0,&uinfo->track_prog_visible},\
 {"volume",CFG_ENTRY_INT,0,&ginfo->volume},
 
 #define CDPAR_CFG_ENTRIES \
@@ -163,6 +170,32 @@ GtkWidget *GripNew(const gchar* geometry,char *device,char *scsi_device,
   uinfo->encode_status_window=NULL;
   uinfo->track_list=NULL;
 
+  uinfo->win_width=WINWIDTH;
+  uinfo->win_height=WINHEIGHT;
+  uinfo->win_height_edit=WINHEIGHTEDIT;
+  uinfo->win_width_min=MIN_WINWIDTH;
+  uinfo->win_height_min=MIN_WINHEIGHT;
+
+  /*  if(geometry != NULL) {
+    gint x,y,w,h;
+    
+    if(gnome_parse_geometry(geometry, 
+			    &x,&y,&w,&h)) {
+      if(x != -1) {
+	gtk_widget_set_uposition(app,x,y);
+      }
+      
+      if(w != -1) {
+        uinfo->win_width=w;
+        uinfo->win_height=h;
+      }
+    }
+    else {
+      g_error(_("Could not parse geometry string `%s'"), geometry);
+    }
+  }
+  */
+
   if(config_filename && *config_filename)
     g_snprintf(ginfo->config_filename,256,"%s",config_filename);
   else {
@@ -193,36 +226,26 @@ GtkWidget *GripNew(const gchar* geometry,char *device,char *scsi_device,
   g_signal_connect(G_OBJECT(app),"delete_event",
 		   G_CALLBACK(GripDie),NULL);
 
-  if(uinfo->minimized)
-    gtk_widget_set_size_request(GTK_WIDGET(app),MIN_WINWIDTH,MIN_WINHEIGHT);
-  else
-    gtk_widget_set_size_request(GTK_WIDGET(app),WINWIDTH,WINHEIGHT);
+  if(uinfo->minimized) {
+    gtk_widget_set_size_request(GTK_WIDGET(app),MIN_WINWIDTH,
+                                MIN_WINHEIGHT);
 
-  /* geometry */
+    gtk_window_resize(GTK_WINDOW(app),uinfo->win_width_min,
+                                uinfo->win_height_min);
+  }
+  else {
+    gtk_widget_set_size_request(GTK_WIDGET(app),WINWIDTH,
+                                WINHEIGHT);
 
-  /************************************
-
-  if(geometry != NULL) {
-    gint x,y,w,h;
-    
-    if(gnome_parse_geometry(geometry, 
-			    &x,&y,&w,&h)) {
-      if(x != -1) {
-	gtk_widget_set_uposition(app,x,y);
-      }
-      
-      if(w != -1) {
-	gtk_window_set_default_size(GTK_WINDOW(app),w,h);
-      }
+    if(uinfo->track_edit_visible) {
+      gtk_window_resize(GTK_WINDOW(app),uinfo->win_width,
+                        uinfo->win_height_edit);
     }
     else {
-      g_error(_("Could not parse geometry string `%s'"), geometry);
+      gtk_window_resize(GTK_WINDOW(app),uinfo->win_width,
+                        uinfo->win_height);
     }
   }
-
-
-  *******************************************/
-
 
   gtk_widget_realize(app);
 
@@ -247,13 +270,18 @@ GtkWidget *GripNew(const gchar* geometry,char *device,char *scsi_device,
   uinfo->track_edit_box=MakeEditBox(ginfo);
   gtk_box_pack_start(GTK_BOX(uinfo->winbox),uinfo->track_edit_box,
 		     FALSE,FALSE,0);
+  if(uinfo->track_edit_visible) gtk_widget_show(uinfo->track_edit_box);
+
 
   uinfo->playopts=MakePlayOpts(ginfo);
   gtk_box_pack_start(GTK_BOX(uinfo->winbox),uinfo->playopts,FALSE,FALSE,0);
   if(uinfo->track_prog_visible) gtk_widget_show(uinfo->playopts);
  
   uinfo->controls=MakeControls(ginfo);
-  gtk_box_pack_start(GTK_BOX(uinfo->winbox),uinfo->controls,FALSE,FALSE,0);
+  if(uinfo->minimized)
+    gtk_box_pack_start(GTK_BOX(uinfo->winbox),uinfo->controls,TRUE,TRUE,0);
+  else
+    gtk_box_pack_start(GTK_BOX(uinfo->winbox),uinfo->controls,FALSE,FALSE,0);
   gtk_widget_show(uinfo->controls);
   
   gnome_app_set_contents(GNOME_APP(app),uinfo->winbox);
@@ -508,7 +536,7 @@ void MakeAboutPage(GripGUI *uinfo)
 
   vbox2=gtk_vbox_new(TRUE,0);
 
-  sprintf(versionbuf,"Version %s",VERSION);
+  sprintf(versionbuf,_("Version %s"),VERSION);
   label=gtk_label_new(versionbuf);
   gtk_widget_set_style(label,uinfo->style_wb);
   gtk_box_pack_start(GTK_BOX(vbox2),label,FALSE,FALSE,0);
@@ -694,7 +722,6 @@ static void DoLoadConfig(GripInfo *ginfo)
   outputdir[0]='\0';
 
   uinfo->minimized=FALSE;
-  uinfo->keep_min_size=TRUE;
   uinfo->volvis=FALSE;
   uinfo->track_prog_visible=FALSE;
   uinfo->track_edit_visible=FALSE;
@@ -756,8 +783,8 @@ static void DoLoadConfig(GripInfo *ginfo)
   *ginfo->user_email='\0';
 
   strcpy(ginfo->discdb_encoding,"UTF-8");
-  strcpy(ginfo->id3_encoding,"LATIN1");
-  strcpy(ginfo->id3v2_encoding,"LATIN1");
+  strcpy(ginfo->id3_encoding,"UTF-8");
+  strcpy(ginfo->id3v2_encoding,"UTF-8");
 
   ginfo->local_mode=FALSE;
   ginfo->update_required=FALSE;
@@ -845,7 +872,7 @@ static void DoLoadConfig(GripInfo *ginfo)
   ginfo->doid3=TRUE;
   ginfo->doid3=FALSE;
   ginfo->tag_mp3_only=TRUE;
-  strcpy(ginfo->id3_comment,"Created by Grip");
+  strcpy(ginfo->id3_comment,_("Created by Grip"));
   *ginfo->cdupdate='\0';
   ginfo->sprefs.no_lower_case=FALSE;
   ginfo->sprefs.allow_high_bits=FALSE;
@@ -871,6 +898,9 @@ static void DoLoadConfig(GripInfo *ginfo)
 
     DoSaveConfig(ginfo);
   }
+
+  LoadRipperConfig(ginfo,ginfo->selected_ripper);
+  LoadEncoderConfig(ginfo,ginfo->selected_encoder);
 
 #ifndef GRIPCD
   /* Phase out 'outputdir' variable */
@@ -950,6 +980,9 @@ void DoSaveConfig(GripInfo *ginfo)
 
   if(!SaveConfig(filename,"GRIP",2,cfg_entries))
     DisplayMsg(_("Error: Unable to save config file"));
+
+  SaveRipperConfig(ginfo,ginfo->selected_ripper);
+  SaveEncoderConfig(ginfo,ginfo->selected_encoder);
 }
 
 /* Shut down stuff (generally before an exec) */

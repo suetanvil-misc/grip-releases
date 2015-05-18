@@ -41,6 +41,7 @@ int MakeTranslatedArgs(char *str,GString **args,int maxargs,
 		       char *(*trans_func)(char,void *,gboolean *),
 		       void *user_data,gboolean do_munge_default,
 		       StrTransPrefs *prefs);
+void ArgsToLocale(GString **args);
 void TranslateAndLaunch(char *cmd,char *(*trans_func)(char,void *,gboolean *),
 			void *user_data,gboolean do_munge_default,
 			StrTransPrefs *prefs,void (*close_func)(void *),

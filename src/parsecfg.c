@@ -74,7 +74,7 @@ int LoadConfig(char *filename,char *name,int ver,int reqver,CFGEntry *cfg)
   char *tok;
 
   cfp=fopen(filename,"r");
-  if(!cfp) return FALSE;
+  if(!cfp) return 0;
 
   fgets(buf,1024,cfp);
 
@@ -98,7 +98,7 @@ int LoadConfig(char *filename,char *name,int ver,int reqver,CFGEntry *cfg)
 
   fclose(cfp);
 
-  return 0;
+  return 1;
 }
 
 gboolean SaveConfig(char *filename,char *name,int ver,CFGEntry *cfg)

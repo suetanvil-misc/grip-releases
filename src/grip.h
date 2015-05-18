@@ -39,6 +39,8 @@
 #define WINWIDTH 400
 #define WINHEIGHT 450
 
+#define WINHEIGHTEDIT 600
+
 #define MIN_WINWIDTH 200
 #define MIN_WINHEIGHT 80
 
@@ -61,7 +63,11 @@ typedef struct _grip_gui {
   GtkWidget *winbox;
   GtkWidget *notebook;
   gboolean minimized;
-  gboolean keep_min_size;
+  int win_width;
+  int win_height;
+  int win_height_edit;
+  int win_width_min;
+  int win_height_min;
   GtkStyle *style_wb;
   GtkStyle *style_LCD;
   GtkStyle *style_dark_grey;

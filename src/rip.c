@@ -732,7 +732,7 @@ static void ID3Add(GripInfo *ginfo,char *file,EncodeTrack *enc_track)
   g_snprintf(year,5,"%d",enc_track->song_year);
 
   /* If we've got id3lib, we have the option of doing v2 tags */
-#ifdef HAVE_ID3LIB
+#ifdef HAVE_ID3V2
   if(ginfo->doid3v2) {
     ID3v2TagFile(file,(*(enc_track->song_name))?enc_track->song_name:"Unknown",
 		 (*(enc_track->song_artist))?enc_track->song_artist:
@@ -1143,13 +1143,11 @@ char *TranslateSwitch(char switch_char,void *data,gboolean *munge)
     g_snprintf(res,PATH_MAX,"%d",enc_track->ginfo->end_sector);
     *munge=FALSE;
     break;
-  case 'N':
   case 'n':
     if(*(enc_track->song_name))
       g_snprintf(res,PATH_MAX,"%s",enc_track->song_name);
     else g_snprintf(res,PATH_MAX,"Track%02d",enc_track->track_num);
     break;
-  case 'z':
   case 'a':
     if(*(enc_track->song_artist))
       g_snprintf(res,PATH_MAX,"%s",enc_track->song_artist);
@@ -1159,13 +1157,11 @@ char *TranslateSwitch(char switch_char,void *data,gboolean *munge)
       else strncpy(res,_("NoArtist"),PATH_MAX);
     }
     break;
-  case 'Z':
   case 'A':
     if(*(enc_track->disc_artist))
       g_snprintf(res,PATH_MAX,"%s",enc_track->disc_artist);
     else strncpy(res,_("NoArtist"),PATH_MAX);	
     break;
-  case 'D':
   case 'd':
     if(*(enc_track->disc_name))
       g_snprintf(res,PATH_MAX,"%s",enc_track->disc_name);
@@ -1362,6 +1358,7 @@ static gboolean RipNextTrack(GripInfo *ginfo)
   EncodeTrack enc_track;
   char *conv_str, *utf8_ripfile;
   gsize rb,wb;
+  const char *charset;
 
   uinfo=&(ginfo->gui_info);
 
@@ -1413,10 +1410,13 @@ static gboolean RipNextTrack(GripInfo *ginfo)
     TranslateString(ginfo->ripfileformat,str,TranslateSwitch,
 		    &enc_track,TRUE,&(ginfo->sprefs));
 
+    g_get_charset(&charset);
+
     conv_str=g_filename_from_utf8(str->str,strlen(str->str),&rb,&wb,NULL);
 
-    if(!conv_str)
+    if(!conv_str) {
       conv_str=g_strdup(str->str);
+    }
 
     g_snprintf(ginfo->ripfile,256,"%s",conv_str);
 
@@ -1487,6 +1487,8 @@ static gboolean RipNextTrack(GripInfo *ginfo)
 
       MakeTranslatedArgs(ginfo->ripcmdline,args,100,TranslateSwitch,
 			 &enc_track,FALSE,&(ginfo->sprefs));
+
+      ArgsToLocale(args);
 
       for(arg=0;args[arg];arg++) {
 	char_args[arg+1]=args[arg]->str;
@@ -1723,6 +1725,8 @@ static gboolean MP3Encode(GripInfo *ginfo)
 
   MakeTranslatedArgs(ginfo->mp3cmdline,args,100,TranslateSwitch,
 		     enc_track,FALSE,&(ginfo->sprefs));
+
+  ArgsToLocale(args);
   
   for(arg=0;args[arg];arg++) {
     char_args[arg+1]=args[arg]->str;
