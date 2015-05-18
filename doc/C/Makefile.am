@@ -36,6 +36,7 @@ dist-hook:
 
 install-data-local: grip.html
 	$(mkinstalldirs) $(DESTDIR)$(grip_helpdir)/images
+	-cp *.png grip
 	-for file in $(srcdir)/grip/*.html $(srcdir)/grip/*.css $(srcdir)/grip/*.png; do \
 	basefile=`basename $$file`; \
 	$(INSTALL_DATA) $(srcdir)/$$file  $(DESTDIR)$(grip_helpdir)/$$basefile; \

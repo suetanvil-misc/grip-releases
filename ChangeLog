@@ -1,3 +1,10 @@
+2003-02-09  Mike Oliphant  <oliphant@gtk.org>
+
+	* discdb.c: include <locale.h> (Ed Goforth)
+	* ja.po: updated (Takeshi AIHANA)
+	* doc/C/Makefile.am: install images properly (Todd)
+	* configure.in/grip.spec: upped version to 3.0.6
+
 2003-01-12  Mike Oliphant  <oliphant@gtk.org>
 
 	* de.po: updated (Goetz Waschk)

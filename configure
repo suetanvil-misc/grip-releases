@@ -1580,7 +1580,7 @@ fi
 
 PACKAGE=grip
 
-VERSION=3.0.5
+VERSION=3.0.6
 
 if test "`cd $srcdir && pwd`" != "`pwd`" && test -f $srcdir/config.status; then
   { { echo "$as_me:$LINENO: error: source directory already configured; run \"make distclean\" there first" >&5

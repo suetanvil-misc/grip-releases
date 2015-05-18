@@ -6,9 +6,9 @@
 # 
 msgid ""
 msgstr ""
-"Project-Id-Version: grip 3.0.4\n"
+"Project-Id-Version: grip 3.0.5\n"
 "POT-Creation-Date: 2002-12-25 17:56-0800\n"
-"PO-Revision-Date: 2003-01-03 09:34+0900\n"
+"PO-Revision-Date: 2003-02-06 01:30+0900\n"
 "Last-Translator: Takeshi Aihana <aihana@gnome.gr.jp>\n"
 "Language-Team: Japanese <gnome-translation@gnome.gr.jp>\n"
 "MIME-Version: 1.0\n"
@@ -426,11 +426,11 @@ msgstr "CD 更新プログラム"
 
 #: src/gripcfg.c:642
 msgid "Do not lowercase filenames"
-msgstr "小文字のファイル名を使用しない"
+msgstr "ファイル名の半角英字を小文字にしない"
 
 #: src/gripcfg.c:647
 msgid "Allow high bits in filenames"
-msgstr "ファイル名に大文字を使用する"
+msgstr "ファイル名に日本語 (EUC-JP) を使用する"
 
 #: src/gripcfg.c:652
 msgid "Do not change spaces to underscores"
@@ -441,8 +441,8 @@ msgid ""
 "Characters to not strip\n"
 "in filenames"
 msgstr ""
-"ファイル名の文字を\n"
-"短縮しない"
+"ファイル名として\n"
+"許可する半角記号"
 
 #: src/gripcfg.c:662
 msgid "Keep application minimum size"

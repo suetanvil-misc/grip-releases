@@ -37,6 +37,7 @@
 #include <errno.h>
 #include <unistd.h>
 #include <ghttp.h>
+#include <locale.h>
 #include "cddev.h"
 #include "discdb.h"
 #include "grip_id3.h"
