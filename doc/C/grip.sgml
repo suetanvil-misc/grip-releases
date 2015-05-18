@@ -1,0 +1,250 @@
+<!DOCTYPE Book PUBLIC "-//GNOME//DTD DocBook PNG Variant V1.1//EN">
+<book id="grip">
+  <bookinfo>
+    <title>Grip User's Guide</title>
+    <authorgroup>
+      <author>
+	<firstname>Mike</firstname> <surname>Oliphant</surname>
+	<affiliation>
+	  <address>
+	    <email>oliphant@gtk.org</email>
+	  </address>
+	</affiliation>
+      </author>
+    </authorgroup>
+    <copyright>
+      <year>2002</year> <holder>Mike Oliphant</holder>
+    </copyright>
+    <legalnotice>
+      <para>This documentation is free software; you can redistribute
+	it and/or modify it under the terms of the GNU General Public
+	License as published by the Free Software Foundation; either
+	version 2 of the License, or (at your option) any later
+	version.</para>
+      
+      <para>This program is distributed in the hope that it will be
+	useful, but WITHOUT ANY WARRANTY; without even the implied
+	warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+	See the GNU General Public License for more details.</para>
+      
+      <para>You should have received a copy of the GNU General Public
+	License along with this program; if not, write to the Free
+	Software Foundation, Inc., 59 Temple Place, Suite 330, Boston,
+	MA 02111-1307 USA</para>
+      
+      <para>For more details see the file COPYING in the source
+	distribution of GNOME.</para>
+    </legalnotice>
+  </bookinfo>
+  
+  <toc></toc>
+  
+  <chapter id="intro">
+    <title>Introduction.</title>
+    <para>This is the Grip user's guide.</para>
+  </chapter>
+  
+  <chapter id="cdplayer">
+    <title>Playing CDs with Grip</title> 
+    <para>Grip functions as a full-featured CD player, as can be seen in
+    <xref linkend="cdplayerfull">. Tracks can be selected by clicking on
+    them with the left mouse button. Double-clicking will select the track,
+    and begin playing it.</para>
+
+    <figure id="cdplayerfull">
+      <title>Grip as a CD Player</title>
+      <screenshot>
+	<graphic format="png" fileref="cdplayer">
+	</graphic>
+      </screenshot>
+    </figure>
+
+    <sect1>
+      <title>CD Player Controls</title>
+
+      <para>Underneath the "LCD" display is a panel of buttons that allow
+      you to control CD playing in Grip. These buttons function as
+      follows:</para>
+
+      <itemizedlist>
+	<listitem>
+	  <para><graphic format="png" fileref="playpause.png">
+	  </graphic>
+	  <guilabel>Play/Pause</guilabel> &mdash; Causes the selected track
+	    to play if it is stopped or paused. If a track is currently
+	    playing, it will go into pause mode.</para>
+	</listitem>
+
+	<listitem>
+	  <para><graphic format="png" fileref="rewind.png">
+	    </graphic>
+	    <guilabel>Rewind</guilabel> &mdash; While this button is held
+	    down, Grip will move backward in the currently playing track.
+	  </para>
+	</listitem>
+	
+	<listitem>
+	  <para><graphic format="png" fileref="ffwd.png">
+	    </graphic>
+	    <guilabel>FastForward</guilabel> &mdash; While this button is
+	    held down, Grip will more forward in the currently playing
+	    track.</para>
+	</listitem>
+	
+	<listitem>
+	  <para><graphic format="png" fileref="prevtrk.png">
+	    </graphic>
+	    <guilabel>Previous track</guilabel> &mdash; If a track is
+	    currently playing near the beginning of a track, this will
+	    rewind to the beginning. Otherwise, it will skip to the previous
+	    track.
+	  </para>
+	</listitem>
+	
+	<listitem>
+	  <para><graphic format="png" fileref="nexttrk.png">
+	  </graphic>
+	  <guilabel>Next track</guilabel> &mdash; This will skip to the next
+	  track.</para>
+	</listitem>
+
+	<listitem>
+	  <para><graphic format="png" fileref="progtrack.png">
+	    </graphic>
+	    <guilabel>Track Mode</guilabel> &mdash; This brings up the track
+	    mode interface, described in <xref linkend="sect_trackmode">.
+	  </para>
+	</listitem>
+
+	<listitem>
+	  <para><graphic format="png" fileref="stop.png">
+	    </graphic>
+	    <guilabel>Stop</guilabel> &mdash; Stops track playback.</para>
+	</listitem>
+	
+	<listitem>
+	  <para><graphic format="png" fileref="eject.png">
+	    </graphic>
+	    <guilabel>Eject</guilabel> &mdash; Opens or closes the cdrom
+	    tray.</para>
+	</listitem>
+	
+	<listitem>
+	  <para><graphic format="png" fileref="volume.png">
+	    </graphic>
+	    <guilabel>Volume</guilabel> &mdash; Toggles display of the
+	    volume control slider interface.</para>
+	</listitem>
+	
+	<listitem>
+	  <para><graphic format="png" fileref="trkedit.png">
+	    </graphic>
+	    <guilabel>Track Edit</guilabel> &mdash; This brings up the track
+	    editing interface described in ...</para>
+	</listitem>
+	
+	<listitem>
+	  <para><graphic format="png" fileref="discdb.png">
+	    </graphic>
+	    <guilabel>DiscDB</guilabel> &mdash; This initiates lookup of the
+	    CD over the network, or aborts a disc lookup currently in
+	    progress.</para>
+	</listitem>
+	
+	<listitem>
+	  <para><graphic format="png" fileref="minmax.png">
+	    </graphic>
+	    <guilabel>Min/Max</guilabel> &mdash; Toggles between the "full"
+	    and "cd-only" (shown in <xref linkend="cdplayersmall">) display
+	    modes.</para>
+	  
+	  <para>
+	    <figure id="cdplayersmall">
+	      <title>Grip in "cd-only" mode.</title>
+	      <screenshot>
+		<graphic format="png" fileref="cdplayersmall">
+		</graphic>
+	      </screenshot>
+	    </figure>
+	  </para>
+
+	</listitem>
+
+	<listitem>
+	  <para><graphic format="png" fileref="quit.png">
+	  </graphic>
+	  <guilabel>Quit</guilabel> &mdash; Exits Grip.</para>
+	</listitem>
+
+      </itemizedlist>
+    </sect1>
+
+    <sect1 id="sect_trackmode">
+      <title>Track Mode Selector</title>
+      <para>
+	<figure id="modeinterface">
+	  <title>The Play Mode Interface</title>
+	  <screenshot>
+	    <graphic format="png" fileref="modeinterface">
+	    </graphic>
+	  </screenshot>
+	</figure>
+      </para>
+      
+      <para>The track mode selection interface (shown in <xref
+	linkend="modeinterface">) allows you to control how Grip plays the
+	tracks on a CD. The following options are available:</para>
+      <itemizedlist>
+	<listitem>
+	  <para><graphic format="png" fileref="playnormal.png">
+	    </graphic>
+	    <guilabel>Normal Mode</guilabel> &mdash; In this mode,
+	    tracks will be played in normal, numbered order.</para>
+	</listitem>
+	
+	<listitem>
+	  <para><graphic format="png" fileref="playrandom.png">
+	    </graphic>
+	    <guilabel>Random Mode</guilabel> &mdash; In this mode,
+	    tracks will be played in a random order.</para>
+	</listitem>
+	
+	<listitem>
+	  <para><graphic format="png" fileref="playplaylist.png">
+	    </graphic>
+	    <guilabel>Playlist Mode</guilabel> &mdash; In this mode,
+	    track will be played in an order you specify. In the text
+	    entry box, entry a list of comma separated list of the
+	    tracks you wish to play.</para>
+	</listitem>
+	
+	<listitem>
+	  <para><graphic format="png" fileref="playloop.png">
+	    </graphic>
+	    <guilabel>Loop Mode</guilabel> &mdash; In loop mode, when
+	    playback finishes it will then resume at the beginning
+	    again.</para>
+	</listitem>
+	
+	<listitem>
+	  <para><graphic format="png" fileref="playonce.png">
+	    </graphic>
+	    <guilabel>Single Play Mode</guilabel> &mdash; In this mode,
+	    when playback finishes it will not begin again.</para>
+	</listitem>
+      </itemizedlist>
+    </sect1>
+
+  </chapter>
+
+  <chapter id="ripping">
+    <title>Ripping CDs with Grip</title>
+    <para>Insert brilliant documentation here.</para>
+  </chapter>
+
+</book>
+
+
+
+
+

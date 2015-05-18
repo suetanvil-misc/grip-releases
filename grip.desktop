@@ -1,0 +1,6 @@
+[Desktop Entry]
+Name=grip
+Comment=CD player/ripper
+Exec=grip
+Icon=gripicon.png
+Type=Application

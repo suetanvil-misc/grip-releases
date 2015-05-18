@@ -1,0 +1,56 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR Free Software Foundation, Inc.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"POT-Creation-Date: 2002-01-08 18:27-0800\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=CHARSET\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: src/main.c:53
+msgid "Specify the geometry of the main window"
+msgstr ""
+
+#: src/main.c:54
+msgid "GEOMETRY"
+msgstr ""
+
+#: src/main.c:62
+msgid "Specify the cdrom device to use"
+msgstr ""
+
+#: src/main.c:63
+msgid "DEVICE"
+msgstr ""
+
+#: src/main.c:71
+msgid "Launch in \"small\" (cd-only) mode"
+msgstr ""
+
+#: src/main.c:80
+msgid "\"Local\" mode -- do not look up disc info on the net"
+msgstr ""
+
+#: src/main.c:89
+msgid "Do not do I/O redirection"
+msgstr ""
+
+#: src/main.c:98
+msgid "Run in verbose (debug) mode"
+msgstr ""
+
+#: src/grip.c:132
+msgid "Grip"
+msgstr ""
+
+#: src/grip.c:175
+#, c-format
+msgid "Could not parse geometry string `%s'"
+msgstr ""
