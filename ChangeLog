@@ -1,3 +1,24 @@
+2002-12-25  Mike Oliphant  <oliphant@gtk.org>
+
+	* zh_CN.po: updated (Merlin Ma)
+	* fr.po/grip.spec: updated (Eric Lassauge)
+	* ca.po: updated (Jordi Mallach)
+	* ru.po: updated (Mishell Baranov)
+	* rip.c/grip.c/grip.h/gripcfg.c: made stopping the cdrom drive
+	  between ripping tracks optional, and default to not (zongo)
+	* es.po: got rid of duplicate entries
+	* grip.c/grip.h/rip.c: added overall progress indicators
+	  (Przemyslaw Kryger)
+	* grip.c/grip.h/rip.c: added tolerance to avoid getting false
+	  "no disc" readings whe drive is spinngin down from a rip
+	* cdplay.c: fixed bug preventing auto-rip on a disc that had been
+	  previously inserted
+	* cdplay.c: scroll mouse no longer selects/unselects track rip
+	  check
+	* cdplay.c: reset to first track when disc ends
+	* rip.c: rip entire cd now obeys Rip+Encode vs Rip Only
+	* configure.in/grip.spec: upped version to 3.0.4	
+		
 2002-09-21  Mike Oliphant  <oliphant@gtk.org>
 
 	* id3.c: added some #includes

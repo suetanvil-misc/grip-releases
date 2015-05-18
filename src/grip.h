@@ -118,6 +118,13 @@ typedef struct _grip_gui {
   GtkWidget *mp3exename_entry;
   GtkWidget *mp3cmdline_entry;
 
+  /* Overall prgress */
+  GtkWidget *all_label;
+  GtkWidget *all_rip_label;
+  GtkWidget *all_enc_label;
+  GtkWidget *all_ripprogbar;
+  GtkWidget *all_encprogbar;
+
   /* Images */
   GtkWidget *check_image;
   GtkWidget *eject_image;
@@ -216,6 +223,7 @@ typedef struct _grip_info {
   gboolean stop_rip;
   gboolean stop_encode;
   gboolean ripping_a_disc;
+  time_t rip_finished;
   int rippid;
   int num_wavs;
   int rip_track;
@@ -261,6 +269,7 @@ typedef struct _grip_info {
   gboolean rip_partial;
   int eject_delay;
   gboolean delay_before_rip;
+  gboolean stop_between_tracks;
   char wav_filter_cmd[256];
   char disc_filter_cmd[256];
   int selected_encoder;
@@ -284,6 +293,13 @@ typedef struct _grip_info {
   StrTransPrefs sprefs;
   gboolean keep_min_size;
 
+  /* these are for calculating ripping progress */
+  size_t all_ripsize;
+  size_t all_ripdone;
+  size_t all_riplast;
+  size_t all_encsize;
+  size_t all_encdone;
+  size_t all_enclast[MAX_NUM_CPU];
 } GripInfo;
 
 GtkWidget *GripNew(const gchar* geometry,char *device,char *scsi_device,

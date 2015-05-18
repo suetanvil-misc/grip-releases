@@ -2,7 +2,7 @@ AC_INIT(src/main.c)
 
 AM_CONFIG_HEADER(config.h)
 
-AM_INIT_AUTOMAKE(grip,3.0.3)
+AM_INIT_AUTOMAKE(grip,3.0.4)
 
 AM_MAINTAINER_MODE
 
@@ -124,6 +124,8 @@ macros/Makefile
 src/Makefile
 intl/Makefile
 po/Makefile.in
+po/Makefile
+po/POTFILES
 pixmaps/Makefile
 doc/Makefile
 doc/C/Makefile

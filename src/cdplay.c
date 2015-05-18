@@ -132,6 +132,7 @@ void LookupDisc(GripInfo *ginfo,gboolean manual)
       ginfo->ddata.data_id3genre=DiscDB2ID3(ginfo->ddata.data_genre);
 
     ginfo->update_required=TRUE;
+    ginfo->is_new_disc=TRUE;
   }
   else {
     if(!manual) {
@@ -483,7 +484,10 @@ static void CListButtonPressed(GtkWidget *widget,GdkEventButton *event,
     gtk_clist_get_selection_info(GTK_CLIST(uinfo->trackclist),
 				 event->x,event->y,
 				 &row,&col);
-    if(col==2 || event->button!=1) {
+    Debug(_("Column/Button: %d/%d\n"),col,event->button);
+
+
+    if((col==2&&event->button<4) || event->button==3) {
       
 #ifndef GRIPCD
       ToggleChecked(uinfo,row);
@@ -1333,11 +1337,12 @@ void NextTrack(GripInfo *ginfo)
 			 NEXT_TRACK,0);
   }
   else {
-    if(ginfo->playloop) {
-      gtk_clist_select_row(GTK_CLIST(ginfo->gui_info.trackclist),
-			   ginfo->tracks_prog[0],0);
+    if(!ginfo->playloop) {
+      ginfo->stopped=TRUE;
     }
-    else ginfo->stopped=TRUE;
+
+    gtk_clist_select_row(GTK_CLIST(ginfo->gui_info.trackclist),
+			 ginfo->tracks_prog[0],0);
   }
 }
 
@@ -1470,9 +1475,9 @@ void CheckNewDisc(GripInfo *ginfo,gboolean force)
 	}
       }
       else {
-      if(ginfo->have_disc)
-	ginfo->update_required=TRUE;
-
+	if(ginfo->have_disc)
+	  ginfo->update_required=TRUE;
+	
 	ginfo->have_disc=FALSE;
 	Debug(_("No non-zero length tracks\n"));
       }
@@ -1542,11 +1547,21 @@ void UpdateDisplay(GripInfo *ginfo)
 
   if(!ginfo->update_required) {
     if(ginfo->have_disc) {
-      CDStat(disc,FALSE);
+      /* Allow disc time to spin down after ripping before checking for a new
+	 disc. Some drives report no disc when spinning down. */
+      if(ginfo->rip_finished) {
+	if((time(NULL)-ginfo->rip_finished)>5) {
+	  ginfo->rip_finished=0;
+	}
+      }
 
-      if(!disc->disc_present) {
-	ginfo->have_disc=FALSE;
-	ginfo->update_required=TRUE;
+      if(!ginfo->rip_finished) {
+	CDStat(disc,FALSE);
+	
+	if(!disc->disc_present) {
+	  ginfo->have_disc=FALSE;
+	  ginfo->update_required=TRUE;
+	}
       }
     }
   }

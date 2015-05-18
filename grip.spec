@@ -1,5 +1,5 @@
 %define name grip
-%define version 3.0.3
+%define version 3.0.4
 %define release 1
 %define prefix /usr
 
@@ -59,13 +59,12 @@ Grip 是一個可以在 GNOME 桌面環境下執行的 CD 音樂播放器和抓軌器。它可以使
 Grip est un lecteur-extracteur de CD pour le Bureau GNome. Il a des
 capacit廥 d'extraction du type cdparanoia incluses, mais il peut utiliser
 un extracteur externe (comme cdda2wav). Il fournis 嶲alement une IHM
-pour les encodeurs MP3, permettant simplement de prendre un disque
-et de le transformer en MP3. La r嶰up廨ation des noms sur Internet
-permet 嶲alement d'avoir les informations sur les pistes aupr鋊 des 
-serveurs CDDB.
+pour les encodeurs MP3 (ou d'autres format audio), permettant simplement 
+de prendre un disque et de le transformer en MP3. La r嶰up廨ation des noms 
+sur Internet permet 嶲alement d'avoir les informations sur les pistes 
+aupr鋊 des serveurs CDDB.
 Grip fonctionne 嶲alement avec DigitalDJ pour fournir une version unifi嶪
 informatique de votre discoth鋂ue.
-
 
 %prep
 rm -rf $RPM_BUILD_ROOT
@@ -96,6 +95,7 @@ rm -rf $RPM_BUILD_ROOT
 %changelog
 * Fri May 24 2002 Thomas Vander Stichele <thomas@apestaart.org>
 - added Requires: and BuildRequires:
+
 * Thu Apr 25 2002 Anthony Fok <anthony@thizlinux.com>
 - Added Traditional Chinese translations (based on Merlin's translations)
 

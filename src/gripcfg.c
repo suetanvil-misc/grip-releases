@@ -318,6 +318,11 @@ void MakeConfigPage(GripInfo *ginfo)
   gtk_box_pack_start(GTK_BOX(vbox),check,FALSE,FALSE,0);
   gtk_widget_show(check);
 
+  check=MakeCheckButton(NULL,&ginfo->stop_between_tracks,
+			_("Stop cdrom drive between tracks"));
+  gtk_box_pack_start(GTK_BOX(vbox),check,FALSE,FALSE,0);
+  gtk_widget_show(check);
+
   entry=MakeStrEntry(NULL,ginfo->wav_filter_cmd,_("Wav filter command"),
 						  255,TRUE);
   gtk_box_pack_start(GTK_BOX(vbox),entry,FALSE,FALSE,0);

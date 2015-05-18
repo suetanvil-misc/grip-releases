@@ -65,7 +65,7 @@ static gboolean AddM3U(GripInfo *ginfo);
 static void ID3Add(GripInfo *ginfo,char *file,EncodeTrack *enc_track);
 static void DoWavFilter(GripInfo *ginfo);
 static void DoDiscFilter(GripInfo *ginfo);
-static void RipIsFinished(GripInfo *ginfo);
+static void RipIsFinished(GripInfo *ginfo,gboolean aborted);
 static void CheckDupNames(GripInfo *ginfo);
 static void RipWholeCD(gint reply,gpointer data);
 static int NextTrackToRip(GripInfo *ginfo);
@@ -75,7 +75,9 @@ static void ThreadRip(void *arg);
 #endif
 static void AddToEncode(GripInfo *ginfo,int track);
 static gboolean MP3Encode(GripInfo *ginfo);
-
+static void CalculateAll(GripInfo *ginfo);
+static size_t CalculateEncSize(GripInfo *ginfo, int track);
+static size_t CalculateWavSize(GripInfo *ginfo, int track);
 
 void MakeRipPage(GripInfo *ginfo)
 {
@@ -243,7 +245,45 @@ void MakeRipPage(GripInfo *ginfo)
     gtk_box_pack_start(GTK_BOX(vbox2),hbox,FALSE,FALSE,0);
     gtk_widget_show(hbox);
   }
+  
+  gtk_box_pack_start(GTK_BOX(vbox),vbox2,TRUE,TRUE,0);
+  gtk_widget_show(vbox2);
 
+  hsep=gtk_hseparator_new();
+  gtk_box_pack_start(GTK_BOX(vbox),hsep,TRUE,TRUE,0);
+  gtk_widget_show(hsep);
+  
+  vbox2=gtk_vbox_new(FALSE,0);
+  uinfo->all_label=gtk_label_new(_("Overall indicators:"));
+  gtk_box_pack_start(GTK_BOX(vbox2),uinfo->all_label,FALSE,FALSE,0);
+  gtk_widget_show(uinfo->all_label);
+  
+  hbox=gtk_hbox_new(FALSE,2);
+  uinfo->all_rip_label=gtk_label_new(_("Rip: Idle"));
+  gtk_widget_set_usize(uinfo->all_rip_label,label_width,0);
+  gtk_box_pack_start(GTK_BOX(hbox),uinfo->all_rip_label,FALSE,FALSE,0);
+  gtk_widget_show(uinfo->all_rip_label);
+  
+  uinfo->all_ripprogbar=gtk_progress_bar_new();
+  gtk_box_pack_start(GTK_BOX(hbox),uinfo->all_ripprogbar,FALSE,FALSE,0);
+  gtk_widget_show(uinfo->all_ripprogbar);
+
+  gtk_box_pack_start(GTK_BOX(vbox2),hbox,FALSE,FALSE,0);
+  gtk_widget_show(hbox);
+ 
+  hbox=gtk_hbox_new(FALSE,2);
+  uinfo->all_enc_label=gtk_label_new(_("Enc: Idle"));
+  gtk_widget_set_usize(uinfo->all_enc_label,label_width,0);
+  gtk_box_pack_start(GTK_BOX(hbox),uinfo->all_enc_label,FALSE,FALSE,0);
+  gtk_widget_show(uinfo->all_enc_label);
+
+  uinfo->all_encprogbar=gtk_progress_bar_new();
+  gtk_box_pack_start(GTK_BOX(hbox),uinfo->all_encprogbar,FALSE,FALSE,0);
+  gtk_widget_show(uinfo->all_encprogbar);
+  
+  gtk_box_pack_start(GTK_BOX(vbox2),hbox,FALSE,FALSE,0);
+  gtk_widget_show(hbox);
+  
   gtk_box_pack_start(GTK_BOX(vbox),vbox2,TRUE,TRUE,0);
   gtk_widget_show(vbox2);
 
@@ -576,15 +616,30 @@ static gboolean AddM3U(GripInfo *ginfo)
 void KillRip(GtkWidget *widget,gpointer data)
 {
   GripInfo *ginfo;
+  int track;
 
+  Debug(_("In KillRip\n"));
   ginfo=(GripInfo *)data;
-  
+
   if(!ginfo->ripping) return;
+
+  ginfo->all_ripsize=0;
+  ginfo->all_ripdone=0;
+  ginfo->all_riplast=0;
 
   /* Need to decrement num_wavs since we didn't finish ripping
      the current track */
   if(ginfo->num_wavs>0)
     ginfo->num_wavs--;
+
+  /* Need to decrement all_mp3size */
+  for (track=0;track<ginfo->disc.num_tracks;++track) {
+    if ((!IsDataTrack(&(ginfo->disc),track)) &&
+	(TrackIsChecked(&(ginfo->gui_info),track))) {
+      ginfo->all_encsize-=CalculateEncSize(ginfo,track);
+    }
+  }
+  Debug(_("Now total enc size is: %d\n"),ginfo->all_encsize);
 
   ginfo->stop_rip=TRUE;
   ginfo->ripping_a_disc=FALSE;
@@ -606,14 +661,17 @@ void KillEncode(GtkWidget *widget,gpointer data)
   EncodeTrack *enc_track;
 
   ginfo=(GripInfo *)data;
-  
+
   if(!ginfo->encoding) return;
 
   ginfo->stop_encode=TRUE;
   ginfo->num_wavs=0;
+  ginfo->all_encsize=0;
+  ginfo->all_encdone=0;
 
   for(mycpu=0;mycpu<ginfo->num_cpu;mycpu++){
     if(ginfo->encoding&(1<<mycpu)) kill(ginfo->mp3pid[mycpu],SIGKILL);
+      ginfo->all_enclast[mycpu]=0;
   }
   
   elist=ginfo->encode_list;
@@ -705,6 +763,7 @@ void UpdateRipProgress(GripInfo *ginfo)
   time_t now;
   gfloat elapsed=0;
   gfloat speed;
+  gboolean result=FALSE;
 
   uinfo=&(ginfo->gui_info);
 
@@ -753,6 +812,24 @@ void UpdateRipProgress(GripInfo *ginfo)
 		   GTK_PIXMAP(uinfo->smile_indicator));
     }
 #endif
+    
+    /* Overall rip */
+    if(ginfo->rip_started!=now && !ginfo->rip_partial && ginfo->ripping 
+       && !ginfo->stop_rip) {
+      ginfo->all_ripdone+=mystat.st_size-ginfo->all_riplast;
+      ginfo->all_riplast=mystat.st_size;
+      percent=(gfloat)(ginfo->all_ripdone)/(gfloat)(ginfo->all_ripsize);
+      
+      if(percent>1.0)
+	percent=0.0;
+      
+      sprintf(buf,_("Rip: %6.2f%%"),percent*100.0);
+      gtk_label_set(GTK_LABEL(uinfo->all_rip_label),buf);
+      gtk_progress_bar_update(GTK_PROGRESS_BAR(uinfo->all_ripprogbar),percent);
+    } else if (ginfo->stop_rip) {
+      gtk_label_set(GTK_LABEL(uinfo->all_rip_label),_("Rip: Idle"));
+      gtk_progress_bar_update(GTK_PROGRESS_BAR(uinfo->all_ripprogbar),0.0);
+    }
 
     /* Check if a rip finished */
     if((ginfo->using_builtin_cdp&&!ginfo->in_rip_thread) ||
@@ -766,7 +843,7 @@ void UpdateRipProgress(GripInfo *ginfo)
       }
 
       Debug(_("Rip finished\n"));
-
+      ginfo->all_riplast=0;
       ginfo->ripping=FALSE;
       SetChecked(uinfo,ginfo->rip_track,FALSE);
 
@@ -801,13 +878,14 @@ void UpdateRipProgress(GripInfo *ginfo)
 	   (ginfo->num_wavs<ginfo->max_wavs||
 	    NextTrackToRip(ginfo)==ginfo->disc.num_tracks)) {
 	  Debug(_("Check if we need to rip another track\n"));
-	  if(!RipNextTrack(ginfo)) RipIsFinished(ginfo);
+	  if(!RipNextTrack(ginfo)) RipIsFinished(ginfo,FALSE);
+	  else gtk_label_set(GTK_LABEL(uinfo->rip_prog_label),_("Rip: Idle"));
 	}
+	else gtk_label_set(GTK_LABEL(uinfo->rip_prog_label),_("Rip: Idle"));
       }
-
-      if(!ginfo->ripping) {
+      else {
 	ginfo->stop_rip=FALSE;
-	gtk_label_set(GTK_LABEL(uinfo->rip_prog_label),_("Rip: Idle"));
+	RipIsFinished(ginfo,TRUE);
       }
     }
   }
@@ -844,13 +922,25 @@ void UpdateRipProgress(GripInfo *ginfo)
       if(quarter<4)
         CopyPixmap(GTK_PIXMAP(uinfo->mp3_pix[quarter]),
 		   GTK_PIXMAP(uinfo->mp3_indicator[mycpu]));
-   
+      if (!ginfo->rip_partial && !ginfo->stop_encode && 
+	  now!=ginfo->mp3_started[mycpu]) {
+	ginfo->all_encdone+=mystat.st_size-ginfo->all_enclast[mycpu];
+	ginfo->all_enclast[mycpu]=mystat.st_size;
+	percent=(gfloat)(ginfo->all_encdone)/(gfloat)(ginfo->all_encsize);
+	if (percent>1.0)
+	  percent=1.0;
+	sprintf(buf,_("Enc: %6.2f%%"),percent*100.0);
+	gtk_label_set(GTK_LABEL(uinfo->all_enc_label),buf);
+	gtk_progress_bar_update(GTK_PROGRESS_BAR(uinfo->all_encprogbar),
+				percent);
+      }
+      
       if(waitpid(ginfo->mp3pid[mycpu],NULL,WNOHANG)) {
         waitpid(ginfo->mp3pid[mycpu],NULL,0);
         ginfo->encoding&=~(1<<mycpu);
 
 	Debug(_("Finished encoding on cpu %d\n"),mycpu);
-
+	ginfo->all_enclast[mycpu]=0;
         gtk_progress_bar_update(GTK_PROGRESS_BAR(uinfo->mp3progbar[mycpu]),
 				0.0);
         CopyPixmap(GTK_PIXMAP(uinfo->empty_image),
@@ -879,7 +969,7 @@ void UpdateRipProgress(GripInfo *ginfo)
           if(ginfo->ripping_a_disc&&!ginfo->rip_partial&&
 	     !ginfo->ripping&&ginfo->num_wavs<ginfo->max_wavs) {
 	    if(RipNextTrack(ginfo)) ginfo->doencode=TRUE;
-	    else RipIsFinished(ginfo);
+	    else RipIsFinished(ginfo,FALSE);
           }
 
 	  g_free(ginfo->encoded_track[mycpu]);
@@ -896,29 +986,59 @@ void UpdateRipProgress(GripInfo *ginfo)
       }
     }  
   }
+  /* Check if we have any encoding process (now or in future) */
+  for (mycpu=0;mycpu<ginfo->num_cpu;++mycpu) {
+    if (ginfo->encoding & (1<<mycpu)) {
+      result=TRUE;
+      break;
+    }
+  }
+  if ((!result || ginfo->stop_encode) && 
+      !ginfo->encode_list && !ginfo->ripping) {
+    gtk_label_set(GTK_LABEL(uinfo->all_enc_label),_("Enc: Idle"));
+    gtk_progress_bar_update(GTK_PROGRESS_BAR(uinfo->all_encprogbar),0.0);
+  }
 }
 
-static void RipIsFinished(GripInfo *ginfo)
+static void RipIsFinished(GripInfo *ginfo,gboolean aborted)
 {
+  GripGUI *uinfo;
   Debug(_("Ripping is finished\n"));
 
-  ginfo->ripping_a_disc=FALSE;
+  uinfo=&(ginfo->gui_info);
+  ginfo->all_ripsize=0;
+  ginfo->all_ripdone=0;
+  ginfo->all_riplast=0;
 
-  if(ginfo->beep_after_rip) printf("%c%c",7,7);
+  gtk_label_set(GTK_LABEL(uinfo->rip_prog_label),_("Rip: Idle"));
+  gtk_label_set(GTK_LABEL(uinfo->all_rip_label),_("Rip: Idle"));
+  gtk_progress_bar_update(GTK_PROGRESS_BAR(uinfo->all_ripprogbar),0.0);
+
+  ginfo->ripping=FALSE;
+  ginfo->ripping_a_disc=FALSE;
+  ginfo->rip_finished=time(NULL);
+
+  /* Do post-rip stuff only if we weren't explicitly aborted */
+  if(!aborted) {
+    if(ginfo->beep_after_rip) printf("%c%c",7,7);
   
 #ifdef CDPAR
-  if(ginfo->using_builtin_cdp && ginfo->calc_gain) {
-    ginfo->disc_gain_adjustment=GetAlbumGain();
-  }
+    if(ginfo->using_builtin_cdp && ginfo->calc_gain) {
+      ginfo->disc_gain_adjustment=GetAlbumGain();
+    }
 #endif
   
-  if(*ginfo->disc_filter_cmd)
-    DoDiscFilter(ginfo);
-  
-  if(ginfo->eject_after_rip) {
-    EjectDisc(NULL,ginfo);
+    if(*ginfo->disc_filter_cmd)
+      DoDiscFilter(ginfo);
+    
+    if(ginfo->eject_after_rip) {
+      /* Reset rip_finished since we're ejecting */
+      ginfo->rip_finished=0;
 
-    if(ginfo->eject_delay) ginfo->auto_eject_countdown=ginfo->eject_delay;
+      EjectDisc(NULL,ginfo);
+      
+      if(ginfo->eject_delay) ginfo->auto_eject_countdown=ginfo->eject_delay;
+    }
   }
 }
 
@@ -1119,8 +1239,10 @@ void DoRip(GtkWidget *widget,gpointer data)
       ((GnomeApp *)ginfo->gui_info.app,
        _("No tracks selected.\nRip whole CD?\n"),
        RipWholeCD,(gpointer)ginfo);
+    return;
   }
-
+  
+  CalculateAll(ginfo);
   result=RipNextTrack(ginfo);
   if(!result) {
     ginfo->doencode=FALSE;
@@ -1141,7 +1263,8 @@ static void RipWholeCD(gint reply,gpointer data)
   for(track=0;track<ginfo->disc.num_tracks;++track)
     SetChecked(&(ginfo->gui_info),track,TRUE);
 
-  DoRip(NULL,(gpointer)ginfo);
+  if(ginfo->doencode) DoRip(NULL,(gpointer)ginfo);
+  else DoRip((GtkWidget *)1,(gpointer)ginfo);
 }
 
 static int NextTrackToRip(GripInfo *ginfo)
@@ -1194,7 +1317,8 @@ static gboolean RipNextTrack(GripInfo *ginfo)
 
     CopyPixmap(GTK_PIXMAP(uinfo->rip_pix[0]),GTK_PIXMAP(uinfo->rip_indicator));
 
-    CDStop(&(ginfo->disc));
+    if(ginfo->stop_between_tracks)
+      CDStop(&(ginfo->disc));
 
     if(!ginfo->rip_partial) {
       ginfo->start_sector=0;
@@ -1243,7 +1367,8 @@ static gboolean RipNextTrack(GripInfo *ginfo)
 	ginfo->num_wavs++;
 	ginfo->ripping=TRUE;
 	ginfo->ripping_a_disc=TRUE;
-
+	ginfo->all_ripdone+=CalculateWavSize(ginfo,ginfo->rip_track);
+	ginfo->all_riplast=0;
 	return TRUE;
       }
       else unlink(ginfo->ripfile);
@@ -1498,4 +1623,64 @@ static gboolean MP3Encode(GripInfo *ginfo)
   ginfo->encoding|=(1<<cpu);
 
   return TRUE;
+}
+
+void CalculateAll(GripInfo *ginfo)
+{
+  int cpu;
+  int track;
+  GripGUI *uinfo;
+
+  uinfo=&(ginfo->gui_info);
+
+  Debug(_("In CalculateAll\n"));
+
+  ginfo->all_ripsize=0;
+  ginfo->all_ripdone=0;
+  ginfo->all_riplast=0;
+  if (!ginfo->encoding) {
+    Debug(_("We aren't ripping now, so let's zero encoding values\n"));
+    ginfo->all_encsize=0;
+    ginfo->all_encdone=0;
+    for (cpu=0;cpu<ginfo->num_cpu;++cpu)
+      ginfo->all_enclast[cpu]=0;
+  }
+  if (ginfo->rip_partial)
+    return;
+  
+  for (track=0;track<ginfo->disc.num_tracks;++track) {
+    if (!IsDataTrack(&(ginfo->disc),track) &&
+	(TrackIsChecked(uinfo,track))) {
+      ginfo->all_ripsize+=CalculateWavSize(ginfo,track);
+      ginfo->all_encsize+=CalculateEncSize(ginfo,track);
+    }
+  }
+  Debug(_("Total rip size is: %d\n"),ginfo->all_ripsize);
+  Debug(_("Total enc size is: %d\n"),ginfo->all_encsize);
+}
+
+static size_t CalculateWavSize(GripInfo *ginfo, int track)
+{
+  int frames;
+  
+  frames=(ginfo->disc.track[track+1].start_frame-1)-
+    ginfo->disc.track[track].start_frame;
+  if ((track<(ginfo->disc.num_tracks)-1) &&
+      (IsDataTrack(&(ginfo->disc),track+1)) &&
+      (frames>11399))
+    frames-=11400;
+  return frames*2352;
+}
+
+static size_t CalculateEncSize(GripInfo *ginfo, int track)
+{
+  double tmp_encsize=0.0;
+  /* It's not the best way, but i couldn't find anything better */
+  tmp_encsize=(double)((ginfo->disc.track[track].length.mins*60+
+			ginfo->disc.track[track].length.secs-2)*
+		       ginfo->kbits_per_sec*1024/8);
+  tmp_encsize-=tmp_encsize*0.0154;
+  if (ginfo->add_m3u) 
+    tmp_encsize+=128;
+  return (size_t)tmp_encsize;
 }

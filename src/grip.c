@@ -95,6 +95,7 @@ static GnomeHelpMenuEntry bug_help_entry={"grip","bugs.html"};
 {"eject_after_rip",CFG_ENTRY_BOOL,0,&ginfo->eject_after_rip},\
 {"eject_delay",CFG_ENTRY_INT,0,&ginfo->eject_delay},\
 {"delay_before_rip",CFG_ENTRY_BOOL,0,&ginfo->delay_before_rip},\
+{"stop_between_tracks",CFG_ENTRY_BOOL,0,&ginfo->stop_between_tracks},\
 {"beep_after_rip",CFG_ENTRY_BOOL,0,&ginfo->beep_after_rip},\
 {"faulty_eject",CFG_ENTRY_BOOL,0,&ginfo->faulty_eject},\
 {"poll_drive",CFG_ENTRY_BOOL,0,&ginfo->poll_drive},\
@@ -672,6 +673,7 @@ static void DoLoadConfig(GripInfo *ginfo)
   ginfo->rip_partial=FALSE;
   ginfo->stop_rip=FALSE;
   ginfo->stop_encode=FALSE;
+  ginfo->rip_finished=0;
   ginfo->num_wavs=0;
   ginfo->doencode=FALSE;
   ginfo->encode_list=NULL;
@@ -709,6 +711,7 @@ static void DoLoadConfig(GripInfo *ginfo)
   ginfo->eject_after_rip=TRUE;
   ginfo->eject_delay=0;
   ginfo->delay_before_rip=FALSE;
+  ginfo->stop_between_tracks=FALSE;
   *ginfo->wav_filter_cmd='\0';
   *ginfo->disc_filter_cmd='\0';
   ginfo->selected_encoder=1;

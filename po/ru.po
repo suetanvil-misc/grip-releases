@@ -1,93 +1,78 @@
 # SOME DESCRIPTIVE TITLE.
 # Copyright (C) YEAR Free Software Foundation, Inc.
-# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+# Mishell Baranov <mishell@trg.ru>, 2002.
 # 
-#, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: grip 3.0.0\n"
-"POT-Creation-Date: 2002-09-21 11:37-0700\n"
-"PO-Revision-Date: 2002-05-15 13:55+YEKST\n"
+"Project-Id-Version: grip 3.0.3\n"
+"POT-Creation-Date: 2002-12-25 17:56-0800\n"
+"PO-Revision-Date: 2002-10-15 15:15+YEKST\n"
 "Last-Translator: Mishell Baranov <mishell@trg.ru>\n"
 "Language-Team: Russian <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=koi8-r\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-# src/main.c:54
 #: src/main.c:55
 msgid "Specify the geometry of the main window"
 msgstr "Укажите геометрию главного окна"
 
-# src/main.c:55
 #: src/main.c:56
 msgid "GEOMETRY"
 msgstr "ГЕОМЕТРИЯ"
 
-# src/main.c:63
 #: src/main.c:64
-#, fuzzy
 msgid "Specify the config file to use (in your home dir)"
-msgstr "Укажите какое устройство cdrom использовать"
+msgstr ""
+"Укажите какой конфигурационный файл использовать (в вашем домашнем каталоге)"
 
 #: src/main.c:65
 msgid "CONFIG"
 msgstr ""
 
-# src/main.c:63
 #: src/main.c:73
 msgid "Specify the cdrom device to use"
 msgstr "Укажите какое устройство cdrom использовать"
 
-# src/main.c:64 src/main.c:73
 #: src/main.c:74 src/main.c:83
 msgid "DEVICE"
 msgstr "УСТРОЙСТВО"
 
-# src/main.c:72
 #: src/main.c:82
 msgid "Specify the generic scsi device to use"
 msgstr "Укажите какое generic scsi устройство использовать"
 
-# src/main.c:81
 #: src/main.c:91
 msgid "Launch in \"small\" (cd-only) mode"
 msgstr "Запуск в \"маленьком\" режиме (только CD)"
 
-# src/main.c:90
 #: src/main.c:100
 msgid "\"Local\" mode -- do not look up disc info on the net"
 msgstr "\"Локальный\" режим -- не искать информацию о диске в сети"
 
-# src/main.c:99
 #: src/main.c:109
 msgid "Do not do I/O redirection"
 msgstr "Не выполнять преренаправление Ввода/Вывода"
 
-# src/main.c:108
 #: src/main.c:118
 msgid "Run in verbose (debug) mode"
 msgstr "Запуск в режиме расширенной диагностики (отладочном режиме)"
 
-# src/grip.c:145
-#: src/grip.c:151
+#: src/grip.c:152
 msgid "Grip"
 msgstr ""
 
-# src/grip.c:164
-#: src/grip.c:178
+#: src/grip.c:179
 #, c-format
 msgid "Error: Unable to initialize [%s]\n"
 msgstr "Ошибка: Не возможно инициализировать [%s]\n"
 
-# src/grip.c:190
-#: src/grip.c:204
+#: src/grip.c:205
 #, c-format
 msgid "Could not parse geometry string `%s'"
 msgstr "Не возможно разобрать строку геометрии '%s'"
 
-# src/grip.c:240
-#: src/grip.c:256
+#: src/grip.c:257
 msgid ""
 "Work is in progress.\n"
 "Really shut down?"
@@ -95,54 +80,43 @@ msgstr ""
 "Работа не завершена.\n"
 "Действительно завершить?"
 
-# src/grip.c:298
-#: src/grip.c:314
+#: src/grip.c:315
 msgid "Help"
 msgstr "Помощь"
 
-# src/grip.c:303
-#: src/grip.c:319
+#: src/grip.c:320
 msgid "Table Of Contents"
 msgstr "Содержание"
 
-# src/grip.c:309
-#: src/grip.c:325
+#: src/grip.c:326
 msgid "Playing CDs"
 msgstr "Проигрывание CD"
 
-# src/grip.c:315
-#: src/grip.c:331
+#: src/grip.c:332
 msgid "Ripping CDs"
 msgstr "Сдирание CD"
 
-# src/grip.c:321
-#: src/grip.c:337
+#: src/grip.c:338
 msgid "Configuring Grip"
 msgstr "Конфигурирование Grip"
 
-# src/grip.c:327
-#: src/grip.c:343
+#: src/grip.c:344
 msgid "FAQ"
 msgstr ""
 
-# src/grip.c:333
-#: src/grip.c:349
+#: src/grip.c:350
 msgid "Getting More Help"
 msgstr "Получение большей помощи"
 
-# src/grip.c:339
-#: src/grip.c:355
+#: src/grip.c:356
 msgid "Reporting Bugs"
 msgstr "Сообщить о ошибке"
 
-# src/grip.c:359
-#: src/grip.c:375
+#: src/grip.c:376
 msgid "About"
 msgstr "О программе"
 
-# src/grip.c:707
-#: src/grip.c:744
-#, fuzzy
+#: src/grip.c:747
 msgid ""
 "Your config file is out of date -- resetting to defaults.\n"
 "You will need to re-configure Grip.\n"
@@ -150,395 +124,319 @@ msgid ""
 msgstr ""
 "Ваш конфигурационный файл устарел -- устанавливается по умолчанию.\n"
 "Вам нужно переконфигурировать Grip.\n"
-"Ваш старый конфигурационный файл записан как ~/.grip-old."
+"Ваш старый конфигурационный файл записан с добавлением -old."
 
-# src/grip.c:766
-#: src/grip.c:814
+#: src/grip.c:817
 #, c-format
 msgid "server is %s, port %d\n"
 msgstr "сервер %s, порт %d\n"
 
-# src/grip.c:786
-#: src/grip.c:834
+#: src/grip.c:837
 msgid "Error: Unable to save config file"
 msgstr "Ошибка: Не возможно сохранить конфигурационный файл"
 
-# src/gripcfg.c:94
 #: src/gripcfg.c:94
 msgid "Config"
 msgstr "Конфигурация"
 
-# src/gripcfg.c:102
 #: src/gripcfg.c:102
 msgid "CDRom device"
 msgstr "Устройство CDRom"
 
-# src/gripcfg.c:107
 #: src/gripcfg.c:107
 msgid "Don't interrupt playback on exit/startup"
 msgstr "Не прекращать проигрывание при выходе/старте"
 
-# src/gripcfg.c:111
 #: src/gripcfg.c:111
 msgid "Rewind when stopped"
 msgstr "Перемотать при остановке"
 
-# src/gripcfg.c:116
 #: src/gripcfg.c:116
 msgid "Startup with first track if not playing"
 msgstr "Стартовать с первого трека, если уже не проигрывает"
 
-# src/gripcfg.c:121
 #: src/gripcfg.c:121
 msgid "Auto-play on disc insert"
 msgstr "Автоматически проигрывать при установке диска"
 
-# src/gripcfg.c:126
 #: src/gripcfg.c:126
 msgid "Reshuffle before each playback"
 msgstr "Перемешивать перед каждым проигрыванием"
 
-# src/gripcfg.c:131
 #: src/gripcfg.c:131
 msgid "Work around faulty eject"
 msgstr "Обходить не правильный выброс диска"
 
 #: src/gripcfg.c:136
 msgid "Poll disc drive for new disc"
-msgstr ""
+msgstr "Опрашивать дисковод на наличе нового диска"
 
 #: src/gripcfg.c:140
 msgid "Poll interval (seconds)"
-msgstr ""
+msgstr "Интервал опроса (секунды)"
 
-# src/gripcfg.c:138
 #: src/gripcfg.c:148
 msgid "CD"
 msgstr ""
 
-# src/gripcfg.c:154
 #: src/gripcfg.c:164
 msgid "Ripper:"
 msgstr "Чем \"сдирать\":"
 
-# src/gripcfg.c:199
 #: src/gripcfg.c:209
 msgid "Ripping executable"
 msgstr "Исполнимый файл"
 
-# src/gripcfg.c:204
 #: src/gripcfg.c:214
 msgid "Rip command-line"
 msgstr "Командная строка"
 
-# src/gripcfg.c:215
 #: src/gripcfg.c:225
 msgid "Disable paranoia"
 msgstr "Отключить \"параною\""
 
-# src/gripcfg.c:220
 #: src/gripcfg.c:230
 msgid "Disable extra paranoia"
 msgstr "Отключить дополнительную параною"
 
-# src/gripcfg.c:226
 #: src/gripcfg.c:236
 msgid "Disable scratch"
 msgstr "Отключить scratch"
 
-# src/gripcfg.c:230
 #: src/gripcfg.c:240
 msgid "detection"
 msgstr "определение"
 
-# src/gripcfg.c:234
 #: src/gripcfg.c:244
 msgid "repair"
 msgstr "восстановление"
 
-# src/gripcfg.c:242
 #: src/gripcfg.c:252
 msgid "Calculate gain adjustment"
 msgstr "Вычислить коэффициент усиления"
 
-# src/gripcfg.c:250
 #: src/gripcfg.c:260
 msgid "Rip file format"
 msgstr "Формат \"содранного\" файла"
 
-# src/gripcfg.c:254
 #: src/gripcfg.c:264
 msgid "Generic SCSI device"
-msgstr "Generic SCSI устройство"
+msgstr "Устройство Generic SCSI"
 
-# src/gripcfg.c:262
 #: src/gripcfg.c:272
 msgid "Ripper"
 msgstr "Сдиралка"
 
-# src/gripcfg.c:271
 #: src/gripcfg.c:281
 msgid "Rip 'nice' value"
 msgstr "Значение 'nice' для сдиралки"
 
-# src/gripcfg.c:275
 #: src/gripcfg.c:285
 msgid "Max non-encoded .wav's"
 msgstr "Максимум не закодированных .wav'ов"
 
-# src/gripcfg.c:279
 #: src/gripcfg.c:291
 msgid "Auto-rip on insert"
 msgstr "Автомтическое сдирание при установке диска"
 
-# src/gripcfg.c:283
 #: src/gripcfg.c:295
 msgid "Beep after rip"
 msgstr "Бип после сдирания"
 
-# src/gripcfg.c:288
 #: src/gripcfg.c:305
 msgid "Auto-eject after rip"
 msgstr "Авто-выброс после сдирания"
 
-# src/gripcfg.c:292
 #: src/gripcfg.c:309
 msgid "Auto-eject delay"
 msgstr "Задержка авто-выброса"
 
 #: src/gripcfg.c:317
 msgid "Delay before ripping"
+msgstr "Задержка перед сдиранием"
+
+#: src/gripcfg.c:322
+msgid "Stop cdrom drive between tracks"
 msgstr ""
 
-# src/gripcfg.c:296
-#: src/gripcfg.c:321
+#: src/gripcfg.c:326
 msgid "Wav filter command"
 msgstr "Комманда Wav фильтра"
 
-# src/gripcfg.c:301
-#: src/gripcfg.c:326
+#: src/gripcfg.c:331
 msgid "Disc filter command"
 msgstr "Комманда фильтра дисков"
 
-# src/gripcfg.c:309 src/gripcfg.c:436
-#: src/gripcfg.c:334 src/gripcfg.c:462
+#: src/gripcfg.c:339 src/gripcfg.c:467
 msgid "Options"
 msgstr "Опции"
 
-# src/cdplay.c:259 src/gripcfg.c:316 src/rip.c:95
-#: src/cdplay.c:259 src/gripcfg.c:341 src/rip.c:95
+#: src/gripcfg.c:346 src/cdplay.c:260 src/rip.c:97
 msgid "Rip"
 msgstr "Сдирание"
 
-# src/gripcfg.c:331
-#: src/gripcfg.c:356
+#: src/gripcfg.c:361
 msgid "Encoder:"
 msgstr "Кодировщик:"
 
-# src/gripcfg.c:366
-#: src/gripcfg.c:391
-#, fuzzy
-msgid "Encoder executable"
-msgstr "Исполнимый файл"
-
-# src/gripcfg.c:371
 #: src/gripcfg.c:396
-#, fuzzy
-msgid "Encoder command-line"
-msgstr "Коммандная строка"
+msgid "Encoder executable"
+msgstr "Исполнимый файл кодировщика"
 
-# src/gripcfg.c:250
 #: src/gripcfg.c:401
-#, fuzzy
-msgid "Encode file format"
-msgstr "Формат \"содранного\" файла"
+msgid "Encoder command-line"
+msgstr "Коммандная строка кодировщика"
 
-# src/gripcfg.c:383
-#: src/gripcfg.c:409
+#: src/gripcfg.c:406
+msgid "Encode file format"
+msgstr "Формат сжатого файла"
+
+#: src/gripcfg.c:414
 msgid "Encoder"
 msgstr "Кодировщик"
 
-# src/gripcfg.c:393
-#: src/gripcfg.c:419
+#: src/gripcfg.c:424
 msgid "Delete .wav after encoding"
 msgstr "Удалять .wav после кодирования"
 
-# src/gripcfg.c:398
-#: src/gripcfg.c:424
+#: src/gripcfg.c:429
 msgid "Insert info into SQL database"
 msgstr "Вставлять инфо в SQL базу"
 
-# src/gripcfg.c:402
-#: src/gripcfg.c:428
+#: src/gripcfg.c:433
 msgid "Create .m3u files"
 msgstr "Создавать .m3u файл"
 
-# src/gripcfg.c:407
-#: src/gripcfg.c:433
+#: src/gripcfg.c:438
 msgid "Use relative paths in .m3u files"
 msgstr "Использовать относительные пути в .m3u файлах"
 
-# src/gripcfg.c:411
-#: src/gripcfg.c:437
+#: src/gripcfg.c:442
 msgid "M3U file format"
 msgstr "Формат M3U файла"
 
-# src/gripcfg.c:416
-#: src/gripcfg.c:442
+#: src/gripcfg.c:447
 msgid "Encoding bitrate (kbits/sec)"
 msgstr "Скорость потока кодирования (kbits/sec)"
 
-# src/gripcfg.c:420
-#: src/gripcfg.c:446
+#: src/gripcfg.c:451
 msgid "Number of CPUs to use"
 msgstr "Сколько процессоров использовать"
 
-# src/gripcfg.c:271
-#: src/gripcfg.c:450
-#, fuzzy
+#: src/gripcfg.c:455
 msgid "Encode 'nice' value"
-msgstr "Значение 'nice' для сдиралки"
+msgstr "Значение 'nice' для кодировщика"
 
-# src/gripcfg.c:301
-#: src/gripcfg.c:454
-#, fuzzy
+#: src/gripcfg.c:459
 msgid "Encode filter command"
-msgstr "Комманда фильтра дисков"
+msgstr "Комманда фильтра кодировщика"
 
-# src/gripcfg.c:383
-#: src/gripcfg.c:469
+#: src/gripcfg.c:474
 #, fuzzy
 msgid "Encode"
 msgstr "Кодировщик"
 
-# src/gripcfg.c:452
-#: src/gripcfg.c:478
-#, fuzzy
+#: src/gripcfg.c:483
 msgid "Add ID3 tags to encoded files"
-msgstr "Добавлять тэги ID3 в MP3 файлы"
+msgstr "Добавлять тэги ID3 в сжатые файлы"
 
-# src/gripcfg.c:458
-#: src/gripcfg.c:484
-#, fuzzy
+#: src/gripcfg.c:489
 msgid "Add ID3v2 tags to encoded files"
-msgstr "Добавлять тэги ID3v2 в MP3 файлы"
+msgstr "Добавлять тэги ID3v2 в сжатые файлы"
 
-#: src/gripcfg.c:490
+#: src/gripcfg.c:495
 msgid "Only tag files ending in '.mp3'"
-msgstr ""
+msgstr "Тэги только в файлах '.mp3'"
 
-# src/gripcfg.c:463
-#: src/gripcfg.c:494
+#: src/gripcfg.c:499
 msgid "ID3 comment field"
 msgstr "Поле комментария ID3"
 
-# src/gripcfg.c:470
-#: src/gripcfg.c:501
+#: src/gripcfg.c:506
 msgid "ID3"
 msgstr ""
 
-# src/gripcfg.c:487 src/gripcfg.c:507
-#: src/gripcfg.c:518 src/gripcfg.c:538
+#: src/gripcfg.c:523 src/gripcfg.c:543
 msgid "DB server"
 msgstr "DB сервер"
 
-# src/gripcfg.c:491 src/gripcfg.c:511
-#: src/gripcfg.c:522 src/gripcfg.c:542
+#: src/gripcfg.c:527 src/gripcfg.c:547
 msgid "CGI path"
 msgstr "Путь CGI"
 
-# src/gripcfg.c:498
-#: src/gripcfg.c:529
+#: src/gripcfg.c:534
 msgid "Primary Server"
 msgstr "Основной сервер"
 
-# src/gripcfg.c:518
-#: src/gripcfg.c:549
+#: src/gripcfg.c:554
 msgid "Secondary Server"
 msgstr "Вторичный сервер"
 
-# src/gripcfg.c:528
-#: src/gripcfg.c:559
+#: src/gripcfg.c:564
 msgid "DB Submit email"
 msgstr "Email для отсылки в DB"
 
-# src/gripcfg.c:533
-#: src/gripcfg.c:564
+#: src/gripcfg.c:569
 msgid "Use freedb extensions"
 msgstr "Использовать расширения freedb"
 
-# src/gripcfg.c:538
-#: src/gripcfg.c:569
+#: src/gripcfg.c:574
 msgid "Perform disc lookups automatically"
 msgstr "Выполнять поиск диска автоматически"
 
-# src/gripcfg.c:546
-#: src/gripcfg.c:577
+#: src/gripcfg.c:582
 msgid "DiscDB"
 msgstr "База Дисков"
 
-# src/gripcfg.c:555
-#: src/gripcfg.c:586
+#: src/gripcfg.c:591
 msgid "Use proxy server"
 msgstr "Использовать прокси сервер"
 
-# src/gripcfg.c:562
-#: src/gripcfg.c:593
+#: src/gripcfg.c:598
 msgid "Get server from 'http_proxy' env. var"
 msgstr "Сервер из переменной окружения 'http_proxy'"
 
-# src/gripcfg.c:566
-#: src/gripcfg.c:597
+#: src/gripcfg.c:602
 msgid "Proxy server"
 msgstr "Прокси сервер"
 
-# src/gripcfg.c:570
-#: src/gripcfg.c:601
+#: src/gripcfg.c:606
 msgid "Proxy port"
 msgstr "Прокси порт"
 
-# src/gripcfg.c:574
-#: src/gripcfg.c:605
+#: src/gripcfg.c:610
 msgid "Proxy username"
 msgstr "Имя пользователя на прокси"
 
-# src/gripcfg.c:580
-#: src/gripcfg.c:611
+#: src/gripcfg.c:616
 msgid "Proxy password"
 msgstr "Пароль на прокси"
 
-# src/gripcfg.c:588
-#: src/gripcfg.c:619
+#: src/gripcfg.c:624
 msgid "Proxy"
 msgstr "Прокси"
 
-# src/gripcfg.c:597
-#: src/gripcfg.c:628
+#: src/gripcfg.c:633
 msgid "Email address"
 msgstr "Адрес Email"
 
-# src/gripcfg.c:601
-#: src/gripcfg.c:632
+#: src/gripcfg.c:637
 msgid "CD update program"
 msgstr "Программа обновления CD"
 
-# src/gripcfg.c:606
-#: src/gripcfg.c:637
+#: src/gripcfg.c:642
 msgid "Do not lowercase filenames"
 msgstr "Не приводить к нижнему регистру имена файлов"
 
-# src/gripcfg.c:611
-#: src/gripcfg.c:642
+#: src/gripcfg.c:647
 msgid "Allow high bits in filenames"
 msgstr "Позволить старшие биты в именах"
 
-# src/gripcfg.c:616
-#: src/gripcfg.c:647
+#: src/gripcfg.c:652
 msgid "Do not change spaces to underscores"
 msgstr "Не заменять пробелы на подчеркивание"
 
-# src/gripcfg.c:621
-#: src/gripcfg.c:652
+#: src/gripcfg.c:657
 msgid ""
 "Characters to not strip\n"
 "in filenames"
@@ -546,89 +444,73 @@ msgstr ""
 "Не удалять эти символы\n"
 "в именах файлов"
 
-# src/gripcfg.c:626
-#: src/gripcfg.c:657
+#: src/gripcfg.c:662
 msgid "Keep application minimum size"
 msgstr "Удерживать минимальный размер приложения"
 
-# src/gripcfg.c:633
-#: src/gripcfg.c:664
+#: src/gripcfg.c:669
 msgid "Misc"
 msgstr "Разное"
 
-# src/cddev.c:164 src/cddev.c:590
 #: src/cddev.c:164 src/cddev.c:591
 #, c-format
 msgid "Drive status is %d\n"
 msgstr "Состояние привода %d\n"
 
-# src/cddev.c:166
 #: src/cddev.c:166
 msgid "Drive doesn't support drive status check (assume CDS_NO_INFO)\n"
 msgstr "Привод не поддерживает проверку состояния привода (CDS_NO_INFO)\n"
 
-# src/cddev.c:169
 #: src/cddev.c:169
 msgid "No disc\n"
 msgstr "Нет диска\n"
 
-# src/cddev.c:270 src/cddev.c:279 src/cddev.c:296 src/cddev.c:323
 #: src/cddev.c:271 src/cddev.c:280 src/cddev.c:297 src/cddev.c:324
 msgid "Error: Failed to read disc contents\n"
 msgstr "Ошибка: Не удается счить содержимое диска\n"
 
-# src/cddev.c:593
 #: src/cddev.c:594
 msgid "Drive doesn't support drive status check\n"
 msgstr "Привод не поддерживает проверку состояния привода\n"
 
-# src/cddev.c:614 src/cddev.c:618
 #: src/cddev.c:615 src/cddev.c:619
 #, c-format
 msgid "Unlock failed: %d"
 msgstr "Не удалось разблокировать: %d"
 
-# src/cddev.c:622
 #: src/cddev.c:623
 msgid "CDIOCEJECT"
 msgstr ""
 
-# src/cdplay.c:95
 #: src/cdplay.c:95
 msgid "Aborted\n"
 msgstr "Прервано\n"
 
-# src/cdplay.c:103
 #: src/cdplay.c:103
 msgid "Cannot do lookup while ripping"
 msgstr "Не возможно выполнить поиск инфо во время сдирания"
 
-# src/cdplay.c:140
 #. "misc"
-#: src/cdplay.c:140
+#: src/cdplay.c:141
 msgid "Unknown Disc"
 msgstr "Неизвестный диск"
 
-# src/cdplay.c:144
-#: src/cdplay.c:144
+#: src/cdplay.c:145
 #, c-format
 msgid "Track %02d"
 msgstr "Трек %02d"
 
-# src/cdplay.c:208
-#: src/cdplay.c:208
+#: src/cdplay.c:209
 #, c-format
 msgid "Querying %s (through %s) for disc %02x.\n"
 msgstr "Запрашивание %s (через %s) для диска %02x.\n"
 
-# src/cdplay.c:212
-#: src/cdplay.c:212
+#: src/cdplay.c:213
 #, c-format
 msgid "Querying %s for disc %02x.\n"
 msgstr "Запрашивание %s для диска %02x.\n"
 
-# src/cdplay.c:224
-#: src/cdplay.c:224
+#: src/cdplay.c:225
 #, c-format
 msgid ""
 "Match for \"%s / %s\"\n"
@@ -637,215 +519,177 @@ msgstr ""
 "Совпадение для \"%s / %s\"\n"
 "Загрузка данных...\n"
 
-# src/cdplay.c:231
-#: src/cdplay.c:231
+#: src/cdplay.c:232
 msgid "Done\n"
 msgstr "Все\n"
 
-# src/cdplay.c:235 src/cdplay.c:560
-#: src/cdplay.c:235 src/cdplay.c:560
+#: src/cdplay.c:236 src/cdplay.c:564
 msgid "Error saving disc data\n"
 msgstr "Ошибка сохрания данных о диске\n"
 
-# src/cdplay.c:241
-#: src/cdplay.c:241
+#: src/cdplay.c:242
 msgid "No match\n"
 msgstr "Нет совпадения\n"
 
-# src/cdplay.c:259 src/cdplay.c:261
-#: src/cdplay.c:259 src/cdplay.c:261
+#: src/cdplay.c:260 src/cdplay.c:262
 msgid "Track"
 msgstr "Трек"
 
-# src/cdplay.c:259 src/cdplay.c:261
-#: src/cdplay.c:259 src/cdplay.c:261
+#: src/cdplay.c:260 src/cdplay.c:262
 msgid "Length "
 msgstr "Продолжительность "
 
-# src/cdplay.c:261
-#: src/cdplay.c:261
+#: src/cdplay.c:262
 msgid "PL"
 msgstr ""
 
-# src/cdplay.c:266
-#: src/cdplay.c:266
+#: src/cdplay.c:267
 msgid "Tracks"
 msgstr "Треки"
 
-# src/cdplay.c:631
-#: src/cdplay.c:631
+#: src/cdplay.c:487
+#, c-format
+msgid "Column/Button: %d/%d\n"
+msgstr ""
+
+#: src/cdplay.c:635
 msgid "Rotate play mode"
 msgstr "Порядок проигрывания"
 
-# src/cdplay.c:651
-#: src/cdplay.c:651
+#: src/cdplay.c:655
 msgid "Toggle loop play"
 msgstr "Циклическое проигрывание"
 
-# src/cdplay.c:735 src/rip.c:221
-#: src/cdplay.c:735 src/rip.c:221
+#: src/cdplay.c:739 src/rip.c:223
 msgid "Rip status"
 msgstr "Статус сдирания"
 
-# src/cdplay.c:807
-#: src/cdplay.c:807
+#: src/cdplay.c:811
 msgid "Play track / Pause play"
 msgstr "Проиграть трек / Пауза"
 
-# src/cdplay.c:818
-#: src/cdplay.c:818
+#: src/cdplay.c:822
 msgid "Rewind"
 msgstr "Перемотать назад"
 
-# src/cdplay.c:829
-#: src/cdplay.c:829
+#: src/cdplay.c:833
 msgid "FastForward"
 msgstr "Перемотать вперед"
 
-# src/cdplay.c:839
-#: src/cdplay.c:839
+#: src/cdplay.c:843
 msgid "Go to previous track"
 msgstr "Перейти к предидущему треку"
 
-# src/cdplay.c:848
-#: src/cdplay.c:848
+#: src/cdplay.c:852
 msgid "Go to next track"
 msgstr "Перейти к следующему треку"
 
-# src/cdplay.c:857
-#: src/cdplay.c:857
+#: src/cdplay.c:861
 msgid "Toggle play mode options"
 msgstr "Переключение в режим опций проигрывания"
 
-# src/cdplay.c:867
-#: src/cdplay.c:867
+#: src/cdplay.c:871
 msgid "Next Disc"
 msgstr "Следующий диск"
 
-# src/cdplay.c:881
-#: src/cdplay.c:881
+#: src/cdplay.c:885
 msgid "Stop play"
 msgstr "Остановить проигрывание"
 
-# src/cdplay.c:891
-#: src/cdplay.c:891
+#: src/cdplay.c:895
 msgid "Eject disc"
 msgstr "Выброс диска"
 
-# src/grip.c:303
-#: src/cdplay.c:900
-#, fuzzy
+#: src/cdplay.c:904
 msgid "Scan Disc Contents"
-msgstr "Содержание"
+msgstr "Сканирование содержимого диска"
 
-# src/cdplay.c:899
-#: src/cdplay.c:908
+#: src/cdplay.c:912
 msgid "Toggle Volume Control"
 msgstr "Регулятор громкости"
 
-# src/cdplay.c:908
-#: src/cdplay.c:917
+#: src/cdplay.c:921
 msgid "Toggle disc editor"
 msgstr "Редактор диска"
 
-# src/cdplay.c:918
-#: src/cdplay.c:927
+#: src/cdplay.c:931
 msgid "Initiate/abort DiscDB lookup"
 msgstr "Инициировать/оборвать просмотр базы дисков"
 
-# src/cdplay.c:928
-#: src/cdplay.c:937
+#: src/cdplay.c:941
 msgid "Toggle track display"
 msgstr "Переключение режима дисплея"
 
-# src/cdplay.c:936
-#: src/cdplay.c:945
+#: src/cdplay.c:949
 msgid "Exit Grip"
 msgstr "Выйти из Grip'а"
 
-# src/cdplay.c:939
-#: src/cdplay.c:948
+#: src/cdplay.c:952
 msgid "Exit GCD"
 msgstr "Выйти из GCD"
 
-# src/cdplay.c:1087
-#: src/cdplay.c:1096
+#: src/cdplay.c:1100
 msgid "Cannot fast forward while ripping"
 msgstr "Нельзя перематывать во время сдирания"
 
-# src/cdplay.c:1119
-#: src/cdplay.c:1128
+#: src/cdplay.c:1132
 msgid "Cannot rewind while ripping"
 msgstr "Нельзя перематывать во время сдирания"
 
-# src/cdplay.c:1151
-#: src/cdplay.c:1160
+#: src/cdplay.c:1164
 msgid "Cannot switch discs while ripping"
 msgstr "Нельзя сменить диск во время сдирания"
 
-# src/cdplay.c:1170
-#: src/cdplay.c:1179
+#: src/cdplay.c:1183
 msgid "Eject disc\n"
 msgstr "Выброс диска\n"
 
-# src/cdplay.c:1174
-#: src/cdplay.c:1183
+#: src/cdplay.c:1187
 msgid "Cannot eject while ripping"
 msgstr "Нельзя выбросить диск во время сдирания"
 
-# src/cdplay.c:1185
-#: src/cdplay.c:1194
+#: src/cdplay.c:1198
 msgid "Have disc -- ejecting\n"
 msgstr "Имею диск -- выбрасываю\n"
 
-# src/cdplay.c:1249
-#: src/cdplay.c:1261
+#: src/cdplay.c:1265
 msgid "Cannot play while ripping"
 msgstr "Нельзя проигрывать диск во время сдирания"
 
-# src/cdplay.c:1312 src/cdplay.c:1345
-#: src/cdplay.c:1324 src/cdplay.c:1357
+#: src/cdplay.c:1328 src/cdplay.c:1362
 msgid "Cannot switch tracks while ripping"
 msgstr "Нельзя сменить трек во время сдирания"
 
-# src/cdplay.c:1431
-#: src/cdplay.c:1443
+#: src/cdplay.c:1448
 msgid "Checking for a new disc\n"
 msgstr "Проверка на наличие нового диска\n"
 
-# src/cdplay.c:1436
-#: src/cdplay.c:1448
+#: src/cdplay.c:1453
 msgid "CDStat found a disc, checking tracks\n"
 msgstr "CDStat обнаружил диск, поиск треков\n"
 
-# src/cdplay.c:1439
-#: src/cdplay.c:1451
+#: src/cdplay.c:1456
 msgid "We have a valid disc!\n"
 msgstr "У нас правильный диск!\n"
 
-# src/cdplay.c:1460
-#: src/cdplay.c:1477
+#: src/cdplay.c:1482
 msgid "No non-zero length tracks\n"
 msgstr "Отсуствуют не пустые треки\n"
 
-# src/cdplay.c:1462
-#: src/cdplay.c:1486
+#: src/cdplay.c:1491
 msgid "CDStat said no disc\n"
 msgstr "CDStat сказал что диска нет\n"
 
-# src/cdplay.c:1559 src/cdplay.c:1581
-#: src/cdplay.c:1605 src/cdplay.c:1627
+#: src/cdplay.c:1620 src/cdplay.c:1642
 #, c-format
 msgid "Current sector: %6d"
 msgstr "Текущий сектор: %6d"
 
-# src/cdplay.c:1688
-#: src/cdplay.c:1736
+#: src/cdplay.c:1751
 msgid "No Disc"
 msgstr "Нет диска"
 
-# src/cdplay.c:1743
-#: src/cdplay.c:1791
+#: src/cdplay.c:1806
 msgid ""
 "This disc has been found on your secondary server,\n"
 "but not on your primary server.\n"
@@ -857,146 +701,119 @@ msgstr ""
 "\n"
 "Хотите отослать информацию о диске?"
 
-# src/cdplay.c:1771 src/cdplay.c:1779
-#: src/cdplay.c:1818 src/cdplay.c:1826
+#: src/cdplay.c:1833 src/cdplay.c:1841
 msgid "Error: Unable to create temporary file"
 msgstr "Ошибка: Невозможно создать временный файл"
 
-# src/cdplay.c:1789
-#: src/cdplay.c:1836
+#: src/cdplay.c:1851
 msgid "Error: Unable to write disc data"
 msgstr "Ошибка: Невозможно записать данные о диске"
 
-# src/cdplay.c:1798
-#: src/cdplay.c:1845
+#: src/cdplay.c:1860
 #, c-format
 msgid "Mailing entry to %s\n"
 msgstr "Отсылка данных на %s\n"
 
-# src/dialog.c:44
 #: src/dialog.c:44
 msgid "System Message"
 msgstr "Системное сообщение"
 
-# src/discdb.c:187
 #: src/discdb.c:187
 #, c-format
 msgid "URI is %s\n"
 msgstr "URI - %s\n"
 
-# src/discdb.c:231
 #: src/discdb.c:231
 #, c-format
 msgid "Query is [%s]\n"
 msgstr "Запрос [%s]\n"
 
-# src/discdb.c:245
 #: src/discdb.c:245
 #, c-format
 msgid "Reply is [%s]\n"
 msgstr "Ответ [%s]\n"
 
-# src/discdb.c:653
 #: src/discdb.c:653
 #, c-format
 msgid "Stat error %d on %s\n"
 msgstr ""
 
-# src/discdb.c:657
 #: src/discdb.c:657
 #, c-format
 msgid "Creating directory %s\n"
 msgstr "Создание директории %s\n"
 
-# src/discdb.c:662
 #: src/discdb.c:662
 #, c-format
 msgid "Error: %s exists, but is a file\n"
 msgstr "Ошибка: %s существует, но это файл\n"
 
-# src/discdb.c:669
 #: src/discdb.c:669
 #, c-format
 msgid "Error: Unable to open %s for writing\n"
 msgstr "Ошибка: Невозможно открыть %s для записи\n"
 
-# src/discedit.c:65
 #: src/discedit.c:65
 msgid "Disc title"
-msgstr "Название диска"
+msgstr "Название CD"
 
-# src/discedit.c:68 src/discedit.c:152
 #. This should be the longest string in the track edit section
 #: src/discedit.c:68 src/discedit.c:152
 msgid "Track name"
-msgstr "Название трека"
+msgstr "Название трк"
 
-# src/discedit.c:86
 #: src/discedit.c:86
 msgid "Disc artist"
 msgstr "Исполнитель"
 
-# src/discedit.c:103
 #: src/discedit.c:103
 msgid "ID3 genre:"
 msgstr "Стиль ID3:"
 
-# src/discedit.c:134
 #: src/discedit.c:134
 msgid "Disc year"
 msgstr "Год диска"
 
-# src/discedit.c:172
 #: src/discedit.c:172
 msgid "Track artist"
-msgstr "Исполнитель трека"
+msgstr "Исполнит. трк"
 
-# src/discedit.c:189
 #: src/discedit.c:189
 msgid "Split:"
 msgstr "Разбиение:"
 
-# src/discedit.c:193
 #: src/discedit.c:193
 msgid "Title/Artist"
 msgstr "Название/Артист"
 
-# src/discedit.c:200
 #: src/discedit.c:200
 msgid "Artist/Title"
 msgstr "Артист/Название"
 
-# src/discedit.c:208
 #: src/discedit.c:208
 msgid "Split chars"
 msgstr "Символ разделитель:"
 
-# src/discedit.c:225
 #: src/discedit.c:225
 msgid "Multi-artist"
 msgstr "Сборник"
 
-# src/discedit.c:236
 #: src/discedit.c:236
 msgid "Save disc info"
 msgstr "Сорхранить инфо о диске"
 
-# src/discedit.c:245
 #: src/discedit.c:245
 msgid "Submit disc info"
 msgstr "Отослать инфо о диске"
 
-# src/discedit.c:344
 #: src/discedit.c:344
 msgid "Error saving disc data"
 msgstr "Ошибка сохранения данных о диске"
 
-# src/discedit.c:346
 #: src/discedit.c:346
 msgid "No disc present"
 msgstr "Не установлен диск"
 
-# src/discedit.c:485
 #: src/discedit.c:485
 msgid ""
 "Cannot submit\n"
@@ -1005,17 +822,14 @@ msgstr ""
 "Не могу отослать\n"
 "Не установлен диск"
 
-# src/discedit.c:498
 #: src/discedit.c:498
 msgid "You must enter a disc title"
 msgstr "Вы должны ввести название диска"
 
-# src/discedit.c:504
 #: src/discedit.c:504
 msgid "You must enter a disc artist"
 msgstr "Вы должны ввести исполнителя"
 
-# src/discedit.c:514
 #: src/discedit.c:514
 msgid ""
 "You are about to submit this disc information\n"
@@ -1034,7 +848,6 @@ msgstr ""
 "\n"
 "Продолжить?"
 
-# src/discedit.c:523
 #: src/discedit.c:523
 msgid ""
 "You are about to submit this\n"
@@ -1047,12 +860,10 @@ msgstr ""
 "\n"
 "Продолжить?"
 
-# src/discedit.c:540
 #: src/discedit.c:540
 msgid "Genre selection"
 msgstr "Выбор стиля"
 
-# src/discedit.c:544
 #: src/discedit.c:544
 msgid ""
 "Submission requires a genre other than 'unknown'\n"
@@ -1061,206 +872,194 @@ msgstr ""
 "Отправка требует стиль отличный от 'unknown'\n"
 "Пожалуйста выберите нижеследующий стиль DiskDB"
 
-# src/discedit.c:554
 #: src/discedit.c:554
 msgid "DiscDB genre"
 msgstr "Стиль DiscDB"
 
-# src/discedit.c:574
 #: src/discedit.c:574
 msgid "Submit"
 msgstr "Отправить"
 
-# src/discedit.c:585
 #: src/discedit.c:585
 msgid "Cancel"
 msgstr "Отказаться"
 
-# src/id3.c:281
 #. Doh!
 #: src/id3.c:284
 msgid "unknown ID3 field\n"
 msgstr "неизвестное ID3 поле\n"
 
-# src/launch.c:120
 #: src/launch.c:120
 #, c-format
 msgid "Error: unable to translate filename. No such user as %s\n"
 msgstr ""
 "Ошибка: невозможно перевести имя файла. Пользователь %s не существует\n"
 
-# src/launch.c:239 src/rip.c:1273
-#: src/launch.c:239 src/rip.c:1290
+#: src/launch.c:239 src/rip.c:1415
 msgid "Exec failed\n"
 msgstr "Exec не удался\n"
 
-# src/parsecfg.c:58
 #: src/parsecfg.c:58
 msgid "Error: Bad entry type\n"
 msgstr "Ошибка: Плохой тип записи\n"
 
-# src/parsecfg.c:84
 #: src/parsecfg.c:84
 msgid "Error: Invalid config file\n"
 msgstr "Ошибка: Плохой конфигурационный файл\n"
 
-# src/rip.c:104
-#: src/rip.c:104
+#: src/rip.c:106
 msgid "Rip+Encode"
 msgstr "Содрать+Закодировать"
 
-# src/rip.c:106
-#: src/rip.c:106
+#: src/rip.c:108
 msgid "Rip and encode selected tracks"
 msgstr "Содрать и закодировать выбранные треки"
 
-# src/rip.c:112
-#: src/rip.c:112
+#: src/rip.c:114
 msgid "Rip Only"
 msgstr "Только содрать"
 
-# src/rip.c:114
-#: src/rip.c:114
+#: src/rip.c:116
 msgid "Rip but do not encode selected tracks"
 msgstr "Содрать, но не кодировать выбранные треки"
 
-# src/rip.c:120
-#: src/rip.c:120
+#: src/rip.c:122
 msgid "Abort Rip and Encode"
 msgstr "Оборвать Сдирание и Кодирование"
 
-# src/rip.c:122
-#: src/rip.c:122
+#: src/rip.c:124
 msgid "Kill all active rip and encode processes"
 msgstr "Убить все активные процессы сдирания и кодирования"
 
-# src/rip.c:130
-#: src/rip.c:130
+#: src/rip.c:132
 msgid "Abort Ripping Only"
 msgstr "Оборвать только сдирание"
 
-# src/rip.c:132
-#: src/rip.c:132
+#: src/rip.c:134
 msgid "Kill rip process"
 msgstr "Убить процесс сдирания"
 
-# src/rip.c:138
-#: src/rip.c:138
+#: src/rip.c:140
 msgid "DDJ Scan"
 msgstr "Поиск DDJ"
 
-# src/rip.c:140
-#: src/rip.c:140
+#: src/rip.c:142
 msgid "Insert disc information into the DigitalDJ database"
 msgstr "Вставить инфо о диске в базу данных DigitalDJ"
 
-# src/rip.c:155
-#: src/rip.c:155
+#: src/rip.c:157
 msgid "Rip partial track"
 msgstr "Содрать часть трека"
 
-# src/rip.c:166
-#: src/rip.c:166
+#: src/rip.c:168
 msgid "Play"
 msgstr "Проиграть"
 
-# src/rip.c:173
-#: src/rip.c:173
+#: src/rip.c:175
 msgid "Current sector:      0"
 msgstr "Текущий сектор:     0"
 
-# src/rip.c:204 src/rip.c:212 src/rip.c:798
-#: src/rip.c:204 src/rip.c:212 src/rip.c:810
+#: src/rip.c:206 src/rip.c:214 src/rip.c:262 src/rip.c:830 src/rip.c:882
+#: src/rip.c:884 src/rip.c:1013 src/rip.c:1014
 msgid "Rip: Idle"
 msgstr "Rip: Ничего"
 
-#: src/rip.c:208
+#: src/rip.c:210
 msgid "Enc: Trk 99 (99.9x)"
 msgstr ""
 
-# src/rip.c:231 src/rip.c:883
-#: src/rip.c:231 src/rip.c:895
-#, fuzzy
+#: src/rip.c:233 src/rip.c:275 src/rip.c:985 src/rip.c:998
 msgid "Enc: Idle"
-msgstr "MP3: Ничего"
+msgstr "Enc: Ничего"
+
+#: src/rip.c:257
+msgid "Overall indicators:"
+msgstr ""
 
 # src/rip.c:280
-#: src/rip.c:280
+#: src/rip.c:320
 msgid "Start sector"
 msgstr "Начальный сектор"
 
 # src/rip.c:285
-#: src/rip.c:285
+#: src/rip.c:325
 msgid "End sector"
 msgstr "Последний сектор"
 
-# src/rip.c:544
-#: src/rip.c:546
+#: src/rip.c:586
 msgid "Error: can't open m3u file\n"
 msgstr "Ошибка: невозможно открыть m3u файл\n"
 
-# src/rip.c:725
-#: src/rip.c:737
+#: src/rip.c:621
+msgid "In KillRip\n"
+msgstr ""
+
+#: src/rip.c:642
+#, c-format
+msgid "Now total enc size is: %d\n"
+msgstr ""
+
+#: src/rip.c:796
 #, c-format
 msgid "Rip: Trk %d (%3.1fx)"
 msgstr ""
 
-# src/rip.c:756
-#: src/rip.c:768
+#: src/rip.c:826
+#, c-format
+msgid "Rip: %6.2f%%"
+msgstr ""
+
+#: src/rip.c:845
 msgid "Rip finished\n"
 msgstr "Сдирание окончено\n"
 
-# src/rip.c:782
-#: src/rip.c:794
+#: src/rip.c:871
 #, c-format
 msgid "Rip partial %d  num wavs %d\n"
 msgstr "Частичное %d сдирание нескольких %d wavs\n"
 
-# src/rip.c:785
-#: src/rip.c:797
+#: src/rip.c:874
 #, c-format
 msgid "Next track is %d, total is %d\n"
 msgstr "Следующий трек %d, всего %d\n"
 
-# src/rip.c:791
-#: src/rip.c:803
+#: src/rip.c:880
 msgid "Check if we need to rip another track\n"
 msgstr "Отметить если мы должны содрать другой трек\n"
 
-#: src/rip.c:838
+#: src/rip.c:916
 #, c-format
 msgid "Enc: Trk %d (%3.1fx)"
 msgstr ""
 
-# src/rip.c:840
-#: src/rip.c:852
+#: src/rip.c:932
+#, c-format
+msgid "Enc: %6.2f%%"
+msgstr ""
+
+#: src/rip.c:942
 #, c-format
 msgid "Finished encoding on cpu %d\n"
 msgstr "Закончено кодирование на процессоре %d\n"
 
-# src/rip.c:848
-#: src/rip.c:860
+#: src/rip.c:950
 #, c-format
 msgid "Deleting [%s]\n"
 msgstr "Удаление [%s]\n"
 
-# src/rip.c:891
-#: src/rip.c:903
+#: src/rip.c:1006
 msgid "Ripping is finished\n"
 msgstr "Сдирание окончено\n"
 
-# src/rip.c:969 src/rip.c:975
-#: src/rip.c:981 src/rip.c:987
+#: src/rip.c:1101 src/rip.c:1107
 msgid "NoArtist"
 msgstr "БезИсполнителя"
 
-# src/rip.c:980
-#: src/rip.c:992
+#: src/rip.c:1112
 msgid "NoTitle"
 msgstr "БезНазвания"
 
-# src/rip.c:1068
-#: src/rip.c:1080
+#: src/rip.c:1200
 msgid ""
 "Invalid rip executable\n"
 "Check your rip config"
@@ -1268,18 +1067,15 @@ msgstr ""
 "Неверный исполнимый файл сдиралки\n"
 "Проверьте конфигурацию своей сдиралки"
 
-# src/rip.c:1068
-#: src/rip.c:1087
-#, fuzzy
+#: src/rip.c:1207
 msgid ""
 "Invalid encoder executable\n"
 "Check your encoder config"
 msgstr ""
-"Неверный исполнимый файл сдиралки\n"
-"Проверьте конфигурацию своей сдиралки"
+"Неверный исполнимый файл кодировщика\n"
+"Проверьте конфигурацию кодировщика"
 
-# src/rip.c:1108
-#: src/rip.c:1120
+#: src/rip.c:1240
 msgid ""
 "No tracks selected.\n"
 "Rip whole CD?\n"
@@ -1287,110 +1083,92 @@ msgstr ""
 "Нет выбранных треков.\n"
 "Содрать весь CD?\n"
 
-# src/rip.c:1125
-#: src/rip.c:1137
+#: src/rip.c:1259
 msgid "Ripping whole CD\n"
 msgstr "Сдирание всего CD\n"
 
-# src/rip.c:1160
-#: src/rip.c:1172
+#: src/rip.c:1295
 msgid "In RipNextTrack\n"
 msgstr "В СодратьСледующйТрек\n"
 
-# src/rip.c:1167
-#: src/rip.c:1179
+#: src/rip.c:1302
 #, c-format
 msgid "First checked track is %d\n"
 msgstr "Первый отмеченный трек %d\n"
 
-# src/rip.c:1177
-#: src/rip.c:1189
+#: src/rip.c:1312
 msgid "Ripping away!\n"
 msgstr ""
 
-# src/rip.c:1212
-#: src/rip.c:1224
+#: src/rip.c:1348
 msgid "No write access to write wav file"
 msgstr "Нет доступа на запись для записи wav файла"
 
-# src/rip.c:1216
-#: src/rip.c:1233
+#: src/rip.c:1357
 #, c-format
 msgid "Ripping track %d to %s\n"
 msgstr "Сдирание трека %d в %s\n"
 
-# src/rip.c:1219
-#: src/rip.c:1236
+#: src/rip.c:1360
 #, c-format
 msgid "Rip: Trk %d (0.0x)"
 msgstr ""
 
-# src/rip.c:1224
-#: src/rip.c:1241
+#: src/rip.c:1365
 #, c-format
 msgid "File %s has already been ripped. Skipping...\n"
 msgstr "Файл %s был уже содран. Пропускаю...\n"
 
-# src/rip.c:1238 src/rip.c:1449
-#: src/rip.c:1255 src/rip.c:1466
+#: src/rip.c:1380 src/rip.c:1591
 msgid "Out of space in output directory"
 msgstr "Нет места в выходной директории"
 
-# src/rip.c:1302
-#: src/rip.c:1319
+#: src/rip.c:1444
 msgid "Calling CDPRip\n"
 msgstr "Вызов CDPRip\n"
 
-# src/rip.c:1378
-#: src/rip.c:1395
+#: src/rip.c:1520
 #, c-format
 msgid "Added track %d to encode list\n"
 msgstr "Добавлен трек %d в список кодирования\n"
 
-# src/rip.c:1401
-#: src/rip.c:1418
+#: src/rip.c:1543
 msgid "No free cpus\n"
 msgstr "Нет свободных процессоров\n"
 
-# src/rip.c:1417
-#: src/rip.c:1434
-#, fuzzy, c-format
+#: src/rip.c:1559
+#, c-format
 msgid "Enc track %d\n"
-msgstr "MP3 трек %d\n"
+msgstr "Enc трек %d\n"
 
-# src/rip.c:1431
-#: src/rip.c:1448
-#, fuzzy
+#: src/rip.c:1573
 msgid "No write access to write encoded file"
-msgstr "Нет доступа на запись для записи mp3 файла"
+msgstr "Нет доступа на запись для записи сжатого файла"
 
-# src/rip.c:1437
-#: src/rip.c:1454
+#: src/rip.c:1579
 #, c-format
 msgid "%i: Encoding to %s\n"
 msgstr "%i: Кодирование в %s\n"
 
-#: src/rip.c:1456
+#: src/rip.c:1581
 #, c-format
 msgid "Enc: Trk %d (0.0x)"
 msgstr ""
 
-# src/gripcfg.c:376
-#~ msgid "MP3 file format"
-#~ msgstr "Формат MP3 файла"
+#: src/rip.c:1636
+msgid "In CalculateAll\n"
+msgstr ""
 
-# src/gripcfg.c:424
-#~ msgid "MP3 'nice' value"
-#~ msgstr "Значение 'nice' для MP3"
+#: src/rip.c:1642
+msgid "We aren't ripping now, so let's zero encoding values\n"
+msgstr ""
 
-# src/gripcfg.c:428
-#~ msgid "MP3 filter command"
-#~ msgstr "Команда MP3 фильтра"
+#: src/rip.c:1658
+#, c-format
+msgid "Total rip size is: %d\n"
+msgstr ""
 
-# src/rip.c:1075
-#~ msgid ""
-#~ "Invalid MP3 executable\n"
-#~ "Check your MP3 config"
-#~ msgstr ""
-#~ "Неверный исполнимый файл кодера\n"
-#~ "Проверьте конфигурацию своего кодера"
+#: src/rip.c:1659
+#, c-format
+msgid "Total enc size is: %d\n"
+msgstr ""

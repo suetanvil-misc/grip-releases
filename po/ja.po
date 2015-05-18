@@ -7,7 +7,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: grip 3.0.1\n"
-"POT-Creation-Date: 2002-09-21 11:37-0700\n"
+"POT-Creation-Date: 2002-12-25 17:56-0800\n"
 "PO-Revision-Date: 2002-06-30 19:06+0900\n"
 "Last-Translator: Takeshi Aihana <aihana@gnome.gr.jp>\n"
 "Language-Team: Japanese <gnome-translation@gnome.gr.jp>\n"
@@ -60,21 +60,21 @@ msgstr "入力/出力の切替を行わない"
 msgid "Run in verbose (debug) mode"
 msgstr "詳細モード (デバッグ用) モードで起動する"
 
-#: src/grip.c:151
+#: src/grip.c:152
 msgid "Grip"
 msgstr "Grip"
 
-#: src/grip.c:178
+#: src/grip.c:179
 #, c-format
 msgid "Error: Unable to initialize [%s]\n"
 msgstr "エラー: [%s] を初期化できません\n"
 
-#: src/grip.c:204
+#: src/grip.c:205
 #, c-format
 msgid "Could not parse geometry string `%s'"
 msgstr "指定した位置 '%s' を解釈できませんでした"
 
-#: src/grip.c:256
+#: src/grip.c:257
 msgid ""
 "Work is in progress.\n"
 "Really shut down?"
@@ -82,43 +82,43 @@ msgstr ""
 "処理中です。\n"
 "本当に終了しますか？"
 
-#: src/grip.c:314
+#: src/grip.c:315
 msgid "Help"
 msgstr "ヘルプ"
 
-#: src/grip.c:319
+#: src/grip.c:320
 msgid "Table Of Contents"
 msgstr "目次"
 
-#: src/grip.c:325
+#: src/grip.c:326
 msgid "Playing CDs"
 msgstr "音楽 CD の演奏"
 
-#: src/grip.c:331
+#: src/grip.c:332
 msgid "Ripping CDs"
 msgstr "音楽 CD の切り出し"
 
-#: src/grip.c:337
+#: src/grip.c:338
 msgid "Configuring Grip"
 msgstr "Grip の設定"
 
-#: src/grip.c:343
+#: src/grip.c:344
 msgid "FAQ"
 msgstr "FAQ"
 
-#: src/grip.c:349
+#: src/grip.c:350
 msgid "Getting More Help"
 msgstr "詳細なヘルプ"
 
-#: src/grip.c:355
+#: src/grip.c:356
 msgid "Reporting Bugs"
 msgstr "バグの報告"
 
-#: src/grip.c:375
+#: src/grip.c:376
 msgid "About"
 msgstr "情報"
 
-#: src/grip.c:744
+#: src/grip.c:747
 #, fuzzy
 msgid ""
 "Your config file is out of date -- resetting to defaults.\n"
@@ -129,12 +129,12 @@ msgstr ""
 "Grip を再設定する必要があります。\n"
 "古い設定ファイルは ~/.grip-old として保存しました。"
 
-#: src/grip.c:814
+#: src/grip.c:817
 #, c-format
 msgid "server is %s, port %d\n"
 msgstr "サーバ: %s  ポート番号: %d\n"
 
-#: src/grip.c:834
+#: src/grip.c:837
 msgid "Error: Unable to save config file"
 msgstr "エラー: 設定ファイルを保存できません"
 
@@ -258,191 +258,195 @@ msgstr "自動イジェクトまでの待機時間"
 msgid "Delay before ripping"
 msgstr ""
 
-#: src/gripcfg.c:321
+#: src/gripcfg.c:322
+msgid "Stop cdrom drive between tracks"
+msgstr ""
+
+#: src/gripcfg.c:326
 msgid "Wav filter command"
 msgstr "フィルタコマンド(WAV)"
 
-#: src/gripcfg.c:326
+#: src/gripcfg.c:331
 msgid "Disc filter command"
 msgstr "フィルタコマンド(DISK)"
 
-#: src/gripcfg.c:334 src/gripcfg.c:462
+#: src/gripcfg.c:339 src/gripcfg.c:467
 msgid "Options"
 msgstr "オプション"
 
-#: src/cdplay.c:259 src/gripcfg.c:341 src/rip.c:95
+#: src/gripcfg.c:346 src/cdplay.c:260 src/rip.c:97
 msgid "Rip"
 msgstr "切り出し"
 
-#: src/gripcfg.c:356
+#: src/gripcfg.c:361
 msgid "Encoder:"
 msgstr "エンコーダ:"
 
-#: src/gripcfg.c:391
+#: src/gripcfg.c:396
 #, fuzzy
 msgid "Encoder executable"
 msgstr "実行ファイル"
 
-#: src/gripcfg.c:396
+#: src/gripcfg.c:401
 #, fuzzy
 msgid "Encoder command-line"
 msgstr "オプション"
 
-#: src/gripcfg.c:401
+#: src/gripcfg.c:406
 #, fuzzy
 msgid "Encode file format"
 msgstr "切り出しファイルフォーマット"
 
-#: src/gripcfg.c:409
+#: src/gripcfg.c:414
 msgid "Encoder"
 msgstr "エンコーダ"
 
-#: src/gripcfg.c:419
+#: src/gripcfg.c:424
 msgid "Delete .wav after encoding"
 msgstr "エンコード完了後に .wav ファイルを削除する"
 
-#: src/gripcfg.c:424
+#: src/gripcfg.c:429
 msgid "Insert info into SQL database"
 msgstr "SQLデータベースに追加する"
 
-#: src/gripcfg.c:428
+#: src/gripcfg.c:433
 msgid "Create .m3u files"
 msgstr ".m3uファイルを作成する"
 
-#: src/gripcfg.c:433
+#: src/gripcfg.c:438
 msgid "Use relative paths in .m3u files"
 msgstr ".m3uファイルの中に関係するディレクトリを使用する"
 
-#: src/gripcfg.c:437
+#: src/gripcfg.c:442
 msgid "M3U file format"
 msgstr "m3u ファイル書式"
 
-#: src/gripcfg.c:442
+#: src/gripcfg.c:447
 msgid "Encoding bitrate (kbits/sec)"
 msgstr "エンコードビットレート(kbits/秒)"
 
-#: src/gripcfg.c:446
+#: src/gripcfg.c:451
 msgid "Number of CPUs to use"
 msgstr "使用する CPU の数"
 
-#: src/gripcfg.c:450
+#: src/gripcfg.c:455
 #, fuzzy
 msgid "Encode 'nice' value"
 msgstr "優先度 (nice 値)"
 
-#: src/gripcfg.c:454
+#: src/gripcfg.c:459
 #, fuzzy
 msgid "Encode filter command"
 msgstr "フィルタコマンド(DISK)"
 
-#: src/gripcfg.c:469
+#: src/gripcfg.c:474
 #, fuzzy
 msgid "Encode"
 msgstr "エンコーダ"
 
-#: src/gripcfg.c:478
+#: src/gripcfg.c:483
 #, fuzzy
 msgid "Add ID3 tags to encoded files"
 msgstr "ID3 タグを MP3 ファイルに追加する"
 
-#: src/gripcfg.c:484
+#: src/gripcfg.c:489
 #, fuzzy
 msgid "Add ID3v2 tags to encoded files"
 msgstr "ID3v2 タグを MP3 ファイルに追加する"
 
-#: src/gripcfg.c:490
+#: src/gripcfg.c:495
 msgid "Only tag files ending in '.mp3'"
 msgstr ""
 
-#: src/gripcfg.c:494
+#: src/gripcfg.c:499
 msgid "ID3 comment field"
 msgstr "ID3 コメント"
 
-#: src/gripcfg.c:501
+#: src/gripcfg.c:506
 msgid "ID3"
 msgstr "ID3"
 
-#: src/gripcfg.c:518 src/gripcfg.c:538
+#: src/gripcfg.c:523 src/gripcfg.c:543
 msgid "DB server"
 msgstr "DB サーバ"
 
-#: src/gripcfg.c:522 src/gripcfg.c:542
+#: src/gripcfg.c:527 src/gripcfg.c:547
 msgid "CGI path"
 msgstr "CGI のパス"
 
-#: src/gripcfg.c:529
+#: src/gripcfg.c:534
 msgid "Primary Server"
 msgstr "プライマリ"
 
-#: src/gripcfg.c:549
+#: src/gripcfg.c:554
 msgid "Secondary Server"
 msgstr "セカンダリ"
 
-#: src/gripcfg.c:559
+#: src/gripcfg.c:564
 msgid "DB Submit email"
 msgstr "DB 確認メール"
 
-#: src/gripcfg.c:564
+#: src/gripcfg.c:569
 msgid "Use freedb extensions"
 msgstr "FreeDB を使用する"
 
-#: src/gripcfg.c:569
+#: src/gripcfg.c:574
 msgid "Perform disc lookups automatically"
 msgstr "ディスク情報の自動取得"
 
-#: src/gripcfg.c:577
+#: src/gripcfg.c:582
 msgid "DiscDB"
 msgstr "DiscDB"
 
-#: src/gripcfg.c:586
+#: src/gripcfg.c:591
 msgid "Use proxy server"
 msgstr "プロキシサーバを使う"
 
-#: src/gripcfg.c:593
+#: src/gripcfg.c:598
 msgid "Get server from 'http_proxy' env. var"
 msgstr "環境変数 $http_proxy からサーバを取得する"
 
-#: src/gripcfg.c:597
+#: src/gripcfg.c:602
 msgid "Proxy server"
 msgstr "プロキシサーバ"
 
-#: src/gripcfg.c:601
+#: src/gripcfg.c:606
 msgid "Proxy port"
 msgstr "プロキシポート"
 
-#: src/gripcfg.c:605
+#: src/gripcfg.c:610
 msgid "Proxy username"
 msgstr "ユーザ名"
 
-#: src/gripcfg.c:611
+#: src/gripcfg.c:616
 msgid "Proxy password"
 msgstr "パスワード"
 
-#: src/gripcfg.c:619
+#: src/gripcfg.c:624
 msgid "Proxy"
 msgstr "プロキシ"
 
-#: src/gripcfg.c:628
+#: src/gripcfg.c:633
 msgid "Email address"
 msgstr "E-Mail アドレス"
 
-#: src/gripcfg.c:632
+#: src/gripcfg.c:637
 msgid "CD update program"
 msgstr "CD 更新プログラム"
 
-#: src/gripcfg.c:637
+#: src/gripcfg.c:642
 msgid "Do not lowercase filenames"
 msgstr "小文字のファイル名を使用しない"
 
-#: src/gripcfg.c:642
+#: src/gripcfg.c:647
 msgid "Allow high bits in filenames"
 msgstr "ファイル名に大文字を許す"
 
-#: src/gripcfg.c:647
+#: src/gripcfg.c:652
 msgid "Do not change spaces to underscores"
 msgstr "空白をアンダースコア (_) に変換しない"
 
-#: src/gripcfg.c:652
+#: src/gripcfg.c:657
 msgid ""
 "Characters to not strip\n"
 "in filenames"
@@ -450,11 +454,11 @@ msgstr ""
 "ファイル名の文字を\n"
 "短縮しない"
 
-#: src/gripcfg.c:657
+#: src/gripcfg.c:662
 msgid "Keep application minimum size"
 msgstr "アプリケーションを最小サイズにする"
 
-#: src/gripcfg.c:664
+#: src/gripcfg.c:669
 msgid "Misc"
 msgstr "その他"
 
@@ -498,26 +502,26 @@ msgid "Cannot do lookup while ripping"
 msgstr "切り出し中に検索はできません"
 
 #. "misc"
-#: src/cdplay.c:140
+#: src/cdplay.c:141
 msgid "Unknown Disc"
 msgstr "不明なディスク"
 
-#: src/cdplay.c:144
+#: src/cdplay.c:145
 #, c-format
 msgid "Track %02d"
 msgstr "トラック %02d"
 
-#: src/cdplay.c:208
+#: src/cdplay.c:209
 #, c-format
 msgid "Querying %s (through %s) for disc %02x.\n"
 msgstr "%s (%s を経由 : ディスク %02x) の問い合わせ中です\n"
 
-#: src/cdplay.c:212
+#: src/cdplay.c:213
 #, c-format
 msgid "Querying %s for disc %02x.\n"
 msgstr "%s (DISC %02x) の問い合わせ中です\n"
 
-#: src/cdplay.c:224
+#: src/cdplay.c:225
 #, c-format
 msgid ""
 "Match for \"%s / %s\"\n"
@@ -526,172 +530,177 @@ msgstr ""
 "\"%s / %s\" が一致しました\n"
 "データのダウンロード中...\n"
 
-#: src/cdplay.c:231
+#: src/cdplay.c:232
 msgid "Done\n"
 msgstr "完了\n"
 
-#: src/cdplay.c:235 src/cdplay.c:560
+#: src/cdplay.c:236 src/cdplay.c:564
 msgid "Error saving disc data\n"
 msgstr "ディスクデータ保存中のエラー\n"
 
-#: src/cdplay.c:241
+#: src/cdplay.c:242
 msgid "No match\n"
 msgstr "一致しませんでした\n"
 
-#: src/cdplay.c:259 src/cdplay.c:261
+#: src/cdplay.c:260 src/cdplay.c:262
 msgid "Track"
 msgstr "トラック"
 
-#: src/cdplay.c:259 src/cdplay.c:261
+#: src/cdplay.c:260 src/cdplay.c:262
 msgid "Length "
 msgstr "演奏時間"
 
-#: src/cdplay.c:261
+#: src/cdplay.c:262
 msgid "PL"
 msgstr "PL"
 
-#: src/cdplay.c:266
+#: src/cdplay.c:267
 msgid "Tracks"
 msgstr "トラック"
 
-#: src/cdplay.c:631
+#: src/cdplay.c:487
+#, c-format
+msgid "Column/Button: %d/%d\n"
+msgstr ""
+
+#: src/cdplay.c:635
 msgid "Rotate play mode"
 msgstr "再生モードの切り替え"
 
-#: src/cdplay.c:651
+#: src/cdplay.c:655
 msgid "Toggle loop play"
 msgstr "ループ再生の切り替え"
 
-#: src/cdplay.c:735 src/rip.c:221
+#: src/cdplay.c:739 src/rip.c:223
 msgid "Rip status"
 msgstr "切り出し状況"
 
-#: src/cdplay.c:807
+#: src/cdplay.c:811
 msgid "Play track / Pause play"
 msgstr "トラックの再生 / 停止"
 
-#: src/cdplay.c:818
+#: src/cdplay.c:822
 msgid "Rewind"
 msgstr "巻き戻し"
 
-#: src/cdplay.c:829
+#: src/cdplay.c:833
 msgid "FastForward"
 msgstr "早送り"
 
-#: src/cdplay.c:839
+#: src/cdplay.c:843
 msgid "Go to previous track"
 msgstr "前のトラックに"
 
-#: src/cdplay.c:848
+#: src/cdplay.c:852
 msgid "Go to next track"
 msgstr "次のトラックに"
 
-#: src/cdplay.c:857
+#: src/cdplay.c:861
 msgid "Toggle play mode options"
 msgstr "再生オプションの切り替え"
 
-#: src/cdplay.c:867
+#: src/cdplay.c:871
 msgid "Next Disc"
 msgstr "次のディスク"
 
-#: src/cdplay.c:881
+#: src/cdplay.c:885
 msgid "Stop play"
 msgstr "停止"
 
-#: src/cdplay.c:891
+#: src/cdplay.c:895
 msgid "Eject disc"
 msgstr "ディスクをイジェクト"
 
-#: src/cdplay.c:900
+#: src/cdplay.c:904
 msgid "Scan Disc Contents"
 msgstr "ディスクの内容をスキャンする"
 
-#: src/cdplay.c:908
+#: src/cdplay.c:912
 msgid "Toggle Volume Control"
 msgstr "ボリューム調整の切り替え"
 
-#: src/cdplay.c:917
+#: src/cdplay.c:921
 msgid "Toggle disc editor"
 msgstr "ディスクエディタの切り替え"
 
-#: src/cdplay.c:927
+#: src/cdplay.c:931
 msgid "Initiate/abort DiscDB lookup"
 msgstr "DiscDB 検索の許可/禁止"
 
-#: src/cdplay.c:937
+#: src/cdplay.c:941
 msgid "Toggle track display"
 msgstr "トラック番号表示の切り替え"
 
-#: src/cdplay.c:945
+#: src/cdplay.c:949
 msgid "Exit Grip"
 msgstr "Grip の終了"
 
-#: src/cdplay.c:948
+#: src/cdplay.c:952
 msgid "Exit GCD"
 msgstr "GCD の終了"
 
-#: src/cdplay.c:1096
+#: src/cdplay.c:1100
 msgid "Cannot fast forward while ripping"
 msgstr "切り出し中に早送りはできません"
 
-#: src/cdplay.c:1128
+#: src/cdplay.c:1132
 msgid "Cannot rewind while ripping"
 msgstr "切り出し中に巻き戻しはできません"
 
-#: src/cdplay.c:1160
+#: src/cdplay.c:1164
 msgid "Cannot switch discs while ripping"
 msgstr "切り出し中にディスクの交換はできません"
 
-#: src/cdplay.c:1179
+#: src/cdplay.c:1183
 msgid "Eject disc\n"
 msgstr "ディスクをイジェクトしてください\n"
 
-#: src/cdplay.c:1183
+#: src/cdplay.c:1187
 msgid "Cannot eject while ripping"
 msgstr "切り出し中にイジェクトできません"
 
-#: src/cdplay.c:1194
+#: src/cdplay.c:1198
 msgid "Have disc -- ejecting\n"
 msgstr "ディスクがあります -- イジェクト中\n"
 
-#: src/cdplay.c:1261
+#: src/cdplay.c:1265
 msgid "Cannot play while ripping"
 msgstr "切り出し中に再生はできません"
 
-#: src/cdplay.c:1324 src/cdplay.c:1357
+#: src/cdplay.c:1328 src/cdplay.c:1362
 msgid "Cannot switch tracks while ripping"
 msgstr "切り出し中にトラックの交換はできません"
 
-#: src/cdplay.c:1443
+#: src/cdplay.c:1448
 msgid "Checking for a new disc\n"
 msgstr "新しいディスクをチェックする\n"
 
-#: src/cdplay.c:1448
+#: src/cdplay.c:1453
 msgid "CDStat found a disc, checking tracks\n"
 msgstr "CDStat はディスクを見つけました。トラックをチェックします\n"
 
-#: src/cdplay.c:1451
+#: src/cdplay.c:1456
 msgid "We have a valid disc!\n"
 msgstr "おかしなディスクがあります！\n"
 
-#: src/cdplay.c:1477
+#: src/cdplay.c:1482
 msgid "No non-zero length tracks\n"
 msgstr "長さが 0 でないトラックがありません\n"
 
-#: src/cdplay.c:1486
+#: src/cdplay.c:1491
 msgid "CDStat said no disc\n"
 msgstr "CDStat よりディスクが無いとの報告です\n"
 
-#: src/cdplay.c:1605 src/cdplay.c:1627
+#: src/cdplay.c:1620 src/cdplay.c:1642
 #, c-format
 msgid "Current sector: %6d"
 msgstr "現在のセクタ: %6d"
 
-#: src/cdplay.c:1736
+#: src/cdplay.c:1751
 msgid "No Disc"
 msgstr "ディスクがありません"
 
-#: src/cdplay.c:1791
+#: src/cdplay.c:1806
 msgid ""
 "This disc has been found on your secondary server,\n"
 "but not on your primary server.\n"
@@ -703,15 +712,15 @@ msgstr ""
 "\n"
 "このディスク情報を送信しますか？"
 
-#: src/cdplay.c:1818 src/cdplay.c:1826
+#: src/cdplay.c:1833 src/cdplay.c:1841
 msgid "Error: Unable to create temporary file"
 msgstr "エラー: 作業用ファイルが作成できません"
 
-#: src/cdplay.c:1836
+#: src/cdplay.c:1851
 msgid "Error: Unable to write disc data"
 msgstr "エラー: ディスクデータを書き込めません"
 
-#: src/cdplay.c:1845
+#: src/cdplay.c:1860
 #, c-format
 msgid "Mailing entry to %s\n"
 msgstr "エントリ %s をメール中です\n"
@@ -896,7 +905,7 @@ msgstr "不明な ID3 フィールド\n"
 msgid "Error: unable to translate filename. No such user as %s\n"
 msgstr "エラー: ファイル名を変換できません。 %s というユーザはありません\n"
 
-#: src/launch.c:239 src/rip.c:1290
+#: src/launch.c:239 src/rip.c:1415
 msgid "Exec failed\n"
 msgstr "実行に失敗しました\n"
 
@@ -908,135 +917,159 @@ msgstr "エラー: エントリの種類が不正です\n"
 msgid "Error: Invalid config file\n"
 msgstr "エラー: 設定ファイルが正しくありません\n"
 
-#: src/rip.c:104
+#: src/rip.c:106
 msgid "Rip+Encode"
 msgstr "一括作成"
 
-#: src/rip.c:106
+#: src/rip.c:108
 msgid "Rip and encode selected tracks"
 msgstr "指定したトラックの切り出しとエンコード"
 
-#: src/rip.c:112
+#: src/rip.c:114
 msgid "Rip Only"
 msgstr "切り出しのみ"
 
-#: src/rip.c:114
+#: src/rip.c:116
 msgid "Rip but do not encode selected tracks"
 msgstr "指定したトラックの切り出しのみ"
 
-#: src/rip.c:120
+#: src/rip.c:122
 msgid "Abort Rip and Encode"
 msgstr "切り出しとエンコードを中止する"
 
-#: src/rip.c:122
+#: src/rip.c:124
 msgid "Kill all active rip and encode processes"
 msgstr "切り出しとエンコード処理を全て終了する"
 
-#: src/rip.c:130
+#: src/rip.c:132
 msgid "Abort Ripping Only"
 msgstr "切り出し処理のみ中止する"
 
-#: src/rip.c:132
+#: src/rip.c:134
 msgid "Kill rip process"
 msgstr "切り出し処理を中止する"
 
-#: src/rip.c:138
+#: src/rip.c:140
 msgid "DDJ Scan"
 msgstr "DDJ スキャン"
 
-#: src/rip.c:140
+#: src/rip.c:142
 msgid "Insert disc information into the DigitalDJ database"
 msgstr "ディスク情報を DigitalDJ データベースに追加します"
 
-#: src/rip.c:155
+#: src/rip.c:157
 msgid "Rip partial track"
 msgstr "トラックの分割切り出し"
 
-#: src/rip.c:166
+#: src/rip.c:168
 msgid "Play"
 msgstr "再生"
 
-#: src/rip.c:173
+#: src/rip.c:175
 msgid "Current sector:      0"
 msgstr "現在のセクタ:     0"
 
-#: src/rip.c:204 src/rip.c:212 src/rip.c:810
+#: src/rip.c:206 src/rip.c:214 src/rip.c:262 src/rip.c:830 src/rip.c:882
+#: src/rip.c:884 src/rip.c:1013 src/rip.c:1014
 msgid "Rip: Idle"
 msgstr "切り出し: 待機中"
 
-#: src/rip.c:208
+#: src/rip.c:210
 #, fuzzy
 msgid "Enc: Trk 99 (99.9x)"
 msgstr "切り出し: 99曲目 (99.9x)"
 
-#: src/rip.c:231 src/rip.c:895
+#: src/rip.c:233 src/rip.c:275 src/rip.c:985 src/rip.c:998
 #, fuzzy
 msgid "Enc: Idle"
 msgstr "切り出し: 待機中"
 
-#: src/rip.c:280
+#: src/rip.c:257
+msgid "Overall indicators:"
+msgstr ""
+
+#: src/rip.c:320
 msgid "Start sector"
 msgstr "開始セクタ"
 
-#: src/rip.c:285
+#: src/rip.c:325
 msgid "End sector"
 msgstr "終了セクタ"
 
-#: src/rip.c:546
+#: src/rip.c:586
 msgid "Error: can't open m3u file\n"
 msgstr "エラー: m3u ファイルを開けません\n"
 
-#: src/rip.c:737
+#: src/rip.c:621
+msgid "In KillRip\n"
+msgstr ""
+
+#: src/rip.c:642
+#, c-format
+msgid "Now total enc size is: %d\n"
+msgstr ""
+
+#: src/rip.c:796
 #, c-format
 msgid "Rip: Trk %d (%3.1fx)"
 msgstr "切り出し: %d曲目 (%3.1fx)"
 
-#: src/rip.c:768
+#: src/rip.c:826
+#, c-format
+msgid "Rip: %6.2f%%"
+msgstr ""
+
+#: src/rip.c:845
 msgid "Rip finished\n"
 msgstr "切り出し終了\n"
 
-#: src/rip.c:794
+#: src/rip.c:871
 #, c-format
 msgid "Rip partial %d  num wavs %d\n"
 msgstr "%d 分割で %d個のwavに切り出し\n"
 
-#: src/rip.c:797
+#: src/rip.c:874
 #, c-format
 msgid "Next track is %d, total is %d\n"
 msgstr "次のトラックは %d 全部で %d です\n"
 
-#: src/rip.c:803
+#: src/rip.c:880
 msgid "Check if we need to rip another track\n"
 msgstr "他のトラックを切り出す必要があるか確認してください\n"
 
-#: src/rip.c:838
+#: src/rip.c:916
 #, fuzzy, c-format
 msgid "Enc: Trk %d (%3.1fx)"
 msgstr "エンコード: %d曲目 (%3.1fx)"
 
-#: src/rip.c:852
+#: src/rip.c:932
+#, c-format
+msgid "Enc: %6.2f%%"
+msgstr ""
+
+#: src/rip.c:942
 #, c-format
 msgid "Finished encoding on cpu %d\n"
 msgstr "CPU %d でのエンコードが終了しました\n"
 
-#: src/rip.c:860
+#: src/rip.c:950
 #, c-format
 msgid "Deleting [%s]\n"
 msgstr "[%s] を削除中です\n"
 
-#: src/rip.c:903
+#: src/rip.c:1006
 msgid "Ripping is finished\n"
 msgstr "切り出し終了\n"
 
-#: src/rip.c:981 src/rip.c:987
+#: src/rip.c:1101 src/rip.c:1107
 msgid "NoArtist"
 msgstr "演奏者なし"
 
-#: src/rip.c:992
+#: src/rip.c:1112
 msgid "NoTitle"
 msgstr "タイトルなし"
 
-#: src/rip.c:1080
+#: src/rip.c:1200
 msgid ""
 "Invalid rip executable\n"
 "Check your rip config"
@@ -1044,7 +1077,7 @@ msgstr ""
 "不正な切り出しがされています\n"
 "切り出しの設定を確認してください"
 
-#: src/rip.c:1087
+#: src/rip.c:1207
 #, fuzzy
 msgid ""
 "Invalid encoder executable\n"
@@ -1053,7 +1086,7 @@ msgstr ""
 "不正な切り出しがされています\n"
 "切り出しの設定を確認してください"
 
-#: src/rip.c:1120
+#: src/rip.c:1240
 msgid ""
 "No tracks selected.\n"
 "Rip whole CD?\n"
@@ -1061,78 +1094,96 @@ msgstr ""
 "トラックが指定されていません。\n"
 "音楽 CD 全体を切り出しますか？\n"
 
-#: src/rip.c:1137
+#: src/rip.c:1259
 msgid "Ripping whole CD\n"
 msgstr "音楽 CD 全体の切り出し\n"
 
-#: src/rip.c:1172
+#: src/rip.c:1295
 msgid "In RipNextTrack\n"
 msgstr "次のトラックを切り出し中\n"
 
-#: src/rip.c:1179
+#: src/rip.c:1302
 #, c-format
 msgid "First checked track is %d\n"
 msgstr "最初にチェックしたトラックは %d です\n"
 
-#: src/rip.c:1189
+#: src/rip.c:1312
 msgid "Ripping away!\n"
 msgstr "切り出し中止！\n"
 
-#: src/rip.c:1224
+#: src/rip.c:1348
 msgid "No write access to write wav file"
 msgstr "WAV ファイルに対する書き込み権限がありません"
 
-#: src/rip.c:1233
+#: src/rip.c:1357
 #, c-format
 msgid "Ripping track %d to %s\n"
 msgstr "トラック %d を %s に切り出し中\n"
 
-#: src/rip.c:1236
+#: src/rip.c:1360
 #, c-format
 msgid "Rip: Trk %d (0.0x)"
 msgstr "切り出し: %d曲目 (0.0x)"
 
-#: src/rip.c:1241
+#: src/rip.c:1365
 #, c-format
 msgid "File %s has already been ripped. Skipping...\n"
 msgstr "ファイル %s は既に切り出し済みです。スキップします...\n"
 
-#: src/rip.c:1255 src/rip.c:1466
+#: src/rip.c:1380 src/rip.c:1591
 msgid "Out of space in output directory"
 msgstr "出力するために必要な空き容量がありません"
 
-#: src/rip.c:1319
+#: src/rip.c:1444
 msgid "Calling CDPRip\n"
 msgstr "CDPRipを呼び出しています。\n"
 
-#: src/rip.c:1395
+#: src/rip.c:1520
 #, c-format
 msgid "Added track %d to encode list\n"
 msgstr "%d トラックをエンコードリストに追加しました\n"
 
-#: src/rip.c:1418
+#: src/rip.c:1543
 msgid "No free cpus\n"
 msgstr "CPUに空きがありません\n"
 
-#: src/rip.c:1434
+#: src/rip.c:1559
 #, fuzzy, c-format
 msgid "Enc track %d\n"
 msgstr "エンコード トラック %d\n"
 
-#: src/rip.c:1448
+#: src/rip.c:1573
 #, fuzzy
 msgid "No write access to write encoded file"
 msgstr "MP3 ファイルに対する書き込み権限がありません"
 
-#: src/rip.c:1454
+#: src/rip.c:1579
 #, c-format
 msgid "%i: Encoding to %s\n"
 msgstr "%i: %s へエンコーディング中\n"
 
-#: src/rip.c:1456
+#: src/rip.c:1581
 #, fuzzy, c-format
 msgid "Enc: Trk %d (0.0x)"
 msgstr "切り出し: %d曲目 (0.0x)"
+
+#: src/rip.c:1636
+msgid "In CalculateAll\n"
+msgstr ""
+
+#: src/rip.c:1642
+msgid "We aren't ripping now, so let's zero encoding values\n"
+msgstr ""
+
+#: src/rip.c:1658
+#, c-format
+msgid "Total rip size is: %d\n"
+msgstr ""
+
+#: src/rip.c:1659
+#, c-format
+msgid "Total enc size is: %d\n"
+msgstr ""
 
 #~ msgid "MP3 file format"
 #~ msgstr "ファイルの書式"
