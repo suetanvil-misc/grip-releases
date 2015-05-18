@@ -78,14 +78,14 @@ static void ShutDownCB(GtkWidget *widget,gpointer data)
 static void DiscDBToggle(GtkWidget *widget,gpointer data)
 {
   GripInfo *ginfo;
-#ifdef SOLARIS
+#if defined(__sun__)
   void    *status;
 #endif
 
   ginfo=(GripInfo *)data;
   
   if(ginfo->looking_up) {
-#ifdef SOLARIS
+#if defined(__sun__)
     pthread_exit(&status);
 #elif defined(__FreeBSD__)
     pthread_kill(ginfo->discdb_thread,0);
@@ -292,6 +292,7 @@ void MakeTrackPage(GripInfo *ginfo)
 			     SizeInDubs(uinfo->trackclist->style->font,18));
 #ifndef GRIPCD
   gtk_clist_column_title_active(GTK_CLIST(uinfo->trackclist),2);
+
   gtk_clist_set_column_auto_resize(GTK_CLIST(uinfo->trackclist),1,TRUE);
   gtk_clist_set_column_justification(GTK_CLIST(uinfo->trackclist),2,
 				     GTK_JUSTIFY_CENTER);

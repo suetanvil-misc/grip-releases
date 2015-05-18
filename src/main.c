@@ -116,7 +116,7 @@ void Debug(char *fmt,...)
   if(do_debug) {
     va_start(args,fmt);
 
-    vprintf(fmt,args);
+    vfprintf(stderr,fmt,args);
   }
 
   va_end(args);
@@ -125,10 +125,11 @@ void Debug(char *fmt,...)
 int main(int argc, char* argv[])
 {
   poptContext pctx;
-
   char** args;
-
   GnomeClient *client;
+
+  /* Unbuffer stdout */
+  setvbuf(stdout, 0, _IONBF, 0);
 
   /* setup locale, i18n */
   gtk_set_locale();

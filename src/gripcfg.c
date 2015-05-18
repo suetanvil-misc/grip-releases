@@ -39,7 +39,7 @@ static Ripper ripper_defaults[]={
   {"grip (cdparanoia)",""},
 #endif
   {"cdparanoia","-d %*c %t:[.%s]-%t:[.%e] %*w"},
-#ifdef SOLARIS
+#if defined(__sun__)
   {"cdda2wav","-x -H -t %t -O wav %*w"},
 #else
   {"cdda2wav","-D %*c -x -H -t %t -O wav %*w"},

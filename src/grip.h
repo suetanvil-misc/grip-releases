@@ -30,7 +30,6 @@
 #include "discdb.h"
 #include "pthread.h"
 #include "launch.h"
-#include "config.h"
 
 #ifdef HAVE_CDDA_INTERFACE_H
 #define CDPAR

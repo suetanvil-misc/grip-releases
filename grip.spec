@@ -1,5 +1,5 @@
 %define name grip
-%define version 2.98.6
+%define version 2.98.7
 %define release 1
 %define prefix /usr
 
@@ -56,6 +56,7 @@ make prefix=$RPM_BUILD_ROOT%{prefix} install
 rm -rf $RPM_BUILD_ROOT
 
 %files
+%defattr(-, root, root)
 %doc README ChangeLog CREDITS COPYING INSTALL NEWS AUTHORS TODO ABOUT-NLS
 %{prefix}/bin/grip
 %{prefix}/share/gnome/help/grip

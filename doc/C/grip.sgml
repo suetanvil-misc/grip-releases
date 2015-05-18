@@ -857,6 +857,48 @@
 	</screenshot>
       </figure>
 
+      <itemizedlist>
+	<listitem>
+	  <para><guilabel>Use proxy server</guilabel> &mdash; Indicates
+	  whether or not Grip should do disc lookups via a proxy server.
+	  </para>
+	</listitem>
+
+	<listitem>
+	  <para><guilabel>Get server from 'http_proxy' env. var</guilabel>
+	  &mdash; If this option is checked, Grip will check the
+	  'http_proxy' environment variable, and use its value as the name
+	  of the proxy server.
+	  </para>
+	</listitem>
+
+	<listitem>
+	  <para><guilabel>Proxy server</guilabel> &mdash; The name of the
+	  proxy server to use.
+	  </para>
+	</listitem>
+
+	<listitem>
+	  <para><guilabel>Proxy port</guilabel> &mdash; The port to use on
+	  the proxy server (usually 8000).
+	  </para>
+	</listitem>
+
+	<listitem>
+	  <para><guilabel>Proxy username</guilabel> &mdash; Some proxies
+	  require user authentication. This field is the username you wish
+	  to authenticte with.
+	  </para>
+	</listitem>
+
+	<listitem>
+	  <para><guilabel>Proxy password</guilabel> &mdash; This is the
+	  password that goes along with the username for proxy
+	  authentication.
+	  </para>
+	</listitem>
+      </itemizedlist>
+
     </sect1>
 
     <sect1 id="miscconfig">
@@ -872,6 +914,63 @@
 	  </graphic>
 	</screenshot>
       </figure>
+
+      <itemizedlist>
+	<listitem>
+	  <para><guilabel>Email address</guilabel> &mdash; A valid email
+	  addres where you can be reached. This is used with disc database
+	  submissions to allow the disc database server to contact you if
+	  there are problems with a submission.
+	  </para>
+	</listitem>
+
+	<listitem>
+	  <para><guilabel>CD update program</guilabel> &mdash; This allows
+	    you to specify a program (full path to executable, followed by
+	    the command-line) to run when a new disc is inserted. This is
+	    useful for such tasks as normalization. The list of available
+	    switches can be found in <xref linkend="gripswitches">.
+	  </para>
+	</listitem>
+
+	<listitem>
+	  <para><guilabel>Do not lowercase filenames</guilabel> &mdash; By
+	  default, Grip lowercases the strings used when translating the '%'
+	  switches. If this option is checked, it will not do this.
+	  </para>
+	</listitem>
+
+	<listitem>
+	  <para><guilabel>Allow high bits in filename</guilabel> &mdash; By
+	  default, Grip strips high-bit characters in the strings used when
+	  translating the '%' switches. If this option is checked, it will
+	  not do this.
+	  </para>
+	</listitem>
+
+	<listitem>
+	  <para><guilabel>Do not change spaces to underscores</guilabel>
+	  &mdash; By default, Grip replaces spaces with underscores in the
+	  strings used when translating the '%' switches. If this option is
+	  checked, it will not do this.
+	  </para>
+	</listitem>
+
+	<listitem>
+	  <para><guilabel>Characters to not strip in filenames</guilabel>
+	  &mdash; Grip strips all non-alphanumeric characters in the
+	  strings used when translating the '%' switches. Any characters
+	  entered here will explicity not be stripped.
+	  </para>
+	</listitem>
+
+	<listitem>
+	  <para><guilabel>Keep application minimum size</guilabel> &mdash;
+	  If this option is checked, Grip will always try to keep its screen
+	  footprint at a minimum.
+	  </para>
+	</listitem>
+      </itemizedlist>
 
     </sect1>
 
@@ -1119,6 +1218,9 @@
       CREDITS file)</para></listitem>
 
       <listitem><para>mp3.com for hosting nostatic.org</para></listitem>
+
+      <listitem><para>David Robinson and Glen Sawyer for
+      ReplayGain</para></listitem>
 
       <listitem><para>Everyone else who has given me feedback, contributed
 	  code, and helped test Grip (see the ChangeLog for specific

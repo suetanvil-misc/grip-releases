@@ -26,7 +26,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#ifdef SOLARIS
+#if defined(__sun__)
 #include <strings.h>
 #endif
 #include <ctype.h>

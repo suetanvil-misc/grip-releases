@@ -1,3 +1,20 @@
+2002-02-19  Mike Oliphant  <oliphant@gtk.org>
+
+	* various: solaris compile fixes (thanks to Jim Crumley for
+	  pointing out the SOLARIS->__sun__ change)
+	* rip.c: switched order of statvs vs vfs check (thanks to Jim
+	  Crumley for this)
+	* grip.sgml: added documentation for the "Proxy" and "Misc" config
+	  tabs
+	* rip.c: ask if we should rip all tracks if none are selected
+	  (thanks to Przemyslaw Kryger for this)
+	* main.c: unbuffered debugging (thanks to Alan Eldridge for this)
+	* grip.spec: added '%defattr(-, root, root)' to make installed
+	  files have the proper ownership (thanks to Thomas Schultz for
+	  this)
+	* de.po: added (thanks to Goetz Waschk for this)
+	* configure.in/grip.spec: upped version to 2.98.7
+	
 2002-02-10  Mike Oliphant  <oliphant@gtk.org>
 
 	* gripcfg.c: fixed a bug keeping rip config options from
@@ -6,7 +23,7 @@
 	* configure.in: added an option to disable compiling with id3lib
 	  (thanks to Thierry Vignaud for this)
 	* fr.po: added (thanks to Eric Lassauge for the translation)
-	* rip.c: move where disc filter was being not (cosmetic, not
+	* rip.c: move where disc filter was being called (cosmetic, not
 	  functional change)
 	* parsecfg.c: cast boolean values as gboolean instead of int
 	  (thanks to Didier Malenfant for this)
@@ -17,7 +34,7 @@
 	* rip.c: includes for freebsd to compile (thanks to Alan Eldridge
 	  for this)
 	* configure.in/grip.spec: upped version to 2.98.6
-	
+
 2002-01-26  Mike Oliphant  <oliphant@gtk.org>
 
 	* rip.c: fixed a nasty crashing bug related to the disc filter

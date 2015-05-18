@@ -381,7 +381,7 @@ void MakeAboutPage(GripGUI *uinfo)
   gtk_box_pack_start(GTK_BOX(vbox2),label,FALSE,FALSE,0);
   gtk_widget_show(label);
 
-#ifdef SOLARIS
+#if defined(__sun__)
   label=gtk_label_new("Solaris Port, David Meleedy");
   gtk_widget_set_style(label,uinfo->style_wb);
   gtk_box_pack_start(GTK_BOX(vbox2),label,FALSE,FALSE,0);
@@ -709,7 +709,7 @@ static void DoLoadConfig(GripInfo *ginfo)
   ginfo->num_cpu=ginfo->edit_num_cpu;
 
   if(!*ginfo->user_email)
-#ifdef SOLARIS
+#if defined(__sun__)
     g_snprintf(ginfo->user_email,256,"%s@%s",getenv("USER"),getenv("HOST"));
 #else
     g_snprintf(ginfo->user_email,256,"%s@%s",getenv("USER"),

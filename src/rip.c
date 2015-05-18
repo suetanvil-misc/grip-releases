@@ -20,11 +20,11 @@
  * USA
  */
 
+#include "grip.h"
 #include <sys/stat.h>
-#ifdef SOLARIS
+#ifdef HAVE_SYS_STATVFS_H
 #include <sys/statvfs.h>
-#endif
-#if defined(__linux__)
+#elif defined (HAVE_SYS_VFS_H)
 #include <sys/vfs.h>
 #endif
 #if defined(__FreeBSD__)
@@ -37,7 +37,6 @@
 #include <sys/wait.h>
 #include <fcntl.h>
 #include <pthread.h>
-#include "grip.h"
 #include "rip.h"
 #include "dialog.h"
 #include "cdplay.h"
@@ -68,6 +67,7 @@ static void DoWavFilter(GripInfo *ginfo);
 static void DoDiscFilter(GripInfo *ginfo);
 static void RipIsFinished(GripInfo *ginfo);
 static void CheckDupNames(GripInfo *ginfo);
+static void RipWholeCD(gint reply,gpointer data);
 static int NextTrackToRip(GripInfo *ginfo);
 static gboolean RipNextTrack(GripInfo *ginfo);
 #ifdef CDPAR
@@ -371,13 +371,12 @@ gboolean IsDir(char *path)
 unsigned long long BytesLeftInFS(char *path)
 {
   unsigned long long bytesleft;
-
-#ifdef SOLARIS
+  int pos;
+#ifdef HAVE_SYS_STATVFS_H
   struct statvfs stat;
 #else
-  struct statfs stat;
+ struct statfs stat;
 #endif
-  int pos;
 
   if(!IsDir(path)) {
     for(pos=strlen(path);pos&&(path[pos]!='/');pos--);
@@ -385,18 +384,20 @@ unsigned long long BytesLeftInFS(char *path)
     if(path[pos]!='/') return 0;
     
     path[pos]='\0';
-#ifdef SOLARIS
+
+#ifdef HAVE_SYS_STATVFS_H
     if(statvfs(path,&stat)!=0) return 0;
 #else
     if(statfs(path,&stat)!=0) return 0;
 #endif
+
     path[pos]='/';
   }
   else
-#ifdef SOLARIS
+#ifdef HAVE_SYS_STATVFS_H
     if(statvfs(path,&stat)!=0) return 0;
 #else
-  if(statfs(path,&stat)!=0) return 0;
+    if(statfs(path,&stat)!=0) return 0;
 #endif
 
   bytesleft=stat.f_bavail;
@@ -1057,8 +1058,29 @@ void DoRip(GtkWidget *widget,gpointer data)
   result=RipNextTrack(ginfo);
   if(!result) {
     ginfo->doencode=FALSE;
-    DisplayMsg(_("No tracks selected"));
+
+    gnome_app_ok_cancel_modal
+      ((GnomeApp *)ginfo->gui_info.app,
+       _("No tracks selected.\nRip whole CD?\n"),
+       RipWholeCD,(gpointer)ginfo);
   }
+}
+
+static void RipWholeCD(gint reply,gpointer data)
+{
+  int track;
+  GripInfo *ginfo;
+
+  if(reply) return;
+
+  Debug(_("Ripping whole CD\n"));
+
+  ginfo=(GripInfo *)data;
+  
+  for(track=0;track<ginfo->disc.num_tracks;++track)
+    SetChecked(&(ginfo->gui_info),track,TRUE);
+
+  DoRip(NULL,(gpointer)ginfo);
 }
 
 static int NextTrackToRip(GripInfo *ginfo)
