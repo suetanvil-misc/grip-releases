@@ -158,11 +158,12 @@ int Cmain(int argc, char* argv[])
   gtk_set_locale();
   bindtextdomain(GETTEXT_PACKAGE,GNOMELOCALEDIR);
   textdomain(GETTEXT_PACKAGE);
-  bind_textdomain_codeset(GETTEXT_PACKAGE, "UTF8");
 
   gnome_program_init(PACKAGE,VERSION,LIBGNOMEUI_MODULE,argc,argv, 
 		     GNOME_PARAM_POPT_TABLE,options,
 		     GNOME_PROGRAM_STANDARD_PROPERTIES,NULL);
+
+  bind_textdomain_codeset(GETTEXT_PACKAGE, "UTF8");
 
   /* Session Management */
   

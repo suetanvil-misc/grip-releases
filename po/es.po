@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: grip-3.0.0\n"
-"POT-Creation-Date: 2004-03-11 17:14-0800\n"
+"POT-Creation-Date: 2004-03-22 09:03-0800\n"
 "PO-Revision-Date: 2002-05-24 15:40-006\n"
 "Last-Translator: El_Pavo_Asesino <ciehe@yahoo.com>\n"
 "Language-Team: ESPAÑOL <es@li.org>\n"
@@ -90,7 +90,7 @@ msgstr "Estado de la extracción"
 msgid "General"
 msgstr ""
 
-#: src/grip.c:371 src/gripcfg.c:354 src/cdplay.c:263 src/rip.c:95
+#: src/grip.c:371 src/gripcfg.c:354 src/cdplay.c:309 src/rip.c:95
 msgid "Rip"
 msgstr "Extraer"
 
@@ -135,7 +135,7 @@ msgstr "Reportar errores"
 msgid "About"
 msgstr "Acerca de ..."
 
-#: src/grip.c:864
+#: src/grip.c:862
 #, fuzzy
 msgid ""
 "Your config file is out of date -- resetting to defaults.\n"
@@ -146,12 +146,12 @@ msgstr ""
 "Necesitarás reconfigurar Grip\n"
 "Tu archivo viejo de configuración ha sido guardado en ~/.grip-old."
 
-#: src/grip.c:934
+#: src/grip.c:932
 #, c-format
 msgid "server is %s, port %d\n"
 msgstr "Servidor: %s, puerto: %d\n"
 
-#: src/grip.c:954
+#: src/grip.c:952
 msgid "Error: Unable to save config file"
 msgstr "Error: No pude guardar el archivo de configuración"
 
@@ -560,7 +560,7 @@ msgstr ""
 msgid "Done\n"
 msgstr "Hecho\n"
 
-#: src/cdplay.c:222 src/cdplay.c:596
+#: src/cdplay.c:222 src/cdplay.c:594
 msgid "Error saving disc data\n"
 msgstr "Error al guardar los datos del disco\n"
 
@@ -568,153 +568,154 @@ msgstr "Error al guardar los datos del disco\n"
 msgid "No match\n"
 msgstr "No se encontró coincidencia\n"
 
-#: src/cdplay.c:263
-msgid "Track"
-msgstr "Pista"
-
-#: src/cdplay.c:263
-msgid "Length "
-msgstr "Duración"
-
-#: src/cdplay.c:267
+#: src/cdplay.c:265
 msgid "Tracks"
 msgstr "Pistas"
 
-#: src/cdplay.c:667
+#: src/cdplay.c:289
+msgid "Track"
+msgstr "Pista"
+
+#: src/cdplay.c:298
+#, fuzzy
+msgid "Length"
+msgstr "Duración"
+
+#: src/cdplay.c:665
 msgid "Rotate play mode"
 msgstr "Reproducción en rotación"
 
-#: src/cdplay.c:687
+#: src/cdplay.c:685
 msgid "Toggle loop play"
 msgstr "Activar reproducción en bucle"
 
-#: src/cdplay.c:765 src/rip.c:230
+#: src/cdplay.c:763 src/rip.c:230
 msgid "Rip status"
 msgstr "Estado de la extracción"
 
-#: src/cdplay.c:832
+#: src/cdplay.c:830
 msgid "Play track / Pause play"
 msgstr "Reproducir pista / pausa"
 
-#: src/cdplay.c:843
+#: src/cdplay.c:841
 msgid "Rewind"
 msgstr "Rebobinar"
 
-#: src/cdplay.c:854
+#: src/cdplay.c:852
 msgid "FastForward"
 msgstr "Avance rápido"
 
-#: src/cdplay.c:864
+#: src/cdplay.c:862
 msgid "Go to previous track"
 msgstr "Ir a la pista anterior"
 
-#: src/cdplay.c:873
+#: src/cdplay.c:871
 msgid "Go to next track"
 msgstr "Ir a la pista siguiente"
 
-#: src/cdplay.c:882
+#: src/cdplay.c:880
 msgid "Toggle play mode options"
 msgstr "Conmutar modos de reproducción"
 
-#: src/cdplay.c:892
+#: src/cdplay.c:890
 msgid "Next Disc"
 msgstr "Siguiente disco"
 
-#: src/cdplay.c:906
+#: src/cdplay.c:904
 msgid "Stop play"
 msgstr "Parar reproducción"
 
-#: src/cdplay.c:916
+#: src/cdplay.c:914
 msgid "Eject disc"
 msgstr "Expulsar disco"
 
-#: src/cdplay.c:925
+#: src/cdplay.c:923
 #, fuzzy
 msgid "Scan Disc Contents"
 msgstr "Tabla de contenido"
 
-#: src/cdplay.c:933
+#: src/cdplay.c:931
 msgid "Toggle Volume Control"
 msgstr "Mostrar control de volumen"
 
-#: src/cdplay.c:942
+#: src/cdplay.c:940
 msgid "Toggle disc editor"
 msgstr "Mostrar editor de pistas"
 
-#: src/cdplay.c:952
+#: src/cdplay.c:950
 msgid "Initiate/abort DiscDB lookup"
 msgstr "Iniciar/abortar consulta a discDB"
 
-#: src/cdplay.c:962
+#: src/cdplay.c:960
 msgid "Toggle track display"
 msgstr "Mostrar lista de pistas"
 
-#: src/cdplay.c:969
+#: src/cdplay.c:967
 msgid "Exit Grip"
 msgstr "Salir de Grip"
 
-#: src/cdplay.c:1116
+#: src/cdplay.c:1114
 msgid "Cannot fast forward while ripping"
 msgstr "No puedo avanzar mientras esté extrayendo datos"
 
-#: src/cdplay.c:1146
+#: src/cdplay.c:1144
 msgid "Cannot rewind while ripping"
 msgstr "No puede retroceder mientras esté extrayendo datos"
 
-#: src/cdplay.c:1176
+#: src/cdplay.c:1174
 msgid "Cannot switch discs while ripping"
 msgstr "No puedo conmutar mientras esté extrayendo datos"
 
-#: src/cdplay.c:1194
+#: src/cdplay.c:1192
 msgid "Eject disc\n"
 msgstr "Espulsar disco\n"
 
-#: src/cdplay.c:1197
+#: src/cdplay.c:1195
 msgid "Cannot eject while ripping"
 msgstr "No puede expulsar mientras esté extrayendo datos"
 
-#: src/cdplay.c:1207
+#: src/cdplay.c:1205
 msgid "Have disc -- ejecting\n"
 msgstr "Hay disco -- expulsando\n"
 
-#: src/cdplay.c:1271
+#: src/cdplay.c:1269
 msgid "Cannot play while ripping"
 msgstr "No puedo reproducir mientras esté extrayendo datos"
 
-#: src/cdplay.c:1332 src/cdplay.c:1362
+#: src/cdplay.c:1330 src/cdplay.c:1360
 msgid "Cannot switch tracks while ripping"
 msgstr "No puedo cambiar de pistas mientras esté extrayendo datos"
 
-#: src/cdplay.c:1455
+#: src/cdplay.c:1453
 msgid "Checking for a new disc\n"
 msgstr "Buscando un nuevo disco\n"
 
-#: src/cdplay.c:1460
+#: src/cdplay.c:1458
 msgid "CDStat found a disc, checking tracks\n"
 msgstr "CDStat encontró un disco, verificando pistas\n"
 
-#: src/cdplay.c:1463
+#: src/cdplay.c:1461
 msgid "We have a valid disc!\n"
 msgstr "Tenemos un disco válido\n"
 
-#: src/cdplay.c:1490
+#: src/cdplay.c:1488
 msgid "No non-zero length tracks\n"
 msgstr "No hay pistas de longitud cero\n"
 
-#: src/cdplay.c:1499
+#: src/cdplay.c:1497
 msgid "CDStat said no disc\n"
 msgstr "CDStat dice que no hay disco\n"
 
-#: src/cdplay.c:1634 src/cdplay.c:1656
+#: src/cdplay.c:1632 src/cdplay.c:1654
 #, c-format
 msgid "Current sector: %6d"
 msgstr "Sector actual: %6d"
 
-#: src/cdplay.c:1757
+#: src/cdplay.c:1755
 msgid "No Disc"
 msgstr "No hay disco"
 
-#: src/cdplay.c:1809
+#: src/cdplay.c:1807
 msgid ""
 "This disc has been found on your secondary server,\n"
 "but not on your primary server.\n"
@@ -726,15 +727,15 @@ msgstr ""
 "\n"
 "¿Deseas mandar esta informaciñon de disco?"
 
-#: src/cdplay.c:1838 src/cdplay.c:1846
+#: src/cdplay.c:1836 src/cdplay.c:1844
 msgid "Error: Unable to create temporary file"
 msgstr "Error: No pude crear un archivo temporal"
 
-#: src/cdplay.c:1863
+#: src/cdplay.c:1861
 msgid "Error: Unable to write disc data"
 msgstr "Error: No pude escribir los datos del disco"
 
-#: src/cdplay.c:1872
+#: src/cdplay.c:1870
 #, c-format
 msgid "Mailing entry to %s\n"
 msgstr "Enviando entrada a %s\n"

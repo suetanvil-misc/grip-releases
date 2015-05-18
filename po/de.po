@@ -5,8 +5,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: grip 3.1.5\n"
-"POT-Creation-Date: 2004-03-11 17:14-0800\n"
-"PO-Revision-Date: 2004-03-02 08:48+0100\n"
+"POT-Creation-Date: 2004-03-22 09:03-0800\n"
+"PO-Revision-Date: 2004-03-12 09:22+0100\n"
 "Last-Translator: Götz Waschk <waschk@informatik.uni-rostock.de>\n"
 "Language-Team: German <de@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -90,7 +90,7 @@ msgstr "Status"
 msgid "General"
 msgstr "Allgemein"
 
-#: src/grip.c:371 src/gripcfg.c:354 src/cdplay.c:263 src/rip.c:95
+#: src/grip.c:371 src/gripcfg.c:354 src/cdplay.c:309 src/rip.c:95
 msgid "Rip"
 msgstr "Rip"
 
@@ -134,7 +134,7 @@ msgstr "Fehler Melden"
 msgid "About"
 msgstr "Über"
 
-#: src/grip.c:864
+#: src/grip.c:862
 msgid ""
 "Your config file is out of date -- resetting to defaults.\n"
 "You will need to re-configure Grip.\n"
@@ -144,12 +144,12 @@ msgstr ""
 "Du musst Grip nun neu konfigurieren.\n"
 "Die alte Konfigurationsdatei wurde durch Anhängen von -old umbenannt."
 
-#: src/grip.c:934
+#: src/grip.c:932
 #, c-format
 msgid "server is %s, port %d\n"
 msgstr "Server ist %s, Port %d\n"
 
-#: src/grip.c:954
+#: src/grip.c:952
 msgid "Error: Unable to save config file"
 msgstr "Fehler: Konnte Konfigurationsdatei nicht speichern"
 
@@ -374,9 +374,8 @@ msgid "ID3v1 Character set encoding"
 msgstr "ID3v1 Zeichenkodierung "
 
 #: src/gripcfg.c:524
-#, fuzzy
 msgid "ID3v2 Character set encoding"
-msgstr "ID3v1 Zeichenkodierung "
+msgstr "ID3v2 Zeichenkodierung"
 
 #: src/gripcfg.c:532
 msgid "ID3"
@@ -549,7 +548,7 @@ msgstr ""
 msgid "Done\n"
 msgstr "Fertig\n"
 
-#: src/cdplay.c:222 src/cdplay.c:596
+#: src/cdplay.c:222 src/cdplay.c:594
 msgid "Error saving disc data\n"
 msgstr "Fehler beim Speichern der CD-Daten\n"
 
@@ -557,152 +556,153 @@ msgstr "Fehler beim Speichern der CD-Daten\n"
 msgid "No match\n"
 msgstr "Kein Treffer\n"
 
-#: src/cdplay.c:263
-msgid "Track"
-msgstr "Track"
-
-#: src/cdplay.c:263
-msgid "Length "
-msgstr "Länge"
-
-#: src/cdplay.c:267
+#: src/cdplay.c:265
 msgid "Tracks"
 msgstr "Tracks"
 
-#: src/cdplay.c:667
+#: src/cdplay.c:289
+msgid "Track"
+msgstr "Track"
+
+#: src/cdplay.c:298
+#, fuzzy
+msgid "Length"
+msgstr "Länge"
+
+#: src/cdplay.c:665
 msgid "Rotate play mode"
 msgstr "Rotiere Abspielmodi"
 
-#: src/cdplay.c:687
+#: src/cdplay.c:685
 msgid "Toggle loop play"
 msgstr "Schalte Wiederholung an/aus"
 
-#: src/cdplay.c:765 src/rip.c:230
+#: src/cdplay.c:763 src/rip.c:230
 msgid "Rip status"
 msgstr "Rip-Status"
 
-#: src/cdplay.c:832
+#: src/cdplay.c:830
 msgid "Play track / Pause play"
 msgstr "Spiele Track / Pause"
 
-#: src/cdplay.c:843
+#: src/cdplay.c:841
 msgid "Rewind"
 msgstr "Zurückspulen"
 
-#: src/cdplay.c:854
+#: src/cdplay.c:852
 msgid "FastForward"
 msgstr "Vorspulen"
 
-#: src/cdplay.c:864
+#: src/cdplay.c:862
 msgid "Go to previous track"
 msgstr "Gehe zum vorherigen Track"
 
-#: src/cdplay.c:873
+#: src/cdplay.c:871
 msgid "Go to next track"
 msgstr "Gehe zum nächsten Track"
 
-#: src/cdplay.c:882
+#: src/cdplay.c:880
 msgid "Toggle play mode options"
 msgstr "Schalte Abspielmodi an/aus"
 
-#: src/cdplay.c:892
+#: src/cdplay.c:890
 msgid "Next Disc"
 msgstr "Nächste CD"
 
-#: src/cdplay.c:906
+#: src/cdplay.c:904
 msgid "Stop play"
 msgstr "Stoppe das Abspielen"
 
-#: src/cdplay.c:916
+#: src/cdplay.c:914
 msgid "Eject disc"
 msgstr "CD auswerfen"
 
-#: src/cdplay.c:925
+#: src/cdplay.c:923
 msgid "Scan Disc Contents"
 msgstr "Lese CD-Verzeichnis"
 
-#: src/cdplay.c:933
+#: src/cdplay.c:931
 msgid "Toggle Volume Control"
 msgstr "Schalte Lautstärkeregler an/aus"
 
-#: src/cdplay.c:942
+#: src/cdplay.c:940
 msgid "Toggle disc editor"
 msgstr "Schalte CD-Editor an/aus"
 
-#: src/cdplay.c:952
+#: src/cdplay.c:950
 msgid "Initiate/abort DiscDB lookup"
 msgstr "Start/Abbruch der DiscDB-Abfrage"
 
-#: src/cdplay.c:962
+#: src/cdplay.c:960
 msgid "Toggle track display"
 msgstr "Schalte Track-Anzeige an/aus"
 
-#: src/cdplay.c:969
+#: src/cdplay.c:967
 msgid "Exit Grip"
 msgstr "Grip Beenden"
 
-#: src/cdplay.c:1116
+#: src/cdplay.c:1114
 msgid "Cannot fast forward while ripping"
 msgstr "Kann während des Rippens nicht vorspulen"
 
-#: src/cdplay.c:1146
+#: src/cdplay.c:1144
 msgid "Cannot rewind while ripping"
 msgstr "Kann während des Rippens nicht zurückspulen"
 
-#: src/cdplay.c:1176
+#: src/cdplay.c:1174
 msgid "Cannot switch discs while ripping"
 msgstr "Kann während des Rippens nicht die CD wechseln"
 
-#: src/cdplay.c:1194
+#: src/cdplay.c:1192
 msgid "Eject disc\n"
 msgstr "CD auswerfen\n"
 
-#: src/cdplay.c:1197
+#: src/cdplay.c:1195
 msgid "Cannot eject while ripping"
 msgstr "Kann die CD nicht während des Rippens auswerfen"
 
-#: src/cdplay.c:1207
+#: src/cdplay.c:1205
 msgid "Have disc -- ejecting\n"
 msgstr "CD vorhanden -- werfe aus\n"
 
-#: src/cdplay.c:1271
+#: src/cdplay.c:1269
 msgid "Cannot play while ripping"
 msgstr "Kann die CD nicht während des Rippens abspielen"
 
-#: src/cdplay.c:1332 src/cdplay.c:1362
+#: src/cdplay.c:1330 src/cdplay.c:1360
 msgid "Cannot switch tracks while ripping"
 msgstr "Kann während des Rippens nicht den Track wechseln"
 
-#: src/cdplay.c:1455
+#: src/cdplay.c:1453
 msgid "Checking for a new disc\n"
 msgstr "Prüfe die neue CD\n"
 
-#: src/cdplay.c:1460
+#: src/cdplay.c:1458
 msgid "CDStat found a disc, checking tracks\n"
 msgstr "CDStat fand eine CD, prüfe die Tracks\n"
 
-#: src/cdplay.c:1463
+#: src/cdplay.c:1461
 msgid "We have a valid disc!\n"
 msgstr "Wir haben eine gültige CD!\n"
 
-#: src/cdplay.c:1490
+#: src/cdplay.c:1488
 msgid "No non-zero length tracks\n"
 msgstr "Keine Tracks mit einer Länge ungleich null\n"
 
-#: src/cdplay.c:1499
+#: src/cdplay.c:1497
 msgid "CDStat said no disc\n"
 msgstr "CDStat sagt, dass keine CD vorhanden ist\n"
 
-#: src/cdplay.c:1634 src/cdplay.c:1656
+#: src/cdplay.c:1632 src/cdplay.c:1654
 #, c-format
 msgid "Current sector: %6d"
 msgstr "Aktueller Sektor: %6d"
 
-#: src/cdplay.c:1757
+#: src/cdplay.c:1755
 msgid "No Disc"
 msgstr "Keine CD"
 
-#: src/cdplay.c:1809
+#: src/cdplay.c:1807
 msgid ""
 "This disc has been found on your secondary server,\n"
 "but not on your primary server.\n"
@@ -714,15 +714,15 @@ msgstr ""
 "\n"
 "Möchtest Du diese CD-Information übertragen?"
 
-#: src/cdplay.c:1838 src/cdplay.c:1846
+#: src/cdplay.c:1836 src/cdplay.c:1844
 msgid "Error: Unable to create temporary file"
 msgstr "Fehler: Konnte keine temporäre Datei anlegen"
 
-#: src/cdplay.c:1863
+#: src/cdplay.c:1861
 msgid "Error: Unable to write disc data"
 msgstr "Fehler: Konnte CD-Daten nicht schreiben"
 
-#: src/cdplay.c:1872
+#: src/cdplay.c:1870
 #, c-format
 msgid "Mailing entry to %s\n"
 msgstr "Schicke Eintrag per Email an %s\n"

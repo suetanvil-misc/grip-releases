@@ -1,63 +1,64 @@
-# Finnish translations for grip package.
-# Copyright (C) 2004 THE grip'S COPYRIGHT HOLDER
-# This file is distributed under the same license as the grip package.
-#  <tommi.pirinen@kolumbus.fi>, 2003,2004.
-#
+# Bulgarian translation of grip.
+# Copyright (C) 2004 Vladimir Petkov, InterSpace Media Art Center : www.i-space.org
+# This file is distributed under the same license as the Grip package.
+# Vladimir "Kaladan" Petkov <vpetkov@i-space.org>, 2004.
+# 
+# 
 msgid ""
 msgstr ""
-"Project-Id-Version: grip 3.1.4\n"
+"Project-Id-Version: 3.1\n"
 "POT-Creation-Date: 2004-03-22 09:03-0800\n"
-"PO-Revision-Date: 2004-01-12 12:00+0300\n"
-"Last-Translator: Flammie Pirinen <tommi.pirinen@kolumbus.fi>\n"
-"Language-Team: Finnish <lokalisointi-laatu@lists.linux-aktivaattori.org>\n"
+"PO-Revision-Date: 2004-02-08 14:03+0200\n"
+"Last-Translator: Vladimir \"Kaladan\" Petkov <vpetkov@i-space.org>\n"
+"Language-Team: Bulgarian <dict@linux.zonebg.com>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Report-Msgid-Bugs-To: \n"
 
 #: src/main.c:55
 msgid "Specify the geometry of the main window"
-msgstr "Määrittele pääikkunan sijainti ja mitat"
+msgstr "Определя размерите на основния прозорец"
 
 #: src/main.c:56
 msgid "GEOMETRY"
-msgstr "GEOMETRIA"
+msgstr "РАЗМЕРИ"
 
 #: src/main.c:64
 msgid "Specify the config file to use (in your home dir)"
-msgstr "Määrittele käytettävä asetustiedosto (kotihakemistossasi)"
+msgstr "Определя конфигурационния файл в употреба (в домашната директория)"
 
 #: src/main.c:65
 msgid "CONFIG"
-msgstr "ASETUKSET"
+msgstr "КОНФИГУРАЦИЯ"
 
 #: src/main.c:73
 msgid "Specify the cdrom device to use"
-msgstr "Määrittele käytettävä CD-aseman laitetiedosto"
+msgstr "Определя CD ROM устройството"
 
 #: src/main.c:74 src/main.c:83
 msgid "DEVICE"
-msgstr "LAITE"
+msgstr "УСТРОЙСТВО"
 
 #: src/main.c:82
 msgid "Specify the generic scsi device to use"
-msgstr "Määrittele käytettävä SCSI-laitetiedosto"
+msgstr "Упределя SCSI устройството в употреба"
 
 #: src/main.c:91
 msgid "Launch in \"small\" (cd-only) mode"
-msgstr "Käynnistä \"pienessä\" (CD-soitin)-tilassa"
+msgstr "Зарежда в \"ограничен\" (CD-ROM само) режим"
 
 #: src/main.c:100
 msgid "\"Local\" mode -- do not look up disc info on the net"
-msgstr "\"Paikallinen\" tila -- älä hae levyn tietoja verkosta"
+msgstr "\"Локален\"·режим·--·не се търси информация за диска в интернет"
 
 #: src/main.c:109
 msgid "Do not do I/O redirection"
-msgstr "Älä käytä I/O-uudelleenohjausta"
+msgstr "Не прави I/O пренасочване"
 
 #: src/main.c:118
 msgid "Run in verbose (debug) mode"
-msgstr "Suorita yksityiskohtaisessa vianetsintätilassa"
+msgstr "Стартира в режим за докладване на грешки"
 
 #: src/grip.c:153
 msgid "Grip"
@@ -66,7 +67,7 @@ msgstr "Grip"
 #: src/grip.c:184
 #, c-format
 msgid "Error: Unable to initialize [%s]\n"
-msgstr "Virhe: Alustus ei onnistunut [%s]\n"
+msgstr "Грешка: Разпознаването е невъзможно [%s]\n"
 
 #: src/grip.c:272
 msgid ""
@@ -79,60 +80,60 @@ msgid ""
 "Work is in progress.\n"
 "Really shut down?"
 msgstr ""
-"Työ on kesken\n"
-"Haluatko varmasti lopettaa?"
+"Извършва се работа.\n"
+"Да изгася програмата?"
 
 #: src/grip.c:341
 msgid "Status"
-msgstr "Tila"
+msgstr "Статус"
 
 #: src/grip.c:356
 msgid "General"
-msgstr "Yleiset"
+msgstr "Основен"
 
 #: src/grip.c:371 src/gripcfg.c:354 src/cdplay.c:309 src/rip.c:95
 msgid "Rip"
-msgstr "Kopiointi"
+msgstr "Извличане"
 
 #: src/grip.c:386 src/gripcfg.c:488
 msgid "Encode"
-msgstr "Koodaus"
+msgstr "Кодиране"
 
 #: src/grip.c:431
 msgid "Help"
-msgstr "Ohje"
+msgstr "Помощ"
 
 #: src/grip.c:436
 msgid "Table Of Contents"
-msgstr "Sisällysluettelo"
+msgstr "Съдържание"
 
 #: src/grip.c:442
 msgid "Playing CDs"
-msgstr "CD-levyjen soitto"
+msgstr "Изпълняващи се CD-та"
 
 #: src/grip.c:448
 msgid "Ripping CDs"
-msgstr "CD-levyjen kopiointi"
+msgstr "Извличащи се CD-та"
 
 #: src/grip.c:454
 msgid "Configuring Grip"
-msgstr "Gripin asetusten tekeminen"
+msgstr "Конфигурация"
 
 #: src/grip.c:460
 msgid "FAQ"
-msgstr "VUKK"
+msgstr "Често Задавани Въпроси"
 
 #: src/grip.c:466
 msgid "Getting More Help"
-msgstr "Lisäohjeiden hakeminen"
+msgstr "Допълнителна помощ"
 
 #: src/grip.c:472
 msgid "Reporting Bugs"
-msgstr "Ohjelmavirheiden raportointi"
+msgstr "Докладване за грешки"
 
 #: src/grip.c:492
 msgid "About"
-msgstr "Tietoja"
+msgstr "Относно"
 
 #: src/grip.c:862
 msgid ""
@@ -140,58 +141,59 @@ msgid ""
 "You will need to re-configure Grip.\n"
 "Your old config file has been saved with -old appended."
 msgstr ""
-"Asetustiedostosi on vanhentunut -- oletusasetukset palautettiin.\n"
-"Gripin asetukset täytyy tehdä uudelleen.\n"
-"Vanha asetustiedostosi tallennettiin -old-päätteellä."
+"Вашият конфигурационен файл е остарял - зареждане на настройките по "
+"подразбиране.\n"
+"Grip трябва да бъде пренастроен.\n"
+"Старият конфигурационен фал е запазен с -old·в края."
 
 #: src/grip.c:932
 #, c-format
 msgid "server is %s, port %d\n"
-msgstr "palvelin on %s, portti %d\n"
+msgstr "сървър е·%s,·порт·%d\n"
 
 #: src/grip.c:952
 msgid "Error: Unable to save config file"
-msgstr "Virhe: Asetustiedostoa ei voitu tallentaa"
+msgstr "Грешка: Запазването на конфигурационния файл е невъзможно"
 
 #: src/gripcfg.c:97
 msgid "Config"
-msgstr "Asetukset"
+msgstr "Настройки"
 
 #: src/gripcfg.c:105
 msgid "CDRom device"
-msgstr "CD-aseman laitetiedosto"
+msgstr "CDRom устройство"
 
 #: src/gripcfg.c:110
 msgid "Don't interrupt playback on exit/startup"
-msgstr "Älä keskeytä soittoa aloitettaessa tai lopetettaessa"
+msgstr "Не прекъсва музиката на излизане/стартиране"
 
 #: src/gripcfg.c:114
 msgid "Rewind when stopped"
-msgstr "Kelaa alkuun pysäytettäessä"
+msgstr "Започва от начало, когато е музиката е спряна"
 
 #: src/gripcfg.c:119
 msgid "Startup with first track if not playing"
-msgstr "Aloita ensimmäisestä raidasta jos ei soiteta"
+msgstr "Започва с първата песен ако не свири"
 
 #: src/gripcfg.c:124
 msgid "Auto-play on disc insert"
-msgstr "Soita levyä heti asemaan asettamisen jälkeen"
+msgstr "Автоматично стартира диск при постяване в устройството"
 
 #: src/gripcfg.c:129
 msgid "Reshuffle before each playback"
-msgstr "Sekoita ennen jokaista soittokertaa"
+msgstr "Разбърква преди всяко изпълнение"
 
 #: src/gripcfg.c:134
 msgid "Work around faulty eject"
-msgstr "Kierrä rikkinäinen levynpoistotoiminto"
+msgstr ""
 
 #: src/gripcfg.c:139
 msgid "Poll disc drive for new disc"
-msgstr "Tarkkaile asemaa uuden levyn varalta"
+msgstr ""
 
 #: src/gripcfg.c:143
 msgid "Poll interval (seconds)"
-msgstr "Tarkkailuväli sekunteina"
+msgstr ""
 
 #: src/gripcfg.c:151
 msgid "CD"
@@ -199,185 +201,185 @@ msgstr "CD"
 
 #: src/gripcfg.c:167
 msgid "Ripper:"
-msgstr "Kopioija:"
+msgstr "Извличаща програма:"
 
 #: src/gripcfg.c:212
 msgid "Ripping executable"
-msgstr "Kopiointiohjelma"
+msgstr ""
 
 #: src/gripcfg.c:217
 msgid "Rip command-line"
-msgstr "Kopioinnin komentojono"
+msgstr "Команден интерпретатор"
 
 #: src/gripcfg.c:228
 msgid "Disable paranoia"
-msgstr "Poista virheenkorjaus"
+msgstr "Изключва paranoia"
 
 #: src/gripcfg.c:233
 msgid "Disable extra paranoia"
-msgstr "Poista tarkempi virheenkorjaus"
+msgstr "Изключва допъплнителна paranoia"
 
 #: src/gripcfg.c:239
 msgid "Disable scratch"
-msgstr "Poista naarmujen"
+msgstr "Изключва драскане"
 
 #: src/gripcfg.c:243
 msgid "detection"
-msgstr "tunnistus"
+msgstr "засичане"
 
 #: src/gripcfg.c:247
 msgid "repair"
-msgstr "korjaus"
+msgstr "поправя"
 
 #: src/gripcfg.c:255
 msgid "Calculate gain adjustment"
-msgstr "Laske GAIN-säätöarvot"
+msgstr ""
 
 #: src/gripcfg.c:263
 msgid "Rip file format"
-msgstr "Levykopion tiedostonimi"
+msgstr "Формат на извлечения файл"
 
 #: src/gripcfg.c:267
 msgid "Generic SCSI device"
-msgstr "SCSI-laitetiedosto"
+msgstr "SCSI устройство"
 
 #: src/gripcfg.c:275
 msgid "Ripper"
-msgstr "Kopioija"
+msgstr "Програма за извличане"
 
 #: src/gripcfg.c:284
 msgid "Rip 'nice' value"
-msgstr "Kopioinnin 'nice'-arvo"
+msgstr "Извлича \"добра\" стойност"
 
 #: src/gripcfg.c:288
 msgid "Max non-encoded .wav's"
-msgstr "Suurin koodaamattomien .wav-tiedostojen määrä"
+msgstr "Максимално не-кодирани .wav файлове"
 
 #: src/gripcfg.c:294
 msgid "Auto-rip on insert"
-msgstr "Kopioi automaattisesti"
+msgstr "Автоматично извличане при вмъкване на CD"
 
 #: src/gripcfg.c:298
 msgid "Beep after rip"
-msgstr "Äänimerkki valmistuttua"
+msgstr "Звуков сигнал след извличане"
 
 #: src/gripcfg.c:308
 msgid "Auto-eject after rip"
-msgstr "Poista levy kopioinnin jälkeen"
+msgstr "Автоматично изваждане на диска след извличане"
 
 #: src/gripcfg.c:312
 msgid "Auto-eject delay"
-msgstr "Poiston viive"
+msgstr "Закъснение на автоматичното изваждане"
 
 #: src/gripcfg.c:320
 msgid "Delay before ripping"
-msgstr "Tauko ennen kopiointia"
+msgstr "Закъснение преди извличането"
 
 #: src/gripcfg.c:325
 msgid "Delay encoding until disc is ripped"
-msgstr "Aloita koodaus vasta levyn kopioiduttua"
+msgstr "Закъснение на кодирането след като дискът е извлечен"
 
 #: src/gripcfg.c:330
 msgid "Stop cdrom drive between tracks"
-msgstr "Pysäytä CD-asema raitojen välillä"
+msgstr "Спира CDRom устройството между песните"
 
 #: src/gripcfg.c:334
 msgid "Wav filter command"
-msgstr "Wav-tiedostojen suodatuskomento"
+msgstr "Команда за филтър на Wav"
 
 #: src/gripcfg.c:339
 msgid "Disc filter command"
-msgstr "Levyn suodatuskomento"
+msgstr "Команда за филтър на Диск"
 
 #: src/gripcfg.c:347 src/gripcfg.c:481
 msgid "Options"
-msgstr "Asetukset"
+msgstr "Опции"
 
 #: src/gripcfg.c:369
 msgid "Encoder:"
-msgstr "Koodaaja:"
+msgstr "Кодираща програма:"
 
 #: src/gripcfg.c:404
 msgid "Encoder executable"
-msgstr "Koodausohjelma"
+msgstr ""
 
 #: src/gripcfg.c:409
 msgid "Encoder command-line"
-msgstr "Koodauksen komentorivi"
+msgstr ""
 
 #: src/gripcfg.c:415
 #, fuzzy
 msgid "Encode file extension"
-msgstr "Koodattava tiedostonimi"
+msgstr "Файлове формат при кодиране"
 
 #: src/gripcfg.c:420
 msgid "Encode file format"
-msgstr "Koodattava tiedostonimi"
+msgstr "Файлове формат при кодиране"
 
 #: src/gripcfg.c:428
 msgid "Encoder"
-msgstr "Koodaaja"
+msgstr "Кодираща програма"
 
 #: src/gripcfg.c:438
 msgid "Delete .wav after encoding"
-msgstr "Poista .wav-tiedosto koodauksen jälkeen"
+msgstr "Изтрива .wav файлът след кодиране"
 
 #: src/gripcfg.c:443
 msgid "Insert info into SQL database"
-msgstr "Syötä tiedot SQL-kantaan"
+msgstr "Вмъква информация в SQL БазаДанни"
 
 #: src/gripcfg.c:447
 msgid "Create .m3u files"
-msgstr "Tee .m3u-soittolistat"
+msgstr "Създава .m3u файлове"
 
 #: src/gripcfg.c:452
 msgid "Use relative paths in .m3u files"
-msgstr "Käytä .m3u-soittolistoissa suhteellisia polkuja"
+msgstr "Използва свързани пътища в .m3u файловете"
 
 #: src/gripcfg.c:456
 msgid "M3U file format"
-msgstr "M3U:n tiedostonimi"
+msgstr "M3U файлов формат"
 
 #: src/gripcfg.c:461
 msgid "Encoding bitrate (kbits/sec)"
-msgstr "Koodauksen bittinopeus (kilobittiä sekunnissa)"
+msgstr "Скорост на кодиране (килобита/сек.)"
 
 #: src/gripcfg.c:465
 msgid "Number of CPUs to use"
-msgstr "Käytettävien prosessorien määrä"
+msgstr "Процесори в употреба"
 
 #: src/gripcfg.c:469
 msgid "Encode 'nice' value"
-msgstr "Koodauksen 'nice'-arvo"
+msgstr ""
 
 #: src/gripcfg.c:473
 msgid "Encode filter command"
-msgstr "Koodauksen filtteröintikomento"
+msgstr ""
 
 #: src/gripcfg.c:497
 msgid "Add ID3 tags to encoded files"
-msgstr "Lisää ID3-merkinnät koodattuihin tiedostoihin"
+msgstr "Добавя ID3 коментари в кодираните файлове"
 
 #: src/gripcfg.c:503
 msgid "Add ID3v2 tags to encoded files"
-msgstr "Lisää ID3v2-merkinnät koodattuihin tiedostoihin"
+msgstr "Добавя ID3v2 коментари в кодираните файлове"
 
 #: src/gripcfg.c:509
 msgid "Only tag files ending in '.mp3'"
-msgstr "Merkitse vain .mp3-tiedostot"
+msgstr "Добавя информация само във файлове завършващи с '.mp3'"
 
 #: src/gripcfg.c:513
 msgid "ID3 comment field"
-msgstr "ID3-kommenttikenttä"
+msgstr "Поле за ID3 коментар"
 
 #: src/gripcfg.c:518
 msgid "ID3v1 Character set encoding"
-msgstr "ID3v1-merkistökoodaus"
+msgstr "Кодова таблица на ID3v1"
 
 #: src/gripcfg.c:524
 #, fuzzy
 msgid "ID3v2 Character set encoding"
-msgstr "ID3v1-merkistökoodaus"
+msgstr "Кодова таблица на ID3v1"
 
 #: src/gripcfg.c:532
 msgid "ID3"
@@ -385,157 +387,156 @@ msgstr "ID3"
 
 #: src/gripcfg.c:549 src/gripcfg.c:569
 msgid "DB server"
-msgstr "Tietokantapalvelin"
+msgstr "Сървър База Данни"
 
 #: src/gripcfg.c:553 src/gripcfg.c:573
 msgid "CGI path"
-msgstr "CGI-polku"
+msgstr "Път на CGI"
 
 #: src/gripcfg.c:560
 msgid "Primary Server"
-msgstr "Ensisijainen palvelin"
+msgstr "Основен сървър"
 
 #: src/gripcfg.c:580
 msgid "Secondary Server"
-msgstr "Toissijainen palvelin"
+msgstr "Втори сървър"
 
 #: src/gripcfg.c:590
 msgid "DB Submit email"
-msgstr "Tietokantaan lähettämisen postiosoite"
+msgstr ""
 
 #: src/gripcfg.c:595
 msgid "DB Character set encoding"
-msgstr "Tietokannan merkistökoodaus"
+msgstr ""
 
 #: src/gripcfg.c:600
 msgid "Use freedb extensions"
-msgstr "Käytä freedb-laajennuksia"
+msgstr "Използва freedb разширения"
 
 #: src/gripcfg.c:605
 msgid "Perform disc lookups automatically"
-msgstr "Tee levyn tietojen haut automaattisesti"
+msgstr "Изпълнява преглеждане на диск автоматично"
 
 #: src/gripcfg.c:613
 msgid "DiscDB"
-msgstr "DiscDB"
+msgstr "ДискБД"
 
 #: src/gripcfg.c:622
 msgid "Use proxy server"
-msgstr "Käytä välityspalvelinta"
+msgstr "Използва прокси сървър"
 
 #: src/gripcfg.c:629
 msgid "Get server from 'http_proxy' env. var"
-msgstr "Hae palvelin 'http_proxy'-ympäristömuuttujasta"
+msgstr ""
 
 #: src/gripcfg.c:633
 msgid "Proxy server"
-msgstr "Välityspalvelin"
+msgstr "Прокси сървър"
 
 #: src/gripcfg.c:637
 msgid "Proxy port"
-msgstr "Välityspalvelimen portti"
+msgstr "Прокси порт"
 
 #: src/gripcfg.c:641
 msgid "Proxy username"
-msgstr "Välityspalvelimen käyttäjänimi"
+msgstr "Прокси потребителско име"
 
 #: src/gripcfg.c:647
 msgid "Proxy password"
-msgstr "Välityspalvelimen salasana"
+msgstr "Прокси парола"
 
 #: src/gripcfg.c:655
 msgid "Proxy"
-msgstr "Välityspalvelin"
+msgstr "Прокси"
 
 #: src/gripcfg.c:664
 msgid "Email address"
-msgstr "Sähköpostiosoite"
+msgstr "Електронна поща"
 
 #: src/gripcfg.c:668
 msgid "CD update program"
-msgstr "CD-päivitysohjelma"
+msgstr "Програма за осъвременяване на CD"
 
 #: src/gripcfg.c:673
 msgid "Do not lowercase filenames"
-msgstr "Älä muuta tiedostonimiä pienaakkosiksi"
+msgstr "Не прави имената на файловете с малки букви"
 
 #: src/gripcfg.c:678
 msgid "Allow high bits in filenames"
-msgstr "Hyväksy korkeat bitit tiedostonimissä"
+msgstr ""
 
 #: src/gripcfg.c:683
 msgid "Do not change spaces to underscores"
-msgstr "Älä muuta välilyöntejä alaviivoiksi"
+msgstr "Не променя интервалите в долни черти"
 
 #: src/gripcfg.c:688
 msgid ""
 "Characters to not strip\n"
 "in filenames"
 msgstr ""
-"Merkit joita ei poisteta\n"
-"tiedostonimistä"
 
 #: src/gripcfg.c:693
 msgid "Keep application minimum size"
-msgstr "Pidä sovellus minimikoossa"
+msgstr "Запазва малък размер на програмата"
 
 #: src/gripcfg.c:700
 msgid "Misc"
-msgstr "Muut"
+msgstr "Допълнителни"
 
 #: src/cddev.c:174 src/cddev.c:601
 #, c-format
 msgid "Drive status is %d\n"
-msgstr "Aseman tila on %d\n"
+msgstr "Статус на устройството %d\n"
 
 #: src/cddev.c:176
 msgid "Drive doesn't support drive status check (assume CDS_NO_INFO)\n"
-msgstr "Asema ei tue tilan tarkastusta (oletetaan CDS_NO_INFO)\n"
+msgstr ""
+"Устройството не поддържа проверка на статуса (предполага CDS_NO_INFO)\n"
 
 #: src/cddev.c:179
 msgid "No disc\n"
-msgstr "Ei levyä\n"
+msgstr "Няма диск\n"
 
 #: src/cddev.c:281 src/cddev.c:290 src/cddev.c:307 src/cddev.c:334
 msgid "Error: Failed to read disc contents\n"
-msgstr "Virhe: Levyn sisältöä ei pystytty lukemaan\n"
+msgstr "Грешка: Провал при четене на съдържанието на диска\n"
 
 #: src/cddev.c:604
 msgid "Drive doesn't support drive status check\n"
-msgstr "Asema ei tue tilan tarkastusta\n"
+msgstr "Устройството не поддържа проверка на статуса\n"
 
 #: src/cddev.c:625 src/cddev.c:629
 #, c-format
 msgid "Unlock failed: %d"
-msgstr "Lukituksen purkaminen epäonnistui: %d"
+msgstr "Провал на отключване: %d"
 
 #: src/cddev.c:633
 msgid "CDIOCEJECT"
-msgstr "CDIOCEJECT"
+msgstr ""
 
 #: src/cdplay.c:87
 msgid "Cannot do lookup while ripping"
-msgstr "Ei voida hakea kopioitaessa"
+msgstr "Прегледа е невъзможен по време на извличане"
 
 #. "misc"
 #: src/cdplay.c:124
 msgid "Unknown Disc"
-msgstr "Tuntematon levy"
+msgstr "Непознат Диск"
 
 #: src/cdplay.c:128
 #, c-format
 msgid "Track %02d"
-msgstr "Raita %02d"
+msgstr "Песен %02d"
 
 #: src/cdplay.c:188
 #, c-format
 msgid "Querying %s (through %s) for disc %02x.\n"
-msgstr "Haetaan osoitteesta %s (%s:n kautta) tietoja levylle %02x.\n"
+msgstr "Запитва·%s·(през·%s)·за диск·%02x.\n"
 
 #: src/cdplay.c:193
 #, c-format
 msgid "Querying %s for disc %02x.\n"
-msgstr "Haetaan osoitteesta %s tietoja levylle %02x.\n"
+msgstr "Запитва·%s·за дискт·%02x.\n"
 
 #: src/cdplay.c:210
 #, c-format
@@ -543,167 +544,166 @@ msgid ""
 "Match for \"%s / %s\"\n"
 "Downloading data...\n"
 msgstr ""
-"Vastine löydetty \"%s / %s\"\n"
-"Ladataan tietoja...\n"
+"Намерена информация за·\"%s·/·%s\"\n"
+"Изтегляне на информация...\n"
 
 #: src/cdplay.c:218
 msgid "Done\n"
-msgstr "Valmis\n"
+msgstr "Готово\n"
 
 #: src/cdplay.c:222 src/cdplay.c:594
 msgid "Error saving disc data\n"
-msgstr "Virhe levyn tietoja tallennettaessa\n"
+msgstr "Грешка при запазване на информацията за диска\n"
 
 #: src/cdplay.c:228
 msgid "No match\n"
-msgstr "Ei vastinetta\n"
+msgstr "Няма съвпадение\n"
 
 #: src/cdplay.c:265
 msgid "Tracks"
-msgstr "Raidat"
+msgstr "Песни"
 
 #: src/cdplay.c:289
 msgid "Track"
-msgstr "Raita"
+msgstr "Песен"
 
 #: src/cdplay.c:298
 #, fuzzy
 msgid "Length"
-msgstr "Pituus "
+msgstr "Дължина"
 
-# niinkö?
 #: src/cdplay.c:665
 msgid "Rotate play mode"
-msgstr "Kierrätä soittotapaa"
+msgstr "Режим въртене"
 
 #: src/cdplay.c:685
 msgid "Toggle loop play"
-msgstr "Aseta soittolistan toisto"
+msgstr "Режим пеобръщане"
 
 #: src/cdplay.c:763 src/rip.c:230
 msgid "Rip status"
-msgstr "Kopiointitila"
+msgstr "Статус на извличането"
 
 #: src/cdplay.c:830
 msgid "Play track / Pause play"
-msgstr "Soita raita / Keskeytä soitto"
+msgstr "Изпълнява песен / Пауза"
 
 #: src/cdplay.c:841
 msgid "Rewind"
-msgstr "Kelaa taaksepäin"
+msgstr "Начало"
 
 #: src/cdplay.c:852
 msgid "FastForward"
-msgstr "Kelaa eteenpäin"
+msgstr "Напред"
 
 #: src/cdplay.c:862
 msgid "Go to previous track"
-msgstr "Edelliseen raitaan"
+msgstr "Отива на предишната песен"
 
 #: src/cdplay.c:871
 msgid "Go to next track"
-msgstr "Seuraavaan raitaan"
+msgstr "Отива на следващата песен"
 
 #: src/cdplay.c:880
 msgid "Toggle play mode options"
-msgstr "Vaihda soittotavan asetuksia"
+msgstr "Опции на изпълненията"
 
 #: src/cdplay.c:890
 msgid "Next Disc"
-msgstr "Seuraava levy"
+msgstr "Следващ Диск"
 
 #: src/cdplay.c:904
 msgid "Stop play"
-msgstr "Pysäytä soitto"
+msgstr "Спира изпълението"
 
 #: src/cdplay.c:914
 msgid "Eject disc"
-msgstr "Poista levy asemasta"
+msgstr "Изважда диск"
 
 #: src/cdplay.c:923
 msgid "Scan Disc Contents"
-msgstr "Lue levyn sisältö"
+msgstr "Сканира съдържанието на диска"
 
 #: src/cdplay.c:931
 msgid "Toggle Volume Control"
-msgstr "Vaihda äänenvoimmakkuussäädintä"
+msgstr "Сила на звука"
 
 #: src/cdplay.c:940
 msgid "Toggle disc editor"
-msgstr "Vaihda levyn tietoja"
+msgstr "Редактор на дискове"
 
 #: src/cdplay.c:950
 msgid "Initiate/abort DiscDB lookup"
-msgstr "Käynnistä tai lopeta DiscDB-haku"
+msgstr "Прави/отказва заявка към БД за дискове"
 
 #: src/cdplay.c:960
 msgid "Toggle track display"
-msgstr "Vaihda raitojen näyttöä"
+msgstr "Изобразяване на песните"
 
 #: src/cdplay.c:967
 msgid "Exit Grip"
-msgstr "Poistu Gripistä"
+msgstr "Напуска Grip"
 
 #: src/cdplay.c:1114
 msgid "Cannot fast forward while ripping"
-msgstr "Kopioitaessa ei voi kelata eteenpäin"
+msgstr "Прескачането напред в невъзможно по време на извличане"
 
 #: src/cdplay.c:1144
 msgid "Cannot rewind while ripping"
-msgstr "Kopioitaessa ei voi kelata taaksepäin"
+msgstr "Връщането в началото е невъзможно по време на извличане"
 
 #: src/cdplay.c:1174
 msgid "Cannot switch discs while ripping"
-msgstr "Kopioitaessa ei voi vaihtaa levyä"
+msgstr "Смяна на дискове е невъзможна по време на извличане"
 
 #: src/cdplay.c:1192
 msgid "Eject disc\n"
-msgstr "Poista levy asemasta\n"
+msgstr "Изважда диск\n"
 
 #: src/cdplay.c:1195
 msgid "Cannot eject while ripping"
-msgstr "Kopioitaessa ei voi poistaa levyä asemasta"
+msgstr "Дискът не може да бъде изваден докато се извлича информация"
 
 #: src/cdplay.c:1205
 msgid "Have disc -- ejecting\n"
-msgstr "Ota levy -- poistetaan asemasta\n"
+msgstr "Изважда диска\n"
 
 #: src/cdplay.c:1269
 msgid "Cannot play while ripping"
-msgstr "Kopioitaessa ei voida soittaa"
+msgstr "Не може да бъде изпълнен докато се извлича информация"
 
 #: src/cdplay.c:1330 src/cdplay.c:1360
 msgid "Cannot switch tracks while ripping"
-msgstr "Kopioitaessa ei voida vaihtaa raitoja"
+msgstr "Не може да се разменят песни по време на извличане"
 
 #: src/cdplay.c:1453
 msgid "Checking for a new disc\n"
-msgstr "Luetaan uutta levyä\n"
+msgstr "Проверява за нов диск\n"
 
 #: src/cdplay.c:1458
 msgid "CDStat found a disc, checking tracks\n"
-msgstr "CDStat löysi levyn, luetaan raitoja\n"
+msgstr "CDStat намери диск, проверкана песните\n"
 
 #: src/cdplay.c:1461
 msgid "We have a valid disc!\n"
-msgstr "Levy on toimiva!\n"
+msgstr "Валиден диск!\n"
 
 #: src/cdplay.c:1488
 msgid "No non-zero length tracks\n"
-msgstr "Ei epätyhjiä raitoja\n"
+msgstr "Песни с дължина над 0\n"
 
 #: src/cdplay.c:1497
 msgid "CDStat said no disc\n"
-msgstr "CDStat ei huomannut levyä\n"
+msgstr "CDStat докладва че няма диск\n"
 
 #: src/cdplay.c:1632 src/cdplay.c:1654
 #, c-format
 msgid "Current sector: %6d"
-msgstr "Nykyinen sektori: %6d"
+msgstr "Текущ селектор: %6d"
 
 #: src/cdplay.c:1755
 msgid "No Disc"
-msgstr "Ei levyä"
+msgstr "Няма Диск"
 
 #: src/cdplay.c:1807
 msgid ""
@@ -712,71 +712,70 @@ msgid ""
 "\n"
 "Do you wish to submit this disc information?"
 msgstr ""
-"Levy löytyi toissijaiselta muttei ensisijaiselta\n"
-"palvelimelta.\n"
+"Този диск беше намерен във вашия втори сървър,\n"
+"но не и в основния ви сървър.\n"
 "\n"
-"Lähetetäänkö levyn tiedot?"
+"Искате ли да изпратите информация за диска?"
 
 #: src/cdplay.c:1836 src/cdplay.c:1844
 msgid "Error: Unable to create temporary file"
-msgstr "Virhe: Väliaikaistiedoston luonti ei onnistu"
+msgstr "Грешка: Неуспешно създаване на временен файл"
 
 #: src/cdplay.c:1861
 msgid "Error: Unable to write disc data"
-msgstr "Virhe: Levyn tietoja ei voitu kirjoittaa"
+msgstr "Грешка: Незъвможно записването на информация за диска"
 
 #: src/cdplay.c:1870
 #, c-format
 msgid "Mailing entry to %s\n"
-msgstr "Postitetaan tiedot osoitteeseen %s\n"
+msgstr "Изпраща запис чрез Ел. Поща към %s\n"
 
 #: src/dialog.c:44
 msgid "System Message"
-msgstr "Järjestelmäviesti"
+msgstr "Системно Съобщение"
 
 #: src/discdb.c:207
 #, c-format
 msgid "URI is %s\n"
-msgstr "URI on %s\n"
+msgstr "Адресът е %s\n"
 
 #: src/discdb.c:277
 #, c-format
 msgid "Query is [%s]\n"
-msgstr "Haku on [%s]\n"
+msgstr "Заявката е [%s]\n"
 
 #: src/discdb.c:292
 #, c-format
 msgid "Reply is [%s]\n"
-msgstr "Vastaus on [%s]\n"
+msgstr "Отговорът е [%s]\n"
 
 #: src/discdb.c:741
 #, c-format
 msgid "Stat error %d on %s\n"
-msgstr "Hakuvirhe %d %s\n"
+msgstr ""
 
 #: src/discdb.c:745
 #, c-format
 msgid "Creating directory %s\n"
-msgstr "Luodaan hakemisto %s\n"
+msgstr "Създава директория %s\n"
 
 #: src/discdb.c:750
 #, c-format
 msgid "Error: %s exists, but is a file\n"
-msgstr "Virhe: %s on olemassa mutta tiedostona\n"
+msgstr "Грешка: %s съществува, но е файл\n"
 
 #: src/discdb.c:757
 #, c-format
 msgid "Error: Unable to open %s for writing\n"
-msgstr "Virhe: kohdetta %s ei voitu avata kirjoittamista varten\n"
+msgstr "Грешка: Не мога да отворя %s за да записвам\n"
 
 #: src/discedit.c:67
 msgid "Disc title"
-msgstr "Levyn nimi"
+msgstr "Заглавие на диска"
 
-# this is assumed to be longest string of dialog in source file ::)
 #: src/discedit.c:74 src/discedit.c:176
 msgid "Track name"
-msgstr "   Raidan nimi   "
+msgstr "Име на песента"
 
 #: src/discedit.c:84
 msgid "W"
@@ -784,71 +783,71 @@ msgstr "W"
 
 #: src/discedit.c:110
 msgid "Disc artist"
-msgstr "Levyn esiintyjä"
+msgstr "Изпълнител"
 
 #: src/discedit.c:127
 msgid "ID3 genre:"
-msgstr "ID3-tyylilaji:"
+msgstr "ID3 жанр:"
 
 #: src/discedit.c:158
 msgid "Disc year"
-msgstr "Levyn vuosi"
+msgstr "Година"
 
 #: src/discedit.c:196
 msgid "Track artist"
-msgstr "Raidan esiintyjä"
+msgstr "Изпълнител на песента"
 
 #: src/discedit.c:213
 msgid "Split:"
-msgstr "Jaa:"
+msgstr "Разделя:"
 
 #: src/discedit.c:217
 msgid "Title/Artist"
-msgstr "Raita/Artisti"
+msgstr "Заглавие/Изпълнител"
 
 #: src/discedit.c:224
 msgid "Artist/Title"
-msgstr "Artisti/Raita"
+msgstr "Изпълнител/Заглавие"
 
 #: src/discedit.c:232
 msgid "Split chars"
-msgstr "Jakomerkit"
+msgstr ""
 
 #: src/discedit.c:252
 msgid "Multi-artist"
-msgstr "Monta esiintyjää"
+msgstr "Много-изпълнители"
 
 #: src/discedit.c:263
 msgid "Save disc info"
-msgstr "Tallenna levyn tiedot"
+msgstr "Запазва информация за диска"
 
 #: src/discedit.c:272
 msgid "Submit disc info"
-msgstr "Lähetä levyn tiedot"
+msgstr "Изпраща информация за диска"
 
 #: src/discedit.c:384
 msgid "Error saving disc data"
-msgstr "Virhe levyn tietoja tallennettaessa"
+msgstr "Грешка при запазването на информацията за диска"
 
 #: src/discedit.c:386
 msgid "No disc present"
-msgstr "Levyä ei ole saatavilla"
+msgstr "Няма диск"
 
 #: src/discedit.c:538
 msgid ""
 "Cannot submit\n"
 "No disc is present"
 msgstr ""
-"Ei voida lähettää tietoja\n"
-"kun levyä ei ole"
+"Изпращането невъзможно\n"
+"Няма диск"
 
 #: src/discedit.c:551
 msgid "You must enter a disc title"
-msgstr "Levyn nimi on syötettävä"
+msgstr "Трябва да въведете заглавие на диска"
 
 #: src/discedit.c:557
 msgid "You must enter a disc artist"
-msgstr "Levyn esiintyjä on syötettävä"
+msgstr "Трябва да въведете изпълнител на диска"
 
 #: src/discedit.c:567
 msgid ""
@@ -860,12 +859,13 @@ msgid ""
 "\n"
 "Continue?"
 msgstr ""
-"Olet lähettämässä levyn tiedot kaupalliselle palvelimelle,\n"
-"joka sen jälkeen omistaa ne. Nämä palvelimet\n"
-"keräävät rahaa tiedoillaan, joten sinun kannataisi\n"
-"kyllä lähettää ne vapaalle palvelimelle pikemminkin.\n"
+"Искате да изпратите информация за този диск\n"
+"на комерсиален·CDDB·сървър,·който след това\n"
+"ще стане собственик на изпратената от вас информация.·Тези сървъри\n"
+"правят печалба от вашия труд.·Предлагаме ви да поддържате\n"
+"свободните сървъри.\n"
 "\n"
-"Jatketaanko?"
+"Напред?"
 
 #: src/discedit.c:576
 msgid ""
@@ -874,323 +874,321 @@ msgid ""
 "\n"
 "Continue?"
 msgstr ""
-"Olet lähettämässä levyn tiedot\n"
-"sähköpostilla.\n"
+"Искате да изпратите тази информация\n"
+"чрез електронна поюа.\n"
 "\n"
-"Jatketaanko?"
+"Напред?"
 
 #: src/discedit.c:593
 msgid "Genre selection"
-msgstr "Tyylilajivalinta"
+msgstr "Избор на жанр"
 
 #: src/discedit.c:597
 msgid ""
 "Submission requires a genre other than 'unknown'\n"
 "Please select a DiscDB genre below"
 msgstr ""
-"Lähetettäessä pitäisi valita joku muu tyylilaji kuin\n"
-"'unknown', kokeilepa valita jotain tuosta alta"
+"Изпращането изисква жанр различен от·\"непознат\"\n"
+"Моля, изберете жанр"
 
 #: src/discedit.c:607
 msgid "DiscDB genre"
-msgstr "DiscDB-tyylilaji"
+msgstr "Жанр"
 
 #: src/discedit.c:627
 msgid "Submit"
-msgstr "Lähetä"
+msgstr "Изпраща"
 
 #: src/discedit.c:638
 msgid "Cancel"
-msgstr "Peruuta"
+msgstr "Отказва"
 
 #. Doh!
 #: src/id3.c:290
 msgid "unknown ID3 field\n"
-msgstr "Tuntematon ID3-kenttä\n"
+msgstr "непознато ID3 поле\n"
 
 #: src/launch.c:120
 #, c-format
 msgid "Error: unable to translate filename. No such user as %s\n"
-msgstr "Virhe: Tiedostonimeä ei voitu kääntää. Käyttäjää %s ei ole\n"
+msgstr ""
+"Грешка: не мога да преведа името на файла. Потребителят %s не същесвува\n"
 
 #: src/launch.c:239 src/rip.c:1509
 msgid "Exec failed\n"
-msgstr "Ajaminen epäonnistui\n"
+msgstr "Стартирането се провали\n"
 
 #: src/parsecfg.c:58
 msgid "Error: Bad entry type\n"
-msgstr "Virhe: Virheellinen kentän tyyppi\n"
+msgstr "Грешка: Лош тип на записа\n"
 
 #: src/parsecfg.c:84
 msgid "Error: Invalid config file\n"
-msgstr "Virhe: Väärä asetustiedosto\n"
+msgstr "Грешка: Невалиден конфигурационен файл\n"
 
 #: src/rip.c:104
 msgid "Rip+Encode"
-msgstr "Kopioi ja koodaa"
+msgstr "Извлича и кодира"
 
 #: src/rip.c:106
 msgid "Rip and encode selected tracks"
-msgstr "Kopioi ja koodaa valitut raidat"
+msgstr "Извлича и кодира избраните песни"
 
 #: src/rip.c:112
 msgid "Rip Only"
-msgstr "Kopioi ainoastaan"
+msgstr "Само извлича"
 
 #: src/rip.c:114
 msgid "Rip but do not encode selected tracks"
-msgstr "Kopioi valitut raidat koodaamatta"
+msgstr "Извлича но не кодира избраните песни"
 
 #: src/rip.c:120
 msgid "Abort Rip and Encode"
-msgstr "Peruuta kopiointi ja koodaus"
+msgstr "Отказва Извличането и Кодирането"
 
 #: src/rip.c:122
 msgid "Kill all active rip and encode processes"
-msgstr "Lopeta kaikki aktiiviset kopiointi- ja koodausprosessit"
+msgstr "Прекъсва всички активни процеси по извличане и кодиране"
 
 #: src/rip.c:130
 msgid "Abort Ripping Only"
-msgstr "Keskeytä kopiointi ainoastaan"
+msgstr "Отказва само извличането"
 
 #: src/rip.c:132
 msgid "Kill rip process"
-msgstr "Lopeta kopiointiprosessi"
+msgstr "Спира всички извличащи процеси"
 
 #: src/rip.c:138
 msgid "DDJ Scan"
-msgstr "DDJ-haku"
+msgstr "DDJ Сканиране"
 
 #: src/rip.c:140
 msgid "Insert disc information into the DigitalDJ database"
-msgstr "Syötä levyn tiedot DigitalDJ-kantaan"
+msgstr "Вмъква информация за диска в баздата данни DigitalDJ"
 
 #: src/rip.c:155
 msgid "Rip partial track"
-msgstr "Kopioi osittainen raita"
+msgstr "Извлича част от песен"
 
 #: src/rip.c:166
 msgid "Play"
-msgstr "Soita"
+msgstr "Изпълнява"
 
 #: src/rip.c:173
 msgid "Current sector:      0"
-msgstr "Nykyinen sektori:0"
+msgstr "Текущ сектор:······0"
 
 #: src/rip.c:204 src/rip.c:221 src/rip.c:269 src/rip.c:856 src/rip.c:908
 #: src/rip.c:910 src/rip.c:1053 src/rip.c:1054
 msgid "Rip: Idle"
-msgstr "Kopiointi: Jouten"
+msgstr "Извличане: Затихнало"
 
 #: src/rip.c:209
 msgid "Enc: Trk 99 (99.9x)"
-msgstr "Koodaus: Raita 99 (99,9x)"
+msgstr "Код: Песен 99·(99.9x)"
 
 #: src/rip.c:240 src/rip.c:282 src/rip.c:1025 src/rip.c:1038
 msgid "Enc: Idle"
-msgstr "Koodaus: Jouten"
+msgstr "Код.: Затихнало"
 
 #: src/rip.c:264
 msgid "Overall indicators:"
-msgstr "Yhteensä:"
+msgstr "Общи индикатори:"
 
 #: src/rip.c:327
 msgid "Start sector"
-msgstr "Alkussektori"
+msgstr "Начален сектор"
 
 #: src/rip.c:332
 msgid "End sector"
-msgstr "Loppusektori"
+msgstr "Краен сектор"
 
 #: src/rip.c:601
 msgid "Error: can't open m3u file\n"
-msgstr "Virhe: m3u-tiedostoa ei voitu avata\n"
+msgstr "Грешка: m3u·файлът не може да бъде отворен\n"
 
 #: src/rip.c:643
 msgid "In KillRip\n"
-msgstr "KillRipissä\n"
+msgstr ""
 
 #: src/rip.c:669
 #, c-format
 msgid "Now total enc size is: %d\n"
-msgstr "Nyt koodatun kokonaiskoko: %d\n"
+msgstr "Общ размер на код. инфомрация: %d\n"
 
 #: src/rip.c:822
 #, c-format
 msgid "Rip: Trk %d (%3.1fx)"
-msgstr "Kopiointi: Raita %d (%3.1fx)"
+msgstr "Извлича: Песен %d·(%3.1fx)"
 
 #: src/rip.c:852
 #, c-format
 msgid "Rip: %6.2f%%"
-msgstr "Kopiointi: %6.2f%%"
+msgstr "Извлича: %6.2f%%"
 
 #: src/rip.c:871
 msgid "Rip finished\n"
-msgstr "Kopiointi päättyi\n"
+msgstr "Извличането приключи\n"
 
 #: src/rip.c:897
 #, c-format
 msgid "Rip partial %d  num wavs %d\n"
-msgstr "Osittainen kopiointi %d waveja %d\n"
+msgstr ""
 
 #: src/rip.c:900
 #, c-format
 msgid "Next track is %d, total is %d\n"
-msgstr "Seuraava raita %d, yhteensä %d\n"
+msgstr "Следващата песен е %d, общо %d\n"
 
 #: src/rip.c:906
 msgid "Check if we need to rip another track\n"
-msgstr "Tarkasta josko uutta raitaa pitää kopioida\n"
+msgstr "Проверява дали е необходимо да бъде извлечена друга песен\n"
 
 #: src/rip.c:946
 #, c-format
 msgid "Enc: Trk %d (%3.1fx)"
-msgstr "Koodaus: Raita %d (%3.1fx)"
+msgstr "Кодира: Песен %d·(%3.1fx)"
 
 #: src/rip.c:962
 #, c-format
 msgid "Enc: %6.2f%%"
-msgstr "Koodaus: %6.2f%%"
+msgstr "Кодира: %6.2f%%"
 
 #: src/rip.c:972
 #, c-format
 msgid "Finished encoding on cpu %d\n"
-msgstr "Prosessori %d pääsi koodauksensa loppuun\n"
+msgstr "Кодирнаето на процесор %d приключи\n"
 
 #: src/rip.c:990
 #, c-format
 msgid "Deleting [%s]\n"
-msgstr "Poistetaan [%s]\n"
+msgstr "Изтрива·[%s]\n"
 
 #: src/rip.c:1046
 msgid "Ripping is finished\n"
-msgstr "Kopiointi loppui\n"
+msgstr "Извличането приключи\n"
 
 #: src/rip.c:1159 src/rip.c:1166
 msgid "NoArtist"
-msgstr "EiEsiintyjää"
+msgstr "Няма Изпълнител"
 
 #: src/rip.c:1172
 msgid "NoTitle"
-msgstr "Nimetön"
+msgstr "Няма Заглавие"
 
 #: src/rip.c:1264
 msgid ""
 "Invalid rip executable\n"
 "Check your rip config"
 msgstr ""
-"Toimimaton kopiointikomento\n"
-"Tarkista kopiointiasetuksesi"
 
 #: src/rip.c:1271
 msgid ""
 "Invalid encoder executable\n"
 "Check your encoder config"
 msgstr ""
-"Toimimaton koodauskomento\n"
-"Tarkista koodausasetuksesi"
 
 #: src/rip.c:1307
 msgid ""
 "No tracks selected.\n"
 "Rip whole CD?\n"
 msgstr ""
-"Ei raitoja valittuna\n"
-"Kopioidaanko koko CD?\n"
+"Няма избрани песни.\n"
+"Извличане на целия CD?\n"
 
 #: src/rip.c:1330
 msgid "Ripping whole CD\n"
-msgstr "Kopioidaan koko CD\n"
+msgstr "Извлича цял CD\n"
 
 #: src/rip.c:1368
 msgid "In RipNextTrack\n"
-msgstr "RipNextTrackissa\n"
+msgstr ""
 
 #: src/rip.c:1375
 #, c-format
 msgid "First checked track is %d\n"
-msgstr "Ensimmäinen tarkastettu raita on %d\n"
+msgstr "Първата избрана песен е %d\n"
 
 #: src/rip.c:1385
 msgid "Ripping away!\n"
-msgstr "Kopioidaan pois!\n"
+msgstr ""
 
 #: src/rip.c:1428
 msgid "No write access to write wav file"
-msgstr "Ei kirjoitusoikeuksia wav-tiedostoon"
+msgstr "Няма права за писане за да запише wav файлът"
 
 #: src/rip.c:1442
 #, c-format
 msgid "Ripping track %d to %s\n"
-msgstr "Kopioidaan raita %d tiedostoon %s\n"
+msgstr "Извлича песен %d в %s\n"
 
 #: src/rip.c:1446
 #, c-format
 msgid "Rip: Trk %d (0.0x)"
-msgstr "Kopiointi: Raita %d (0,0x)"
+msgstr "Извлича: Песен %d·(0.0x)"
 
 #: src/rip.c:1451
 #, c-format
 msgid "File %s has already been ripped. Skipping...\n"
-msgstr "Tiedosto %s on jo kopioitu, ohitamme... \n"
+msgstr "Файлът %s вече е извлечен. Пропуска...\n"
 
 #: src/rip.c:1471 src/rip.c:1717
 msgid "Out of space in output directory"
-msgstr "Tila loppui hakemistossa"
+msgstr "Няма достатъчно място на твърдия диск"
 
 #: src/rip.c:1543
 msgid "Calling CDPRip\n"
-msgstr "Kutsutaan CDPRip\n"
+msgstr "Обръща се към CDPRip\n"
 
 #: src/rip.c:1629
 #, c-format
 msgid "Added track %d to %s list\n"
-msgstr "Lisättiin raita %d listaan %s\n"
+msgstr "Песента %d е добавена към списъка %s\n"
 
 #: src/rip.c:1655
 msgid "No free cpus\n"
-msgstr "Ei vapaita prosessoreja\n"
+msgstr "Няма свободни процесори\n"
 
 #: src/rip.c:1671
 #, c-format
 msgid "Enc track %d\n"
-msgstr "Koodaa raita %d\n"
+msgstr "Кодира песен %d\n"
 
 #: src/rip.c:1692
 msgid "No write access to write encoded file"
-msgstr "Ei kirjoitusoikeutta koodattuun tiedostoon"
+msgstr "Няма права за запис на кодирания файл"
 
 #: src/rip.c:1703
 #, c-format
 msgid "%i: Encoding to %s\n"
-msgstr "%i: Koodataan kohteeseen %s\n"
+msgstr ""
 
 #: src/rip.c:1707
 #, c-format
 msgid "Enc: Trk %d (0.0x)"
-msgstr "Koodaus: Raita %d (0,0x)"
+msgstr "Кодира: Песен %d·(0.0x)"
 
 #: src/rip.c:1768
 msgid "In CalculateAll\n"
-msgstr "CalculateAllissa\n"
+msgstr ""
 
 #: src/rip.c:1774
 msgid "We aren't ripping now, so let's zero encoding values\n"
-msgstr "Emme kopioi nyt joten nollatkaamme koodausarvoja\n"
+msgstr ""
+"Не се извлича нищо в момента, нека да занулим стойностите на кодиране\n"
 
 #: src/rip.c:1790
 #, c-format
 msgid "Total rip size is: %d\n"
-msgstr "Kopioinnin kokonaiskoko %d\n"
+msgstr "Общ размер на извлечената информация: %d\n"
 
 #: src/rip.c:1791
 #, c-format
 msgid "Total enc size is: %d\n"
-msgstr "Koodauksen kokonaiskoko %d\n"
+msgstr "Общ размер на кодираната информация: %d\n"
 
 #~ msgid "Write tags in unicode"
-#~ msgstr "Merkitse käyttäeen Unicode-koodausta"
+#~ msgstr "Записва коментарите в уникод"
 
 #~ msgid "File System Character set encoding"
-#~ msgstr "Tiedostojärjestelmän merkistökoodaus"
+#~ msgstr "Кодова таблица на файловата система"

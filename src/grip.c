@@ -684,7 +684,6 @@ static void DoLoadConfig(GripInfo *ginfo)
   char renamefile[256];
   char *proxy_env,*tok;
   char outputdir[256];
-  G_CONST_RETURN char *charset;
   int confret;
   CFGEntry cfg_entries[]={
     CFG_ENTRIES
@@ -756,8 +755,7 @@ static void DoLoadConfig(GripInfo *ginfo)
   ginfo->db_use_freedb=TRUE;
   *ginfo->user_email='\0';
 
-  g_get_charset(&charset);
-  strncpy(ginfo->discdb_encoding,charset,sizeof(ginfo->discdb_encoding));
+  strcpy(ginfo->discdb_encoding,"UTF-8");
   strcpy(ginfo->id3_encoding,"LATIN1");
   strcpy(ginfo->id3v2_encoding,"LATIN1");
 

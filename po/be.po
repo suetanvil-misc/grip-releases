@@ -8,7 +8,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: grip.be\n"
-"POT-Creation-Date: 2004-03-11 17:14-0800\n"
+"POT-Creation-Date: 2004-03-22 09:03-0800\n"
 "PO-Revision-Date: 2003-06-29 14:38+0300\n"
 "Last-Translator: Vital Khilko <dojlid@mova.org>\n"
 "Language-Team: Belarusian <i18n@mova.org>\n"
@@ -93,7 +93,7 @@ msgstr "Стан запісу"
 msgid "General"
 msgstr ""
 
-#: src/grip.c:371 src/gripcfg.c:354 src/cdplay.c:263 src/rip.c:95
+#: src/grip.c:371 src/gripcfg.c:354 src/cdplay.c:309 src/rip.c:95
 msgid "Rip"
 msgstr "Запіс"
 
@@ -137,7 +137,7 @@ msgstr "Дасланьне паведамленьняў аб памылках"
 msgid "About"
 msgstr "Пра праграму"
 
-#: src/grip.c:864
+#: src/grip.c:862
 msgid ""
 "Your config file is out of date -- resetting to defaults.\n"
 "You will need to re-configure Grip.\n"
@@ -147,12 +147,12 @@ msgstr ""
 "Вы мусіце пераканфігураваць Grip.\n"
 "Ваш стары файл канфігурацыі будзе захаваны з канчаткам -old."
 
-#: src/grip.c:934
+#: src/grip.c:932
 #, c-format
 msgid "server is %s, port %d\n"
 msgstr "паслужнік %s, порт %d\n"
 
-#: src/grip.c:954
+#: src/grip.c:952
 msgid "Error: Unable to save config file"
 msgstr "Памылка: Немагчыма захаваць файл канфігурацыі"
 
@@ -558,7 +558,7 @@ msgstr ""
 msgid "Done\n"
 msgstr "Выканана\n"
 
-#: src/cdplay.c:222 src/cdplay.c:596
+#: src/cdplay.c:222 src/cdplay.c:594
 msgid "Error saving disc data\n"
 msgstr "Памылка захаваньня даньняў дыска\n"
 
@@ -566,152 +566,153 @@ msgstr "Памылка захаваньня даньняў дыска\n"
 msgid "No match\n"
 msgstr "Няма супадзеньняў\n"
 
-#: src/cdplay.c:263
-msgid "Track"
-msgstr "Трэк"
-
-#: src/cdplay.c:263
-msgid "Length "
-msgstr "Час"
-
-#: src/cdplay.c:267
+#: src/cdplay.c:265
 msgid "Tracks"
 msgstr "Трэкі"
 
-#: src/cdplay.c:667
+#: src/cdplay.c:289
+msgid "Track"
+msgstr "Трэк"
+
+#: src/cdplay.c:298
+#, fuzzy
+msgid "Length"
+msgstr "Час"
+
+#: src/cdplay.c:665
 msgid "Rotate play mode"
 msgstr "Рэжым паўтору прайграваньня"
 
-#: src/cdplay.c:687
+#: src/cdplay.c:685
 msgid "Toggle loop play"
 msgstr "Пераключыць паўтор прайграваньня"
 
-#: src/cdplay.c:765 src/rip.c:230
+#: src/cdplay.c:763 src/rip.c:230
 msgid "Rip status"
 msgstr "Стан запісу"
 
-#: src/cdplay.c:832
+#: src/cdplay.c:830
 msgid "Play track / Pause play"
 msgstr "Граць / прыпыніць"
 
-#: src/cdplay.c:843
+#: src/cdplay.c:841
 msgid "Rewind"
 msgstr "Пераматаць назад"
 
-#: src/cdplay.c:854
+#: src/cdplay.c:852
 msgid "FastForward"
 msgstr "Пераматаць наперад"
 
-#: src/cdplay.c:864
+#: src/cdplay.c:862
 msgid "Go to previous track"
 msgstr "Перайсьці да папярэдняга трэка"
 
-#: src/cdplay.c:873
+#: src/cdplay.c:871
 msgid "Go to next track"
 msgstr "Перайсьці да наступнага трэка"
 
-#: src/cdplay.c:882
+#: src/cdplay.c:880
 msgid "Toggle play mode options"
 msgstr "Пераключыць рэжым прайграваньня"
 
-#: src/cdplay.c:892
+#: src/cdplay.c:890
 msgid "Next Disc"
 msgstr "Наступны дыск"
 
-#: src/cdplay.c:906
+#: src/cdplay.c:904
 msgid "Stop play"
 msgstr "Спыніць прайграваньне"
 
-#: src/cdplay.c:916
+#: src/cdplay.c:914
 msgid "Eject disc"
 msgstr "Вызваліць дыск"
 
-#: src/cdplay.c:925
+#: src/cdplay.c:923
 msgid "Scan Disc Contents"
 msgstr "Сканаваць дыск"
 
-#: src/cdplay.c:933
+#: src/cdplay.c:931
 msgid "Toggle Volume Control"
 msgstr "Пераключыць кіраваньне гучнасьцю"
 
-#: src/cdplay.c:942
+#: src/cdplay.c:940
 msgid "Toggle disc editor"
 msgstr "Пераключыць рэдактар дыска"
 
-#: src/cdplay.c:952
+#: src/cdplay.c:950
 msgid "Initiate/abort DiscDB lookup"
 msgstr "Запытаць зьвесткі ў БД дыскаў"
 
-#: src/cdplay.c:962
+#: src/cdplay.c:960
 msgid "Toggle track display"
 msgstr "Пераключыць адлюстраваньне запіса"
 
-#: src/cdplay.c:969
+#: src/cdplay.c:967
 msgid "Exit Grip"
 msgstr "Выйсьці з Grip"
 
-#: src/cdplay.c:1116
+#: src/cdplay.c:1114
 msgid "Cannot fast forward while ripping"
 msgstr "Немагчыма пераматаць падчас запісу"
 
-#: src/cdplay.c:1146
+#: src/cdplay.c:1144
 msgid "Cannot rewind while ripping"
 msgstr "Немагчыма пераматаць падчас запісу"
 
-#: src/cdplay.c:1176
+#: src/cdplay.c:1174
 msgid "Cannot switch discs while ripping"
 msgstr "Немагчыма пераключаць дыскі падчас запісу"
 
-#: src/cdplay.c:1194
+#: src/cdplay.c:1192
 msgid "Eject disc\n"
 msgstr "Вызваліць дыск\n"
 
-#: src/cdplay.c:1197
+#: src/cdplay.c:1195
 msgid "Cannot eject while ripping"
 msgstr "Немагчыма вызваліць дыск падчас запісу"
 
-#: src/cdplay.c:1207
+#: src/cdplay.c:1205
 msgid "Have disc -- ejecting\n"
 msgstr "Маецца дыск - вызваленьне\n"
 
-#: src/cdplay.c:1271
+#: src/cdplay.c:1269
 msgid "Cannot play while ripping"
 msgstr "Немагчыма прайграваць падчас запісу"
 
-#: src/cdplay.c:1332 src/cdplay.c:1362
+#: src/cdplay.c:1330 src/cdplay.c:1360
 msgid "Cannot switch tracks while ripping"
 msgstr "Немагчыма пераключыць запісы падчас запісу"
 
-#: src/cdplay.c:1455
+#: src/cdplay.c:1453
 msgid "Checking for a new disc\n"
 msgstr "Праверка новага дыска\n"
 
-#: src/cdplay.c:1460
+#: src/cdplay.c:1458
 msgid "CDStat found a disc, checking tracks\n"
 msgstr "CDStat адшукаў дыск, прагляд запісаў\n"
 
-#: src/cdplay.c:1463
+#: src/cdplay.c:1461
 msgid "We have a valid disc!\n"
 msgstr "Маецца дыск.\n"
 
-#: src/cdplay.c:1490
+#: src/cdplay.c:1488
 msgid "No non-zero length tracks\n"
 msgstr ""
 
-#: src/cdplay.c:1499
+#: src/cdplay.c:1497
 msgid "CDStat said no disc\n"
 msgstr "CDStat паведамляе аб адсутнасьці дыска\n"
 
-#: src/cdplay.c:1634 src/cdplay.c:1656
+#: src/cdplay.c:1632 src/cdplay.c:1654
 #, c-format
 msgid "Current sector: %6d"
 msgstr "Бягучы сэктар: %6d"
 
-#: src/cdplay.c:1757
+#: src/cdplay.c:1755
 msgid "No Disc"
 msgstr "Дыск адсутнічае"
 
-#: src/cdplay.c:1809
+#: src/cdplay.c:1807
 msgid ""
 "This disc has been found on your secondary server,\n"
 "but not on your primary server.\n"
@@ -723,15 +724,15 @@ msgstr ""
 "\n"
 "Вы жадаеце прыняць зьвесткі аб гэтым дыске?"
 
-#: src/cdplay.c:1838 src/cdplay.c:1846
+#: src/cdplay.c:1836 src/cdplay.c:1844
 msgid "Error: Unable to create temporary file"
 msgstr "Памылка: Немагчыма стварыць часовы файл"
 
-#: src/cdplay.c:1863
+#: src/cdplay.c:1861
 msgid "Error: Unable to write disc data"
 msgstr "Памылка: Немагчыма запісаць даньні дыска"
 
-#: src/cdplay.c:1872
+#: src/cdplay.c:1870
 #, c-format
 msgid "Mailing entry to %s\n"
 msgstr ""

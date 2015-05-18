@@ -1,3 +1,14 @@
+2004-03-22  Mike Oliphant  <grip@nostatic.org>
+
+	* de.po: updated (Götz Waschk)
+	* bg.po: added (Vladimir "Kaladan" Petkov)
+	* it.po: updated (Ceoldo Costantino)
+	* gripcfg.c: added date switch to oggenc config	
+	* main.c: fixed an i18n issue withe --help (thanks to Laurent
+	  Martelli for catching this)
+	* grip.c: default disc db encoding to UTF-8 instead of locale
+	* configure.in: upped version to 3.1.7
+	
 2004-03-11  Mike Oliphant  <grip@nostatic.org>
 
 	* de.po: updated (Götz Waschk)

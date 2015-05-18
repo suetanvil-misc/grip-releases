@@ -260,8 +260,6 @@ void MakeTrackPage(GripInfo *ginfo)
   GtkCellRenderer *renderer;
   GtkTreeSelection *select;
 
-  gchar *titles[3]={_("Track"),_("Length "),_("Rip")};
-  
   uinfo=&(ginfo->gui_info);
 
   trackpage=MakeNewPage(uinfo->notebook,_("Tracks"));
@@ -288,7 +286,7 @@ void MakeTrackPage(GripInfo *ginfo)
 
   renderer=gtk_cell_renderer_text_new();
 
-  column=gtk_tree_view_column_new_with_attributes("Track",renderer,
+  column=gtk_tree_view_column_new_with_attributes(_("Track"),renderer,
 						  "text",TRACKLIST_TRACK_COL,
 						  NULL);
 
@@ -297,7 +295,7 @@ void MakeTrackPage(GripInfo *ginfo)
 
   gtk_tree_view_append_column(GTK_TREE_VIEW(uinfo->track_list),column);
 
-  column=gtk_tree_view_column_new_with_attributes("Length",renderer,
+  column=gtk_tree_view_column_new_with_attributes(_("Length"),renderer,
 						  "text",TRACKLIST_LENGTH_COL,
 						  NULL);
 
@@ -308,7 +306,7 @@ void MakeTrackPage(GripInfo *ginfo)
 
   renderer=gtk_cell_renderer_toggle_new();
 
-  column=gtk_tree_view_column_new_with_attributes("Rip",renderer,
+  column=gtk_tree_view_column_new_with_attributes(_("Rip"),renderer,
 						  "active",
 						  TRACKLIST_RIP_COL,
 						  NULL);
