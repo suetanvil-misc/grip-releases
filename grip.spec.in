@@ -88,9 +88,9 @@ rm -rf $RPM_BUILD_ROOT
 %doc README ChangeLog CREDITS COPYING INSTALL NEWS AUTHORS TODO ABOUT-NLS
 %{_bindir}/grip
 %{_datadir}/gnome/help/grip
-%{_datadir}/gnome/apps/Multimedia/grip.desktop
+%{_datadir}/applications/grip.desktop
 %{_datadir}/pixmaps/gripicon.png
-%{_datadir}/locale/*/LC_MESSAGES/grip.mo
+%{_datadir}/locale/*/LC_MESSAGES/@GETTEXT_PACKAGE@.mo
 
 %changelog
 * Fri May 24 2002 Thomas Vander Stichele <thomas@apestaart.org>

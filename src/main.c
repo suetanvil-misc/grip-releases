@@ -1,6 +1,6 @@
 /* main.c
  *
- * Copyright (c) 1998-2002  Mike Oliphant <oliphant@gtk.org>
+ * Copyright (c) 1998-2003  Mike Oliphant <oliphant@gtk.org>
  *
  *   http://www.nostatic.org/grip
  *
@@ -151,8 +151,9 @@ int Cmain(int argc, char* argv[])
 
   /* setup locale, i18n */
   gtk_set_locale();
-  bindtextdomain(PACKAGE,GNOMELOCALEDIR);  
-  textdomain(PACKAGE);
+  bindtextdomain(GETTEXT_PACKAGE,GNOMELOCALEDIR);
+  textdomain(GETTEXT_PACKAGE);
+  bind_textdomain_codeset(GETTEXT_PACKAGE, "UTF8");
 
   gnome_program_init(PACKAGE,VERSION,LIBGNOMEUI_MODULE,argc,argv, 
 		     GNOME_PARAM_POPT_TABLE,options,

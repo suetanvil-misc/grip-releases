@@ -282,6 +282,8 @@ gboolean CDPRip(char *device,char *generic_scsi_device,int track,
   global_rip_smile_level=rip_smile_level;
   global_output_fp=output_fp;
 
+  fprintf(output_fp,"Here\n");
+
   /* Query the cdrom/disc; */
 
   if(generic_scsi_device && *generic_scsi_device)

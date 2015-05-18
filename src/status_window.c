@@ -24,6 +24,7 @@
 #include <stdio.h>
 #include <unistd.h>
 #include <fcntl.h>
+#include <vte/vte.h>
 #include "status_window.h"
 
 static void PipeCB(gpointer data,gint source,GdkInputCondition condition);
@@ -59,9 +60,20 @@ StatusWindow *NewStatusWindow(GtkWidget *box)
 
   vscrollbar=gtk_vscrollbar_new(ZVT_TERM(sw->term_widget)->adjustment);
   gtk_box_pack_start(GTK_BOX(hbox),vscrollbar,FALSE,FALSE,0);
+  gtk_widget_show(vscrollbar);*/
+
+  sw->term_widget=vte_terminal_new();
+
+  /*  vte_terminal_set_size(VTE_TERMINAL(sw->term_widget),40,10);*/
+
+  gtk_box_pack_start(GTK_BOX(hbox),sw->term_widget,TRUE,TRUE,0);
+  gtk_widget_show(sw->term_widget);
+
+  vscrollbar=gtk_vscrollbar_new(VTE_TERMINAL(sw->term_widget)->adjustment);
+  gtk_box_pack_start(GTK_BOX(hbox),vscrollbar,FALSE,FALSE,0);
   gtk_widget_show(vscrollbar);
 
-  gtk_box_pack_start(GTK_BOX(box),hbox,TRUE,TRUE,0);*/
+  gtk_box_pack_start(GTK_BOX(box),hbox,TRUE,TRUE,0);
   gtk_widget_show(hbox);
 
   return sw;
@@ -74,31 +86,33 @@ void StatusWindowWrite(StatusWindow *sw,char *msg)
   int len;
   int pos=0;
 
-  /*  gtk_widget_queue_resize(sw->term_widget);
+  /*  gtk_widget_queue_resize(sw->term_widget);*/
 
   len=strlen(msg);
 
   buf=(char *)malloc((len*2)+1);
 
   while(*msg) {
-    if(!(*msg & (1<<7))) {
+    if(1) { //!(*msg & (1<<7))) {
       if(*msg=='\n') {
 	buf[pos++]='\r';
 	buf[pos++]='\n';
-      }
+      } 
       else {
 	buf[pos++]=*msg;
       }
     }
-
+    
     msg++;
   }
-
+  
   buf[pos]='\0';
 
-  zvt_term_feed((ZvtTerm *)sw->term_widget,buf,strlen(buf));
+  /*  zvt_term_feed((ZvtTerm *)sw->term_widget,buf,strlen(buf));*/
 
-  free(buf);*/
+  vte_terminal_feed(VTE_TERMINAL(sw->term_widget),buf,strlen(buf));
+
+  free(buf);
 }
 
 /* Return the output pipe fd for a status window, opening the pipe
@@ -124,6 +138,6 @@ static void PipeCB(gpointer data,gint source,GdkInputCondition condition)
   sw=(StatusWindow *)data;
 
   while(read(sw->pipe[0],buf,256)>0) {
-    StatusWindowWrite(sw,buf);
+    /*    StatusWindowWrite(sw,buf);*/
   }
 }

@@ -1,6 +1,6 @@
 /* id3.c
  *
- * Copyright (c) 1998-2002  Mike Oliphant <oliphant@gtk.org>
+ * Copyright (c) 1998-2003  Mike Oliphant <oliphant@gtk.org>
  *
  *   http://www.nostatic.org/grip
  *
@@ -225,7 +225,8 @@ static ID3_FrameID frameids[ NUM_FRAMES ] = {
 
 gboolean ID3v2TagFile( char *filename, char *title, char *artist, char *album,
 		       char *year, char *comment, unsigned char genre, unsigned
-		       char tracknum ) {
+		       char tracknum, char *discdb_encoding)
+{
   ID3Tag *tag;
   ID3Field *field;
   ID3Frame *frames[ NUM_FRAMES ];
@@ -233,6 +234,8 @@ gboolean ID3v2TagFile( char *filename, char *title, char *artist, char *album,
   gboolean retval = TRUE;
   luint frm_offset;
   mode_t mask;
+  char *conv_str;
+  gsize rb,wb;
 
   tag = ID3Tag_New();
 
@@ -288,7 +291,10 @@ gboolean ID3v2TagFile( char *filename, char *title, char *artist, char *album,
 	if ( c_data != NULL ) {
 	  field = ID3Frame_GetField( frames[i], ID3FN_TEXT );
 	  if ( field ) {
-	    ID3Field_SetASCII( field, c_data );
+  	    conv_str=g_convert(c_data,strlen(c_data),
+      		               "utf-8",discdb_encoding,&rb,&wb,NULL);
+            ID3Field_SetUNICODE( field, c_data );
+            g_free(conv_str);
 	  } else {
 	    retval = FALSE;
 	  }
@@ -336,19 +342,34 @@ gboolean ID3v2TagFile( char *filename, char *title, char *artist, char *album,
 
 gboolean ID3v1TagFile(char *filename,char *title,char *artist,char *album,
 		      char *year,char *comment,unsigned char genre,
-		      unsigned char tracknum)
+		      unsigned char tracknum, char *id3_encoding,
+ 		      char *discdb_encoding)
 {
   FILE *fp;
   ID3v1Tag tag;
+  char *conv_str;
+  gsize rb,wb;
 
   fp=fopen(filename,"a");
 
   ID3Put(tag.tag,"TAG",3);
-  ID3Put(tag.title,title,30);
-  ID3Put(tag.artist,artist,30);
-  ID3Put(tag.album,album,30);
+  conv_str=g_convert(title,strlen(title),
+                     id3_encoding,discdb_encoding,&rb,&wb,NULL);
+  ID3Put(tag.title,conv_str,30);
+  g_free(conv_str);
+  conv_str=g_convert(artist,strlen(artist),
+                     id3_encoding,discdb_encoding,&rb,&wb,NULL);
+  ID3Put(tag.artist,conv_str,30);
+  g_free(conv_str);
+  conv_str=g_convert(album,strlen(album),
+                     id3_encoding,discdb_encoding,&rb,&wb,NULL);
+  ID3Put(tag.album,conv_str,30);
+  g_free(conv_str);
   ID3Put(tag.year,year,4);
-  ID3Put(tag.comment,comment,29);
+  conv_str=g_convert(comment,strlen(comment),
+                     id3_encoding,"utf-8",&rb,&wb,NULL);
+  ID3Put(tag.comment,conv_str,29);
+  g_free(conv_str);
   tag.tracknum=tracknum;
   tag.genre=genre;
 

@@ -100,6 +100,8 @@ void LookupDisc(GripInfo *ginfo,gboolean manual)
   gboolean present;
   DiscInfo *disc;
   DiscData *ddata;
+  gchar *conv_str,*st;
+  gsize rb,wb;
 
   disc=&(ginfo->disc);
   ddata=&(ginfo->ddata);
@@ -121,11 +123,18 @@ void LookupDisc(GripInfo *ginfo,gboolean manual)
     if(!manual) {
       ddata->data_id=DiscDBDiscid(disc);
       ddata->data_genre=7; /* "misc" */
-      strcpy(ddata->data_title,_("Unknown Disc"));
+      st=_("Unknown Disc");
+      conv_str=g_convert(st,strlen(st),ginfo->discdb_encoding,"utf-8",&rb,&wb,NULL);
+      strcpy(ddata->data_title,conv_str);
+      g_free(conv_str);
       strcpy(ddata->data_artist,"");
       
       for(track=0;track<disc->num_tracks;track++) {
-	sprintf(ddata->data_track[track].track_name,_("Track %02d"),track+1);
+      	st=g_strdup_printf(_("Track %02d"),track+1);
+      	conv_str=g_convert(st,strlen(st),ginfo->discdb_encoding,"utf-8",&rb,&wb,NULL);
+	sprintf(ddata->data_track[track].track_name,conv_str);
+      	g_free(conv_str);
+      	g_free(st);
 	*(ddata->data_track[track].track_artist)='\0';
 	*(ddata->data_track[track].track_extended)='\0';
 	*(ddata->data_playlist)='\0';
@@ -379,6 +388,9 @@ static void SetCurrentTrack(GripInfo *ginfo,int track)
 {
   char buf[256];
   int tracklen;
+  gchar *conv_str,*conv_st2=NULL;
+  const gchar *st,*st2;
+  gsize rb, wb;
 
   GripGUI *uinfo;
 
@@ -409,8 +421,11 @@ static void SetCurrentTrack(GripInfo *ginfo,int track)
   else {
     g_signal_handlers_block_by_func(G_OBJECT(uinfo->track_edit_entry),
 				     TrackEditChanged,(gpointer)ginfo);
-    gtk_entry_set_text(GTK_ENTRY(uinfo->track_edit_entry),
- 		       ginfo->ddata.data_track[track].track_name);
+    conv_str=g_convert(ginfo->ddata.data_track[track].track_name,
+                       strlen(ginfo->ddata.data_track[track].track_name),
+                       "utf-8",ginfo->discdb_encoding,&rb,&wb,NULL);
+    gtk_entry_set_text(GTK_ENTRY(uinfo->track_edit_entry),conv_str);
+    g_free(conv_str);
 
     g_signal_handlers_unblock_by_func(G_OBJECT(uinfo->track_edit_entry),
 	 			       TrackEditChanged,(gpointer)ginfo);
@@ -419,8 +434,11 @@ static void SetCurrentTrack(GripInfo *ginfo,int track)
 						track_artist_edit_entry),
 	 			     TrackEditChanged,(gpointer)ginfo);
 
-    gtk_entry_set_text(GTK_ENTRY(uinfo->track_artist_edit_entry),
-	 	       ginfo->ddata.data_track[track].track_artist);
+    conv_str=g_convert(ginfo->ddata.data_track[track].track_artist,
+                       strlen(ginfo->ddata.data_track[track].track_artist),
+                       "utf-8",ginfo->discdb_encoding,&rb,&wb,NULL);
+    gtk_entry_set_text(GTK_ENTRY(uinfo->track_artist_edit_entry),conv_str);
+    g_free(conv_str);
 
     g_signal_handlers_unblock_by_func(G_OBJECT(uinfo->
 						  track_artist_edit_entry),
@@ -1680,6 +1698,8 @@ void UpdateTracks(GripInfo *ginfo)
 {
   int track;
   char *col_strings[3];
+  char *conv_str,*conv_st2;
+  gsize rb,wb;
   gboolean multi_artist_backup;
   GripGUI *uinfo;
   DiscInfo *disc;
@@ -1718,14 +1738,18 @@ void UpdateTracks(GripInfo *ginfo)
     }
   }
   else {
-    SetTitle(ginfo,_("No Disc"));
+    conv_st2=_("No Disc");
+    conv_str=g_convert(conv_st2,strlen(conv_st2),
+      		       ginfo->discdb_encoding,"utf-8",&rb,&wb,NULL);
+    SetTitle(ginfo,conv_str);
+    g_free(conv_str);
     SetArtist(ginfo,"");
     SetYear(ginfo,0);
     SetID3Genre(ginfo,17);
   }
 
   gtk_entry_set_text(GTK_ENTRY(uinfo->playlist_entry),
-		     ddata->data_playlist);
+      	     ddata->data_playlist);
 
   if(!ginfo->first_time)
     gtk_list_store_clear(uinfo->track_list_store);
@@ -1738,13 +1762,21 @@ void UpdateTracks(GripInfo *ginfo)
     col_strings[2]=NULL;
 
     for(track=0;track<disc->num_tracks;track++) {
-      if(*ddata->data_track[track].track_artist)
+      conv_str = g_convert(ddata->data_track[track].track_name,
+                           strlen(ddata->data_track[track].track_name),
+      		     	   "utf-8",ginfo->discdb_encoding,&rb,&wb,NULL);
+      if(*ddata->data_track[track].track_artist) {
+        conv_st2 = g_convert(ddata->data_track[track].track_artist,
+                             strlen(ddata->data_track[track].track_artist),
+ 	       	      	     "utf-8",ginfo->discdb_encoding,&rb,&wb,NULL);
+
 	g_snprintf(col_strings[0],260,"%02d  %s (%s)",track+1,
-		   ddata->data_track[track].track_name,
-		   ddata->data_track[track].track_artist);
+                   conv_str, conv_st2);
+        g_free(conv_st2);
+      }
       else
-	g_snprintf(col_strings[0],260,"%02d  %s",track+1,
-		   ddata->data_track[track].track_name);
+	g_snprintf(col_strings[0],260,"%02d  %s",track+1,conv_str);
+      g_free(conv_str);
 
       g_snprintf(col_strings[1],6,"%2d:%02d",
 	       disc->track[track].length.mins,

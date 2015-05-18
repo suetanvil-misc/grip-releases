@@ -1,6 +1,6 @@
 /* discedit.c
  *
- * Copyright (c) 1998-2002  Mike Oliphant <oliphant@gtk.org>
+ * Copyright (c) 1998-2003  Mike Oliphant <oliphant@gtk.org>
  *
  *   http://www.nostatic.org/grip
  *
@@ -163,7 +163,7 @@ GtkWidget *MakeEditBox(GripInfo *ginfo)
   adj=gtk_adjustment_new(0,0,9999,1.0,5.0,0);
 
   uinfo->year_spin_button=gtk_spin_button_new(GTK_ADJUSTMENT(adj),0.5,0);
-  gtk_signal_connect(GTK_OBJECT(uinfo->year_spin_button),"changed",
+  gtk_signal_connect(GTK_OBJECT(uinfo->year_spin_button),"value_changed",
 		     GTK_SIGNAL_FUNC(YearEditChanged),(gpointer)ginfo);
   gtk_box_pack_start(GTK_BOX(hbox),uinfo->year_spin_button,TRUE,TRUE,0);
   gtk_widget_show(uinfo->year_spin_button);
@@ -327,20 +327,30 @@ void ToggleTrackEdit(GtkWidget *widget,gpointer data)
 
 void SetTitle(GripInfo *ginfo,char *title)
 {
-  gtk_entry_set_text(GTK_ENTRY(ginfo->gui_info.title_edit_entry),title);
+  gchar *conv_str;
+  gsize rb, wb;
+
+  conv_str=g_convert(title,strlen(title),"utf-8",ginfo->discdb_encoding,&rb,&wb,NULL);
+  gtk_entry_set_text(GTK_ENTRY(ginfo->gui_info.title_edit_entry),conv_str);
   gtk_entry_set_position(GTK_ENTRY(ginfo->gui_info.title_edit_entry),0);
 
   strcpy(ginfo->ddata.data_title,title);
-  gtk_label_set(GTK_LABEL(ginfo->gui_info.disc_name_label),title);
+  gtk_label_set(GTK_LABEL(ginfo->gui_info.disc_name_label),conv_str);
+  g_free(conv_str);
 }
 
 void SetArtist(GripInfo *ginfo,char *artist)
 {
-  gtk_entry_set_text(GTK_ENTRY(ginfo->gui_info.artist_edit_entry),artist);
+  gchar *conv_str;
+  gsize rb, wb;
+
+  conv_str=g_convert(artist,strlen(artist),"utf-8",ginfo->discdb_encoding,&rb,&wb,NULL);
+  gtk_entry_set_text(GTK_ENTRY(ginfo->gui_info.artist_edit_entry),conv_str);
   gtk_entry_set_position(GTK_ENTRY(ginfo->gui_info.artist_edit_entry),0);
 
   strcpy(ginfo->ddata.data_artist,artist);
-  gtk_label_set(GTK_LABEL(ginfo->gui_info.disc_artist_label),artist);
+  gtk_label_set(GTK_LABEL(ginfo->gui_info.disc_artist_label),conv_str);
+  g_free(conv_str);
 }
 
 void SetYear(GripInfo *ginfo,int year)
@@ -376,25 +386,37 @@ static void SaveDiscInfo(GtkWidget *widget,gpointer data)
 static void TitleEditChanged(GtkWidget *widget,gpointer data)
 {
   GripInfo *ginfo;
+  gchar *conv_str=NULL;
+  const gchar *st;
+  gsize rb, wb;
 
   ginfo=(GripInfo *)data;
 
-  strcpy(ginfo->ddata.data_title,
-	 gtk_entry_get_text(GTK_ENTRY(ginfo->gui_info.title_edit_entry)));
-  gtk_label_set(GTK_LABEL(ginfo->gui_info.disc_name_label),
-		ginfo->ddata.data_title);
+  st=gtk_entry_get_text(GTK_ENTRY(ginfo->gui_info.title_edit_entry));
+  if(st)
+    conv_str=g_convert(st,strlen(st),ginfo->discdb_encoding,"utf-8",&rb,&wb,NULL);
+
+  strcpy(ginfo->ddata.data_title,conv_str);
+  gtk_label_set(GTK_LABEL(ginfo->gui_info.disc_name_label),st);
+
+  g_free(conv_str);
 }
 
 static void ArtistEditChanged(GtkWidget *widget,gpointer data)
 {
   GripInfo *ginfo;
+  gchar *conv_str=NULL;
+  const gchar *st;
+  gsize rb, wb;
 
   ginfo=(GripInfo *)data;
 
-  strcpy(ginfo->ddata.data_artist,
-	 gtk_entry_get_text(GTK_ENTRY(ginfo->gui_info.artist_edit_entry)));
-  gtk_label_set(GTK_LABEL(ginfo->gui_info.disc_artist_label),
-		ginfo->ddata.data_artist);
+  st=gtk_entry_get_text(GTK_ENTRY(ginfo->gui_info.artist_edit_entry));
+  if(st)
+    conv_str=g_convert(st,strlen(st),ginfo->discdb_encoding,"utf-8",&rb,&wb,NULL);
+
+  strcpy(ginfo->ddata.data_artist,conv_str);
+  gtk_label_set(GTK_LABEL(ginfo->gui_info.disc_artist_label),st);
 }
 
 static void YearEditChanged(GtkWidget *widget,gpointer data)
@@ -412,24 +434,36 @@ void TrackEditChanged(GtkWidget *widget,gpointer data)
 {
   GripInfo *ginfo;
   char newname[256];
+  gchar *conv_str,*conv_st2=NULL;
+  const gchar *st,*st2;
+  gsize rb, wb;
+  GtkTreeIter iter;
+  gint i;
 
   ginfo=(GripInfo *)data;
 
-  strcpy(ginfo->ddata.data_track[CURRENT_TRACK].track_name,
-	 gtk_entry_get_text(GTK_ENTRY(ginfo->gui_info.track_edit_entry)));
+  st=gtk_entry_get_text(GTK_ENTRY(ginfo->gui_info.track_edit_entry));
+  conv_str=g_convert(st,strlen(st),ginfo->discdb_encoding,"utf-8",&rb,&wb,NULL);
+  st2=gtk_entry_get_text(GTK_ENTRY(ginfo->gui_info.track_artist_edit_entry));
+  if(st2)
+    conv_st2=g_convert(st2,strlen(st2),ginfo->discdb_encoding,"utf-8",&rb,&wb,NULL);
+
+  strcpy(ginfo->ddata.data_track[CURRENT_TRACK].track_name,conv_str);
   
-  strcpy(ginfo->ddata.data_track[CURRENT_TRACK].track_artist,
-	 gtk_entry_get_text(GTK_ENTRY(ginfo->gui_info.
-				      track_artist_edit_entry)));
+  strcpy(ginfo->ddata.data_track[CURRENT_TRACK].track_artist,conv_st2);
   
   if(*ginfo->ddata.data_track[CURRENT_TRACK].track_artist)
-    g_snprintf(newname,256,"%02d  %s (%s)",CURRENT_TRACK+1,
-	       ginfo->ddata.data_track[CURRENT_TRACK].track_name,
-	       ginfo->ddata.data_track[CURRENT_TRACK].track_artist);
+    g_snprintf(newname,256,"%02d  %s (%s)",CURRENT_TRACK+1,st,st2);
   else
-    g_snprintf(newname,256,"%02d  %s",CURRENT_TRACK+1,
-	       ginfo->ddata.data_track[CURRENT_TRACK].track_name);
-  
+    g_snprintf(newname,256,"%02d  %s",CURRENT_TRACK+1,st);
+
+  gtk_tree_model_get_iter_first(GTK_TREE_MODEL(ginfo->gui_info.track_list_store),
+                                &iter);
+  for(i=0;i<CURRENT_TRACK;i++)
+    gtk_tree_model_iter_next(GTK_TREE_MODEL(ginfo->gui_info.track_list_store),
+                             &iter);
+  gtk_list_store_set(ginfo->gui_info.track_list_store,&iter,
+			 TRACKLIST_TRACK_COL,newname,-1);
   /*  gtk_clist_set_text(GTK_CLIST(ginfo->gui_info.trackclist),
       CURRENT_TRACK,0,newname);*/
 }

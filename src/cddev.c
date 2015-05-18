@@ -2,7 +2,7 @@
  *
  * Based on code from libcdaudio 0.5.0 (Copyright (C)1998 Tony Arcieri)
  *
- * All changes copyright (c) 1998-2002  Mike Oliphant <oliphant@gtk.org>
+ * All changes copyright (c) 1998-2003  Mike Oliphant <oliphant@gtk.org>
  *
  *   http://www.nostatic.org/grip
  *

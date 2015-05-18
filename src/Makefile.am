@@ -45,4 +45,4 @@ grip_SOURCES =         \
 	gain_analysis.c \
 	gain_analysis.h
 
-grip_LDADD = $(ZVT_LIBS) $(CDPAR_LIBS) $(ID3_LIBS)
+grip_LDADD = @TERMINAL_WIDGET_LIBS@ $(CDPAR_LIBS) $(ID3_LIBS)

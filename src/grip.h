@@ -184,6 +184,9 @@ typedef struct _grip_info {
   char cd_device[256];
   char force_scsi[256];
   char discdb_submit_email[256];
+  char discdb_encoding[16];
+  char fs_encoding[16];
+  char id3_encoding[16];
   gboolean db_use_freedb;
   char user_email[256];
   gboolean local_mode;
@@ -253,6 +256,8 @@ typedef struct _grip_info {
   double disc_gain_adjustment;
   struct _encode_track *encoded_track[MAX_NUM_CPU];
   GList *encode_list;
+  GList *pending_list;
+  gboolean delayed_encoding;
   int selected_ripper;
   gboolean using_builtin_cdp;
   gboolean in_rip_thread;

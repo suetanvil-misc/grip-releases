@@ -1107,14 +1107,26 @@
 	  <listitem><para><guilabel>n</guilabel> &mdash; The name of the
 	      track.  </para></listitem>
 
+	  <listitem><para><guilabel>N</guilabel> &mdash; The name of the
+	      track in ID3 encoding specifed in configuration.  </para></listitem>
+
 	  <listitem><para><guilabel>a</guilabel> &mdash; The artist name for
 	      the track.  </para></listitem>
+
+	  <listitem><para><guilabel>z</guilabel> &mdash; The artist name for
+	      the track in ID3 encoding specifed in configuration.  </para></listitem>
 
 	  <listitem><para><guilabel>A</guilabel> &mdash; The artist name for
 	      the disc.  </para></listitem>
 
+	  <listitem><para><guilabel>Z</guilabel> &mdash; The artist name for
+	      the disc in ID3 encoding specifed in configuration.  </para></listitem>
+
 	  <listitem><para><guilabel>d</guilabel> &mdash; The name of the disc.
 	    </para></listitem>
+	  
+	  <listitem><para><guilabel>D</guilabel> &mdash; The name of the disc
+              in ID3 encoding specifed in configuration. </para></listitem>
 	  
 	  <listitem><para><guilabel>i</guilabel> &mdash; The disc database id
 	      (in hex) for the disc.  </para></listitem>

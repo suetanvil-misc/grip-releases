@@ -1,6 +1,6 @@
 /* gripcfg.c
  *
- * Copyright (c) 1998-2002  Mike Oliphant <oliphant@gtk.org>
+ * Copyright (c) 1998-2003  Mike Oliphant <oliphant@gtk.org>
  *
  *   http://www.nostatic.org/grip
  *
@@ -318,6 +318,11 @@ void MakeConfigPage(GripInfo *ginfo)
   gtk_box_pack_start(GTK_BOX(vbox),check,FALSE,FALSE,0);
   gtk_widget_show(check);
 
+  check=MakeCheckButton (NULL, &ginfo->delayed_encoding,
+                        _("Delay encoding until disc is ripped"));
+  gtk_box_pack_start(GTK_BOX(vbox),check,FALSE,FALSE,0);
+  gtk_widget_show(check);
+
   check=MakeCheckButton(NULL,&ginfo->stop_between_tracks,
 			_("Stop cdrom drive between tracks"));
   gtk_box_pack_start(GTK_BOX(vbox),check,FALSE,FALSE,0);
@@ -500,6 +505,11 @@ void MakeConfigPage(GripInfo *ginfo)
   gtk_box_pack_start(GTK_BOX(vbox),entry,FALSE,FALSE,0);
   gtk_widget_show(entry);
 
+  entry=MakeStrEntry(NULL,ginfo->id3_encoding,
+		     _("ID3v1 Character set encoding"),16,TRUE);
+  gtk_box_pack_start(GTK_BOX(vbox),entry,FALSE,FALSE,0);
+  gtk_widget_show(entry);
+
   gtk_container_add(GTK_CONTAINER(page),vbox);
   gtk_widget_show(vbox);
 
@@ -562,6 +572,11 @@ void MakeConfigPage(GripInfo *ginfo)
 
   entry=MakeStrEntry(NULL,ginfo->discdb_submit_email,
 		     _("DB Submit email"),255,TRUE);
+  gtk_box_pack_start(GTK_BOX(dbvbox),entry,FALSE,FALSE,0);
+  gtk_widget_show(entry);
+
+  entry=MakeStrEntry(NULL,ginfo->discdb_encoding,
+		     _("DB Character set encoding"),16,TRUE);
   gtk_box_pack_start(GTK_BOX(dbvbox),entry,FALSE,FALSE,0);
   gtk_widget_show(entry);
 
@@ -635,6 +650,10 @@ void MakeConfigPage(GripInfo *ginfo)
   gtk_widget_show(entry);
 
   entry=MakeStrEntry(NULL,ginfo->cdupdate,_("CD update program"),255,TRUE);
+  gtk_box_pack_start(GTK_BOX(vbox),entry,FALSE,FALSE,0);
+  gtk_widget_show(entry);
+
+  entry=MakeStrEntry(NULL,ginfo->fs_encoding,_("File System Character set encoding"),16,TRUE);
   gtk_box_pack_start(GTK_BOX(vbox),entry,FALSE,FALSE,0);
   gtk_widget_show(entry);
 

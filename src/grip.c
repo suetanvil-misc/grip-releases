@@ -87,6 +87,7 @@ void DoSaveConfig(GripInfo *ginfo);
 {"auto_rip",CFG_ENTRY_BOOL,0,&ginfo->auto_rip},\
 {"eject_after_rip",CFG_ENTRY_BOOL,0,&ginfo->eject_after_rip},\
 {"eject_delay",CFG_ENTRY_INT,0,&ginfo->eject_delay},\
+{"delayed_encoding",CFG_ENTRY_BOOL,0,&ginfo->delayed_encoding},\
 {"delay_before_rip",CFG_ENTRY_BOOL,0,&ginfo->delay_before_rip},\
 {"stop_between_tracks",CFG_ENTRY_BOOL,0,&ginfo->stop_between_tracks},\
 {"beep_after_rip",CFG_ENTRY_BOOL,0,&ginfo->beep_after_rip},\
@@ -96,6 +97,9 @@ void DoSaveConfig(GripInfo *ginfo);
 {"use_proxy_env",CFG_ENTRY_BOOL,0,&ginfo->use_proxy_env},\
 {"db_cgi",CFG_ENTRY_STRING,256,ginfo->dbserver.cgi_prog},\
 {"cddb_submit_email",CFG_ENTRY_STRING,256,ginfo->discdb_submit_email},\
+{"discdb_encoding",CFG_ENTRY_STRING,16,ginfo->discdb_encoding},\
+{"fs_encoding",CFG_ENTRY_STRING,16,ginfo->fs_encoding},\
+{"id3_encoding",CFG_ENTRY_STRING,16,ginfo->id3_encoding},\
 {"db_use_freedb",CFG_ENTRY_BOOL,0,&ginfo->db_use_freedb},\
 {"dbserver2",CFG_ENTRY_STRING,256,ginfo->dbserver2.name},\
 {"db2_cgi",CFG_ENTRY_STRING,256,ginfo->dbserver2.cgi_prog},\
@@ -230,7 +234,7 @@ GtkWidget *GripNew(const gchar* geometry,char *device,char *scsi_device,
   MakeTrackPage(ginfo);
   MakeRipPage(ginfo);
   MakeConfigPage(ginfo);
-  /*  MakeStatusPage(ginfo);*/
+  MakeStatusPage(ginfo);
   MakeHelpPage(ginfo);
   MakeAboutPage(uinfo);
 
@@ -351,7 +355,7 @@ static void MakeStatusPage(GripInfo *ginfo)
 
   label=gtk_label_new(_("Rip"));
   gtk_notebook_append_page(GTK_NOTEBOOK(notebook),page,label);
-  gtk_widget_show(page);
+  /*  gtk_widget_show(page);*/
 
 
   page=gtk_frame_new(NULL);
@@ -366,7 +370,7 @@ static void MakeStatusPage(GripInfo *ginfo)
 
   label=gtk_label_new(_("Encode"));
   gtk_notebook_append_page(GTK_NOTEBOOK(notebook),page,label);
-  gtk_widget_show(page);
+  /*  gtk_widget_show(page);*/
 
 
   gtk_box_pack_start(GTK_BOX(vbox2),notebook,TRUE,TRUE,0);
@@ -665,6 +669,7 @@ static void DoLoadConfig(GripInfo *ginfo)
   char renamefile[256];
   char *proxy_env,*tok;
   char outputdir[256];
+  G_CONST_RETURN char *charset;
   int confret;
   CFGEntry cfg_entries[]={
     CFG_ENTRIES
@@ -736,6 +741,11 @@ static void DoLoadConfig(GripInfo *ginfo)
   ginfo->db_use_freedb=TRUE;
   *ginfo->user_email='\0';
 
+  g_get_charset(&charset);
+  strncpy(ginfo->discdb_encoding,charset,sizeof(ginfo->discdb_encoding));
+  strncpy(ginfo->fs_encoding,charset,sizeof(ginfo->fs_encoding));
+  strncpy(ginfo->id3_encoding,charset,sizeof(ginfo->id3_encoding));
+
   ginfo->local_mode=FALSE;
   ginfo->update_required=FALSE;
   ginfo->looking_up=FALSE;
@@ -766,6 +776,8 @@ static void DoLoadConfig(GripInfo *ginfo)
   ginfo->num_wavs=0;
   ginfo->doencode=FALSE;
   ginfo->encode_list=NULL;
+  ginfo->pending_list=NULL;
+  ginfo->delayed_encoding = 0;
   ginfo->do_redirect=TRUE;
   ginfo->selected_ripper=0;
 #ifdef CDPAR

@@ -1,6 +1,6 @@
 AC_PREREQ(2.52)
 
-AC_INIT(grip, 3.1.1, http://sf.net/tracker/?group_id=3714&atid=103714)
+AC_INIT(grip, 3.1.2, http://sf.net/tracker/?group_id=3714&atid=103714)
 AC_CONFIG_SRCDIR(src/main.c)
 AM_INIT_AUTOMAKE(AC_PACKAGE_NAME, AC_PACKAGE_VERSION)
 
@@ -36,6 +36,9 @@ AM_PROG_LIBTOOL
 PKG_CHECK_MODULES(GNOME, libgnomeui-2.0 >= 2.2.0,
                   [LIBS="$LIBS $GNOME_LIBS"
                    CFLAGS="$CFLAGS $GNOME_CFLAGS"])
+
+PKG_CHECK_MODULES(TERMINAL_WIDGET, vte)
+CFLAGS="$TERMINAL_WIDGET_CFLAGS $CFLAGS"
 
 dnl check for ghttp
 AC_CHECK_HEADER(ghttp.h, [], [AC_MSG_ERROR(ghttp headers are missing)])

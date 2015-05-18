@@ -1,3 +1,19 @@
+2003-10-01  Mike Oliphant  <oliphant@gtk.org>
+
+	* various: support for alternate character encodings (Sergey Pinaev)
+	* po/ru.po: fixes (Michael Shigorin)
+	* rip.c: fixed a bug with ripping more than one disc (Florian Streck)
+	* discedit.c: year info now saves correctly (Michael Shigorin)
+	* grip.c/grip.h/gripcfg.c/rip.c: added delayed encoding option
+	  (Jeff Mahoney)
+	* configure.in: upped version to 3.1.2
+	
+2003-07-04  Mike Oliphant  <oliphant@gtk.org>
+
+        * rip.c: commented out left-over status window code
+	* be.po: added (Vital Khilko)
+	* configure.in: upped version to 3.1.1
+
 2003-05-30  Mike Oliphant  <oliphant@gtk.org>
 
 	* configure.in: cleaned up
@@ -17,7 +33,7 @@
 	* cdplay.c: make cddb lookups not abortable until it is fixed so
 	  that it works properly
 	* configure.in/grip.spec: upped version to 3.0.7
-
+	* grip.c: enabled general status window
 	
 2003-02-09  Mike Oliphant  <oliphant@gtk.org>
 
