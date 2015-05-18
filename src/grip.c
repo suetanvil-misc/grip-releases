@@ -54,7 +54,8 @@ static GnomeHelpMenuEntry cdplay_help_entry={"grip","cdplayer.html"};
 static GnomeHelpMenuEntry rip_help_entry={"grip","ripping.html"};
 static GnomeHelpMenuEntry configure_help_entry={"grip","configure.html"};
 static GnomeHelpMenuEntry faq_help_entry={"grip","faq.html"};
-static GnomeHelpMenuEntry bug_help_entry={"grip","grip.html"};
+static GnomeHelpMenuEntry morehelp_help_entry={"grip","morehelp.html"};
+static GnomeHelpMenuEntry bug_help_entry={"grip","bugs.html"};
 
 #define BASE_CFG_ENTRIES \
 {"cd_device",CFG_ENTRY_STRING,256,ginfo->cd_device},\
@@ -318,6 +319,12 @@ static void MakeHelpPage(GripInfo *ginfo)
   button=gtk_button_new_with_label(_("FAQ"));
   gtk_signal_connect(GTK_OBJECT(button),"clicked",
 		     GTK_SIGNAL_FUNC(DoHelp),(gpointer)&faq_help_entry);
+  gtk_box_pack_start(GTK_BOX(vbox),button,FALSE,FALSE,0);
+  gtk_widget_show(button);
+
+  button=gtk_button_new_with_label(_("Getting More Help"));
+  gtk_signal_connect(GTK_OBJECT(button),"clicked",
+		     GTK_SIGNAL_FUNC(DoHelp),(gpointer)&morehelp_help_entry);
   gtk_box_pack_start(GTK_BOX(vbox),button,FALSE,FALSE,0);
   gtk_widget_show(button);
 

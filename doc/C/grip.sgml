@@ -403,6 +403,22 @@
     
   </chapter>
 
+  <chapter id="morehelp">
+    <title>Getting More Help</title> <para>If you need more help with Grip,
+    your best resource is the Grip mailing list. You will find it <ulink
+    url="http://lists.sourceforge.net/mailman/listinfo/grip-users">
+    here</ulink>. Be sure to check the mailing list archives for answers to
+    any questions you may have.</para>
+  </chapter>
+
+  <chapter id="bugs">
+    <title>Reporting Bugs / Sumitting Patches</title>
+
+    <para>To report a bug with Grip, or to submit a patch. Please do so at
+    the <ulink url="http://sourceforge.net/projects/grip">Grip
+    section</ulink> on sourceforge.net.</para>
+  </chapter>
+
   <chapter id="cddb">
     <title>CDDB notes</title> <para>I have declined to sign a license
       agreement with Escient, the company who owns "www.cddb.com" and runs

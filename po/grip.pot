@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2002-01-14 08:43-0800\n"
+"POT-Creation-Date: 2002-01-17 18:41-0800\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -46,64 +46,68 @@ msgstr ""
 msgid "Run in verbose (debug) mode"
 msgstr ""
 
-#: src/grip.c:138
+#: src/grip.c:139
 msgid "Grip"
 msgstr ""
 
-#: src/grip.c:155
+#: src/grip.c:156
 #, c-format
 msgid "Error: Unable to initialize [%s]\n"
 msgstr ""
 
-#: src/grip.c:181
+#: src/grip.c:182
 #, c-format
 msgid "Could not parse geometry string `%s'"
 msgstr ""
 
-#: src/grip.c:231
+#: src/grip.c:232
 msgid ""
 "Work is in progress.\n"
 "Really shut down?"
 msgstr ""
 
-#: src/grip.c:289
+#: src/grip.c:290
 msgid "Help"
 msgstr ""
 
-#: src/grip.c:294
+#: src/grip.c:295
 msgid "Table Of Contents"
 msgstr ""
 
-#: src/grip.c:300
+#: src/grip.c:301
 msgid "Playing CDs"
 msgstr ""
 
-#: src/grip.c:306
+#: src/grip.c:307
 msgid "Ripping CDs"
 msgstr ""
 
-#: src/grip.c:312
+#: src/grip.c:313
 msgid "Configuring Grip"
 msgstr ""
 
-#: src/grip.c:318
+#: src/grip.c:319
 msgid "FAQ"
 msgstr ""
 
-#: src/grip.c:324
+#: src/grip.c:325
+msgid "Getting More Help"
+msgstr ""
+
+#: src/grip.c:331
 msgid "Reporting Bugs"
 msgstr ""
 
-#: src/grip.c:344
+#: src/grip.c:351
 msgid "About"
 msgstr ""
 
-#: src/grip.c:721
+#: src/grip.c:728
 #, c-format
 msgid "server is %s, port %d\n"
 msgstr ""
 
-#: src/grip.c:741
+#: src/grip.c:748
 msgid "Error: Unable to save config file"
 msgstr ""
 
