@@ -117,7 +117,7 @@ void TranslateString(char *instr,GString *outstr,
       }
 
       if(!pwd)
-	printf(_("Error: unable to translate filename. No such user as %s\n"),
+	g_print(_("Error: unable to translate filename. No such user as %s\n"),
 	       tok);
       else {
 	g_string_sprintf(outstr,"%s",pwd->pw_dir);

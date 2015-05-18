@@ -125,6 +125,8 @@ void LookupDisc(GripInfo *ginfo,gboolean manual)
       ddata->data_genre=7; /* "misc" */
       st=_("Unknown Disc");
       conv_str=g_convert(st,strlen(st),ginfo->discdb_encoding,"utf-8",&rb,&wb,NULL);
+      if(!conv_str)
+        conv_str=g_strdup(st);
       strcpy(ddata->data_title,conv_str);
       g_free(conv_str);
       strcpy(ddata->data_artist,"");
@@ -132,6 +134,8 @@ void LookupDisc(GripInfo *ginfo,gboolean manual)
       for(track=0;track<disc->num_tracks;track++) {
       	st=g_strdup_printf(_("Track %02d"),track+1);
       	conv_str=g_convert(st,strlen(st),ginfo->discdb_encoding,"utf-8",&rb,&wb,NULL);
+      	if(!conv_str)
+          conv_str=g_strdup(st);
 	sprintf(ddata->data_track[track].track_name,conv_str);
       	g_free(conv_str);
       	g_free(st);
@@ -189,6 +193,7 @@ gboolean DiscDBLookupDisc(GripInfo *ginfo,DiscDBServer *server)
   gboolean success=FALSE;
   DiscInfo *disc;
   DiscData *ddata;
+  char *utf8_lartist, *utf8_ltitle;
 
   disc=&(ginfo->disc);
   ddata=&(ginfo->ddata);
@@ -211,9 +216,14 @@ gboolean DiscDBLookupDisc(GripInfo *ginfo,DiscDBServer *server)
     switch(query.query_match) {
     case MATCH_INEXACT:
     case MATCH_EXACT:
+      utf8_lartist=g_convert(query.query_list[0].list_artist,-1,
+                             "utf-8",ginfo->discdb_encoding,NULL,NULL,NULL);
+      utf8_ltitle=g_convert(query.query_list[0].list_title,-1,
+                            "utf-8",ginfo->discdb_encoding,NULL,NULL,NULL);
       LogStatus(ginfo,_("Match for \"%s / %s\"\nDownloading data...\n"),
-		query.query_list[0].list_artist,
-		query.query_list[0].list_title);
+		utf8_lartist, utf8_ltitle);
+      g_free(utf8_lartist);
+      g_free(utf8_ltitle);
       entry.entry_genre = query.query_list[0].list_genre;
       entry.entry_id = query.query_list[0].list_id;
       DiscDBRead(disc,server,&hello,&entry,ddata);
@@ -222,7 +232,7 @@ gboolean DiscDBLookupDisc(GripInfo *ginfo,DiscDBServer *server)
       success=TRUE;
 		
       if(DiscDBWriteDiscData(disc,ddata,NULL,TRUE,FALSE)<0)
-	printf(_("Error saving disc data\n"));
+	g_print(_("Error saving disc data\n"));
 
       ginfo->update_required=TRUE;
       ginfo->is_new_disc=TRUE;
@@ -424,6 +434,8 @@ static void SetCurrentTrack(GripInfo *ginfo,int track)
     conv_str=g_convert(ginfo->ddata.data_track[track].track_name,
                        strlen(ginfo->ddata.data_track[track].track_name),
                        "utf-8",ginfo->discdb_encoding,&rb,&wb,NULL);
+    if(!conv_str)
+      conv_str=g_strdup(ginfo->ddata.data_track[track].track_name);
     gtk_entry_set_text(GTK_ENTRY(uinfo->track_edit_entry),conv_str);
     g_free(conv_str);
 
@@ -437,6 +449,8 @@ static void SetCurrentTrack(GripInfo *ginfo,int track)
     conv_str=g_convert(ginfo->ddata.data_track[track].track_artist,
                        strlen(ginfo->ddata.data_track[track].track_artist),
                        "utf-8",ginfo->discdb_encoding,&rb,&wb,NULL);
+    if(!conv_str)
+      conv_str=g_strdup(ginfo->ddata.data_track[track].track_artist);
     gtk_entry_set_text(GTK_ENTRY(uinfo->track_artist_edit_entry),conv_str);
     g_free(conv_str);
 
@@ -1007,17 +1021,21 @@ static void MinMax(GtkWidget *widget,gpointer data)
 	       GTK_PIXMAP(uinfo->smile_indicator));
     CopyPixmap(GTK_PIXMAP(uinfo->empty_image),
     GTK_PIXMAP(uinfo->lcd_smile_indicator));
+
+    gtk_widget_set_size_request(GTK_WIDGET(uinfo->app),WINWIDTH,WINHEIGHT);
   }
   else {
-    gtk_window_set_policy(GTK_WINDOW(uinfo->app),FALSE,TRUE,TRUE);
     gtk_container_border_width(GTK_CONTAINER(uinfo->winbox),0);
     gtk_widget_hide(uinfo->notebook);
 
     CopyPixmap(GTK_PIXMAP(uinfo->smile_indicator),
 	       GTK_PIXMAP(uinfo->lcd_smile_indicator));
 
+    gtk_widget_set_size_request(GTK_WIDGET(uinfo->app),MIN_WINWIDTH,
+				MIN_WINHEIGHT);
+    gtk_window_resize(GTK_WINDOW(uinfo->app),1,1);
+  
     UpdateGTK();
-    gtk_window_set_policy(GTK_WINDOW(uinfo->app),FALSE,TRUE,FALSE);
   }
 
   uinfo->minimized=!uinfo->minimized;
@@ -1741,6 +1759,8 @@ void UpdateTracks(GripInfo *ginfo)
     conv_st2=_("No Disc");
     conv_str=g_convert(conv_st2,strlen(conv_st2),
       		       ginfo->discdb_encoding,"utf-8",&rb,&wb,NULL);
+    if(!conv_str)
+      conv_str=g_strdup(conv_st2);
     SetTitle(ginfo,conv_str);
     g_free(conv_str);
     SetArtist(ginfo,"");
@@ -1765,10 +1785,14 @@ void UpdateTracks(GripInfo *ginfo)
       conv_str = g_convert(ddata->data_track[track].track_name,
                            strlen(ddata->data_track[track].track_name),
       		     	   "utf-8",ginfo->discdb_encoding,&rb,&wb,NULL);
+      if(!conv_str)
+    	conv_str=g_strdup(ddata->data_track[track].track_name);
       if(*ddata->data_track[track].track_artist) {
         conv_st2 = g_convert(ddata->data_track[track].track_artist,
                              strlen(ddata->data_track[track].track_artist),
  	       	      	     "utf-8",ginfo->discdb_encoding,&rb,&wb,NULL);
+    	if(!conv_st2)
+    	  conv_st2=g_strdup(ddata->data_track[track].track_artist);
 
 	g_snprintf(col_strings[0],260,"%02d  %s (%s)",track+1,
                    conv_str, conv_st2);

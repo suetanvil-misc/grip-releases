@@ -1,3 +1,12 @@
+2003-11-03  Mike Oliphant  <oliphant@gtk.org>
+
+	* de.po: updated (Götz Waschk)
+	* po/it.po: updated (Ceoldo Costantino)
+	* po/fi.po: added (Flammie Pirinen)
+	* grip.c/cdplay.c: minimized mode works again
+	* various: more UTF8 fixes (Michael Shigorin)
+	* configure.in: upped version to 3.1.3
+	
 2003-10-01  Mike Oliphant  <oliphant@gtk.org>
 
 	* various: support for alternate character encodings (Sergey Pinaev)

@@ -82,13 +82,19 @@ StatusWindow *NewStatusWindow(GtkWidget *box)
 /* Write a line of output to a status window */
 void StatusWindowWrite(StatusWindow *sw,char *msg)
 {
-  char *buf;
+  char *buf, *locale_msg;
   int len;
   int pos=0;
 
   /*  gtk_widget_queue_resize(sw->term_widget);*/
 
-  len=strlen(msg);
+  if(g_utf8_validate(msg,-1,NULL)) {
+    locale_msg=g_locale_from_utf8(msg,-1,NULL,&len,NULL);
+    msg=locale_msg;
+  }
+  else {
+    len=strlen(msg);
+  }
 
   buf=(char *)malloc((len*2)+1);
 
@@ -107,6 +113,7 @@ void StatusWindowWrite(StatusWindow *sw,char *msg)
   }
   
   buf[pos]='\0';
+  g_free(locale_msg);
 
   /*  zvt_term_feed((ZvtTerm *)sw->term_widget,buf,strlen(buf));*/
 

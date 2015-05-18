@@ -55,7 +55,7 @@ static gboolean ParseLine(char *buf,CFGEntry *cfg)
 	    *((int *)cfg[cfgent].destvar)=atoi(tok);
 	    break;
 	  default:
-	    printf(_("Error: Bad entry type\n"));
+	    g_print(_("Error: Bad entry type\n"));
 	    break;
 	  }
 	
@@ -81,7 +81,7 @@ int LoadConfig(char *filename,char *name,int ver,int reqver,CFGEntry *cfg)
   tok=strtok(buf," ");
 
   if(!tok||(strcasecmp(tok,name))) {
-    printf(_("Error: Invalid config file\n"));
+    g_print(_("Error: Invalid config file\n"));
 
     return -1;
   }

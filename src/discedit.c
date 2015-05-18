@@ -331,6 +331,8 @@ void SetTitle(GripInfo *ginfo,char *title)
   gsize rb, wb;
 
   conv_str=g_convert(title,strlen(title),"utf-8",ginfo->discdb_encoding,&rb,&wb,NULL);
+  if(!conv_str)
+    conv_str=g_strdup(title);
   gtk_entry_set_text(GTK_ENTRY(ginfo->gui_info.title_edit_entry),conv_str);
   gtk_entry_set_position(GTK_ENTRY(ginfo->gui_info.title_edit_entry),0);
 
@@ -345,6 +347,8 @@ void SetArtist(GripInfo *ginfo,char *artist)
   gsize rb, wb;
 
   conv_str=g_convert(artist,strlen(artist),"utf-8",ginfo->discdb_encoding,&rb,&wb,NULL);
+  if(!conv_str)
+    conv_str=g_strdup(artist);
   gtk_entry_set_text(GTK_ENTRY(ginfo->gui_info.artist_edit_entry),conv_str);
   gtk_entry_set_position(GTK_ENTRY(ginfo->gui_info.artist_edit_entry),0);
 
@@ -393,8 +397,12 @@ static void TitleEditChanged(GtkWidget *widget,gpointer data)
   ginfo=(GripInfo *)data;
 
   st=gtk_entry_get_text(GTK_ENTRY(ginfo->gui_info.title_edit_entry));
-  if(st)
+  if(st) {
     conv_str=g_convert(st,strlen(st),ginfo->discdb_encoding,"utf-8",&rb,&wb,NULL);
+    if(!conv_str)
+      conv_str=g_strdup(st);
+  } else
+    conv_str=g_strdup("");
 
   strcpy(ginfo->ddata.data_title,conv_str);
   gtk_label_set(GTK_LABEL(ginfo->gui_info.disc_name_label),st);
@@ -412,8 +420,12 @@ static void ArtistEditChanged(GtkWidget *widget,gpointer data)
   ginfo=(GripInfo *)data;
 
   st=gtk_entry_get_text(GTK_ENTRY(ginfo->gui_info.artist_edit_entry));
-  if(st)
+  if(st) {
     conv_str=g_convert(st,strlen(st),ginfo->discdb_encoding,"utf-8",&rb,&wb,NULL);
+    if(!conv_str)
+      conv_str=g_strdup(st);
+  } else
+      conv_str=g_strdup("");
 
   strcpy(ginfo->ddata.data_artist,conv_str);
   gtk_label_set(GTK_LABEL(ginfo->gui_info.disc_artist_label),st);
@@ -444,9 +456,13 @@ void TrackEditChanged(GtkWidget *widget,gpointer data)
 
   st=gtk_entry_get_text(GTK_ENTRY(ginfo->gui_info.track_edit_entry));
   conv_str=g_convert(st,strlen(st),ginfo->discdb_encoding,"utf-8",&rb,&wb,NULL);
+  if(!conv_str)
+    conv_str=g_strdup(st);
   st2=gtk_entry_get_text(GTK_ENTRY(ginfo->gui_info.track_artist_edit_entry));
   if(st2)
     conv_st2=g_convert(st2,strlen(st2),ginfo->discdb_encoding,"utf-8",&rb,&wb,NULL);
+  if(!conv_st2)
+    conv_st2=g_strdup(st2);
 
   strcpy(ginfo->ddata.data_track[CURRENT_TRACK].track_name,conv_str);
   

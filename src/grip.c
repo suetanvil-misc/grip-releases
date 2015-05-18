@@ -177,7 +177,7 @@ GtkWidget *GripNew(const gchar* geometry,char *device,char *scsi_device,
   ginfo->do_redirect=!no_redirect;
 
   if(!CDInitDevice(ginfo->cd_device,&(ginfo->disc))) {
-    printf(_("Error: Unable to initialize [%s]\n"),ginfo->cd_device);
+    g_print(_("Error: Unable to initialize [%s]\n"),ginfo->cd_device);
     exit(0);
   }
 
@@ -188,9 +188,10 @@ GtkWidget *GripNew(const gchar* geometry,char *device,char *scsi_device,
   g_signal_connect(G_OBJECT(app),"delete_event",
 		   G_CALLBACK(GripDie),NULL);
 
-
-  gtk_widget_set_size_request(GTK_WIDGET(app),WINWIDTH,WINHEIGHT);
-
+  if(uinfo->minimized)
+    gtk_widget_set_size_request(GTK_WIDGET(app),MIN_WINWIDTH,MIN_WINHEIGHT);
+  else
+    gtk_widget_set_size_request(GTK_WIDGET(app),WINWIDTH,WINHEIGHT);
 
   /* geometry */
 
@@ -216,9 +217,6 @@ GtkWidget *GripNew(const gchar* geometry,char *device,char *scsi_device,
 
 
   *******************************************/
-
-
-
 
 
   gtk_widget_realize(app);

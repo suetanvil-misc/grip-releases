@@ -39,6 +39,9 @@
 #define WINWIDTH 400
 #define WINHEIGHT 450
 
+#define MIN_WINWIDTH 200
+#define MIN_WINHEIGHT 80
+
 #define MAX_NUM_CPU 16
 
 #define RRand(range) (random()%(range))

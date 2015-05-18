@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: grip 3.0.0\n"
-"POT-Creation-Date: 2003-10-01 18:53-0700\n"
+"POT-Creation-Date: 2003-11-03 16:12-0800\n"
 "PO-Revision-Date: 2002-04-25 19:20+0800\n"
 "Last-Translator: Merlin Ma <merlin@turbolinux.com.cn>\n"
 "Language-Team: Chinese (simplified) <i18n-translation@lists.linux.net.cn>\n"
@@ -66,7 +66,7 @@ msgstr "Grip"
 msgid "Error: Unable to initialize [%s]\n"
 msgstr "错误: 无法初始化 [%s]\n"
 
-#: src/grip.c:275
+#: src/grip.c:273
 msgid ""
 "Work is in progress.\n"
 "Really shut down?"
@@ -74,60 +74,60 @@ msgstr ""
 "正在工作中。\n"
 "真的要关闭吗？"
 
-#: src/grip.c:326
+#: src/grip.c:324
 #, fuzzy
 msgid "Status"
 msgstr "抓轨状态"
 
-#: src/grip.c:341
+#: src/grip.c:339
 msgid "General"
 msgstr ""
 
-#: src/grip.c:356 src/gripcfg.c:351 src/cdplay.c:266 src/rip.c:98
+#: src/grip.c:354 src/gripcfg.c:351 src/cdplay.c:276 src/rip.c:98
 msgid "Rip"
 msgstr "抓轨"
 
-#: src/grip.c:371 src/gripcfg.c:479
+#: src/grip.c:369 src/gripcfg.c:479
 msgid "Encode"
 msgstr "编码"
 
-#: src/grip.c:416
+#: src/grip.c:414
 msgid "Help"
 msgstr "帮助"
 
-#: src/grip.c:421
+#: src/grip.c:419
 msgid "Table Of Contents"
 msgstr "目录"
 
-#: src/grip.c:427
+#: src/grip.c:425
 msgid "Playing CDs"
 msgstr "播放 CD"
 
-#: src/grip.c:433
+#: src/grip.c:431
 msgid "Ripping CDs"
 msgstr "CD 抓轨"
 
-#: src/grip.c:439
+#: src/grip.c:437
 msgid "Configuring Grip"
 msgstr "配置 Grip"
 
-#: src/grip.c:445
+#: src/grip.c:443
 msgid "FAQ"
 msgstr "常见问题解答"
 
-#: src/grip.c:451
+#: src/grip.c:449
 msgid "Getting More Help"
 msgstr "获得更多帮助"
 
-#: src/grip.c:457
+#: src/grip.c:455
 msgid "Reporting Bugs"
 msgstr "报告错误"
 
-#: src/grip.c:477
+#: src/grip.c:475
 msgid "About"
 msgstr "关于"
 
-#: src/grip.c:848
+#: src/grip.c:846
 msgid ""
 "Your config file is out of date -- resetting to defaults.\n"
 "You will need to re-configure Grip.\n"
@@ -137,12 +137,12 @@ msgstr ""
 "您可能需要重新配置 Grip。\n"
 "旧的配置文件已经被附加 -old 作为文件名保存."
 
-#: src/grip.c:918
+#: src/grip.c:916
 #, c-format
 msgid "server is %s, port %d\n"
 msgstr "服务器是 %s, 端口 %d\n"
 
-#: src/grip.c:938
+#: src/grip.c:936
 msgid "Error: Unable to save config file"
 msgstr "错误: 无法保存配置文件"
 
@@ -511,22 +511,22 @@ msgstr "无法在抓轨过程中查询"
 msgid "Unknown Disc"
 msgstr "未知光盘"
 
-#: src/cdplay.c:133
+#: src/cdplay.c:135
 #, c-format
 msgid "Track %02d"
 msgstr "Track %02d"
 
-#: src/cdplay.c:197
+#: src/cdplay.c:202
 #, c-format
 msgid "Querying %s (through %s) for disc %02x.\n"
 msgstr "正在 (通过 %2$s) 向 %1$s 查询光盘 %3$02x。\n"
 
-#: src/cdplay.c:202
+#: src/cdplay.c:207
 #, c-format
 msgid "Querying %s for disc %02x.\n"
 msgstr "正在向 %s 查询光盘 %02x。\n"
 
-#: src/cdplay.c:214
+#: src/cdplay.c:223
 #, c-format
 msgid ""
 "Match for \"%s / %s\"\n"
@@ -535,164 +535,164 @@ msgstr ""
 "正在匹配 \"%s / %s\"\n"
 "正在下载数据...\n"
 
-#: src/cdplay.c:221
+#: src/cdplay.c:231
 msgid "Done\n"
 msgstr "完成\n"
 
-#: src/cdplay.c:225 src/cdplay.c:593
+#: src/cdplay.c:235 src/cdplay.c:607
 msgid "Error saving disc data\n"
 msgstr "保存光盘数据错误\n"
 
-#: src/cdplay.c:231
+#: src/cdplay.c:241
 msgid "No match\n"
 msgstr "不匹配\n"
 
-#: src/cdplay.c:266
+#: src/cdplay.c:276
 msgid "Track"
 msgstr "曲目"
 
-#: src/cdplay.c:266
+#: src/cdplay.c:276
 msgid "Length "
 msgstr "长度"
 
-#: src/cdplay.c:270
+#: src/cdplay.c:280
 msgid "Tracks"
 msgstr "曲目"
 
-#: src/cdplay.c:664
+#: src/cdplay.c:678
 msgid "Rotate play mode"
 msgstr "循环播放模式"
 
-#: src/cdplay.c:684
+#: src/cdplay.c:698
 msgid "Toggle loop play"
 msgstr "切换循环播放"
 
-#: src/cdplay.c:762 src/rip.c:233
+#: src/cdplay.c:776 src/rip.c:233
 msgid "Rip status"
 msgstr "抓轨状态"
 
-#: src/cdplay.c:829
+#: src/cdplay.c:843
 msgid "Play track / Pause play"
 msgstr "播放/暂停"
 
-#: src/cdplay.c:840
+#: src/cdplay.c:854
 msgid "Rewind"
 msgstr "倒退"
 
-#: src/cdplay.c:851
+#: src/cdplay.c:865
 msgid "FastForward"
 msgstr "快进"
 
-#: src/cdplay.c:861
+#: src/cdplay.c:875
 msgid "Go to previous track"
 msgstr "上一曲"
 
-#: src/cdplay.c:870
+#: src/cdplay.c:884
 msgid "Go to next track"
 msgstr "下一曲"
 
-#: src/cdplay.c:879
+#: src/cdplay.c:893
 msgid "Toggle play mode options"
 msgstr "切换放音模式选项"
 
-#: src/cdplay.c:889
+#: src/cdplay.c:903
 msgid "Next Disc"
 msgstr "下一光盘"
 
-#: src/cdplay.c:903
+#: src/cdplay.c:917
 msgid "Stop play"
 msgstr "停止放音"
 
-#: src/cdplay.c:913
+#: src/cdplay.c:927
 msgid "Eject disc"
 msgstr "弹出光盘"
 
-#: src/cdplay.c:922
+#: src/cdplay.c:936
 msgid "Scan Disc Contents"
 msgstr "扫描光盘内容"
 
-#: src/cdplay.c:930
+#: src/cdplay.c:944
 msgid "Toggle Volume Control"
 msgstr "切换音量控制"
 
-#: src/cdplay.c:939
+#: src/cdplay.c:953
 msgid "Toggle disc editor"
 msgstr "切换光盘编辑器"
 
-#: src/cdplay.c:949
+#: src/cdplay.c:963
 msgid "Initiate/abort DiscDB lookup"
 msgstr "初始化/取消光盘查询"
 
-#: src/cdplay.c:959
+#: src/cdplay.c:973
 msgid "Toggle track display"
 msgstr "切换曲目显示"
 
-#: src/cdplay.c:966
+#: src/cdplay.c:980
 msgid "Exit Grip"
 msgstr "退出 Grip"
 
-#: src/cdplay.c:1109
+#: src/cdplay.c:1127
 msgid "Cannot fast forward while ripping"
 msgstr "抓轨过程中不能快进"
 
-#: src/cdplay.c:1139
+#: src/cdplay.c:1157
 msgid "Cannot rewind while ripping"
 msgstr "抓轨过程中不能倒退"
 
-#: src/cdplay.c:1169
+#: src/cdplay.c:1187
 msgid "Cannot switch discs while ripping"
 msgstr "抓轨过程中不能切换光盘"
 
-#: src/cdplay.c:1187
+#: src/cdplay.c:1205
 msgid "Eject disc\n"
 msgstr "弹出光盘\n"
 
-#: src/cdplay.c:1190
+#: src/cdplay.c:1208
 msgid "Cannot eject while ripping"
 msgstr "不能在抓轨过程中弹出光盘"
 
-#: src/cdplay.c:1200
+#: src/cdplay.c:1218
 msgid "Have disc -- ejecting\n"
 msgstr "有光盘──正在弹出\n"
 
-#: src/cdplay.c:1264
+#: src/cdplay.c:1282
 msgid "Cannot play while ripping"
 msgstr "抓轨过程中不能播放"
 
-#: src/cdplay.c:1325 src/cdplay.c:1355
+#: src/cdplay.c:1343 src/cdplay.c:1373
 msgid "Cannot switch tracks while ripping"
 msgstr "抓轨过程中不能改变曲目"
 
-#: src/cdplay.c:1437
+#: src/cdplay.c:1455
 msgid "Checking for a new disc\n"
 msgstr "正在检查新光盘\n"
 
-#: src/cdplay.c:1442
+#: src/cdplay.c:1460
 msgid "CDStat found a disc, checking tracks\n"
 msgstr "CDStat 发现光盘，正在检查曲目\n"
 
-#: src/cdplay.c:1445
+#: src/cdplay.c:1463
 msgid "We have a valid disc!\n"
 msgstr "光盘合法!\n"
 
-#: src/cdplay.c:1472
+#: src/cdplay.c:1490
 msgid "No non-zero length tracks\n"
 msgstr "没有非零长度的曲目\n"
 
-#: src/cdplay.c:1481
+#: src/cdplay.c:1499
 msgid "CDStat said no disc\n"
 msgstr "CDStat 说无光盘\n"
 
-#: src/cdplay.c:1616 src/cdplay.c:1638
+#: src/cdplay.c:1634 src/cdplay.c:1656
 #, c-format
 msgid "Current sector: %6d"
 msgstr "当前扇区: %6d"
 
-#: src/cdplay.c:1741
+#: src/cdplay.c:1759
 msgid "No Disc"
 msgstr "无光盘"
 
-#: src/cdplay.c:1804
+#: src/cdplay.c:1828
 msgid ""
 "This disc has been found on your secondary server,\n"
 "but not on your primary server.\n"
@@ -704,15 +704,15 @@ msgstr ""
 "\n"
 "您是否想提交此光盘信息？"
 
-#: src/cdplay.c:1833 src/cdplay.c:1841
+#: src/cdplay.c:1857 src/cdplay.c:1865
 msgid "Error: Unable to create temporary file"
 msgstr "错误: 无法创建临时文件"
 
-#: src/cdplay.c:1851
+#: src/cdplay.c:1875
 msgid "Error: Unable to write disc data"
 msgstr "错误: 无法写光盘数据"
 
-#: src/cdplay.c:1860
+#: src/cdplay.c:1884
 #, c-format
 msgid "Mailing entry to %s\n"
 msgstr "发送邮件到 %s\n"
@@ -812,15 +812,15 @@ msgstr "保存光盘信息"
 msgid "Submit disc info"
 msgstr "提交光盘信息"
 
-#: src/discedit.c:381
+#: src/discedit.c:385
 msgid "Error saving disc data"
 msgstr "保存光盘信息错误"
 
-#: src/discedit.c:383
+#: src/discedit.c:387
 msgid "No disc present"
 msgstr "没有光盘"
 
-#: src/discedit.c:546
+#: src/discedit.c:562
 msgid ""
 "Cannot submit\n"
 "No disc is present"
@@ -828,15 +828,15 @@ msgstr ""
 "不能提交\n"
 "没有光盘"
 
-#: src/discedit.c:559
+#: src/discedit.c:575
 msgid "You must enter a disc title"
 msgstr "您必须输入光盘标题"
 
-#: src/discedit.c:565
+#: src/discedit.c:581
 msgid "You must enter a disc artist"
 msgstr "您必须输入作者名称"
 
-#: src/discedit.c:575
+#: src/discedit.c:591
 msgid ""
 "You are about to submit this disc information\n"
 "to a commercial CDDB server, which will then\n"
@@ -854,7 +854,7 @@ msgstr ""
 "\n"
 "您还要继续吗?"
 
-#: src/discedit.c:584
+#: src/discedit.c:600
 msgid ""
 "You are about to submit this\n"
 "disc information via email.\n"
@@ -866,11 +866,11 @@ msgstr ""
 "\n"
 "继续吗?"
 
-#: src/discedit.c:601
+#: src/discedit.c:617
 msgid "Genre selection"
 msgstr "选择类别"
 
-#: src/discedit.c:605
+#: src/discedit.c:621
 msgid ""
 "Submission requires a genre other than 'unknown'\n"
 "Please select a DiscDB genre below"
@@ -878,15 +878,15 @@ msgstr ""
 "您需要指定具体的音乐类别\n"
 "请从下列选择一个 DiscDB 类别"
 
-#: src/discedit.c:615
+#: src/discedit.c:631
 msgid "DiscDB genre"
 msgstr "DiscDB 类别"
 
-#: src/discedit.c:635
+#: src/discedit.c:651
 msgid "Submit"
 msgstr "提交"
 
-#: src/discedit.c:646
+#: src/discedit.c:662
 msgid "Cancel"
 msgstr "取消"
 
@@ -900,7 +900,7 @@ msgstr "未知的 ID3 域\n"
 msgid "Error: unable to translate filename. No such user as %s\n"
 msgstr "错误: 无法转换文件名。无此用户 %s\n"
 
-#: src/launch.c:239 src/rip.c:1480
+#: src/launch.c:239 src/rip.c:1495
 msgid "Exec failed\n"
 msgstr "执行失败\n"
 
@@ -964,8 +964,8 @@ msgstr "放音"
 msgid "Current sector:      0"
 msgstr "当前扇区:      0"
 
-#: src/rip.c:207 src/rip.c:224 src/rip.c:272 src/rip.c:853 src/rip.c:905
-#: src/rip.c:907 src/rip.c:1041 src/rip.c:1042
+#: src/rip.c:207 src/rip.c:224 src/rip.c:272 src/rip.c:858 src/rip.c:910
+#: src/rip.c:912 src/rip.c:1048 src/rip.c:1049
 msgid "Rip: Idle"
 msgstr "抓轨: 空闲"
 
@@ -973,7 +973,7 @@ msgstr "抓轨: 空闲"
 msgid "Enc: Trk 99 (99.9x)"
 msgstr "编码: 曲目 99 (99.9x)"
 
-#: src/rip.c:243 src/rip.c:285 src/rip.c:1013 src/rip.c:1026
+#: src/rip.c:243 src/rip.c:285 src/rip.c:1020 src/rip.c:1033
 msgid "Enc: Idle"
 msgstr "编码: 空闲"
 
@@ -989,80 +989,80 @@ msgstr "起始扇区"
 msgid "End sector"
 msgstr "终止扇区"
 
-#: src/rip.c:601
+#: src/rip.c:603
 msgid "Error: can't open m3u file\n"
 msgstr "错误: 不能打开 m3u 文件\n"
 
-#: src/rip.c:641
+#: src/rip.c:645
 msgid "In KillRip\n"
 msgstr ""
 
-#: src/rip.c:667
+#: src/rip.c:671
 #, c-format
 msgid "Now total enc size is: %d\n"
 msgstr ""
 
-#: src/rip.c:819
+#: src/rip.c:824
 #, c-format
 msgid "Rip: Trk %d (%3.1fx)"
 msgstr "抓轨: 曲目 %d (%3.1fx)"
 
-#: src/rip.c:849
+#: src/rip.c:854
 #, c-format
 msgid "Rip: %6.2f%%"
 msgstr ""
 
-#: src/rip.c:868
+#: src/rip.c:873
 msgid "Rip finished\n"
 msgstr "完成抓轨\n"
 
-#: src/rip.c:894
+#: src/rip.c:899
 #, c-format
 msgid "Rip partial %d  num wavs %d\n"
 msgstr ""
 
-#: src/rip.c:897
+#: src/rip.c:902
 #, c-format
 msgid "Next track is %d, total is %d\n"
 msgstr "下一首是 %d, 总共 %d 首\n"
 
-#: src/rip.c:903
+#: src/rip.c:908
 msgid "Check if we need to rip another track\n"
 msgstr "检查是否需要抓取其他曲目\n"
 
-#: src/rip.c:943
+#: src/rip.c:948
 #, c-format
 msgid "Enc: Trk %d (%3.1fx)"
 msgstr "编码: 曲目 %d (%3.1fx)"
 
-#: src/rip.c:959
+#: src/rip.c:964
 #, c-format
 msgid "Enc: %6.2f%%"
 msgstr ""
 
-#: src/rip.c:969
+#: src/rip.c:974
 #, c-format
 msgid "Finished encoding on cpu %d\n"
 msgstr "完成编码在处理器 %d\n"
 
-#: src/rip.c:980
+#: src/rip.c:987
 #, c-format
 msgid "Deleting [%s]\n"
 msgstr "正在删除 [%s]\n"
 
-#: src/rip.c:1034
+#: src/rip.c:1041
 msgid "Ripping is finished\n"
 msgstr "抓轨完成\n"
 
-#: src/rip.c:1143 src/rip.c:1150
+#: src/rip.c:1150 src/rip.c:1157
 msgid "NoArtist"
 msgstr "无作者"
 
-#: src/rip.c:1156
+#: src/rip.c:1163
 msgid "NoTitle"
 msgstr "无标题"
 
-#: src/rip.c:1252
+#: src/rip.c:1261
 msgid ""
 "Invalid rip executable\n"
 "Check your rip config"
@@ -1070,7 +1070,7 @@ msgstr ""
 "非法的抓轨程序\n"
 "请检查你的抓轨器设置"
 
-#: src/rip.c:1259
+#: src/rip.c:1268
 msgid ""
 "Invalid encoder executable\n"
 "Check your encoder config"
@@ -1078,7 +1078,7 @@ msgstr ""
 "非法的编码程序\n"
 "请检查你的编码器设置"
 
-#: src/rip.c:1292
+#: src/rip.c:1301
 msgid ""
 "No tracks selected.\n"
 "Rip whole CD?\n"
@@ -1086,92 +1086,92 @@ msgstr ""
 "没有选择曲目。\n"
 "抓取整张光盘吗？\n"
 
-#: src/rip.c:1315
+#: src/rip.c:1324
 msgid "Ripping whole CD\n"
 msgstr "正在抓取整张光盘\n"
 
-#: src/rip.c:1353
+#: src/rip.c:1362
 msgid "In RipNextTrack\n"
 msgstr "在抓取下一轨\n"
 
-#: src/rip.c:1360
+#: src/rip.c:1369
 #, c-format
 msgid "First checked track is %d\n"
 msgstr "第一个检查的曲目是 %d\n"
 
-#: src/rip.c:1370
+#: src/rip.c:1379
 msgid "Ripping away!\n"
 msgstr ""
 
-#: src/rip.c:1409
+#: src/rip.c:1420
 msgid "No write access to write wav file"
 msgstr "没有写 wav 文件的权限"
 
-#: src/rip.c:1418
+#: src/rip.c:1431
 #, c-format
 msgid "Ripping track %d to %s\n"
 msgstr "正在抓取曲目 %d 到 %s\n"
 
-#: src/rip.c:1422
+#: src/rip.c:1435
 #, c-format
 msgid "Rip: Trk %d (0.0x)"
 msgstr "抓轨: 曲目 %d (0.0x)"
 
-#: src/rip.c:1427
+#: src/rip.c:1440
 #, c-format
 msgid "File %s has already been ripped. Skipping...\n"
 msgstr "文件 %s 已经抓过。跳过...\n"
 
-#: src/rip.c:1442 src/rip.c:1677
+#: src/rip.c:1457 src/rip.c:1697
 msgid "Out of space in output directory"
 msgstr "输出目录空间不足"
 
-#: src/rip.c:1514
+#: src/rip.c:1529
 msgid "Calling CDPRip\n"
 msgstr "调用 CDPRip\n"
 
-#: src/rip.c:1600
+#: src/rip.c:1615
 #, fuzzy, c-format
 msgid "Added track %d to %s list\n"
 msgstr "添加曲目 %d 到编码队列\n"
 
-#: src/rip.c:1626
+#: src/rip.c:1641
 msgid "No free cpus\n"
 msgstr "没有空闲的处理器\n"
 
-#: src/rip.c:1642
+#: src/rip.c:1657
 #, c-format
 msgid "Enc track %d\n"
 msgstr "编码 曲目 %d\n"
 
-#: src/rip.c:1659
+#: src/rip.c:1676
 msgid "No write access to write encoded file"
 msgstr "没有写编码后的文件的权限"
 
-#: src/rip.c:1665
+#: src/rip.c:1684
 #, c-format
 msgid "%i: Encoding to %s\n"
 msgstr "%i: 编码到 %s\n"
 
-#: src/rip.c:1667
+#: src/rip.c:1687
 #, c-format
 msgid "Enc: Trk %d (0.0x)"
 msgstr "编码: 曲目 %d (0.0x)"
 
-#: src/rip.c:1728
+#: src/rip.c:1748
 msgid "In CalculateAll\n"
 msgstr ""
 
-#: src/rip.c:1734
+#: src/rip.c:1754
 msgid "We aren't ripping now, so let's zero encoding values\n"
 msgstr ""
 
-#: src/rip.c:1750
+#: src/rip.c:1770
 #, c-format
 msgid "Total rip size is: %d\n"
 msgstr ""
 
-#: src/rip.c:1751
+#: src/rip.c:1771
 #, c-format
 msgid "Total enc size is: %d\n"
 msgstr ""

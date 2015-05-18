@@ -132,11 +132,16 @@ struct poptOption options[] = {
 void Debug(char *fmt,...)
 {
   va_list args;
+  char *msg;
 
   if(do_debug) {
     va_start(args,fmt);
 
-    vfprintf(stderr,fmt,args);
+    msg=g_strdup_vprintf(fmt,args);
+    if(msg) {
+      g_printerr(msg);
+      g_free(msg);
+    }
   }
 
   va_end(args);
@@ -157,7 +162,7 @@ int Cmain(int argc, char* argv[])
 
   gnome_program_init(PACKAGE,VERSION,LIBGNOMEUI_MODULE,argc,argv, 
 		     GNOME_PARAM_POPT_TABLE,options,
-		     GNOME_PROGRAM_STANDARD_PROPERTIES);
+		     GNOME_PROGRAM_STANDARD_PROPERTIES,NULL);
 
   /* Session Management */
   

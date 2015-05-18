@@ -268,7 +268,7 @@ gboolean CDStat(DiscInfo *disc,gboolean read_toc)
 
 #ifdef CDIOREADTOCHEADER
     if(ioctl(disc->cd_desc,CDIOREADTOCHEADER,(char *)&cdth)<0) {
-      printf(_("Error: Failed to read disc contents\n"));
+      g_print(_("Error: Failed to read disc contents\n"));
       
       return FALSE;
     }
@@ -277,7 +277,7 @@ gboolean CDStat(DiscInfo *disc,gboolean read_toc)
 #endif
 #ifdef CDROMREADTOCHDR
     if(ioctl(disc->cd_desc,CDROMREADTOCHDR,&cdth)<0) {
-      printf(_("Error: Failed to read disc contents\n"));
+      g_print(_("Error: Failed to read disc contents\n"));
 
       return FALSE;
     }
@@ -294,7 +294,7 @@ gboolean CDStat(DiscInfo *disc,gboolean read_toc)
     cdte.data_len=sizeof(toc_buffer);
     
     if(ioctl(disc->cd_desc,CDIOREADTOCENTRYS,(char *)&cdte)<0) {
-      printf(_("Error: Failed to read disc contents\n"));
+      g_print(_("Error: Failed to read disc contents\n"));
 
       return FALSE;
     }
@@ -321,7 +321,7 @@ gboolean CDStat(DiscInfo *disc,gboolean read_toc)
       
       cdte.cdte_format=CDROM_MSF;
       if(ioctl(disc->cd_desc,CDROMREADTOCENTRY,&cdte) < 0) {
-	printf(_("Error: Failed to read disc contents\n"));
+	g_print(_("Error: Failed to read disc contents\n"));
 
 	return FALSE;
       }
@@ -612,15 +612,15 @@ gboolean CDEject(DiscInfo *disc)
   /*  always unlock door before an eject in case something else locked it  */
 #if defined(CDROM_LOCKDOOR)
   if(ioctl(disc->cd_desc,CDROM_LOCKDOOR,0)<0)
-    printf(_("Unlock failed: %d"), errno);
+    g_print(_("Unlock failed: %d"), errno);
 #endif
 #ifdef CDIOCALLOW
   if(ioctl(disc->cd_desc,CDIOCALLOW)<0)
-    printf(_("Unlock failed: %d"),errno);
+    g_print(_("Unlock failed: %d"),errno);
 #endif
 
   if(ioctl(disc->cd_desc,CDIOCEJECT)<0) {
-    printf(_("CDIOCEJECT"));
+    g_print(_("CDIOCEJECT"));
     return FALSE;
   }
 #endif
