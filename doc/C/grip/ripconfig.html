@@ -1,0 +1,413 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN">
+<HTML
+><HEAD
+><TITLE
+>The "Rip" config tab</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.64
+"><LINK
+REL="HOME"
+TITLE="Grip User's Guide"
+HREF="grip.html"><LINK
+REL="UP"
+TITLE="Configuring Grip"
+HREF="configure.html"><LINK
+REL="PREVIOUS"
+TITLE="Configuring Grip"
+HREF="configure.html"><LINK
+REL="NEXT"
+TITLE='The "MP3" config tab'
+HREF="mp3config.html"></HEAD
+><BODY
+CLASS="SECT1"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>Grip User's Guide</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="configure.html"
+>&#60;&#60;&#60; Previous</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+>Configuring Grip</TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="mp3config.html"
+>Next &#62;&#62;&#62;</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><DIV
+CLASS="SECT1"
+><H1
+CLASS="SECT1"
+><A
+NAME="RIPCONFIG"
+>The "Rip" config tab</A
+></H1
+><P
+>This tab allows to you configure Grip's ripping
+      capabilities.</P
+><DIV
+CLASS="FIGURE"
+><A
+NAME="RIPCONFIG-IMAGE"
+></A
+><P
+><IMG
+SRC="ripconfig.png"></P
+><P
+><B
+>Figure 2. The "Rip" config tab</B
+></P
+></DIV
+><P
+></P
+><UL
+><LI
+><P
+><TT
+CLASS="GUILABEL"
+><B
+>Ripper</B
+></TT
+> &#8212; This allows you to
+	  select from various presets configured for various Rippers. By
+	  default, "grip (cdparanoia)" is used, which rips with Grip's
+	  builtin version of cdparanoia.</P
+></LI
+><LI
+><P
+><TT
+CLASS="GUILABEL"
+><B
+>Disable paranoia</B
+></TT
+> &#8212; If this option
+	  is checked, Grip will disable cdparanoia's verification
+	  system. This will make ripping approximately twice as fast, but
+	  can result in errors. Unless you are very confident that your
+	  drive is rock solid, it is recommended that you do not select this
+	  option.</P
+></LI
+><LI
+><P
+><TT
+CLASS="GUILABEL"
+><B
+>Disable extra paranoia</B
+></TT
+> &#8212; If this
+	    option is selected, Grip will only do overlap checking to ensure
+	    proper alignment of reads. It will not verify reads for
+	    errors.</P
+></LI
+><LI
+><P
+><TT
+CLASS="GUILABEL"
+><B
+>Disable scratch detection / repair</B
+></TT
+>
+	  &#8212; These options allow you to determine whether Grip attempts
+	  to detect scratches on the CD, and whether or not it attempts to
+	  repair the scratches it detects.</P
+></LI
+><LI
+><P
+><TT
+CLASS="GUILABEL"
+><B
+>Calculate gain adjustment</B
+></TT
+>
+	  &#8212; If this option is checked, Grip will calculate a suggested
+	  gain adjustment for tracks as it rips. Computed values can then be
+	  passed to external programs via the '%r' and '%R' switches.</P
+></LI
+><LI
+><P
+><TT
+CLASS="GUILABEL"
+><B
+>Generic SCSI device</B
+></TT
+> &#8212; If you are
+	  using a SCSI drive, or an IDE drive under SCSI emulation, you need
+	  to specify the generic SCSI device to be used. Make sure that your
+	  user account has access to this device, or Grip will not be able
+	  to rip.</P
+></LI
+><LI
+><P
+><TT
+CLASS="GUILABEL"
+><B
+>Rip file format</B
+></TT
+> &#8212; This allows to
+	    you configure the filename and path that Grip rips files to. The
+	    list of available switches can be found in <A
+HREF="gripswitches.html"
+>the section called <I
+>Configuration (%) switches</I
+></A
+>.</P
+></LI
+></UL
+><P
+>If you select a ripper other than Grip's builtin cdparanoia, the
+      configuration dialog will look slightly different:</P
+><DIV
+CLASS="FIGURE"
+><A
+NAME="RIPCONFIG2-IMAGE"
+></A
+><P
+><IMG
+SRC="ripconfig2.png"></P
+><P
+><B
+>Figure 3. Configuring an external ripper</B
+></P
+></DIV
+><P
+></P
+><UL
+><LI
+><P
+><TT
+CLASS="GUILABEL"
+><B
+>Ripping executable</B
+></TT
+> &#8212; This is the
+	  full path to the executable to be used for ripping</P
+></LI
+><LI
+><P
+><TT
+CLASS="GUILABEL"
+><B
+>Rip command-line</B
+></TT
+> &#8212; This is the
+	    command-line to be passed to the ripping program. The list of
+	    available switches can be found in <A
+HREF="gripswitches.html"
+>the section called <I
+>Configuration (%) switches</I
+></A
+>.</P
+></LI
+></UL
+><P
+>The second sub-tab contains addition options that you can
+      specify to configure the ripping process.</P
+><DIV
+CLASS="FIGURE"
+><A
+NAME="RIPCONFIG3-IMAGE"
+></A
+><P
+><IMG
+SRC="ripconfig3.png"></P
+><P
+><B
+>Figure 4. Additional ripping options</B
+></P
+></DIV
+><P
+></P
+><UL
+><LI
+><P
+><TT
+CLASS="GUILABEL"
+><B
+>Rip 'nice' value</B
+></TT
+> &#8212; This allows
+	  you to set the 'nice' level to run the ripping process at. This
+	  changes the scheduling priorty of the process. The range goes from
+	  -20 (highest priority) to 19 (lowest).</P
+></LI
+><LI
+><P
+><TT
+CLASS="GUILABEL"
+><B
+>Max non-encoded .wav's</B
+></TT
+> &#8212; This
+	  allows you to specify the maximum number of ripped wave files that
+	  can accumulate if ripping is proceding faster than encoding can
+	  keep up. It is useful to keep unencoded .wav files from taking up
+	  too much disk space.</P
+></LI
+><LI
+><P
+><TT
+CLASS="GUILABEL"
+><B
+>Auto-rip on insert</B
+></TT
+> &#8212; If this
+	  option is checked, Grip will automatically begin ripping all
+	  tracks on a disc when it is inserted.</P
+></LI
+><LI
+><P
+><TT
+CLASS="GUILABEL"
+><B
+>Beep after rip</B
+></TT
+> &#8212; If this option
+	  is checked, Grip will emit a beep when ripping is finished.</P
+></LI
+><LI
+><P
+><TT
+CLASS="GUILABEL"
+><B
+>Auto-eject after rip</B
+></TT
+> &#8212; If this
+	    option is checked, Grip will eject the disc after ripping is
+	    finished.</P
+></LI
+><LI
+><P
+><TT
+CLASS="GUILABEL"
+><B
+>Auto-eject delay</B
+></TT
+> &#8212; This allows
+	  you to specify a delay (in seconds) before auto-ejection will
+	  happen. This is useful on some drives that need time to spin down
+	  before ejection can occur.</P
+></LI
+><LI
+><P
+><TT
+CLASS="GUILABEL"
+><B
+>Wav filter command</B
+></TT
+> &#8212; This allows
+	    you to specify a program (full path to executable, followed by
+	    the command-line) to run after a file has been ripped, but
+	    before it is encoded. This is useful for such tasks as
+	    normalization. The list of available switches can be found in
+	    <A
+HREF="gripswitches.html"
+>the section called <I
+>Configuration (%) switches</I
+></A
+>.</P
+></LI
+><LI
+><P
+><TT
+CLASS="GUILABEL"
+><B
+>Disc filter command</B
+></TT
+> &#8212; This
+	  operates much like the Wav filter command, except that it is run
+	  once after an entire disc has finished ripping.</P
+></LI
+></UL
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="configure.html"
+>&#60;&#60;&#60; Previous</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="grip.html"
+>Home</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="mp3config.html"
+>Next &#62;&#62;&#62;</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>Configuring Grip</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="configure.html"
+>Up</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>The "MP3" config tab</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

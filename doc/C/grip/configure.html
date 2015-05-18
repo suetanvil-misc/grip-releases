@@ -11,11 +11,11 @@ REL="HOME"
 TITLE="Grip User's Guide"
 HREF="grip.html"><LINK
 REL="PREVIOUS"
-TITLE="Ripping CDs with Grip"
-HREF="ripping.html"><LINK
+TITLE="Increasing Ripping Performance"
+HREF="rip-perform.html"><LINK
 REL="NEXT"
-TITLE="First Asked Questions"
-HREF="faq.html"></HEAD
+TITLE='The "Rip" config tab'
+HREF="ripconfig.html"></HEAD
 ><BODY
 CLASS="CHAPTER"
 BGCOLOR="#FFFFFF"
@@ -42,7 +42,7 @@ WIDTH="10%"
 ALIGN="left"
 VALIGN="bottom"
 ><A
-HREF="ripping.html"
+HREF="rip-perform.html"
 >&#60;&#60;&#60; Previous</A
 ></TD
 ><TD
@@ -55,7 +55,7 @@ WIDTH="10%"
 ALIGN="right"
 VALIGN="bottom"
 ><A
-HREF="faq.html"
+HREF="ripconfig.html"
 >Next &#62;&#62;&#62;</A
 ></TD
 ></TR
@@ -71,16 +71,33 @@ NAME="CONFIGURE"
 >Configuring Grip</A
 ></H1
 ><P
->Much work needs to be done in this section, but for now, here is a
-    list of the '%' switches used in command-lines.</P
+>The "Config" tab gives you access to a series of sub-tabs that
+    allow you to configure the various functions of Grip. Each of these
+    sub-tabs is described in detail in the following sections.</P
 ><DIV
 CLASS="SECT1"
 ><H1
 CLASS="SECT1"
 ><A
-NAME="AEN130"
->Configuration (%) switches</A
+NAME="CDCONFIG"
+>The "CD" config tab</A
 ></H1
+><DIV
+CLASS="FIGURE"
+><A
+NAME="CDCONFIG-IMAGE"
+></A
+><P
+><IMG
+SRC="cdconfig.png"></P
+><P
+><B
+>Figure 1. The "CD" config tab</B
+></P
+></DIV
+><P
+>This tab allows to you configure options associated with your
+      cdrom device and CD playback. The options are:</P
 ><P
 ></P
 ><UL
@@ -89,159 +106,71 @@ NAME="AEN130"
 ><TT
 CLASS="GUILABEL"
 ><B
->b</B
+>CDRom device</B
 ></TT
-> &#8212; The bitrate that mp3s
-	  are being encoded at.  </P
+> &#8212; Specifies the
+	  CDRom device to be used for CD playback.</P
 ></LI
 ><LI
 ><P
 ><TT
 CLASS="GUILABEL"
 ><B
->c</B
+>Don't interrupt playback on
+	  exit/startup</B
 ></TT
-> &#8212; The CDrom device
-	    being used.  </P
+> &#8212; If this option is checked, Grip
+	  will not stop a playing track when it is shut down. Also, if a CD
+	  is already playing when Grip starts, it will keep playing.</P
 ></LI
 ><LI
 ><P
 ><TT
 CLASS="GUILABEL"
 ><B
->w</B
+>Rewind when stopped</B
 ></TT
-> &#8212; The filename of the
-	    wave file being ripped.  </P
+> &#8212; If this
+	  option is checked, Grip will rewind to the beginning of the disc
+	  whenever playback is stopped.</P
 ></LI
 ><LI
 ><P
 ><TT
 CLASS="GUILABEL"
 ><B
->m</B
+>Startup with first track if not playing</B
 ></TT
-> &#8212; The filename of the
-	    MP3 file being encoded.  </P
+>
+	  &#8212; If this option is checked, Grip will always make the first
+	  track on the CD the current track if the CD is not currently
+	  playing. Otherwise, Grip will start with whatever track is
+	  currently set with the CDRom device.</P
 ></LI
 ><LI
 ><P
 ><TT
 CLASS="GUILABEL"
 ><B
->t</B
+>Reshuffle before each playback</B
 ></TT
-> &#8212; The track
-	    number,beginning at 1, and zero-filled (ie: '03' for the third
-	    track).  </P
+> &#8212;
+	  If this option is checked, randomized playback will be
+	  re-randomized each time playback is restarted. Otherwise, the same
+	  random sequence will be reused.</P
 ></LI
 ><LI
 ><P
 ><TT
 CLASS="GUILABEL"
 ><B
->s</B
+>Work around faulty eject</B
 ></TT
-> &#8212; The start sector of
-	    the track.  </P
-></LI
-><LI
-><P
-><TT
-CLASS="GUILABEL"
-><B
->e</B
-></TT
-> &#8212; The end sector of the
-	    track.  </P
-></LI
-><LI
-><P
-><TT
-CLASS="GUILABEL"
-><B
->n</B
-></TT
-> &#8212; The name of the
-	    track.  </P
-></LI
-><LI
-><P
-><TT
-CLASS="GUILABEL"
-><B
->a</B
-></TT
-> &#8212; The artist name for
-	    the track.  </P
-></LI
-><LI
-><P
-><TT
-CLASS="GUILABEL"
-><B
->A</B
-></TT
-> &#8212; The artist name for
-	    the disc.  </P
-></LI
-><LI
-><P
-><TT
-CLASS="GUILABEL"
-><B
->d</B
-></TT
-> &#8212; The name of the disc.
-	    </P
-></LI
-><LI
-><P
-><TT
-CLASS="GUILABEL"
-><B
->i</B
-></TT
-> &#8212; The disc database id
-	    (in hex) for the disc.  </P
-></LI
-><LI
-><P
-><TT
-CLASS="GUILABEL"
-><B
->y</B
-></TT
-> &#8212; The year of the disc.
-	  </P
-></LI
-><LI
-><P
-><TT
-CLASS="GUILABEL"
-><B
->g</B
-></TT
-> &#8212; The ID3 genre id of
-	    the disc.  </P
-></LI
-><LI
-><P
-><TT
-CLASS="GUILABEL"
-><B
->G</B
-></TT
-> &#8212; The ID3 genre string
-	    of the disc.  </P
+> &#8212; If
+	  this option is set, Grip will not rely on querying the open/closed
+	  status of the CDRom tray.</P
 ></LI
 ></UL
-><P
->Any of the '%' switches can optionally be preceded by a '*' (for
-	example, '%*a'). This prevent Grip from doing any stripping of
-	characters from the string. Generally, this option should be used
-	when the switch is being used in something other than a
-	filename.</P
 ></DIV
 ></DIV
 ><DIV
@@ -259,7 +188,7 @@ WIDTH="33%"
 ALIGN="left"
 VALIGN="top"
 ><A
-HREF="ripping.html"
+HREF="rip-perform.html"
 >&#60;&#60;&#60; Previous</A
 ></TD
 ><TD
@@ -275,7 +204,7 @@ WIDTH="33%"
 ALIGN="right"
 VALIGN="top"
 ><A
-HREF="faq.html"
+HREF="ripconfig.html"
 >Next &#62;&#62;&#62;</A
 ></TD
 ></TR
@@ -284,7 +213,7 @@ HREF="faq.html"
 WIDTH="33%"
 ALIGN="left"
 VALIGN="top"
->Ripping CDs with Grip</TD
+>Increasing Ripping Performance</TD
 ><TD
 WIDTH="34%"
 ALIGN="center"
@@ -294,7 +223,7 @@ VALIGN="top"
 WIDTH="33%"
 ALIGN="right"
 VALIGN="top"
->First Asked Questions</TD
+>The "Rip" config tab</TD
 ></TR
 ></TABLE
 ></DIV

@@ -225,6 +225,8 @@ typedef struct _grip_info {
   int mp3_started[MAX_NUM_CPU];
   int mp3_enc_track[MAX_NUM_CPU];
   char rip_delete_file[MAX_NUM_CPU][PATH_MAX];
+  double track_gain_adjustment;
+  double disc_gain_adjustment;
   struct _encode_track *encoded_track[MAX_NUM_CPU];
   GList *encode_list;
   int selected_ripper;
@@ -238,6 +240,7 @@ typedef struct _grip_info {
   gboolean disable_extra_paranoia;
   gboolean disable_scratch_detect;
   gboolean disable_scratch_repair;
+  gboolean calc_gain;
   int rip_smile_level;
   gfloat rip_percent_done;
   char force_scsi[256];
@@ -253,6 +256,7 @@ typedef struct _grip_info {
   gboolean rip_partial;
   int eject_delay;
   char wav_filter_cmd[256];
+  char disc_filter_cmd[256];
   int selected_encoder;
   char mp3cmdline[256];
   char mp3fileformat[256];
@@ -265,6 +269,7 @@ typedef struct _grip_info {
   int kbits_per_sec;
   int edit_num_cpu;
   int mp3nice;
+  char mp3_filter_cmd[256];
   gboolean doid3;
   gboolean doid3v2;
   char id3_comment[30];

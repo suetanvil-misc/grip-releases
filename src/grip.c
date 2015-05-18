@@ -62,6 +62,7 @@ static GnomeHelpMenuEntry bug_help_entry={"grip","bugs.html"};
 {"ripexename",CFG_ENTRY_STRING,256,ginfo->ripexename},\
 {"ripcmdline",CFG_ENTRY_STRING,256,ginfo->ripcmdline},\
 {"wav_filter_cmd",CFG_ENTRY_STRING,256,ginfo->wav_filter_cmd},\
+{"disc_filter_cmd",CFG_ENTRY_STRING,256,ginfo->disc_filter_cmd},\
 {"mp3exename",CFG_ENTRY_STRING,256,ginfo->mp3exename},\
 {"mp3cmdline",CFG_ENTRY_STRING,256,ginfo->mp3cmdline},\
 {"dbserver",CFG_ENTRY_STRING,256,ginfo->dbserver.name},\
@@ -81,6 +82,7 @@ static GnomeHelpMenuEntry bug_help_entry={"grip","bugs.html"};
 {"user_email",CFG_ENTRY_STRING,256,ginfo->user_email},\
 {"ripnice",CFG_ENTRY_INT,0,&ginfo->ripnice},\
 {"mp3nice",CFG_ENTRY_INT,0,&ginfo->mp3nice},\
+{"mp3_filter_cmd",CFG_ENTRY_STRING,256,ginfo->mp3_filter_cmd},\
 {"doid3",CFG_ENTRY_BOOL,0,&ginfo->doid3},\
 {"doid3v2",CFG_ENTRY_BOOL,0,&ginfo->doid3v2},\
 {"id3_comment",CFG_ENTRY_STRING,30,ginfo->id3_comment},\
@@ -119,6 +121,7 @@ static GnomeHelpMenuEntry bug_help_entry={"grip","bugs.html"};
 {"disable_extra_paranoia",CFG_ENTRY_BOOL,0,&ginfo->disable_extra_paranoia},\
 {"disable_scratch_detect",CFG_ENTRY_BOOL,0,&ginfo->disable_scratch_detect},\
 {"disable_scratch_repair",CFG_ENTRY_BOOL,0,&ginfo->disable_scratch_repair},\
+{"calc_gain",CFG_ENTRY_BOOL,0,&ginfo->calc_gain},\
 {"force_scsi",CFG_ENTRY_STRING,256,ginfo->force_scsi},
 
 #ifdef CDPAR
@@ -637,6 +640,7 @@ static void DoLoadConfig(GripInfo *ginfo)
   ginfo->disable_extra_paranoia=FALSE;
   ginfo->disable_scratch_detect=FALSE;
   ginfo->disable_scratch_repair=FALSE;
+  ginfo->calc_gain=FALSE;
   *ginfo->force_scsi='\0';
 #else
   ginfo->using_builtin_cdp=FALSE;
@@ -652,11 +656,13 @@ static void DoLoadConfig(GripInfo *ginfo)
   ginfo->eject_after_rip=TRUE;
   ginfo->eject_delay=0;
   *ginfo->wav_filter_cmd='\0';
+  *ginfo->disc_filter_cmd='\0';
   ginfo->selected_encoder=1;
   strcpy(ginfo->mp3cmdline,"-h -b %b %w %m");
   strcpy(ginfo->mp3exename,"/usr/bin/lame");
   strcpy(ginfo->mp3fileformat,"~/mp3/%A/%d/%n.mp3");
   ginfo->mp3nice=0;
+  *ginfo->mp3_filter_cmd='\0';
   ginfo->delete_wavs=TRUE;
   ginfo->add_to_db=FALSE;
   ginfo->add_m3u=TRUE;

@@ -43,6 +43,7 @@
 #include "grip_id3.h"
 #include "config.h"
 #include "common.h"
+#include "gain_analysis.h"
 
 #ifdef CDPAR
 #define size32 gint32
@@ -61,6 +62,7 @@ static char *MakeRelative(char *file1,char *file2);
 static void AddM3U(GripInfo *ginfo);
 static void ID3Add(GripInfo *ginfo,char *file,EncodeTrack *enc_track);
 static void DoWavFilter(GripInfo *ginfo);
+static void DoDiscFilter(GripInfo *ginfo);
 static void RipIsFinished(GripInfo *ginfo);
 static void CheckDupNames(GripInfo *ginfo);
 static int NextTrackToRip(GripInfo *ginfo);
@@ -632,6 +634,17 @@ static void DoWavFilter(GripInfo *ginfo)
 		     &(ginfo->sprefs),CloseStuff,(void *)ginfo);
 }
 
+static void DoDiscFilter(GripInfo *ginfo)
+{
+  EncodeTrack enc_track;
+
+  FillInTrackInfo(ginfo,ginfo->rip_track,&enc_track);
+  strcpy(enc_track.wav_filename,ginfo->ripfile);
+
+  TranslateAndLaunch(ginfo->disc_filter_cmd,TranslateSwitch,&enc_track,
+		     &(ginfo->sprefs),CloseStuff,(void *)ginfo);
+}
+
 void UpdateRipProgress(GripInfo *ginfo)
 {
   GripGUI *uinfo;
@@ -704,6 +717,11 @@ void UpdateRipProgress(GripInfo *ginfo)
 
       ginfo->ripping=FALSE;
       SetChecked(uinfo,ginfo->rip_track,FALSE);
+
+      /* Get the title gain */
+      if(ginfo->calc_gain) {
+	ginfo->track_gain_adjustment=GetTitleGain();
+      }
 
       /* Do filtering of .wav file */
 
@@ -793,6 +811,12 @@ void UpdateRipProgress(GripInfo *ginfo)
 				  ginfo->encoded_track[mycpu]);
 
 	  if(ginfo->add_to_db) AddSQLEntry(ginfo,ginfo->encoded_track[mycpu]);
+
+	  if(*ginfo->mp3_filter_cmd)
+	    TranslateAndLaunch(ginfo->mp3_filter_cmd,TranslateSwitch,
+			       ginfo->encoded_track[mycpu],
+			       &(ginfo->sprefs),CloseStuff,(void *)ginfo);
+
 
           if(ginfo->ripping_a_disc&&!ginfo->rip_partial&&
 	     !ginfo->ripping&&ginfo->num_wavs<ginfo->max_wavs) {
@@ -906,6 +930,14 @@ char *TranslateSwitch(char switch_char,void *data,gboolean *munge)
   case 'G':
     g_snprintf(res,PATH_MAX,"%s",ID3GenreString(enc_track->id3_genre));
     break;
+  case 'r':
+    g_snprintf(res,PATH_MAX,"%+6.2f",enc_track->track_gain_adjustment);
+    *munge=FALSE;
+    break;
+  case 'R':
+    g_snprintf(res,PATH_MAX,"%+6.2f",enc_track->disc_gain_adjustment);
+    *munge=FALSE;
+    break;
   default:
     *res='\0';
     break;
@@ -988,7 +1020,9 @@ void DoRip(GtkWidget *widget,gpointer data)
     return;
   }
 
-  /*  ginfo->num_wavs=0;*/
+  /* Initialize gain calculation */
+  if(ginfo->calc_gain) 
+    InitGainAnalysis(44100);
 
   CheckDupNames(ginfo);
 
@@ -1041,8 +1075,17 @@ static gboolean RipNextTrack(GripInfo *ginfo)
 
   Debug(_("First checked track is %d\n"),ginfo->rip_track+1);
 
-  if(ginfo->rip_track==ginfo->disc.num_tracks)  /* Finished ripping */
+  /* See if we are finished ripping */
+  if(ginfo->rip_track==ginfo->disc.num_tracks) {
+    if(ginfo->calc_gain) {
+      ginfo->disc_gain_adjustment=GetAlbumGain();
+    }
+
+    if(ginfo->disc_filter_cmd)
+      DoDiscFilter(ginfo);
+
     return FALSE;
+  }
 
   /* We have a track to rip */
 
@@ -1189,7 +1232,7 @@ static void ThreadRip(void *arg)
 	 ginfo->start_sector,
 	 ginfo->end_sector,ginfo->ripfile,paranoia_mode,
 	 &(ginfo->rip_smile_level),&(ginfo->rip_percent_done),
-	 &(ginfo->stop_thread_rip_now));
+	 &(ginfo->stop_thread_rip_now),ginfo->calc_gain);
   
   ginfo->in_rip_thread=FALSE;
 
@@ -1207,6 +1250,8 @@ void FillInTrackInfo(GripInfo *ginfo,int track,EncodeTrack *new_track)
   new_track->track_num=track;
   new_track->start_frame=ginfo->disc.track[track].start_frame;
   new_track->end_frame=ginfo->disc.track[track+1].start_frame-1;
+  new_track->track_gain_adjustment=ginfo->track_gain_adjustment;
+  new_track->disc_gain_adjustment=ginfo->disc_gain_adjustment;
 
   /* Compensate for the gap before a data track */
   if((track<(ginfo->disc.num_tracks-1)&&

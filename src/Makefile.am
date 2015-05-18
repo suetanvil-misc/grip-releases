@@ -32,7 +32,9 @@ grip_SOURCES =         \
 	parsecfg.c \
 	parsecfg.h \
 	launch.c \
-	launch.h
+	launch.h \
+	gain_analysis.c \
+	gain_analysis.h
 
 grip_LDADD = $(GNOMEUI_LIBS) $(GNOME_LIBDIR) $(INTLLIBS) $(PTHREAD_LIB) \
 	$(GHTTP_LIB) $(CDPAR_LIBS) $(ID3_LIBS)

@@ -1,18 +1,13 @@
 Grip
 ====
 
-Grip is a gtk-based cd-player and cd-ripper. It has the ripping capabilities
-of cdparanoia builtin, but can also use external rippers (such as
-cdda2wav). It also provides an automated frontend for MP3 encoders, letting
-you take a disc and transform it easily straight into MP3s. The DiscDB
-protocol is supported for retrieving track information from disc database
-servers. Grip works with DigitalDJ to provide a unified "computerized"
-version of your music collection.
-
-
-***
-*** Note: This documentation is out of date, and is being revised
-***
+Grip is a cd-player and cd-ripper for the Gnome desktop.. It has the ripping
+capabilities of cdparanoia builtin, but can also use external rippers (such
+as cdda2wav). It also provides an automated frontend for MP3 encoders,
+letting you take a disc and transform it easily straight into MP3s. Internet
+disc lookups are supported for retrieving track information from disc
+database servers. Grip works with DigitalDJ to provide a unified
+"computerized" version of your music collection.
 
 
 Requirements
@@ -20,7 +15,7 @@ Requirements
 
 To use Grip, you must have:
 
- o GTK+ (see http://www.gtk.org)
+ o The Gnome desktop
  o POSIX thread support (http://pauillac.inria.fr/~xleroy/linuxthreads)
  o a net connection (if you want to use disc database lookup)
  o a CD player (surprise, surprise)
@@ -36,6 +31,27 @@ Installation
 
 If you obtained Grip from the RPM distribution then they are already
 installed. If you have the source distribution, you need to compile it.
+
+To install Grip, simply go through the following steps:
+
+ o after unpacking Grip, cd to the extracted directory
+ o './configure'
+ o 'make'
+ o become root if you are installing in a non-user directory
+ o 'make install'
+
+If you wish to have builtin cdparanoia support, or id3v2 support, you must
+have the appropriate packages on your system. You can find them here:
+
+ cdparanoia: http://xiph.org/paranoia/index.html
+ id3v2: http://id3lib.sourceforge.net/
+
+Grip adds the following options that can be specified to configure:
+
+  --disable-shared-cdpar  -- This will force Grip to link statically, rather
+                             than dynamically with cdparanoia
+  --disable-shared-id3    -- This will force Grip to link statically, rather
+                             than dynamically with id3lib
 
 
 Running Grip
@@ -53,229 +69,8 @@ Grip's usage is:
     --no-redirect          Do not do I/O redirection
     --verbose              Verbose (debug) mode
 
-Grip's operation should be pretty self-explanatory. Tracks to rip are
-selected with the right mouse button. To select all tracks on the disc,
-click the "Rip" column label. When you select "Rip" or "MP3-encode" from the
-"Rip" page, Grip will rip or rip/encode the tracks you have selected. If you
-select "Rip partial track", only the current select of the current track
-will be ripped or encoded. Start/End sector values are ignored if partial
-track ripping is not enabled.
 
-Grip used to be installed as setuid root. This was for several
-reasons. First, most people have their systems configured such that their
-user accound does not have access to the cd drive. Secondly, cdparanoia
-requires access to both the cd device and (for scsi drives) the generic scsi
-device (usually /dev/sg<something>). Despite this, I no longer install the
-programs setuid root. This means that you will have to set the permissions
-correctly on the appropriate devices, or run the program as root.
-
-**************************************************************************
-******************************** IMPORTANT! ******************************
-**************************************************************************
-
-If you have trouble with Grip, read the "Common Questions"
-section. I'm getting bogged down in email these days. This being said, I do
-appreciate feedback on Grip. If, after reading through this document
-carefully, you still have a question, or have a feature request, feel free
-to email me. Do read the file TODO first, however, to check whether it's
-already on my list.
-
-**************************************************************************
-******************************** IMPORTANT! ******************************
-**************************************************************************
-
-
-Configuring Grip
-================
-
-The 'Config' menu allows you to configure your ripping program and your DiscDB
-database. Rip/Encode/ID3 options are only available in Grip.
-
-Here are the options:
-
-CD options:
-
- o Don't interrupt playback on exit/startup: If this is not selected, Grip
-                                             will stop play when it starts
-                                             and when it stops.
-
- o Rewind when stopped: If selected, Grip will rewind to the first track
-                        when play is stopped.
-
- o Startup with first track if not playing: If this is not selected, Grip
-                                            will begin with whatever track
-					    the cd-player played last.
-
- o Reshuffle before each playback: If selected, Grip will re-randomize the
-                                   tracks each time playback begins when in
-                                   shuffle-play mode.
-
- o Work around faulty eject: Try this if Grip is having trouble ejecting
-                             your cds.
-
-Rip Options:
-
- o Ripper: This allows you to select one of the preset rippers. This will
-           fill in sensible default parameters for calling the ripper. If
-           you select "grip (cdparanoia)", Grip will use its builtin version
-           of cdparanoia (only available if paranoia has been compiled
-           in). If the builtin ripper is selected, the following options are
-           available:
-
-           o Disable paranoia: Disables all paranoia checking.
-
-           o Disable extra paranoia: Only cdda2wav-style overlap checking
-                                     will be done.
-
-           o Disable scratch detection: Do not look for scratches.
-
-           o Disable scratch repair: Disable scratch repair (still detect)
-
- o Ripping executable: This should be the full path to the program you want
-                       to use to rip tracks with.
-
- o Ripping command-line: These are the arguments that will be passed to the
-                         ripping program.
-
- o Rip file format: This specifies the format of the filename to write
-                    ripped data to.
-		    
- o Rip 'nice' value: The 'nice' (priority) level to run the rip at.
-
- o Max non-encoded .wav's: The maximum number of non-encoded .wav files grip
-                           will keep around before pausing ripping.
-
- o Auto-rip on insert: If selected, Grip will automatically select all
-                       tracks and begin ripping when a new (ie: no local
-                       disc data) disc is inserted.
-
- o Beep after rip: If selected, Grip will "beep" after ripping is finished.
-
- o Auto-eject after rip: If selected, Grip will automatically eject the disc
-                         when ripping is finished.
-
- o Auto-eject deleay: Specifies the number of seconds to wait before
-                      auto-ejecting. This is useful for some drives that
-                      are slow to spin down.
-
- o Wav filter command: This command will be run after ripping but before
-                       encoding. It can be used to call a program to
-                       maniuplate the .wav file in some way (such as doing
-                       normalization). It accepts a single switch, %f, which
-                       translates as the ripped .wav file.
-
-
-MP3 options:
-
- o Encoder: This allows you to select one of the preset rippers. This will
-            fill in sensible default parameters for calling the encoder.
-
- o MP3 executable: This should be the full path to the program you want
-                   to use to MP3-encode tracks with.
-
- o MP3 command-line: These are the arguments that will be passed to the
-                     MP3 encoder.
-
- o MP3 file format: This specifies the format of the filename to write
-                    MP3 data to. The '%' switches are the same as those
-                    used in the rip file format.
-
- o Delete .wav after encoding?: If selected, this option will (surprise!)
-                                delete the ripped .wav file after encoding.
-
- o Insert into SQL database: If selected, and DigitalDJ is installed, Grip
-                             will place the song information into
-                             DigitalDJ's song database.
-
- o Create .m3u files: If selected, Grip will create .m3u playlist files for
-                      each cd that is ripped.
-
- o Use relative paths in .m3u files: If selected, mp3 filenames inside an
-                                     m3u file will be relative to the
-                                     location of the m3u file.
-
- o M3U file format: The file format of the .m3u file. The '%' switches are
-                    the same as those used in the rip and encode file
-                    formats.
-
- o Encoding bitrate (kbits/sec): Specifies the bitrate that the MP3s should
-                                 be encoded at. This will only work if the
-                                 '%b' option is used in the MP3
-                                 command-line.
-
- o Number of CPUs to use: This is the number of simultaneous encode
-                          processes allowed. If you have an SMP system,
-                          increase this number to use more processes. Note
-                          that Grip must be restarted for changes in this
-                          option to take effect.
-
- o MP3 'nice' value: The 'nice' (priority) level to run the MP3 encode at.
-
-
-ID3 options:
-
- o Add ID3 tags: If selected this option will cause ID3 tags to be added to
-                 each MP3 file after it is encoded.
- 
-
-DiscDB options:
-
- o Primary/Secondary DiscDB server: These are your servers for looking up disc
-                                  information over the net. If the disc is
-                                  not found on the primary server, the
-                                  secondary server will be checked.
-
-   o DB server: The address of the DiscDB server you wish to use.
-
-   o DB CGI path: The path to the script on the server that handles HTTP
-                  requests. This is generally "~cddb/cddb.cgi" or
-                  "cgi-bin/cddb.cgi".
-
-   o DB Submit email: The email address to send DiscDB submissions to.
-
-   o Perform DiscDB lookup automatically: If selected, Grip will always try
-                                         to look up an unknown disc. If not
-                                         selected, lookup must be initiated
-                                         manually.
-
-
-Proxy options:
-
- o Use proxy server: If selected, DiscDB requests will be sent through an
-                     HTTP proxy (useful for people behind firewalls).
-
- o Get server from 'http_proxy' env. var:
-        If set, Grip will try to read the http server/port information from
-        the environment variable "http_proxy", which should take the form
-        "http://server:port".
-
- o Proxy server: The address of the HTTP proxy server to be used.
-
- o Proxy port: The port to talk to the proxy on.
-
-
-Misc options:
-
- o Email address: The email address to be used as a reply address when
-                  submitting DiscDB entries and bug reports.
-
- o CD update program: This program will be run whenever a disc is put in the
-                      drive. All sensible '%' switches can be used. I use
-                      this to call a program that generates a web page that
-                      tells what CD I'm currently playing.
-
- o Do not lowercase filenames: If selected, Grip will not lowercase
-                               filenames.
-
- o Characters to not strip in filenames: Specifies a list of characters that
-                                         Grip should not strip when creating
-                                         filenames. If left blank
-                                         (recommended) Grip will only allow
-                                         alphanumeric characters.
-
- o Keep application minimum size: If selected, Grip will always try to keep
-                                  its window a the minimum size possible.
-
+For more information, see the online documentation.
 
 ---
 Mike Oliphant (oliphant@gtk.org)

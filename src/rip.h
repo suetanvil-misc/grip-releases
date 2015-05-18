@@ -41,6 +41,8 @@ typedef struct _encode_track {
   int mins;
   int secs;
   int discid;
+  double track_gain_adjustment;
+  double disc_gain_adjustment;
 } EncodeTrack;
 
 
@@ -64,7 +66,8 @@ void FillInTrackInfo(GripInfo *ginfo,int track,EncodeTrack *new_track);
 gboolean CDPRip(char *device,char *generic_scsi_device,int track,
 		long first_sector,long last_sector,
 		char *outfile,int paranoia_mode,int *rip_smile_level,
-		gfloat *rip_percent_done,gboolean *stop_thread_rip_now);
+		gfloat *rip_percent_done,gboolean *stop_thread_rip_now,
+		gboolean do_gain_calc);
 #endif
 
 #endif /* ifndef GRIP_RIP_H */

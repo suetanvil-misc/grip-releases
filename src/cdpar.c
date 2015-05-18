@@ -39,6 +39,7 @@
 #include <sys/time.h>
 #include <sys/stat.h>
 #include <glib.h>
+#include "gain_analysis.h"
 
 #define size16 short
 #define size32 int
@@ -49,7 +50,8 @@
 static void PutNum(long num,int f,int endianness,int bytes);
 static void WriteWav(int f,long bytes);
 static void CDPCallback(long inpos, int function);
-static long CDPWrite(int outf, char *buffer, long num);
+static void GainCalc(char *buffer);
+static long CDPWrite(int outf, char *buffer);
 
 static inline int bigendianp(void){
   int test=1;
@@ -221,9 +223,28 @@ static void CDPCallback(long inpos,int function)
   else *global_rip_smile_level=0;
 }
 
-static long CDPWrite(int outf, char *buffer, long num)
+/* Do the replay gain calculation on a sector */
+static void GainCalc(char *buffer)
+{
+  static Float_t l_samples[588];
+  static Float_t r_samples[588];
+  long count;
+  short *data;
+
+  data=(short *)buffer;
+
+  for(count=0;count<588;count++) {
+    l_samples[count]=(Float_t)data[count*2];
+    r_samples[count]=(Float_t)data[(count*2)+1];
+  }
+
+  AnalyzeSamples(l_samples,r_samples,588,2);
+}
+
+static long CDPWrite(int outf,char *buffer)
 {
   long words=0,temp;
+  long num=CD_FRAMESIZE_RAW;
 
   while(words<num){
     temp=write(outf,buffer+words,num-words);
@@ -241,7 +262,8 @@ static long CDPWrite(int outf, char *buffer, long num)
 gboolean CDPRip(char *device,char *generic_scsi_device,int track,
 		long first_sector,long last_sector,
 		char *outfile,int paranoia_mode,int *rip_smile_level,
-		gfloat *rip_percent_done,gboolean *stop_thread_rip_now)
+		gfloat *rip_percent_done,gboolean *stop_thread_rip_now,
+		gboolean do_gain_calc)
 {
   int force_cdrom_endian=-1;
   int force_cdrom_sectors=-1;
@@ -435,8 +457,11 @@ gboolean CDPRip(char *device,char *generic_scsi_device,int track,
     }
 	
     CDPCallback(cursor*(CD_FRAMEWORDS)-1,-2);
+
+    if(do_gain_calc)
+      GainCalc((char *)readbuf);
 	
-    if(CDPWrite(out,(char *)readbuf,CD_FRAMESIZE_RAW)){
+    if(CDPWrite(out,(char *)readbuf)){
       printf("Error writing output: %s",strerror(errno));
 	  
       cdda_close(d);

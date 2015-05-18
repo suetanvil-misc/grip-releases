@@ -226,6 +226,11 @@ void MakeConfigPage(GripInfo *ginfo)
   gtk_box_pack_start(GTK_BOX(uinfo->rip_builtin_box),hbox,FALSE,FALSE,0);
   gtk_widget_show(hbox);
   
+  check=MakeCheckButton(NULL,&ginfo->calc_gain,
+			_("Calculate gain adjustment"));
+  gtk_box_pack_start(GTK_BOX(uinfo->rip_builtin_box),check,FALSE,FALSE,0);
+  gtk_widget_show(check);
+
   entry=MakeStrEntry(NULL,ginfo->force_scsi,_("Generic SCSI device"),
 		     255,TRUE);
   gtk_box_pack_start(GTK_BOX(uinfo->rip_builtin_box),entry,FALSE,FALSE,0);
@@ -277,6 +282,11 @@ void MakeConfigPage(GripInfo *ginfo)
   gtk_widget_show(entry);
 
   entry=MakeStrEntry(NULL,ginfo->wav_filter_cmd,_("Wav filter command"),
+						  255,TRUE);
+  gtk_box_pack_start(GTK_BOX(vbox),entry,FALSE,FALSE,0);
+  gtk_widget_show(entry);
+  
+  entry=MakeStrEntry(NULL,ginfo->disc_filter_cmd,_("Disc filter command"),
 						  255,TRUE);
   gtk_box_pack_start(GTK_BOX(vbox),entry,FALSE,FALSE,0);
   gtk_widget_show(entry);
@@ -403,6 +413,11 @@ void MakeConfigPage(GripInfo *ginfo)
   gtk_box_pack_start(GTK_BOX(vbox),entry,FALSE,FALSE,0);
   gtk_widget_show(entry);
   
+  entry=MakeStrEntry(NULL,ginfo->mp3_filter_cmd,_("MP3 filter command"),
+		     255,TRUE);
+  gtk_box_pack_start(GTK_BOX(vbox),entry,FALSE,FALSE,0);
+  gtk_widget_show(entry);
+
   gtk_container_add(GTK_CONTAINER(page2),vbox);
   gtk_widget_show(vbox);
 
