@@ -1,6 +1,6 @@
 /* status_window.h
  *
- * Copyright (c) 1998-2003  Mike Oliphant <oliphant@gtk.org>
+ * Copyright (c) 1998-2004  Mike Oliphant <grip@nostatic.org>
  *
  *   http://www.nostatic.org/grip
  *

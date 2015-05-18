@@ -1,3 +1,15 @@
+2004-04-20  Mike Oliphant  <grip@nostatic.org>
+
+	* ja.po: updated (Takeshi Aihana)
+	* ca.po: updated (Jordi Mallach)
+	* de.po: updated (Götz Waschk)
+	* fi.po: updated (Flammie Pirinen)
+	* it.po: updated (Ceoldo Costantino)
+	* grip.c/rip.c: additional i18n strings
+	* status_window.c: made vte terminal accept UTF-8
+	* various: copyright updates
+	* configure.in: upped version to 3.1.10
+	
 2004-04-02  Mike Oliphant  <grip@nostatic.org>
 
 	* it.po: updated (Ceoldo Costantino)
@@ -7,7 +19,7 @@
 	  different languages
 	* cdplay.c: fixed bug in playlist support (Markus Kaufhold)
 	* discdb.c: fixed a string length calculation (Thomas Zajic)
-	* discdb.c: removed redundant curl cals (Markus Kaufhold)
+	* discdb.c: removed redundant curl calls (Markus Kaufhold)
 	* status_window.c: fixed a crash problem in certain locales
 	  (Markus Kaufhold)
 	* rip.c/launch.c: translate args of launched programs to locale

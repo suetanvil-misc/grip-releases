@@ -12,7 +12,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: grip 3.1.8\n"
-"POT-Creation-Date: 2004-04-01 08:39-0800\n"
+"POT-Creation-Date: 2004-04-15 11:24-0700\n"
 "PO-Revision-Date: 2004-03-30 12:00+0300\n"
 "Last-Translator: Flammie Pirinen <flammie@gnome-fi.org>\n"
 "Language-Team: Finnish <lokalisointi-laatu@lists.linux-aktivaattori.org>\n"
@@ -82,6 +82,10 @@ msgstr ""
 "Tämä on Gripin kehitysversio. Jos kohtaat ongelmia suositellaan että "
 "käyttäisit viimeisintä vakaata versiota"
 
+#: src/grip.c:304
+msgid "Grip started successfully\n"
+msgstr "Grip käynnistyi onnistuneesti\n"
+
 #: src/grip.c:318
 msgid ""
 "Work is in progress.\n"
@@ -146,11 +150,11 @@ msgstr "Tietoja"
 #: src/grip.c:539
 #, c-format
 msgid "Version %s"
-msgstr ""
+msgstr "Versio %s"
 
 #: src/grip.c:875
 msgid "Created by Grip"
-msgstr ""
+msgstr "Tehty Gripillä"
 
 #: src/grip.c:889
 msgid ""
@@ -445,23 +449,23 @@ msgstr "Hae palvelin 'http_proxy'-ympäristömuuttujasta"
 
 #: src/gripcfg.c:641
 msgid "Proxy server"
-msgstr "Välityspalvelin"
+msgstr "Välipalvelin"
 
 #: src/gripcfg.c:645
 msgid "Proxy port"
-msgstr "Välityspalvelimen portti"
+msgstr "Välipalvelimen portti"
 
 #: src/gripcfg.c:649
 msgid "Proxy username"
-msgstr "Välityspalvelimen käyttäjänimi"
+msgstr "Välipalvelimen käyttäjänimi"
 
 #: src/gripcfg.c:655
 msgid "Proxy password"
-msgstr "Välityspalvelimen salasana"
+msgstr "Välipalvelimen salasana"
 
 #: src/gripcfg.c:663
 msgid "Proxy"
-msgstr "Välityspalvelin"
+msgstr "Välipalvelin"
 
 #: src/gripcfg.c:672
 msgid "Email address"
@@ -496,14 +500,12 @@ msgid "Misc"
 msgstr "Muut"
 
 #: src/gripcfg.c:808
-#, fuzzy
 msgid "Error: Unable to save ripper config"
-msgstr "Virhe: Asetustiedostoa ei voitu tallentaa"
+msgstr "Virhe: Kopioijan asetustiedostoa ei voitu tallentaa"
 
 #: src/gripcfg.c:878
-#, fuzzy
 msgid "Error: Unable to save encoder config"
-msgstr "Virhe: Asetustiedostoa ei voitu tallentaa"
+msgstr "Virhe: Koodaajan asetustiedostoa ei voitu tallentaa"
 
 #: src/cddev.c:174 src/cddev.c:601
 #, c-format
@@ -791,7 +793,7 @@ msgstr "Levyn nimi"
 # this is assumed to be longest string of dialog in source file ::)
 #: src/discedit.c:74 src/discedit.c:176
 msgid "Track name"
-msgstr "   Raidan nimi   "
+msgstr "  Raidan nimi  "
 
 #: src/discedit.c:84
 msgid "W"
@@ -799,11 +801,11 @@ msgstr "W"
 
 #: src/discedit.c:110
 msgid "Disc artist"
-msgstr "Levyn esiintyjä"
+msgstr "Levyn artisti"
 
 #: src/discedit.c:127
 msgid "ID3 genre:"
-msgstr "ID3-tyylilaji:"
+msgstr "ID3-tyylilaji"
 
 #: src/discedit.c:158
 msgid "Disc year"
@@ -811,7 +813,7 @@ msgstr "Levyn vuosi"
 
 #: src/discedit.c:196
 msgid "Track artist"
-msgstr "Raidan esiintyjä"
+msgstr "Raidan artisti"
 
 #: src/discedit.c:213
 msgid "Split:"
@@ -831,7 +833,7 @@ msgstr "Jakomerkit"
 
 #: src/discedit.c:252
 msgid "Multi-artist"
-msgstr "Monta esiintyjää"
+msgstr "Monta artistia"
 
 #: src/discedit.c:263
 msgid "Save disc info"
@@ -863,7 +865,7 @@ msgstr "Levyn nimi on syötettävä"
 
 #: src/discedit.c:560
 msgid "You must enter a disc artist"
-msgstr "Levyn esiintyjä on syötettävä"
+msgstr "Levyn artisti on syötettävä"
 
 #: src/discedit.c:570
 msgid ""
@@ -921,7 +923,7 @@ msgstr "Peruuta"
 #. Doh!
 #: src/id3.c:290
 msgid "unknown ID3 field\n"
-msgstr "Tuntematon ID3-kenttä\n"
+msgstr "tuntematon ID3-kenttä\n"
 
 #: src/launch.c:121
 #, c-format
@@ -1018,6 +1020,11 @@ msgstr "Alkussektori"
 msgid "End sector"
 msgstr "Loppusektori"
 
+#: src/rip.c:380
+#, c-format
+msgid "Inserting track %d into the ddj database\n"
+msgstr "Syötetänä raidan %d tiedot ddj-kantaan\n"
+
 #: src/rip.c:601
 msgid "Error: can't open m3u file\n"
 msgstr "Virhe: m3u-tiedostoa ei voitu avata\n"
@@ -1085,7 +1092,7 @@ msgstr "Kopiointi loppui\n"
 
 #: src/rip.c:1157 src/rip.c:1163
 msgid "NoArtist"
-msgstr "EiEsiintyjää"
+msgstr "EiArtistia"
 
 #: src/rip.c:1168
 msgid "NoTitle"

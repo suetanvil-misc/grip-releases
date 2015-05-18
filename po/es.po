@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: grip-3.0.0\n"
-"POT-Creation-Date: 2004-04-01 08:39-0800\n"
+"POT-Creation-Date: 2004-04-15 11:24-0700\n"
 "PO-Revision-Date: 2002-05-24 15:40-006\n"
 "Last-Translator: El_Pavo_Asesino <ciehe@yahoo.com>\n"
 "Language-Team: ESPAÑOL <es@li.org>\n"
@@ -71,6 +71,10 @@ msgstr "Error: No pude inicializar [%s]\n"
 msgid ""
 "This is a development version of Grip. If you encounter problems, you are "
 "encouraged to revert to the latest stable version."
+msgstr ""
+
+#: src/grip.c:304
+msgid "Grip started successfully\n"
 msgstr ""
 
 #: src/grip.c:318
@@ -1021,6 +1025,11 @@ msgstr ""
 #: src/rip.c:332
 msgid "End sector"
 msgstr ""
+
+#: src/rip.c:380
+#, fuzzy, c-format
+msgid "Inserting track %d into the ddj database\n"
+msgstr "Insertar la información en una base de datos SQL"
 
 #: src/rip.c:601
 msgid "Error: can't open m3u file\n"

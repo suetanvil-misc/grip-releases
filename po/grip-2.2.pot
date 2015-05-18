@@ -7,7 +7,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2004-04-01 08:39-0800\n"
+"POT-Creation-Date: 2004-04-15 11:24-0700\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -72,6 +72,10 @@ msgstr ""
 msgid ""
 "This is a development version of Grip. If you encounter problems, you are "
 "encouraged to revert to the latest stable version."
+msgstr ""
+
+#: src/grip.c:304
+msgid "Grip started successfully\n"
 msgstr ""
 
 #: src/grip.c:318
@@ -977,6 +981,11 @@ msgstr ""
 
 #: src/rip.c:332
 msgid "End sector"
+msgstr ""
+
+#: src/rip.c:380
+#, c-format
+msgid "Inserting track %d into the ddj database\n"
 msgstr ""
 
 #: src/rip.c:601

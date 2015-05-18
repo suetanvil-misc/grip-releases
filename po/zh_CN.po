@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: grip 3.0.0\n"
-"POT-Creation-Date: 2004-04-01 08:39-0800\n"
+"POT-Creation-Date: 2004-04-15 11:24-0700\n"
 "PO-Revision-Date: 2002-04-25 19:20+0800\n"
 "Last-Translator: Merlin Ma <merlin@turbolinux.com.cn>\n"
 "Language-Team: Chinese (simplified) <i18n-translation@lists.linux.net.cn>\n"
@@ -70,6 +70,10 @@ msgstr "错误: 无法初始化 [%s]\n"
 msgid ""
 "This is a development version of Grip. If you encounter problems, you are "
 "encouraged to revert to the latest stable version."
+msgstr ""
+
+#: src/grip.c:304
+msgid "Grip started successfully\n"
 msgstr ""
 
 #: src/grip.c:318
@@ -1011,6 +1015,11 @@ msgstr "起始扇区"
 #: src/rip.c:332
 msgid "End sector"
 msgstr "终止扇区"
+
+#: src/rip.c:380
+#, fuzzy, c-format
+msgid "Inserting track %d into the ddj database\n"
+msgstr "插入信息到 SQL 数据库"
 
 #: src/rip.c:601
 msgid "Error: can't open m3u file\n"

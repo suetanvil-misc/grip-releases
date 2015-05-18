@@ -1,14 +1,14 @@
 # grip ja.po.
-# Copyright (C) 2000-2003 Free Software Foundation, Inc.
+# Copyright (C) 2000-2004 Free Software Foundation, Inc.
 # TAKEDA Hirofumi <takepin@turbolinux.co.jp>, 2001.
-# Takeshi Aihana <aihana@gnome.gr.jp>, 2000-2003.
+# Takeshi Aihana <aihana@gnome.gr.jp>, 2000-2004.
 # , no-wrap
 # 
 msgid ""
 msgstr ""
-"Project-Id-Version: grip 3.1.3\n"
-"POT-Creation-Date: 2004-04-01 08:39-0800\n"
-"PO-Revision-Date: 2003-11-08 15:40+0900\n"
+"Project-Id-Version: grip 3.1.9\n"
+"POT-Creation-Date: 2004-04-15 11:24-0700\n"
+"PO-Revision-Date: 2004-04-04 12:27+0900\n"
 "Last-Translator: Takeshi AIHANA <aihana@gnome.gr.jp>\n"
 "Language-Team: Japanese <gnome-translation@gnome.gr.jp>\n"
 "MIME-Version: 1.0\n"
@@ -73,6 +73,12 @@ msgstr "エラー: [%s] を初期化できません\n"
 msgid ""
 "This is a development version of Grip. If you encounter problems, you are "
 "encouraged to revert to the latest stable version."
+msgstr ""
+"この Grip は開発版です。もし何か問題が発生した場合は、最新の安定版にインス"
+"トールし直すことを強くおすすめします。"
+
+#: src/grip.c:304
+msgid "Grip started successfully\n"
 msgstr ""
 
 #: src/grip.c:318
@@ -139,11 +145,11 @@ msgstr "情報"
 #: src/grip.c:539
 #, c-format
 msgid "Version %s"
-msgstr ""
+msgstr "バージョン %s"
 
 #: src/grip.c:875
 msgid "Created by Grip"
-msgstr ""
+msgstr "Created by Grip"
 
 #: src/grip.c:889
 msgid ""
@@ -194,7 +200,7 @@ msgstr "再生する度にシャッフルする"
 
 #: src/gripcfg.c:142
 msgid "Work around faulty eject"
-msgstr "不良時にイジェクトする"
+msgstr "不良時に取り出す"
 
 #: src/gripcfg.c:147
 msgid "Poll disc drive for new disc"
@@ -222,31 +228,31 @@ msgstr "オプション"
 
 #: src/gripcfg.c:236
 msgid "Disable paranoia"
-msgstr "Paranoia 使用不可"
+msgstr "Paranoia を使用しない"
 
 #: src/gripcfg.c:241
 msgid "Disable extra paranoia"
-msgstr "拡張 Paranoia 使用不可"
+msgstr "拡張 Paranoia を使用しない"
 
 #: src/gripcfg.c:247
 msgid "Disable scratch"
-msgstr "Scratch 使用不可"
+msgstr "Scratch を使用しない"
 
 #: src/gripcfg.c:251
 msgid "detection"
-msgstr "検出"
+msgstr "検出する"
 
 #: src/gripcfg.c:255
 msgid "repair"
-msgstr "修復"
+msgstr "修復する"
 
 #: src/gripcfg.c:263
 msgid "Calculate gain adjustment"
-msgstr "調整するゲインの計算"
+msgstr "ゲインの調整値を計算する"
 
 #: src/gripcfg.c:271
 msgid "Rip file format"
-msgstr "切り出しファイルフォーマット"
+msgstr "ファイルの書式"
 
 #: src/gripcfg.c:275
 msgid "Generic SCSI device"
@@ -274,11 +280,11 @@ msgstr "完了したらビープ音を鳴らす"
 
 #: src/gripcfg.c:316
 msgid "Auto-eject after rip"
-msgstr "完了したら自動的にイジェクトする"
+msgstr "完了したら自動的に取り出す"
 
 #: src/gripcfg.c:320
 msgid "Auto-eject delay"
-msgstr "自動イジェクトまでの待機時間"
+msgstr "自動取り出しまでの待機時間"
 
 #: src/gripcfg.c:328
 msgid "Delay before ripping"
@@ -317,13 +323,12 @@ msgid "Encoder command-line"
 msgstr "コマンドライン引数"
 
 #: src/gripcfg.c:423
-#, fuzzy
 msgid "Encode file extension"
-msgstr "書式"
+msgstr "ファイルの拡張子"
 
 #: src/gripcfg.c:428
 msgid "Encode file format"
-msgstr "書式"
+msgstr "ファイルの書式"
 
 #: src/gripcfg.c:436
 msgid "Encoder"
@@ -351,7 +356,7 @@ msgstr "m3u ファイル書式"
 
 #: src/gripcfg.c:469
 msgid "Encoding bitrate (kbits/sec)"
-msgstr "ビットレート (kbits/秒)"
+msgstr "ビットレート (Kビット/秒)"
 
 #: src/gripcfg.c:473
 msgid "Number of CPUs to use"
@@ -386,9 +391,8 @@ msgid "ID3v1 Character set encoding"
 msgstr "ID3v1 の文字エンコーディング"
 
 #: src/gripcfg.c:532
-#, fuzzy
 msgid "ID3v2 Character set encoding"
-msgstr "ID3v1 の文字エンコーディング"
+msgstr "ID3v2 の文字エンコーディング"
 
 #: src/gripcfg.c:540
 msgid "ID3"
@@ -440,11 +444,11 @@ msgstr "環境変数 $http_proxy からサーバを取得する"
 
 #: src/gripcfg.c:641
 msgid "Proxy server"
-msgstr "プロキシサーバ"
+msgstr "サーバ名"
 
 #: src/gripcfg.c:645
 msgid "Proxy port"
-msgstr "プロキシポート"
+msgstr "ポート番号"
 
 #: src/gripcfg.c:649
 msgid "Proxy username"
@@ -491,14 +495,12 @@ msgid "Misc"
 msgstr "その他"
 
 #: src/gripcfg.c:808
-#, fuzzy
 msgid "Error: Unable to save ripper config"
-msgstr "エラー: 設定ファイルを保存できません"
+msgstr "エラー: 切り出しの設定を保存できません"
 
 #: src/gripcfg.c:878
-#, fuzzy
 msgid "Error: Unable to save encoder config"
-msgstr "エラー: 設定ファイルを保存できません"
+msgstr "エラー: エンコーディングの設定を保存できません"
 
 #: src/cddev.c:174 src/cddev.c:601
 #, c-format
@@ -570,14 +572,13 @@ msgstr "完了\n"
 
 #: src/cdplay.c:221 src/cdplay.c:633
 msgid "Error saving disc data\n"
-msgstr "ディスクデータ保存中のエラー\n"
+msgstr "ディスクのデータ保存中にエラー\n"
 
 #: src/cdplay.c:227
 msgid "No match\n"
 msgstr "一致しませんでした\n"
 
 #: src/cdplay.c:245 src/cdplay.c:337
-#, fuzzy
 msgid "Length"
 msgstr "演奏時間"
 
@@ -603,27 +604,27 @@ msgstr "切り出し状況"
 
 #: src/cdplay.c:869
 msgid "Play track / Pause play"
-msgstr "トラックの再生 / 停止"
+msgstr "トラックの再生/演奏を一時停止します"
 
 #: src/cdplay.c:880
 msgid "Rewind"
-msgstr "巻き戻し"
+msgstr "巻き戻します"
 
 #: src/cdplay.c:891
 msgid "FastForward"
-msgstr "早送り"
+msgstr "早送りします"
 
 #: src/cdplay.c:901
 msgid "Go to previous track"
-msgstr "前のトラックに"
+msgstr "前のトラックにジャンプします"
 
 #: src/cdplay.c:910
 msgid "Go to next track"
-msgstr "次のトラックに"
+msgstr "次のトラックにジャンプします"
 
 #: src/cdplay.c:919
 msgid "Toggle play mode options"
-msgstr "再生オプションの切り替え"
+msgstr "再生オプションを切り替えます"
 
 #: src/cdplay.c:929
 msgid "Next Disc"
@@ -631,35 +632,35 @@ msgstr "次のディスク"
 
 #: src/cdplay.c:943
 msgid "Stop play"
-msgstr "停止"
+msgstr "演奏を停止します"
 
 #: src/cdplay.c:953
 msgid "Eject disc"
-msgstr "ディスクをイジェクト"
+msgstr "ディスクを取り出します"
 
 #: src/cdplay.c:962
 msgid "Scan Disc Contents"
-msgstr "ディスクの内容をスキャンする"
+msgstr "ディスクの内容をスキャンします"
 
 #: src/cdplay.c:970
 msgid "Toggle Volume Control"
-msgstr "ボリューム調整の切り替え"
+msgstr "ボリューム・コントロールに切り替えます"
 
 #: src/cdplay.c:979
 msgid "Toggle disc editor"
-msgstr "ディスクエディタの切り替え"
+msgstr "ディスク・エディタに切り替えます"
 
 #: src/cdplay.c:989
 msgid "Initiate/abort DiscDB lookup"
-msgstr "DiscDB 検索の許可/禁止"
+msgstr "DiscDB 検索を開始したり停止します"
 
 #: src/cdplay.c:999
 msgid "Toggle track display"
-msgstr "トラック番号表示の切り替え"
+msgstr "トラック番号表示に切り替えます"
 
 #: src/cdplay.c:1006
 msgid "Exit Grip"
-msgstr "Grip の終了"
+msgstr "Grip を終了します"
 
 #: src/cdplay.c:1172
 msgid "Cannot fast forward while ripping"
@@ -675,15 +676,15 @@ msgstr "切り出し中にディスクの交換はできません"
 
 #: src/cdplay.c:1250
 msgid "Eject disc\n"
-msgstr "ディスクをイジェクトしてください\n"
+msgstr "ディスクを取り出して下さい\n"
 
 #: src/cdplay.c:1253
 msgid "Cannot eject while ripping"
-msgstr "切り出し中にイジェクトできません"
+msgstr "切り出し中に取り出せません"
 
 #: src/cdplay.c:1263
 msgid "Have disc -- ejecting\n"
-msgstr "ディスクがあります -- イジェクト中\n"
+msgstr "ディスクがあります -- 取り出し中\n"
 
 #: src/cdplay.c:1327
 msgid "Cannot play while ripping"
@@ -877,7 +878,7 @@ msgstr ""
 "その代わりにフリーな CDDB サーバを構築することを\n"
 "お勧めします。\n"
 "\n"
-"続けますか？"
+"続行しますか？"
 
 #: src/discedit.c:579
 msgid ""
@@ -889,7 +890,7 @@ msgstr ""
 "E-Mailを使ってこのディスク情報を\n"
 "送信できます\n"
 "\n"
-"続けますか？"
+"続行しますか？"
 
 #: src/discedit.c:596
 msgid "Genre selection"
@@ -971,7 +972,7 @@ msgstr "切り出し処理のみ強制終了します"
 
 #: src/rip.c:138
 msgid "DDJ Scan"
-msgstr "DDJ スキャン実行"
+msgstr "DDJ スキャンの実行"
 
 #: src/rip.c:140
 msgid "Insert disc information into the DigitalDJ database"
@@ -979,7 +980,7 @@ msgstr "ディスク情報を DigitalDJ データベースに追加します"
 
 #: src/rip.c:155
 msgid "Rip partial track"
-msgstr "トラックを分割して切り出す"
+msgstr "トラックの一部を切り出す"
 
 #: src/rip.c:166
 msgid "Play"
@@ -1013,6 +1014,11 @@ msgstr "開始セクタ"
 #: src/rip.c:332
 msgid "End sector"
 msgstr "終了セクタ"
+
+#: src/rip.c:380
+#, fuzzy, c-format
+msgid "Inserting track %d into the ddj database\n"
+msgstr "SQLデータベースに追加する"
 
 #: src/rip.c:601
 msgid "Error: can't open m3u file\n"
@@ -1053,7 +1059,7 @@ msgstr "次のトラックは %d 全部で %d です\n"
 
 #: src/rip.c:906
 msgid "Check if we need to rip another track\n"
-msgstr "他のトラックを切り出す必要があるか確認してください\n"
+msgstr "他のトラックを切り出す必要があるか確認して下さい\n"
 
 #: src/rip.c:946
 #, c-format
@@ -1189,7 +1195,7 @@ msgstr "全て計算中\n"
 
 #: src/rip.c:1778
 msgid "We aren't ripping now, so let's zero encoding values\n"
-msgstr "現在、切り出ししていないので、エンコーディング値を 0にして下さい。\n"
+msgstr "現在、切り出ししていないので、エンコーディング値を 0にして下さい\n"
 
 #: src/rip.c:1794
 #, c-format
@@ -1200,12 +1206,3 @@ msgstr "切り出しの合計サイズ: %d\n"
 #, c-format
 msgid "Total enc size is: %d\n"
 msgstr "エンコーディングの合計サイズ: %d\n"
-
-#~ msgid "Keep application minimum size"
-#~ msgstr "アプリケーションを最小サイズにする"
-
-#~ msgid "Reply is [%s]\n"
-#~ msgstr "[%s] は再生\n"
-
-#~ msgid "File System Character set encoding"
-#~ msgstr "ファイルシステムの文字エンコーディング"

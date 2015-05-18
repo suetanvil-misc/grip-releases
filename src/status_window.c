@@ -1,6 +1,6 @@
 /* status_window.c -- routines for display status information
  *
- * Copyright (c) 1998-2003  Mike Oliphant <oliphant@gtk.org>
+ * Copyright (c) 1998-2004  Mike Oliphant <grip@nostatic.org>
  *
  *   http://www.nostatic.org/grip
  *
@@ -64,6 +64,9 @@ StatusWindow *NewStatusWindow(GtkWidget *box)
 
   sw->term_widget=vte_terminal_new();
 
+  
+  vte_terminal_set_encoding(VTE_TERMINAL(sw->term_widget),"UTF-8");
+
   /*  vte_terminal_set_size(VTE_TERMINAL(sw->term_widget),40,10);*/
 
   gtk_box_pack_start(GTK_BOX(hbox),sw->term_widget,TRUE,TRUE,0);
@@ -82,20 +85,11 @@ StatusWindow *NewStatusWindow(GtkWidget *box)
 /* Write a line of output to a status window */
 void StatusWindowWrite(StatusWindow *sw,char *msg)
 {
-  char *buf, *locale_msg=NULL;
-  int len;
+  char *buf;
+  gsize len;
   int pos=0;
 
-  /*  gtk_widget_queue_resize(sw->term_widget);*/
-
-  if(g_utf8_validate(msg,-1,NULL)) {
-    locale_msg=g_locale_from_utf8(msg,-1,NULL,&len,NULL);
-
-    if(locale_msg) msg=locale_msg;
-  }
-  else {
-    len=strlen(msg);
-  }
+  len=strlen(msg);
 
   buf=(char *)malloc((len*2)+1);
 
@@ -103,7 +97,7 @@ void StatusWindowWrite(StatusWindow *sw,char *msg)
     if(1) { //!(*msg & (1<<7))) {
       if(*msg=='\n') {
 	buf[pos++]='\r';
-	buf[pos++]='\n';
+        buf[pos++]='\n';
       } 
       else {
 	buf[pos++]=*msg;
@@ -115,7 +109,6 @@ void StatusWindowWrite(StatusWindow *sw,char *msg)
   
   buf[pos]='\0';
 
-  if(locale_msg) g_free(locale_msg);
 
   /*  zvt_term_feed((ZvtTerm *)sw->term_widget,buf,strlen(buf));*/
 

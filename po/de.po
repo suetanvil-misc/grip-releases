@@ -5,8 +5,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: grip 3.1.9\n"
-"POT-Creation-Date: 2004-04-01 08:39-0800\n"
-"PO-Revision-Date: 2004-04-01 09:43+0200\n"
+"POT-Creation-Date: 2004-04-15 11:24-0700\n"
+"PO-Revision-Date: 2004-04-16 10:05+0200\n"
 "Last-Translator: Götz Waschk <waschk@informatik.uni-rostock.de>\n"
 "Language-Team: German <de@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -73,6 +73,10 @@ msgid ""
 msgstr ""
 "Dies ist eine Entwicklerversion von Grip. Wenn Probleme auftreten, sollten "
 "Sie zur letzten stabilen Version zurückkehren."
+
+#: src/grip.c:304
+msgid "Grip started successfully\n"
+msgstr "Grip erfolgreich gestartet\n"
 
 #: src/grip.c:318
 msgid ""
@@ -1007,6 +1011,11 @@ msgstr "Start-Sektor"
 #: src/rip.c:332
 msgid "End sector"
 msgstr "End-Sektor"
+
+#: src/rip.c:380
+#, c-format
+msgid "Inserting track %d into the ddj database\n"
+msgstr "Füge Titel %d in die ddj-Datenbank ein\n"
 
 #: src/rip.c:601
 msgid "Error: can't open m3u file\n"

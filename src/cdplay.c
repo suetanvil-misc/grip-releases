@@ -1,6 +1,6 @@
 /* cdplay.c
  *
- * Copyright (c) 1998-2001  Mike Oliphant <oliphant@gtk.org>
+ * Copyright (c) 1998-2001  Mike Oliphant <grip@nostatic.org>
  *
  *   http://www.nostatic.org/grip
  *

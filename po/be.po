@@ -8,7 +8,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: grip.be\n"
-"POT-Creation-Date: 2004-04-01 08:39-0800\n"
+"POT-Creation-Date: 2004-04-15 11:24-0700\n"
 "PO-Revision-Date: 2003-06-29 14:38+0300\n"
 "Last-Translator: Vital Khilko <dojlid@mova.org>\n"
 "Language-Team: Belarusian <i18n@mova.org>\n"
@@ -74,6 +74,10 @@ msgstr "Памылка: Немагчыма ініцыялізаваць [%s]\n"
 msgid ""
 "This is a development version of Grip. If you encounter problems, you are "
 "encouraged to revert to the latest stable version."
+msgstr ""
+
+#: src/grip.c:304
+msgid "Grip started successfully\n"
 msgstr ""
 
 #: src/grip.c:318
@@ -1015,6 +1019,11 @@ msgstr "Пачатковы сэктар"
 #: src/rip.c:332
 msgid "End sector"
 msgstr "Апошні сэктар"
+
+#: src/rip.c:380
+#, fuzzy, c-format
+msgid "Inserting track %d into the ddj database\n"
+msgstr "Унесьці зьвесткі у базу даньняў SQL"
 
 #: src/rip.c:601
 msgid "Error: can't open m3u file\n"

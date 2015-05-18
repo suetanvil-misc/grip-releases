@@ -1,6 +1,6 @@
 /* rip.c
  *
- * Copyright (c) 1998-2003  Mike Oliphant <oliphant@gtk.org>
+ * Copyright (c) 1998-2004  Mike Oliphant <grip@nostatic.org>
  *
  *   http://www.nostatic.org/grip
  *
@@ -377,7 +377,7 @@ static void AddSQLEntry(GripInfo *ginfo,EncodeTrack *enc_track)
   g_snprintf(playtime_str,6,"%d:%d",enc_track->mins,enc_track->secs);
   g_snprintf(year_str,5,"%d",enc_track->song_year);
 
-  LogStatus(ginfo,"Inserting track %d into the ddj database\n",
+  LogStatus(ginfo,_("Inserting track %d into the ddj database\n"),
 	    enc_track->track_num);
 
   sqlpid=fork();

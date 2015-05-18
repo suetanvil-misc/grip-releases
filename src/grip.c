@@ -1,6 +1,6 @@
 /* grip.c
  *
- * Copyright (c) 1998-2003  Mike Oliphant <oliphant@gtk.org>
+ * Copyright (c) 1998-2004  Mike Oliphant <grip@nostatic.org>
  *
  *   http://www.nostatic.org/grip
  *
@@ -301,7 +301,7 @@ GtkWidget *GripNew(const gchar* geometry,char *device,char *scsi_device,
     }
   }
 
-  LogStatus(ginfo,"Grip started successfully\n");
+  LogStatus(ginfo,_("Grip started successfully\n"));
 
   return app;
 }
