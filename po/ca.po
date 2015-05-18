@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: grip 3.0.2\n"
-"POT-Creation-Date: 2004-03-22 09:03-0800\n"
+"POT-Creation-Date: 2004-03-27 10:21-0800\n"
 "PO-Revision-Date: 2002-09-20 14:14+0200\n"
 "Last-Translator: Jordi Mallach <jordi@sindominio.net>\n"
 "Language-Team: Catalan <ca@dodds.net>\n"
@@ -736,37 +736,32 @@ msgstr "S'està enviant l'entrada a %s\n"
 msgid "System Message"
 msgstr "Missatge del sistema"
 
-#: src/discdb.c:207
+#: src/discdb.c:206
 #, c-format
 msgid "URI is %s\n"
 msgstr "La URI és %s\n"
 
-#: src/discdb.c:277
+#: src/discdb.c:279
 #, c-format
 msgid "Query is [%s]\n"
 msgstr "La consulta és [%s]\n"
 
-#: src/discdb.c:292
-#, c-format
-msgid "Reply is [%s]\n"
-msgstr "La resposta és [%s]\n"
-
-#: src/discdb.c:741
+#: src/discdb.c:745
 #, c-format
 msgid "Stat error %d on %s\n"
 msgstr "Error de stat %d en %s\n"
 
-#: src/discdb.c:745
+#: src/discdb.c:749
 #, c-format
 msgid "Creating directory %s\n"
 msgstr "S'està creant el directori %s\n"
 
-#: src/discdb.c:750
+#: src/discdb.c:754
 #, c-format
 msgid "Error: %s exists, but is a file\n"
 msgstr "Error: %s existeix, però és un fitxer\n"
 
-#: src/discdb.c:757
+#: src/discdb.c:761
 #, c-format
 msgid "Error: Unable to open %s for writing\n"
 msgstr "Error: No s'ha pogut obrir %s per a escriptura\n"
@@ -1191,6 +1186,9 @@ msgstr ""
 #, c-format
 msgid "Total enc size is: %d\n"
 msgstr ""
+
+#~ msgid "Reply is [%s]\n"
+#~ msgstr "La resposta és [%s]\n"
 
 #, fuzzy
 #~ msgid "File System Character set encoding"

@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: grip-3.0.0\n"
-"POT-Creation-Date: 2004-03-22 09:03-0800\n"
+"POT-Creation-Date: 2004-03-27 10:21-0800\n"
 "PO-Revision-Date: 2002-05-24 15:40-006\n"
 "Last-Translator: El_Pavo_Asesino <ciehe@yahoo.com>\n"
 "Language-Team: ESPAÑOL <es@li.org>\n"
@@ -744,37 +744,32 @@ msgstr "Enviando entrada a %s\n"
 msgid "System Message"
 msgstr "Mensaje de sistema"
 
-#: src/discdb.c:207
+#: src/discdb.c:206
 #, c-format
 msgid "URI is %s\n"
 msgstr "UR es %s\n"
 
-#: src/discdb.c:277
+#: src/discdb.c:279
 #, c-format
 msgid "Query is [%s]\n"
 msgstr "La consulta es [%s]\n"
 
-#: src/discdb.c:292
-#, c-format
-msgid "Reply is [%s]\n"
-msgstr "La repsuesta es [%s]\n"
-
-#: src/discdb.c:741
+#: src/discdb.c:745
 #, c-format
 msgid "Stat error %d on %s\n"
 msgstr "Errorde estado % en %s\n"
 
-#: src/discdb.c:745
+#: src/discdb.c:749
 #, c-format
 msgid "Creating directory %s\n"
 msgstr "Creando directorio %s\n"
 
-#: src/discdb.c:750
+#: src/discdb.c:754
 #, c-format
 msgid "Error: %s exists, but is a file\n"
 msgstr "Error: %s existe, pero es un archivo\n"
 
-#: src/discdb.c:757
+#: src/discdb.c:761
 #, c-format
 msgid "Error: Unable to open %s for writing\n"
 msgstr "Error: No pude abrir %s para escribir\n"
@@ -1191,6 +1186,9 @@ msgstr ""
 #, c-format
 msgid "Total enc size is: %d\n"
 msgstr ""
+
+#~ msgid "Reply is [%s]\n"
+#~ msgstr "La repsuesta es [%s]\n"
 
 #, fuzzy
 #~ msgid "File System Character set encoding"

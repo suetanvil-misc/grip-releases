@@ -4,9 +4,9 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: grip 3.1.5\n"
-"POT-Creation-Date: 2004-03-22 09:03-0800\n"
-"PO-Revision-Date: 2004-03-12 09:22+0100\n"
+"Project-Id-Version: grip 3.1.7\n"
+"POT-Creation-Date: 2004-03-27 10:21-0800\n"
+"PO-Revision-Date: 2004-03-22 19:28+0100\n"
 "Last-Translator: Götz Waschk <waschk@informatik.uni-rostock.de>\n"
 "Language-Team: German <de@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -565,7 +565,6 @@ msgid "Track"
 msgstr "Track"
 
 #: src/cdplay.c:298
-#, fuzzy
 msgid "Length"
 msgstr "Länge"
 
@@ -731,37 +730,32 @@ msgstr "Schicke Eintrag per Email an %s\n"
 msgid "System Message"
 msgstr "Systemnachricht"
 
-#: src/discdb.c:207
+#: src/discdb.c:206
 #, c-format
 msgid "URI is %s\n"
 msgstr "URI ist %s\n"
 
-#: src/discdb.c:277
+#: src/discdb.c:279
 #, c-format
 msgid "Query is [%s]\n"
 msgstr "Anfrage ist [%s]\n"
 
-#: src/discdb.c:292
-#, c-format
-msgid "Reply is [%s]\n"
-msgstr "Antwort ist [%s]\n"
-
-#: src/discdb.c:741
+#: src/discdb.c:745
 #, c-format
 msgid "Stat error %d on %s\n"
 msgstr "Status-Fehler %d auf %s\n"
 
-#: src/discdb.c:745
+#: src/discdb.c:749
 #, c-format
 msgid "Creating directory %s\n"
 msgstr "Lege Verzeichnis %s an\n"
 
-#: src/discdb.c:750
+#: src/discdb.c:754
 #, c-format
 msgid "Error: %s exists, but is a file\n"
 msgstr "Fehler: %s existiert, ist aber eine Datei\n"
 
-#: src/discdb.c:757
+#: src/discdb.c:761
 #, c-format
 msgid "Error: Unable to open %s for writing\n"
 msgstr "Fehler: Konnte %s nicht zum Schreiben öffnen\n"
@@ -1186,6 +1180,9 @@ msgstr "Gesamte Rippgröße: %d\n"
 #, c-format
 msgid "Total enc size is: %d\n"
 msgstr "Gesamte kodierte Größe: %d\n"
+
+#~ msgid "Reply is [%s]\n"
+#~ msgstr "Antwort ist [%s]\n"
 
 #~ msgid "Write tags in unicode"
 #~ msgstr "Schreibe Tags in Unicode"

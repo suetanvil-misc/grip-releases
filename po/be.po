@@ -8,7 +8,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: grip.be\n"
-"POT-Creation-Date: 2004-03-22 09:03-0800\n"
+"POT-Creation-Date: 2004-03-27 10:21-0800\n"
 "PO-Revision-Date: 2003-06-29 14:38+0300\n"
 "Last-Translator: Vital Khilko <dojlid@mova.org>\n"
 "Language-Team: Belarusian <i18n@mova.org>\n"
@@ -741,37 +741,32 @@ msgstr ""
 msgid "System Message"
 msgstr "Сыстэмнае паведамленьне"
 
-#: src/discdb.c:207
+#: src/discdb.c:206
 #, c-format
 msgid "URI is %s\n"
 msgstr "URI %s\n"
 
-#: src/discdb.c:277
+#: src/discdb.c:279
 #, c-format
 msgid "Query is [%s]\n"
 msgstr "Запыт [%s]\n"
 
-#: src/discdb.c:292
-#, c-format
-msgid "Reply is [%s]\n"
-msgstr "Адказ [%s]\n"
-
-#: src/discdb.c:741
+#: src/discdb.c:745
 #, c-format
 msgid "Stat error %d on %s\n"
 msgstr "Памылка стану %d на %s\n"
 
-#: src/discdb.c:745
+#: src/discdb.c:749
 #, c-format
 msgid "Creating directory %s\n"
 msgstr "Стварэньне каталёга %s\n"
 
-#: src/discdb.c:750
+#: src/discdb.c:754
 #, c-format
 msgid "Error: %s exists, but is a file\n"
 msgstr "Памылка: %s існуе, але гэта файл\n"
 
-#: src/discdb.c:757
+#: src/discdb.c:761
 #, c-format
 msgid "Error: Unable to open %s for writing\n"
 msgstr "Памылка: Немагчыма адкрыць %s для запісу\n"
@@ -1191,6 +1186,9 @@ msgstr "Агульны памер запісанага: %d\n"
 #, c-format
 msgid "Total enc size is: %d\n"
 msgstr "Агульны памер кадаванага: %d\n"
+
+#~ msgid "Reply is [%s]\n"
+#~ msgstr "Адказ [%s]\n"
 
 #, fuzzy
 #~ msgid "File System Character set encoding"

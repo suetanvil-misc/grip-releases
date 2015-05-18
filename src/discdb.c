@@ -38,7 +38,6 @@
 #include <unistd.h>
 #include <curl/curl.h>
 #include <curl/easy.h>
-#include <locale.h>
 #include "cddev.h"
 #include "discdb.h"
 #include "grip_id3.h"
@@ -227,10 +226,12 @@ static char *DiscDBMakeRequest(DiscDBServer *server,DiscDBHello *hello,
         
         rewind(outfile);
         
-        data=(char *)malloc(filesize);
+        data=(char *)malloc(filesize+1);
         
         if(data) {
           fread(data,filesize,1,outfile);
+
+          data[filesize]='\0';
         }
       }
       
@@ -259,6 +260,7 @@ gboolean DiscDBDoQuery(DiscInfo *disc,DiscDBServer *server,
   CURL *curl_handle=NULL;
   GString *cmd;
   char *result,*inbuffer;
+  char *dataptr;
 
   query->query_matches=0;
 
@@ -287,9 +289,9 @@ gboolean DiscDBDoQuery(DiscInfo *disc,DiscDBServer *server,
     return FALSE;
   }
 
-  inbuffer=DiscDBReadLine(&result);
+  dataptr=result;
 
-  Debug(_("Reply is [%s]\n"),inbuffer);
+  inbuffer=DiscDBReadLine(&dataptr);
 
   switch(strtol(strtok(inbuffer," "),NULL,10)) {
     /* 200 - exact match */
@@ -313,7 +315,7 @@ gboolean DiscDBDoQuery(DiscInfo *disc,DiscDBServer *server,
     query->query_match=MATCH_EXACT;
     query->query_matches=0;
 
-    while((inbuffer=DiscDBReadLine(&result))) {
+    while((inbuffer=DiscDBReadLine(&dataptr))) {
       query->query_list[query->query_matches].list_genre=
 	DiscDBGenreValue(g_strstrip(strtok(inbuffer," ")));
       
@@ -333,7 +335,7 @@ gboolean DiscDBDoQuery(DiscInfo *disc,DiscDBServer *server,
     query->query_match=MATCH_INEXACT;
     query->query_matches=0;
 
-    while((inbuffer=DiscDBReadLine(&result))) {
+    while((inbuffer=DiscDBReadLine(&dataptr))) {
       query->query_list[query->query_matches].list_genre=
 	DiscDBGenreValue(g_strstrip(strtok(inbuffer," ")));
       
@@ -359,7 +361,7 @@ gboolean DiscDBDoQuery(DiscInfo *disc,DiscDBServer *server,
   }
 
   free(result);
-  
+
   return TRUE;
 }
 
@@ -527,7 +529,7 @@ gboolean DiscDBRead(DiscInfo *disc,DiscDBServer *server,
 {
   int index;
   GString *cmd;
-  char *result,*inbuffer;
+  char *result,*inbuffer,*dataptr;
   
   if(!disc->have_info) CDStat(disc,TRUE);
   
@@ -561,9 +563,11 @@ gboolean DiscDBRead(DiscInfo *disc,DiscDBServer *server,
     return FALSE;
   }
 
-  inbuffer=DiscDBReadLine(&result);
+  dataptr=result;
 
-  while((inbuffer=DiscDBReadLine(&result)))
+  inbuffer=DiscDBReadLine(&dataptr);
+
+  while((inbuffer=DiscDBReadLine(&dataptr)))
     DiscDBProcessLine(inbuffer,data,disc->num_tracks);
 
   /* Both disc title and artist have been stuffed in the title field, so the

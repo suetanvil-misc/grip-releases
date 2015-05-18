@@ -7,7 +7,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: grip 3.1.3\n"
-"POT-Creation-Date: 2004-03-22 09:03-0800\n"
+"POT-Creation-Date: 2004-03-27 10:21-0800\n"
 "PO-Revision-Date: 2003-11-08 15:40+0900\n"
 "Last-Translator: Takeshi AIHANA <aihana@gnome.gr.jp>\n"
 "Language-Team: Japanese <gnome-translation@gnome.gr.jp>\n"
@@ -735,37 +735,32 @@ msgstr "エントリ %s をメール中です\n"
 msgid "System Message"
 msgstr "システム・メッセージ"
 
-#: src/discdb.c:207
+#: src/discdb.c:206
 #, c-format
 msgid "URI is %s\n"
 msgstr "URI = %s\n"
 
-#: src/discdb.c:277
+#: src/discdb.c:279
 #, c-format
 msgid "Query is [%s]\n"
 msgstr "[%s] で検索\n"
 
-#: src/discdb.c:292
-#, c-format
-msgid "Reply is [%s]\n"
-msgstr "[%s] は再生\n"
-
-#: src/discdb.c:741
+#: src/discdb.c:745
 #, c-format
 msgid "Stat error %d on %s\n"
 msgstr "%d (%s) の Stat エラー\n"
 
-#: src/discdb.c:745
+#: src/discdb.c:749
 #, c-format
 msgid "Creating directory %s\n"
 msgstr "ディレクトリ %s が作成されました\n"
 
-#: src/discdb.c:750
+#: src/discdb.c:754
 #, c-format
 msgid "Error: %s exists, but is a file\n"
 msgstr "エラー: %s が存在していますが、これはファイルです\n"
 
-#: src/discdb.c:757
+#: src/discdb.c:761
 #, c-format
 msgid "Error: Unable to open %s for writing\n"
 msgstr "エラー: 書き込みモードで %s ファイルを開けません\n"
@@ -1189,6 +1184,9 @@ msgstr "切り出しの合計サイズ: %d\n"
 #, c-format
 msgid "Total enc size is: %d\n"
 msgstr "エンコーディングの合計サイズ: %d\n"
+
+#~ msgid "Reply is [%s]\n"
+#~ msgstr "[%s] は再生\n"
 
 #~ msgid "File System Character set encoding"
 #~ msgstr "ファイルシステムの文字エンコーディング"
