@@ -85,10 +85,10 @@ int MakeArgs(char *str,GString **args,int maxargs)
 /* Translate all '%' switches in a string using the specified function */
 void TranslateString(char *instr,GString *outstr,
 		     char *(*trans_func)(char,void *,gboolean *),
-		     void *user_data,
+		     void *user_data,gboolean do_munge_default,
 		     StrTransPrefs *prefs)
 {
-  gboolean do_munge=TRUE;
+  gboolean do_munge;
   char *trans_result;
   char *tok;
   struct passwd *pwd;
@@ -126,13 +126,18 @@ void TranslateString(char *instr,GString *outstr,
   }
 
   for(;*instr;instr++) {
-    do_munge=TRUE;
+    do_munge=do_munge_default;
 
     if(*instr=='%') {
       instr++;
 
       if(*instr=='*') {
 	do_munge=FALSE;
+	instr++;
+      }
+
+      if(*instr=='!') {
+	do_munge=TRUE;
 	instr++;
       }
 
@@ -176,7 +181,7 @@ char *MungeString(char *str,StrTransPrefs *prefs)
 
 int MakeTranslatedArgs(char *str,GString **args,int maxargs,
 		       char *(*trans_func)(char,void *,gboolean *),
-		       void *user_data,
+		       void *user_data,gboolean do_munge_default,
 		       StrTransPrefs *prefs)
 {
   int num_args;
@@ -188,7 +193,8 @@ int MakeTranslatedArgs(char *str,GString **args,int maxargs,
   for(arg=0;args[arg];arg++) {
     out=g_string_new(NULL);
 
-    TranslateString(args[arg]->str,out,trans_func,user_data,prefs);
+    TranslateString(args[arg]->str,out,trans_func,user_data,
+		    do_munge_default,prefs);
 
     tmp=args[arg];
     args[arg]=out;
@@ -201,7 +207,7 @@ int MakeTranslatedArgs(char *str,GString **args,int maxargs,
 extern char *FindRoot(char *);
 
 void TranslateAndLaunch(char *cmd,char *(*trans_func)(char,void *,gboolean *),
-			void *user_data,
+			void *user_data,gboolean do_munge_default,
 			StrTransPrefs *prefs,void (*close_func)(void *),
 			void *close_user_data)
 {
@@ -213,7 +219,7 @@ void TranslateAndLaunch(char *cmd,char *(*trans_func)(char,void *,gboolean *),
 
   str=g_string_new(NULL);
 
-  MakeTranslatedArgs(cmd,args,100,trans_func,user_data,prefs);
+  MakeTranslatedArgs(cmd,args,100,trans_func,user_data,do_munge_default,prefs);
 
   for(arg=1;args[arg];arg++) {
     char_args[arg]=args[arg]->str;

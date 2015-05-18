@@ -67,6 +67,7 @@ CC = @CC@
 CDPAR_LIBS = @CDPAR_LIBS@
 CFLAGS = @CFLAGS@
 CPPFLAGS = @CPPFLAGS@
+CXX = @CXX@
 DATADIRNAME = @DATADIRNAME@
 DLLTOOL = @DLLTOOL@
 ECHO = @ECHO@
@@ -128,7 +129,8 @@ INCLUDES = -I$(top_srcdir) -I$(includedir) $(GNOME_INCLUDEDIR) \
 bin_PROGRAMS = grip
 
 grip_SOURCES = \
-        main.c           \
+	cppmain.cc \
+        main.c \
 	common.h \
         grip.c \
 	grip.h \
@@ -171,13 +173,18 @@ PROGRAMS =  $(bin_PROGRAMS)
 
 DEFS = @DEFS@ -I. -I$(srcdir) -I..
 LIBS = @LIBS@
-grip_OBJECTS =  main.$(OBJEXT) grip.$(OBJEXT) cddev.$(OBJEXT) \
-cdplay.$(OBJEXT) discedit.$(OBJEXT) rip.$(OBJEXT) cdpar.$(OBJEXT) \
-id3.$(OBJEXT) discdb.$(OBJEXT) uihelper.$(OBJEXT) dialog.$(OBJEXT) \
-gripcfg.$(OBJEXT) parsecfg.$(OBJEXT) launch.$(OBJEXT) \
+grip_OBJECTS =  cppmain.$(OBJEXT) main.$(OBJEXT) grip.$(OBJEXT) \
+cddev.$(OBJEXT) cdplay.$(OBJEXT) discedit.$(OBJEXT) rip.$(OBJEXT) \
+cdpar.$(OBJEXT) id3.$(OBJEXT) discdb.$(OBJEXT) uihelper.$(OBJEXT) \
+dialog.$(OBJEXT) gripcfg.$(OBJEXT) parsecfg.$(OBJEXT) launch.$(OBJEXT) \
 gain_analysis.$(OBJEXT)
 grip_DEPENDENCIES = 
 grip_LDFLAGS = 
+CXXFLAGS = @CXXFLAGS@
+CXXCOMPILE = $(CXX) $(DEFS) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS)
+LTCXXCOMPILE = $(LIBTOOL) --mode=compile $(CXX) $(DEFS) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS)
+CXXLD = $(CXX)
+CXXLINK = $(LIBTOOL) --mode=link $(CXXLD) $(AM_CXXFLAGS) $(CXXFLAGS) $(LDFLAGS) -o $@
 COMPILE = $(CC) $(DEFS) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS)
 LTCOMPILE = $(LIBTOOL) --mode=compile $(CC) $(DEFS) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS)
 CCLD = $(CC)
@@ -194,7 +201,7 @@ OBJECTS = $(grip_OBJECTS)
 
 all: all-redirect
 .SUFFIXES:
-.SUFFIXES: .S .c .lo .o .obj .s
+.SUFFIXES: .S .c .cc .lo .o .obj .s
 $(srcdir)/Makefile.in: @MAINTAINER_MODE_TRUE@ Makefile.am $(top_srcdir)/configure.in $(ACLOCAL_M4) 
 	cd $(top_srcdir) && $(AUTOMAKE) --gnu --include-deps src/Makefile
 
@@ -274,7 +281,13 @@ maintainer-clean-libtool:
 
 grip$(EXEEXT): $(grip_OBJECTS) $(grip_DEPENDENCIES)
 	@rm -f grip$(EXEEXT)
-	$(LINK) $(grip_LDFLAGS) $(grip_OBJECTS) $(grip_LDADD) $(LIBS)
+	$(CXXLINK) $(grip_LDFLAGS) $(grip_OBJECTS) $(grip_LDADD) $(LIBS)
+.cc.o:
+	$(CXXCOMPILE) -c $<
+.cc.obj:
+	$(CXXCOMPILE) -c `cygpath -w $<`
+.cc.lo:
+	$(LTCXXCOMPILE) -c $<
 
 tags: TAGS
 
@@ -325,6 +338,7 @@ cdpar.o: cdpar.c grip.h ../config.h cddev.h discdb.h launch.h \
 	gain_analysis.h
 cdplay.o: cdplay.c cdplay.h grip.h ../config.h cddev.h discdb.h launch.h \
 	common.h discedit.h dialog.h rip.h grip_id3.h
+cppmain.o: cppmain.cc
 dialog.o: dialog.c dialog.h
 discdb.o: discdb.c cddev.h discdb.h grip_id3.h ../config.h common.h
 discedit.o: discedit.c grip.h ../config.h cddev.h discdb.h launch.h \

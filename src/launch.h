@@ -34,15 +34,15 @@ typedef struct {
 int MakeArgs(char *str,GString **args,int maxargs);
 void TranslateString(char *instr,GString *outstr,
 		     char *(*trans_func)(char,void *,gboolean *),
-		     void *user_data,
+		     void *user_data,gboolean do_munge_default,
 		     StrTransPrefs *prefs);
 char *MungeString(char *str,StrTransPrefs *prefs);
 int MakeTranslatedArgs(char *str,GString **args,int maxargs,
 		       char *(*trans_func)(char,void *,gboolean *),
-		       void *user_data,
+		       void *user_data,gboolean do_munge_default,
 		       StrTransPrefs *prefs);
 void TranslateAndLaunch(char *cmd,char *(*trans_func)(char,void *,gboolean *),
-			void *user_data,
+			void *user_data,gboolean do_munge_default,
 			StrTransPrefs *prefs,void (*close_func)(void *),
 			void *close_user_data);
 

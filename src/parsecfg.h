@@ -39,6 +39,6 @@ typedef struct _cfg_entry
 } CFGEntry;
 
 
-gboolean LoadConfig(char *filename,char *name,int ver,int reqver,
-		    CFGEntry *cfg);
+int LoadConfig(char *filename,char *name,int ver,int reqver,
+	       CFGEntry *cfg);
 gboolean SaveConfig(char *filename,char *name,int ver,CFGEntry *cfg);

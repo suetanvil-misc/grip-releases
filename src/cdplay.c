@@ -106,7 +106,8 @@ static void DiscDBToggle(GtkWidget *widget,gpointer data)
     }
 #endif
  
-    if(ginfo->have_disc) LookupDisc(ginfo,TRUE);
+    if(ginfo->have_disc)
+      LookupDisc(ginfo,TRUE);
   }
 }
 
@@ -1450,6 +1451,9 @@ void CheckNewDisc(GripInfo *ginfo)
 	
 	if(new_id) {
 	  ginfo->have_disc=TRUE;
+
+	  if(ginfo->play_on_insert) PlayTrackCB(NULL,(gpointer)ginfo);
+
 	  LookupDisc(ginfo,FALSE);
 	}
       }
@@ -1677,7 +1681,7 @@ void UpdateTracks(GripInfo *ginfo)
       FillInTrackInfo(ginfo,0,&enc_track);
 
       TranslateAndLaunch(ginfo->cdupdate,TranslateSwitch,&enc_track,
-			 &(ginfo->sprefs),CloseStuff,(void *)ginfo);
+			 FALSE,&(ginfo->sprefs),CloseStuff,(void *)ginfo);
     }
   }
   else {

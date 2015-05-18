@@ -23,6 +23,7 @@
 #include <pthread.h>
 #include <config.h>
 #include <fcntl.h>
+#include <stdio.h>
 #include <unistd.h>
 #include <sys/param.h>
 #include <gdk/gdkx.h>
@@ -101,6 +102,7 @@ static GnomeHelpMenuEntry bug_help_entry={"grip","bugs.html"};
 {"no_interrupt",CFG_ENTRY_BOOL,0,&ginfo->no_interrupt},\
 {"stop_first",CFG_ENTRY_BOOL,0,&ginfo->stop_first},\
 {"play_first",CFG_ENTRY_BOOL,0,&ginfo->play_first},\
+{"play_on_insert",CFG_ENTRY_BOOL,0,&ginfo->play_on_insert},\
 {"automatic_cddb",CFG_ENTRY_BOOL,0,&ginfo->automatic_discdb},\
 {"automatic_reshuffle",CFG_ENTRY_BOOL,0,&ginfo->automatic_reshuffle},\
 {"no_lower_case",CFG_ENTRY_BOOL,0,&ginfo->sprefs.no_lower_case},\
@@ -130,7 +132,8 @@ static GnomeHelpMenuEntry bug_help_entry={"grip","bugs.html"};
 #define CFG_ENTRIES BASE_CFG_ENTRIES
 #endif
 
-GtkWidget *GripNew(const gchar* geometry,char *device,gboolean force_small,
+GtkWidget *GripNew(const gchar* geometry,char *device,char *scsi_device,
+		   gboolean force_small,
 		   gboolean local_mode,gboolean no_redirect)
 {
   GtkWidget *app;
@@ -151,6 +154,8 @@ GtkWidget *GripNew(const gchar* geometry,char *device,gboolean force_small,
   DoLoadConfig(ginfo);
 
   if(device) g_snprintf(ginfo->cd_device,256,"%s",device);
+  if(scsi_device) g_snprintf(ginfo->force_scsi,256,"%s",scsi_device);
+
   uinfo->minimized=force_small;
   ginfo->local_mode=local_mode;
   ginfo->do_redirect=!no_redirect;
@@ -543,8 +548,10 @@ static void DoLoadConfig(GripInfo *ginfo)
 {
   GripGUI *uinfo=&(ginfo->gui_info);
   char filename[256];
+  char renamefile[256];
   char *proxy_env,*tok;
   char outputdir[256];
+  int confret;
   CFGEntry cfg_entries[]={
     CFG_ENTRIES
     {"outputdir",CFG_ENTRY_STRING,256,outputdir},
@@ -564,6 +571,7 @@ static void DoLoadConfig(GripInfo *ginfo)
   uinfo->id3_genre_item_list=NULL;
 
   strcpy(ginfo->cd_device,"/dev/cdrom");
+  *ginfo->force_scsi='\0';
 
   ginfo->local_mode=FALSE;
   ginfo->have_disc=FALSE;
@@ -612,6 +620,7 @@ static void DoLoadConfig(GripInfo *ginfo)
   ginfo->is_new_disc=FALSE;
   ginfo->automatic_discdb=TRUE;
   ginfo->play_first=TRUE;
+  ginfo->play_on_insert=FALSE;
   ginfo->stop_first=FALSE;
   ginfo->no_interrupt=FALSE;
   ginfo->playing=FALSE;
@@ -631,8 +640,8 @@ static void DoLoadConfig(GripInfo *ginfo)
   ginfo->num_wavs=0;
   ginfo->doencode=FALSE;
   ginfo->encode_list=NULL;
-  ginfo->selected_ripper=0;
   ginfo->do_redirect=TRUE;
+  ginfo->selected_ripper=0;
 #ifdef CDPAR
   ginfo->stop_thread_rip_now=FALSE;
   ginfo->using_builtin_cdp=TRUE;
@@ -641,14 +650,23 @@ static void DoLoadConfig(GripInfo *ginfo)
   ginfo->disable_scratch_detect=FALSE;
   ginfo->disable_scratch_repair=FALSE;
   ginfo->calc_gain=FALSE;
-  *ginfo->force_scsi='\0';
 #else
   ginfo->using_builtin_cdp=FALSE;
 #endif
   ginfo->in_rip_thread=FALSE;
-  strcpy(ginfo->ripexename,"/usr/bin/cdparanoia");
   strcpy(ginfo->ripfileformat,"~/mp3/%A/%d/%n.wav");
+#ifdef __linux__
+  FindExeInPath("cdparanoia", ginfo->ripexename, sizeof(ginfo->ripexename));
   strcpy(ginfo->ripcmdline,"-d %c %t:[.%s]-%t:[.%e] %w");
+#else
+  FindExeInPath("cdda2wav", ginfo->ripexename, sizeof(ginfo->ripexename));
+#ifdef __sun__
+  strcpy(ginfo->ripcmdline,"-x -H -t %t -O wav %w");
+#else
+  strcpy(ginfo->ripcmdline,"-D %C -x -H -t %t -O wav %w");
+#endif /* not sun */
+#endif /* not linux */
+
   ginfo->ripnice=0;
   ginfo->max_wavs=99;
   ginfo->auto_rip=FALSE;
@@ -659,7 +677,7 @@ static void DoLoadConfig(GripInfo *ginfo)
   *ginfo->disc_filter_cmd='\0';
   ginfo->selected_encoder=1;
   strcpy(ginfo->mp3cmdline,"-h -b %b %w %m");
-  strcpy(ginfo->mp3exename,"/usr/bin/lame");
+  FindExeInPath("lame", ginfo->mp3exename, sizeof(ginfo->mp3exename));
   strcpy(ginfo->mp3fileformat,"~/mp3/%A/%d/%n.mp3");
   ginfo->mp3nice=0;
   *ginfo->mp3_filter_cmd='\0';
@@ -681,7 +699,21 @@ static void DoLoadConfig(GripInfo *ginfo)
 
   sprintf(filename,"%s/.grip",getenv("HOME"));
 
-  if(!LoadConfig(filename,"GRIP",2,2,cfg_entries)) {
+  confret=LoadConfig(filename,"GRIP",2,2,cfg_entries);
+
+  if(confret<0) {
+    /* Check if the config is out of date */
+    if(confret==-2) {
+      DisplayMsg(_("Your config file is out of date -- "
+		   "resetting to defaults.\n"
+		   "You will need to re-configure Grip.\n"
+		   "Your old config file has been saved in ~/.grip-old."));
+
+      sprintf(renamefile,"%s-old",filename);
+
+      rename(filename,renamefile);
+    }
+
     DoSaveConfig(ginfo);
   }
 

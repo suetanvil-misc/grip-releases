@@ -67,6 +67,7 @@ CC = @CC@
 CDPAR_LIBS = @CDPAR_LIBS@
 CFLAGS = @CFLAGS@
 CPPFLAGS = @CPPFLAGS@
+CXX = @CXX@
 DATADIRNAME = @DATADIRNAME@
 DLLTOOL = @DLLTOOL@
 ECHO = @ECHO@
@@ -120,7 +121,7 @@ ZVT_LIBS = @ZVT_LIBS@
 cflags_set = @cflags_set@
 cxxflags_set = @cxxflags_set@
 
-SUBDIRS = macros po src intl pixmaps doc
+SUBDIRS = macros po src intl pixmaps doc contrib
 
 EXTRA_DIST = \
         grip.desktop \

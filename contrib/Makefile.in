@@ -121,26 +121,10 @@ ZVT_LIBS = @ZVT_LIBS@
 cflags_set = @cflags_set@
 cxxflags_set = @cxxflags_set@
 
-EXTRA_DIST = gripicon.png gripicon.gif check.xpm enc1.xpm lowleft.xpm \
-	playnorm.xpm \
-              rip0.xpm smile2.xpm stop.xpm discdb0.xpm enc2.xpm lowright.xpm \
-	      playpaus.xpm rip1.xpm smile3.xpm discdb1.xpm enc3.xpm mail.xpm \
-	      prevtrk.xpm rip2.xpm smile4.xpm upleft.xpm discdbwht.xpm \
-	      ff.xpm minmax.xpm progtrack.xpm rip3.xpm smile5.xpm \
-	      upright.xpm edit.xpm gcd.xpm nexttrk.xpm quit.xpm rotate.xpm \
-	      smile6.xpm vol.xpm eject.xpm grip.xpm noloop.xpm random.xpm \
-	      save.xpm smile7.xpm enc0.xpm loop.xpm playlist.xpm rew.xpm \
-	      smile1.xpm smile8.xpm
-
-
-pixmapdir = $(datadir)/pixmaps
-
-pixmap_DATA = gripicon.png
+EXTRA_DIST = write-gronk-discid
 mkinstalldirs = $(SHELL) $(top_srcdir)/mkinstalldirs
 CONFIG_HEADER = ../config.h
 CONFIG_CLEAN_FILES = 
-DATA =  $(pixmap_DATA)
-
 DIST_COMMON =  Makefile.am Makefile.in
 
 
@@ -151,38 +135,19 @@ GZIP_ENV = --best
 all: all-redirect
 .SUFFIXES:
 $(srcdir)/Makefile.in: @MAINTAINER_MODE_TRUE@ Makefile.am $(top_srcdir)/configure.in $(ACLOCAL_M4) 
-	cd $(top_srcdir) && $(AUTOMAKE) --gnu --include-deps pixmaps/Makefile
+	cd $(top_srcdir) && $(AUTOMAKE) --gnu --include-deps contrib/Makefile
 
 Makefile: $(srcdir)/Makefile.in  $(top_builddir)/config.status
 	cd $(top_builddir) \
 	  && CONFIG_FILES=$(subdir)/$@ CONFIG_HEADERS= $(SHELL) ./config.status
 
-
-install-pixmapDATA: $(pixmap_DATA)
-	@$(NORMAL_INSTALL)
-	$(mkinstalldirs) $(DESTDIR)$(pixmapdir)
-	@list='$(pixmap_DATA)'; for p in $$list; do \
-	  if test -f $(srcdir)/$$p; then \
-	    echo " $(INSTALL_DATA) $(srcdir)/$$p $(DESTDIR)$(pixmapdir)/$$p"; \
-	    $(INSTALL_DATA) $(srcdir)/$$p $(DESTDIR)$(pixmapdir)/$$p; \
-	  else if test -f $$p; then \
-	    echo " $(INSTALL_DATA) $$p $(DESTDIR)$(pixmapdir)/$$p"; \
-	    $(INSTALL_DATA) $$p $(DESTDIR)$(pixmapdir)/$$p; \
-	  fi; fi; \
-	done
-
-uninstall-pixmapDATA:
-	@$(NORMAL_UNINSTALL)
-	list='$(pixmap_DATA)'; for p in $$list; do \
-	  rm -f $(DESTDIR)$(pixmapdir)/$$p; \
-	done
 tags: TAGS
 TAGS:
 
 
 distdir = $(top_builddir)/$(PACKAGE)-$(VERSION)/$(subdir)
 
-subdir = pixmaps
+subdir = contrib
 
 distdir: $(DISTFILES)
 	@for file in $(DISTFILES); do \
@@ -206,20 +171,19 @@ installcheck: installcheck-am
 install-exec-am:
 install-exec: install-exec-am
 
-install-data-am: install-pixmapDATA
+install-data-am:
 install-data: install-data-am
 
 install-am: all-am
 	@$(MAKE) $(AM_MAKEFLAGS) install-exec-am install-data-am
 install: install-am
-uninstall-am: uninstall-pixmapDATA
+uninstall-am:
 uninstall: uninstall-am
-all-am: Makefile $(DATA)
+all-am: Makefile
 all-redirect: all-am
 install-strip:
 	$(MAKE) $(AM_MAKEFLAGS) AM_INSTALL_PROGRAM_FLAGS=-s install
 installdirs:
-	$(mkinstalldirs)  $(DESTDIR)$(pixmapdir)
 
 
 mostlyclean-generic:
@@ -250,12 +214,12 @@ maintainer-clean-am:  maintainer-clean-generic distclean-am
 
 maintainer-clean: maintainer-clean-am
 
-.PHONY: uninstall-pixmapDATA install-pixmapDATA tags distdir info-am \
-info dvi-am dvi check check-am installcheck-am installcheck \
-install-exec-am install-exec install-data-am install-data install-am \
-install uninstall-am uninstall all-redirect all-am all installdirs \
-mostlyclean-generic distclean-generic clean-generic \
-maintainer-clean-generic clean mostlyclean distclean maintainer-clean
+.PHONY: tags distdir info-am info dvi-am dvi check check-am \
+installcheck-am installcheck install-exec-am install-exec \
+install-data-am install-data install-am install uninstall-am uninstall \
+all-redirect all-am all installdirs mostlyclean-generic \
+distclean-generic clean-generic maintainer-clean-generic clean \
+mostlyclean distclean maintainer-clean
 
 
 # Tell versions [3.59,3.63) of GNU make to not export all variables.

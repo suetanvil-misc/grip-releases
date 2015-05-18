@@ -306,7 +306,7 @@ static void DBScan(GtkWidget *widget,gpointer data)
     str=g_string_new(NULL);
     
     TranslateString(ginfo->mp3fileformat,str,TranslateSwitch,
-		    &enc_track,&(ginfo->sprefs));
+		    &enc_track,TRUE,&(ginfo->sprefs));
     
     g_snprintf(enc_track.mp3_filename,256,"%s",str->str);
     g_string_free(str,TRUE);
@@ -503,7 +503,7 @@ static void AddM3U(GripInfo *ginfo)
   FillInTrackInfo(ginfo,0,&enc_track);
 
   TranslateString(ginfo->m3ufileformat,str,TranslateSwitch,
-		    &enc_track,&(ginfo->sprefs));
+		    &enc_track,TRUE,&(ginfo->sprefs));
 
   g_snprintf(m3unam,PATH_MAX,"%s",str->str);
 
@@ -522,7 +522,7 @@ static void AddM3U(GripInfo *ginfo)
 
       FillInTrackInfo(ginfo,i,&enc_track);
       TranslateString(ginfo->mp3fileformat,str,TranslateSwitch,
-		      &enc_track,&(ginfo->sprefs));
+		      &enc_track,TRUE,&(ginfo->sprefs));
 
       if(ginfo->rel_m3u) {
 	g_snprintf(tmp,PATH_MAX,"%s",str->str);
@@ -549,7 +549,8 @@ void KillRip(GtkWidget *widget,gpointer data)
 
   /* Need to decrement num_wavs since we didn't finish ripping
      the current track */
-  ginfo->num_wavs--;
+  if(ginfo->num_wavs>0)
+    ginfo->num_wavs--;
 
   ginfo->stop_rip=TRUE;
   ginfo->ripping_a_disc=FALSE;
@@ -600,7 +601,7 @@ static void ID3Add(GripInfo *ginfo,char *file,EncodeTrack *enc_track)
 
   comment=g_string_new(NULL);
   TranslateString(ginfo->id3_comment,comment,TranslateSwitch,enc_track,
-		  &(ginfo->sprefs));
+		  FALSE,&(ginfo->sprefs));
 
   g_snprintf(year,5,"%d",enc_track->song_year);
 
@@ -637,7 +638,7 @@ static void DoWavFilter(GripInfo *ginfo)
   strcpy(enc_track.wav_filename,ginfo->ripfile);
 
   TranslateAndLaunch(ginfo->wav_filter_cmd,TranslateSwitch,&enc_track,
-		     &(ginfo->sprefs),CloseStuff,(void *)ginfo);
+		     FALSE,&(ginfo->sprefs),CloseStuff,(void *)ginfo);
 }
 
 static void DoDiscFilter(GripInfo *ginfo)
@@ -648,7 +649,7 @@ static void DoDiscFilter(GripInfo *ginfo)
   strcpy(enc_track.wav_filename,ginfo->ripfile);
 
   TranslateAndLaunch(ginfo->disc_filter_cmd,TranslateSwitch,&enc_track,
-		     &(ginfo->sprefs),CloseStuff,(void *)ginfo);
+		     FALSE,&(ginfo->sprefs),CloseStuff,(void *)ginfo);
 }
 
 void UpdateRipProgress(GripInfo *ginfo)
@@ -680,7 +681,10 @@ void UpdateRipProgress(GripInfo *ginfo)
     elapsed = (gfloat)now - (gfloat)ginfo->rip_started;
 
     /* 1x is 44100*2*2 = 176400 bytes/sec */
-    speed = (gfloat)(mystat.st_size)/(176400.0f*elapsed);
+    if(elapsed < 0.1f) /* 1/10 sec. */
+      speed=0.0f; /* Avoid divide-by-0 at start */ 
+    else
+      speed=(gfloat)(mystat.st_size)/(176400.0f*elapsed);
     
     /* startup */
     if(speed >= 50.0f) {
@@ -783,8 +787,11 @@ void UpdateRipProgress(GripInfo *ginfo)
       now = time(NULL);
       elapsed = (gfloat)now - (gfloat)ginfo->mp3_started[mycpu];
 
-      speed = (gfloat)mystat.st_size/
-	((gfloat)ginfo->kbits_per_sec * 128.0f * elapsed);
+      if(elapsed < 0.1f) /* 1/10 sec. */
+	speed=0.0f;
+      else
+	speed=(gfloat)mystat.st_size/
+	  ((gfloat)ginfo->kbits_per_sec * 128.0f * elapsed);
       
       sprintf(buf,_("MP3: Trk %d (%3.1fx)"),
 	      ginfo->mp3_enc_track[mycpu]+1,speed);
@@ -822,7 +829,7 @@ void UpdateRipProgress(GripInfo *ginfo)
 
 	  if(*ginfo->mp3_filter_cmd)
 	    TranslateAndLaunch(ginfo->mp3_filter_cmd,TranslateSwitch,
-			       ginfo->encoded_track[mycpu],
+			       ginfo->encoded_track[mycpu],FALSE,
 			       &(ginfo->sprefs),CloseStuff,(void *)ginfo);
 
 
@@ -886,6 +893,15 @@ char *TranslateSwitch(char switch_char,void *data,gboolean *munge)
     break;
   case 'c':
     g_snprintf(res,PATH_MAX,"%s",enc_track->ginfo->cd_device);
+    *munge=FALSE;
+    break;
+  case 'C':
+    if(*enc_track->ginfo->force_scsi) {
+      g_snprintf(res,PATH_MAX,"%s",enc_track->ginfo->force_scsi);
+    }
+    else {
+      g_snprintf(res,PATH_MAX,"%s",enc_track->ginfo->cd_device);
+    }
     *munge=FALSE;
     break;
   case 'w':
@@ -1157,7 +1173,7 @@ static gboolean RipNextTrack(GripInfo *ginfo)
     FillInTrackInfo(ginfo,ginfo->rip_track,&enc_track);
 
     TranslateString(ginfo->ripfileformat,str,TranslateSwitch,
-		    &enc_track,&(ginfo->sprefs));
+		    &enc_track,TRUE,&(ginfo->sprefs));
 
     g_snprintf(ginfo->ripfile,256,"%s",str->str);
     g_string_free(str,TRUE);
@@ -1200,7 +1216,7 @@ static gboolean RipNextTrack(GripInfo *ginfo)
       strcpy(enc_track.wav_filename,ginfo->ripfile);
 
       MakeTranslatedArgs(ginfo->ripcmdline,args,100,TranslateSwitch,
-			 &enc_track,&(ginfo->sprefs));
+			 &enc_track,FALSE,&(ginfo->sprefs));
 
       for(arg=0;args[arg];arg++) {
 	char_args[arg+1]=args[arg]->str;
@@ -1369,7 +1385,7 @@ static gboolean MP3Encode(GripInfo *ginfo)
   str=g_string_new(NULL);
 
   TranslateString(ginfo->mp3fileformat,str,TranslateSwitch,
-		  enc_track,&(ginfo->sprefs));
+		  enc_track,TRUE,&(ginfo->sprefs));
 
   g_snprintf(ginfo->mp3file[cpu],256,"%s",str->str);
   g_string_free(str,TRUE);
@@ -1395,7 +1411,7 @@ static gboolean MP3Encode(GripInfo *ginfo)
   strcpy(enc_track->mp3_filename,ginfo->mp3file[cpu]);
 
   MakeTranslatedArgs(ginfo->mp3cmdline,args,100,TranslateSwitch,
-		     enc_track,&(ginfo->sprefs));
+		     enc_track,FALSE,&(ginfo->sprefs));
   
   for(arg=0;args[arg];arg++) {
     char_args[arg+1]=args[arg]->str;

@@ -639,7 +639,7 @@ int DiscDBWriteDiscData(DiscInfo *disc,DiscData *ddata,FILE *outfile,
 {
   FILE *discdb_data;
   int track;
-  char root_dir[256],file[256];
+  char root_dir[256],file[256],tmp[512];
   struct stat st;
   
   if(!disc->have_info) CDStat(disc,TRUE);
@@ -686,7 +686,7 @@ int DiscDBWriteDiscData(DiscInfo *disc,DiscData *ddata,FILE *outfile,
     fprintf(discdb_data, "#       %d\n",disc->track[track].start_frame);
 
   fputs("# \n",discdb_data);
-  fprintf(discdb_data,"# Disc length: %d secs\n",disc->length.mins *
+  fprintf(discdb_data,"# Disc length: %d seconds\n",disc->length.mins *
 	  60 + disc->length.secs);
   fputs("# \n",discdb_data);
 
@@ -697,11 +697,14 @@ int DiscDBWriteDiscData(DiscInfo *disc,DiscData *ddata,FILE *outfile,
   fputs("# \n",discdb_data);
   fprintf(discdb_data,"DISCID=%08x\n",ddata->data_id);
 
-  fprintf(discdb_data,"DTITLE=%s / %s\n",
-	  ddata->data_artist,ddata->data_title);
+  g_snprintf(tmp,512,"%s / %s",ddata->data_artist,ddata->data_title);
+  DiscDBWriteLine("DTITLE",-1,tmp,discdb_data);
 
-  if((gripext||freedbext)&&ddata->data_year)
-    fprintf(discdb_data,"DYEAR=%d\n",ddata->data_year);
+  if(gripext||freedbext) {
+    if(ddata->data_year)
+      fprintf(discdb_data,"DYEAR=%d\n",ddata->data_year);
+    else fprintf(discdb_data,"DYEAR=\n");
+  }
 
   if(gripext) {
     fprintf(discdb_data,"DGENRE=%s\n",DiscDBGenre(ddata->data_genre));
@@ -713,19 +716,18 @@ int DiscDBWriteDiscData(DiscInfo *disc,DiscData *ddata,FILE *outfile,
 
   for(track=0;track<disc->num_tracks;track++) {
     if(gripext||!*(ddata->data_track[track].track_artist)) {
-      fprintf(discdb_data,"TTITLE%d=%s\n",track,
-	      ddata->data_track[track].track_name);
+      DiscDBWriteLine("TTITLE",track,ddata->data_track[track].track_name,
+		      discdb_data);
     }
     else {
-      fprintf(discdb_data,"TTITLE%d=%s / %s\n",track,
-	      ddata->data_track[track].track_name,
-	      ddata->data_track[track].track_artist);
+      g_snprintf(tmp,512,"%s / %s",ddata->data_track[track].track_artist,
+		 ddata->data_track[track].track_name);
+      DiscDBWriteLine("TTITLE",track,tmp,discdb_data);
     }
 
     if(gripext&&*(ddata->data_track[track].track_artist))
-      fprintf(discdb_data,"TARTIST%d=%s\n",track,
-	      ddata->data_track[track].track_artist);
-    
+      DiscDBWriteLine("TARTIST",track,ddata->data_track[track].track_artist,
+		      discdb_data);
   }
 
   DiscDBWriteLine("EXTD",-1,ddata->data_extended,discdb_data);

@@ -30,19 +30,17 @@ static void UseProxyChanged(GtkWidget *widget,gpointer data);
 static void RipperSelected(GtkWidget *widget,gpointer data);
 static void EncoderSelected(GtkWidget *widget,gpointer data);
 
-static char *bin_search_paths[]={
-  "/usr/bin","/usr/local/bin","/cpd/misc/bin",NULL
-};
-
 static Ripper ripper_defaults[]={
 #ifdef CDPAR
   {"grip (cdparanoia)",""},
 #endif
-  {"cdparanoia","-d %*c %t:[.%s]-%t:[.%e] %*w"},
+#if defined(__linux__)
+  {"cdparanoia","-d %c %t:[.%s]-%t:[.%e] %w"},
+#endif
 #if defined(__sun__)
-  {"cdda2wav","-x -H -t %t -O wav %*w"},
+  {"cdda2wav","-x -H -t %t -O wav %w"},
 #else
-  {"cdda2wav","-D %*c -x -H -t %t -O wav %*w"},
+  {"cdda2wav","-D %C -x -H -t %t -O wav %w"},
 #endif
   {"other",""},
   {"",""}
@@ -54,7 +52,7 @@ static MP3Encoder encoder_defaults[]={{"bladeenc","-%b -QUIT %w %m"},
 				      {"xingmp3enc","-B %b -Q %w"},
 				      {"mp3encode","-p 2 -l 3 -b %b %w %m"},
 				      {"gogo","-b %b %w %m"},
-				      {"oggenc","-o %m -a \"%a\" -l \"%d\" -t \"%n\" %w"},
+				      {"oggenc","-o %m -a %a -l %d -t %n -b %b %w"},
 				      {"flac","-V -o %o %f"},
 				      {"other",""},
 				      {"",""}
@@ -119,6 +117,11 @@ void MakeConfigPage(GripInfo *ginfo)
   gtk_box_pack_start(GTK_BOX(vbox),check,FALSE,FALSE,0);
   gtk_widget_show(check);
 
+  check=MakeCheckButton(NULL,&ginfo->play_on_insert,
+			_("Auto-play on disc insert"));
+  gtk_box_pack_start(GTK_BOX(vbox),check,FALSE,FALSE,0);
+  gtk_widget_show(check);
+
   check=MakeCheckButton(NULL,&ginfo->automatic_reshuffle,
 			_("Reshuffle before each playback"));
   gtk_box_pack_start(GTK_BOX(vbox),check,FALSE,FALSE,0);
@@ -169,8 +172,13 @@ void MakeConfigPage(GripInfo *ginfo)
 
   /* Make sure the selected ripper is active */
   gtk_menu_set_active(GTK_MENU(menu),ginfo->selected_ripper);
+
+#ifdef CDPAR
   if(ginfo->selected_ripper==0) ginfo->using_builtin_cdp=TRUE;
   else ginfo->using_builtin_cdp=FALSE;
+#else
+  ginfo->using_builtin_cdp=FALSE;
+#endif
 
   optmenu=gtk_option_menu_new();
   gtk_option_menu_set_menu(GTK_OPTION_MENU(optmenu),menu);
@@ -198,7 +206,8 @@ void MakeConfigPage(GripInfo *ginfo)
   gtk_widget_show(entry);
 
   gtk_box_pack_start(GTK_BOX(vbox),uinfo->rip_exe_box,FALSE,FALSE,0);
-  if(!ginfo->using_builtin_cdp) gtk_widget_show(uinfo->rip_exe_box);
+  if(!ginfo->using_builtin_cdp)
+    gtk_widget_show(uinfo->rip_exe_box);
 
 #ifdef CDPAR
   uinfo->rip_builtin_box=gtk_vbox_new(FALSE,2);
@@ -234,16 +243,16 @@ void MakeConfigPage(GripInfo *ginfo)
   gtk_box_pack_start(GTK_BOX(uinfo->rip_builtin_box),check,FALSE,FALSE,0);
   gtk_widget_show(check);
 
-  entry=MakeStrEntry(NULL,ginfo->force_scsi,_("Generic SCSI device"),
-		     255,TRUE);
-  gtk_box_pack_start(GTK_BOX(uinfo->rip_builtin_box),entry,FALSE,FALSE,0);
-  gtk_widget_show(entry);
-
   gtk_box_pack_start(GTK_BOX(vbox),uinfo->rip_builtin_box,FALSE,FALSE,0);
   if(ginfo->using_builtin_cdp) gtk_widget_show(uinfo->rip_builtin_box);
 #endif
 
   entry=MakeStrEntry(NULL,ginfo->ripfileformat,_("Rip file format"),255,TRUE);
+  gtk_box_pack_start(GTK_BOX(vbox),entry,FALSE,FALSE,0);
+  gtk_widget_show(entry);
+
+  entry=MakeStrEntry(NULL,ginfo->force_scsi,_("Generic SCSI device"),
+		     255,TRUE);
   gtk_box_pack_start(GTK_BOX(vbox),entry,FALSE,FALSE,0);
   gtk_widget_show(entry);
 
@@ -638,13 +647,20 @@ static void RipperSelected(GtkWidget *widget,gpointer data)
   GripGUI *uinfo;
   Ripper *rip;
   char buf[256];
-  char *path=NULL;
+  int selected_ripper;
 
   ginfo=(GripInfo *)data;
   uinfo=&(ginfo->gui_info);
   rip=(Ripper *)gtk_object_get_user_data(GTK_OBJECT(widget));
 
-  ginfo->selected_ripper=rip-ripper_defaults;
+  selected_ripper=rip-ripper_defaults;
+
+  /* Don't overwrite if the selection hasn't changed */
+  if(ginfo->selected_ripper == selected_ripper) {
+    return;
+  }
+
+  ginfo->selected_ripper = selected_ripper;
 
 #ifdef CDPAR
   if(ginfo->selected_ripper==0) {
@@ -663,13 +679,8 @@ static void RipperSelected(GtkWidget *widget,gpointer data)
 
   if(!ginfo->using_builtin_cdp) {
     if(strcmp(rip->name,"other")) {
-      path=FindExe(rip->name,bin_search_paths);
-      
-      if(!path) path=bin_search_paths[0];
-      
-      g_snprintf(buf,256,"%s/%s",path,rip->name);
-      
-      gtk_entry_set_text(GTK_ENTRY(uinfo->ripexename_entry),buf);
+      FindExeInPath(rip->name, buf, sizeof(buf));
+      gtk_entry_set_text(GTK_ENTRY(uinfo->ripexename_entry), buf);
     }
     else gtk_entry_set_text(GTK_ENTRY(uinfo->ripexename_entry),"");
     
@@ -683,19 +694,13 @@ static void EncoderSelected(GtkWidget *widget,gpointer data)
   GripGUI *uinfo;
   MP3Encoder *enc;
   char buf[256];
-  char *path=NULL;
 
   ginfo=(GripInfo *)data;
   uinfo=&(ginfo->gui_info);
   enc=(MP3Encoder *)gtk_object_get_user_data(GTK_OBJECT(widget));
 
   if(strcmp(enc->name,"other")) {
-    path=FindExe(enc->name,bin_search_paths);
-
-    if(!path) path=bin_search_paths[0];
-    
-    g_snprintf(buf,256,"%s/%s",path,enc->name);
-
+    FindExeInPath(enc->name, buf, sizeof(buf));
     gtk_entry_set_text(GTK_ENTRY(uinfo->mp3exename_entry),buf);
   }
   else gtk_entry_set_text(GTK_ENTRY(uinfo->mp3exename_entry),"");
@@ -703,6 +708,23 @@ static void EncoderSelected(GtkWidget *widget,gpointer data)
   gtk_entry_set_text(GTK_ENTRY(uinfo->mp3cmdline_entry),enc->cmdline);
 
   ginfo->selected_encoder=enc-encoder_defaults;
+}
+
+void FindExeInPath(char *exename, char *buf, int bsize)
+{
+  char *path;
+  static char **PATH = 0;
+
+  if (!PATH) {
+    char *env = g_getenv("PATH");
+    PATH = g_strsplit(env ? env : "/usr/local/bin:/usr/bin:/bin", ":", 0);
+  }
+  path = FindExe(exename, PATH);
+  if (!path) {
+    g_snprintf(buf, bsize, "%s", exename);
+  } else {
+    g_snprintf(buf, bsize, "%s/%s", path, exename);
+  }
 }
 
 char *FindExe(char *exename,char **paths)

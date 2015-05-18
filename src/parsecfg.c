@@ -67,7 +67,7 @@ static gboolean ParseLine(char *buf,CFGEntry *cfg)
   return found;
 }
 
-gboolean LoadConfig(char *filename,char *name,int ver,int reqver,CFGEntry *cfg)
+int LoadConfig(char *filename,char *name,int ver,int reqver,CFGEntry *cfg)
 {
   char buf[1024];
   FILE *cfp;
@@ -83,17 +83,13 @@ gboolean LoadConfig(char *filename,char *name,int ver,int reqver,CFGEntry *cfg)
   if(!tok||(strcasecmp(tok,name))) {
     printf(_("Error: Invalid config file\n"));
 
-    return FALSE;
+    return -1;
   }
 
   tok=strtok(NULL,"");
 
   if(!tok||(atoi(tok)<reqver)) {
-    printf(_("Error: Your config file is out of date\n"
-	   "Resetting to defaults\n"
-	   "You will need to re-configure Grip\n"));
-
-    return FALSE;
+    return -2;
   }
 
   while(fgets(buf,1024,cfp)) {
@@ -102,7 +98,7 @@ gboolean LoadConfig(char *filename,char *name,int ver,int reqver,CFGEntry *cfg)
 
   fclose(cfp);
 
-  return TRUE;
+  return 0;
 }
 
 gboolean SaveConfig(char *filename,char *name,int ver,CFGEntry *cfg)

@@ -58,6 +58,7 @@ typedef struct _track_info {
 /* Disc information such as current track, amount played, etc */
 typedef struct _disc_info {
   int cd_desc;                              /* CD device file desc. */
+  char *devname;                            /* CD device file pathname */
   gboolean have_info;                       /* Do we have disc info yet? */
   gboolean disc_present;	            /* Is disc present? */
   int disc_mode;		            /* Current disc mode */

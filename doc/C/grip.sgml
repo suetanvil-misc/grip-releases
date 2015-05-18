@@ -986,6 +986,11 @@
 	<listitem><para><guilabel>c</guilabel> &mdash; The CDrom device
 	    being used.  </para></listitem>
 
+	<listitem><para><guilabel>C</guilabel> &mdash; The generic scsi
+	    device being used (note that this will be substituted with the
+	    CDrom device if no generic scsi device has been
+	    specified).</para></listitem>
+
 	<listitem><para><guilabel>w</guilabel> &mdash; The filename of the
 	    wave file being ripped.  </para></listitem>
 
@@ -1041,11 +1046,12 @@
 	
       </itemizedlist>
       
-      <para>Any of the '%' switches can optionally be preceded by a '*' (for
-	example, '%*a'). This prevent Grip from doing any stripping of
-	characters from the string. Generally, this option should be used
-	when the switch is being used in something other than a
-	filename.</para>
+      <para>Any of the '%' switches can optionally be preceded by a '*' or
+	'!' modifier (for example, '%*a'). '*' prevents Grip from doing any
+	stripping of characters from the string. '!' forces Grip to strip
+	characters from the string. If neither modifier is used, Grip will
+	do what it thinks is best (generally, it will only munge strings if
+	it knows they are part of a filename).</para>
     </sect1>
   </chapter>
   

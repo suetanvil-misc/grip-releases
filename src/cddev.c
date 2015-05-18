@@ -49,6 +49,7 @@
 /* For FreeBSD, OpenBSD, and Solaris */
 #ifdef HAVE_SYS_CDIO_H
 #include <sys/cdio.h>
+#define NON_BLOCKING
 #endif
 
 #if defined(__FreeBSD__)
@@ -63,11 +64,17 @@
 /* Initialize the CD-ROM for playing audio CDs */
 gboolean CDInitDevice(char *device_name,DiscInfo *disc)
 {
+  struct stat st;
 #ifdef HAVE_MNTENT_H
   FILE *mounts;
   struct mntent *mnt;
   char devname[256];
-  struct stat st;
+#endif
+#ifndef NON_BLOCKING
+  const int OPEN_MODE = O_RDONLY;
+#else
+  const int OPEN_MODE = O_RDONLY|O_NONBLOCK;
+#endif
 
   disc->have_info=FALSE;
   disc->disc_present=FALSE;
@@ -75,6 +82,7 @@ gboolean CDInitDevice(char *device_name,DiscInfo *disc)
   if(lstat(device_name,&st)<0)
     return FALSE;
    
+#ifdef HAVE_MNTENT_H
   if(S_ISLNK(st.st_mode))
     readlink(device_name,devname,256);
   else
@@ -94,13 +102,18 @@ gboolean CDInitDevice(char *device_name,DiscInfo *disc)
   endmntent(mounts);
 #endif
 
-#ifdef NON_BLOCKING
-  if((disc->cd_desc=open(device_name,O_RDONLY|O_NONBLOCK))<0)
-#else
-    if((disc->cd_desc=open(device_name,O_RDONLY))<0)
-#endif
-      return FALSE;
-   
+  if (disc->devname 
+      && disc->devname != device_name
+      && strcmp(device_name, disc->devname)) {
+    free(disc->devname);
+    disc->devname = 0;
+  }
+  if (!disc->devname) {
+    disc->devname = strdup(device_name);
+  }
+
+  disc->cd_desc=open(device_name, OPEN_MODE);
+
   return TRUE;
 }
 
@@ -133,11 +146,20 @@ gboolean CDStat(DiscInfo *disc,gboolean read_toc)
 #ifdef CDIOREADTOCHEADER
   struct ioc_toc_header cdth;
 #endif
-  
-  int readtracks,frame[MAX_TRACKS],pos;
 #ifdef CDROM_DRIVE_STATUS
   int retcode;
+#endif
 
+  int readtracks,frame[MAX_TRACKS],pos;
+
+  if (disc->cd_desc < 0) {
+    CDInitDevice(disc->devname, disc);
+  }
+  if (disc->cd_desc < 0) {
+    return FALSE;
+  }
+
+#ifdef CDROM_DRIVE_STATUS
   retcode=ioctl(disc->cd_desc,CDROM_DRIVE_STATUS,CDSL_CURRENT);
   Debug(_("Drive status is %d\n"),retcode);
   if(retcode < 0) {
@@ -372,6 +394,10 @@ gboolean CDPlayFrames(DiscInfo *disc,int startframe,int endframe)
   struct cdrom_msf cdmsf;
 #endif
 
+  if (disc->cd_desc < 0) {
+    return FALSE;
+  }
+
 #ifdef CDIOCPLAYMSF
   cdmsf.start_m=startframe / (60 * 75);
   cdmsf.start_s=(startframe % (60 * 75)) / 75;
@@ -413,6 +439,10 @@ gboolean CDPlayFrames(DiscInfo *disc,int startframe,int endframe)
 gboolean CDPlayTrackPos(DiscInfo *disc,int starttrack,
 			int endtrack,int startpos)
 {
+  if (disc->cd_desc < 0) {
+    return FALSE;
+  }
+
   return CDPlayFrames(disc,disc->track[starttrack-1].start_frame +
 		      startpos * 75,endtrack>=disc->num_tracks ?
 		      (disc->length.mins * 60 +
@@ -430,6 +460,10 @@ gboolean CDPlayTrack(DiscInfo *disc,int starttrack,int endtrack)
 
 gboolean CDAdvance(DiscInfo *disc,DiscTime *time)
 {
+  if (disc->cd_desc < 0) {
+    return FALSE;
+  }
+
   disc->track_time.mins += time->mins;
   disc->track_time.secs += time->secs;
 
@@ -486,6 +520,10 @@ gboolean CDAdvance(DiscInfo *disc,DiscTime *time)
 /* Stop the CD, if it is playing */
 gboolean CDStop(DiscInfo *disc)
 {
+  if (disc->cd_desc < 0) {
+    return FALSE;
+  }
+
 #ifdef CDIOCSTOP
   if(ioctl(disc->cd_desc,CDIOCSTOP)<0)
     return FALSE;
@@ -501,6 +539,10 @@ gboolean CDStop(DiscInfo *disc)
 /* Pause the CD */
 gboolean CDPause(DiscInfo *disc)
 {
+  if (disc->cd_desc < 0) {
+    return FALSE;
+  }
+
 #ifdef CDIOCPAUSE
   if(ioctl(disc->cd_desc,CDIOCPAUSE)<0)
     return FALSE;
@@ -516,6 +558,10 @@ gboolean CDPause(DiscInfo *disc)
 /* Resume playing */
 gboolean CDResume(DiscInfo *disc)
 {
+  if (disc->cd_desc < 0) {
+    return FALSE;
+  }
+
 #ifdef CDIOCRESUME
   if(ioctl(disc->cd_desc,CDIOCRESUME)<0)
     return FALSE;
@@ -533,7 +579,13 @@ gboolean TrayOpen(DiscInfo *disc)
 {
 #ifdef CDROM_DRIVE_STATUS
   int status;
+#endif
 
+  if (disc->cd_desc < 0) {
+    return FALSE;
+  }
+
+#ifdef CDROM_DRIVE_STATUS
   status=ioctl(disc->cd_desc,CDROM_DRIVE_STATUS,CDSL_CURRENT);
   Debug(_("Drive status is %d\n"), status);
 
@@ -551,6 +603,10 @@ gboolean TrayOpen(DiscInfo *disc)
 /* Eject the tray */
 gboolean CDEject(DiscInfo *disc)
 {  
+  if (disc->cd_desc < 0) {
+    return FALSE;
+  }
+
 #ifdef CDIOCEJECT
   /*  always unlock door before an eject in case something else locked it  */
 #if defined(CDROM_LOCKDOOR)
@@ -579,6 +635,10 @@ gboolean CDEject(DiscInfo *disc)
 
 gboolean CDClose(DiscInfo *disc)
 {
+  if (disc->cd_desc < 0) {
+    return FALSE;
+  }
+
 #ifdef CDIOCCLOSE
   if(ioctl(disc->cd_desc,CDIOCCLOSE)<0)
     return FALSE;
@@ -600,6 +660,10 @@ gboolean CDGetVolume(DiscInfo *disc,DiscVolume *vol)
   struct cdrom_volctrl volume;
 #endif
    
+  if (disc->cd_desc < 0) {
+    return FALSE;
+  }
+
 #ifdef CDIOCGETVOL
   if(ioctl(disc->cd_desc,CDIOCGETVOL,&volume)<0)
     return FALSE;
@@ -631,6 +695,10 @@ gboolean CDSetVolume(DiscInfo *disc,DiscVolume *vol)
   struct cdrom_volctrl volume;
 #endif
    
+  if (disc->cd_desc < 0) {
+    return FALSE;
+  }
+
   if(vol->vol_front.left > 255 || vol->vol_front.left < 0 ||
      vol->vol_front.right > 255 || vol->vol_front.right < 0 ||
      vol->vol_back.left > 255 || vol->vol_back.left < 0 ||
@@ -665,6 +733,10 @@ gboolean CDSetVolume(DiscInfo *disc,DiscVolume *vol)
 /* Choose a particular disc from the CD changer */
 gboolean CDChangerSelectDisc(DiscInfo *disc,int disc_num)
 {
+  if (disc->cd_desc < 0) {
+    return FALSE;
+  }
+
 #ifdef CDROM_SELECT_DISC
   if(ioctl(disc->cd_desc,CDROM_SELECT_DISC,disc_num)<0)
     return FALSE;
@@ -682,7 +754,13 @@ int CDChangerSlots(DiscInfo *disc)
 {
 #ifdef CDROM_CHANGER_NSLOTS
   int slots;
+#endif
 
+  if (disc->cd_desc < 0) {
+    return FALSE;
+  }
+
+#ifdef CDROM_CHANGER_NSLOTS
   if((slots=ioctl(disc->cd_desc, CDROM_CHANGER_NSLOTS))<0)
     slots=1;
    

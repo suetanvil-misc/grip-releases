@@ -1,3 +1,52 @@
+2002-03-10  Mike Oliphant  <oliphant@gtk.org>
+
+	* de.po: updated (thanks to Goetz Waschk for this)
+	* doc/C/Makefile.am: now obeys DESTDIR (thanks to Alan Eldridge
+	  for this)
+	* grip.c/parsecfg.c: throw up a dialog and backup the old grip
+	  config if we are forcing a reconfig
+	* discdb.c: fixed order of title/artist in TTITLE (thanks to
+	  Martin Michlmayr for catching this)
+	* configure.in/cppmain.cc/main.c/Makefile.am: make sure we
+	  initialize c++ datastructures (thanks to Alan Eldridge for this)
+	* discdb.c: changed from "secs" to "seconds" in cddb format
+	* discdb.c: send DYEAR even if it is blank
+	* gripcfg.c: added "-b %b" to default ogg cmdline (thanks to Taku
+	  Yasui for this)
+	* rip.c: fixed floating point exception on alpha systems (thanks
+	  to Taku Yasui for this)
+	* rip.c: make sure num_wavs cannot go below zero (thanks to
+	  Przemyslaw Kryger for this)
+	* grip.c/grip.h/cdplay.c: added auto play on insert
+	* discdb.c: fixed wrapping of DTITLE and TTITLE
+	* gripcfg.c: fixed a problem that screwed up the ripper config if
+	  cdparanoia was not linked in
+	* launch.c/launch.h/rip.c/cdplay.c: made munging of strings the
+	  default only when we know a filename is being constructed. added
+	  '!' switch modifier to force munging (thanks to Devin Carraway
+	  for pointing out the problem)
+	* cddev.c/cddev.h: freebsd compatibility fixes (thanks to Alan
+	  Eldridge for this)
+	* gripcfg.c: do not reset ripper config if the same ripper is
+	  re-selected (thanks to Alan Eldridge for this)
+	* main.c/grip.c/grip.h: added 'scsi-device' parameter
+	* gripcfg.c: move generic scsi config out of the builtin paranoia
+	  section
+	* rip.c: added the 'C' switch for passing the generic scsi device
+	* README: updated usage
+	* grip.sgml: added docs for the new 'C' switch
+	* gripcfg.c: changed cdda2wav to use 'C', removed unnecessary
+	  '*'s, and got rid of \" escaping in oggenc commandline
+	* fr.po: updated (thanks to Eric Lassauge for this)
+	* configure.in: added '-lm' to LIBS to try to work around a
+	  cdparanoi link problem on some platforms
+	* contrib: added contrib directory
+	* contrib/write-gronk-discid: added (thanks to Alan Eldridge for
+	  this)
+	* gripcfg.c/gripcfg.h: use PATH to find executables (thanks to
+	  Alan Eldridge for this)
+	* configure.in/grip.spec: upped version to 2.99.0
+
 2002-02-19  Mike Oliphant  <oliphant@gtk.org>
 
 	* various: solaris compile fixes (thanks to Jim Crumley for

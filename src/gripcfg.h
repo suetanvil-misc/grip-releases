@@ -37,4 +37,5 @@ typedef struct _mp3_encoder {
 
 void MakeConfigPage(GripInfo *ginfo);
 char *FindExe(char *exename,char **paths);
+void FindExeInPath(char *exename, char *buf, int bsize);
 gboolean FileExists(char *filename);

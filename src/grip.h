@@ -166,6 +166,7 @@ typedef struct _grip_info {
   DiscDBServer dbserver;
   DiscDBServer dbserver2;
   char cd_device[256];
+  char force_scsi[256];
   char discdb_submit_email[256];
   gboolean db_use_freedb;
   char user_email[256];
@@ -179,6 +180,7 @@ typedef struct _grip_info {
   gboolean is_new_disc;
   gboolean first_time;
   gboolean play_first;
+  gboolean play_on_insert;
   gboolean stop_first;
   gboolean no_interrupt;
   gboolean automatic_discdb;
@@ -243,7 +245,6 @@ typedef struct _grip_info {
   gboolean calc_gain;
   int rip_smile_level;
   gfloat rip_percent_done;
-  char force_scsi[256];
 #endif
   char ripexename[256];
   char ripfileformat[256];
@@ -279,7 +280,8 @@ typedef struct _grip_info {
 
 } GripInfo;
 
-GtkWidget *GripNew(const gchar* geometry,char *device,gboolean force_small,
+GtkWidget *GripNew(const gchar* geometry,char *device,char *scsi_device,
+		   gboolean force_small,
 		   gboolean local_mode,gboolean no_redirect);
 void GripDie(GtkWidget *widget,gpointer data);
 void GripUpdate(GtkWidget *app);

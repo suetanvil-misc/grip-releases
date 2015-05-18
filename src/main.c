@@ -38,6 +38,7 @@ GtkWidget* grip_app;
 /* popt table */
 static char *geometry=NULL;
 static char *device=NULL;
+static char *scsi_device=NULL;
 static int force_small=FALSE;
 static int local_mode=FALSE;
 static int no_redirect=FALSE;
@@ -60,6 +61,15 @@ struct poptOption options[] = {
     &device,
     0,
     N_("Specify the cdrom device to use"),
+    N_("DEVICE")
+  },
+  { 
+    "scsi-device",
+    '\0',
+    POPT_ARG_STRING,
+    &scsi_device,
+    0,
+    N_("Specify the generic scsi device to use"),
     N_("DEVICE")
   },
   { 
@@ -122,7 +132,7 @@ void Debug(char *fmt,...)
   va_end(args);
 }
 
-int main(int argc, char* argv[])
+int Cmain(int argc, char* argv[])
 {
   poptContext pctx;
   char** args;
@@ -156,8 +166,11 @@ int main(int argc, char* argv[])
 
   do_debug=verbose;
 
+  if(scsi_device) printf("scsi=[%s]\n",scsi_device);
+
   /* Start a new Grip app */
-  grip_app=GripNew(geometry,device,force_small,local_mode,no_redirect);
+  grip_app=GripNew(geometry,device,scsi_device,force_small,local_mode,
+		   no_redirect);
 
   gtk_widget_show(grip_app);
 

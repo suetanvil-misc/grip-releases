@@ -6,7 +6,8 @@ INCLUDES = -I$(top_srcdir) -I$(includedir) $(GNOME_INCLUDEDIR) \
 bin_PROGRAMS = grip
 
 grip_SOURCES =         \
-        main.c           \
+	cppmain.cc \
+        main.c \
 	common.h \
         grip.c \
 	grip.h \
