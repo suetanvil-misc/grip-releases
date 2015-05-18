@@ -2,7 +2,7 @@ AC_INIT(src/main.c)
 
 AM_CONFIG_HEADER(config.h)
 
-AM_INIT_AUTOMAKE(grip,3.0.0)
+AM_INIT_AUTOMAKE(grip,3.0.1)
 
 AM_MAINTAINER_MODE
 
@@ -45,7 +45,7 @@ fi
 
 GNOME_COMPILE_WARNINGS
 
-ALL_LINGUAS="fr de zh_CN ja"
+ALL_LINGUAS="fr de zh_CN zh_HK zh_TW ja pt_BR ru es"
 AM_GNU_GETTEXT
 
 dnl do cdparanoia check

@@ -121,6 +121,7 @@ typedef struct _grip_gui {
   /* Images */
   GtkWidget *check_image;
   GtkWidget *eject_image;
+  GtkWidget *cdscan_image;
   GtkWidget *ff_image;
   GtkWidget *lowleft_image;
   GtkWidget *lowright_image;
@@ -184,6 +185,8 @@ typedef struct _grip_info {
   gboolean stop_first;
   gboolean no_interrupt;
   gboolean automatic_discdb;
+  gboolean poll_drive;
+  int poll_interval;
   int auto_eject_countdown;
   int current_discid;
   pthread_t discdb_thread;

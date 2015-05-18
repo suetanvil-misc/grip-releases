@@ -24,6 +24,7 @@
 #include "../pixmaps/discdb0.xpm"
 #include "../pixmaps/discdb1.xpm"
 #include "../pixmaps/eject.xpm"
+#include "../pixmaps/cdscan.xpm"
 #include "../pixmaps/ff.xpm"
 #include "../pixmaps/lowleft.xpm"
 #include "../pixmaps/lowright.xpm"

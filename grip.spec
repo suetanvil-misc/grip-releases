@@ -1,10 +1,12 @@
 %define name grip
-%define version 3.0.0
+%define version 3.0.1
 %define release 1
 %define prefix /usr
 
 Summary: Grip, a CD player, ripper, and MP3-encoder front-end
-Summary(zh_CN): Grip是一个 CD 播放器, 抓轨器和 MP3 编码器前端程序. 
+Summary(zh_CN): Grip 是一个 CD 播放器、抓轨器和 MP3 编码器前端程序。
+Summary(zh_HK): Grip 琌 CD 冀竟ъ瓂竟㎝ MP3 絪絏竟玡狠祘Α
+Summary(zh_TW): Grip 琌 CD 冀竟ъ瓂竟㎝ MP3 絪絏竟玡狠祘Α
 Summary(fr): Grip, un lecteur de CD, extracteur, et IHM pour encodeur MP3
 Name: %{name}
 Version: %{version}
@@ -28,11 +30,25 @@ database servers. Grip works with DigitalDJ to provide a unified
 "computerized" version of your music collection.
 
 %description -l zh_CN
-Grip 是一个可以在Gnome桌面环境下运行的CD音乐播放器和抓轨器, 它可以使用
-内置的 cdparanoia 程序抓轨器(将音轨存储为文件),也可以使用外部的抓轨器
-(例如: cdda2wav).同时提供自动的MP3编码前端, 还可以自动地从internet上的光
-盘数据库中查询光盘曲目. 如果协同DigitalDJ程序一起工作, 您可以创建自己的
-"计算机化"的音乐库.
+Grip 是一个可以在 GNOME 桌面环境下运行的 CD 音乐播放器和抓轨器。它可以使用
+内置的 cdparanoia 程序抓轨器 (将音轨存储为文件)，也可以使用外部的抓轨器
+(例如: cdda2wav)。同时提供自动的 MP3 编码前端，还可以自动地从 Internet 上的
+光盘数据库中查询光盘曲目。如果协同 DigitalDJ 程序一起工作，您可以创建自己的
+“计算机化”的音乐库。
+
+%description -l zh_HK
+Grip 琌 GNOME 吏挂磅︽ CD 贾冀竟㎝ъ瓂竟ウㄏ
+ノず竚 cdparanoia 祘Αъ瓂竟 (盢瓂郎)ㄏノ场ъ瓂竟
+(ㄒ cdda2wav)矗ㄑ笆 MP3 絪絏玡狠临笆眖 Internet 
+盒戈畐い琩高盒Ρヘ狦 DigitalDJ 祘Α癬眤ミ
+筿福て贾畐
+
+%description -l zh_TW
+Grip 琌 GNOME 吏挂磅︽ CD 贾冀竟㎝ъ瓂竟ウㄏ
+ノず竚 cdparanoia 祘Αъ瓂竟 (盢瓂郎)ㄏノ场ъ瓂竟
+(ㄒ cdda2wav)矗ㄑ笆 MP3 絪絏玡狠临笆眖 Internet 
+盒戈畐い琩高盒Ρヘ狦 DigitalDJ 祘Α癬眤ミ
+筿福て贾畐
 
 %description -l fr
 Grip est un lecteur-extracteur de CD pour le Bureau GNome. Il a des
@@ -73,6 +89,9 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/locale/*/LC_MESSAGES/grip.mo
 
 %changelog
+* Thu Apr 25 2002 Anthony Fok <anthony@thizlinux.com>
+- Added Traditional Chinese translations (based on Merlin's translations)
+
 * Thu Apr 04 2002 Merlin Ma <merlin@turbolinux.com.cn>
 - Added Simplified Chinese translations.
 - Added locale dir and files in %files

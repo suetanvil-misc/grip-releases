@@ -167,6 +167,7 @@ gboolean CDStat(DiscInfo *disc,gboolean read_toc)
   }
   else if(retcode != CDS_DISC_OK && retcode != CDS_NO_INFO) {
     Debug(_("No disc\n"));
+    disc->disc_present=FALSE;
 
     return FALSE;
   }

@@ -333,48 +333,6 @@ distdir: $(DISTFILES)
 	    || cp -p $$d/$$file $(distdir)/$$file || :; \
 	  fi; \
 	done
-cddev.o: cddev.c ../config.h cddev.h common.h
-cdpar.o: cdpar.c grip.h ../config.h cddev.h discdb.h launch.h \
-	gain_analysis.h
-cdplay.o: cdplay.c cdplay.h grip.h ../config.h cddev.h discdb.h launch.h \
-	common.h discedit.h dialog.h rip.h grip_id3.h
-cppmain.o: cppmain.cc
-dialog.o: dialog.c dialog.h
-discdb.o: discdb.c cddev.h discdb.h grip_id3.h ../config.h common.h
-discedit.o: discedit.c grip.h ../config.h cddev.h discdb.h launch.h \
-	cdplay.h dialog.h grip_id3.h common.h discedit.h
-gain_analysis.o: gain_analysis.c gain_analysis.h
-grip.o: grip.c ../config.h grip.h cddev.h discdb.h launch.h cdplay.h \
-	discedit.h rip.h common.h dialog.h gripcfg.h xpm.h \
-	../pixmaps/check.xpm ../pixmaps/discdb0.xpm \
-	../pixmaps/discdb1.xpm ../pixmaps/eject.xpm ../pixmaps/ff.xpm \
-	../pixmaps/lowleft.xpm ../pixmaps/lowright.xpm \
-	../pixmaps/minmax.xpm ../pixmaps/nexttrk.xpm \
-	../pixmaps/playpaus.xpm ../pixmaps/prevtrk.xpm \
-	../pixmaps/loop.xpm ../pixmaps/noloop.xpm ../pixmaps/random.xpm \
-	../pixmaps/playlist.xpm ../pixmaps/playnorm.xpm \
-	../pixmaps/quit.xpm ../pixmaps/rew.xpm ../pixmaps/stop.xpm \
-	../pixmaps/upleft.xpm ../pixmaps/upright.xpm ../pixmaps/vol.xpm \
-	../pixmaps/discdbwht.xpm ../pixmaps/rotate.xpm \
-	../pixmaps/edit.xpm ../pixmaps/progtrack.xpm \
-	../pixmaps/mail.xpm ../pixmaps/save.xpm ../pixmaps/grip.xpm \
-	../pixmaps/enc0.xpm ../pixmaps/enc1.xpm ../pixmaps/enc2.xpm \
-	../pixmaps/enc3.xpm ../pixmaps/rip0.xpm ../pixmaps/rip1.xpm \
-	../pixmaps/rip2.xpm ../pixmaps/rip3.xpm ../pixmaps/smile1.xpm \
-	../pixmaps/smile2.xpm ../pixmaps/smile3.xpm \
-	../pixmaps/smile4.xpm ../pixmaps/smile5.xpm \
-	../pixmaps/smile6.xpm ../pixmaps/smile7.xpm \
-	../pixmaps/smile8.xpm parsecfg.h
-gripcfg.o: gripcfg.c grip.h ../config.h cddev.h discdb.h launch.h \
-	gripcfg.h dialog.h
-id3.o: id3.c grip_id3.h ../config.h grip.h cddev.h discdb.h launch.h
-launch.o: launch.c grip.h ../config.h cddev.h discdb.h launch.h common.h
-main.o: main.c ../config.h grip.h cddev.h discdb.h launch.h
-parsecfg.o: parsecfg.c grip.h ../config.h cddev.h discdb.h launch.h \
-	parsecfg.h
-rip.o: rip.c grip.h ../config.h cddev.h discdb.h launch.h rip.h dialog.h \
-	cdplay.h gripcfg.h grip_id3.h common.h gain_analysis.h
-uihelper.o: uihelper.c common.h
 
 info-am:
 info: info-am

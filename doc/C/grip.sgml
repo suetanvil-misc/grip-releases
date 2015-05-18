@@ -141,6 +141,14 @@
 	</listitem>
 	
 	<listitem>
+	  <para><graphic format="png" fileref="cdscan">
+	  </graphic>
+	  <guilabel>Scan disc contents</guilabel> &mdash; Causes Grip to
+	  force a scan of the current CD as if it were just inserted (useful
+	  if you have polling for a new disc turned off).</para>
+	</listitem>
+
+	<listitem>
 	  <para><graphic format="png" fileref="volume">
 	    </graphic>
 	    <guilabel>Volume</guilabel> &mdash; Toggles display of the
@@ -462,6 +470,18 @@
 	  <para><guilabel>Work around faulty eject</guilabel> &mdash; If
 	  this option is set, Grip will not rely on querying the open/closed
 	  status of the CDRom tray.</para>
+	</listitem>
+
+	<listitem>
+	  <para><guilabel>Poll disc drive for new disc</guilabel> &mdash; If
+	  this option is set, Grip will poll the disc drive to check if a
+	  new disc has been inserted.</para>
+	</listitem>
+
+	<listitem>
+	  <para><guilabel>Poll interval</guilabel> &mdash; This specifies
+	  the number of seconds Grip waits between checks for a new
+	  disc.</para>
 	</listitem>
 
       </itemizedlist>

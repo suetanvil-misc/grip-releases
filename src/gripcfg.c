@@ -132,6 +132,16 @@ void MakeConfigPage(GripInfo *ginfo)
   gtk_box_pack_start(GTK_BOX(vbox),check,FALSE,FALSE,0);
   gtk_widget_show(check);
 
+  check=MakeCheckButton(NULL,&ginfo->poll_drive,
+			_("Poll disc drive for new disc"));
+  gtk_box_pack_start(GTK_BOX(vbox),check,FALSE,FALSE,0);
+  gtk_widget_show(check);
+
+  entry=MakeNumEntry(NULL,&ginfo->poll_interval,_("Poll interval (seconds)"),
+		     3);
+  gtk_box_pack_start(GTK_BOX(vbox),entry,FALSE,FALSE,0);
+  gtk_widget_show(entry);
+  
   gtk_container_add(GTK_CONTAINER(page),vbox);
   gtk_widget_show(vbox);
 

@@ -891,6 +891,15 @@ GtkWidget *MakeControls(GripInfo *ginfo)
 		       _("Eject disc"),NULL);
   gtk_widget_show(button);
 
+  button=ImageButton(GTK_WIDGET(uinfo->app),uinfo->cdscan_image);
+  gtk_widget_set_style(button,uinfo->style_dark_grey);
+  gtk_box_pack_start(GTK_BOX(hbox),button,TRUE,TRUE,0);
+  gtk_signal_connect(GTK_OBJECT(button),"clicked",
+  		     GTK_SIGNAL_FUNC(ScanDisc),(gpointer)ginfo);
+  gtk_tooltips_set_tip(MakeToolTip(),button,
+		       _("Scan Disc Contents"),NULL);
+  gtk_widget_show(button);
+
   button=ImageButton(GTK_WIDGET(uinfo->app),uinfo->vol_image);
   gtk_widget_set_style(button,uinfo->style_dark_grey);
   gtk_signal_connect(GTK_OBJECT(button),"clicked",
@@ -1203,6 +1212,9 @@ void EjectDisc(GtkWidget *widget,gpointer data)
     }
 
     ginfo->tray_open=!ginfo->tray_open;
+
+    if(!ginfo->tray_open)
+      CheckNewDisc(ginfo,FALSE);
   }
 
   UnBusy(&(ginfo->gui_info));
@@ -1420,7 +1432,7 @@ static void ShuffleTracks(GripInfo *ginfo)
   }
 }
 
-void CheckNewDisc(GripInfo *ginfo)
+void CheckNewDisc(GripInfo *ginfo,gboolean force)
 {
   int new_id;
   DiscInfo *disc;
@@ -1430,7 +1442,7 @@ void CheckNewDisc(GripInfo *ginfo)
   if(!ginfo->looking_up) {
     Debug(_("Checking for a new disc\n"));
 
-    if(CDStat(disc,FALSE) 
+    if(CDStat(disc,FALSE)
        && disc->disc_present
        && CDStat(disc,TRUE)) {
       Debug(_("CDStat found a disc, checking tracks\n"));
@@ -1449,7 +1461,7 @@ void CheckNewDisc(GripInfo *ginfo)
 	    disc->curr_track = 1;
           }
 	
-	if(new_id) {
+	if(new_id || force) {
 	  ginfo->have_disc=TRUE;
 
 	  if(ginfo->play_on_insert) PlayTrackCB(NULL,(gpointer)ginfo);
@@ -1457,9 +1469,22 @@ void CheckNewDisc(GripInfo *ginfo)
 	  LookupDisc(ginfo,FALSE);
 	}
       }
-      else Debug(_("No non-zero length tracks\n"));
+      else {
+      if(ginfo->have_disc)
+	ginfo->update_required=TRUE;
+
+	ginfo->have_disc=FALSE;
+	Debug(_("No non-zero length tracks\n"));
+      }
     }
-    else Debug(_("CDStat said no disc\n"));
+    else {
+      if(ginfo->have_disc) {
+	ginfo->update_required=TRUE;
+      }
+
+      ginfo->have_disc=FALSE;
+      Debug(_("CDStat said no disc\n"));
+    }
   }
 }
 
@@ -1475,6 +1500,18 @@ static gboolean CheckTracks(DiscInfo *disc)
        disc->track[track].length.secs) have_track=TRUE;
 
   return have_track;
+}
+
+/* Scan the disc */
+void ScanDisc(GtkWidget *widget,gpointer data)
+{
+  GripInfo *ginfo;
+
+  ginfo=(GripInfo *)data;
+
+  ginfo->update_required=TRUE;
+
+  CheckNewDisc(ginfo,TRUE);
 }
 
 void UpdateDisplay(GripInfo *ginfo)
@@ -1507,6 +1544,15 @@ void UpdateDisplay(GripInfo *ginfo)
     if(ginfo->have_disc) {
       CDStat(disc,FALSE);
 
+      if(!disc->disc_present) {
+	ginfo->have_disc=FALSE;
+	ginfo->update_required=TRUE;
+      }
+    }
+  }
+
+  if(!ginfo->update_required) {
+    if(ginfo->have_disc) {
       if((disc->disc_mode==CDAUDIO_PLAYING)||
 	 (disc->disc_mode==CDAUDIO_PAUSED)) {
 	if(disc->disc_mode==CDAUDIO_PAUSED) {
@@ -1599,6 +1645,8 @@ void UpdateDisplay(GripInfo *ginfo)
 
   if(ginfo->update_required) {
     UpdateTracks(ginfo);
+
+    ginfo->update_required=FALSE;
 
     if(ginfo->have_disc) {
       g_snprintf(buf,80,"%02d:%02d",disc->length.mins,
@@ -1749,7 +1797,6 @@ void UpdateTracks(GripInfo *ginfo)
   }
 
   ginfo->first_time=0;
-  ginfo->update_required=FALSE;
 }
 
 void SubmitEntry(gint reply,gpointer data)

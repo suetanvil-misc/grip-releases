@@ -28,6 +28,7 @@
 #include <sys/param.h>
 #include <gdk/gdkx.h>
 #include <X11/Xlib.h>
+#include <time.h>
 #include "grip.h"
 #include <libgnomeui/gnome-window-icon.h>
 #include "discdb.h"
@@ -93,6 +94,8 @@ static GnomeHelpMenuEntry bug_help_entry={"grip","bugs.html"};
 {"eject_delay",CFG_ENTRY_INT,0,&ginfo->eject_delay},\
 {"beep_after_rip",CFG_ENTRY_BOOL,0,&ginfo->beep_after_rip},\
 {"faulty_eject",CFG_ENTRY_BOOL,0,&ginfo->faulty_eject},\
+{"poll_drive",CFG_ENTRY_BOOL,0,&ginfo->poll_drive},\
+{"poll_interval",CFG_ENTRY_INT,0,&ginfo->poll_interval},\
 {"use_proxy_env",CFG_ENTRY_BOOL,0,&ginfo->use_proxy_env},\
 {"db_cgi",CFG_ENTRY_STRING,256,ginfo->dbserver.cgi_prog},\
 {"cddb_submit_email",CFG_ENTRY_STRING,256,ginfo->discdb_submit_email},\
@@ -144,7 +147,7 @@ GtkWidget *GripNew(const gchar* geometry,char *device,char *scsi_device,
 
   app=gnome_app_new(PACKAGE,_("Grip"));
 
-  ginfo=g_new(GripInfo,1);
+  ginfo=g_new0(GripInfo,1);
 
   gtk_object_set_user_data(GTK_OBJECT(app),(gpointer)ginfo);
 
@@ -224,6 +227,8 @@ GtkWidget *GripNew(const gchar* geometry,char *device,char *scsi_device,
   
   gnome_app_set_contents(GNOME_APP(app),uinfo->winbox);
   gtk_widget_show(uinfo->winbox);
+
+  CheckNewDisc(ginfo,FALSE);
 
   return app;
 }
@@ -445,6 +450,7 @@ static void LoadImages(GripGUI *uinfo)
 {
   uinfo->check_image=Loadxpm(uinfo->app,check_xpm);
   uinfo->eject_image=Loadxpm(uinfo->app,eject_xpm);
+  uinfo->cdscan_image=Loadxpm(uinfo->app,cdscan_xpm);
   uinfo->ff_image=Loadxpm(uinfo->app,ff_xpm);
   uinfo->lowleft_image=Loadxpm(uinfo->app,lowleft_xpm);
   uinfo->lowright_image=Loadxpm(uinfo->app,lowright_xpm);
@@ -504,15 +510,24 @@ static void LoadImages(GripGUI *uinfo)
 void GripUpdate(GtkWidget *app)
 {
   GripInfo *ginfo;
+  time_t secs;
 
   ginfo=(GripInfo *)gtk_object_get_user_data(GTK_OBJECT(app));
 
   if(ginfo->ffwding) FastFwd(ginfo);
   if(ginfo->rewinding) Rewind(ginfo);
 
+  secs=time(NULL);
+
+  /* Make sure we don't mod by zero */
+  if(!ginfo->poll_interval)
+    ginfo->poll_interval=1;
+
 #ifdef GRIPCD
-  if(!ginfo->have_disc)
-    CheckNewDisc(ginfo);
+  if(ginfo->poll_drive && !(secs%ginfo->poll_interval)) {
+    if(!ginfo->have_disc)
+      CheckNewDisc(ginfo,FALSE);
+  }
 
   if(ginfo->auto_eject_countdown && !(--ginfo->auto_eject_countdown))
     EjectDisc(&(ginfo->disc));
@@ -522,9 +537,11 @@ void GripUpdate(GtkWidget *app)
   if(ginfo->ripping|ginfo->encoding) UpdateRipProgress(ginfo);
 
   if(!ginfo->ripping) {
-    if(!ginfo->have_disc)
-      CheckNewDisc(ginfo);
-    
+    if(ginfo->poll_drive && !(secs%ginfo->poll_interval)) {
+      if(!ginfo->have_disc)
+	CheckNewDisc(ginfo,FALSE);
+    }
+
     UpdateDisplay(ginfo);
   }
 #endif
@@ -588,6 +605,12 @@ static void DoLoadConfig(GripInfo *ginfo)
   ginfo->auto_eject_countdown=0;
   ginfo->current_discid=0;
   ginfo->volume=255;
+#if defined(__FreeBSD__)
+  ginfo->poll_drive=FALSE;
+#else
+  ginfo->poll_drive=TRUE;
+#endif
+  ginfo->poll_interval=1;
 
   ginfo->changer_slots=0;
   ginfo->current_disc=0;
@@ -740,13 +763,24 @@ static void DoLoadConfig(GripInfo *ginfo)
 
   ginfo->num_cpu=ginfo->edit_num_cpu;
 
-  if(!*ginfo->user_email)
-#if defined(__sun__)
-    g_snprintf(ginfo->user_email,256,"%s@%s",getenv("USER"),getenv("HOST"));
-#else
-    g_snprintf(ginfo->user_email,256,"%s@%s",getenv("USER"),
-	       getenv("HOSTNAME"));
-#endif
+  if(!*ginfo->user_email) {
+    char *host;
+    char *user;
+
+    host = getenv("HOST");
+    if(!host)
+      host = getenv("HOSTNAME");
+    if(!host)
+      host = "localhost";
+
+    user = getenv("USER");
+    if(!user) 
+      user = getenv("USERNAME");
+    if(!user)
+      user = "user";
+
+    g_snprintf(ginfo->user_email,256,"%s@%s",user,host);
+  }
 
   if(ginfo->use_proxy_env) {   /* Get proxy info from "http_proxy" */
     proxy_env=getenv("http_proxy");
