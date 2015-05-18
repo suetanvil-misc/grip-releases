@@ -288,7 +288,7 @@ gboolean CDPRip(char *device,char *generic_scsi_device,int track,
   
   if(!d){
     if(!verbose)
-      printf("\nUnable to open cdrom drive; -v will give more information.\n");
+      printf("\nUnable to open cdrom drive.\n");
 
     return FALSE;
   }

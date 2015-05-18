@@ -53,7 +53,7 @@ static MP3Encoder encoder_defaults[]={{"bladeenc","-%b -QUIT %w %m"},
 				      {"mp3encode","-p 2 -l 3 -b %b %w %m"},
 				      {"gogo","-b %b %w %m"},
 				      {"oggenc","-o %m -a %a -l %d -t %n -b %b %w"},
-				      {"flac","-V -o %o %f"},
+				      {"flac","-V -o %m %w"},
 				      {"other",""},
 				      {"",""}
 };

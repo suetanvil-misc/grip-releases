@@ -1220,17 +1220,14 @@
 	  use in modified form (shame on you for the cddb fiasco,
 	  however)</para></listitem>
 
-      <listitem><para>Everyone who has contributed code to Grip (see the
-      CREDITS file)</para></listitem>
-
       <listitem><para>mp3.com for hosting nostatic.org</para></listitem>
 
       <listitem><para>David Robinson and Glen Sawyer for
       ReplayGain</para></listitem>
 
       <listitem><para>Everyone else who has given me feedback, contributed
-	  code, and helped test Grip (see the ChangeLog for specific
-	  contributions)</para></listitem>
+	  code, and helped test Grip (see the ChangeLog and CREDITS for
+	  specific contributions)</para></listitem>
 
     </itemizedlist>
 

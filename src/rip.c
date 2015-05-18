@@ -61,7 +61,7 @@ static GtkWidget *MakeRangeSelects(GripInfo *ginfo);
 static void AddSQLEntry(GripInfo *ginfo,EncodeTrack *enc_track);
 static void DBScan(GtkWidget *widget,gpointer data);
 static char *MakeRelative(char *file1,char *file2);
-static void AddM3U(GripInfo *ginfo);
+static gboolean AddM3U(GripInfo *ginfo);
 static void ID3Add(GripInfo *ginfo,char *file,EncodeTrack *enc_track);
 static void DoWavFilter(GripInfo *ginfo);
 static void DoDiscFilter(GripInfo *ginfo);
@@ -406,6 +406,7 @@ unsigned long long BytesLeftInFS(char *path)
   return bytesleft;
 }
 
+/* Find the root filename of a path */
 char *FindRoot(char *str)
 {
   char *c;
@@ -415,6 +416,35 @@ char *FindRoot(char *str)
   }
 
   return c;
+}
+
+/* Check if a user has write access to a path */
+gboolean CanWrite(char *path)
+{
+  char *c;
+  gboolean can_write=FALSE;
+
+  /* First find the filename part, if any */
+  for(c=path+strlen(path);c>path;c--) {
+    if(*c=='/') break;
+  }
+
+  /* This is kinda clumsy -- temporarily hack the string to get only the
+   path part */
+  if(c!=path) {
+    *c='\0';
+  }
+
+  if(!access(path,W_OK)) {
+    can_write=TRUE;
+  }
+
+  /* Put back the '/' */
+  if(c!=path) {
+    *c='/';
+  }
+
+  return can_write;
 }
 
 void MakeDirs(char *path)
@@ -485,7 +515,7 @@ static char *MakeRelative(char *file1,char *file2)
   return rel; 
 }
 
-static void AddM3U(GripInfo *ginfo)
+static gboolean AddM3U(GripInfo *ginfo)
 {
   int i;
   EncodeTrack enc_track;
@@ -495,7 +525,7 @@ static void AddM3U(GripInfo *ginfo)
   char *relnam;
   GString *str;
 
-  if(!ginfo->have_disc) return;
+  if(!ginfo->have_disc) return FALSE;
   
   str=g_string_new(NULL);
 
@@ -507,12 +537,12 @@ static void AddM3U(GripInfo *ginfo)
 
   g_snprintf(m3unam,PATH_MAX,"%s",str->str);
 
-  MakeDirs(m3unam);
+  MakeDirs(str->str);
 
   fp=fopen(str->str, "w");
   if(fp==NULL) {
-    printf(_("Error: can't open m3u file\n"));
-    return;
+    DisplayMsg(_("Error: can't open m3u file\n"));
+    return FALSE;
   }
   
   for(i=0;i<ginfo->disc.num_tracks;i++) {
@@ -537,6 +567,8 @@ static void AddM3U(GripInfo *ginfo)
   g_string_free(str,TRUE);
   
   fclose(fp);
+
+  return TRUE;
 }
 
 void KillRip(GtkWidget *widget,gpointer data)
@@ -1071,14 +1103,16 @@ void DoRip(GtkWidget *widget,gpointer data)
     ginfo->rip_track=0;
   }
 
-  result=RipNextTrack(ginfo);
-  if(!result) {
-    ginfo->doencode=FALSE;
-
+  if(NextTrackToRip(ginfo)==ginfo->disc.num_tracks) {
     gnome_app_ok_cancel_modal
       ((GnomeApp *)ginfo->gui_info.app,
        _("No tracks selected.\nRip whole CD?\n"),
        RipWholeCD,(gpointer)ginfo);
+  }
+
+  result=RipNextTrack(ginfo);
+  if(!result) {
+    ginfo->doencode=FALSE;
   }
 }
 
@@ -1149,10 +1183,6 @@ static gboolean RipNextTrack(GripInfo *ginfo)
 
     CopyPixmap(GTK_PIXMAP(uinfo->rip_pix[0]),GTK_PIXMAP(uinfo->rip_indicator));
 
-    ginfo->rip_started = time(NULL);
-    sprintf(tmp,_("Rip: Trk %d (0.0x)"),ginfo->rip_track+1);
-    gtk_label_set(GTK_LABEL(uinfo->rip_prog_label),tmp);
-
     CDStop(&(ginfo->disc));
 
     if(!ginfo->rip_partial) {
@@ -1179,8 +1209,16 @@ static gboolean RipNextTrack(GripInfo *ginfo)
     g_string_free(str,TRUE);
 
     MakeDirs(ginfo->ripfile);
+    if(!CanWrite(ginfo->ripfile)) {
+      DisplayMsg(_("No write access to write wav file"));
+      return FALSE;
+    }
 
     Debug(_("Ripping track %d to %s\n"),ginfo->rip_track+1,ginfo->ripfile);
+
+    ginfo->rip_started = time(NULL);
+    sprintf(tmp,_("Rip: Trk %d (0.0x)"),ginfo->rip_track+1);
+    gtk_label_set(GTK_LABEL(uinfo->rip_prog_label),tmp);
 
     if(stat(ginfo->ripfile,&mystat)>=0) {
       if(mystat.st_size == ginfo->ripsize) { 
@@ -1279,6 +1317,8 @@ static void ThreadRip(void *arg)
   
   ginfo->rip_smile_level=0;
   
+  nice(ginfo->ripnice);
+
   CDPRip(ginfo->cd_device,ginfo->force_scsi,ginfo->rip_track+1,
 	 ginfo->start_sector,
 	 ginfo->end_sector,ginfo->ripfile,paranoia_mode,
@@ -1375,9 +1415,6 @@ static gboolean MP3Encode(GripInfo *ginfo)
   ginfo->mp3_started[cpu] = time(NULL);
   ginfo->mp3_enc_track[cpu] = encode_track;
 
-  sprintf(tmp,_("MP3: Trk %d (0.0x)"),encode_track+1);
-  gtk_label_set(GTK_LABEL(uinfo->mp3_prog_label[cpu]),tmp);
-  
   Debug(_("MP3 track %d\n"),encode_track+1);
 
   strcpy(ginfo->rip_delete_file[cpu],enc_track->wav_filename);
@@ -1391,10 +1428,17 @@ static gboolean MP3Encode(GripInfo *ginfo)
   g_string_free(str,TRUE);
 
   MakeDirs(ginfo->mp3file[cpu]);
+  if(!CanWrite(ginfo->mp3file[cpu])) {
+    DisplayMsg(_("No write access to write mp3 file"));
+    return FALSE;
+  }
   
   bytesleft=BytesLeftInFS(ginfo->mp3file[cpu]);
   
   Debug(_("%i: Encoding to %s\n"),cpu+1,ginfo->mp3file[cpu]);
+  
+  sprintf(tmp,_("MP3: Trk %d (0.0x)"),encode_track+1);
+  gtk_label_set(GTK_LABEL(uinfo->mp3_prog_label[cpu]),tmp);
   
   unlink(ginfo->mp3file[cpu]);
   

@@ -2,7 +2,7 @@ AC_INIT(src/main.c)
 
 AM_CONFIG_HEADER(config.h)
 
-AM_INIT_AUTOMAKE(grip,2.99.0)
+AM_INIT_AUTOMAKE(grip,2.99.2)
 
 AM_MAINTAINER_MODE
 
@@ -37,11 +37,15 @@ AC_CHECK_HEADERS(linux/soundcard.h machine/soundcard.h sys/soundcard.h sys/audio
 AC_ARG_PROGRAM
 AM_PROG_LIBTOOL
 GNOME_PTHREAD_CHECK
+
 GNOME_GHTTP_CHECK
+if test "$GHTTP_LIB" = ""; then
+  AC_MSG_ERROR(libhttp is required)
+fi
 
 GNOME_COMPILE_WARNINGS
 
-ALL_LINGUAS="fr de"
+ALL_LINGUAS="fr de zh_CN"
 AM_GNU_GETTEXT
 
 dnl do cdparanoia check
