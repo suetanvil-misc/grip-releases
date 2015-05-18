@@ -54,7 +54,7 @@ static MP3Encoder encoder_defaults[]={{"bladeenc","-%b -QUIT %w %m","mp3"},
 				       "mp3"},
 				      {"gogo","-b %b %w %m","mp3"},
 				      {"oggenc",
-				       "-o %m -a %a -l %d -t %n -b %b %w",
+				       "-o %m -a %a -l %d -t %n -b %b %w -N %t -G %g",
 				       "ogg"},
 				      {"flac","-V -o %m %w","flac"},
 				      {"other",""},
@@ -514,15 +514,17 @@ void MakeConfigPage(GripInfo *ginfo)
   gtk_box_pack_start(GTK_BOX(vbox),entry,FALSE,FALSE,0);
   gtk_widget_show(entry);
 
-  check=MakeCheckButton(NULL,&ginfo->tag_unicode,
-			_("Write tags in unicode"));
-  gtk_box_pack_start(GTK_BOX(vbox),check,FALSE,FALSE,0);
-  gtk_widget_show(check);
-
   entry=MakeStrEntry(NULL,ginfo->id3_encoding,
 		     _("ID3v1 Character set encoding"),16,TRUE);
   gtk_box_pack_start(GTK_BOX(vbox),entry,FALSE,FALSE,0);
   gtk_widget_show(entry);
+
+#ifdef HAVE_ID3LIB
+  entry=MakeStrEntry(NULL,ginfo->id3v2_encoding,
+		     _("ID3v2 Character set encoding"),16,TRUE);
+  gtk_box_pack_start(GTK_BOX(vbox),entry,FALSE,FALSE,0);
+  gtk_widget_show(entry);
+#endif
 
   gtk_container_add(GTK_CONTAINER(page),vbox);
   gtk_widget_show(vbox);
@@ -664,10 +666,6 @@ void MakeConfigPage(GripInfo *ginfo)
   gtk_widget_show(entry);
 
   entry=MakeStrEntry(NULL,ginfo->cdupdate,_("CD update program"),255,TRUE);
-  gtk_box_pack_start(GTK_BOX(vbox),entry,FALSE,FALSE,0);
-  gtk_widget_show(entry);
-
-  entry=MakeStrEntry(NULL,ginfo->fs_encoding,_("File System Character set encoding"),16,TRUE);
   gtk_box_pack_start(GTK_BOX(vbox),entry,FALSE,FALSE,0);
   gtk_widget_show(entry);
 

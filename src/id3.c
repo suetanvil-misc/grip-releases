@@ -26,13 +26,14 @@
 #include <gnome.h>
 #include "grip_id3.h"
 
-static void ID3Put(char *dest,char *src,int len);
+static void ID3Put(char *dest,char *src,int len,char *encoding);
 
 /* this array contains string representations of all known ID3 tags */
 /* taken from mp3id3 in the mp3tools 0.7 package */
 
 ID3Genre id3_genres[] = {
   {"Alternative",20},
+  {"Anime",146},
   {"Blues",0},
   {"Classical",32},
   {"Country",2},
@@ -116,6 +117,7 @@ ID3Genre id3_genres[] = {
   {"Instrumental Pop",46},
   {"Instrumental Rock",47},
   {"Jazz+Funk",29},
+  {"JPop",145},
   {"Jungle",63},
   {"Latin",86},
   {"Lo-Fi",71},
@@ -166,6 +168,7 @@ ID3Genre id3_genres[] = {
   {"Swing",83},
   {"Symphonic Rock",94},
   {"Symphony",106},
+  {"SynthPop",147},
   {"Tango",113},
   {"Techno",18},
   {"Techno-Industrial",51},
@@ -225,7 +228,7 @@ static ID3_FrameID frameids[ NUM_FRAMES ] = {
 
 gboolean ID3v2TagFile(char *filename, char *title, char *artist, char *album,
 		      char *year, char *comment, unsigned char genre, unsigned
-		      char tracknum,gboolean do_unicode,char *discdb_encoding)
+		      char tracknum,char *id3v2_encoding)
 {
   ID3Tag *tag;
   ID3Field *field;
@@ -292,18 +295,21 @@ gboolean ID3v2TagFile(char *filename, char *title, char *artist, char *album,
 	  field = ID3Frame_GetField( frames[i], ID3FN_TEXT );
 
 	  if(field) {
-	    if(do_unicode) {
-	      conv_str=g_convert(c_data,strlen(c_data),
-				 "utf-8",discdb_encoding,&rb,&wb,NULL);
-	      if(!conv_str)
-		conv_str=g_strdup(c_data);
-
-	      ID3Field_SetUNICODE( field, conv_str );
-
-	      g_free(conv_str);
+            if(!strcasecmp(id3v2_encoding,"utf-8")) {
+	      ID3Field_SetUNICODE(field,(unicode_t *)c_data);
 	    }
 	    else {
+              /* If the encoding isn't unicode, convert it and put it
+                 as ascii */
+
+              conv_str=g_convert(c_data,strlen(c_data),id3v2_encoding,
+                                 "utf-8",&rb,&wb,NULL);
+
+              if(!conv_str) conv_str=strdup(c_data);
+
 	      ID3Field_SetASCII(field,c_data);
+
+              g_free(conv_str);
 	    }
 	  } else {
 	    retval = FALSE;
@@ -352,66 +358,24 @@ gboolean ID3v2TagFile(char *filename, char *title, char *artist, char *album,
 
 gboolean ID3v1TagFile(char *filename,char *title,char *artist,char *album,
 		      char *year,char *comment,unsigned char genre,
-		      unsigned char tracknum, char *id3_encoding,
- 		      gboolean do_unicode,char *discdb_encoding)
+		      unsigned char tracknum, char *id3_encoding)
 {
   FILE *fp;
   ID3v1Tag tag;
-  char *conv_str;
-  gsize rb,wb;
 
   fp=fopen(filename,"a");
 
-  ID3Put(tag.tag,"TAG",3);
+  ID3Put(tag.tag,"TAG",3,id3_encoding);
 
-  if(do_unicode) {
-    conv_str=g_convert(title,strlen(title),
-		       id3_encoding,discdb_encoding,&rb,&wb,NULL);
-    if(!conv_str)
-      conv_str=g_strdup(title);
-    
-    ID3Put(tag.title,conv_str,30);
-    g_free(conv_str);
-  }
-  else ID3Put(tag.title,title,30);
+  ID3Put(tag.title,title,30,id3_encoding);
 
-  if(do_unicode) {
-    conv_str=g_convert(artist,strlen(artist),
-		       id3_encoding,discdb_encoding,&rb,&wb,NULL);
-    if(!conv_str)
-      conv_str=g_strdup(artist);
+  ID3Put(tag.artist,artist,30,id3_encoding);
 
-    ID3Put(tag.artist,conv_str,30);
-    
-    g_free(conv_str);
-  }
-  else ID3Put(tag.artist,artist,30);
+  ID3Put(tag.album,album,30,id3_encoding);
 
-  if(do_unicode) {
-    conv_str=g_convert(album,strlen(album),
-		       id3_encoding,discdb_encoding,&rb,&wb,NULL);
-    if(!conv_str)
-      conv_str=g_strdup(album);
+  ID3Put(tag.year,year,4,NULL);
 
-    ID3Put(tag.album,conv_str,30);
-
-    g_free(conv_str);
-  }
-  else ID3Put(tag.album,album,30);
-
-  ID3Put(tag.year,year,4);
-
-  if(do_unicode) {
-    conv_str=g_convert(comment,strlen(comment),
-		       id3_encoding,"utf-8",&rb,&wb,NULL);
-    if(!conv_str)
-      conv_str=g_strdup(comment);
-
-    ID3Put(tag.comment,conv_str,29);
-
-    g_free(conv_str);
-  }
-  else ID3Put(tag.comment,comment,29);
+  ID3Put(tag.comment,comment,29,id3_encoding);
 
   tag.tracknum=tracknum;
   tag.genre=genre;
@@ -425,17 +389,28 @@ gboolean ID3v1TagFile(char *filename,char *title,char *artist,char *album,
 
 /* Copy a string padding with zeros */
 
-static void ID3Put(char *dest,char *src,int len)
+static void ID3Put(char *dest,char *src,int len,char *encoding)
 {
   int pos;
   int srclen;
+  char *conv_str;
+  gsize rb,wb;
 
-  srclen=strlen(src);
+  if(encoding&&strcasecmp(encoding,"utf-8")) {
+    conv_str=g_convert(src,strlen(src),encoding,"utf-8",&rb,&wb,NULL);
+
+    if(!conv_str) conv_str=strdup(src);
+  }
+  else conv_str=strdup(src);
+
+  srclen=strlen(conv_str);
 
   for(pos=0;pos<len;pos++) {
-    if(pos<srclen) dest[pos]=src[pos];
+    if(pos<srclen) dest[pos]=conv_str[pos];
     else dest[pos]=0;
   }
+
+  g_free(conv_str);
 }
 
 char *ID3GenreString(int genre)

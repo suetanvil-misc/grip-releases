@@ -84,7 +84,6 @@ void DoSaveConfig(GripInfo *ginfo);
 {"doid3",CFG_ENTRY_BOOL,0,&ginfo->doid3},\
 {"doid3v2",CFG_ENTRY_BOOL,0,&ginfo->doid3v2},\
 {"tag_mp3_only",CFG_ENTRY_BOOL,0,&ginfo->tag_mp3_only},\
-{"tag_unicode",CFG_ENTRY_BOOL,0,&ginfo->tag_unicode},\
 {"id3_comment",CFG_ENTRY_STRING,30,ginfo->id3_comment},\
 {"max_wavs",CFG_ENTRY_INT,0,&ginfo->max_wavs},\
 {"auto_rip",CFG_ENTRY_BOOL,0,&ginfo->auto_rip},\
@@ -101,8 +100,8 @@ void DoSaveConfig(GripInfo *ginfo);
 {"db_cgi",CFG_ENTRY_STRING,256,ginfo->dbserver.cgi_prog},\
 {"cddb_submit_email",CFG_ENTRY_STRING,256,ginfo->discdb_submit_email},\
 {"discdb_encoding",CFG_ENTRY_STRING,16,ginfo->discdb_encoding},\
-{"fs_encoding",CFG_ENTRY_STRING,16,ginfo->fs_encoding},\
 {"id3_encoding",CFG_ENTRY_STRING,16,ginfo->id3_encoding},\
+{"id3v2_encoding",CFG_ENTRY_STRING,16,ginfo->id3v2_encoding},\
 {"db_use_freedb",CFG_ENTRY_BOOL,0,&ginfo->db_use_freedb},\
 {"dbserver2",CFG_ENTRY_STRING,256,ginfo->dbserver2.name},\
 {"db2_cgi",CFG_ENTRY_STRING,256,ginfo->dbserver2.cgi_prog},\
@@ -147,6 +146,7 @@ GtkWidget *GripNew(const gchar* geometry,char *device,char *scsi_device,
   GripInfo *ginfo;
   GripGUI *uinfo;
   int major,minor,point;
+  char buf[256];
 
   gnome_window_icon_set_default_from_file(GNOME_ICONDIR"/gripicon.png");
 
@@ -181,8 +181,9 @@ GtkWidget *GripNew(const gchar* geometry,char *device,char *scsi_device,
   ginfo->do_redirect=!no_redirect;
 
   if(!CDInitDevice(ginfo->cd_device,&(ginfo->disc))) {
-    g_print(_("Error: Unable to initialize [%s]\n"),ginfo->cd_device);
-    exit(0);
+    sprintf(buf,_("Error: Unable to initialize [%s]\n"),ginfo->cd_device);
+
+    DisplayMsg(buf);
   }
 
   CDStat(&(ginfo->disc),TRUE);
@@ -513,7 +514,7 @@ void MakeAboutPage(GripGUI *uinfo)
   gtk_box_pack_start(GTK_BOX(vbox2),label,FALSE,FALSE,0);
   gtk_widget_show(label);
 
-  label=gtk_label_new("Copyright (c) 1998-2003, Mike Oliphant");
+  label=gtk_label_new("Copyright 1998-2004, Mike Oliphant");
   gtk_widget_set_style(label,uinfo->style_wb);
   gtk_box_pack_start(GTK_BOX(vbox2),label,FALSE,FALSE,0);
   gtk_widget_show(label);
@@ -693,8 +694,6 @@ static void DoLoadConfig(GripInfo *ginfo)
 
   outputdir[0]='\0';
 
-  uinfo->last_button=0;
-
   uinfo->minimized=FALSE;
   uinfo->keep_min_size=TRUE;
   uinfo->volvis=FALSE;
@@ -759,8 +758,8 @@ static void DoLoadConfig(GripInfo *ginfo)
 
   g_get_charset(&charset);
   strncpy(ginfo->discdb_encoding,charset,sizeof(ginfo->discdb_encoding));
-  strncpy(ginfo->fs_encoding,charset,sizeof(ginfo->fs_encoding));
-  strncpy(ginfo->id3_encoding,charset,sizeof(ginfo->id3_encoding));
+  strcpy(ginfo->id3_encoding,"LATIN1");
+  strcpy(ginfo->id3v2_encoding,"LATIN1");
 
   ginfo->local_mode=FALSE;
   ginfo->update_required=FALSE;
@@ -848,7 +847,6 @@ static void DoLoadConfig(GripInfo *ginfo)
   ginfo->doid3=TRUE;
   ginfo->doid3=FALSE;
   ginfo->tag_mp3_only=TRUE;
-  ginfo->tag_unicode=FALSE;
   strcpy(ginfo->id3_comment,"Created by Grip");
   *ginfo->cdupdate='\0';
   ginfo->sprefs.no_lower_case=FALSE;

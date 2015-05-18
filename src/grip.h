@@ -70,7 +70,6 @@ typedef struct _grip_gui {
   GtkWidget *disc_artist_label;
   GtkListStore *track_list_store;
   GtkWidget *track_list;
-  gint last_button;
 
   GtkWidget *current_track_label;
   int time_display_mode;
@@ -190,8 +189,8 @@ typedef struct _grip_info {
   char force_scsi[256];
   char discdb_submit_email[256];
   char discdb_encoding[16];
-  char fs_encoding[16];
   char id3_encoding[16];
+  char id3v2_encoding[16];
   gboolean db_use_freedb;
   char user_email[256];
   gboolean local_mode;
@@ -309,7 +308,6 @@ typedef struct _grip_info {
   gboolean doid3;
   gboolean doid3v2;
   gboolean tag_mp3_only;
-  gboolean tag_unicode;
   char id3_comment[30];
   char cdupdate[256];
   StrTransPrefs sprefs;

@@ -587,10 +587,11 @@ static gboolean AddM3U(GripInfo *ginfo)
   TranslateString(ginfo->m3ufileformat,str,TranslateSwitch,
 		    &enc_track,TRUE,&(ginfo->sprefs));
 
-  conv_str=g_convert(str->str,strlen(str->str),
-      		     ginfo->fs_encoding,ginfo->discdb_encoding,&rb,&wb,NULL);
+  conv_str=g_filename_from_utf8(str->str,strlen(str->str),&rb,&wb,NULL);
+
   if(!conv_str)
     conv_str=g_strdup(str->str);
+
   g_snprintf(m3unam,PATH_MAX,"%s",conv_str);
 
   MakeDirs(conv_str);
@@ -611,8 +612,8 @@ static gboolean AddM3U(GripInfo *ginfo)
       TranslateString(ginfo->mp3fileformat,str,TranslateSwitch,
 		      &enc_track,TRUE,&(ginfo->sprefs));
 
-      conv_str=g_convert(str->str,strlen(str->str),
-      		         ginfo->fs_encoding,ginfo->discdb_encoding,&rb,&wb,NULL);
+      conv_str=g_filename_from_utf8(str->str,strlen(str->str),&rb,&wb,NULL);
+
       if(!conv_str)
     	conv_str=g_strdup(str->str);
 
@@ -738,8 +739,7 @@ static void ID3Add(GripInfo *ginfo,char *file,EncodeTrack *enc_track)
 		 (*(enc_track->disc_artist))?enc_track->disc_artist:"Unknown",
 		 (*(enc_track->disc_name))?enc_track->disc_name:"Unknown",
 		 year,comment->str,enc_track->id3_genre,
-		 enc_track->track_num+1,ginfo->tag_unicode,
-		 ginfo->discdb_encoding);
+		 enc_track->track_num+1,ginfo->id3v2_encoding);
   }
 #endif
   if(ginfo->doid3) {
@@ -748,8 +748,7 @@ static void ID3Add(GripInfo *ginfo,char *file,EncodeTrack *enc_track)
 		 (*(enc_track->disc_artist))?enc_track->disc_artist:"Unknown",
 		 (*(enc_track->disc_name))?enc_track->disc_name:"Unknown",
 		 year,comment->str,enc_track->id3_genre,
-		 enc_track->track_num+1,ginfo->id3_encoding,
-                 ginfo->tag_unicode,ginfo->discdb_encoding);
+		 enc_track->track_num+1,ginfo->id3_encoding);
   }
 
   g_string_free(comment,TRUE);
@@ -790,6 +789,7 @@ void UpdateRipProgress(GripInfo *ginfo)
   gfloat speed;
   gboolean result=FALSE;
   char *conv_str;
+  gsize rb,wb;
 
   uinfo=&(ginfo->gui_info);
 
@@ -980,10 +980,17 @@ void UpdateRipProgress(GripInfo *ginfo)
 
         if(!ginfo->stop_encode) {
 	  if(ginfo->delete_wavs) {
-            conv_str=g_convert(ginfo->rip_delete_file[mycpu],-1,
-                               "utf-8",ginfo->fs_encoding,NULL,NULL,NULL);
-	    LogStatus(ginfo,_("Deleting [%s]\n"),conv_str);
+            conv_str=g_filename_to_utf8(ginfo->rip_delete_file[mycpu],
+                                        strlen(ginfo->rip_delete_file[mycpu]),
+                                        &rb,&wb,NULL);
+
+            if(!conv_str)
+              conv_str=g_strdup(ginfo->rip_delete_file[mycpu]);
+
+	    LogStatus(ginfo,_("Deleting [%s]\n"),conv_str,&rb,&wb,NULL);
+
             g_free(conv_str);
+
 	    unlink(ginfo->rip_delete_file[mycpu]);
 	  }
 
@@ -1068,13 +1075,14 @@ static void RipIsFinished(GripInfo *ginfo,gboolean aborted)
     if(*ginfo->disc_filter_cmd)
       DoDiscFilter(ginfo);
 
-    if (ginfo->delayed_encoding) {
-        ginfo->encode_list = g_list_concat (ginfo->encode_list, ginfo->pending_list);
-        ginfo->pending_list = NULL;
-        
-        /* Start an encoder on all free CPUs
-         * This is really only useful the first time through */
-        while (MP3Encode(ginfo));
+    if(ginfo->delayed_encoding) {
+      ginfo->encode_list = g_list_concat(ginfo->encode_list,
+                                         ginfo->pending_list);
+      ginfo->pending_list = NULL;
+      
+      /* Start an encoder on all free CPUs
+       * This is really only useful the first time through */
+      while (MP3Encode(ginfo));
     }
     
     if(ginfo->eject_after_rip) {
@@ -1195,16 +1203,6 @@ char *TranslateSwitch(char switch_char,void *data,gboolean *munge)
   default:
     *res='\0';
     break;
-  }
-
-  /* translate fields to id3 encoding */
-  if(switch_char == 'N' || switch_char == 'z' || switch_char == 'Z' || switch_char == 'D') {
-    conv_str=g_convert(res,strlen(res),enc_track->ginfo->id3_encoding,
-                       enc_track->ginfo->discdb_encoding,&rb,&wb,NULL);
-    if(!conv_str)
-      conv_str=g_strdup(res);
-    g_snprintf(res,PATH_MAX,"%s",conv_str);
-    g_free(conv_str);
   }
 
   return res;
@@ -1415,11 +1413,13 @@ static gboolean RipNextTrack(GripInfo *ginfo)
     TranslateString(ginfo->ripfileformat,str,TranslateSwitch,
 		    &enc_track,TRUE,&(ginfo->sprefs));
 
-    conv_str=g_convert(str->str,strlen(str->str),
-      		       ginfo->fs_encoding,ginfo->discdb_encoding,&rb,&wb,NULL);
+    conv_str=g_filename_from_utf8(str->str,strlen(str->str),&rb,&wb,NULL);
+
     if(!conv_str)
       conv_str=g_strdup(str->str);
+
     g_snprintf(ginfo->ripfile,256,"%s",conv_str);
+
     g_free(conv_str);
     g_string_free(str,TRUE);
 
@@ -1434,8 +1434,11 @@ static gboolean RipNextTrack(GripInfo *ginfo)
       sleep(5);
     }
 
-    utf8_ripfile=g_convert(ginfo->ripfile,-1,"utf-8",ginfo->fs_encoding,
-                           NULL,NULL,NULL);
+    utf8_ripfile=g_filename_to_utf8(ginfo->ripfile,strlen(ginfo->ripfile),
+                                    &rb,&wb,NULL);
+
+    if(!utf8_ripfile) utf8_ripfile=strdup(ginfo->ripfile);
+
     LogStatus(ginfo,_("Ripping track %d to %s\n"),
 	      ginfo->rip_track+1,utf8_ripfile);
 
@@ -1447,7 +1450,9 @@ static gboolean RipNextTrack(GripInfo *ginfo)
       if(mystat.st_size == ginfo->ripsize) { 
 	LogStatus(ginfo,_("File %s has already been ripped. Skipping...\n"),\
 	          utf8_ripfile);
+
         g_free(utf8_ripfile);
+
 	if(ginfo->doencode) ginfo->num_wavs++;
 	ginfo->ripping=TRUE;
 	ginfo->ripping_a_disc=TRUE;
@@ -1457,6 +1462,7 @@ static gboolean RipNextTrack(GripInfo *ginfo)
       }
       else unlink(ginfo->ripfile);
     }
+
     g_free(utf8_ripfile);
 
     bytesleft=BytesLeftInFS(ginfo->ripfile);
@@ -1671,11 +1677,13 @@ static gboolean MP3Encode(GripInfo *ginfo)
   TranslateString(ginfo->mp3fileformat,str,TranslateSwitch,
 		  enc_track,TRUE,&(ginfo->sprefs));
 
-  conv_str=g_convert(str->str,strlen(str->str),
-                     ginfo->fs_encoding,ginfo->discdb_encoding,&rb,&wb,NULL);
+  conv_str=g_filename_from_utf8(str->str,strlen(str->str),&rb,&wb,NULL);
+
   if(!conv_str)
     conv_str=g_strdup(str->str);
+
   g_snprintf(ginfo->mp3file[cpu],256,"%s",conv_str);
+
   g_free(conv_str);
   g_string_free(str,TRUE);
 
@@ -1687,9 +1695,13 @@ static gboolean MP3Encode(GripInfo *ginfo)
   
   bytesleft=BytesLeftInFS(ginfo->mp3file[cpu]);
   
-  conv_str=g_convert(ginfo->mp3file[cpu],-1,"utf-8",ginfo->fs_encoding,
-                     NULL,NULL,NULL);
+  conv_str=g_filename_to_utf8(ginfo->mp3file[cpu],strlen(ginfo->mp3file[cpu]),
+                              &rb,&wb,NULL);
+
+  if(!conv_str) conv_str=strdup(ginfo->mp3file[cpu]);
+
   LogStatus(ginfo,_("%i: Encoding to %s\n"),cpu+1,conv_str);
+
   g_free(conv_str);
   
   sprintf(tmp,_("Enc: Trk %d (0.0x)"),encode_track+1);

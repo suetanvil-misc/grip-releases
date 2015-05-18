@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: grip 3.1.4\n"
-"POT-Creation-Date: 2004-02-05 14:26-0800\n"
+"POT-Creation-Date: 2004-03-11 17:14-0800\n"
 "PO-Revision-Date: 2004-01-12 12:00+0300\n"
 "Last-Translator: Flammie Pirinen <tommi.pirinen@kolumbus.fi>\n"
 "Language-Team: Finnish <lokalisointi-laatu@lists.linux-aktivaattori.org>\n"
@@ -68,13 +68,13 @@ msgstr "Grip"
 msgid "Error: Unable to initialize [%s]\n"
 msgstr "Virhe: Alustus ei onnistunut [%s]\n"
 
-#: src/grip.c:271
+#: src/grip.c:272
 msgid ""
 "This is a development version of Grip. If you encounter problems, you are "
 "encouraged to revert to the latest stable version."
 msgstr ""
 
-#: src/grip.c:289
+#: src/grip.c:290
 msgid ""
 "Work is in progress.\n"
 "Really shut down?"
@@ -82,59 +82,59 @@ msgstr ""
 "Työ on kesken\n"
 "Haluatko varmasti lopettaa?"
 
-#: src/grip.c:340
+#: src/grip.c:341
 msgid "Status"
 msgstr "Tila"
 
-#: src/grip.c:355
+#: src/grip.c:356
 msgid "General"
 msgstr "Yleiset"
 
-#: src/grip.c:370 src/gripcfg.c:354 src/cdplay.c:281 src/rip.c:95
+#: src/grip.c:371 src/gripcfg.c:354 src/cdplay.c:263 src/rip.c:95
 msgid "Rip"
 msgstr "Kopiointi"
 
-#: src/grip.c:385 src/gripcfg.c:488
+#: src/grip.c:386 src/gripcfg.c:488
 msgid "Encode"
 msgstr "Koodaus"
 
-#: src/grip.c:430
+#: src/grip.c:431
 msgid "Help"
 msgstr "Ohje"
 
-#: src/grip.c:435
+#: src/grip.c:436
 msgid "Table Of Contents"
 msgstr "Sisällysluettelo"
 
-#: src/grip.c:441
+#: src/grip.c:442
 msgid "Playing CDs"
 msgstr "CD-levyjen soitto"
 
-#: src/grip.c:447
+#: src/grip.c:448
 msgid "Ripping CDs"
 msgstr "CD-levyjen kopiointi"
 
-#: src/grip.c:453
+#: src/grip.c:454
 msgid "Configuring Grip"
 msgstr "Gripin asetusten tekeminen"
 
-#: src/grip.c:459
+#: src/grip.c:460
 msgid "FAQ"
 msgstr "VUKK"
 
-#: src/grip.c:465
+#: src/grip.c:466
 msgid "Getting More Help"
 msgstr "Lisäohjeiden hakeminen"
 
-#: src/grip.c:471
+#: src/grip.c:472
 msgid "Reporting Bugs"
 msgstr "Ohjelmavirheiden raportointi"
 
-#: src/grip.c:491
+#: src/grip.c:492
 msgid "About"
 msgstr "Tietoja"
 
-#: src/grip.c:866
+#: src/grip.c:864
 msgid ""
 "Your config file is out of date -- resetting to defaults.\n"
 "You will need to re-configure Grip.\n"
@@ -144,12 +144,12 @@ msgstr ""
 "Gripin asetukset täytyy tehdä uudelleen.\n"
 "Vanha asetustiedostosi tallennettiin -old-päätteellä."
 
-#: src/grip.c:936
+#: src/grip.c:934
 #, c-format
 msgid "server is %s, port %d\n"
 msgstr "palvelin on %s, portti %d\n"
 
-#: src/grip.c:956
+#: src/grip.c:954
 msgid "Error: Unable to save config file"
 msgstr "Virhe: Asetustiedostoa ei voitu tallentaa"
 
@@ -371,106 +371,103 @@ msgid "ID3 comment field"
 msgstr "ID3-kommenttikenttä"
 
 #: src/gripcfg.c:518
-msgid "Write tags in unicode"
-msgstr "Merkitse käyttäeen Unicode-koodausta"
-
-#: src/gripcfg.c:523
 msgid "ID3v1 Character set encoding"
 msgstr "ID3v1-merkistökoodaus"
 
-#: src/gripcfg.c:530
+#: src/gripcfg.c:524
+#, fuzzy
+msgid "ID3v2 Character set encoding"
+msgstr "ID3v1-merkistökoodaus"
+
+#: src/gripcfg.c:532
 msgid "ID3"
 msgstr "ID3"
 
-#: src/gripcfg.c:547 src/gripcfg.c:567
+#: src/gripcfg.c:549 src/gripcfg.c:569
 msgid "DB server"
 msgstr "Tietokantapalvelin"
 
-#: src/gripcfg.c:551 src/gripcfg.c:571
+#: src/gripcfg.c:553 src/gripcfg.c:573
 msgid "CGI path"
 msgstr "CGI-polku"
 
-#: src/gripcfg.c:558
+#: src/gripcfg.c:560
 msgid "Primary Server"
 msgstr "Ensisijainen palvelin"
 
-#: src/gripcfg.c:578
+#: src/gripcfg.c:580
 msgid "Secondary Server"
 msgstr "Toissijainen palvelin"
 
-#: src/gripcfg.c:588
+#: src/gripcfg.c:590
 msgid "DB Submit email"
 msgstr "Tietokantaan lähettämisen postiosoite"
 
-#: src/gripcfg.c:593
+#: src/gripcfg.c:595
 msgid "DB Character set encoding"
 msgstr "Tietokannan merkistökoodaus"
 
-#: src/gripcfg.c:598
+#: src/gripcfg.c:600
 msgid "Use freedb extensions"
 msgstr "Käytä freedb-laajennuksia"
 
-#: src/gripcfg.c:603
+#: src/gripcfg.c:605
 msgid "Perform disc lookups automatically"
 msgstr "Tee levyn tietojen haut automaattisesti"
 
-#: src/gripcfg.c:611
+#: src/gripcfg.c:613
 msgid "DiscDB"
 msgstr "DiscDB"
 
-#: src/gripcfg.c:620
+#: src/gripcfg.c:622
 msgid "Use proxy server"
 msgstr "Käytä välityspalvelinta"
 
-#: src/gripcfg.c:627
+#: src/gripcfg.c:629
 msgid "Get server from 'http_proxy' env. var"
 msgstr "Hae palvelin 'http_proxy'-ympäristömuuttujasta"
 
-#: src/gripcfg.c:631
+#: src/gripcfg.c:633
 msgid "Proxy server"
 msgstr "Välityspalvelin"
 
-#: src/gripcfg.c:635
+#: src/gripcfg.c:637
 msgid "Proxy port"
 msgstr "Välityspalvelimen portti"
 
-#: src/gripcfg.c:639
+#: src/gripcfg.c:641
 msgid "Proxy username"
 msgstr "Välityspalvelimen käyttäjänimi"
 
-#: src/gripcfg.c:645
+#: src/gripcfg.c:647
 msgid "Proxy password"
 msgstr "Välityspalvelimen salasana"
 
-#: src/gripcfg.c:653
+#: src/gripcfg.c:655
 msgid "Proxy"
 msgstr "Välityspalvelin"
 
-#: src/gripcfg.c:662
+#: src/gripcfg.c:664
 msgid "Email address"
 msgstr "Sähköpostiosoite"
 
-#: src/gripcfg.c:666
+#: src/gripcfg.c:668
 msgid "CD update program"
 msgstr "CD-päivitysohjelma"
 
-#: src/gripcfg.c:670
-msgid "File System Character set encoding"
-msgstr "Tiedostojärjestelmän merkistökoodaus"
-
-#: src/gripcfg.c:675
+#: src/gripcfg.c:673
 msgid "Do not lowercase filenames"
 msgstr "Älä muuta tiedostonimiä pienaakkosiksi"
 
-#: src/gripcfg.c:680
+#: src/gripcfg.c:678
 msgid "Allow high bits in filenames"
 msgstr "Hyväksy korkeat bitit tiedostonimissä"
 
-#: src/gripcfg.c:685
+#: src/gripcfg.c:683
 msgid "Do not change spaces to underscores"
 msgstr "Älä muuta välilyöntejä alaviivoiksi"
 
-#: src/gripcfg.c:690
+#: src/gripcfg.c:688
 msgid ""
 "Characters to not strip\n"
 "in filenames"
@@ -478,41 +475,41 @@ msgstr ""
 "Merkit joita ei poisteta\n"
 "tiedostonimistä"
 
-#: src/gripcfg.c:695
+#: src/gripcfg.c:693
 msgid "Keep application minimum size"
 msgstr "Pidä sovellus minimikoossa"
 
-#: src/gripcfg.c:702
+#: src/gripcfg.c:700
 msgid "Misc"
 msgstr "Muut"
 
-#: src/cddev.c:172 src/cddev.c:599
+#: src/cddev.c:174 src/cddev.c:601
 #, c-format
 msgid "Drive status is %d\n"
 msgstr "Aseman tila on %d\n"
 
-#: src/cddev.c:174
+#: src/cddev.c:176
 msgid "Drive doesn't support drive status check (assume CDS_NO_INFO)\n"
 msgstr "Asema ei tue tilan tarkastusta (oletetaan CDS_NO_INFO)\n"
 
-#: src/cddev.c:177
+#: src/cddev.c:179
 msgid "No disc\n"
 msgstr "Ei levyä\n"
 
-#: src/cddev.c:279 src/cddev.c:288 src/cddev.c:305 src/cddev.c:332
+#: src/cddev.c:281 src/cddev.c:290 src/cddev.c:307 src/cddev.c:334
 msgid "Error: Failed to read disc contents\n"
 msgstr "Virhe: Levyn sisältöä ei pystytty lukemaan\n"
 
-#: src/cddev.c:602
+#: src/cddev.c:604
 msgid "Drive doesn't support drive status check\n"
 msgstr "Asema ei tue tilan tarkastusta\n"
 
-#: src/cddev.c:623 src/cddev.c:627
+#: src/cddev.c:625 src/cddev.c:629
 #, c-format
 msgid "Unlock failed: %d"
 msgstr "Lukituksen purkaminen epäonnistui: %d"
 
-#: src/cddev.c:631
+#: src/cddev.c:633
 msgid "CDIOCEJECT"
 msgstr "CDIOCEJECT"
 
@@ -521,26 +518,26 @@ msgid "Cannot do lookup while ripping"
 msgstr "Ei voida hakea kopioitaessa"
 
 #. "misc"
-#: src/cdplay.c:126
+#: src/cdplay.c:124
 msgid "Unknown Disc"
 msgstr "Tuntematon levy"
 
-#: src/cdplay.c:135
+#: src/cdplay.c:128
 #, c-format
 msgid "Track %02d"
 msgstr "Raita %02d"
 
-#: src/cdplay.c:202
+#: src/cdplay.c:188
 #, c-format
 msgid "Querying %s (through %s) for disc %02x.\n"
 msgstr "Haetaan osoitteesta %s (%s:n kautta) tietoja levylle %02x.\n"
 
-#: src/cdplay.c:207
+#: src/cdplay.c:193
 #, c-format
 msgid "Querying %s for disc %02x.\n"
 msgstr "Haetaan osoitteesta %s tietoja levylle %02x.\n"
 
-#: src/cdplay.c:228
+#: src/cdplay.c:210
 #, c-format
 msgid ""
 "Match for \"%s / %s\"\n"
@@ -549,165 +546,165 @@ msgstr ""
 "Vastine löydetty \"%s / %s\"\n"
 "Ladataan tietoja...\n"
 
-#: src/cdplay.c:236
+#: src/cdplay.c:218
 msgid "Done\n"
 msgstr "Valmis\n"
 
-#: src/cdplay.c:240 src/cdplay.c:612
+#: src/cdplay.c:222 src/cdplay.c:596
 msgid "Error saving disc data\n"
 msgstr "Virhe levyn tietoja tallennettaessa\n"
 
-#: src/cdplay.c:246
+#: src/cdplay.c:228
 msgid "No match\n"
 msgstr "Ei vastinetta\n"
 
-#: src/cdplay.c:281
+#: src/cdplay.c:263
 msgid "Track"
 msgstr "Raita"
 
-#: src/cdplay.c:281
+#: src/cdplay.c:263
 msgid "Length "
 msgstr "Pituus "
 
-#: src/cdplay.c:285
+#: src/cdplay.c:267
 msgid "Tracks"
 msgstr "Raidat"
 
 # niinkö?
-#: src/cdplay.c:683
+#: src/cdplay.c:667
 msgid "Rotate play mode"
 msgstr "Kierrätä soittotapaa"
 
-#: src/cdplay.c:703
+#: src/cdplay.c:687
 msgid "Toggle loop play"
 msgstr "Aseta soittolistan toisto"
 
-#: src/cdplay.c:781 src/rip.c:230
+#: src/cdplay.c:765 src/rip.c:230
 msgid "Rip status"
 msgstr "Kopiointitila"
 
-#: src/cdplay.c:848
+#: src/cdplay.c:832
 msgid "Play track / Pause play"
 msgstr "Soita raita / Keskeytä soitto"
 
-#: src/cdplay.c:859
+#: src/cdplay.c:843
 msgid "Rewind"
 msgstr "Kelaa taaksepäin"
 
-#: src/cdplay.c:870
+#: src/cdplay.c:854
 msgid "FastForward"
 msgstr "Kelaa eteenpäin"
 
-#: src/cdplay.c:880
+#: src/cdplay.c:864
 msgid "Go to previous track"
 msgstr "Edelliseen raitaan"
 
-#: src/cdplay.c:889
+#: src/cdplay.c:873
 msgid "Go to next track"
 msgstr "Seuraavaan raitaan"
 
-#: src/cdplay.c:898
+#: src/cdplay.c:882
 msgid "Toggle play mode options"
 msgstr "Vaihda soittotavan asetuksia"
 
-#: src/cdplay.c:908
+#: src/cdplay.c:892
 msgid "Next Disc"
 msgstr "Seuraava levy"
 
-#: src/cdplay.c:922
+#: src/cdplay.c:906
 msgid "Stop play"
 msgstr "Pysäytä soitto"
 
-#: src/cdplay.c:932
+#: src/cdplay.c:916
 msgid "Eject disc"
 msgstr "Poista levy asemasta"
 
-#: src/cdplay.c:941
+#: src/cdplay.c:925
 msgid "Scan Disc Contents"
 msgstr "Lue levyn sisältö"
 
-#: src/cdplay.c:949
+#: src/cdplay.c:933
 msgid "Toggle Volume Control"
 msgstr "Vaihda äänenvoimmakkuussäädintä"
 
-#: src/cdplay.c:958
+#: src/cdplay.c:942
 msgid "Toggle disc editor"
 msgstr "Vaihda levyn tietoja"
 
-#: src/cdplay.c:968
+#: src/cdplay.c:952
 msgid "Initiate/abort DiscDB lookup"
 msgstr "Käynnistä tai lopeta DiscDB-haku"
 
-#: src/cdplay.c:978
+#: src/cdplay.c:962
 msgid "Toggle track display"
 msgstr "Vaihda raitojen näyttöä"
 
-#: src/cdplay.c:985
+#: src/cdplay.c:969
 msgid "Exit Grip"
 msgstr "Poistu Gripistä"
 
-#: src/cdplay.c:1132
+#: src/cdplay.c:1116
 msgid "Cannot fast forward while ripping"
 msgstr "Kopioitaessa ei voi kelata eteenpäin"
 
-#: src/cdplay.c:1162
+#: src/cdplay.c:1146
 msgid "Cannot rewind while ripping"
 msgstr "Kopioitaessa ei voi kelata taaksepäin"
 
-#: src/cdplay.c:1192
+#: src/cdplay.c:1176
 msgid "Cannot switch discs while ripping"
 msgstr "Kopioitaessa ei voi vaihtaa levyä"
 
-#: src/cdplay.c:1210
+#: src/cdplay.c:1194
 msgid "Eject disc\n"
 msgstr "Poista levy asemasta\n"
 
-#: src/cdplay.c:1213
+#: src/cdplay.c:1197
 msgid "Cannot eject while ripping"
 msgstr "Kopioitaessa ei voi poistaa levyä asemasta"
 
-#: src/cdplay.c:1223
+#: src/cdplay.c:1207
 msgid "Have disc -- ejecting\n"
 msgstr "Ota levy -- poistetaan asemasta\n"
 
-#: src/cdplay.c:1287
+#: src/cdplay.c:1271
 msgid "Cannot play while ripping"
 msgstr "Kopioitaessa ei voida soittaa"
 
-#: src/cdplay.c:1348 src/cdplay.c:1378
+#: src/cdplay.c:1332 src/cdplay.c:1362
 msgid "Cannot switch tracks while ripping"
 msgstr "Kopioitaessa ei voida vaihtaa raitoja"
 
-#: src/cdplay.c:1460
+#: src/cdplay.c:1455
 msgid "Checking for a new disc\n"
 msgstr "Luetaan uutta levyä\n"
 
-#: src/cdplay.c:1465
+#: src/cdplay.c:1460
 msgid "CDStat found a disc, checking tracks\n"
 msgstr "CDStat löysi levyn, luetaan raitoja\n"
 
-#: src/cdplay.c:1468
+#: src/cdplay.c:1463
 msgid "We have a valid disc!\n"
 msgstr "Levy on toimiva!\n"
 
-#: src/cdplay.c:1495
+#: src/cdplay.c:1490
 msgid "No non-zero length tracks\n"
 msgstr "Ei epätyhjiä raitoja\n"
 
-#: src/cdplay.c:1504
+#: src/cdplay.c:1499
 msgid "CDStat said no disc\n"
 msgstr "CDStat ei huomannut levyä\n"
 
-#: src/cdplay.c:1639 src/cdplay.c:1661
+#: src/cdplay.c:1634 src/cdplay.c:1656
 #, c-format
 msgid "Current sector: %6d"
 msgstr "Nykyinen sektori: %6d"
 
-#: src/cdplay.c:1764
+#: src/cdplay.c:1757
 msgid "No Disc"
 msgstr "Ei levyä"
 
-#: src/cdplay.c:1833
+#: src/cdplay.c:1809
 msgid ""
 "This disc has been found on your secondary server,\n"
 "but not on your primary server.\n"
@@ -719,15 +716,15 @@ msgstr ""
 "\n"
 "Lähetetäänkö levyn tiedot?"
 
-#: src/cdplay.c:1862 src/cdplay.c:1870
+#: src/cdplay.c:1838 src/cdplay.c:1846
 msgid "Error: Unable to create temporary file"
 msgstr "Virhe: Väliaikaistiedoston luonti ei onnistu"
 
-#: src/cdplay.c:1887
+#: src/cdplay.c:1863
 msgid "Error: Unable to write disc data"
 msgstr "Virhe: Levyn tietoja ei voitu kirjoittaa"
 
-#: src/cdplay.c:1896
+#: src/cdplay.c:1872
 #, c-format
 msgid "Mailing entry to %s\n"
 msgstr "Postitetaan tiedot osoitteeseen %s\n"
@@ -736,37 +733,37 @@ msgstr "Postitetaan tiedot osoitteeseen %s\n"
 msgid "System Message"
 msgstr "Järjestelmäviesti"
 
-#: src/discdb.c:189
+#: src/discdb.c:207
 #, c-format
 msgid "URI is %s\n"
 msgstr "URI on %s\n"
 
-#: src/discdb.c:237
+#: src/discdb.c:277
 #, c-format
 msgid "Query is [%s]\n"
 msgstr "Haku on [%s]\n"
 
-#: src/discdb.c:254
+#: src/discdb.c:292
 #, c-format
 msgid "Reply is [%s]\n"
 msgstr "Vastaus on [%s]\n"
 
-#: src/discdb.c:662
+#: src/discdb.c:741
 #, c-format
 msgid "Stat error %d on %s\n"
 msgstr "Hakuvirhe %d %s\n"
 
-#: src/discdb.c:666
+#: src/discdb.c:745
 #, c-format
 msgid "Creating directory %s\n"
 msgstr "Luodaan hakemisto %s\n"
 
-#: src/discdb.c:671
+#: src/discdb.c:750
 #, c-format
 msgid "Error: %s exists, but is a file\n"
 msgstr "Virhe: %s on olemassa mutta tiedostona\n"
 
-#: src/discdb.c:678
+#: src/discdb.c:757
 #, c-format
 msgid "Error: Unable to open %s for writing\n"
 msgstr "Virhe: kohdetta %s ei voitu avata kirjoittamista varten\n"
@@ -828,15 +825,15 @@ msgstr "Tallenna levyn tiedot"
 msgid "Submit disc info"
 msgstr "Lähetä levyn tiedot"
 
-#: src/discedit.c:385
+#: src/discedit.c:384
 msgid "Error saving disc data"
 msgstr "Virhe levyn tietoja tallennettaessa"
 
-#: src/discedit.c:387
+#: src/discedit.c:386
 msgid "No disc present"
 msgstr "Levyä ei ole saatavilla"
 
-#: src/discedit.c:562
+#: src/discedit.c:538
 msgid ""
 "Cannot submit\n"
 "No disc is present"
@@ -844,15 +841,15 @@ msgstr ""
 "Ei voida lähettää tietoja\n"
 "kun levyä ei ole"
 
-#: src/discedit.c:575
+#: src/discedit.c:551
 msgid "You must enter a disc title"
 msgstr "Levyn nimi on syötettävä"
 
-#: src/discedit.c:581
+#: src/discedit.c:557
 msgid "You must enter a disc artist"
 msgstr "Levyn esiintyjä on syötettävä"
 
-#: src/discedit.c:591
+#: src/discedit.c:567
 msgid ""
 "You are about to submit this disc information\n"
 "to a commercial CDDB server, which will then\n"
@@ -869,7 +866,7 @@ msgstr ""
 "\n"
 "Jatketaanko?"
 
-#: src/discedit.c:600
+#: src/discedit.c:576
 msgid ""
 "You are about to submit this\n"
 "disc information via email.\n"
@@ -881,11 +878,11 @@ msgstr ""
 "\n"
 "Jatketaanko?"
 
-#: src/discedit.c:617
+#: src/discedit.c:593
 msgid "Genre selection"
 msgstr "Tyylilajivalinta"
 
-#: src/discedit.c:621
+#: src/discedit.c:597
 msgid ""
 "Submission requires a genre other than 'unknown'\n"
 "Please select a DiscDB genre below"
@@ -893,20 +890,20 @@ msgstr ""
 "Lähetettäessä pitäisi valita joku muu tyylilaji kuin\n"
 "'unknown', kokeilepa valita jotain tuosta alta"
 
-#: src/discedit.c:631
+#: src/discedit.c:607
 msgid "DiscDB genre"
 msgstr "DiscDB-tyylilaji"
 
-#: src/discedit.c:651
+#: src/discedit.c:627
 msgid "Submit"
 msgstr "Lähetä"
 
-#: src/discedit.c:662
+#: src/discedit.c:638
 msgid "Cancel"
 msgstr "Peruuta"
 
 #. Doh!
-#: src/id3.c:287
+#: src/id3.c:290
 msgid "unknown ID3 field\n"
 msgstr "Tuntematon ID3-kenttä\n"
 
@@ -915,7 +912,7 @@ msgstr "Tuntematon ID3-kenttä\n"
 msgid "Error: unable to translate filename. No such user as %s\n"
 msgstr "Virhe: Tiedostonimeä ei voitu kääntää. Käyttäjää %s ei ole\n"
 
-#: src/launch.c:239 src/rip.c:1503
+#: src/launch.c:239 src/rip.c:1509
 msgid "Exec failed\n"
 msgstr "Ajaminen epäonnistui\n"
 
@@ -980,7 +977,7 @@ msgid "Current sector:      0"
 msgstr "Nykyinen sektori:0"
 
 #: src/rip.c:204 src/rip.c:221 src/rip.c:269 src/rip.c:856 src/rip.c:908
-#: src/rip.c:910 src/rip.c:1046 src/rip.c:1047
+#: src/rip.c:910 src/rip.c:1053 src/rip.c:1054
 msgid "Rip: Idle"
 msgstr "Kopiointi: Jouten"
 
@@ -988,7 +985,7 @@ msgstr "Kopiointi: Jouten"
 msgid "Enc: Trk 99 (99.9x)"
 msgstr "Koodaus: Raita 99 (99,9x)"
 
-#: src/rip.c:240 src/rip.c:282 src/rip.c:1018 src/rip.c:1031
+#: src/rip.c:240 src/rip.c:282 src/rip.c:1025 src/rip.c:1038
 msgid "Enc: Idle"
 msgstr "Koodaus: Jouten"
 
@@ -1004,15 +1001,15 @@ msgstr "Alkussektori"
 msgid "End sector"
 msgstr "Loppusektori"
 
-#: src/rip.c:600
+#: src/rip.c:601
 msgid "Error: can't open m3u file\n"
 msgstr "Virhe: m3u-tiedostoa ei voitu avata\n"
 
-#: src/rip.c:642
+#: src/rip.c:643
 msgid "In KillRip\n"
 msgstr "KillRipissä\n"
 
-#: src/rip.c:668
+#: src/rip.c:669
 #, c-format
 msgid "Now total enc size is: %d\n"
 msgstr "Nyt koodatun kokonaiskoko: %d\n"
@@ -1060,24 +1057,24 @@ msgstr "Koodaus: %6.2f%%"
 msgid "Finished encoding on cpu %d\n"
 msgstr "Prosessori %d pääsi koodauksensa loppuun\n"
 
-#: src/rip.c:985
+#: src/rip.c:990
 #, c-format
 msgid "Deleting [%s]\n"
 msgstr "Poistetaan [%s]\n"
 
-#: src/rip.c:1039
+#: src/rip.c:1046
 msgid "Ripping is finished\n"
 msgstr "Kopiointi loppui\n"
 
-#: src/rip.c:1151 src/rip.c:1158
+#: src/rip.c:1159 src/rip.c:1166
 msgid "NoArtist"
 msgstr "EiEsiintyjää"
 
-#: src/rip.c:1164
+#: src/rip.c:1172
 msgid "NoTitle"
 msgstr "Nimetön"
 
-#: src/rip.c:1266
+#: src/rip.c:1264
 msgid ""
 "Invalid rip executable\n"
 "Check your rip config"
@@ -1085,7 +1082,7 @@ msgstr ""
 "Toimimaton kopiointikomento\n"
 "Tarkista kopiointiasetuksesi"
 
-#: src/rip.c:1273
+#: src/rip.c:1271
 msgid ""
 "Invalid encoder executable\n"
 "Check your encoder config"
@@ -1093,7 +1090,7 @@ msgstr ""
 "Toimimaton koodauskomento\n"
 "Tarkista koodausasetuksesi"
 
-#: src/rip.c:1309
+#: src/rip.c:1307
 msgid ""
 "No tracks selected.\n"
 "Rip whole CD?\n"
@@ -1101,20 +1098,20 @@ msgstr ""
 "Ei raitoja valittuna\n"
 "Kopioidaanko koko CD?\n"
 
-#: src/rip.c:1332
+#: src/rip.c:1330
 msgid "Ripping whole CD\n"
 msgstr "Kopioidaan koko CD\n"
 
-#: src/rip.c:1370
+#: src/rip.c:1368
 msgid "In RipNextTrack\n"
 msgstr "RipNextTrackissa\n"
 
-#: src/rip.c:1377
+#: src/rip.c:1375
 #, c-format
 msgid "First checked track is %d\n"
 msgstr "Ensimmäinen tarkastettu raita on %d\n"
 
-#: src/rip.c:1387
+#: src/rip.c:1385
 msgid "Ripping away!\n"
 msgstr "Kopioidaan pois!\n"
 
@@ -1122,71 +1119,77 @@ msgstr "Kopioidaan pois!\n"
 msgid "No write access to write wav file"
 msgstr "Ei kirjoitusoikeuksia wav-tiedostoon"
 
-#: src/rip.c:1439
+#: src/rip.c:1442
 #, c-format
 msgid "Ripping track %d to %s\n"
 msgstr "Kopioidaan raita %d tiedostoon %s\n"
 
-#: src/rip.c:1443
+#: src/rip.c:1446
 #, c-format
 msgid "Rip: Trk %d (0.0x)"
 msgstr "Kopiointi: Raita %d (0,0x)"
 
-#: src/rip.c:1448
+#: src/rip.c:1451
 #, c-format
 msgid "File %s has already been ripped. Skipping...\n"
 msgstr "Tiedosto %s on jo kopioitu, ohitamme... \n"
 
-#: src/rip.c:1465 src/rip.c:1705
+#: src/rip.c:1471 src/rip.c:1717
 msgid "Out of space in output directory"
 msgstr "Tila loppui hakemistossa"
 
-#: src/rip.c:1537
+#: src/rip.c:1543
 msgid "Calling CDPRip\n"
 msgstr "Kutsutaan CDPRip\n"
 
-#: src/rip.c:1623
+#: src/rip.c:1629
 #, c-format
 msgid "Added track %d to %s list\n"
 msgstr "Lisättiin raita %d listaan %s\n"
 
-#: src/rip.c:1649
+#: src/rip.c:1655
 msgid "No free cpus\n"
 msgstr "Ei vapaita prosessoreja\n"
 
-#: src/rip.c:1665
+#: src/rip.c:1671
 #, c-format
 msgid "Enc track %d\n"
 msgstr "Koodaa raita %d\n"
 
-#: src/rip.c:1684
+#: src/rip.c:1692
 msgid "No write access to write encoded file"
 msgstr "Ei kirjoitusoikeutta koodattuun tiedostoon"
 
-#: src/rip.c:1692
+#: src/rip.c:1703
 #, c-format
 msgid "%i: Encoding to %s\n"
 msgstr "%i: Koodataan kohteeseen %s\n"
 
-#: src/rip.c:1695
+#: src/rip.c:1707
 #, c-format
 msgid "Enc: Trk %d (0.0x)"
 msgstr "Koodaus: Raita %d (0,0x)"
 
-#: src/rip.c:1756
+#: src/rip.c:1768
 msgid "In CalculateAll\n"
 msgstr "CalculateAllissa\n"
 
-#: src/rip.c:1762
+#: src/rip.c:1774
 msgid "We aren't ripping now, so let's zero encoding values\n"
 msgstr "Emme kopioi nyt joten nollatkaamme koodausarvoja\n"
 
-#: src/rip.c:1778
+#: src/rip.c:1790
 #, c-format
 msgid "Total rip size is: %d\n"
 msgstr "Kopioinnin kokonaiskoko %d\n"
 
-#: src/rip.c:1779
+#: src/rip.c:1791
 #, c-format
 msgid "Total enc size is: %d\n"
 msgstr "Koodauksen kokonaiskoko %d\n"
+
+#~ msgid "Write tags in unicode"
+#~ msgstr "Merkitse käyttäeen Unicode-koodausta"
+
+#~ msgid "File System Character set encoding"
+#~ msgstr "Tiedostojärjestelmän merkistökoodaus"

@@ -114,6 +114,8 @@ gboolean CDInitDevice(char *device_name,DiscInfo *disc)
 
   disc->cd_desc=open(device_name, OPEN_MODE);
 
+  if(disc->cd_desc==-1) return FALSE;
+
   return TRUE;
 }
 

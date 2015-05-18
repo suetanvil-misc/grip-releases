@@ -1,3 +1,16 @@
+2004-03-11  Mike Oliphant  <grip@nostatic.org>
+
+	* de.po: updated (Götz Waschk)
+	* it.po: updated (Ceoldo Costantino)
+	* various: fixed handling of UTF-8	
+	* cdplay.c: fixed handling of clicks on the tracklist
+	* grip.c: display an error window if the cd device cannot be opened
+	* gripcfg.c: added track number and genre switches to oggenc config
+	* id3.c: added JPop, Anime, and SynthPop genres
+	* discdb.c/h: don't truncate artist/title to 64 characters
+	* discdb.c/configure.in: switched from ghttp to libcurl
+	* configure.in: upped version to 3.1.6
+	
 2004-03-01  Mike Oliphant  <grip@nostatic.org>
 
 	* de.po: updated (Götz Waschk)

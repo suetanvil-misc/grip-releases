@@ -64,8 +64,8 @@ typedef struct _discdb_entry {
 struct query_list_entry {
    int list_genre;
    int list_id;
-   char list_title[64];
-   char list_artist[64];
+   char list_title[256];
+   char list_artist[256];
 };
 
 #define MAX_INEXACT_MATCHES			16
@@ -115,12 +115,12 @@ int DiscDBGenreValue(char *genre);
 gboolean DiscDBDoQuery(DiscInfo *disc,DiscDBServer *server,
 		     DiscDBHello *hello,DiscDBQuery *query);
 gboolean DiscDBRead(DiscInfo *disc,DiscDBServer *server,
-		  DiscDBHello *hello,DiscDBEntry *entry,
-		  DiscData *data);
+		    DiscDBHello *hello,DiscDBEntry *entry,
+		    DiscData *data,char *encoding);
 gboolean DiscDBStatDiscData(DiscInfo *disc);
 int DiscDBReadDiscData(DiscInfo *disc, DiscData *outdata);
 int DiscDBWriteDiscData(DiscInfo *disc,DiscData *ddata,FILE *outfile,
-			gboolean gripext,gboolean freedbext);
+                        gboolean gripext,gboolean freedbext,char *encoding);
 void DiscDBParseTitle(char *buf,char *title,char *artist,char *sep);
 char *ChopWhite(char *buf);
 

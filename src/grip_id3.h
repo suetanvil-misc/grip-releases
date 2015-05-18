@@ -30,13 +30,11 @@ typedef struct {
 
 gboolean ID3v1TagFile(char *filename,char *title,char *artist,char *album,
 		      char *year,char *comment,unsigned char genre,
-		      unsigned char tracknum, char *id3_encoding,
-                      gboolean do_unicode,char *discdb_encoding);
+		      unsigned char tracknum, char *id3_encoding);
 #ifdef HAVE_ID3LIB
-gboolean ID3v2TagFile(char *filename,char *title,char *artist,char *album,
-		      char *year,char *comment,unsigned char genre,
-		      unsigned char tracknum,
-		      gboolean do_unicode,char *discdb_encoding);
+gboolean ID3v2TagFile(char *filename, char *title, char *artist, char *album,
+		      char *year, char *comment, unsigned char genre, unsigned
+		      char tracknum,char *id3v2_encoding);
 #endif
 char *ID3GenreString(int genre);
 ID3Genre *ID3GenreByNum(int num);
