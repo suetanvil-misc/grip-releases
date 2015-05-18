@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: grip 3.0.6\n"
-"POT-Creation-Date: 2003-05-30 20:46-0700\n"
+"POT-Creation-Date: 2003-07-04 08:30-0700\n"
 "PO-Revision-Date: 2002-03-07 14:37+0100\n"
 "Last-Translator: Eric Lassauge <lassauge@mail.dotcom.fr>\n"
 "Language-Team: Gözer le maudit <gozer@mailoman.com>\n"
@@ -1109,7 +1109,7 @@ msgstr "Extr : Piste %d (0.0x)"
 msgid "File %s has already been ripped. Skipping...\n"
 msgstr "Le fichier %s est déjà extrait. On passe au suivant...\n"
 
-#: src/rip.c:1400 src/rip.c:1625
+#: src/rip.c:1400 src/rip.c:1627
 msgid "Out of space in output directory"
 msgstr "Plus d'espace disponible dans le répertoire destination"
 
@@ -1117,48 +1117,48 @@ msgstr "Plus d'espace disponible dans le répertoire destination"
 msgid "Calling CDPRip\n"
 msgstr "Appel à CDPRip\n"
 
-#: src/rip.c:1554
+#: src/rip.c:1556
 #, c-format
 msgid "Added track %d to encode list\n"
 msgstr "Ajout de la piste %d dans la liste à encoder\n"
 
-#: src/rip.c:1577
+#: src/rip.c:1579
 msgid "No free cpus\n"
 msgstr "Pas de CPU disponible\n"
 
-#: src/rip.c:1593
+#: src/rip.c:1595
 #, c-format
 msgid "Enc track %d\n"
 msgstr "Enc piste %d\n"
 
-#: src/rip.c:1607
+#: src/rip.c:1609
 msgid "No write access to write encoded file"
 msgstr "Pas d'accès en écriture au encodé"
 
-#: src/rip.c:1613
+#: src/rip.c:1615
 #, c-format
 msgid "%i: Encoding to %s\n"
 msgstr "%i : encodage vers %s\n"
 
-#: src/rip.c:1615
+#: src/rip.c:1617
 #, c-format
 msgid "Enc: Trk %d (0.0x)"
 msgstr "Enc : Piste %d (0.0x)"
 
-#: src/rip.c:1676
+#: src/rip.c:1678
 msgid "In CalculateAll\n"
 msgstr "Dans CalculeTout\n"
 
-#: src/rip.c:1682
+#: src/rip.c:1684
 msgid "We aren't ripping now, so let's zero encoding values\n"
 msgstr "Pas d'extraction en cours, on met à zéro les valeurs d'encodage\n"
 
-#: src/rip.c:1698
+#: src/rip.c:1700
 #, c-format
 msgid "Total rip size is: %d\n"
 msgstr "Taille total extraction : %d\n"
 
-#: src/rip.c:1699
+#: src/rip.c:1701
 #, c-format
 msgid "Total enc size is: %d\n"
 msgstr "Taille totale encodage : %d\n"

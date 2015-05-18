@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: grip 3.0.0\n"
-"POT-Creation-Date: 2003-05-30 20:46-0700\n"
+"POT-Creation-Date: 2003-07-04 08:30-0700\n"
 "PO-Revision-Date: 2002-04-25 19:20+0800\n"
 "Last-Translator: Merlin Ma <merlin@turbolinux.com.cn>\n"
 "Language-Team: Chinese (simplified) <i18n-translation@lists.linux.net.cn>\n"
@@ -1104,7 +1104,7 @@ msgstr "抓轨: 曲目 %d (0.0x)"
 msgid "File %s has already been ripped. Skipping...\n"
 msgstr "文件 %s 已经抓过。跳过...\n"
 
-#: src/rip.c:1400 src/rip.c:1625
+#: src/rip.c:1400 src/rip.c:1627
 msgid "Out of space in output directory"
 msgstr "输出目录空间不足"
 
@@ -1112,48 +1112,48 @@ msgstr "输出目录空间不足"
 msgid "Calling CDPRip\n"
 msgstr "调用 CDPRip\n"
 
-#: src/rip.c:1554
+#: src/rip.c:1556
 #, c-format
 msgid "Added track %d to encode list\n"
 msgstr "添加曲目 %d 到编码队列\n"
 
-#: src/rip.c:1577
+#: src/rip.c:1579
 msgid "No free cpus\n"
 msgstr "没有空闲的处理器\n"
 
-#: src/rip.c:1593
+#: src/rip.c:1595
 #, c-format
 msgid "Enc track %d\n"
 msgstr "编码 曲目 %d\n"
 
-#: src/rip.c:1607
+#: src/rip.c:1609
 msgid "No write access to write encoded file"
 msgstr "没有写编码后的文件的权限"
 
-#: src/rip.c:1613
+#: src/rip.c:1615
 #, c-format
 msgid "%i: Encoding to %s\n"
 msgstr "%i: 编码到 %s\n"
 
-#: src/rip.c:1615
+#: src/rip.c:1617
 #, c-format
 msgid "Enc: Trk %d (0.0x)"
 msgstr "编码: 曲目 %d (0.0x)"
 
-#: src/rip.c:1676
+#: src/rip.c:1678
 msgid "In CalculateAll\n"
 msgstr ""
 
-#: src/rip.c:1682
+#: src/rip.c:1684
 msgid "We aren't ripping now, so let's zero encoding values\n"
 msgstr ""
 
-#: src/rip.c:1698
+#: src/rip.c:1700
 #, c-format
 msgid "Total rip size is: %d\n"
 msgstr ""
 
-#: src/rip.c:1699
+#: src/rip.c:1701
 #, c-format
 msgid "Total enc size is: %d\n"
 msgstr ""

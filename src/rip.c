@@ -1425,8 +1425,8 @@ static gboolean RipNextTrack(GripInfo *ginfo)
 
       char_args[0]=FindRoot(ginfo->ripexename);
 
-      ginfo->curr_pipe_fd=
-	GetStatusWindowPipe(ginfo->gui_info.rip_status_window);
+      /*      ginfo->curr_pipe_fd=
+	      GetStatusWindowPipe(ginfo->gui_info.rip_status_window);*/
 
       ginfo->rippid=fork();
       
@@ -1488,17 +1488,19 @@ static void ThreadRip(void *arg)
   
   nice(ginfo->ripnice);
 
-  dup_output_fd=dup(GetStatusWindowPipe(ginfo->gui_info.rip_status_window));
+  /*  dup_output_fd=dup(GetStatusWindowPipe(ginfo->gui_info.rip_status_window));
   output_fp=fdopen(dup_output_fd,"w");
-  setlinebuf(output_fp);
+  setlinebuf(output_fp);*/
 
   CDPRip(ginfo->cd_device,ginfo->force_scsi,ginfo->rip_track+1,
 	 ginfo->start_sector,
 	 ginfo->end_sector,ginfo->ripfile,paranoia_mode,
 	 &(ginfo->rip_smile_level),&(ginfo->rip_percent_done),
-	 &(ginfo->stop_thread_rip_now),ginfo->calc_gain,output_fp);
+	 &(ginfo->stop_thread_rip_now),ginfo->calc_gain,
+	 stderr);
+	 /*	 output_fp);*/
 
-  fclose(output_fp);
+  /*  fclose(output_fp);*/
   
   ginfo->in_rip_thread=FALSE;
 
@@ -1640,8 +1642,8 @@ static gboolean MP3Encode(GripInfo *ginfo)
   
   char_args[0]=FindRoot(ginfo->mp3exename);
 
-  ginfo->curr_pipe_fd=
-    GetStatusWindowPipe(ginfo->gui_info.encode_status_window);
+  /*  ginfo->curr_pipe_fd=
+      GetStatusWindowPipe(ginfo->gui_info.encode_status_window);*/
 
   ginfo->mp3pid[cpu]=fork();
   
