@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: grip 2.98.7\n"
-"POT-Creation-Date: 2002-04-02 09:26-0800\n"
+"POT-Creation-Date: 2002-04-13 11:38-0700\n"
 "PO-Revision-Date: 2002-03-07 14:37+0100\n"
 "Last-Translator: Eric Lassauge <lassauge@mail.dotcom.fr>\n"
 "Language-Team: Gözer le maudit <gozer@mailoman.com>\n"
@@ -851,7 +851,7 @@ msgid "Cancel"
 msgstr "Annuler"
 
 #. Doh!
-#: src/id3.c:279
+#: src/id3.c:281
 msgid "unknown ID3 field\n"
 msgstr "Champ ID3 inconnu\n"
 
@@ -861,7 +861,7 @@ msgid "Error: unable to translate filename. No such user as %s\n"
 msgstr ""
 "Erreur: impossible de changer le nom de fichier. Utilisateur %s inconnu\n"
 
-#: src/launch.c:239 src/rip.c:1274
+#: src/launch.c:239 src/rip.c:1273
 msgid "Exec failed\n"
 msgstr "L'exécution a échoué\n"
 
@@ -925,7 +925,7 @@ msgstr "Jouer"
 msgid "Current sector:      0"
 msgstr "Secteur courant:      0"
 
-#: src/rip.c:204 src/rip.c:212 src/rip.c:800
+#: src/rip.c:204 src/rip.c:212 src/rip.c:798
 msgid "Rip: Idle"
 msgstr "Extraction: Repos"
 
@@ -933,7 +933,7 @@ msgstr "Extraction: Repos"
 msgid "MP3: Trk 99 (99.9x)"
 msgstr "Encodage  : Piste 99 (99.9x)"
 
-#: src/rip.c:231 src/rip.c:884
+#: src/rip.c:231 src/rip.c:883
 msgid "MP3: Idle"
 msgstr "Encodage  : Repos"
 
@@ -949,57 +949,57 @@ msgstr "Secteur de fin"
 msgid "Error: can't open m3u file\n"
 msgstr "Erreur: impossible d'ouvrir le fichier M3U\n"
 
-#: src/rip.c:727
+#: src/rip.c:725
 #, c-format
 msgid "Rip: Trk %d (%3.1fx)"
 msgstr "Extraction: Piste %d (%3.1fx)"
 
-#: src/rip.c:758
+#: src/rip.c:756
 msgid "Rip finished\n"
 msgstr "Extraction terminée\n"
 
-#: src/rip.c:784
+#: src/rip.c:782
 #, c-format
 msgid "Rip partial %d  num wavs %d\n"
 msgstr "Extraction partielle %d nombre de WAV %d\n"
 
-#: src/rip.c:787
+#: src/rip.c:785
 #, c-format
 msgid "Next track is %d, total is %d\n"
 msgstr "La piste suivante est la %d, le total est de %d\n"
 
-#: src/rip.c:793
+#: src/rip.c:791
 msgid "Check if we need to rip another track\n"
 msgstr "Cocher si vous avez besoin d'extraire une autre piste\n"
 
-#: src/rip.c:828
+#: src/rip.c:826
 #, c-format
 msgid "MP3: Trk %d (%3.1fx)"
 msgstr "Encodage  : Piste %d (%3.1fx)"
 
-#: src/rip.c:842
+#: src/rip.c:840
 #, c-format
 msgid "Finished encoding on cpu %d\n"
 msgstr "Encodage terminé sur le CPU %d\n"
 
-#: src/rip.c:850
+#: src/rip.c:848
 #, c-format
 msgid "Deleting [%s]\n"
 msgstr "Destruction [%s]\n"
 
-#: src/rip.c:892
+#: src/rip.c:891
 msgid "Ripping is finished\n"
 msgstr "Extraction terminée\n"
 
-#: src/rip.c:970 src/rip.c:976
+#: src/rip.c:969 src/rip.c:975
 msgid "NoArtist"
 msgstr "SansArtiste"
 
-#: src/rip.c:981
+#: src/rip.c:980
 msgid "NoTitle"
 msgstr "SansTitre"
 
-#: src/rip.c:1069
+#: src/rip.c:1068
 msgid ""
 "Invalid rip executable\n"
 "Check your rip config"
@@ -1007,7 +1007,7 @@ msgstr ""
 "Programme d'extraction invalide\n"
 "Vérifier la configuration"
 
-#: src/rip.c:1076
+#: src/rip.c:1075
 msgid ""
 "Invalid MP3 executable\n"
 "Check your MP3 config"
@@ -1015,7 +1015,7 @@ msgstr ""
 "Programme d'encodage invalide\n"
 "Vérifier la configuration"
 
-#: src/rip.c:1109
+#: src/rip.c:1108
 msgid ""
 "No tracks selected.\n"
 "Rip whole CD?\n"
@@ -1023,74 +1023,74 @@ msgstr ""
 "Pas de piste sélectionnée.\n"
 "Extraction de tout le CD?\n"
 
-#: src/rip.c:1126
+#: src/rip.c:1125
 msgid "Ripping whole CD\n"
 msgstr "Extraction de tout le CD\n"
 
-#: src/rip.c:1161
+#: src/rip.c:1160
 msgid "In RipNextTrack\n"
 msgstr "Dans ExtractionPisteSuivante\n"
 
-#: src/rip.c:1168
+#: src/rip.c:1167
 #, c-format
 msgid "First checked track is %d\n"
 msgstr "La première piste choisie est la %d\n"
 
-#: src/rip.c:1178
+#: src/rip.c:1177
 msgid "Ripping away!\n"
 msgstr "Extraction !\n"
 
-#: src/rip.c:1213
+#: src/rip.c:1212
 msgid "No write access to write wav file"
 msgstr ""
 
-#: src/rip.c:1217
+#: src/rip.c:1216
 #, c-format
 msgid "Ripping track %d to %s\n"
 msgstr "Extraction piste %d vers %s\n"
 
-#: src/rip.c:1220
+#: src/rip.c:1219
 #, c-format
 msgid "Rip: Trk %d (0.0x)"
 msgstr "Extraction: Piste %d (0.0x)"
 
-#: src/rip.c:1225
+#: src/rip.c:1224
 #, c-format
 msgid "File %s has already been ripped. Skipping...\n"
 msgstr "Le fichier %s est déjà extrait. On passe au suivant...\n"
 
-#: src/rip.c:1239 src/rip.c:1450
+#: src/rip.c:1238 src/rip.c:1449
 msgid "Out of space in output directory"
 msgstr "Plus d'espace disponible dans le répertoire destination"
 
-#: src/rip.c:1303
+#: src/rip.c:1302
 msgid "Calling CDPRip\n"
 msgstr "Appel à CDPRip\n"
 
-#: src/rip.c:1379
+#: src/rip.c:1378
 #, c-format
 msgid "Added track %d to encode list\n"
 msgstr "Ajout de la piste %d dans la liste à encoder\n"
 
-#: src/rip.c:1402
+#: src/rip.c:1401
 msgid "No free cpus\n"
 msgstr "Pas de CPU disponible\n"
 
-#: src/rip.c:1418
+#: src/rip.c:1417
 #, c-format
 msgid "MP3 track %d\n"
 msgstr "Piste MP3 %d\n"
 
-#: src/rip.c:1432
+#: src/rip.c:1431
 msgid "No write access to write mp3 file"
 msgstr ""
 
-#: src/rip.c:1438
+#: src/rip.c:1437
 #, c-format
 msgid "%i: Encoding to %s\n"
 msgstr "%i: encodage vers %s\n"
 
-#: src/rip.c:1440
+#: src/rip.c:1439
 #, c-format
 msgid "MP3: Trk %d (0.0x)"
 msgstr "Encodage  : Piste %d (0.0x)"

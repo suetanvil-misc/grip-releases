@@ -224,98 +224,100 @@ static ID3_FrameID frameids[ NUM_FRAMES ] = {
 gboolean ID3v2TagFile( char *filename, char *title, char *artist, char *album,
 		       char *year, char *comment, unsigned char genre, unsigned
 		       char tracknum ) {
-    ID3Tag *tag;
-    ID3Field *field;
-    ID3Frame *frames[ NUM_FRAMES ];
-    int i;
-    gboolean retval = TRUE;
-    luint frm_offset;
+  ID3Tag *tag;
+  ID3Field *field;
+  ID3Frame *frames[ NUM_FRAMES ];
+  int i;
+  gboolean retval = TRUE;
+  luint frm_offset;
+  
+  tag = ID3Tag_New();
 
-    tag = ID3Tag_New();
-    if ( tag ) {
-        frm_offset = ID3Tag_Link( tag, filename); /* GRR. No error. */
-
-        for ( i = 0; i < NUM_FRAMES; i++ ) {
-            frames[ i ] = ID3Frame_NewID( frameids[ i ] );
-
-            if ( frames[ i ] ) {
-                char *c_data = NULL;
-                char gen[ 5 ] = "(   )";
-                char trk[ 4 ] = "   ";
-
-                switch( frameids[ i ] ) {
-                case ID3FID_TITLE:
-                    c_data = title;
-                    break;
-
-                case ID3FID_LEADARTIST:
-                    c_data = artist;
-                    break;
-
-                case ID3FID_ALBUM:
-                    c_data = album;
-                    break;
-
-                case ID3FID_YEAR:
-                    c_data = year;
-                    break;
-
-                case ID3FID_COMMENT:
-                    c_data = comment;
-                    break;
-
-                case ID3FID_CONTENTTYPE:
-                    c_data = gen;
-                    sprintf( gen, "(%d)", genre ); /* XXX */
-                    break;
-
-                case ID3FID_TRACKNUM:
-                    c_data = trk;
-                    sprintf( trk, "%d", tracknum ); /* XXX */
-                    break;
-
-                default:
-                    /* Doh! */
-                    fprintf( stderr,_("unknown ID3 field\n"));
-                    break;
-                }
-
-                if ( c_data != NULL ) {
-                    field = ID3Frame_GetField( frames[i], ID3FN_TEXT );
-                    if ( field ) {
-                        ID3Field_SetASCII( field, c_data );
-                    } else {
-                        retval = FALSE;
-                    }
-                }
-            } else { /* Frame->new() failed */
-                retval = FALSE;
-                break;
-            }
-        }
-        if ( retval != FALSE ) {
-            /* It would be really nice if I could have done something like
-               ID3Tag_AddFrames( tag, frames, NUM_FRAMES ), but the
-               prototypes work against me one way or another. So, this will
-               do instead. */
-            for ( i = 0; i < NUM_FRAMES; i++ ) {
-                /* Strictly speaking I should look for existing tags and
-                   delete them, but hey. We're making fresh mp3 files, right?
-                */
-                ID3Tag_AddFrame( tag, frames[ i ] );
-            }
-        }
-
-        if ( ID3Tag_Update( tag ) != ID3E_NoError ) {
-            retval = FALSE;
-        }
-
-        ID3Tag_Delete( tag );
-    } else { /* Tag -> new() failed */
-        retval = FALSE;
+  if(tag) {
+    frm_offset=ID3Tag_Link(tag,filename);
+    /* GRR. No error. */
+    
+    for ( i = 0; i < NUM_FRAMES; i++ ) {
+      frames[ i ] = ID3Frame_NewID( frameids[ i ] );
+      
+      if ( frames[ i ] ) {
+	char *c_data = NULL;
+	char gen[ 5 ] = "(   )";
+	char trk[ 4 ] = "   ";
+	
+	switch( frameids[ i ] ) {
+	case ID3FID_TITLE:
+	  c_data = title;
+	  break;
+	  
+	case ID3FID_LEADARTIST:
+	  c_data = artist;
+	  break;
+	  
+	case ID3FID_ALBUM:
+	  c_data = album;
+	  break;
+	  
+	case ID3FID_YEAR:
+	  c_data = year;
+	  break;
+	  
+	case ID3FID_COMMENT:
+	  c_data = comment;
+	  break;
+	  
+	case ID3FID_CONTENTTYPE:
+	  c_data = gen;
+	  sprintf( gen, "(%d)", genre ); /* XXX */
+	  break;
+	  
+	case ID3FID_TRACKNUM:
+	  c_data = trk;
+	  sprintf( trk, "%d", tracknum ); /* XXX */
+	  break;
+	  
+	default:
+	  /* Doh! */
+	  fprintf( stderr,_("unknown ID3 field\n"));
+	  break;
+	}
+	
+	if ( c_data != NULL ) {
+	  field = ID3Frame_GetField( frames[i], ID3FN_TEXT );
+	  if ( field ) {
+	    ID3Field_SetASCII( field, c_data );
+	  } else {
+	    retval = FALSE;
+	  }
+	}
+      } else { /* Frame->new() failed */
+	retval = FALSE;
+	break;
+      }
     }
-
-    return retval;
+    if ( retval != FALSE ) {
+      /* It would be really nice if I could have done something like
+	 ID3Tag_AddFrames( tag, frames, NUM_FRAMES ), but the
+	 prototypes work against me one way or another. So, this will
+	 do instead. */
+      for ( i = 0; i < NUM_FRAMES; i++ ) {
+	/* Strictly speaking I should look for existing tags and
+	   delete them, but hey. We're making fresh mp3 files, right?
+	*/
+	ID3Tag_AddFrame( tag, frames[ i ] );
+      }
+    }
+    
+    if(ID3Tag_UpdateByTagType(tag,ID3TT_ID3V2) != ID3E_NoError ) {
+      retval = FALSE;
+    }
+    
+    ID3Tag_Delete( tag );
+  } else { /* Tag -> new() failed */
+    retval = FALSE;
+  }
+  
+  return retval;
 }
 
 #endif /* HAVE_ID3LIB */

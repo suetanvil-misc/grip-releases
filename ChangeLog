@@ -1,3 +1,10 @@
+2002-04-13  Mike Oliphant  <oliphant@gtk.org>
+
+	* rip.c: some fixes to better follow user's id3 tagging
+	  preferences (thanks to Michael Teague for this)
+	* id3.c: fix to keep id3lib from writing v1 tags
+	* configure.in/grip.spec: upped version to 3.0.0
+	
 2002-04-11  Mike Oliphant  <oliphant@gtk.org>
 
 	* ja.po: added (thanks to Takeshi AIHANA for this)

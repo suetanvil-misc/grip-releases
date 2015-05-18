@@ -7,7 +7,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: grip 2.99.2\n"
-"POT-Creation-Date: 2002-04-02 09:26-0800\n"
+"POT-Creation-Date: 2002-04-13 11:38-0700\n"
 "PO-Revision-Date: 2002-04-04 00:35+0900\n"
 "Last-Translator: Takeshi Aihana <aihana@gnome.gr.jp>\n"
 "Language-Team: Japanese <gnome-translation@gnome.gr.jp>\n"
@@ -849,7 +849,7 @@ msgid "Cancel"
 msgstr "キャンセル"
 
 #. Doh!
-#: src/id3.c:279
+#: src/id3.c:281
 msgid "unknown ID3 field\n"
 msgstr "不明な ID3 フィールド\n"
 
@@ -858,7 +858,7 @@ msgstr "不明な ID3 フィールド\n"
 msgid "Error: unable to translate filename. No such user as %s\n"
 msgstr "エラー: ファイル名を変換できません。 %s というユーザはありません\n"
 
-#: src/launch.c:239 src/rip.c:1274
+#: src/launch.c:239 src/rip.c:1273
 msgid "Exec failed\n"
 msgstr "実行に失敗しました\n"
 
@@ -922,7 +922,7 @@ msgstr "再生"
 msgid "Current sector:      0"
 msgstr "現在のセクタ:     0"
 
-#: src/rip.c:204 src/rip.c:212 src/rip.c:800
+#: src/rip.c:204 src/rip.c:212 src/rip.c:798
 msgid "Rip: Idle"
 msgstr "切り出し: 待機中"
 
@@ -930,7 +930,7 @@ msgstr "切り出し: 待機中"
 msgid "MP3: Trk 99 (99.9x)"
 msgstr "切り出し: 99曲目 (99.9x)"
 
-#: src/rip.c:231 src/rip.c:884
+#: src/rip.c:231 src/rip.c:883
 msgid "MP3: Idle"
 msgstr "切り出し: 待機中"
 
@@ -946,57 +946,57 @@ msgstr "終了セクタ"
 msgid "Error: can't open m3u file\n"
 msgstr "エラー: m3u ファイルを開けません\n"
 
-#: src/rip.c:727
+#: src/rip.c:725
 #, c-format
 msgid "Rip: Trk %d (%3.1fx)"
 msgstr "切り出し: %d曲目 (%3.1fx)"
 
-#: src/rip.c:758
+#: src/rip.c:756
 msgid "Rip finished\n"
 msgstr "切り出し終了\n"
 
-#: src/rip.c:784
+#: src/rip.c:782
 #, c-format
 msgid "Rip partial %d  num wavs %d\n"
 msgstr "%d 分割で %d個のwavに切り出し\n"
 
-#: src/rip.c:787
+#: src/rip.c:785
 #, c-format
 msgid "Next track is %d, total is %d\n"
 msgstr "次のトラックは %d 全部で %d です\n"
 
-#: src/rip.c:793
+#: src/rip.c:791
 msgid "Check if we need to rip another track\n"
 msgstr "他のトラックを切り出す必要があるか確認してください\n"
 
-#: src/rip.c:828
+#: src/rip.c:826
 #, c-format
 msgid "MP3: Trk %d (%3.1fx)"
 msgstr "エンコード: %d曲目 (%3.1fx)"
 
-#: src/rip.c:842
+#: src/rip.c:840
 #, c-format
 msgid "Finished encoding on cpu %d\n"
 msgstr "CPU %d でのエンコードが終了しました\n"
 
-#: src/rip.c:850
+#: src/rip.c:848
 #, c-format
 msgid "Deleting [%s]\n"
 msgstr "[%s] を削除中です\n"
 
-#: src/rip.c:892
+#: src/rip.c:891
 msgid "Ripping is finished\n"
 msgstr "切り出し終了\n"
 
-#: src/rip.c:970 src/rip.c:976
+#: src/rip.c:969 src/rip.c:975
 msgid "NoArtist"
 msgstr "演奏者なし"
 
-#: src/rip.c:981
+#: src/rip.c:980
 msgid "NoTitle"
 msgstr "タイトルなし"
 
-#: src/rip.c:1069
+#: src/rip.c:1068
 msgid ""
 "Invalid rip executable\n"
 "Check your rip config"
@@ -1004,7 +1004,7 @@ msgstr ""
 "不正な切り出しがされています\n"
 "切り出しの設定を確認してください"
 
-#: src/rip.c:1076
+#: src/rip.c:1075
 msgid ""
 "Invalid MP3 executable\n"
 "Check your MP3 config"
@@ -1012,7 +1012,7 @@ msgstr ""
 "不正なエンコードが実行されています\n"
 "エンコード設定を確認してください"
 
-#: src/rip.c:1109
+#: src/rip.c:1108
 msgid ""
 "No tracks selected.\n"
 "Rip whole CD?\n"
@@ -1020,74 +1020,74 @@ msgstr ""
 "トラックが指定されていません。\n"
 "音楽 CD 全体を切り出しますか？\n"
 
-#: src/rip.c:1126
+#: src/rip.c:1125
 msgid "Ripping whole CD\n"
 msgstr "音楽 CD 全体の切り出し\n"
 
-#: src/rip.c:1161
+#: src/rip.c:1160
 msgid "In RipNextTrack\n"
 msgstr "次のトラックを切り出し中\n"
 
-#: src/rip.c:1168
+#: src/rip.c:1167
 #, c-format
 msgid "First checked track is %d\n"
 msgstr "最初にチェックしたトラックは %d です\n"
 
-#: src/rip.c:1178
+#: src/rip.c:1177
 msgid "Ripping away!\n"
 msgstr "切り出し中止！\n"
 
-#: src/rip.c:1213
+#: src/rip.c:1212
 msgid "No write access to write wav file"
 msgstr "WAV ファイルに対する書き込み権限がありません"
 
-#: src/rip.c:1217
+#: src/rip.c:1216
 #, c-format
 msgid "Ripping track %d to %s\n"
 msgstr "トラック %d を %s に切り出し中\n"
 
-#: src/rip.c:1220
+#: src/rip.c:1219
 #, c-format
 msgid "Rip: Trk %d (0.0x)"
 msgstr "切り出し: %d曲目 (0.0x)"
 
-#: src/rip.c:1225
+#: src/rip.c:1224
 #, c-format
 msgid "File %s has already been ripped. Skipping...\n"
 msgstr "ファイル %s は既に切り出し済みです。スキップします...\n"
 
-#: src/rip.c:1239 src/rip.c:1450
+#: src/rip.c:1238 src/rip.c:1449
 msgid "Out of space in output directory"
 msgstr "出力するために必要な空き容量がありません"
 
-#: src/rip.c:1303
+#: src/rip.c:1302
 msgid "Calling CDPRip\n"
 msgstr "CDPRipを呼び出しています。\n"
 
-#: src/rip.c:1379
+#: src/rip.c:1378
 #, c-format
 msgid "Added track %d to encode list\n"
 msgstr "%d トラックをエンコードリストに追加しました\n"
 
-#: src/rip.c:1402
+#: src/rip.c:1401
 msgid "No free cpus\n"
 msgstr "CPUに空きがありません\n"
 
-#: src/rip.c:1418
+#: src/rip.c:1417
 #, c-format
 msgid "MP3 track %d\n"
 msgstr "エンコード トラック %d\n"
 
-#: src/rip.c:1432
+#: src/rip.c:1431
 msgid "No write access to write mp3 file"
 msgstr "MP3 ファイルに対する書き込み権限がありません"
 
-#: src/rip.c:1438
+#: src/rip.c:1437
 #, c-format
 msgid "%i: Encoding to %s\n"
 msgstr "%i: %s へエンコーディング中\n"
 
-#: src/rip.c:1440
+#: src/rip.c:1439
 #, c-format
 msgid "MP3: Trk %d (0.0x)"
 msgstr "エンコード: %d曲目 (0.0x)"

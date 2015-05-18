@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2002-04-02 09:26-0800\n"
+"POT-Creation-Date: 2002-04-13 11:38-0700\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: Merlin Ma <merlin@turbolinux.com.cn>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -836,7 +836,7 @@ msgid "Cancel"
 msgstr "取消"
 
 #. Doh!
-#: src/id3.c:279
+#: src/id3.c:281
 msgid "unknown ID3 field\n"
 msgstr "未知的 ID3 域\n"
 
@@ -845,7 +845,7 @@ msgstr "未知的 ID3 域\n"
 msgid "Error: unable to translate filename. No such user as %s\n"
 msgstr "错误: 无法转换文件名. 无此用户 %s\n"
 
-#: src/launch.c:239 src/rip.c:1274
+#: src/launch.c:239 src/rip.c:1273
 msgid "Exec failed\n"
 msgstr "执行失败\n"
 
@@ -909,7 +909,7 @@ msgstr "放音"
 msgid "Current sector:      0"
 msgstr "当前扇区:      0"
 
-#: src/rip.c:204 src/rip.c:212 src/rip.c:800
+#: src/rip.c:204 src/rip.c:212 src/rip.c:798
 msgid "Rip: Idle"
 msgstr "抓轨: 空闲"
 
@@ -917,7 +917,7 @@ msgstr "抓轨: 空闲"
 msgid "MP3: Trk 99 (99.9x)"
 msgstr "编码: 曲目 99 (99.9x)"
 
-#: src/rip.c:231 src/rip.c:884
+#: src/rip.c:231 src/rip.c:883
 msgid "MP3: Idle"
 msgstr "编码: 空闲"
 
@@ -933,57 +933,57 @@ msgstr "终止扇区"
 msgid "Error: can't open m3u file\n"
 msgstr "错误: 不能打开m3u文件\n"
 
-#: src/rip.c:727
+#: src/rip.c:725
 #, c-format
 msgid "Rip: Trk %d (%3.1fx)"
 msgstr "抓轨: 曲目 %d (%3.1fx)"
 
-#: src/rip.c:758
+#: src/rip.c:756
 msgid "Rip finished\n"
 msgstr "完成抓轨\n"
 
-#: src/rip.c:784
+#: src/rip.c:782
 #, c-format
 msgid "Rip partial %d  num wavs %d\n"
 msgstr ""
 
-#: src/rip.c:787
+#: src/rip.c:785
 #, c-format
 msgid "Next track is %d, total is %d\n"
 msgstr "下一首是 %d, 总共是 %d\n"
 
-#: src/rip.c:793
+#: src/rip.c:791
 msgid "Check if we need to rip another track\n"
 msgstr "检查是否需要抓取其他曲目\n"
 
-#: src/rip.c:828
+#: src/rip.c:826
 #, c-format
 msgid "MP3: Trk %d (%3.1fx)"
 msgstr "编码: 曲目 %d (%3.1fx)"
 
-#: src/rip.c:842
+#: src/rip.c:840
 #, c-format
 msgid "Finished encoding on cpu %d\n"
 msgstr "完成编码在处理器 %d\n"
 
-#: src/rip.c:850
+#: src/rip.c:848
 #, c-format
 msgid "Deleting [%s]\n"
 msgstr "正在删除 [%s]\n"
 
-#: src/rip.c:892
+#: src/rip.c:891
 msgid "Ripping is finished\n"
 msgstr "抓轨完成\n"
 
-#: src/rip.c:970 src/rip.c:976
+#: src/rip.c:969 src/rip.c:975
 msgid "NoArtist"
 msgstr "无作者"
 
-#: src/rip.c:981
+#: src/rip.c:980
 msgid "NoTitle"
 msgstr "无标题"
 
-#: src/rip.c:1069
+#: src/rip.c:1068
 msgid ""
 "Invalid rip executable\n"
 "Check your rip config"
@@ -991,7 +991,7 @@ msgstr ""
 "非法的抓轨程序\n"
 "请检查你的抓轨器设置"
 
-#: src/rip.c:1076
+#: src/rip.c:1075
 msgid ""
 "Invalid MP3 executable\n"
 "Check your MP3 config"
@@ -999,7 +999,7 @@ msgstr ""
 "非法的编码程序\n"
 "请检查你的编码器设置"
 
-#: src/rip.c:1109
+#: src/rip.c:1108
 msgid ""
 "No tracks selected.\n"
 "Rip whole CD?\n"
@@ -1007,74 +1007,74 @@ msgstr ""
 "没有选择曲目.\n"
 "抓取整张光盘吗?\n"
 
-#: src/rip.c:1126
+#: src/rip.c:1125
 msgid "Ripping whole CD\n"
 msgstr "正在抓取整张光盘\n"
 
-#: src/rip.c:1161
+#: src/rip.c:1160
 msgid "In RipNextTrack\n"
 msgstr "在抓取下一轨\n"
 
-#: src/rip.c:1168
+#: src/rip.c:1167
 #, c-format
 msgid "First checked track is %d\n"
 msgstr "第一个检查的曲目是 %d\n"
 
-#: src/rip.c:1178
+#: src/rip.c:1177
 msgid "Ripping away!\n"
 msgstr ""
 
-#: src/rip.c:1213
+#: src/rip.c:1212
 msgid "No write access to write wav file"
 msgstr "没有写 wav 文件的权限"
 
-#: src/rip.c:1217
+#: src/rip.c:1216
 #, c-format
 msgid "Ripping track %d to %s\n"
 msgstr "正在抓取曲目 %d 到 %s\n"
 
-#: src/rip.c:1220
+#: src/rip.c:1219
 #, c-format
 msgid "Rip: Trk %d (0.0x)"
 msgstr "抓轨: 曲目 %d (0.0x)"
 
-#: src/rip.c:1225
+#: src/rip.c:1224
 #, c-format
 msgid "File %s has already been ripped. Skipping...\n"
 msgstr "文件 %s 已经抓过. 跳过...\n"
 
-#: src/rip.c:1239 src/rip.c:1450
+#: src/rip.c:1238 src/rip.c:1449
 msgid "Out of space in output directory"
 msgstr "输出目录空间不足"
 
-#: src/rip.c:1303
+#: src/rip.c:1302
 msgid "Calling CDPRip\n"
 msgstr "调用 CDPRip\n"
 
-#: src/rip.c:1379
+#: src/rip.c:1378
 #, c-format
 msgid "Added track %d to encode list\n"
 msgstr "添加曲目 %d 到编码队列\n"
 
-#: src/rip.c:1402
+#: src/rip.c:1401
 msgid "No free cpus\n"
 msgstr "没有空闲的处理器\n"
 
-#: src/rip.c:1418
+#: src/rip.c:1417
 #, c-format
 msgid "MP3 track %d\n"
 msgstr "MP3 曲目 %d\n"
 
-#: src/rip.c:1432
+#: src/rip.c:1431
 msgid "No write access to write mp3 file"
 msgstr "没有写 mp3 文件的权限"
 
-#: src/rip.c:1438
+#: src/rip.c:1437
 #, c-format
 msgid "%i: Encoding to %s\n"
 msgstr "%i: 编码到 %s\n"
 
-#: src/rip.c:1440
+#: src/rip.c:1439
 #, c-format
 msgid "MP3: Trk %d (0.0x)"
 msgstr "编码: 曲目 %d (0.0x)"

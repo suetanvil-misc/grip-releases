@@ -647,17 +647,15 @@ static void ID3Add(GripInfo *ginfo,char *file,EncodeTrack *enc_track)
 		 year,comment->str,enc_track->id3_genre,
 		 enc_track->track_num+1);
   }
-  else {
 #endif
-  ID3v1TagFile(file,(*(enc_track->song_name))?enc_track->song_name:"Unknown",
-	       (*(enc_track->song_artist))?enc_track->song_artist:
-	       (*(enc_track->disc_artist))?enc_track->disc_artist:"Unknown",
-	       (*(enc_track->disc_name))?enc_track->disc_name:"Unknown",
-	       year,comment->str,enc_track->id3_genre,
-	       enc_track->track_num+1);
-#ifdef HAVE_ID3LIB
+  if(ginfo->doid3) {
+    ID3v1TagFile(file,(*(enc_track->song_name))?enc_track->song_name:"Unknown",
+		 (*(enc_track->song_artist))?enc_track->song_artist:
+		 (*(enc_track->disc_artist))?enc_track->disc_artist:"Unknown",
+		 (*(enc_track->disc_name))?enc_track->disc_name:"Unknown",
+		 year,comment->str,enc_track->id3_genre,
+		 enc_track->track_num+1);
   }
-#endif
 
   g_string_free(comment,TRUE);
 }
@@ -854,8 +852,9 @@ void UpdateRipProgress(GripInfo *ginfo)
         ginfo->num_wavs--;
 
         if(!ginfo->stop_encode) {
-          if(ginfo->doid3) ID3Add(ginfo,ginfo->mp3file[mycpu],
-				  ginfo->encoded_track[mycpu]);
+          if(ginfo->doid3 || ginfo->doid3v2)
+	    ID3Add(ginfo,ginfo->mp3file[mycpu],
+		   ginfo->encoded_track[mycpu]);
 
 	  if(ginfo->add_to_db) AddSQLEntry(ginfo,ginfo->encoded_track[mycpu]);
 
