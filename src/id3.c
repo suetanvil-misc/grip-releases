@@ -23,8 +23,8 @@
 #include <stdio.h>
 #include <sys/types.h>
 #include <sys/stat.h>
+#include <gnome.h>
 #include "grip_id3.h"
-#include "grip.h"
 
 static void ID3Put(char *dest,char *src,int len);
 

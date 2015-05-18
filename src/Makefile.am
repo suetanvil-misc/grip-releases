@@ -1,7 +1,13 @@
-
-INCLUDES = -I$(top_srcdir) -I$(includedir) $(GNOME_INCLUDEDIR) \
+INCLUDES = -I$(top_srcdir) -I$(includedir) \
+	-DGNOME_ICONDIR=\""$(datadir)/pixmaps"\" \
          -DG_LOG_DOMAIN=\"grip\" -DGNOMELOCALEDIR=\""$(datadir)/locale"\" \
-	-I../intl -I$(top_srcdir)/intl
+        -I../intl -I$(top_srcdir)/intl \
+	-DPREFIX=\""$(prefix)"\" \
+        -DSYSCONFDIR=\""$(sysconfdir)"\" \
+        -DDATADIR=\""$(datadir)"\" \
+        -DLIBDIR=\""$(libdir)"\"
+
+
 
 bin_PROGRAMS = grip
 
@@ -25,6 +31,8 @@ grip_SOURCES =         \
 	discdb.c \
 	discdb.h \
 	uihelper.c \
+	status_window.c \
+	status_window.h \
 	xpm.h \
 	dialog.c \
 	dialog.h \
@@ -37,5 +45,4 @@ grip_SOURCES =         \
 	gain_analysis.c \
 	gain_analysis.h
 
-grip_LDADD = $(GNOMEUI_LIBS) $(GNOME_LIBDIR) $(INTLLIBS) $(PTHREAD_LIB) \
-	$(GHTTP_LIB) $(CDPAR_LIBS) $(ID3_LIBS)
+grip_LDADD = $(ZVT_LIBS) $(CDPAR_LIBS) $(ID3_LIBS)

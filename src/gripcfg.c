@@ -751,14 +751,18 @@ void FindExeInPath(char *exename, char *buf, int bsize)
   char *path;
   static char **PATH = 0;
 
-  if (!PATH) {
-    char *env = g_getenv("PATH");
+  if(!PATH) {
+    const char *env = g_getenv("PATH");
+
     PATH = g_strsplit(env ? env : "/usr/local/bin:/usr/bin:/bin", ":", 0);
   }
+
   path = FindExe(exename, PATH);
-  if (!path) {
+
+  if(!path) {
     g_snprintf(buf, bsize, "%s", exename);
-  } else {
+  }
+  else {
     g_snprintf(buf, bsize, "%s/%s", path, exename);
   }
 }

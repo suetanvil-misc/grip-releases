@@ -229,9 +229,21 @@ GtkWidget *MakeDoubleEntry(GtkWidget **entry,gdouble *var,char *name)
 
   widget=gtk_spin_button_new(GTK_ADJUSTMENT(adj),0.1,3);
 
+
+
+  /***************************
+
+
+
   gtk_widget_set_usize(widget,
 		       gdk_string_width((widget)->style->font,
 					"0.000")+25,0);
+
+
+  ************************/
+
+
+
 
   if(var) {
     gtk_spin_button_set_value(GTK_SPIN_BUTTON(widget),*var);

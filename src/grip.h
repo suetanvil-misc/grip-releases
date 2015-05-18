@@ -30,13 +30,14 @@
 #include "discdb.h"
 #include "pthread.h"
 #include "launch.h"
+#include "status_window.h"
 
 #ifdef HAVE_CDDA_INTERFACE_H
 #define CDPAR
 #endif
 
-#define WINWIDTH 285
-#define WINHEIGHT 250
+#define WINWIDTH 400
+#define WINHEIGHT 450
 
 #define MAX_NUM_CPU 16
 
@@ -64,7 +65,9 @@ typedef struct _grip_gui {
 
   GtkWidget *disc_name_label;
   GtkWidget *disc_artist_label;
-  GtkWidget *trackclist;
+  GtkListStore *track_list_store;
+  GtkWidget *track_list;
+  gint last_button;
 
   GtkWidget *current_track_label;
   int time_display_mode;
@@ -98,6 +101,10 @@ typedef struct _grip_gui {
 
   GtkWidget *volume_control;
   gboolean volvis;
+
+  StatusWindow *status_window;
+  StatusWindow *rip_status_window;
+  StatusWindow *encode_status_window;
 
   GtkWidget *play_sector_label;
 
@@ -217,6 +224,9 @@ typedef struct _grip_info {
   char title_split_chars[6];
 
   GripGUI gui_info;
+
+  int curr_pipe_fd;
+
   int num_cpu;
   gboolean ripping;
   gboolean encoding;
@@ -308,6 +318,7 @@ GtkWidget *GripNew(const gchar* geometry,char *device,char *scsi_device,
 void GripDie(GtkWidget *widget,gpointer data);
 void GripUpdate(GtkWidget *app);
 GtkWidget *MakeNewPage(GtkWidget *notebook,char *name);
+void LogStatus(GripInfo *ginfo,char *fmt,...);
 void Busy(GripGUI *uinfo);
 void UnBusy(GripGUI *uinfo);
 void CloseStuff(void *user_data);

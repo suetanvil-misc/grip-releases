@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: grip 3.0.2\n"
-"POT-Creation-Date: 2002-12-25 17:56-0800\n"
+"POT-Creation-Date: 2003-05-30 20:46-0700\n"
 "PO-Revision-Date: 2002-09-20 14:14+0200\n"
 "Last-Translator: Jordi Mallach <jordi@sindominio.net>\n"
 "Language-Team: Catalan <ca@dodds.net>\n"
@@ -59,21 +59,16 @@ msgstr "No fa redirecció de E/S"
 msgid "Run in verbose (debug) mode"
 msgstr "Executa en mode detallat (debug)"
 
-#: src/grip.c:152
+#: src/grip.c:145
 msgid "Grip"
 msgstr "Grip"
 
-#: src/grip.c:179
+#: src/grip.c:176
 #, c-format
 msgid "Error: Unable to initialize [%s]\n"
 msgstr "Error: no s'ha pogut inicialitzar [%s]\n"
 
-#: src/grip.c:205
-#, c-format
-msgid "Could not parse geometry string `%s'"
-msgstr "No s'ha pogut analitzar la cadena de geometria «%s»"
-
-#: src/grip.c:257
+#: src/grip.c:271
 msgid ""
 "Work is in progress.\n"
 "Really shut down?"
@@ -81,43 +76,60 @@ msgstr ""
 "Hi ha treballs en progrés.\n"
 "De veritat voleu sortir?"
 
-#: src/grip.c:315
+#: src/grip.c:322
+#, fuzzy
+msgid "Status"
+msgstr "Estat de l'extracció"
+
+#: src/grip.c:337
+msgid "General"
+msgstr ""
+
+#: src/grip.c:352 src/gripcfg.c:346 src/cdplay.c:257 src/rip.c:98
+msgid "Rip"
+msgstr "Extracció"
+
+#: src/grip.c:367 src/gripcfg.c:474
+msgid "Encode"
+msgstr "Codificació"
+
+#: src/grip.c:412
 msgid "Help"
 msgstr "Ajuda"
 
-#: src/grip.c:320
+#: src/grip.c:417
 msgid "Table Of Contents"
 msgstr "Taula de continguts"
 
-#: src/grip.c:326
+#: src/grip.c:423
 msgid "Playing CDs"
 msgstr "Reproducció de CD"
 
-#: src/grip.c:332
+#: src/grip.c:429
 msgid "Ripping CDs"
 msgstr "Extracció de CD"
 
-#: src/grip.c:338
+#: src/grip.c:435
 msgid "Configuring Grip"
 msgstr "Configuració de Grip"
 
-#: src/grip.c:344
+#: src/grip.c:441
 msgid "FAQ"
 msgstr "Preguntes més freqüents"
 
-#: src/grip.c:350
+#: src/grip.c:447
 msgid "Getting More Help"
 msgstr "Obtenir més ajuda"
 
-#: src/grip.c:356
+#: src/grip.c:453
 msgid "Reporting Bugs"
 msgstr "Informar d'errors"
 
-#: src/grip.c:376
+#: src/grip.c:473
 msgid "About"
 msgstr "Quant a"
 
-#: src/grip.c:747
+#: src/grip.c:836
 msgid ""
 "Your config file is out of date -- resetting to defaults.\n"
 "You will need to re-configure Grip.\n"
@@ -128,12 +140,12 @@ msgstr ""
 "Tindreu que reconfigurar Grip.\n"
 "La vostra configuració antiga s'ha desat amb el sufixe -old."
 
-#: src/grip.c:817
+#: src/grip.c:906
 #, c-format
 msgid "server is %s, port %d\n"
 msgstr "el servidor és %s, port %d\n"
 
-#: src/grip.c:837
+#: src/grip.c:926
 msgid "Error: Unable to save config file"
 msgstr "Error: No s'ha pogut desar el fitxer de configuració"
 
@@ -273,10 +285,6 @@ msgstr "Ordre de filtre de disc"
 msgid "Options"
 msgstr "Opcions"
 
-#: src/gripcfg.c:346 src/cdplay.c:260 src/rip.c:97
-msgid "Rip"
-msgstr "Extracció"
-
 #: src/gripcfg.c:361
 msgid "Encoder:"
 msgstr "Codificador:"
@@ -332,10 +340,6 @@ msgstr "Valor «nice» de la codificació"
 #: src/gripcfg.c:459
 msgid "Encode filter command"
 msgstr "Ordre de filtre de codificació"
-
-#: src/gripcfg.c:474
-msgid "Encode"
-msgstr "Codificació"
 
 #: src/gripcfg.c:483
 msgid "Add ID3 tags to encoded files"
@@ -483,35 +487,31 @@ msgstr "Ha fallat el desbloqueig: %d"
 msgid "CDIOCEJECT"
 msgstr "CDIOCEJECT"
 
-#: src/cdplay.c:95
-msgid "Aborted\n"
-msgstr "Avortat\n"
-
-#: src/cdplay.c:103
+#: src/cdplay.c:87
 msgid "Cannot do lookup while ripping"
 msgstr "No es pot consultar mentre s'extrau"
 
 #. "misc"
-#: src/cdplay.c:141
+#: src/cdplay.c:124
 msgid "Unknown Disc"
 msgstr "Disc desconegut"
 
-#: src/cdplay.c:145
+#: src/cdplay.c:128
 #, c-format
 msgid "Track %02d"
 msgstr "Pista %02d"
 
-#: src/cdplay.c:209
+#: src/cdplay.c:188
 #, c-format
 msgid "Querying %s (through %s) for disc %02x.\n"
 msgstr "S'està consultant a %s (a través de %s) el disc %02x.\n"
 
-#: src/cdplay.c:213
+#: src/cdplay.c:193
 #, c-format
 msgid "Querying %s for disc %02x.\n"
 msgstr "S'està consultant a %s el disc %02x.\n"
 
-#: src/cdplay.c:225
+#: src/cdplay.c:205
 #, c-format
 msgid ""
 "Match for \"%s / %s\"\n"
@@ -520,48 +520,39 @@ msgstr ""
 "Coincidir amb «%s / %s»\n"
 "S'estan descarregant dades...\n"
 
-#: src/cdplay.c:232
+#: src/cdplay.c:212
 msgid "Done\n"
 msgstr "Fet\n"
 
-#: src/cdplay.c:236 src/cdplay.c:564
+#: src/cdplay.c:216 src/cdplay.c:575
 msgid "Error saving disc data\n"
 msgstr "S'ha produït un error al desar les dades del disc\n"
 
-#: src/cdplay.c:242
+#: src/cdplay.c:222
 msgid "No match\n"
 msgstr "No hi ha coincidències\n"
 
-#: src/cdplay.c:260 src/cdplay.c:262
+#: src/cdplay.c:257
 msgid "Track"
 msgstr "Pista"
 
-#: src/cdplay.c:260 src/cdplay.c:262
+#: src/cdplay.c:257
 msgid "Length "
 msgstr "Longitud "
 
-#: src/cdplay.c:262
-msgid "PL"
-msgstr "PL"
-
-#: src/cdplay.c:267
+#: src/cdplay.c:261
 msgid "Tracks"
 msgstr "Pistes"
 
-#: src/cdplay.c:487
-#, c-format
-msgid "Column/Button: %d/%d\n"
-msgstr ""
-
-#: src/cdplay.c:635
+#: src/cdplay.c:646
 msgid "Rotate play mode"
 msgstr "Rota el mode de reproducció"
 
-#: src/cdplay.c:655
+#: src/cdplay.c:666
 msgid "Toggle loop play"
 msgstr "Activa/Desactiva la repetició de la reproducció"
 
-#: src/cdplay.c:739 src/rip.c:223
+#: src/cdplay.c:744 src/rip.c:233
 msgid "Rip status"
 msgstr "Estat de l'extracció"
 
@@ -621,76 +612,72 @@ msgstr "Inicia/avorta les cerques de DiscDB"
 msgid "Toggle track display"
 msgstr "Mostra/oculta les pistes"
 
-#: src/cdplay.c:949
+#: src/cdplay.c:948
 msgid "Exit Grip"
 msgstr "Surt de Grip"
 
-#: src/cdplay.c:952
-msgid "Exit GCD"
-msgstr "Surt de GCD"
-
-#: src/cdplay.c:1100
+#: src/cdplay.c:1091
 msgid "Cannot fast forward while ripping"
 msgstr "No es pot avançar ràpidament mentre s'extrau"
 
-#: src/cdplay.c:1132
+#: src/cdplay.c:1121
 msgid "Cannot rewind while ripping"
 msgstr "No es pot rebobinar mentre s'extrau"
 
-#: src/cdplay.c:1164
+#: src/cdplay.c:1151
 msgid "Cannot switch discs while ripping"
 msgstr "No es pot canviar de disc mentre s'extrau"
 
-#: src/cdplay.c:1183
+#: src/cdplay.c:1169
 msgid "Eject disc\n"
 msgstr "Expulsa el disc\n"
 
-#: src/cdplay.c:1187
+#: src/cdplay.c:1172
 msgid "Cannot eject while ripping"
 msgstr "No es pot expular mentre s'extrau"
 
-#: src/cdplay.c:1198
+#: src/cdplay.c:1182
 msgid "Have disc -- ejecting\n"
 msgstr "Teniu el disc -- expulsant\n"
 
-#: src/cdplay.c:1265
+#: src/cdplay.c:1246
 msgid "Cannot play while ripping"
 msgstr "No es pot reproduir mentre s'extrau"
 
-#: src/cdplay.c:1328 src/cdplay.c:1362
+#: src/cdplay.c:1307 src/cdplay.c:1337
 msgid "Cannot switch tracks while ripping"
 msgstr "No es pot canviar de pista mentre s'extrau"
 
-#: src/cdplay.c:1448
+#: src/cdplay.c:1419
 msgid "Checking for a new disc\n"
 msgstr "S'està comprovant si hi ha un nou disc\n"
 
-#: src/cdplay.c:1453
+#: src/cdplay.c:1424
 msgid "CDStat found a disc, checking tracks\n"
 msgstr "CDStat ha trobat un disc, s'estan comprovant les pistes\n"
 
-#: src/cdplay.c:1456
+#: src/cdplay.c:1427
 msgid "We have a valid disc!\n"
 msgstr "Hi ha un disc vàlid!\n"
 
-#: src/cdplay.c:1482
+#: src/cdplay.c:1454
 msgid "No non-zero length tracks\n"
 msgstr "No hi ha pistes amb llargària no-zero\n"
 
-#: src/cdplay.c:1491
+#: src/cdplay.c:1463
 msgid "CDStat said no disc\n"
 msgstr "CDStat ha dit que no hi ha cap disc\n"
 
-#: src/cdplay.c:1620 src/cdplay.c:1642
+#: src/cdplay.c:1598 src/cdplay.c:1620
 #, c-format
 msgid "Current sector: %6d"
 msgstr "Sector actual: %6d"
 
-#: src/cdplay.c:1751
+#: src/cdplay.c:1721
 msgid "No Disc"
 msgstr "No hi ha disc"
 
-#: src/cdplay.c:1806
+#: src/cdplay.c:1772
 msgid ""
 "This disc has been found on your secondary server,\n"
 "but not on your primary server.\n"
@@ -702,15 +689,15 @@ msgstr ""
 "\n"
 "Voleu enviar la informació sobre aquest disc?"
 
-#: src/cdplay.c:1833 src/cdplay.c:1841
+#: src/cdplay.c:1801 src/cdplay.c:1809
 msgid "Error: Unable to create temporary file"
 msgstr "Error: No s'ha pogut crear un fitxer temporal"
 
-#: src/cdplay.c:1851
+#: src/cdplay.c:1819
 msgid "Error: Unable to write disc data"
 msgstr "Error: No s'ha pogut escriure les dades del disc"
 
-#: src/cdplay.c:1860
+#: src/cdplay.c:1828
 #, c-format
 msgid "Mailing entry to %s\n"
 msgstr "S'està enviant l'entrada a %s\n"
@@ -719,103 +706,106 @@ msgstr "S'està enviant l'entrada a %s\n"
 msgid "System Message"
 msgstr "Missatge del sistema"
 
-#: src/discdb.c:187
+#: src/discdb.c:188
 #, c-format
 msgid "URI is %s\n"
 msgstr "La URI és %s\n"
 
-#: src/discdb.c:231
+#: src/discdb.c:236
 #, c-format
 msgid "Query is [%s]\n"
 msgstr "La consulta és [%s]\n"
 
-#: src/discdb.c:245
+#: src/discdb.c:253
 #, c-format
 msgid "Reply is [%s]\n"
 msgstr "La resposta és [%s]\n"
 
-#: src/discdb.c:653
+#: src/discdb.c:661
 #, c-format
 msgid "Stat error %d on %s\n"
 msgstr "Error de stat %d en %s\n"
 
-#: src/discdb.c:657
+#: src/discdb.c:665
 #, c-format
 msgid "Creating directory %s\n"
 msgstr "S'està creant el directori %s\n"
 
-#: src/discdb.c:662
+#: src/discdb.c:670
 #, c-format
 msgid "Error: %s exists, but is a file\n"
 msgstr "Error: %s existeix, però és un fitxer\n"
 
-#: src/discdb.c:669
+#: src/discdb.c:677
 #, c-format
 msgid "Error: Unable to open %s for writing\n"
 msgstr "Error: No s'ha pogut obrir %s per a escriptura\n"
 
-#: src/discedit.c:65
+#: src/discedit.c:67
 msgid "Disc title"
 msgstr "Títol del disc"
 
-#. This should be the longest string in the track edit section
-#: src/discedit.c:68 src/discedit.c:152
+#: src/discedit.c:74 src/discedit.c:176
 msgid "Track name"
 msgstr "Nom de la pista"
 
-#: src/discedit.c:86
+#: src/discedit.c:84
+msgid "W"
+msgstr ""
+
+#: src/discedit.c:110
 msgid "Disc artist"
 msgstr "Nom de l'artista"
 
-#: src/discedit.c:103
+#: src/discedit.c:127
 msgid "ID3 genre:"
 msgstr "Gènere ID3:"
 
-#: src/discedit.c:134
+#: src/discedit.c:158
 msgid "Disc year"
 msgstr "Any del disc"
 
-#: src/discedit.c:172
+#: src/discedit.c:196
 msgid "Track artist"
 msgstr "Artista de la pista"
 
-#: src/discedit.c:189
+#: src/discedit.c:213
 msgid "Split:"
 msgstr "Partir:"
 
-#: src/discedit.c:193
+#: src/discedit.c:217
 msgid "Title/Artist"
 msgstr "Títol/Artista"
 
-#: src/discedit.c:200
+#: src/discedit.c:224
 msgid "Artist/Title"
 msgstr "Artista/Títol"
 
-#: src/discedit.c:208
+#: src/discedit.c:232
 msgid "Split chars"
 msgstr "Caràcter de separació"
 
-#: src/discedit.c:225
+#: src/discedit.c:252
 msgid "Multi-artist"
 msgstr "Artista múltiple"
 
-#: src/discedit.c:236
+#: src/discedit.c:263
 msgid "Save disc info"
 msgstr "Desa la info del disc"
 
-#: src/discedit.c:245
+#: src/discedit.c:272
 msgid "Submit disc info"
 msgstr "Envia la info del disc"
 
-#: src/discedit.c:344
+#: src/discedit.c:371
 msgid "Error saving disc data"
 msgstr "Error saving disc data"
 
-#: src/discedit.c:346
+#: src/discedit.c:373
 msgid "No disc present"
 msgstr "No hi ha un disc present"
 
-#: src/discedit.c:485
+#: src/discedit.c:512
 msgid ""
 "Cannot submit\n"
 "No disc is present"
@@ -823,15 +813,15 @@ msgstr ""
 "No es pot enviar\n"
 "No hi ha cap disc present"
 
-#: src/discedit.c:498
+#: src/discedit.c:525
 msgid "You must enter a disc title"
 msgstr "Teniu que introduir el títol del disc"
 
-#: src/discedit.c:504
+#: src/discedit.c:531
 msgid "You must enter a disc artist"
 msgstr "Teniu que introduir l'artista del disc"
 
-#: src/discedit.c:514
+#: src/discedit.c:541
 msgid ""
 "You are about to submit this disc information\n"
 "to a commercial CDDB server, which will then\n"
@@ -849,7 +839,7 @@ msgstr ""
 "\n"
 "Voleu continuar?"
 
-#: src/discedit.c:523
+#: src/discedit.c:550
 msgid ""
 "You are about to submit this\n"
 "disc information via email.\n"
@@ -861,11 +851,11 @@ msgstr ""
 "\n"
 "Voleu continuar?"
 
-#: src/discedit.c:540
+#: src/discedit.c:567
 msgid "Genre selection"
 msgstr "Selecció de gènere"
 
-#: src/discedit.c:544
+#: src/discedit.c:571
 msgid ""
 "Submission requires a genre other than 'unknown'\n"
 "Please select a DiscDB genre below"
@@ -873,15 +863,15 @@ msgstr ""
 "L'enviament requereix un gènere diferent a «desconegut»\n"
 "Si us plau, seleccioneu un gènere de DiscDB"
 
-#: src/discedit.c:554
+#: src/discedit.c:581
 msgid "DiscDB genre"
 msgstr "Gènere DiscDB"
 
-#: src/discedit.c:574
+#: src/discedit.c:601
 msgid "Submit"
 msgstr "Envia"
 
-#: src/discedit.c:585
+#: src/discedit.c:612
 msgid "Cancel"
 msgstr "Cancel·la"
 
@@ -896,7 +886,7 @@ msgid "Error: unable to translate filename. No such user as %s\n"
 msgstr ""
 "Error: no s'ha pogut traduir el nom de fitxer. No hi ha cap usuari «%s»\n"
 
-#: src/launch.c:239 src/rip.c:1415
+#: src/launch.c:239 src/rip.c:1438
 msgid "Exec failed\n"
 msgstr "Ha fallat l'exec\n"
 
@@ -908,157 +898,157 @@ msgstr "Error: Tipus d'entrada errònia\n"
 msgid "Error: Invalid config file\n"
 msgstr "Error: fitxer de configuració invàlid\n"
 
-#: src/rip.c:106
+#: src/rip.c:107
 msgid "Rip+Encode"
 msgstr "Extrau i codifica"
 
-#: src/rip.c:108
+#: src/rip.c:109
 msgid "Rip and encode selected tracks"
 msgstr "Extrau i codifica les pistes seleccionades"
 
-#: src/rip.c:114
+#: src/rip.c:115
 msgid "Rip Only"
 msgstr "Només extrau"
 
-#: src/rip.c:116
+#: src/rip.c:117
 msgid "Rip but do not encode selected tracks"
 msgstr "Extrau però no codifica les pistes seleccionades"
 
-#: src/rip.c:122
+#: src/rip.c:123
 msgid "Abort Rip and Encode"
 msgstr "Avorta l'extracció i codificació"
 
-#: src/rip.c:124
+#: src/rip.c:125
 msgid "Kill all active rip and encode processes"
 msgstr "Mata tots els processos actius de extracció i codificació"
 
-#: src/rip.c:132
+#: src/rip.c:133
 msgid "Abort Ripping Only"
 msgstr "Avorta l'extracció"
 
-#: src/rip.c:134
+#: src/rip.c:135
 msgid "Kill rip process"
 msgstr "Mata els processos d'extracció"
 
-#: src/rip.c:140
+#: src/rip.c:141
 msgid "DDJ Scan"
 msgstr "Escaneig DDJ"
 
-#: src/rip.c:142
+#: src/rip.c:143
 msgid "Insert disc information into the DigitalDJ database"
 msgstr "Inserta la informació del disc en la base de dades de DigitalDJ"
 
-#: src/rip.c:157
+#: src/rip.c:158
 msgid "Rip partial track"
 msgstr "Extrau pista parcial"
 
-#: src/rip.c:168
+#: src/rip.c:169
 msgid "Play"
 msgstr "Reprodueix"
 
-#: src/rip.c:175
+#: src/rip.c:176
 msgid "Current sector:      0"
 msgstr "Sector actual:       0"
 
-#: src/rip.c:206 src/rip.c:214 src/rip.c:262 src/rip.c:830 src/rip.c:882
-#: src/rip.c:884 src/rip.c:1013 src/rip.c:1014
+#: src/rip.c:207 src/rip.c:224 src/rip.c:272 src/rip.c:843 src/rip.c:895
+#: src/rip.c:897 src/rip.c:1031 src/rip.c:1032
 msgid "Rip: Idle"
 msgstr "Extracció: Inactiu"
 
-#: src/rip.c:210
+#: src/rip.c:212
 msgid "Enc: Trk 99 (99.9x)"
 msgstr "Cod: Pista 99 (99.9x)"
 
-#: src/rip.c:233 src/rip.c:275 src/rip.c:985 src/rip.c:998
+#: src/rip.c:243 src/rip.c:285 src/rip.c:1003 src/rip.c:1016
 msgid "Enc: Idle"
 msgstr "Cod: Inactiu"
 
-#: src/rip.c:257
+#: src/rip.c:267
 msgid "Overall indicators:"
 msgstr ""
 
-#: src/rip.c:320
+#: src/rip.c:330
 msgid "Start sector"
 msgstr "Sector inicial"
 
-#: src/rip.c:325
+#: src/rip.c:335
 msgid "End sector"
 msgstr "Sector final"
 
-#: src/rip.c:586
+#: src/rip.c:597
 msgid "Error: can't open m3u file\n"
 msgstr "Error: no es pot obrir el fitxer m3u\n"
 
-#: src/rip.c:621
+#: src/rip.c:632
 msgid "In KillRip\n"
 msgstr ""
 
-#: src/rip.c:642
+#: src/rip.c:658
 #, c-format
 msgid "Now total enc size is: %d\n"
 msgstr ""
 
-#: src/rip.c:796
+#: src/rip.c:809
 #, c-format
 msgid "Rip: Trk %d (%3.1fx)"
 msgstr "Extracció: Posta %d (%3.1fx)"
 
-#: src/rip.c:826
+#: src/rip.c:839
 #, c-format
 msgid "Rip: %6.2f%%"
 msgstr ""
 
-#: src/rip.c:845
+#: src/rip.c:858
 msgid "Rip finished\n"
 msgstr "Extracció finalitzada\n"
 
-#: src/rip.c:871
+#: src/rip.c:884
 #, c-format
 msgid "Rip partial %d  num wavs %d\n"
 msgstr "Extracció parcial %d núm wavs %d\n"
 
-#: src/rip.c:874
+#: src/rip.c:887
 #, c-format
 msgid "Next track is %d, total is %d\n"
 msgstr "La següent pista és %d, el total és %d\n"
 
-#: src/rip.c:880
+#: src/rip.c:893
 msgid "Check if we need to rip another track\n"
 msgstr "Comprova si necessitem extraure altres pistes\n"
 
-#: src/rip.c:916
+#: src/rip.c:933
 #, c-format
 msgid "Enc: Trk %d (%3.1fx)"
 msgstr "Cod: Pista %d (%3.1fx)"
 
-#: src/rip.c:932
+#: src/rip.c:949
 #, c-format
 msgid "Enc: %6.2f%%"
 msgstr ""
 
-#: src/rip.c:942
+#: src/rip.c:959
 #, c-format
 msgid "Finished encoding on cpu %d\n"
 msgstr "Ha finalitzat la codificació en el processador %d\n"
 
-#: src/rip.c:950
+#: src/rip.c:970
 #, c-format
 msgid "Deleting [%s]\n"
 msgstr "S'està eliminant [%s]\n"
 
-#: src/rip.c:1006
+#: src/rip.c:1024
 msgid "Ripping is finished\n"
 msgstr "L'extracció ha finalitzat\n"
 
-#: src/rip.c:1101 src/rip.c:1107
+#: src/rip.c:1120 src/rip.c:1126
 msgid "NoArtist"
 msgstr "SenseArtista"
 
-#: src/rip.c:1112
+#: src/rip.c:1131
 msgid "NoTitle"
 msgstr "SenseTítol"
 
-#: src/rip.c:1200
+#: src/rip.c:1219
 msgid ""
 "Invalid rip executable\n"
 "Check your rip config"
@@ -1066,7 +1056,7 @@ msgstr ""
 "Executable d'extracció invàlid\n"
 "Comproveu la vostra configuració d'extracció"
 
-#: src/rip.c:1207
+#: src/rip.c:1226
 msgid ""
 "Invalid encoder executable\n"
 "Check your encoder config"
@@ -1074,7 +1064,7 @@ msgstr ""
 "Executable de codificació invàlid\n"
 "Comproveu la vostra configuració de codificació"
 
-#: src/rip.c:1240
+#: src/rip.c:1259
 msgid ""
 "No tracks selected.\n"
 "Rip whole CD?\n"
@@ -1082,95 +1072,107 @@ msgstr ""
 "No hi ha cap pista seleccionada.\n"
 "Extraure el CD sencer?\n"
 
-#: src/rip.c:1259
+#: src/rip.c:1278
 msgid "Ripping whole CD\n"
 msgstr "S'està extraient el CD sencer\n"
 
-#: src/rip.c:1295
+#: src/rip.c:1314
 msgid "In RipNextTrack\n"
 msgstr "En RipNextTrack\n"
 
-#: src/rip.c:1302
+#: src/rip.c:1321
 #, c-format
 msgid "First checked track is %d\n"
 msgstr "La primera pista comprovada és %d\n"
 
-#: src/rip.c:1312
+#: src/rip.c:1331
 msgid "Ripping away!\n"
 msgstr "Extraient!\n"
 
-#: src/rip.c:1348
+#: src/rip.c:1367
 msgid "No write access to write wav file"
 msgstr "No hi ha accés d'escriptura per a escriure el fitxer wav"
 
-#: src/rip.c:1357
+#: src/rip.c:1376
 #, c-format
 msgid "Ripping track %d to %s\n"
 msgstr "S'està extraient la pista %d en %s\n"
 
-#: src/rip.c:1360
+#: src/rip.c:1380
 #, c-format
 msgid "Rip: Trk %d (0.0x)"
 msgstr "Extracció: Pista %d (0.0x)"
 
-#: src/rip.c:1365
+#: src/rip.c:1385
 #, c-format
 msgid "File %s has already been ripped. Skipping...\n"
 msgstr "El fitxer %s ja s'ha extret. S'ignorarà...\n"
 
-#: src/rip.c:1380 src/rip.c:1591
+#: src/rip.c:1400 src/rip.c:1625
 msgid "Out of space in output directory"
 msgstr "No hi ha espai disponible en el directori d'eixida"
 
-#: src/rip.c:1444
+#: src/rip.c:1472
 msgid "Calling CDPRip\n"
 msgstr "S'està cridant a CDPRip\n"
 
-#: src/rip.c:1520
+#: src/rip.c:1554
 #, c-format
 msgid "Added track %d to encode list\n"
 msgstr "S'ha afegit la pista %d a la llista de codificació\n"
 
-#: src/rip.c:1543
+#: src/rip.c:1577
 msgid "No free cpus\n"
 msgstr "No hi ha processadors lliures\n"
 
-#: src/rip.c:1559
+#: src/rip.c:1593
 #, c-format
 msgid "Enc track %d\n"
 msgstr "Cod pista %d\n"
 
-#: src/rip.c:1573
+#: src/rip.c:1607
 msgid "No write access to write encoded file"
 msgstr "No hi ha accés d'escriptura per a escriure el fitxer codificat"
 
-#: src/rip.c:1579
+#: src/rip.c:1613
 #, c-format
 msgid "%i: Encoding to %s\n"
 msgstr "%i: S'està codificant en %s\n"
 
-#: src/rip.c:1581
+#: src/rip.c:1615
 #, c-format
 msgid "Enc: Trk %d (0.0x)"
 msgstr "Enc: Pista %d (0.0x)"
 
-#: src/rip.c:1636
+#: src/rip.c:1676
 msgid "In CalculateAll\n"
 msgstr ""
 
-#: src/rip.c:1642
+#: src/rip.c:1682
 msgid "We aren't ripping now, so let's zero encoding values\n"
 msgstr ""
 
-#: src/rip.c:1658
+#: src/rip.c:1698
 #, c-format
 msgid "Total rip size is: %d\n"
 msgstr ""
 
-#: src/rip.c:1659
+#: src/rip.c:1699
 #, c-format
 msgid "Total enc size is: %d\n"
 msgstr ""
+
+#~ msgid "Could not parse geometry string `%s'"
+#~ msgstr "No s'ha pogut analitzar la cadena de geometria «%s»"
+
+#~ msgid "Aborted\n"
+#~ msgstr "Avortat\n"
+
+#~ msgid "PL"
+#~ msgstr "PL"
+
+#~ msgid "Exit GCD"
+#~ msgstr "Surt de GCD"
 
 #~ msgid "MP3 file format"
 #~ msgstr "Format del fitxer MP3"

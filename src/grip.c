@@ -42,6 +42,7 @@
 #include "parsecfg.h"
 
 static void ReallyDie(gint reply,gpointer data);
+static void MakeStatusPage(GripInfo *ginfo);
 static void DoHelp(GtkWidget *widget,gpointer data);
 static void MakeHelpPage(GripInfo *ginfo);
 static void MakeAboutPage(GripGUI *uinfo);
@@ -50,14 +51,6 @@ static void Homepage(void);
 static void LoadImages(GripGUI *uinfo);
 static void DoLoadConfig(GripInfo *ginfo);
 void DoSaveConfig(GripInfo *ginfo);
-
-static GnomeHelpMenuEntry main_help_entry={"grip","grip.html"};
-static GnomeHelpMenuEntry cdplay_help_entry={"grip","cdplayer.html"};
-static GnomeHelpMenuEntry rip_help_entry={"grip","ripping.html"};
-static GnomeHelpMenuEntry configure_help_entry={"grip","configure.html"};
-static GnomeHelpMenuEntry faq_help_entry={"grip","faq.html"};
-static GnomeHelpMenuEntry morehelp_help_entry={"grip","morehelp.html"};
-static GnomeHelpMenuEntry bug_help_entry={"grip","bugs.html"};
 
 #define BASE_CFG_ENTRIES \
 {"cd_device",CFG_ENTRY_STRING,256,ginfo->cd_device},\
@@ -157,7 +150,11 @@ GtkWidget *GripNew(const gchar* geometry,char *device,char *scsi_device,
 
   uinfo=&(ginfo->gui_info);
   uinfo->app=app;
-  
+  uinfo->status_window=NULL;
+  uinfo->rip_status_window=NULL;
+  uinfo->encode_status_window=NULL;
+  uinfo->track_list=NULL;
+
   if(config_filename && *config_filename)
     g_snprintf(ginfo->config_filename,256,"%s",config_filename);
   else {
@@ -184,10 +181,17 @@ GtkWidget *GripNew(const gchar* geometry,char *device,char *scsi_device,
 
   gtk_window_set_policy(GTK_WINDOW(app),FALSE,TRUE,FALSE);
   gtk_window_set_wmclass(GTK_WINDOW(app),"grip","Grip");
-  gtk_signal_connect(GTK_OBJECT(app),"delete_event",
-                     GTK_SIGNAL_FUNC(GripDie),NULL);
+  g_signal_connect(G_OBJECT(app),"delete_event",
+		   G_CALLBACK(GripDie),NULL);
+
+
+  gtk_widget_set_size_request(GTK_WIDGET(app),WINWIDTH,WINHEIGHT);
+
 
   /* geometry */
+
+  /************************************
+
   if(geometry != NULL) {
     gint x,y,w,h;
     
@@ -206,6 +210,13 @@ GtkWidget *GripNew(const gchar* geometry,char *device,char *scsi_device,
     }
   }
 
+
+  *******************************************/
+
+
+
+
+
   gtk_widget_realize(app);
 
   uinfo->winbox=gtk_vbox_new(FALSE,3);
@@ -219,6 +230,7 @@ GtkWidget *GripNew(const gchar* geometry,char *device,char *scsi_device,
   MakeTrackPage(ginfo);
   MakeRipPage(ginfo);
   MakeConfigPage(ginfo);
+  /*  MakeStatusPage(ginfo);*/
   MakeHelpPage(ginfo);
   MakeAboutPage(uinfo);
 
@@ -241,6 +253,8 @@ GtkWidget *GripNew(const gchar* geometry,char *device,char *scsi_device,
   gtk_widget_show(uinfo->winbox);
 
   CheckNewDisc(ginfo,FALSE);
+
+  LogStatus(ginfo,"Grip started successfully\n");
 
   return app;
 }
@@ -297,13 +311,96 @@ GtkWidget *MakeNewPage(GtkWidget *notebook,char *name)
   return page;
 }
 
+static void MakeStatusPage(GripInfo *ginfo)
+{
+  GtkWidget *status_page;
+  GtkWidget *vbox,*vbox2;
+  GtkWidget *notebook;
+  GtkWidget *page;
+  GtkWidget *label;
+
+  status_page=MakeNewPage(ginfo->gui_info.notebook,_("Status"));
+
+  vbox2=gtk_vbox_new(FALSE,0);
+  notebook=gtk_notebook_new();
+
+  page=gtk_frame_new(NULL);
+
+  vbox=gtk_vbox_new(FALSE,4);
+  gtk_container_border_width(GTK_CONTAINER(vbox),3);
+
+  ginfo->gui_info.status_window=NewStatusWindow(vbox);
+
+  gtk_container_add(GTK_CONTAINER(page),vbox);
+  gtk_widget_show(vbox);
+
+  label=gtk_label_new(_("General"));
+  gtk_notebook_append_page(GTK_NOTEBOOK(notebook),page,label);
+  gtk_widget_show(page);
+
+
+  page=gtk_frame_new(NULL);
+
+  vbox=gtk_vbox_new(FALSE,4);
+  gtk_container_border_width(GTK_CONTAINER(vbox),3);
+
+  ginfo->gui_info.rip_status_window=NewStatusWindow(vbox);
+
+  gtk_container_add(GTK_CONTAINER(page),vbox);
+  gtk_widget_show(vbox);
+
+  label=gtk_label_new(_("Rip"));
+  gtk_notebook_append_page(GTK_NOTEBOOK(notebook),page,label);
+  gtk_widget_show(page);
+
+
+  page=gtk_frame_new(NULL);
+
+  vbox=gtk_vbox_new(FALSE,4);
+  gtk_container_border_width(GTK_CONTAINER(vbox),3);
+
+  ginfo->gui_info.encode_status_window=NewStatusWindow(vbox);
+
+  gtk_container_add(GTK_CONTAINER(page),vbox);
+  gtk_widget_show(vbox);
+
+  label=gtk_label_new(_("Encode"));
+  gtk_notebook_append_page(GTK_NOTEBOOK(notebook),page,label);
+  gtk_widget_show(page);
+
+
+  gtk_box_pack_start(GTK_BOX(vbox2),notebook,TRUE,TRUE,0);
+  gtk_widget_show(notebook);
+
+  gtk_container_add(GTK_CONTAINER(status_page),vbox2);
+  gtk_widget_show(vbox2);
+}
+
+void LogStatus(GripInfo *ginfo,char *fmt,...)
+{
+  va_list args;
+  char *buf;
+
+  if(!ginfo->gui_info.status_window) return;
+
+  va_start(args,fmt);
+
+  buf=g_strdup_vprintf(fmt,args);
+
+  va_end(args);
+
+  StatusWindowWrite(ginfo->gui_info.status_window,buf);
+
+  g_free(buf);
+}
+
 static void DoHelp(GtkWidget *widget,gpointer data)
 {
-  GnomeHelpMenuEntry *entry;
+  char *section;
 
-  entry=(GnomeHelpMenuEntry *)data;
+  section=(char *)data;
 
-  gnome_help_display(NULL,entry);
+  gnome_help_display("grip.xml",section,NULL);
 }
 
 static void MakeHelpPage(GripInfo *ginfo)
@@ -319,43 +416,43 @@ static void MakeHelpPage(GripInfo *ginfo)
 
   button=gtk_button_new_with_label(_("Table Of Contents"));
   gtk_signal_connect(GTK_OBJECT(button),"clicked",
-		     GTK_SIGNAL_FUNC(DoHelp),(gpointer)&main_help_entry);
+		     GTK_SIGNAL_FUNC(DoHelp),NULL);
   gtk_box_pack_start(GTK_BOX(vbox),button,FALSE,FALSE,0);
   gtk_widget_show(button);
 
   button=gtk_button_new_with_label(_("Playing CDs"));
   gtk_signal_connect(GTK_OBJECT(button),"clicked",
-		     GTK_SIGNAL_FUNC(DoHelp),(gpointer)&cdplay_help_entry);
+		     GTK_SIGNAL_FUNC(DoHelp),(gpointer)"cdplayer");
   gtk_box_pack_start(GTK_BOX(vbox),button,FALSE,FALSE,0);
   gtk_widget_show(button);
 
   button=gtk_button_new_with_label(_("Ripping CDs"));
   gtk_signal_connect(GTK_OBJECT(button),"clicked",
-		     GTK_SIGNAL_FUNC(DoHelp),(gpointer)&rip_help_entry);
+		     GTK_SIGNAL_FUNC(DoHelp),(gpointer)"ripping");
   gtk_box_pack_start(GTK_BOX(vbox),button,FALSE,FALSE,0);
   gtk_widget_show(button);
 
   button=gtk_button_new_with_label(_("Configuring Grip"));
   gtk_signal_connect(GTK_OBJECT(button),"clicked",
-		     GTK_SIGNAL_FUNC(DoHelp),(gpointer)&configure_help_entry);
+		     GTK_SIGNAL_FUNC(DoHelp),(gpointer)"configure");
   gtk_box_pack_start(GTK_BOX(vbox),button,FALSE,FALSE,0);
   gtk_widget_show(button);
 
   button=gtk_button_new_with_label(_("FAQ"));
   gtk_signal_connect(GTK_OBJECT(button),"clicked",
-		     GTK_SIGNAL_FUNC(DoHelp),(gpointer)&faq_help_entry);
+		     GTK_SIGNAL_FUNC(DoHelp),(gpointer)"faq");
   gtk_box_pack_start(GTK_BOX(vbox),button,FALSE,FALSE,0);
   gtk_widget_show(button);
 
   button=gtk_button_new_with_label(_("Getting More Help"));
   gtk_signal_connect(GTK_OBJECT(button),"clicked",
-		     GTK_SIGNAL_FUNC(DoHelp),(gpointer)&morehelp_help_entry);
+		     GTK_SIGNAL_FUNC(DoHelp),(gpointer)"morehelp");
   gtk_box_pack_start(GTK_BOX(vbox),button,FALSE,FALSE,0);
   gtk_widget_show(button);
 
   button=gtk_button_new_with_label(_("Reporting Bugs"));
   gtk_signal_connect(GTK_OBJECT(button),"clicked",
-		     GTK_SIGNAL_FUNC(DoHelp),(gpointer)&bug_help_entry);
+		     GTK_SIGNAL_FUNC(DoHelp),(gpointer)"bugs");
   gtk_box_pack_start(GTK_BOX(vbox),button,FALSE,FALSE,0);
   gtk_widget_show(button);
 
@@ -414,7 +511,7 @@ void MakeAboutPage(GripGUI *uinfo)
 
   button=gtk_button_new_with_label("http://www.nostatic.org/grip");
   gtk_widget_set_style(button,uinfo->style_dark_grey);
-  gtk_widget_set_style(GTK_BUTTON(button)->child,
+  gtk_widget_set_style(GTK_BIN(button)->child,
 		       uinfo->style_dark_grey);
   gtk_signal_connect(GTK_OBJECT(button),"clicked",
 		     GTK_SIGNAL_FUNC(Homepage),NULL);
@@ -535,17 +632,6 @@ void GripUpdate(GtkWidget *app)
   if(!ginfo->poll_interval)
     ginfo->poll_interval=1;
 
-#ifdef GRIPCD
-  if(ginfo->poll_drive && !(secs%ginfo->poll_interval)) {
-    if(!ginfo->have_disc)
-      CheckNewDisc(ginfo,FALSE);
-  }
-
-  if(ginfo->auto_eject_countdown && !(--ginfo->auto_eject_countdown))
-    EjectDisc(&(ginfo->disc));
-
-  UpdateDisplay(ginfo);
-#else
   if(ginfo->ripping|ginfo->encoding) UpdateRipProgress(ginfo);
 
   if(!ginfo->ripping_a_disc) {
@@ -556,7 +642,6 @@ void GripUpdate(GtkWidget *app)
 
     UpdateDisplay(ginfo);
   }
-#endif
 }
 
 void Busy(GripGUI *uinfo)
@@ -588,6 +673,8 @@ static void DoLoadConfig(GripInfo *ginfo)
   };
 
   outputdir[0]='\0';
+
+  uinfo->last_button=0;
 
   uinfo->minimized=FALSE;
   uinfo->keep_min_size=TRUE;
@@ -665,6 +752,8 @@ static void DoLoadConfig(GripInfo *ginfo)
   ginfo->rewinding=FALSE;
 
   strcpy(ginfo->title_split_chars,"/");
+
+  ginfo->curr_pipe_fd=-1;
 
   ginfo->num_cpu=1;
   ginfo->ripping=FALSE;
@@ -852,8 +941,16 @@ void CloseStuff(void *user_data)
   dup2(fd,0);
 
   if(ginfo->do_redirect) {
-    dup2(fd,1);
-    dup2(fd,2);
+    if(ginfo->curr_pipe_fd>0) {
+      dup2(ginfo->curr_pipe_fd,1);
+      dup2(ginfo->curr_pipe_fd,2);
+
+      ginfo->curr_pipe_fd=-1;
+    }
+    else {
+      dup2(fd,1);
+      dup2(fd,2);
+    }
   }
 
   /* Close any other filehandles that might be around */

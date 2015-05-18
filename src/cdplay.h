@@ -42,6 +42,14 @@
 #define CURRENT_TRACK (ginfo->tracks_prog[ginfo->current_track_index])
 #define NEXT_TRACK (ginfo->tracks_prog[ginfo->current_track_index + 1])
 
+enum {
+  TRACKLIST_TRACK_COL,
+  TRACKLIST_LENGTH_COL,
+  TRACKLIST_RIP_COL,
+  TRACKLIST_NUM_COL,
+  TRACKLIST_N_COLUMNS
+};
+
 void SetCurrentTrackIndex(GripInfo *ginfo,int track);
 void SetChecked(GripGUI *uinfo,int track,gboolean checked);
 gboolean TrackIsChecked(GripGUI *uinfo,int track);
@@ -53,6 +61,7 @@ void LookupDisc(GripInfo *ginfo,gboolean manual);
 gboolean DiscDBLookupDisc(GripInfo *ginfo,DiscDBServer *server);
 GtkWidget *MakePlayOpts(GripInfo *ginfo);
 GtkWidget *MakeControls(GripInfo *ginfo);
+void ResizeTrackList(GripInfo *ginfo);
 void MakeTrackPage(GripInfo *ginfo);
 void NextTrack(GripInfo *ginfo);
 void CheckNewDisc(GripInfo *ginfo,gboolean force);

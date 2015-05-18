@@ -1,32 +1,46 @@
+2003-05-30  Mike Oliphant  <oliphant@gtk.org>
+
+	* configure.in: cleaned up
+	* macros: removed
+	* status_window.c/h: added new status window code (currently
+	  disabled)
+	* configure.in/grip.spec.in/Makefile.am: build grip.spec from
+	  grip.spec.in
+	* various: lots of gnome2 changes (thanks to Jean Charles for
+	  doing an intial port)
+	* po/it.po: added (Ceoldo Costantino)
+	* configure.in: upped version to 3.1.0
+
 2003-04-22  Mike Oliphant  <oliphant@gtk.org>
 
 	* fr.po: updated (Eric Lassauge)
 	* cdplay.c: make cddb lookups not abortable until it is fixed so
 	  that it works properly
 	* configure.in/grip.spec: upped version to 3.0.7
+
 	
 2003-02-09  Mike Oliphant  <oliphant@gtk.org>
 
-	* discdb.c: include <locale.h> (Ed Goforth)
-	* ja.po: updated (Takeshi AIHANA)
-	* doc/C/Makefile.am: install images properly (Todd)
-	* configure.in/grip.spec: upped version to 3.0.6
+        * discdb.c: include <locale.h> (Ed Goforth)
+        * ja.po: updated (Takeshi AIHANA)
+        * doc/C/Makefile.am: install images properly (Todd)
+        * configure.in/grip.spec: upped version to 3.0.6
 
 2003-01-12  Mike Oliphant  <oliphant@gtk.org>
 
-	* de.po: updated (Goetz Waschk)
-	* ja.po: updated (Takeshi AIHANA)
-	* ru.po: updated (Michael Shigorin)
-	* discdb.c: work around for bug in libghttp that sends "HTTP/1,1"
-	  instead of "HTTP/1.1" on some systems (Michael Mauch)
-	* rip.c/grip.c/cdplay.c: use 'ripping_a_disc' instead of 'ripping'
-	  to check if a rip is in progress
-	* doc/C: updated screenshots
-	* grip.sgml: updated
-	* rip.c: only increment num_wavs if we are encoding
-	* rip.c: don't delete wav file on aborted encode
-	* configure.in/grip.spec: upped version to 3.0.5
-	
+        * de.po: updated (Goetz Waschk)
+        * ja.po: updated (Takeshi AIHANA)
+        * ru.po: updated (Michael Shigorin)
+        * discdb.c: work around for bug in libghttp that sends "HTTP/1,1"
+          instead of "HTTP/1.1" on some systems (Michael Mauch)
+        * rip.c/grip.c/cdplay.c: use 'ripping_a_disc' instead of 'ripping'
+          to check if a rip is in progress
+        * doc/C: updated screenshots
+        * grip.sgml: updated
+        * rip.c: only increment num_wavs if we are encoding
+        * rip.c: don't delete wav file on aborted encode
+        * configure.in/grip.spec: upped version to 3.0.5
+
 2002-12-25  Mike Oliphant  <oliphant@gtk.org>
 
 	* zh_CN.po: updated (Merlin Ma)

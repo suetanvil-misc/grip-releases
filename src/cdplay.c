@@ -36,13 +36,11 @@ static void DiscDBToggle(GtkWidget *widget,gpointer data);
 static void DoLookup(void *data);
 static void SetCurrentTrack(GripInfo *ginfo,int track);
 static void ToggleChecked(GripGUI *uinfo,int track);
-static void ClickColumn(GtkWidget *widget,gint column,gpointer data);
-static void CListButtonPressed(GtkWidget *widget,GdkEventButton *event,
-			       gpointer data);
-static void UnSelectRow(GtkWidget *widget,gint row,gint column,
-			GdkEventButton *event,gpointer data);
-static void SelectRow(GtkWidget *widget,gint row,gint column,
-		      GdkEventButton *event,gpointer data);
+static void ClickColumn(GtkTreeViewColumn *column,gpointer data);
+static gboolean TracklistButtonPressed(GtkWidget *widget,GdkEventButton *event,
+				       gpointer data);
+static void SelectRow(GripInfo *ginfo,int track);
+static void SelectionChanged(GtkTreeSelection *selection,gpointer data);
 static void PlaylistChanged(GtkWindow *window,GtkWidget *widget,gpointer data);
 static void ToggleLoop(GtkWidget *widget,gpointer data);
 static void ChangePlayMode(GtkWidget *widget,gpointer data);
@@ -85,13 +83,11 @@ static void DiscDBToggle(GtkWidget *widget,gpointer data)
     return;
   }
   else {
-#ifndef GRIPCD
     if(ginfo->ripping_a_disc) {
       DisplayMsg(_("Cannot do lookup while ripping"));
 
       return;
     }
-#endif
  
     if(ginfo->have_disc)
       LookupDisc(ginfo,TRUE);
@@ -172,10 +168,6 @@ static void DoLookup(void *data)
   if(ginfo->ddata.data_id3genre==-1)
     ginfo->ddata.data_id3genre=DiscDB2ID3(ginfo->ddata.data_genre);
 
-  /* Deleted this since we aren't in the main thread */
-  /*  if(!discdb_found)
-      DisplayMsg(_("Disc database query failed\n"));*/
-
   ginfo->looking_up=FALSE;
   pthread_exit(0);
 }
@@ -193,12 +185,13 @@ gboolean DiscDBLookupDisc(GripInfo *ginfo,DiscDBServer *server)
   ddata=&(ginfo->ddata);
 
   if(server->use_proxy)
-    Debug(_("Querying %s (through %s) for disc %02x.\n"),server->name,
-	   server->proxy->name,
-	   DiscDBDiscid(disc));
+    LogStatus(ginfo,_("Querying %s (through %s) for disc %02x.\n"),
+	      server->name,
+	      server->proxy->name,
+	      DiscDBDiscid(disc));
   else
-    Debug(_("Querying %s for disc %02x.\n"),server->name,
-	   DiscDBDiscid(disc));
+    LogStatus(ginfo,_("Querying %s for disc %02x.\n"),server->name,
+	      DiscDBDiscid(disc));
 
   strncpy(hello.hello_program,"Grip",256);
   strncpy(hello.hello_version,VERSION,256);
@@ -209,9 +202,9 @@ gboolean DiscDBLookupDisc(GripInfo *ginfo,DiscDBServer *server)
     switch(query.query_match) {
     case MATCH_INEXACT:
     case MATCH_EXACT:
-      Debug(_("Match for \"%s / %s\"\nDownloading data...\n"),
-	     query.query_list[0].list_artist,
-	     query.query_list[0].list_title);
+      LogStatus(ginfo,_("Match for \"%s / %s\"\nDownloading data...\n"),
+		query.query_list[0].list_artist,
+		query.query_list[0].list_title);
       entry.entry_genre = query.query_list[0].list_genre;
       entry.entry_id = query.query_list[0].list_id;
       DiscDBRead(disc,server,&hello,&entry,ddata);
@@ -226,12 +219,28 @@ gboolean DiscDBLookupDisc(GripInfo *ginfo,DiscDBServer *server)
       ginfo->is_new_disc=TRUE;
       break;
     case MATCH_NOMATCH:
-      Debug(_("No match\n"));
+      LogStatus(ginfo,_("No match\n"));
       break;
     }
   }
 
   return success;
+}
+
+void ResizeTrackList(GripInfo *ginfo)
+{
+  GtkWidget *track_list;
+  GtkTreeViewColumn *column;
+  int width;
+
+  track_list=ginfo->gui_info.track_list;
+
+  if(track_list) {
+    column=gtk_tree_view_get_column(GTK_TREE_VIEW(track_list),
+				    TRACKLIST_TRACK_COL);
+    gtk_tree_view_column_set_fixed_width(column,track_list->
+					 allocation.width-100);
+  }
 }
 
 void MakeTrackPage(GripInfo *ginfo)
@@ -240,14 +249,12 @@ void MakeTrackPage(GripInfo *ginfo)
   GtkWidget *vbox;
   GripGUI *uinfo;
   GtkRequisition sizereq;
-#ifdef GTK_HAVE_FEATURES_1_1_4
   GtkWidget *scroll;
-#endif
-#ifndef GRIPCD
+  GtkTreeViewColumn *column;
+  GtkCellRenderer *renderer;
+  GtkTreeSelection *select;
+
   gchar *titles[3]={_("Track"),_("Length "),_("Rip")};
-#else
-  gchar *titles[3]={_("Track"),_("Length "),_("PL")};
-#endif
   
   uinfo=&(ginfo->gui_info);
 
@@ -264,64 +271,95 @@ void MakeTrackPage(GripInfo *ginfo)
   gtk_box_pack_start(GTK_BOX(vbox),uinfo->disc_artist_label,FALSE,FALSE,0);
   gtk_widget_show(uinfo->disc_artist_label);
 
-#ifndef GRIPCD
-  uinfo->trackclist=gtk_clist_new_with_titles(3,titles);
-#else
-  uinfo->trackclist=gtk_clist_new_with_titles(2,titles);
-#endif
+  uinfo->track_list_store=gtk_list_store_new(TRACKLIST_N_COLUMNS,
+					     G_TYPE_STRING,
+					     G_TYPE_STRING,
+					     G_TYPE_BOOLEAN,
+					     G_TYPE_INT);
 
-  gtk_clist_set_column_justification(GTK_CLIST(uinfo->trackclist),1,
-				     GTK_JUSTIFY_RIGHT);
+  uinfo->track_list=
+    gtk_tree_view_new_with_model(GTK_TREE_MODEL(uinfo->track_list_store));
 
-  gtk_clist_set_selection_mode(GTK_CLIST(uinfo->trackclist),
-			       GTK_SELECTION_BROWSE);
-  gtk_clist_column_title_passive(GTK_CLIST(uinfo->trackclist),0);
-  gtk_clist_column_title_passive(GTK_CLIST(uinfo->trackclist),1);
-  gtk_clist_set_column_width(GTK_CLIST(uinfo->trackclist),0,
-			     SizeInDubs(uinfo->trackclist->style->font,18));
-#ifndef GRIPCD
-  gtk_clist_column_title_active(GTK_CLIST(uinfo->trackclist),2);
+  renderer=gtk_cell_renderer_text_new();
 
-  gtk_clist_set_column_auto_resize(GTK_CLIST(uinfo->trackclist),1,TRUE);
-  gtk_clist_set_column_justification(GTK_CLIST(uinfo->trackclist),2,
-				     GTK_JUSTIFY_CENTER);
-  gtk_clist_set_column_resizeable(GTK_CLIST(uinfo->trackclist),2,FALSE);
-#endif
+  column=gtk_tree_view_column_new_with_attributes("Track",renderer,
+						  "text",TRACKLIST_TRACK_COL,
+						  NULL);
 
-  gtk_signal_connect(GTK_OBJECT(uinfo->trackclist),"select_row",
-		     GTK_SIGNAL_FUNC(SelectRow),
-		     (gpointer)ginfo);
-  gtk_signal_connect(GTK_OBJECT(uinfo->trackclist),"unselect_row",
-		     GTK_SIGNAL_FUNC(UnSelectRow),
-		     (gpointer)uinfo);
+  gtk_tree_view_column_set_sizing(column,GTK_TREE_VIEW_COLUMN_FIXED);
+  gtk_tree_view_column_set_fixed_width(column,WINWIDTH-100);
+
+  gtk_tree_view_append_column(GTK_TREE_VIEW(uinfo->track_list),column);
+
+  column=gtk_tree_view_column_new_with_attributes("Length",renderer,
+						  "text",TRACKLIST_LENGTH_COL,
+						  NULL);
+
+  gtk_tree_view_column_set_alignment(column,0.5);
+
+  gtk_tree_view_append_column(GTK_TREE_VIEW(uinfo->track_list),column);
+
+
+  renderer=gtk_cell_renderer_toggle_new();
+
+  column=gtk_tree_view_column_new_with_attributes("Rip",renderer,
+						  "active",
+						  TRACKLIST_RIP_COL,
+						  NULL);
+
+  gtk_tree_view_column_set_alignment(column,0.5);
+  gtk_tree_view_column_set_fixed_width(column,20);
+  gtk_tree_view_column_set_sizing(column,GTK_TREE_VIEW_COLUMN_FIXED);
+  gtk_tree_view_column_set_max_width(column,20);
+  gtk_tree_view_column_set_clickable(column,TRUE);
+
+  g_signal_connect(G_OBJECT(column),"clicked",
+		   G_CALLBACK(ClickColumn),(gpointer)ginfo);
+
+  gtk_tree_view_append_column(GTK_TREE_VIEW(uinfo->track_list),column);
+
+  select=gtk_tree_view_get_selection(GTK_TREE_VIEW(uinfo->track_list));
+
+  gtk_tree_selection_set_mode(select,GTK_SELECTION_SINGLE);
+
+  g_signal_connect(G_OBJECT(select),"changed",
+		   G_CALLBACK(SelectionChanged),(gpointer)ginfo);
+
   
-  gtk_signal_connect(GTK_OBJECT(uinfo->trackclist),"button_press_event",
-		     GTK_SIGNAL_FUNC(CListButtonPressed),(gpointer)uinfo);
+  g_signal_connect(G_OBJECT(uinfo->track_list),"button_press_event",
+		   G_CALLBACK(TracklistButtonPressed),(gpointer)ginfo);
 
-#ifndef GRIPCD
-  gtk_signal_connect(GTK_OBJECT(uinfo->trackclist),"click_column",
-		     GTK_SIGNAL_FUNC(ClickColumn),(gpointer)ginfo);
-#endif
 
-  gtk_widget_size_request(uinfo->trackclist,&sizereq);
 
-#ifndef GTK_HAVE_FEATURES_1_1_4
-  gtk_clist_set_policy(GTK_CLIST(uinfo->trackclist),GTK_POLICY_AUTOMATIC,
-		       GTK_POLICY_AUTOMATIC);
-  gtk_box_pack_start(GTK_BOX(vbox),uinfo->trackclist,TRUE,TRUE,0);
-#else
+  /*  g_signal_connect(G_OBJECT(uinfo->track_list),"cursor_changed",
+		   G_CALLBACK(SelectRow),
+		   (gpointer)ginfo);
+
+  g_signal_connect(G_OBJECT(uinfo->track_list),"unselect_row",
+		   G_CALLBACK(UnSelectRow),
+		   (gpointer)uinfo);
+  
+  g_signal_connect(G_OBJECT(uinfo->track_list),"button_press_event",
+		   G_CALLBACK(CListButtonPressed),(gpointer)uinfo);
+  
+  g_signal_connect(G_OBJECT(uinfo->track_list),"click_column",
+  G_CALLBACK(ClickColumn),(gpointer)ginfo);*/
+
+
   scroll=gtk_scrolled_window_new(NULL,NULL);
   gtk_scrolled_window_set_policy(GTK_SCROLLED_WINDOW(scroll),
-				 GTK_POLICY_AUTOMATIC,GTK_POLICY_AUTOMATIC);
-  gtk_container_add(GTK_CONTAINER(scroll),uinfo->trackclist);
+				 GTK_POLICY_NEVER,GTK_POLICY_AUTOMATIC);
+  gtk_container_add(GTK_CONTAINER(scroll),uinfo->track_list);
   gtk_box_pack_start(GTK_BOX(vbox),scroll,TRUE,TRUE,0);
 
   gtk_widget_show(scroll);
-#endif
 
-  gtk_widget_show(uinfo->trackclist);
+  gtk_widget_show(uinfo->track_list);
 
-  gtk_widget_set_usize(trackpage,sizereq.width+30,-1);
+  gtk_widget_size_request(uinfo->track_list,&sizereq);
+  //  gtk_widget_set_usize(trackpage,sizereq.width+30,-1);
+  gtk_widget_set_usize(trackpage,500,-1);
+
   gtk_container_add(GTK_CONTAINER(trackpage),vbox);
   gtk_widget_show(vbox);
 }
@@ -340,81 +378,81 @@ void SetCurrentTrackIndex(GripInfo *ginfo,int track)
 static void SetCurrentTrack(GripInfo *ginfo,int track)
 {
   char buf[256];
-#ifndef GRIPCD
   int tracklen;
-#endif
+
   GripGUI *uinfo;
 
   uinfo=&(ginfo->gui_info);
 
   if(track<0) {
     gtk_label_set(GTK_LABEL(uinfo->current_track_label),"--");
-#ifndef GRIPCD
     gtk_entry_set_text(GTK_ENTRY(uinfo->start_sector_entry),"0");
     gtk_entry_set_text(GTK_ENTRY(uinfo->end_sector_entry),"0");
-#endif
 
-    gtk_signal_handler_block_by_func(GTK_OBJECT(uinfo->track_edit_entry),
+    g_signal_handlers_block_by_func(G_OBJECT(uinfo->track_edit_entry),
 				     TrackEditChanged,(gpointer)ginfo);
     gtk_entry_set_text(GTK_ENTRY(uinfo->track_edit_entry),"");
     
-    gtk_signal_handler_unblock_by_func(GTK_OBJECT(uinfo->track_edit_entry),
+    g_signal_handlers_unblock_by_func(G_OBJECT(uinfo->track_edit_entry),
 	 			       TrackEditChanged,(gpointer)ginfo);
     
-    gtk_signal_handler_block_by_func(GTK_OBJECT(uinfo->
+    g_signal_handlers_block_by_func(G_OBJECT(uinfo->
 						track_artist_edit_entry),
 	 			     TrackEditChanged,(gpointer)ginfo);
     
     gtk_entry_set_text(GTK_ENTRY(uinfo->track_artist_edit_entry),"");
     
-    gtk_signal_handler_unblock_by_func(GTK_OBJECT(uinfo->
+    g_signal_handlers_unblock_by_func(G_OBJECT(uinfo->
 						  track_artist_edit_entry),
 	 			       TrackEditChanged,(gpointer)ginfo);
   }
   else {
-    gtk_signal_handler_block_by_func(GTK_OBJECT(uinfo->track_edit_entry),
+    g_signal_handlers_block_by_func(G_OBJECT(uinfo->track_edit_entry),
 				     TrackEditChanged,(gpointer)ginfo);
     gtk_entry_set_text(GTK_ENTRY(uinfo->track_edit_entry),
  		       ginfo->ddata.data_track[track].track_name);
 
-    gtk_signal_handler_unblock_by_func(GTK_OBJECT(uinfo->track_edit_entry),
+    g_signal_handlers_unblock_by_func(G_OBJECT(uinfo->track_edit_entry),
 	 			       TrackEditChanged,(gpointer)ginfo);
 
-    gtk_signal_handler_block_by_func(GTK_OBJECT(uinfo->
+    g_signal_handlers_block_by_func(G_OBJECT(uinfo->
 						track_artist_edit_entry),
 	 			     TrackEditChanged,(gpointer)ginfo);
 
     gtk_entry_set_text(GTK_ENTRY(uinfo->track_artist_edit_entry),
 	 	       ginfo->ddata.data_track[track].track_artist);
 
-    gtk_signal_handler_unblock_by_func(GTK_OBJECT(uinfo->
+    g_signal_handlers_unblock_by_func(G_OBJECT(uinfo->
 						  track_artist_edit_entry),
 	 			       TrackEditChanged,(gpointer)ginfo);
     g_snprintf(buf,80,"%02d",track+1);
     gtk_label_set(GTK_LABEL(uinfo->current_track_label),buf);
 	
-#ifndef GRIPCD
     gtk_entry_set_text(GTK_ENTRY(uinfo->start_sector_entry),"0");
 	
     tracklen=(ginfo->disc.track[track+1].start_frame-1)-
       ginfo->disc.track[track].start_frame;
     g_snprintf(buf,80,"%d",tracklen);
     gtk_entry_set_text(GTK_ENTRY(uinfo->end_sector_entry),buf);
-#endif
 
     SetCurrentTrackIndex(ginfo,track);
   }
 }
 
-#ifndef GRIPCD
-
 gboolean TrackIsChecked(GripGUI *uinfo,int track)
 {
-  GdkPixmap *pm=NULL;
-  GdkBitmap *bm=NULL;
+  GtkTreePath *path;
+  GtkTreeIter iter;
+  gboolean checked;
 
-  gtk_clist_get_pixmap(GTK_CLIST(uinfo->trackclist),track,2,&pm,&bm);
-  return((pm==GTK_PIXMAP(uinfo->check_image)->pixmap));
+  path=gtk_tree_path_new_from_indices(track,-1);
+
+  gtk_tree_model_get_iter(GTK_TREE_MODEL(uinfo->track_list_store),&iter,path);
+
+  gtk_tree_model_get(GTK_TREE_MODEL(uinfo->track_list_store),
+		     &iter,TRACKLIST_RIP_COL,&checked,-1);
+
+  return checked;
 }
 
 static void ToggleChecked(GripGUI *uinfo,int track)
@@ -424,18 +462,20 @@ static void ToggleChecked(GripGUI *uinfo,int track)
 
 void SetChecked(GripGUI *uinfo,int track,gboolean checked)
 {
-  if(!checked)
-    gtk_clist_set_pixmap(GTK_CLIST(uinfo->trackclist),track,2,
-			 GTK_PIXMAP(uinfo->empty_image)->pixmap,
-			 GTK_PIXMAP(uinfo->empty_image)->mask);
-  else {
-    gtk_clist_set_pixmap(GTK_CLIST(uinfo->trackclist),track,2,
-			 GTK_PIXMAP(uinfo->check_image)->pixmap,
-			 GTK_PIXMAP(uinfo->check_image)->mask);
-  }
+  GtkTreePath *path;
+  GtkTreeIter iter;
+
+  path=gtk_tree_path_new_from_indices(track,-1);
+
+  gtk_tree_model_get_iter(GTK_TREE_MODEL(uinfo->track_list_store),&iter,path);
+
+  gtk_list_store_set(uinfo->track_list_store,&iter,
+		     TRACKLIST_RIP_COL,checked,-1);
+
+  gtk_tree_path_free(path);
 }
 
-static void ClickColumn(GtkWidget *widget,gint column,gpointer data)
+static void ClickColumn(GtkTreeViewColumn *column,gpointer data)
 {
   int track;
   int numsel=0;
@@ -446,94 +486,78 @@ static void ClickColumn(GtkWidget *widget,gint column,gpointer data)
 
   for(track=0;track<ginfo->disc.num_tracks;track++)
     if(TrackIsChecked(&(ginfo->gui_info),track)) numsel++;
-
+  
   if(ginfo->disc.num_tracks>1) {
     check=(numsel<ginfo->disc.num_tracks/2);
   }
   else {
     check=(numsel==0);
   }
-
+  
   for(track=0;track<ginfo->disc.num_tracks;track++)
     SetChecked(&(ginfo->gui_info),track,check);
 }
-#endif
 
-static void CListButtonPressed(GtkWidget *widget,GdkEventButton *event,
-			       gpointer data)
-{
-  gint row,col;
-  GripGUI *uinfo;
-
-  uinfo=(GripGUI *)data;
-  
-  if(event) {
-    gtk_clist_get_selection_info(GTK_CLIST(uinfo->trackclist),
-				 event->x,event->y,
-				 &row,&col);
-    Debug(_("Column/Button: %d/%d\n"),col,event->button);
-
-
-    if((col==2&&event->button<4) || event->button==3) {
-      
-#ifndef GRIPCD
-      ToggleChecked(uinfo,row);
-#endif
-    }
-  }
-}
-
-static void UnSelectRow(GtkWidget *widget,gint row,gint column,
-			GdkEventButton *event,gpointer data)
-{
-  GripGUI *uinfo;
-
-  uinfo=(GripGUI *)data;
-
-#ifndef GRIPCD
-  if(TrackIsChecked(uinfo,row))
-    gtk_clist_set_pixmap(GTK_CLIST(uinfo->trackclist),row,2,
-			 GTK_PIXMAP(uinfo->check_image)->pixmap,
-			 GTK_PIXMAP(uinfo->check_image)->mask);
-#endif
-}
-
-static void SelectRow(GtkWidget *widget,gint row,gint column,
-		      GdkEventButton *event,gpointer data)
+static gboolean TracklistButtonPressed(GtkWidget *widget,GdkEventButton *event,
+				       gpointer data)
 {
   GripInfo *ginfo;
-  GripGUI *uinfo;
 
   ginfo=(GripInfo *)data;
+
+  if(event) {
+    ginfo->gui_info.last_button=event->button;
+  }
+
+  return FALSE;
+}
+
+static void SelectRow(GripInfo *ginfo,int track)
+{
+  GtkTreePath *path;
+  GtkTreeSelection *select;
+  
+  path=gtk_tree_path_new_from_indices(track,-1);
+  
+  select=
+    gtk_tree_view_get_selection(GTK_TREE_VIEW(ginfo->gui_info.track_list));
+  
+  gtk_tree_selection_select_path(select,path);
+  
+  gtk_tree_path_free(path);
+}
+
+static void SelectionChanged(GtkTreeSelection *selection,gpointer data)
+{
+  GtkTreeIter iter;
+  GtkTreeModel *model;
+  int row=-1;
+  gboolean checked;
+  GripInfo *ginfo;
+  GripGUI *uinfo;
+ 
+  ginfo=(GripInfo *)data;
   uinfo=&(ginfo->gui_info);
+  
+  if(gtk_tree_selection_get_selected(selection,&model,&iter)) {
+    gtk_tree_model_get(model,&iter,TRACKLIST_NUM_COL,&row,-1);
 
-  SetCurrentTrack(ginfo,row);
+    if(uinfo->last_button && row!=-1) {
+      gtk_tree_model_get(model,&iter,TRACKLIST_RIP_COL,&checked,-1);
 
-#ifndef GRIPCD
-  if(TrackIsChecked(uinfo,row))
-    gtk_clist_set_pixmap(GTK_CLIST(uinfo->trackclist),row,2,
-			 GTK_PIXMAP(uinfo->check_image)->pixmap,
-			 GTK_PIXMAP(uinfo->check_image)->mask);
-#endif
+      gtk_list_store_set(GTK_LIST_STORE(model),&iter,
+			 TRACKLIST_RIP_COL,!checked,-1);
 
-  if(gtk_clist_row_is_visible(GTK_CLIST(uinfo->trackclist),row)
-     !=GTK_VISIBILITY_FULL)
-    gtk_clist_moveto(GTK_CLIST(uinfo->trackclist),row,0,0,0);
+      uinfo->last_button=0;
+    }
+  }
 
+  if(row!=-1)
+    SetCurrentTrack(ginfo,row);
+  
   if((ginfo->disc.disc_mode==CDAUDIO_PLAYING)&&
      (ginfo->disc.curr_track!=(row+1)))
     PlayTrack(ginfo,row);
-  else {
-    if(event) {
-      switch(event->type) {
-      case GDK_2BUTTON_PRESS:
-	PlayTrack(ginfo,row);
-	break;
-      default:
-	break;
-      }
-    }
-  }
 }
 
 static void PlaylistChanged(GtkWindow *window,GtkWidget *widget,gpointer data)
@@ -600,8 +624,8 @@ GtkWidget *MakePlayOpts(GripInfo *ginfo)
   hbox=gtk_hbox_new(FALSE,2);
 
   uinfo->playlist_entry=gtk_entry_new_with_max_length(256);
-  gtk_signal_connect(GTK_OBJECT(uinfo->playlist_entry),"focus_out_event",
-  		     GTK_SIGNAL_FUNC(PlaylistChanged),(gpointer)ginfo);
+  g_signal_connect(G_OBJECT(uinfo->playlist_entry),"focus_out_event",
+  		     G_CALLBACK(PlaylistChanged),(gpointer)ginfo);
   gtk_widget_set_sensitive(GTK_WIDGET(uinfo->playlist_entry),
 			   ginfo->play_mode==PM_PLAYLIST);
   gtk_box_pack_start(GTK_BOX(hbox),uinfo->playlist_entry,TRUE,TRUE,0);
@@ -616,8 +640,8 @@ GtkWidget *MakePlayOpts(GripInfo *ginfo)
   gtk_widget_show(uinfo->play_indicator);
   gtk_widget_set_style(button,uinfo->style_dark_grey);
   gtk_box_pack_start(GTK_BOX(hbox),button,TRUE,TRUE,0);
-  gtk_signal_connect(GTK_OBJECT(button),"clicked",
-  		     GTK_SIGNAL_FUNC(ChangePlayMode),(gpointer)ginfo);
+  g_signal_connect(G_OBJECT(button),"clicked",
+  		     G_CALLBACK(ChangePlayMode),(gpointer)ginfo);
   gtk_tooltips_set_tip(MakeToolTip(),button,
 		       _("Rotate play mode"),NULL);
   gtk_widget_show(button);
@@ -636,8 +660,8 @@ GtkWidget *MakePlayOpts(GripInfo *ginfo)
   gtk_widget_show(uinfo->loop_indicator);
   gtk_widget_set_style(button,uinfo->style_dark_grey);
   gtk_box_pack_start(GTK_BOX(hbox),button,TRUE,TRUE,0);
-  gtk_signal_connect(GTK_OBJECT(button),"clicked",
-  		     GTK_SIGNAL_FUNC(ToggleLoop),(gpointer)ginfo);
+  g_signal_connect(G_OBJECT(button),"clicked",
+  		     G_CALLBACK(ToggleLoop),(gpointer)ginfo);
   gtk_tooltips_set_tip(MakeToolTip(),button,
 		       _("Toggle loop play"),NULL);
   gtk_widget_show(button);
@@ -656,9 +680,7 @@ GtkWidget *MakeControls(GripInfo *ginfo)
   GtkWidget *button;
   GtkWidget *ebox,*lcdbox;
   GtkObject *adj;
-#ifndef GRIPCD
   int mycpu;
-#endif
 
   uinfo=&(ginfo->gui_info);
 
@@ -672,8 +694,8 @@ GtkWidget *MakeControls(GripInfo *ginfo)
   gtk_container_border_width(GTK_CONTAINER(vbox3),2);
 
   lcdbox=gtk_event_box_new();
-  gtk_signal_connect(GTK_OBJECT(lcdbox),"button_press_event",
-		     GTK_SIGNAL_FUNC(ToggleControlButtons),(gpointer)ginfo);
+  g_signal_connect(G_OBJECT(lcdbox),"button_press_event",
+		     G_CALLBACK(ToggleControlButtons),(gpointer)ginfo);
   gtk_widget_set_style(lcdbox,uinfo->style_LCD);
 
   hbox2=gtk_hbox_new(FALSE,0);
@@ -698,11 +720,11 @@ GtkWidget *MakeControls(GripInfo *ginfo)
 
   button=gtk_button_new();
   gtk_widget_set_style(button,uinfo->style_LCD);
-#if (GTK_MINOR_VERSION != 0)
+
   gtk_button_set_relief(GTK_BUTTON(button),GTK_RELIEF_NONE);
-#endif
-  gtk_signal_connect(GTK_OBJECT(button),"clicked",
-		     GTK_SIGNAL_FUNC(ChangeTimeMode),(gpointer)ginfo);
+
+  g_signal_connect(G_OBJECT(button),"clicked",
+		     G_CALLBACK(ChangeTimeMode),(gpointer)ginfo);
 
   uinfo->play_time_label=gtk_label_new("--:--");
   gtk_container_add(GTK_CONTAINER(button),uinfo->play_time_label);
@@ -713,38 +735,29 @@ GtkWidget *MakeControls(GripInfo *ginfo)
 
   indicator_box=gtk_hbox_new(TRUE,0);
 
-#ifndef GRIPCD
   uinfo->rip_indicator=NewBlankPixmap(GTK_WIDGET(uinfo->app));
-#if (GTK_MINOR_VERSION != 0)
   gtk_box_pack_start(GTK_BOX(indicator_box),uinfo->rip_indicator,TRUE,TRUE,0);
   gtk_widget_show(uinfo->rip_indicator);
-#endif
 
-#ifndef GRIPCD
   uinfo->lcd_smile_indicator=NewBlankPixmap(GTK_WIDGET(uinfo->app));
   gtk_tooltips_set_tip(MakeToolTip(),uinfo->lcd_smile_indicator,
 		       _("Rip status"),NULL);
   gtk_box_pack_start(GTK_BOX(indicator_box),uinfo->lcd_smile_indicator,
 		     TRUE,TRUE,0);
   gtk_widget_show(uinfo->lcd_smile_indicator);
-#endif
 
   for(mycpu=0;mycpu<ginfo->num_cpu;mycpu++){
     uinfo->mp3_indicator[mycpu]=NewBlankPixmap(GTK_WIDGET(uinfo->app));
-#if (GTK_MINOR_VERSION != 0)
     gtk_box_pack_start(GTK_BOX(indicator_box),
 		       uinfo->mp3_indicator[mycpu],TRUE,TRUE,0);
-#endif
     gtk_widget_show(uinfo->mp3_indicator[mycpu]);
   }
-#endif
   
   uinfo->discdb_indicator=NewBlankPixmap(GTK_WIDGET(uinfo->app));
-#if (GTK_MINOR_VERSION != 0)
   gtk_box_pack_start(GTK_BOX(indicator_box),uinfo->discdb_indicator,
 		     TRUE,TRUE,0);
   gtk_widget_show(uinfo->discdb_indicator);
-#endif  
+
   gtk_box_pack_start(GTK_BOX(hbox),indicator_box,TRUE,TRUE,0);
   gtk_widget_show(indicator_box);
 
@@ -772,8 +785,8 @@ GtkWidget *MakeControls(GripInfo *ginfo)
   gtk_widget_show(vbox3);
 
   adj=gtk_adjustment_new((gfloat)ginfo->volume,0.0,255.0,1.0,1.0,0.0);
-  gtk_signal_connect(adj,"value_changed",
-  		     GTK_SIGNAL_FUNC(SetVolume),(gpointer)ginfo);
+  g_signal_connect(adj,"value_changed",
+  		     G_CALLBACK(SetVolume),(gpointer)ginfo);
   uinfo->volume_control=gtk_hscale_new(GTK_ADJUSTMENT(adj));
 
   gtk_scale_set_draw_value(GTK_SCALE(uinfo->volume_control),FALSE);
@@ -792,8 +805,8 @@ GtkWidget *MakeControls(GripInfo *ginfo)
 
   button=ImageButton(GTK_WIDGET(uinfo->app),uinfo->playpaus_image);
   gtk_widget_set_style(button,uinfo->style_dark_grey);
-  gtk_signal_connect(GTK_OBJECT(button),"clicked",
-  		     GTK_SIGNAL_FUNC(PlayTrackCB),(gpointer)ginfo);
+  g_signal_connect(G_OBJECT(button),"clicked",
+  		     G_CALLBACK(PlayTrackCB),(gpointer)ginfo);
   gtk_tooltips_set_tip(MakeToolTip(),button,
 		       _("Play track / Pause play"),NULL);
   gtk_box_pack_start(GTK_BOX(hbox),button,TRUE,TRUE,0);
@@ -801,10 +814,10 @@ GtkWidget *MakeControls(GripInfo *ginfo)
 
   button=ImageButton(GTK_WIDGET(uinfo->app),uinfo->rew_image);
   gtk_widget_set_style(button,uinfo->style_dark_grey);
-  gtk_signal_connect(GTK_OBJECT(button),"pressed",
-  		     GTK_SIGNAL_FUNC(RewindCB),(gpointer)ginfo);
-  gtk_signal_connect(GTK_OBJECT(button),"released",
-  		     GTK_SIGNAL_FUNC(RewindCB),(gpointer)ginfo);
+  g_signal_connect(G_OBJECT(button),"pressed",
+  		     G_CALLBACK(RewindCB),(gpointer)ginfo);
+  g_signal_connect(G_OBJECT(button),"released",
+  		     G_CALLBACK(RewindCB),(gpointer)ginfo);
   gtk_tooltips_set_tip(MakeToolTip(),button,
 		       _("Rewind"),NULL);
   gtk_box_pack_start(GTK_BOX(hbox),button,TRUE,TRUE,0);
@@ -812,10 +825,10 @@ GtkWidget *MakeControls(GripInfo *ginfo)
 
   button=ImageButton(GTK_WIDGET(uinfo->app),uinfo->ff_image);
   gtk_widget_set_style(button,uinfo->style_dark_grey);
-  gtk_signal_connect(GTK_OBJECT(button),"pressed",
-  		     GTK_SIGNAL_FUNC(FastFwdCB),(gpointer)ginfo);
-  gtk_signal_connect(GTK_OBJECT(button),"released",
-  		     GTK_SIGNAL_FUNC(FastFwdCB),(gpointer)ginfo);
+  g_signal_connect(G_OBJECT(button),"pressed",
+  		     G_CALLBACK(FastFwdCB),(gpointer)ginfo);
+  g_signal_connect(G_OBJECT(button),"released",
+  		     G_CALLBACK(FastFwdCB),(gpointer)ginfo);
   gtk_tooltips_set_tip(MakeToolTip(),button,
 		       _("FastForward"),NULL);
   gtk_box_pack_start(GTK_BOX(hbox),button,TRUE,TRUE,0);
@@ -824,8 +837,8 @@ GtkWidget *MakeControls(GripInfo *ginfo)
   button=ImageButton(GTK_WIDGET(uinfo->app),uinfo->prevtrk_image);
   gtk_widget_set_style(button,uinfo->style_dark_grey);
   gtk_box_pack_start(GTK_BOX(hbox),button,TRUE,TRUE,0);
-  gtk_signal_connect(GTK_OBJECT(button),"clicked",
-  		     GTK_SIGNAL_FUNC(PrevTrackCB),(gpointer)ginfo);
+  g_signal_connect(G_OBJECT(button),"clicked",
+  		     G_CALLBACK(PrevTrackCB),(gpointer)ginfo);
   gtk_tooltips_set_tip(MakeToolTip(),button,
 		       _("Go to previous track"),NULL);
   gtk_widget_show(button);
@@ -833,8 +846,8 @@ GtkWidget *MakeControls(GripInfo *ginfo)
   button=ImageButton(GTK_WIDGET(uinfo->app),uinfo->nexttrk_image);
   gtk_widget_set_style(button,uinfo->style_dark_grey);
   gtk_box_pack_start(GTK_BOX(hbox),button,TRUE,TRUE,0);
-  gtk_signal_connect(GTK_OBJECT(button),"clicked",
-  		     GTK_SIGNAL_FUNC(NextTrackCB),(gpointer)ginfo);
+  g_signal_connect(G_OBJECT(button),"clicked",
+  		     G_CALLBACK(NextTrackCB),(gpointer)ginfo);
   gtk_tooltips_set_tip(MakeToolTip(),button,
 		       _("Go to next track"),NULL);
   gtk_widget_show(button);
@@ -842,8 +855,8 @@ GtkWidget *MakeControls(GripInfo *ginfo)
   button=ImageButton(GTK_WIDGET(uinfo->app),uinfo->progtrack_image);
   gtk_widget_set_style(button,uinfo->style_dark_grey);
   gtk_box_pack_start(GTK_BOX(hbox),button,TRUE,TRUE,0);
-  gtk_signal_connect(GTK_OBJECT(button),"clicked",
-    		     GTK_SIGNAL_FUNC(ToggleProg),(gpointer)uinfo);
+  g_signal_connect(G_OBJECT(button),"clicked",
+    		     G_CALLBACK(ToggleProg),(gpointer)uinfo);
   gtk_tooltips_set_tip(MakeToolTip(),button,
 		       _("Toggle play mode options"),NULL);
   gtk_widget_show(button);
@@ -852,8 +865,8 @@ GtkWidget *MakeControls(GripInfo *ginfo)
     button=ImageButton(GTK_WIDGET(uinfo->app),uinfo->rotate_image);
     gtk_widget_set_style(button,uinfo->style_dark_grey);
     gtk_box_pack_start(GTK_BOX(hbox),button,TRUE,TRUE,0);
-    gtk_signal_connect(GTK_OBJECT(button),"clicked",
-    		       GTK_SIGNAL_FUNC(NextDisc),(gpointer)ginfo);
+    g_signal_connect(G_OBJECT(button),"clicked",
+    		       G_CALLBACK(NextDisc),(gpointer)ginfo);
     gtk_tooltips_set_tip(MakeToolTip(),button,
 			 _("Next Disc"),NULL);
     gtk_widget_show(button);
@@ -866,8 +879,8 @@ GtkWidget *MakeControls(GripInfo *ginfo)
 
   button=ImageButton(GTK_WIDGET(uinfo->app),uinfo->stop_image);
   gtk_widget_set_style(button,uinfo->style_dark_grey);
-  gtk_signal_connect(GTK_OBJECT(button),"clicked",
-  		     GTK_SIGNAL_FUNC(StopPlayCB),(gpointer)ginfo);
+  g_signal_connect(G_OBJECT(button),"clicked",
+  		     G_CALLBACK(StopPlayCB),(gpointer)ginfo);
   gtk_tooltips_set_tip(MakeToolTip(),button,
 		       _("Stop play"),NULL);
   gtk_box_pack_start(GTK_BOX(hbox),button,TRUE,TRUE,0);
@@ -876,8 +889,8 @@ GtkWidget *MakeControls(GripInfo *ginfo)
   button=ImageButton(GTK_WIDGET(uinfo->app),uinfo->eject_image);
   gtk_widget_set_style(button,uinfo->style_dark_grey);
   gtk_box_pack_start(GTK_BOX(hbox),button,TRUE,TRUE,0);
-  gtk_signal_connect(GTK_OBJECT(button),"clicked",
-  		     GTK_SIGNAL_FUNC(EjectDisc),(gpointer)ginfo);
+  g_signal_connect(G_OBJECT(button),"clicked",
+  		     G_CALLBACK(EjectDisc),(gpointer)ginfo);
   gtk_tooltips_set_tip(MakeToolTip(),button,
 		       _("Eject disc"),NULL);
   gtk_widget_show(button);
@@ -885,16 +898,16 @@ GtkWidget *MakeControls(GripInfo *ginfo)
   button=ImageButton(GTK_WIDGET(uinfo->app),uinfo->cdscan_image);
   gtk_widget_set_style(button,uinfo->style_dark_grey);
   gtk_box_pack_start(GTK_BOX(hbox),button,TRUE,TRUE,0);
-  gtk_signal_connect(GTK_OBJECT(button),"clicked",
-  		     GTK_SIGNAL_FUNC(ScanDisc),(gpointer)ginfo);
+  g_signal_connect(G_OBJECT(button),"clicked",
+  		     G_CALLBACK(ScanDisc),(gpointer)ginfo);
   gtk_tooltips_set_tip(MakeToolTip(),button,
 		       _("Scan Disc Contents"),NULL);
   gtk_widget_show(button);
 
   button=ImageButton(GTK_WIDGET(uinfo->app),uinfo->vol_image);
   gtk_widget_set_style(button,uinfo->style_dark_grey);
-  gtk_signal_connect(GTK_OBJECT(button),"clicked",
-  		     GTK_SIGNAL_FUNC(ToggleVol),(gpointer)uinfo);
+  g_signal_connect(G_OBJECT(button),"clicked",
+  		     G_CALLBACK(ToggleVol),(gpointer)uinfo);
   gtk_tooltips_set_tip(MakeToolTip(),button,
 		       _("Toggle Volume Control"),NULL);
   gtk_box_pack_start(GTK_BOX(hbox),button,TRUE,TRUE,0);
@@ -902,8 +915,8 @@ GtkWidget *MakeControls(GripInfo *ginfo)
 
   button=ImageButton(GTK_WIDGET(uinfo->app),uinfo->edit_image);
   gtk_widget_set_style(button,uinfo->style_dark_grey);
-  gtk_signal_connect(GTK_OBJECT(button),"clicked",
-  		     GTK_SIGNAL_FUNC(ToggleTrackEdit),(gpointer)ginfo);
+  g_signal_connect(G_OBJECT(button),"clicked",
+  		     G_CALLBACK(ToggleTrackEdit),(gpointer)ginfo);
   gtk_tooltips_set_tip(MakeToolTip(),button,
 		       _("Toggle disc editor"),NULL);
   gtk_box_pack_start(GTK_BOX(hbox),button,TRUE,TRUE,0);
@@ -912,8 +925,8 @@ GtkWidget *MakeControls(GripInfo *ginfo)
   if(!ginfo->local_mode) {
     button=ImageButton(GTK_WIDGET(uinfo->app),uinfo->discdbwht_image);
     gtk_widget_set_style(button,uinfo->style_dark_grey);
-    gtk_signal_connect(GTK_OBJECT(button),"clicked",
-    		       GTK_SIGNAL_FUNC(DiscDBToggle),(gpointer)ginfo);
+    g_signal_connect(G_OBJECT(button),"clicked",
+    		       G_CALLBACK(DiscDBToggle),(gpointer)ginfo);
     gtk_tooltips_set_tip(MakeToolTip(),button,
 			 _("Initiate/abort DiscDB lookup"),NULL);
     gtk_box_pack_start(GTK_BOX(hbox),button,TRUE,TRUE,0);
@@ -922,8 +935,8 @@ GtkWidget *MakeControls(GripInfo *ginfo)
 
   button=ImageButton(GTK_WIDGET(uinfo->app),uinfo->minmax_image);
   gtk_widget_set_style(button,uinfo->style_dark_grey);
-  gtk_signal_connect(GTK_OBJECT(button),"clicked",
-  		     GTK_SIGNAL_FUNC(MinMax),(gpointer)uinfo);
+  g_signal_connect(G_OBJECT(button),"clicked",
+  		     G_CALLBACK(MinMax),(gpointer)uinfo);
   gtk_tooltips_set_tip(MakeToolTip(),button,
 		       _("Toggle track display"),NULL);
   gtk_box_pack_start(GTK_BOX(hbox),button,TRUE,TRUE,0);
@@ -931,16 +944,12 @@ GtkWidget *MakeControls(GripInfo *ginfo)
 
   button=ImageButton(GTK_WIDGET(uinfo->app),uinfo->quit_image);
   gtk_widget_set_style(button,uinfo->style_dark_grey);
-#ifndef GRIPCD
   gtk_tooltips_set_tip(MakeToolTip(),button,
 		       _("Exit Grip"),NULL);
-#else
-  gtk_tooltips_set_tip(MakeToolTip(),button,
-		       _("Exit GCD"),NULL);
-#endif
+
   gtk_box_pack_start(GTK_BOX(hbox),button,TRUE,TRUE,0);
-  gtk_signal_connect(GTK_OBJECT(button),"clicked",
-  		     GTK_SIGNAL_FUNC(ShutDownCB),(gpointer)ginfo);
+  g_signal_connect(G_OBJECT(button),"clicked",
+  		     G_CALLBACK(ShutDownCB),(gpointer)ginfo);
   gtk_widget_show(button);
   
   gtk_box_pack_start(GTK_BOX(uinfo->control_button_box),hbox,TRUE,TRUE,0);
@@ -976,22 +985,18 @@ static void MinMax(GtkWidget *widget,gpointer data)
     gtk_container_border_width(GTK_CONTAINER(uinfo->winbox),3);
     gtk_widget_show(uinfo->notebook);
 
-#ifndef GRIPCD
     CopyPixmap(GTK_PIXMAP(uinfo->lcd_smile_indicator),
 	       GTK_PIXMAP(uinfo->smile_indicator));
     CopyPixmap(GTK_PIXMAP(uinfo->empty_image),
     GTK_PIXMAP(uinfo->lcd_smile_indicator));
-#endif
   }
   else {
     gtk_window_set_policy(GTK_WINDOW(uinfo->app),FALSE,TRUE,TRUE);
     gtk_container_border_width(GTK_CONTAINER(uinfo->winbox),0);
     gtk_widget_hide(uinfo->notebook);
 
-#ifndef GRIPCD
     CopyPixmap(GTK_PIXMAP(uinfo->smile_indicator),
 	       GTK_PIXMAP(uinfo->lcd_smile_indicator));
-#endif
 
     UpdateGTK();
     gtk_window_set_policy(GTK_WINDOW(uinfo->app),FALSE,TRUE,FALSE);
@@ -1082,13 +1087,11 @@ static void FastFwdCB(GtkWidget *widget,gpointer data)
 
   ginfo=(GripInfo *)data;
 
-#ifndef GRIPCD
   if(ginfo->ripping_a_disc) {
     DisplayMsg(_("Cannot fast forward while ripping"));
 
     return;
   }
-#endif
 
   ginfo->ffwding=!ginfo->ffwding;
 
@@ -1114,13 +1117,11 @@ static void RewindCB(GtkWidget *widget,gpointer data)
 
   ginfo=(GripInfo *)data;
 
-#ifndef GRIPCD
   if(ginfo->ripping_a_disc) {
     DisplayMsg(_("Cannot rewind while ripping"));
 
     return;
   }
-#endif
 
   ginfo->rewinding=!ginfo->rewinding;
 
@@ -1146,13 +1147,11 @@ static void NextDisc(GtkWidget *widget,gpointer data)
 
   ginfo=(GripInfo *)data;
 
-#ifndef GRIPCD
   if(ginfo->ripping_a_disc) {
     DisplayMsg(_("Cannot switch discs while ripping"));
 
     return;
   }
-#endif
 
   if(ginfo->changer_slots>1) {
     ginfo->current_disc=(ginfo->current_disc+1)%ginfo->changer_slots;
@@ -1167,15 +1166,13 @@ void EjectDisc(GtkWidget *widget,gpointer data)
 
   ginfo=(GripInfo *)data;
 
-  Debug(_("Eject disc\n"));
+  LogStatus(ginfo,_("Eject disc\n"));
 
-#ifndef GRIPCD
   if(ginfo->ripping_a_disc) {
     DisplayMsg(_("Cannot eject while ripping"));
 
     return;
   }
-#endif
 
   if(ginfo->auto_eject_countdown) return;
 
@@ -1217,16 +1214,14 @@ static void StopPlayCB(GtkWidget *widget,gpointer data)
 
   ginfo=(GripInfo *)data;
 
-#ifndef GRIPCD
   if(ginfo->ripping_a_disc) return;
-#endif
 
   CDStop(&(ginfo->disc));
   CDStat(&(ginfo->disc),FALSE);
   ginfo->stopped=TRUE;
 
   if(ginfo->stop_first)
-    gtk_clist_select_row(GTK_CLIST(ginfo->gui_info.trackclist),0,0);
+    SelectRow(ginfo,0);
 }
 
 void PlaySegment(GripInfo *ginfo,int track)
@@ -1247,13 +1242,11 @@ static void PlayTrackCB(GtkWidget *widget,gpointer data)
   ginfo=(GripInfo *)data;
   disc=&(ginfo->disc);
 
-#ifndef GRIPCD
   if(ginfo->ripping_a_disc) {
     DisplayMsg(_("Cannot play while ripping"));
    
     return;
   }
-#endif
 
   CDStat(disc,FALSE);
 
@@ -1262,8 +1255,8 @@ static void PlayTrackCB(GtkWidget *widget,gpointer data)
     if(ginfo->play_mode==PM_SHUFFLE && ginfo->automatic_reshuffle)
       ShuffleTracks(ginfo);
     ginfo->current_track_index=0;
-    gtk_clist_select_row(GTK_CLIST(ginfo->gui_info.trackclist),
-			 CURRENT_TRACK,0);
+
+    SelectRow(ginfo,CURRENT_TRACK);
   }
 
   track=CURRENT_TRACK;
@@ -1310,26 +1303,22 @@ static void NextTrackCB(GtkWidget *widget,gpointer data)
 
 void NextTrack(GripInfo *ginfo)
 {
-#ifndef GRIPCD
   if(ginfo->ripping_a_disc) {
     DisplayMsg(_("Cannot switch tracks while ripping"));
     return;
   }
-#endif
   
   CDStat(&(ginfo->disc),FALSE);
 
   if(ginfo->current_track_index<(ginfo->prog_totaltracks-1)) {
-    gtk_clist_select_row(GTK_CLIST(ginfo->gui_info.trackclist),
-			 NEXT_TRACK,0);
+    SelectRow(ginfo,NEXT_TRACK);
   }
   else {
     if(!ginfo->playloop) {
       ginfo->stopped=TRUE;
     }
 
-    gtk_clist_select_row(GTK_CLIST(ginfo->gui_info.trackclist),
-			 ginfo->tracks_prog[0],0);
+    SelectRow(ginfo,ginfo->tracks_prog[0]);
   }
 }
 
@@ -1344,12 +1333,10 @@ static void PrevTrackCB(GtkWidget *widget,gpointer data)
 
 static void PrevTrack(GripInfo *ginfo)
 {
-#ifndef GRIPCD
   if(ginfo->ripping_a_disc) {
     DisplayMsg(_("Cannot switch tracks while ripping"));
     return;
   }
-#endif
 
   CDStat(&(ginfo->disc),FALSE);
 
@@ -1359,14 +1346,11 @@ static void PrevTrack(GripInfo *ginfo)
     PlayTrack(ginfo,CURRENT_TRACK);
   else {
     if(ginfo->current_track_index) {
-      gtk_clist_select_row(GTK_CLIST(ginfo->gui_info.trackclist),
-			   PREV_TRACK,0);
+      SelectRow(ginfo,PREV_TRACK);
     }
     else {
       if(ginfo->playloop) {
-	gtk_clist_select_row(GTK_CLIST(ginfo->gui_info.trackclist),
-			     ginfo->tracks_prog[ginfo->prog_totaltracks-1]
-			     ,0);
+	SelectRow(ginfo,ginfo->tracks_prog[ginfo->prog_totaltracks-1]);
       }
     }
   }
@@ -1449,7 +1433,8 @@ void CheckNewDisc(GripInfo *ginfo,gboolean force)
         if(ginfo->play_first)
           if(disc->disc_mode == CDAUDIO_COMPLETED ||
 	     disc->disc_mode == CDAUDIO_NOSTATUS) {
-            gtk_clist_select_row(GTK_CLIST(ginfo->gui_info.trackclist),0,0);
+	    SelectRow(ginfo,0);
+
 	    disc->curr_track = 1;
           }
 	
@@ -1517,12 +1502,20 @@ void UpdateDisplay(GripInfo *ginfo)
   static int frames;
   static int secs;
   static int mins;
+  static int old_width=0;
   int totsecs;
   GripGUI *uinfo;
   DiscInfo *disc;
 
   uinfo=&(ginfo->gui_info);
   disc=&(ginfo->disc);
+
+
+  if(old_width && (old_width != uinfo->track_list->allocation.width)) {
+    ResizeTrackList(ginfo);
+  }
+
+  old_width=uinfo->track_list->allocation.width;
 
   if(!ginfo->looking_up) {
     if(discdb_counter%2)
@@ -1567,8 +1560,7 @@ void UpdateDisplay(GripInfo *ginfo)
 	}
 	else {
 	  if((disc->curr_track-1)!=CURRENT_TRACK) {
-	    gtk_clist_select_row(GTK_CLIST(uinfo->trackclist),
-				 disc->curr_track-1,0);
+	    SelectRow(ginfo,disc->curr_track-1);
 	  }
 
 	  frames=disc->curr_frame-disc->track[disc->curr_track-1].start_frame;
@@ -1603,10 +1595,9 @@ void UpdateDisplay(GripInfo *ginfo)
 	    break;
 	  }
 	  
-#ifndef GRIPCD
 	  g_snprintf(buf,80,_("Current sector: %6d"),frames);
 	  gtk_label_set(GTK_LABEL(uinfo->play_sector_label),buf);
-#endif
+
           if(uinfo->time_display_mode == TIME_MODE_LEFT_TRACK ||
 	     uinfo->time_display_mode == TIME_MODE_LEFT_DISC)
             g_snprintf(buf,80,"-%02d:%02d",mins,secs);
@@ -1624,11 +1615,10 @@ void UpdateDisplay(GripInfo *ginfo)
 	}
 	else if(ginfo->stopped) {
 	  CDStop(disc);
-#ifndef GRIPCD
+
 	  frames=secs=mins=0;
 	  g_snprintf(buf,80,_("Current sector: %6d"),frames);
 	  gtk_label_set(GTK_LABEL(uinfo->play_sector_label),buf);
-#endif
 	  
 	  strcpy(buf,"00:00");
 	  
@@ -1662,21 +1652,18 @@ void UpdateDisplay(GripInfo *ginfo)
 	CopyPixmap(GTK_PIXMAP(uinfo->empty_image),
 		   GTK_PIXMAP(uinfo->discdb_indicator));
 
-#ifndef GRIPCD
 	if(ginfo->auto_rip&&ginfo->is_new_disc) {
-	  ClickColumn(NULL,2,ginfo);
+	  ClickColumn(NULL,ginfo);
 	  DoRip(NULL,ginfo);
 	}
 
 	ginfo->is_new_disc=FALSE;
-#endif
       }
       
       if(!ginfo->no_interrupt)
-      	gtk_clist_select_row(GTK_CLIST(uinfo->trackclist),0,0);
+	SelectRow(ginfo,0);
       else
-	gtk_clist_select_row(GTK_CLIST(uinfo->trackclist),
-			     disc->curr_track-1,0);
+	SelectRow(ginfo,disc->curr_track-1);
     }
     else {
       gtk_label_set(GTK_LABEL(uinfo->play_time_label),"--:--");
@@ -1698,6 +1685,7 @@ void UpdateTracks(GripInfo *ginfo)
   DiscInfo *disc;
   DiscData *ddata;
   EncodeTrack enc_track;
+  GtkTreeIter iter;
 
   uinfo=&(ginfo->gui_info);
   disc=&(ginfo->disc);
@@ -1716,13 +1704,8 @@ void UpdateTracks(GripInfo *ginfo)
 
     multi_artist_backup=ddata->data_multi_artist;
 
-#ifdef GTK_HAVE_FEATURES_1_1_13
     gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(uinfo->multi_artist_button),
 				 ginfo->ddata.data_multi_artist);
-#else
-    gtk_toggle_button_set_state(GTK_TOGGLE_BUTTON(uinfo->multi_artist_button),
-				ginfo->ddata.data_multi_artist);
-#endif
 
     ddata->data_multi_artist=multi_artist_backup;
     UpdateMultiArtist(NULL,(gpointer)ginfo);
@@ -1745,17 +1728,10 @@ void UpdateTracks(GripInfo *ginfo)
 		     ddata->data_playlist);
 
   if(!ginfo->first_time)
-    gtk_clist_clear(GTK_CLIST(uinfo->trackclist));
-  else {
-    SetCurrentTrackIndex(ginfo,disc->curr_track - 1);
-  }
+    gtk_list_store_clear(uinfo->track_list_store);
+  SetCurrentTrackIndex(ginfo,disc->curr_track - 1);
 
   if(ginfo->have_disc) {
-    /* Block the select row callback so we don't mess up the current track
-       while reconstructing the clist */
-
-    gtk_signal_handler_block_by_func(GTK_OBJECT(uinfo->trackclist),
-				     GTK_SIGNAL_FUNC(SelectRow),ginfo);
 
     col_strings[0]=(char *)malloc(260);
     col_strings[1]=(char *)malloc(6);
@@ -1774,17 +1750,20 @@ void UpdateTracks(GripInfo *ginfo)
 	       disc->track[track].length.mins,
 	       disc->track[track].length.secs);
 
-      gtk_clist_append(GTK_CLIST(uinfo->trackclist),col_strings);
+      gtk_list_store_append(uinfo->track_list_store,&iter);
+
+      gtk_list_store_set(uinfo->track_list_store,&iter,
+			 TRACKLIST_TRACK_COL,col_strings[0],
+			 TRACKLIST_LENGTH_COL,col_strings[1],
+			 TRACKLIST_RIP_COL,FALSE,
+			 TRACKLIST_NUM_COL,track,-1);
+
     }
 
     free(col_strings[0]);
     free(col_strings[1]);
 
-    gtk_clist_select_row(GTK_CLIST(uinfo->trackclist),CURRENT_TRACK,0);
-
-    gtk_signal_handler_unblock_by_func(GTK_OBJECT(uinfo->trackclist),
-				       GTK_SIGNAL_FUNC(SelectRow),ginfo);
-
+    SelectRow(ginfo,CURRENT_TRACK);
   }
 
   if(ginfo->ask_submit) {
@@ -1799,6 +1778,8 @@ void UpdateTracks(GripInfo *ginfo)
   }
 
   ginfo->first_time=0;
+
+  ResizeTrackList(ginfo);
 }
 
 void SubmitEntry(gint reply,gpointer data)

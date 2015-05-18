@@ -144,8 +144,6 @@ void Debug(char *fmt,...)
 
 int Cmain(int argc, char* argv[])
 {
-  poptContext pctx;
-  char** args;
   GnomeClient *client;
 
   /* Unbuffer stdout */
@@ -156,14 +154,9 @@ int Cmain(int argc, char* argv[])
   bindtextdomain(PACKAGE,GNOMELOCALEDIR);  
   textdomain(PACKAGE);
 
-  gnome_init_with_popt_table(PACKAGE,VERSION,argc,argv, 
-                             options,0,&pctx);  
-
-  /* Parse args */
-
-  args=(char **)poptGetArgs(pctx);
-
-  poptFreeContext(pctx);
+  gnome_program_init(PACKAGE,VERSION,LIBGNOMEUI_MODULE,argc,argv, 
+		     GNOME_PARAM_POPT_TABLE,options,
+		     GNOME_PROGRAM_STANDARD_PROPERTIES);
 
   /* Session Management */
   

@@ -1,14 +1,11 @@
-AC_INIT(src/main.c)
+AC_PREREQ(2.52)
 
-AM_CONFIG_HEADER(config.h)
-
-AM_INIT_AUTOMAKE(grip,3.0.7)
+AC_INIT(grip, 3.1.0, http://sf.net/tracker/?group_id=3714&atid=103714)
+AC_CONFIG_SRCDIR(src/main.c)
+AM_INIT_AUTOMAKE(AC_PACKAGE_NAME, AC_PACKAGE_VERSION)
 
 AM_MAINTAINER_MODE
-
-AM_ACLOCAL_INCLUDE(macros)
-
-GNOME_INIT
+AM_CONFIG_HEADER(config.h)
 
 AC_ARG_ENABLE(shared_cdpar,
 	[  --disable-shared-cdpar  use static cdparanoia lib],
@@ -34,19 +31,21 @@ AC_CHECK_HEADERS(sys/vfs.h sys/statvfs.h)
 AC_CHECK_HEADERS(linux/cdrom.h linux/ucdrom.h sys/cdio.h io/cam/cdrom.h sys/mntent.h)
 AC_CHECK_HEADERS(linux/soundcard.h machine/soundcard.h sys/soundcard.h sys/audioio.h sys/audio.io.h sun/audioio.h)
 
-AC_ARG_PROGRAM
 AM_PROG_LIBTOOL
-GNOME_PTHREAD_CHECK
 
-GNOME_GHTTP_CHECK
-if test "$GHTTP_LIB" = ""; then
-  AC_MSG_ERROR(libhttp is required)
-fi
+PKG_CHECK_MODULES(GNOME, libgnomeui-2.0 >= 2.2.0,
+                  [LIBS="$LIBS $GNOME_LIBS"
+                   CFLAGS="$CFLAGS $GNOME_CFLAGS"])
 
-GNOME_COMPILE_WARNINGS
+dnl check for ghttp
+AC_CHECK_HEADER(ghttp.h, [], [AC_MSG_ERROR(ghttp headers are missing)])
+AC_CHECK_LIB(ghttp, ghttp_request_new, [LIBS="$LIBS -lghttp"], [AC_MSG_ERROR(ghttp libs are missing)])
 
-ALL_LINGUAS="fr de zh_CN zh_HK zh_TW ja pt_BR ru es ca"
-AM_GNU_GETTEXT
+GETTEXT_PACKAGE=grip-2.2
+AC_SUBST(GETTEXT_PACKAGE)
+AC_DEFINE_UNQUOTED(GETTEXT_PACKAGE,"$GETTEXT_PACKAGE", [Gettext package])
+ALL_LINGUAS="fr de zh_CN zh_HK zh_TW ja pt_BR ru es ca it"
+AM_GLIB_GNU_GETTEXT
 
 dnl do cdparanoia check
 if test "$enable_cdpar" = "yes"; then
@@ -68,7 +67,7 @@ id3_libs_bak=$LIBS
 if test "$enable_id3" = "yes"; then
 	AC_SEARCH_LIBS(ID3Tag_Link,"id3 -lz -lstdc++",
 		id3lib=yes
-		AC_DEFINE(HAVE_ID3LIB)
+		AC_DEFINE(HAVE_ID3LIB, [], [Description])
 		if test "$enable_shared_id3" = "yes"; then
 		  echo "using shared id3lib"
 		  ID3_LIBS="-lid3 -lz -lstdc++"
@@ -105,9 +104,9 @@ main ()
 ], . conftest.id3
    echo "${ID3LIB_MAJOR}.${ID3LIB_MINOR}.${ID3LIB_PATCH}", 
    AC_MSG_WARN(could not determine id3lib version),[echo $ac_n "cross compiling; assuming ${ID3LIB_MAJOR}.${ID3LIB_MINOR}.${ID3LIB_PATCH} $ac_c"])
-   AC_DEFINE_UNQUOTED(ID3LIB_MAJOR, $ID3LIB_MAJOR)
-   AC_DEFINE_UNQUOTED(ID3LIB_MINOR, $ID3LIB_MINOR)
-   AC_DEFINE_UNQUOTED(ID3LIB_PATCH, $ID3LIB_PATCH)
+   AC_DEFINE_UNQUOTED(ID3LIB_MAJOR, $ID3LIB_MAJOR, [Description])
+   AC_DEFINE_UNQUOTED(ID3LIB_MINOR, $ID3LIB_MINOR, [Description])
+   AC_DEFINE_UNQUOTED(ID3LIB_PATCH, $ID3LIB_PATCH, [Description])
 fi
 AC_SUBST(ID3_LIBS)
 LIBS=$id3_libs_bak
@@ -116,20 +115,13 @@ AC_SUBST(CFLAGS)
 AC_SUBST(CPPFLAGS)
 AC_SUBST(LDFLAGS)
 
-AC_DEFINE_UNQUOTED(GNOME_ICONDIR, "${prefix}/share/pixmaps")
-
 AC_OUTPUT([
 Makefile
-macros/Makefile
+grip.spec
 src/Makefile
-intl/Makefile
 po/Makefile.in
-po/Makefile
-po/POTFILES
 pixmaps/Makefile
 doc/Makefile
 doc/C/Makefile
 contrib/Makefile
 ])
-
-

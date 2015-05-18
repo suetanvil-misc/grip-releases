@@ -7,7 +7,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: grip 3.0.0\n"
-"POT-Creation-Date: 2002-12-25 17:56-0800\n"
+"POT-Creation-Date: 2003-05-30 20:46-0700\n"
 "PO-Revision-Date: 2002-05-09 07:52+0900\n"
 "Last-Translator: Wellington Terumi Uemura <wellingtonuemura@hotmail.com>\n"
 "Language-Team: <@>\n"
@@ -60,21 +60,16 @@ msgstr "Não faça direcionamento I/O"
 msgid "Run in verbose (debug) mode"
 msgstr "Rodar em modo detalhado (depurado)"
 
-#: src/grip.c:152
+#: src/grip.c:145
 msgid "Grip"
 msgstr "Grip"
 
-#: src/grip.c:179
+#: src/grip.c:176
 #, c-format
 msgid "Error: Unable to initialize [%s]\n"
 msgstr "Erro: Não é possível inicializar[%s]\n"
 
-#: src/grip.c:205
-#, c-format
-msgid "Could not parse geometry string `%s'"
-msgstr "Não foi possível passar a definição de geometria"
-
-#: src/grip.c:257
+#: src/grip.c:271
 msgid ""
 "Work is in progress.\n"
 "Really shut down?"
@@ -82,43 +77,61 @@ msgstr ""
 "Trabalho em progresso.\n"
 "Realmente deseja sair?"
 
-#: src/grip.c:315
+#: src/grip.c:322
+#, fuzzy
+msgid "Status"
+msgstr "Estado da extração"
+
+#: src/grip.c:337
+msgid "General"
+msgstr ""
+
+#: src/grip.c:352 src/gripcfg.c:346 src/cdplay.c:257 src/rip.c:98
+msgid "Rip"
+msgstr "Extrair"
+
+#: src/grip.c:367 src/gripcfg.c:474
+#, fuzzy
+msgid "Encode"
+msgstr "Codificador"
+
+#: src/grip.c:412
 msgid "Help"
 msgstr "Ajuda"
 
-#: src/grip.c:320
+#: src/grip.c:417
 msgid "Table Of Contents"
 msgstr "Índice"
 
-#: src/grip.c:326
+#: src/grip.c:423
 msgid "Playing CDs"
 msgstr "Tocando CDs"
 
-#: src/grip.c:332
+#: src/grip.c:429
 msgid "Ripping CDs"
 msgstr "Extraindo CDs"
 
-#: src/grip.c:338
+#: src/grip.c:435
 msgid "Configuring Grip"
 msgstr "Configurando Grip"
 
-#: src/grip.c:344
+#: src/grip.c:441
 msgid "FAQ"
 msgstr "P&R"
 
-#: src/grip.c:350
+#: src/grip.c:447
 msgid "Getting More Help"
 msgstr "Buscando mais Ajuda"
 
-#: src/grip.c:356
+#: src/grip.c:453
 msgid "Reporting Bugs"
 msgstr "Relatando Erros"
 
-#: src/grip.c:376
+#: src/grip.c:473
 msgid "About"
 msgstr "Sobre"
 
-#: src/grip.c:747
+#: src/grip.c:836
 #, fuzzy
 msgid ""
 "Your config file is out of date -- resetting to defaults.\n"
@@ -130,12 +143,12 @@ msgstr ""
 "Você vai precisar reconfigurar o Grip\n"
 "A sua configuração antiga foi arquivada em ~/.grip-old"
 
-#: src/grip.c:817
+#: src/grip.c:906
 #, c-format
 msgid "server is %s, port %d\n"
 msgstr "servidor é %s, porta %d\n"
 
-#: src/grip.c:837
+#: src/grip.c:926
 msgid "Error: Unable to save config file"
 msgstr "Erro: Não foi possível salvar o arquivo de configuração"
 
@@ -275,10 +288,6 @@ msgstr "Comando para o filtro do Disco"
 msgid "Options"
 msgstr "Opções"
 
-#: src/gripcfg.c:346 src/cdplay.c:260 src/rip.c:97
-msgid "Rip"
-msgstr "Extrair"
-
 #: src/gripcfg.c:361
 msgid "Encoder:"
 msgstr "Codificador:"
@@ -339,11 +348,6 @@ msgstr "Extrair valor 'nice'"
 #, fuzzy
 msgid "Encode filter command"
 msgstr "Comando para o filtro do Disco"
-
-#: src/gripcfg.c:474
-#, fuzzy
-msgid "Encode"
-msgstr "Codificador"
 
 #: src/gripcfg.c:483
 #, fuzzy
@@ -494,35 +498,31 @@ msgstr "O destravamento falhou: %d"
 msgid "CDIOCEJECT"
 msgstr "CDIOCEJECT"
 
-#: src/cdplay.c:95
-msgid "Aborted\n"
-msgstr "Abortado\n"
-
-#: src/cdplay.c:103
+#: src/cdplay.c:87
 msgid "Cannot do lookup while ripping"
 msgstr "Não é possível procurar enquanto estiver extraindo"
 
 #. "misc"
-#: src/cdplay.c:141
+#: src/cdplay.c:124
 msgid "Unknown Disc"
 msgstr "Disco Desconhecido"
 
-#: src/cdplay.c:145
+#: src/cdplay.c:128
 #, c-format
 msgid "Track %02d"
 msgstr "Trilha %02d"
 
-#: src/cdplay.c:209
+#: src/cdplay.c:188
 #, c-format
 msgid "Querying %s (through %s) for disc %02x.\n"
 msgstr "Perguntando %s (através de %s) por disco %02x.\n"
 
-#: src/cdplay.c:213
+#: src/cdplay.c:193
 #, c-format
 msgid "Querying %s for disc %02x.\n"
 msgstr "Perguntando %s por disco %02x.\n"
 
-#: src/cdplay.c:225
+#: src/cdplay.c:205
 #, c-format
 msgid ""
 "Match for \"%s / %s\"\n"
@@ -531,48 +531,39 @@ msgstr ""
 "Pesquisa encontrada para \"%s / %s\"\n"
 "Descarregando informações...\n"
 
-#: src/cdplay.c:232
+#: src/cdplay.c:212
 msgid "Done\n"
 msgstr "Feito\n"
 
-#: src/cdplay.c:236 src/cdplay.c:564
+#: src/cdplay.c:216 src/cdplay.c:575
 msgid "Error saving disc data\n"
 msgstr "Erro, gravando dados do disco\n"
 
-#: src/cdplay.c:242
+#: src/cdplay.c:222
 msgid "No match\n"
 msgstr "Nada foi encontrado\n"
 
-#: src/cdplay.c:260 src/cdplay.c:262
+#: src/cdplay.c:257
 msgid "Track"
 msgstr "Trilha"
 
-#: src/cdplay.c:260 src/cdplay.c:262
+#: src/cdplay.c:257
 msgid "Length "
 msgstr "Tamanho"
 
-#: src/cdplay.c:262
-msgid "PL"
-msgstr "PL"
-
-#: src/cdplay.c:267
+#: src/cdplay.c:261
 msgid "Tracks"
 msgstr "Trilhas"
 
-#: src/cdplay.c:487
-#, c-format
-msgid "Column/Button: %d/%d\n"
-msgstr ""
-
-#: src/cdplay.c:635
+#: src/cdplay.c:646
 msgid "Rotate play mode"
 msgstr "Rotacionar modo de reprodução"
 
-#: src/cdplay.c:655
+#: src/cdplay.c:666
 msgid "Toggle loop play"
 msgstr "Ativar reprodução infinita"
 
-#: src/cdplay.c:739 src/rip.c:223
+#: src/cdplay.c:744 src/rip.c:233
 msgid "Rip status"
 msgstr "Estado da extração"
 
@@ -633,76 +624,72 @@ msgstr "Inicializar/Abortar procura no BD para o disco"
 msgid "Toggle track display"
 msgstr "Mostrar Trilha"
 
-#: src/cdplay.c:949
+#: src/cdplay.c:948
 msgid "Exit Grip"
 msgstr "Sair do Grip"
 
-#: src/cdplay.c:952
-msgid "Exit GCD"
-msgstr "Sair do GCD"
-
-#: src/cdplay.c:1100
+#: src/cdplay.c:1091
 msgid "Cannot fast forward while ripping"
 msgstr "Não é possível fazer avanço rápido enquanto estiver extraindo"
 
-#: src/cdplay.c:1132
+#: src/cdplay.c:1121
 msgid "Cannot rewind while ripping"
 msgstr "Não é possível retroceder enquanto estiver extraindo"
 
-#: src/cdplay.c:1164
+#: src/cdplay.c:1151
 msgid "Cannot switch discs while ripping"
 msgstr "Não é possível trocar de discos enquanto estiver extraindo"
 
-#: src/cdplay.c:1183
+#: src/cdplay.c:1169
 msgid "Eject disc\n"
 msgstr "Expulsar o disco\n"
 
-#: src/cdplay.c:1187
+#: src/cdplay.c:1172
 msgid "Cannot eject while ripping"
 msgstr "Não é possível expulsar o disco enquanto estiver extraindo"
 
-#: src/cdplay.c:1198
+#: src/cdplay.c:1182
 msgid "Have disc -- ejecting\n"
 msgstr "Há disco -- expulsando\n"
 
-#: src/cdplay.c:1265
+#: src/cdplay.c:1246
 msgid "Cannot play while ripping"
 msgstr "Não é possível reproduzir enquanto estiver extraindo"
 
-#: src/cdplay.c:1328 src/cdplay.c:1362
+#: src/cdplay.c:1307 src/cdplay.c:1337
 msgid "Cannot switch tracks while ripping"
 msgstr "Não é possível trocar de trilha enquanto estiver extraindo"
 
-#: src/cdplay.c:1448
+#: src/cdplay.c:1419
 msgid "Checking for a new disc\n"
 msgstr "Verificando se há um novo disco\n"
 
-#: src/cdplay.c:1453
+#: src/cdplay.c:1424
 msgid "CDStat found a disc, checking tracks\n"
 msgstr "O CDStat encontrou um disco, verificando trilhas \n"
 
-#: src/cdplay.c:1456
+#: src/cdplay.c:1427
 msgid "We have a valid disc!\n"
 msgstr "Nós temos um disco válido!\n"
 
-#: src/cdplay.c:1482
+#: src/cdplay.c:1454
 msgid "No non-zero length tracks\n"
 msgstr "Nenhuma trilha de tamanho não zero\n"
 
-#: src/cdplay.c:1491
+#: src/cdplay.c:1463
 msgid "CDStat said no disc\n"
 msgstr "O CDStat disse, sem disco\n"
 
-#: src/cdplay.c:1620 src/cdplay.c:1642
+#: src/cdplay.c:1598 src/cdplay.c:1620
 #, c-format
 msgid "Current sector: %6d"
 msgstr "Setor atual: %6d"
 
-#: src/cdplay.c:1751
+#: src/cdplay.c:1721
 msgid "No Disc"
 msgstr "Sem Disco"
 
-#: src/cdplay.c:1806
+#: src/cdplay.c:1772
 msgid ""
 "This disc has been found on your secondary server,\n"
 "but not on your primary server.\n"
@@ -714,15 +701,15 @@ msgstr ""
 "\n"
 "Você Deseja enviar as informações deste disco?"
 
-#: src/cdplay.c:1833 src/cdplay.c:1841
+#: src/cdplay.c:1801 src/cdplay.c:1809
 msgid "Error: Unable to create temporary file"
 msgstr "Erro: Não foi possível criar arquivo temporário"
 
-#: src/cdplay.c:1851
+#: src/cdplay.c:1819
 msgid "Error: Unable to write disc data"
 msgstr "Erro: Não foi possível escrever dados do disco"
 
-#: src/cdplay.c:1860
+#: src/cdplay.c:1828
 #, c-format
 msgid "Mailing entry to %s\n"
 msgstr "Enviando entradas para %s\n"
@@ -731,103 +718,106 @@ msgstr "Enviando entradas para %s\n"
 msgid "System Message"
 msgstr "Mensagem do Sistema"
 
-#: src/discdb.c:187
+#: src/discdb.c:188
 #, c-format
 msgid "URI is %s\n"
 msgstr "URI é %s\n"
 
-#: src/discdb.c:231
+#: src/discdb.c:236
 #, c-format
 msgid "Query is [%s]\n"
 msgstr "Pesquisa é [%s]\n"
 
-#: src/discdb.c:245
+#: src/discdb.c:253
 #, c-format
 msgid "Reply is [%s]\n"
 msgstr "Resposta é [%s]\n"
 
-#: src/discdb.c:653
+#: src/discdb.c:661
 #, c-format
 msgid "Stat error %d on %s\n"
 msgstr "Stat erro %d no %s\n"
 
-#: src/discdb.c:657
+#: src/discdb.c:665
 #, c-format
 msgid "Creating directory %s\n"
 msgstr "Criando diretório %s\n"
 
-#: src/discdb.c:662
+#: src/discdb.c:670
 #, c-format
 msgid "Error: %s exists, but is a file\n"
 msgstr "Erro: o %s existe, mas é um arquivo\n"
 
-#: src/discdb.c:669
+#: src/discdb.c:677
 #, c-format
 msgid "Error: Unable to open %s for writing\n"
 msgstr "Erro: Não foi possível abrir o %s para escrita\n"
 
-#: src/discedit.c:65
+#: src/discedit.c:67
 msgid "Disc title"
 msgstr "Título do disco"
 
-#. This should be the longest string in the track edit section
-#: src/discedit.c:68 src/discedit.c:152
+#: src/discedit.c:74 src/discedit.c:176
 msgid "Track name"
 msgstr "Nome da Trilha"
 
-#: src/discedit.c:86
+#: src/discedit.c:84
+msgid "W"
+msgstr ""
+
+#: src/discedit.c:110
 msgid "Disc artist"
 msgstr "Disco artista"
 
-#: src/discedit.c:103
+#: src/discedit.c:127
 msgid "ID3 genre:"
 msgstr "Gênero ID3:"
 
-#: src/discedit.c:134
+#: src/discedit.c:158
 msgid "Disc year"
 msgstr "Ano do disco"
 
-#: src/discedit.c:172
+#: src/discedit.c:196
 msgid "Track artist"
 msgstr "Trilha artista"
 
-#: src/discedit.c:189
+#: src/discedit.c:213
 msgid "Split:"
 msgstr "Separar:"
 
-#: src/discedit.c:193
+#: src/discedit.c:217
 msgid "Title/Artist"
 msgstr "Título/Artista"
 
-#: src/discedit.c:200
+#: src/discedit.c:224
 msgid "Artist/Title"
 msgstr "Artista/Título"
 
-#: src/discedit.c:208
+#: src/discedit.c:232
 msgid "Split chars"
 msgstr "Separar caracteres"
 
-#: src/discedit.c:225
+#: src/discedit.c:252
 msgid "Multi-artist"
 msgstr "Multiplos Artistas"
 
-#: src/discedit.c:236
+#: src/discedit.c:263
 msgid "Save disc info"
 msgstr "Salvar informação do disco"
 
-#: src/discedit.c:245
+#: src/discedit.c:272
 msgid "Submit disc info"
 msgstr "Enviar informação do disco"
 
-#: src/discedit.c:344
+#: src/discedit.c:371
 msgid "Error saving disc data"
 msgstr "Erro ao gravar dados do disco"
 
-#: src/discedit.c:346
+#: src/discedit.c:373
 msgid "No disc present"
 msgstr "Nenhum disco presente"
 
-#: src/discedit.c:485
+#: src/discedit.c:512
 msgid ""
 "Cannot submit\n"
 "No disc is present"
@@ -835,15 +825,15 @@ msgstr ""
 "Não é possível enviar\n"
 "Nenhum disco está presente"
 
-#: src/discedit.c:498
+#: src/discedit.c:525
 msgid "You must enter a disc title"
 msgstr "Você deve inserir um Título para o disco"
 
-#: src/discedit.c:504
+#: src/discedit.c:531
 msgid "You must enter a disc artist"
 msgstr "Você deve inserir o nome do artista do disco "
 
-#: src/discedit.c:514
+#: src/discedit.c:541
 msgid ""
 "You are about to submit this disc information\n"
 "to a commercial CDDB server, which will then\n"
@@ -861,7 +851,7 @@ msgstr ""
 "\n"
 "Deseja continuar?"
 
-#: src/discedit.c:523
+#: src/discedit.c:550
 msgid ""
 "You are about to submit this\n"
 "disc information via email.\n"
@@ -873,11 +863,11 @@ msgstr ""
 "\n"
 "Deseja continuar?"
 
-#: src/discedit.c:540
+#: src/discedit.c:567
 msgid "Genre selection"
 msgstr "Selecione o Gênero"
 
-#: src/discedit.c:544
+#: src/discedit.c:571
 msgid ""
 "Submission requires a genre other than 'unknown'\n"
 "Please select a DiscDB genre below"
@@ -885,15 +875,15 @@ msgstr ""
 "Para enviar é necessário um outro gênero que não seja 'unknown' \n"
 "Por favor, selecione um Gênero do disco na lista abaixo"
 
-#: src/discedit.c:554
+#: src/discedit.c:581
 msgid "DiscDB genre"
 msgstr "Gênero do disco"
 
-#: src/discedit.c:574
+#: src/discedit.c:601
 msgid "Submit"
 msgstr "Enviar"
 
-#: src/discedit.c:585
+#: src/discedit.c:612
 msgid "Cancel"
 msgstr "Cancelar"
 
@@ -909,7 +899,7 @@ msgstr ""
 "Erro: Não foi possível traduzir o nome do arquivo. Não existe usuário "
 "chamado %s\n"
 
-#: src/launch.c:239 src/rip.c:1415
+#: src/launch.c:239 src/rip.c:1438
 msgid "Exec failed\n"
 msgstr "Exec falhou\n"
 
@@ -921,159 +911,159 @@ msgstr "Erro: Tipo de entrada inválida\n"
 msgid "Error: Invalid config file\n"
 msgstr "Erro: Arquivo de configuração inválido\n"
 
-#: src/rip.c:106
+#: src/rip.c:107
 msgid "Rip+Encode"
 msgstr "Extrair e Codificar"
 
-#: src/rip.c:108
+#: src/rip.c:109
 msgid "Rip and encode selected tracks"
 msgstr "Extrair e codificar as trilhas selecionadas"
 
-#: src/rip.c:114
+#: src/rip.c:115
 msgid "Rip Only"
 msgstr "Só Extrair"
 
-#: src/rip.c:116
+#: src/rip.c:117
 msgid "Rip but do not encode selected tracks"
 msgstr "Extrair mas não codificar as trilhas selecionadas"
 
-#: src/rip.c:122
+#: src/rip.c:123
 msgid "Abort Rip and Encode"
 msgstr "Abortar Extração e codificação"
 
-#: src/rip.c:124
+#: src/rip.c:125
 msgid "Kill all active rip and encode processes"
 msgstr "Matar todas as extrações ativas e processos de codificação"
 
-#: src/rip.c:132
+#: src/rip.c:133
 msgid "Abort Ripping Only"
 msgstr "Abortar somente a extração"
 
-#: src/rip.c:134
+#: src/rip.c:135
 msgid "Kill rip process"
 msgstr "Matar o processo de extração"
 
-#: src/rip.c:140
+#: src/rip.c:141
 msgid "DDJ Scan"
 msgstr "Pesquisa DDJ"
 
-#: src/rip.c:142
+#: src/rip.c:143
 msgid "Insert disc information into the DigitalDJ database"
 msgstr "Inserir a informação do disco no BD do DigitalDJ"
 
-#: src/rip.c:157
+#: src/rip.c:158
 msgid "Rip partial track"
 msgstr "Extrair parcialmente a trilha"
 
-#: src/rip.c:168
+#: src/rip.c:169
 msgid "Play"
 msgstr "Reproduzir"
 
-#: src/rip.c:175
+#: src/rip.c:176
 msgid "Current sector:      0"
 msgstr "Setor atual:     0"
 
-#: src/rip.c:206 src/rip.c:214 src/rip.c:262 src/rip.c:830 src/rip.c:882
-#: src/rip.c:884 src/rip.c:1013 src/rip.c:1014
+#: src/rip.c:207 src/rip.c:224 src/rip.c:272 src/rip.c:843 src/rip.c:895
+#: src/rip.c:897 src/rip.c:1031 src/rip.c:1032
 msgid "Rip: Idle"
 msgstr "Extração: Esperando"
 
-#: src/rip.c:210
+#: src/rip.c:212
 #, fuzzy
 msgid "Enc: Trk 99 (99.9x)"
 msgstr "MP3: Tri 99 (99.9x)"
 
-#: src/rip.c:233 src/rip.c:275 src/rip.c:985 src/rip.c:998
+#: src/rip.c:243 src/rip.c:285 src/rip.c:1003 src/rip.c:1016
 #, fuzzy
 msgid "Enc: Idle"
 msgstr "MP3: Esperando"
 
-#: src/rip.c:257
+#: src/rip.c:267
 msgid "Overall indicators:"
 msgstr ""
 
-#: src/rip.c:320
+#: src/rip.c:330
 msgid "Start sector"
 msgstr "Inicio do Setor"
 
-#: src/rip.c:325
+#: src/rip.c:335
 msgid "End sector"
 msgstr "Fim do setor"
 
-#: src/rip.c:586
+#: src/rip.c:597
 msgid "Error: can't open m3u file\n"
 msgstr "Erro: Não foi possível abrir arquivo m3u\n"
 
-#: src/rip.c:621
+#: src/rip.c:632
 msgid "In KillRip\n"
 msgstr ""
 
-#: src/rip.c:642
+#: src/rip.c:658
 #, c-format
 msgid "Now total enc size is: %d\n"
 msgstr ""
 
-#: src/rip.c:796
+#: src/rip.c:809
 #, c-format
 msgid "Rip: Trk %d (%3.1fx)"
 msgstr "Extraindo: Trilha %d (%3.1fx)"
 
-#: src/rip.c:826
+#: src/rip.c:839
 #, c-format
 msgid "Rip: %6.2f%%"
 msgstr ""
 
-#: src/rip.c:845
+#: src/rip.c:858
 msgid "Rip finished\n"
 msgstr "Extração concluída\n"
 
-#: src/rip.c:871
+#: src/rip.c:884
 #, c-format
 msgid "Rip partial %d  num wavs %d\n"
 msgstr "Extrair Parcialmente %d num wavs %d\n"
 
-#: src/rip.c:874
+#: src/rip.c:887
 #, c-format
 msgid "Next track is %d, total is %d\n"
 msgstr "Próxima Trilha é %d, o total é %d\n"
 
-#: src/rip.c:880
+#: src/rip.c:893
 msgid "Check if we need to rip another track\n"
 msgstr "Verificar se precisamos extrair outra trilha\n"
 
-#: src/rip.c:916
+#: src/rip.c:933
 #, fuzzy, c-format
 msgid "Enc: Trk %d (%3.1fx)"
 msgstr "MP3: Tri %d (%3.1fx)"
 
-#: src/rip.c:932
+#: src/rip.c:949
 #, c-format
 msgid "Enc: %6.2f%%"
 msgstr ""
 
-#: src/rip.c:942
+#: src/rip.c:959
 #, c-format
 msgid "Finished encoding on cpu %d\n"
 msgstr "A codificação na CPU %d foi concluída\n"
 
-#: src/rip.c:950
+#: src/rip.c:970
 #, c-format
 msgid "Deleting [%s]\n"
 msgstr "Apagando [%s]\n"
 
-#: src/rip.c:1006
+#: src/rip.c:1024
 msgid "Ripping is finished\n"
 msgstr "A extração foi concluída\n"
 
-#: src/rip.c:1101 src/rip.c:1107
+#: src/rip.c:1120 src/rip.c:1126
 msgid "NoArtist"
 msgstr "Sem Artista"
 
-#: src/rip.c:1112
+#: src/rip.c:1131
 msgid "NoTitle"
 msgstr "Sem Título"
 
-#: src/rip.c:1200
+#: src/rip.c:1219
 msgid ""
 "Invalid rip executable\n"
 "Check your rip config"
@@ -1081,7 +1071,7 @@ msgstr ""
 "Arquivo extrator inválido\n"
 "Verifique a sua configuração de extração"
 
-#: src/rip.c:1207
+#: src/rip.c:1226
 #, fuzzy
 msgid ""
 "Invalid encoder executable\n"
@@ -1090,7 +1080,7 @@ msgstr ""
 "Arquivo extrator inválido\n"
 "Verifique a sua configuração de extração"
 
-#: src/rip.c:1240
+#: src/rip.c:1259
 msgid ""
 "No tracks selected.\n"
 "Rip whole CD?\n"
@@ -1098,96 +1088,108 @@ msgstr ""
 "Nenhuma trilha selecionada.\n"
 "Extrair o CD inteiro?\n"
 
-#: src/rip.c:1259
+#: src/rip.c:1278
 msgid "Ripping whole CD\n"
 msgstr "Extraindo o CD inteiro\n"
 
-#: src/rip.c:1295
+#: src/rip.c:1314
 msgid "In RipNextTrack\n"
 msgstr "Extrair trilha seguinte\n"
 
-#: src/rip.c:1302
+#: src/rip.c:1321
 #, c-format
 msgid "First checked track is %d\n"
 msgstr "A primeira trilha verificada é %d\n"
 
-#: src/rip.c:1312
+#: src/rip.c:1331
 msgid "Ripping away!\n"
 msgstr "Extraindo!\n"
 
-#: src/rip.c:1348
+#: src/rip.c:1367
 msgid "No write access to write wav file"
 msgstr "Sem acesso de escrita para escrever o arquivo wav "
 
-#: src/rip.c:1357
+#: src/rip.c:1376
 #, c-format
 msgid "Ripping track %d to %s\n"
 msgstr "Extraindo trilha %d para %s\n"
 
-#: src/rip.c:1360
+#: src/rip.c:1380
 #, c-format
 msgid "Rip: Trk %d (0.0x)"
 msgstr "Extraindo: Tri %d (0.0x)"
 
-#: src/rip.c:1365
+#: src/rip.c:1385
 #, c-format
 msgid "File %s has already been ripped. Skipping...\n"
 msgstr "O arquivo %s já foi extraido. Pulando...\n"
 
-#: src/rip.c:1380 src/rip.c:1591
+#: src/rip.c:1400 src/rip.c:1625
 msgid "Out of space in output directory"
 msgstr "Sem espaço no diretório de saída"
 
-#: src/rip.c:1444
+#: src/rip.c:1472
 msgid "Calling CDPRip\n"
 msgstr "Chamando CDPRi\n"
 
-#: src/rip.c:1520
+#: src/rip.c:1554
 #, c-format
 msgid "Added track %d to encode list\n"
 msgstr "A trilha %d foi adcionada a lista de codificação\n"
 
-#: src/rip.c:1543
+#: src/rip.c:1577
 msgid "No free cpus\n"
 msgstr "Nenhuma CPU livre\n"
 
-#: src/rip.c:1559
+#: src/rip.c:1593
 #, fuzzy, c-format
 msgid "Enc track %d\n"
 msgstr "MP3 Trilha %d\n"
 
-#: src/rip.c:1573
+#: src/rip.c:1607
 #, fuzzy
 msgid "No write access to write encoded file"
 msgstr "Sem acesso de escrita para escrever o arquivo MP3"
 
-#: src/rip.c:1579
+#: src/rip.c:1613
 #, c-format
 msgid "%i: Encoding to %s\n"
 msgstr "%i: Codificando para %s\n"
 
-#: src/rip.c:1581
+#: src/rip.c:1615
 #, fuzzy, c-format
 msgid "Enc: Trk %d (0.0x)"
 msgstr "Extraindo: Tri %d (0.0x)"
 
-#: src/rip.c:1636
+#: src/rip.c:1676
 msgid "In CalculateAll\n"
 msgstr ""
 
-#: src/rip.c:1642
+#: src/rip.c:1682
 msgid "We aren't ripping now, so let's zero encoding values\n"
 msgstr ""
 
-#: src/rip.c:1658
+#: src/rip.c:1698
 #, c-format
 msgid "Total rip size is: %d\n"
 msgstr ""
 
-#: src/rip.c:1659
+#: src/rip.c:1699
 #, c-format
 msgid "Total enc size is: %d\n"
 msgstr ""
+
+#~ msgid "Could not parse geometry string `%s'"
+#~ msgstr "Não foi possível passar a definição de geometria"
+
+#~ msgid "Aborted\n"
+#~ msgstr "Abortado\n"
+
+#~ msgid "PL"
+#~ msgstr "PL"
+
+#~ msgid "Exit GCD"
+#~ msgstr "Sair do GCD"
 
 #~ msgid "MP3 file format"
 #~ msgstr "Formato do arquivo MP3"

@@ -67,6 +67,7 @@ static inline size16 swap16(size16 x){
 
 /* Ugly hack because we can't pass user data to the callback */
 int *global_rip_smile_level;
+FILE *global_output_fp;
 
 static void PutNum(long num,int f,int endianness,int bytes)
 {
@@ -218,7 +219,7 @@ static void CDPCallback(long inpos,int function)
     }
     slast=slevel;
   }
-  
+
   if(slevel<8&&slevel>0) *global_rip_smile_level=slevel-1;
   else *global_rip_smile_level=0;
 }
@@ -263,7 +264,7 @@ gboolean CDPRip(char *device,char *generic_scsi_device,int track,
 		long first_sector,long last_sector,
 		char *outfile,int paranoia_mode,int *rip_smile_level,
 		gfloat *rip_percent_done,gboolean *stop_thread_rip_now,
-		gboolean do_gain_calc)
+		gboolean do_gain_calc,FILE *output_fp)
 {
   int force_cdrom_endian=-1;
   int force_cdrom_sectors=-1;
@@ -279,6 +280,7 @@ gboolean CDPRip(char *device,char *generic_scsi_device,int track,
   cdrom_paranoia *p=NULL;
 
   global_rip_smile_level=rip_smile_level;
+  global_output_fp=output_fp;
 
   /* Query the cdrom/disc; */
 
@@ -288,7 +290,7 @@ gboolean CDPRip(char *device,char *generic_scsi_device,int track,
   
   if(!d){
     if(!verbose)
-      printf("\nUnable to open cdrom drive.\n");
+      fprintf(output_fp,"\nUnable to open cdrom drive.\n");
 
     return FALSE;
   }
@@ -303,24 +305,26 @@ gboolean CDPRip(char *device,char *generic_scsi_device,int track,
     d->bigendianp=force_cdrom_endian;
     switch(force_cdrom_endian){
     case 0:
-      printf("Forcing CDROM sense to little-endian; ignoring preset and autosense");
+      fprintf(output_fp,
+	      "Forcing CDROM sense to little-endian; ignoring preset and autosense");
       break;
     case 1:
-      printf("Forcing CDROM sense to big-endian; ignoring preset and autosense");
+      fprintf(output_fp,
+	      "Forcing CDROM sense to big-endian; ignoring preset and autosense");
       break;
     }
   }
 
   if(force_cdrom_sectors!=-1){
     if(force_cdrom_sectors<0 || force_cdrom_sectors>100){
-      printf("Default sector read size must be 1<= n <= 100\n");
+      fprintf(output_fp,"Default sector read size must be 1<= n <= 100\n");
       cdda_close(d);
 
       return FALSE;
     }
 
-    printf("Forcing default to read %d sectors; "
-	   "ignoring preset and autosense",force_cdrom_sectors);
+    fprintf(output_fp,"Forcing default to read %d sectors; "
+	    "ignoring preset and autosense",force_cdrom_sectors);
 
     d->nsectors=force_cdrom_sectors;
     d->bigbuff=force_cdrom_sectors*CD_FRAMESIZE_RAW;
@@ -328,56 +332,61 @@ gboolean CDPRip(char *device,char *generic_scsi_device,int track,
 
   if(force_cdrom_overlap!=-1){
     if(force_cdrom_overlap<0 || force_cdrom_overlap>75){
-      printf("Search overlap sectors must be 0<= n <=75\n");
+      fprintf(output_fp,"Search overlap sectors must be 0<= n <=75\n");
       cdda_close(d);
 
       return FALSE;
     }
 
-    printf("Forcing search overlap to %d sectors; "
-	   "ignoring autosense",force_cdrom_overlap);
+    fprintf(output_fp,"Forcing search overlap to %d sectors; "
+	    "ignoring autosense",force_cdrom_overlap);
   }
 
   switch(cdda_open(d)) {
   case -2:case -3:case -4:case -5:
-    printf("\nUnable to open disc.  Is there an audio CD in the drive?");
+    fprintf(output_fp,
+	    "\nUnable to open disc.  Is there an audio CD in the drive?");
     cdda_close(d);
     return FALSE;
   case -6:
-    printf("\nCdparanoia could not find a way to read audio from this drive.");
+    fprintf(output_fp,
+	    "\nCdparanoia could not find a way to read audio from this drive.");
     cdda_close(d);
     return FALSE;
   case 0:
     break;
   default:
-    printf("\nUnable to open disc.");
+    fprintf(output_fp,"\nUnable to open disc.");
     cdda_close(d);
     return FALSE;
   }
 
   if(d->interface==GENERIC_SCSI && d->bigbuff<=CD_FRAMESIZE_RAW) {
-    printf("WARNING: You kernel does not have generic SCSI 'SG_BIG_BUFF'\n"
-	   "         set, or it is set to a very small value.  Paranoia\n"
-	   "         will only be able to perform single sector reads\n"
-	   "         making it very unlikely Paranoia can work.\n\n"
-	   "         To correct this problem, the SG_BIG_BUFF define\n"
-	   "         must be set in /usr/src/linux/include/scsi/sg.h\n"
-	   "         by placing, for example, the following line just\n"
-	   "         before the last #endif:\n\n"
-	   "         #define SG_BIG_BUFF 65536\n\n"
-	   "         and then recompiling the kernel.\n\n"
-	   "         Attempting to continue...\n\n");
+    fprintf(output_fp,
+	    "WARNING: You kernel does not have generic SCSI 'SG_BIG_BUFF'\n"
+	    "         set, or it is set to a very small value.  Paranoia\n"
+	    "         will only be able to perform single sector reads\n"
+	    "         making it very unlikely Paranoia can work.\n\n"
+	    "         To correct this problem, the SG_BIG_BUFF define\n"
+	    "         must be set in /usr/src/linux/include/scsi/sg.h\n"
+	    "         by placing, for example, the following line just\n"
+	    "         before the last #endif:\n\n"
+	    "         #define SG_BIG_BUFF 65536\n\n"
+	    "         and then recompiling the kernel.\n\n"
+	    "         Attempting to continue...\n\n");
   }
-
+  
   if(d->nsectors==1){
-    printf("WARNING: The autosensed/selected sectors per read value is\n"
-	   "         one sector, making it very unlikely Paranoia can \n"
-	   "         work.\n\n"
-	   "         Attempting to continue...\n\n");
+    fprintf(output_fp,
+	    "WARNING: The autosensed/selected sectors per read value is\n"
+	    "         one sector, making it very unlikely Paranoia can \n"
+	    "         work.\n\n"
+	    "         Attempting to continue...\n\n");
   }
 
   if(!cdda_track_audiop(d,track)) {
-    printf("Selected track is not an audio track. Aborting.\n\n");
+    fprintf(output_fp,
+	    "Selected track is not an audio track. Aborting.\n\n");
     cdda_close(d);
     return FALSE;
   }
@@ -404,8 +413,8 @@ gboolean CDPRip(char *device,char *generic_scsi_device,int track,
     
   out=open(outfile,O_RDWR|O_CREAT|O_TRUNC,0666);
   if(out==-1){
-    printf("Cannot open default output file %s: %s",outfile,
-	   strerror(errno));
+    fprintf(output_fp,"Cannot open default output file %s: %s",outfile,
+	    strerror(errno));
     cdda_close(d);
     paranoia_free(p);
 
@@ -425,7 +434,7 @@ gboolean CDPRip(char *device,char *generic_scsi_device,int track,
     *rip_percent_done=(gfloat)cursor/(gfloat)last_sector;
 	
     if(mes || err)
-      fprintf(stderr,"\r                               "
+      fprintf(output_fp,"\r                               "
 	      "                                           \r%s%s\n",
 	      mes?mes:"",err?err:"");
 	
@@ -443,7 +452,7 @@ gboolean CDPRip(char *device,char *generic_scsi_device,int track,
 
 
     if(readbuf==NULL){
-      printf("\nparanoia_read: Unrecoverable error, bailing.\n");
+      fprintf(output_fp,"\nparanoia_read: Unrecoverable error, bailing.\n");
       cursor=last_sector+1;
       paranoia_seek(p,cursor,SEEK_SET);      
       break;
@@ -462,7 +471,7 @@ gboolean CDPRip(char *device,char *generic_scsi_device,int track,
       GainCalc((char *)readbuf);
 	
     if(CDPWrite(out,(char *)readbuf)){
-      printf("Error writing output: %s",strerror(errno));
+      fprintf(output_fp,"Error writing output: %s",strerror(errno));
 	  
       cdda_close(d);
       paranoia_free(p);

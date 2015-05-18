@@ -70,7 +70,7 @@ gboolean CDPRip(char *device,char *generic_scsi_device,int track,
 		long first_sector,long last_sector,
 		char *outfile,int paranoia_mode,int *rip_smile_level,
 		gfloat *rip_percent_done,gboolean *stop_thread_rip_now,
-		gboolean do_gain_calc);
+		gboolean do_gain_calc,FILE *output_fp);
 #endif
 
 #endif /* ifndef GRIP_RIP_H */

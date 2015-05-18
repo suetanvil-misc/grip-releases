@@ -53,6 +53,8 @@ GtkWidget *MakeEditBox(GripInfo *ginfo)
   ID3Genre *id3_genre;
   gint id3_genre_count;
   int len;
+  int dub_size;
+  PangoLayout *layout;
 
   uinfo=&(ginfo->gui_info);
 
@@ -65,9 +67,31 @@ GtkWidget *MakeEditBox(GripInfo *ginfo)
   label=gtk_label_new(_("Disc title"));
 
   /* This should be the longest string in the track edit section */
-  len=gdk_string_width(label->style->font,_("Track name"))+5;
+
+
+
+  layout=gtk_widget_create_pango_layout(GTK_WIDGET(label),
+					_("Track name"));
+
+
+  pango_layout_get_size(layout,&len,NULL);
+
+  len/=PANGO_SCALE;
+
+  g_object_unref(layout);
+
+  layout=gtk_widget_create_pango_layout(GTK_WIDGET(label),
+					_("W"));
+
+  pango_layout_get_size(layout,&dub_size,NULL);
+
+  dub_size/=PANGO_SCALE;
+
+  g_object_unref(layout);
+
 
   gtk_widget_set_usize(label,len,0);
+
   gtk_box_pack_start(GTK_BOX(hbox),label,FALSE,FALSE,0);
   gtk_widget_show(label);
 
@@ -206,9 +230,12 @@ GtkWidget *MakeEditBox(GripInfo *ginfo)
 
   entry=MakeStrEntry(&uinfo->split_chars_entry,ginfo->title_split_chars,
 		     _("Split chars"),5,TRUE);
+
   gtk_widget_set_usize(uinfo->split_chars_entry,
-		       5*gdk_string_width(uinfo->split_chars_entry->
-					  style->font,"W"),0);
+		       5*dub_size,0);
+
+
+
   gtk_box_pack_end(GTK_BOX(hbox),entry,FALSE,FALSE,0);
   gtk_widget_show(entry);
 
@@ -403,8 +430,8 @@ void TrackEditChanged(GtkWidget *widget,gpointer data)
     g_snprintf(newname,256,"%02d  %s",CURRENT_TRACK+1,
 	       ginfo->ddata.data_track[CURRENT_TRACK].track_name);
   
-  gtk_clist_set_text(GTK_CLIST(ginfo->gui_info.trackclist),
-		     CURRENT_TRACK,0,newname);
+  /*  gtk_clist_set_text(GTK_CLIST(ginfo->gui_info.trackclist),
+      CURRENT_TRACK,0,newname);*/
 }
 
 static void EditNextTrack(GtkWidget *widget,gpointer data)

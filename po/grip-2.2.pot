@@ -1,86 +1,82 @@
-# French translation file for grip
-# Copyright (c) E. Lassauge, 2003.
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 #
-# mailto:lassauge@mail.dotcom.fr
-# http://lassauge.free.fr/
+#, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: grip 3.0.6\n"
+"Project-Id-Version: PACKAGE VERSION\n"
 "POT-Creation-Date: 2003-05-30 20:46-0700\n"
-"PO-Revision-Date: 2002-03-07 14:37+0100\n"
-"Last-Translator: Eric Lassauge <lassauge@mail.dotcom.fr>\n"
-"Language-Team: Gözer le maudit <gozer@mailoman.com>\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=iso-8859-1\n"
+"Content-Type: text/plain; charset=CHARSET\n"
 "Content-Transfer-Encoding: 8bit\n"
 
 #: src/main.c:55
 msgid "Specify the geometry of the main window"
-msgstr "Spécifier la geométrie de la fenêtre principale"
+msgstr ""
 
 #: src/main.c:56
 msgid "GEOMETRY"
-msgstr "GEOMETRIE"
+msgstr ""
 
 #: src/main.c:64
 msgid "Specify the config file to use (in your home dir)"
 msgstr ""
-"Spécifier le fichier de configuration à utiliser (dans votre rép. perso)"
 
 #: src/main.c:65
 msgid "CONFIG"
-msgstr "CONFIGURATION"
+msgstr ""
 
 #: src/main.c:73
 msgid "Specify the cdrom device to use"
-msgstr "Spécifier le périphérique CDROM à utiliser"
+msgstr ""
 
 #: src/main.c:74 src/main.c:83
 msgid "DEVICE"
-msgstr "PERIPHERIQUE"
+msgstr ""
 
 #: src/main.c:82
 msgid "Specify the generic scsi device to use"
-msgstr "Spécifier le périphérique générique SCSI à utiliser"
+msgstr ""
 
 #: src/main.c:91
 msgid "Launch in \"small\" (cd-only) mode"
-msgstr "Lancer en mode «small» (uniquement CD)"
+msgstr ""
 
 #: src/main.c:100
 msgid "\"Local\" mode -- do not look up disc info on the net"
 msgstr ""
-"Mode «local» -- pas de recherche des informations du disque sur le réseau"
 
 #: src/main.c:109
 msgid "Do not do I/O redirection"
-msgstr "Ne pas faire de redirection d'E/S"
+msgstr ""
 
 #: src/main.c:118
 msgid "Run in verbose (debug) mode"
-msgstr "Lancer en mode verbeux (debug)"
+msgstr ""
 
 #: src/grip.c:145
 msgid "Grip"
-msgstr "Grip"
+msgstr ""
 
 #: src/grip.c:176
 #, c-format
 msgid "Error: Unable to initialize [%s]\n"
-msgstr "Erreur : impossible d'initialiser [%s]\n"
+msgstr ""
 
 #: src/grip.c:271
 msgid ""
 "Work is in progress.\n"
 "Really shut down?"
 msgstr ""
-"Travail en cours.\n"
-"Voulez vous vraiment arrêter ?"
 
 #: src/grip.c:322
-#, fuzzy
 msgid "Status"
-msgstr "Etat extraction"
+msgstr ""
 
 #: src/grip.c:337
 msgid "General"
@@ -88,47 +84,47 @@ msgstr ""
 
 #: src/grip.c:352 src/gripcfg.c:346 src/cdplay.c:257 src/rip.c:98
 msgid "Rip"
-msgstr "Extraction"
+msgstr ""
 
 #: src/grip.c:367 src/gripcfg.c:474
 msgid "Encode"
-msgstr "Encodeur"
+msgstr ""
 
 #: src/grip.c:412
 msgid "Help"
-msgstr "Aide"
+msgstr ""
 
 #: src/grip.c:417
 msgid "Table Of Contents"
-msgstr "Table des Matières"
+msgstr ""
 
 #: src/grip.c:423
 msgid "Playing CDs"
-msgstr "Lecture CDs"
+msgstr ""
 
 #: src/grip.c:429
 msgid "Ripping CDs"
-msgstr "Extraction CDs"
+msgstr ""
 
 #: src/grip.c:435
 msgid "Configuring Grip"
-msgstr "Configuration de Grip"
+msgstr ""
 
 #: src/grip.c:441
 msgid "FAQ"
-msgstr "FAQ"
+msgstr ""
 
 #: src/grip.c:447
 msgid "Getting More Help"
-msgstr "Plus d'aide"
+msgstr ""
 
 #: src/grip.c:453
 msgid "Reporting Bugs"
-msgstr "Signaler les erreurs"
+msgstr ""
 
 #: src/grip.c:473
 msgid "About"
-msgstr "A propos de"
+msgstr ""
 
 #: src/grip.c:836
 msgid ""
@@ -136,383 +132,375 @@ msgid ""
 "You will need to re-configure Grip.\n"
 "Your old config file has been saved with -old appended."
 msgstr ""
-"Erreur: votre fichier de configuration est trop vieux\n"
-"Utilisation des valeurs par défaut\n"
-"Re-configurez Grip.\n"
-"Votre ancien fichier a été sauvé avec l'extension -old."
 
 #: src/grip.c:906
 #, c-format
 msgid "server is %s, port %d\n"
-msgstr "Le serveur est %s, port %d\n"
+msgstr ""
 
 #: src/grip.c:926
 msgid "Error: Unable to save config file"
-msgstr "Erreur : impossible de sauver le fichier de configuration"
+msgstr ""
 
 #: src/gripcfg.c:94
 msgid "Config"
-msgstr "Configuration"
+msgstr ""
 
 #: src/gripcfg.c:102
 msgid "CDRom device"
-msgstr "Périphérique CDROM"
+msgstr ""
 
 #: src/gripcfg.c:107
 msgid "Don't interrupt playback on exit/startup"
-msgstr "Ne pas interrompre la musique lors du démarrage ou de l'arrêt de Grip"
+msgstr ""
 
 #: src/gripcfg.c:111
 msgid "Rewind when stopped"
-msgstr "Revenir au début lors de l'arrêt"
+msgstr ""
 
 #: src/gripcfg.c:116
 msgid "Startup with first track if not playing"
-msgstr "Démarrer avec la première piste"
+msgstr ""
 
 #: src/gripcfg.c:121
 msgid "Auto-play on disc insert"
-msgstr "Lecture automatique à l'insertion"
+msgstr ""
 
 #: src/gripcfg.c:126
 msgid "Reshuffle before each playback"
-msgstr "Mélanger avant chaque lecture"
+msgstr ""
 
 #: src/gripcfg.c:131
 msgid "Work around faulty eject"
-msgstr "Contourner les problèmes d'ejections erronnées"
+msgstr ""
 
 #: src/gripcfg.c:136
 msgid "Poll disc drive for new disc"
-msgstr "Interroger le lecteur pour un nouveau disque"
+msgstr ""
 
 #: src/gripcfg.c:140
 msgid "Poll interval (seconds)"
-msgstr "Intervalle d'interrogation (secondes)"
+msgstr ""
 
 #: src/gripcfg.c:148
 msgid "CD"
-msgstr "CD"
+msgstr ""
 
 #: src/gripcfg.c:164
 msgid "Ripper:"
-msgstr "Extracteur :"
+msgstr ""
 
 #: src/gripcfg.c:209
 msgid "Ripping executable"
-msgstr "Programme d'extraction"
+msgstr ""
 
 #: src/gripcfg.c:214
 msgid "Rip command-line"
-msgstr "Ligne de commande de l'extracteur"
+msgstr ""
 
 #: src/gripcfg.c:225
 msgid "Disable paranoia"
-msgstr "Inhiber le mode «paranoïa»"
+msgstr ""
 
 #: src/gripcfg.c:230
 msgid "Disable extra paranoia"
-msgstr "Inhiber le mode «extra paranoïa»"
+msgstr ""
 
 #: src/gripcfg.c:236
 msgid "Disable scratch"
-msgstr "Inhiber la détection des rayures"
+msgstr ""
 
 #: src/gripcfg.c:240
 msgid "detection"
-msgstr "Détection"
+msgstr ""
 
 #: src/gripcfg.c:244
 msgid "repair"
-msgstr "Réparation"
+msgstr ""
 
 #: src/gripcfg.c:252
 msgid "Calculate gain adjustment"
-msgstr "Calcul du gain d'ajustement"
+msgstr ""
 
 #: src/gripcfg.c:260
 msgid "Rip file format"
-msgstr "Format du fichier extrait"
+msgstr ""
 
 #: src/gripcfg.c:264
 msgid "Generic SCSI device"
-msgstr "Périphérique SCSI générique"
+msgstr ""
 
 #: src/gripcfg.c:272
 msgid "Ripper"
-msgstr "Extracteur"
+msgstr ""
 
 #: src/gripcfg.c:281
 msgid "Rip 'nice' value"
-msgstr "Valeur de 'nice' pour l'extraction"
+msgstr ""
 
 #: src/gripcfg.c:285
 msgid "Max non-encoded .wav's"
-msgstr "Nombre max de fichiers WAV non encodés"
+msgstr ""
 
 #: src/gripcfg.c:291
 msgid "Auto-rip on insert"
-msgstr "Extraction automatique à l'insertion"
+msgstr ""
 
 #: src/gripcfg.c:295
 msgid "Beep after rip"
-msgstr "Biper après l'extraction"
+msgstr ""
 
 #: src/gripcfg.c:305
 msgid "Auto-eject after rip"
-msgstr "Ejection automatique après l'extraction"
+msgstr ""
 
 #: src/gripcfg.c:309
 msgid "Auto-eject delay"
-msgstr "Délai d'éjection automatique"
+msgstr ""
 
 #: src/gripcfg.c:317
 msgid "Delay before ripping"
-msgstr "Délai avant l'extraction"
+msgstr ""
 
 #: src/gripcfg.c:322
 msgid "Stop cdrom drive between tracks"
-msgstr "Arrête le CDROM entre les pistes"
+msgstr ""
 
 #: src/gripcfg.c:326
 msgid "Wav filter command"
-msgstr "Commande du filtre de fichier WAV"
+msgstr ""
 
 #: src/gripcfg.c:331
 msgid "Disc filter command"
-msgstr "Commande du filtre pour le disque"
+msgstr ""
 
 #: src/gripcfg.c:339 src/gripcfg.c:467
 msgid "Options"
-msgstr "Options"
+msgstr ""
 
 #: src/gripcfg.c:361
 msgid "Encoder:"
-msgstr "Encodeur :"
+msgstr ""
 
 #: src/gripcfg.c:396
 msgid "Encoder executable"
-msgstr "Programme d'encodage"
+msgstr ""
 
 #: src/gripcfg.c:401
 msgid "Encoder command-line"
-msgstr "Ligne de commande de l'encodeur"
+msgstr ""
 
 #: src/gripcfg.c:406
 msgid "Encode file format"
-msgstr "Format du fichier encodé"
+msgstr ""
 
 #: src/gripcfg.c:414
 msgid "Encoder"
-msgstr "Encodeur"
+msgstr ""
 
 #: src/gripcfg.c:424
 msgid "Delete .wav after encoding"
-msgstr "Effacer les fichiers WAV après l'encodage"
+msgstr ""
 
 #: src/gripcfg.c:429
 msgid "Insert info into SQL database"
-msgstr "Insérer les informations dans la base de données SQL"
+msgstr ""
 
 #: src/gripcfg.c:433
 msgid "Create .m3u files"
-msgstr "Créer des fichiers M3U"
+msgstr ""
 
 #: src/gripcfg.c:438
 msgid "Use relative paths in .m3u files"
-msgstr "Utiliser un chemin relatif dans les fichiers M3U"
+msgstr ""
 
 #: src/gripcfg.c:442
 msgid "M3U file format"
-msgstr "Format des fichiers M3U"
+msgstr ""
 
 #: src/gripcfg.c:447
 msgid "Encoding bitrate (kbits/sec)"
-msgstr "Bitrate de l'encodage (kbits/sec)"
+msgstr ""
 
 #: src/gripcfg.c:451
 msgid "Number of CPUs to use"
-msgstr "Nombre de CPUs à utiliser"
+msgstr ""
 
 #: src/gripcfg.c:455
 msgid "Encode 'nice' value"
-msgstr "Valeur de 'nice' pour l'encodage"
+msgstr ""
 
 #: src/gripcfg.c:459
 msgid "Encode filter command"
-msgstr "Commande du filtre pour l'encodage"
+msgstr ""
 
 #: src/gripcfg.c:483
 msgid "Add ID3 tags to encoded files"
-msgstr "Ajouter les étiquettes ID3 aux fichiers encodés"
+msgstr ""
 
 #: src/gripcfg.c:489
 msgid "Add ID3v2 tags to encoded files"
-msgstr "Ajouter les étiquettes ID3v2 aux fichiers encodés"
+msgstr ""
 
 #: src/gripcfg.c:495
 msgid "Only tag files ending in '.mp3'"
-msgstr "N'ajouter les étiquettes ID3 qu'aux fichiers de suffixe '.mp3'"
+msgstr ""
 
 #: src/gripcfg.c:499
 msgid "ID3 comment field"
-msgstr "Champ commentaire ID3"
+msgstr ""
 
 #: src/gripcfg.c:506
 msgid "ID3"
-msgstr "ID3"
+msgstr ""
 
 #: src/gripcfg.c:523 src/gripcfg.c:543
 msgid "DB server"
-msgstr "Serveur DB"
+msgstr ""
 
 #: src/gripcfg.c:527 src/gripcfg.c:547
 msgid "CGI path"
-msgstr "Chemin du script CGI"
+msgstr ""
 
 #: src/gripcfg.c:534
 msgid "Primary Server"
-msgstr "Serveur primaire"
+msgstr ""
 
 #: src/gripcfg.c:554
 msgid "Secondary Server"
-msgstr "Serveur secondaire"
+msgstr ""
 
 #: src/gripcfg.c:564
 msgid "DB Submit email"
-msgstr "Mel pour la sousmission DB"
+msgstr ""
 
 #: src/gripcfg.c:569
 msgid "Use freedb extensions"
-msgstr "Utiliser les extensions freedb"
+msgstr ""
 
 #: src/gripcfg.c:574
 msgid "Perform disc lookups automatically"
-msgstr "Lancer la recherche de disque automatiquement"
+msgstr ""
 
 #: src/gripcfg.c:582
 msgid "DiscDB"
-msgstr "DiscDB"
+msgstr ""
 
 #: src/gripcfg.c:591
 msgid "Use proxy server"
-msgstr "Utiliser un serveur proxy"
+msgstr ""
 
 #: src/gripcfg.c:598
 msgid "Get server from 'http_proxy' env. var"
-msgstr "Récupérer le serveur depuis la variable d'environnement 'http_proxy'"
+msgstr ""
 
 #: src/gripcfg.c:602
 msgid "Proxy server"
-msgstr "Serveur proxy"
+msgstr ""
 
 #: src/gripcfg.c:606
 msgid "Proxy port"
-msgstr "Port du proxy"
+msgstr ""
 
 #: src/gripcfg.c:610
 msgid "Proxy username"
-msgstr "Nom d'utilisateur du proxy"
+msgstr ""
 
 #: src/gripcfg.c:616
 msgid "Proxy password"
-msgstr "Mot de passe du proxy"
+msgstr ""
 
 #: src/gripcfg.c:624
 msgid "Proxy"
-msgstr "Proxy"
+msgstr ""
 
 #: src/gripcfg.c:633
 msgid "Email address"
-msgstr "Adresse mel"
+msgstr ""
 
 #: src/gripcfg.c:637
 msgid "CD update program"
-msgstr "Programme de mise à jour de CD"
+msgstr ""
 
 #: src/gripcfg.c:642
 msgid "Do not lowercase filenames"
-msgstr "Ne pas passer les fichiers en minuscules"
+msgstr ""
 
 #: src/gripcfg.c:647
 msgid "Allow high bits in filenames"
-msgstr "Autoriser les caractères 8 bits dans les noms de fichiers"
+msgstr ""
 
 #: src/gripcfg.c:652
 msgid "Do not change spaces to underscores"
-msgstr "Ne pas changer les espaces en blancs soulignés"
+msgstr ""
 
 #: src/gripcfg.c:657
 msgid ""
 "Characters to not strip\n"
 "in filenames"
 msgstr ""
-"Caractères à ne pas enlever\n"
-"dans les noms de fichiers"
 
 #: src/gripcfg.c:662
 msgid "Keep application minimum size"
-msgstr "Garder à l'application sa taille minimale"
+msgstr ""
 
 #: src/gripcfg.c:669
 msgid "Misc"
-msgstr "Divers"
+msgstr ""
 
 #: src/cddev.c:164 src/cddev.c:591
 #, c-format
 msgid "Drive status is %d\n"
-msgstr "L'état du périphérique vaut %d\n"
+msgstr ""
 
 #: src/cddev.c:166
 msgid "Drive doesn't support drive status check (assume CDS_NO_INFO)\n"
 msgstr ""
-"Le périphérique ne supporte pas la vérification de son état (CDS_NO_INFO "
-"utilisé)\n"
 
 #: src/cddev.c:169
 msgid "No disc\n"
-msgstr "Pas de disque\n"
+msgstr ""
 
 #: src/cddev.c:271 src/cddev.c:280 src/cddev.c:297 src/cddev.c:324
 msgid "Error: Failed to read disc contents\n"
-msgstr "Erreur : impossible de lire le contenu du disque\n"
+msgstr ""
 
 #: src/cddev.c:594
 msgid "Drive doesn't support drive status check\n"
-msgstr "Le périphérique ne supporte pas la vérification de son état\n"
+msgstr ""
 
 #: src/cddev.c:615 src/cddev.c:619
 #, c-format
 msgid "Unlock failed: %d"
-msgstr "Impossible de débloque r: %d"
+msgstr ""
 
 #: src/cddev.c:623
 msgid "CDIOCEJECT"
-msgstr "CDIOCEJECT"
+msgstr ""
 
 #: src/cdplay.c:87
 msgid "Cannot do lookup while ripping"
-msgstr "Impossible de rechercher pendant l'extraction"
+msgstr ""
 
 #. "misc"
 #: src/cdplay.c:124
 msgid "Unknown Disc"
-msgstr "Disque inconnu"
+msgstr ""
 
 #: src/cdplay.c:128
 #, c-format
 msgid "Track %02d"
-msgstr "Piste %02d"
+msgstr ""
 
 #: src/cdplay.c:188
 #, c-format
 msgid "Querying %s (through %s) for disc %02x.\n"
-msgstr "Recherche %s (via %s) pour le disque %02x.\n"
+msgstr ""
 
 #: src/cdplay.c:193
 #, c-format
 msgid "Querying %s for disc %02x.\n"
-msgstr "Recherche %s pour le disque %02x.\n"
+msgstr ""
 
 #: src/cdplay.c:205
 #, c-format
@@ -520,165 +508,163 @@ msgid ""
 "Match for \"%s / %s\"\n"
 "Downloading data...\n"
 msgstr ""
-"Correspondance pour \"%s / %s\"\n"
-"Téléchargement des données...\n"
 
 #: src/cdplay.c:212
 msgid "Done\n"
-msgstr "Fait\n"
+msgstr ""
 
 #: src/cdplay.c:216 src/cdplay.c:575
 msgid "Error saving disc data\n"
-msgstr "Erreur à la sauvegarde des données du disque\n"
+msgstr ""
 
 #: src/cdplay.c:222
 msgid "No match\n"
-msgstr "Pas de correspondance\n"
+msgstr ""
 
 #: src/cdplay.c:257
 msgid "Track"
-msgstr "Piste"
+msgstr ""
 
 #: src/cdplay.c:257
 msgid "Length "
-msgstr "Durée "
+msgstr ""
 
 #: src/cdplay.c:261
 msgid "Tracks"
-msgstr "Pistes"
+msgstr ""
 
 #: src/cdplay.c:646
 msgid "Rotate play mode"
-msgstr "Changer le mode de lecture"
+msgstr ""
 
 #: src/cdplay.c:666
 msgid "Toggle loop play"
-msgstr "Basculer la lecture en continu"
+msgstr ""
 
 #: src/cdplay.c:744 src/rip.c:233
 msgid "Rip status"
-msgstr "Etat extraction"
+msgstr ""
 
 #: src/cdplay.c:811
 msgid "Play track / Pause play"
-msgstr "Joue la piste / Pause"
+msgstr ""
 
 #: src/cdplay.c:822
 msgid "Rewind"
-msgstr "Retour"
+msgstr ""
 
 #: src/cdplay.c:833
 msgid "FastForward"
-msgstr "Avance rapide"
+msgstr ""
 
 #: src/cdplay.c:843
 msgid "Go to previous track"
-msgstr "Aller à la piste précédente"
+msgstr ""
 
 #: src/cdplay.c:852
 msgid "Go to next track"
-msgstr "Aller à la piste suivante"
+msgstr ""
 
 #: src/cdplay.c:861
 msgid "Toggle play mode options"
-msgstr "Changer les options de lecture"
+msgstr ""
 
 #: src/cdplay.c:871
 msgid "Next Disc"
-msgstr "Disque suivant"
+msgstr ""
 
 #: src/cdplay.c:885
 msgid "Stop play"
-msgstr "Arrêter"
+msgstr ""
 
 #: src/cdplay.c:895
 msgid "Eject disc"
-msgstr "Ejecter le disque"
+msgstr ""
 
 #: src/cdplay.c:904
 msgid "Scan Disc Contents"
-msgstr "Analyse du disque"
+msgstr ""
 
 #: src/cdplay.c:912
 msgid "Toggle Volume Control"
-msgstr "Basculer l'affichage du contrôle du volume"
+msgstr ""
 
 #: src/cdplay.c:921
 msgid "Toggle disc editor"
-msgstr "Basculer l'éditeur de disque"
+msgstr ""
 
 #: src/cdplay.c:931
 msgid "Initiate/abort DiscDB lookup"
-msgstr "Démarrer/arrêter la recherche DiscDB"
+msgstr ""
 
 #: src/cdplay.c:941
 msgid "Toggle track display"
-msgstr "Basculer l'affichage des pistes"
+msgstr ""
 
 #: src/cdplay.c:948
 msgid "Exit Grip"
-msgstr "Sortir de Grip"
+msgstr ""
 
 #: src/cdplay.c:1091
 msgid "Cannot fast forward while ripping"
-msgstr "Avance rapide impossible pendant l'extraction"
+msgstr ""
 
 #: src/cdplay.c:1121
 msgid "Cannot rewind while ripping"
-msgstr "Retour arriere impossible pendant l'extraction"
+msgstr ""
 
 #: src/cdplay.c:1151
 msgid "Cannot switch discs while ripping"
-msgstr "Changement de disque impossible pendant l'extraction"
+msgstr ""
 
 #: src/cdplay.c:1169
 msgid "Eject disc\n"
-msgstr "Ejection disque\n"
+msgstr ""
 
 #: src/cdplay.c:1172
 msgid "Cannot eject while ripping"
-msgstr "Ejection impossible pendant l'extraction"
+msgstr ""
 
 #: src/cdplay.c:1182
 msgid "Have disc -- ejecting\n"
-msgstr "Disque présent -- ejection\n"
+msgstr ""
 
 #: src/cdplay.c:1246
 msgid "Cannot play while ripping"
-msgstr "Lecture impossible pendant l'extraction"
+msgstr ""
 
 #: src/cdplay.c:1307 src/cdplay.c:1337
 msgid "Cannot switch tracks while ripping"
-msgstr "Changement de piste impossible pendant l'extraction"
+msgstr ""
 
 #: src/cdplay.c:1419
 msgid "Checking for a new disc\n"
-msgstr "Vérification de la présence d'un nouveau disque\n"
+msgstr ""
 
 #: src/cdplay.c:1424
 msgid "CDStat found a disc, checking tracks\n"
-msgstr "CDstat a trouvé un disque, vérification des pistes\n"
+msgstr ""
 
 #: src/cdplay.c:1427
 msgid "We have a valid disc!\n"
-msgstr "Disque valide détecté !\n"
+msgstr ""
 
 #: src/cdplay.c:1454
 msgid "No non-zero length tracks\n"
-msgstr "Pas de piste de durée non-nulle\n"
+msgstr ""
 
 #: src/cdplay.c:1463
 msgid "CDStat said no disc\n"
-msgstr "CDstat n'a pas trouvé de disque\n"
+msgstr ""
 
 #: src/cdplay.c:1598 src/cdplay.c:1620
 #, c-format
 msgid "Current sector: %6d"
-msgstr "Secteur courant: %6d"
+msgstr ""
 
 #: src/cdplay.c:1721
 msgid "No Disc"
-msgstr "Pas de disque"
+msgstr ""
 
 #: src/cdplay.c:1772
 msgid ""
@@ -687,69 +673,66 @@ msgid ""
 "\n"
 "Do you wish to submit this disc information?"
 msgstr ""
-"Ce disque a été trouvé sur le serveur secondaire,\n"
-"mais pas sur le serveur primaire.\n"
-"Voulez-vous soumettre ces informations de disque ?"
 
 #: src/cdplay.c:1801 src/cdplay.c:1809
 msgid "Error: Unable to create temporary file"
-msgstr "Erreur : impossible de créer un fichier temporaire"
+msgstr ""
 
 #: src/cdplay.c:1819
 msgid "Error: Unable to write disc data"
-msgstr "Erreur : impossible de sauvegarder les données du disque"
+msgstr ""
 
 #: src/cdplay.c:1828
 #, c-format
 msgid "Mailing entry to %s\n"
-msgstr "Envois de l'entrée à %s\n"
+msgstr ""
 
 #: src/dialog.c:44
 msgid "System Message"
-msgstr "Message système"
+msgstr ""
 
 #: src/discdb.c:188
 #, c-format
 msgid "URI is %s\n"
-msgstr "l'URI est %s\n"
+msgstr ""
 
 #: src/discdb.c:236
 #, c-format
 msgid "Query is [%s]\n"
-msgstr "La recherce est [%s]\n"
+msgstr ""
 
 #: src/discdb.c:253
 #, c-format
 msgid "Reply is [%s]\n"
-msgstr "La réponse est [%s]\n"
+msgstr ""
 
 #: src/discdb.c:661
 #, c-format
 msgid "Stat error %d on %s\n"
-msgstr "Erreur %d lors du 'stat' de %s\n"
+msgstr ""
 
 #: src/discdb.c:665
 #, c-format
 msgid "Creating directory %s\n"
-msgstr "Création du répertoire %s\n"
+msgstr ""
 
 #: src/discdb.c:670
 #, c-format
 msgid "Error: %s exists, but is a file\n"
-msgstr "Erreur : %s existe, mais c'est un fichier\n"
+msgstr ""
 
 #: src/discdb.c:677
 #, c-format
 msgid "Error: Unable to open %s for writing\n"
-msgstr "Erreur : impossible d'ouvrir %s en écriture\n"
+msgstr ""
 
 #: src/discedit.c:67
 msgid "Disc title"
-msgstr "Titre du disque"
+msgstr ""
 
 #: src/discedit.c:74 src/discedit.c:176
 msgid "Track name"
-msgstr "Nom de la piste"
+msgstr ""
 
 #: src/discedit.c:84
 msgid "W"
@@ -757,71 +740,69 @@ msgstr ""
 
 #: src/discedit.c:110
 msgid "Disc artist"
-msgstr "Artiste"
+msgstr ""
 
 #: src/discedit.c:127
 msgid "ID3 genre:"
-msgstr "Genre ID3 :"
+msgstr ""
 
 #: src/discedit.c:158
 msgid "Disc year"
-msgstr "Année"
+msgstr ""
 
 #: src/discedit.c:196
 msgid "Track artist"
-msgstr "Artiste de la piste"
+msgstr ""
 
 #: src/discedit.c:213
 msgid "Split:"
-msgstr "Découpage :"
+msgstr ""
 
 #: src/discedit.c:217
 msgid "Title/Artist"
-msgstr "Titre/Artiste"
+msgstr ""
 
 #: src/discedit.c:224
 msgid "Artist/Title"
-msgstr "Artiste/Titre"
+msgstr ""
 
 #: src/discedit.c:232
 msgid "Split chars"
-msgstr "Découper les caratères"
+msgstr ""
 
 #: src/discedit.c:252
 msgid "Multi-artist"
-msgstr "Multi-artistes"
+msgstr ""
 
 #: src/discedit.c:263
 msgid "Save disc info"
-msgstr "Sauver les informations du disque"
+msgstr ""
 
 #: src/discedit.c:272
 msgid "Submit disc info"
-msgstr "Soumettre les informations du disque"
+msgstr ""
 
 #: src/discedit.c:371
 msgid "Error saving disc data"
-msgstr "Erreur à la sauvegarde des données du disque"
+msgstr ""
 
 #: src/discedit.c:373
 msgid "No disc present"
-msgstr "Pas de disque présent"
+msgstr ""
 
 #: src/discedit.c:512
 msgid ""
 "Cannot submit\n"
 "No disc is present"
 msgstr ""
-"Impossible de soumettre\n"
-"Pas de disque présent"
 
 #: src/discedit.c:525
 msgid "You must enter a disc title"
-msgstr "Donnez un titre au disque"
+msgstr ""
 
 #: src/discedit.c:531
 msgid "You must enter a disc artist"
-msgstr "Donnez un artiste au disque"
+msgstr ""
 
 #: src/discedit.c:541
 msgid ""
@@ -833,12 +814,6 @@ msgid ""
 "\n"
 "Continue?"
 msgstr ""
-"Vous etes sur le point de soumettre les informations de ce disque\n"
-"à un serveur CDDB commercial, qui va ensuite etre propriétaire de\n"
-"celles-ci. Ces serveurs font du profit à partir de votre effort.\n"
-"Nous vous suggérons plutot de soutenir les serveurs libres.\n"
-"\n"
-"Continuer ?"
 
 #: src/discedit.c:550
 msgid ""
@@ -847,333 +822,305 @@ msgid ""
 "\n"
 "Continue?"
 msgstr ""
-"Vous etes sur le point de soumettre les informations de ce disque\n"
-"via email.\n"
-"\n"
-"Continuer ?"
 
 #: src/discedit.c:567
 msgid "Genre selection"
-msgstr "Sélection du genre"
+msgstr ""
 
 #: src/discedit.c:571
 msgid ""
 "Submission requires a genre other than 'unknown'\n"
 "Please select a DiscDB genre below"
 msgstr ""
-"Soumettre des informations nécessite un genre différent\n"
-"de 'inconnu'. Choisissez un genre DiscDB ci-dessous"
 
 #: src/discedit.c:581
 msgid "DiscDB genre"
-msgstr "Genre DiscDB"
+msgstr ""
 
 #: src/discedit.c:601
 msgid "Submit"
-msgstr "Soumettre"
+msgstr ""
 
 #: src/discedit.c:612
 msgid "Cancel"
-msgstr "Annuler"
+msgstr ""
 
 #. Doh!
 #: src/id3.c:284
 msgid "unknown ID3 field\n"
-msgstr "Champ ID3 inconnu\n"
+msgstr ""
 
 #: src/launch.c:120
 #, c-format
 msgid "Error: unable to translate filename. No such user as %s\n"
 msgstr ""
-"Erreur : impossible de changer le nom de fichier. Utilisateur %s inconnu\n"
 
 #: src/launch.c:239 src/rip.c:1438
 msgid "Exec failed\n"
-msgstr "L'exécution a échoué\n"
+msgstr ""
 
 #: src/parsecfg.c:58
 msgid "Error: Bad entry type\n"
-msgstr "Erreur : type entrée eronné\n"
+msgstr ""
 
 #: src/parsecfg.c:84
 msgid "Error: Invalid config file\n"
-msgstr "Erreur : fichier de configuration invalide\n"
+msgstr ""
 
 #: src/rip.c:107
 msgid "Rip+Encode"
-msgstr "Extraction + encodage"
+msgstr ""
 
 #: src/rip.c:109
 msgid "Rip and encode selected tracks"
-msgstr "Extraction et encodage des pistes sélectionnées"
+msgstr ""
 
 #: src/rip.c:115
 msgid "Rip Only"
-msgstr "Extraction seulement"
+msgstr ""
 
 #: src/rip.c:117
 msgid "Rip but do not encode selected tracks"
-msgstr "Extraction sans encoder les pistes sélectionnées"
+msgstr ""
 
 #: src/rip.c:123
 msgid "Abort Rip and Encode"
-msgstr "Annuler l'extraction et l'encodage"
+msgstr ""
 
 #: src/rip.c:125
 msgid "Kill all active rip and encode processes"
-msgstr "Tuer tous les processus d'extraction et d'encodage"
+msgstr ""
 
 #: src/rip.c:133
 msgid "Abort Ripping Only"
-msgstr "Annuler seulement l'extraction"
+msgstr ""
 
 #: src/rip.c:135
 msgid "Kill rip process"
-msgstr "Tuer les processus d'extraction"
+msgstr ""
 
 #: src/rip.c:141
 msgid "DDJ Scan"
-msgstr "Recherche DDJ"
+msgstr ""
 
 #: src/rip.c:143
 msgid "Insert disc information into the DigitalDJ database"
-msgstr "Insérer les informations du disque dans la base de données DigitalDJ"
+msgstr ""
 
 #: src/rip.c:158
 msgid "Rip partial track"
-msgstr "Extraction partielle de piste"
+msgstr ""
 
 #: src/rip.c:169
 msgid "Play"
-msgstr "Jouer"
+msgstr ""
 
 #: src/rip.c:176
 msgid "Current sector:      0"
-msgstr "Secteur courant :      0"
+msgstr ""
 
 #: src/rip.c:207 src/rip.c:224 src/rip.c:272 src/rip.c:843 src/rip.c:895
 #: src/rip.c:897 src/rip.c:1031 src/rip.c:1032
 msgid "Rip: Idle"
-msgstr "Extr : Repos"
+msgstr ""
 
 #: src/rip.c:212
 msgid "Enc: Trk 99 (99.9x)"
-msgstr "Enc : Piste 99 (99.9x)"
+msgstr ""
 
 #: src/rip.c:243 src/rip.c:285 src/rip.c:1003 src/rip.c:1016
 msgid "Enc: Idle"
-msgstr "Enc : Repos"
+msgstr ""
 
 #: src/rip.c:267
 msgid "Overall indicators:"
-msgstr "Indicateurs généraux :"
+msgstr ""
 
 #: src/rip.c:330
 msgid "Start sector"
-msgstr "Secteur de début"
+msgstr ""
 
 #: src/rip.c:335
 msgid "End sector"
-msgstr "Secteur de fin"
+msgstr ""
 
 #: src/rip.c:597
 msgid "Error: can't open m3u file\n"
-msgstr "Erreur : impossible d'ouvrir le fichier M3U\n"
+msgstr ""
 
 #: src/rip.c:632
 msgid "In KillRip\n"
-msgstr "Dans ArrêtExtr\n"
+msgstr ""
 
 #: src/rip.c:658
 #, c-format
 msgid "Now total enc size is: %d\n"
-msgstr "Taille totale encodage en cours : %d\n"
+msgstr ""
 
 #: src/rip.c:809
 #, c-format
 msgid "Rip: Trk %d (%3.1fx)"
-msgstr "Extr : Piste %d (%3.1fx)"
+msgstr ""
 
 #: src/rip.c:839
 #, c-format
 msgid "Rip: %6.2f%%"
-msgstr "Extr : %6.2f%%"
+msgstr ""
 
 #: src/rip.c:858
 msgid "Rip finished\n"
-msgstr "Extraction terminée\n"
+msgstr ""
 
 #: src/rip.c:884
 #, c-format
 msgid "Rip partial %d  num wavs %d\n"
-msgstr "Extraction partielle %d nombre de WAV %d\n"
+msgstr ""
 
 #: src/rip.c:887
 #, c-format
 msgid "Next track is %d, total is %d\n"
-msgstr "La piste suivante est la %d, le total est de %d\n"
+msgstr ""
 
 #: src/rip.c:893
 msgid "Check if we need to rip another track\n"
-msgstr "Cocher si vous avez besoin d'extraire une autre piste\n"
+msgstr ""
 
 #: src/rip.c:933
 #, c-format
 msgid "Enc: Trk %d (%3.1fx)"
-msgstr "Enc : Piste %d (%3.1fx)"
+msgstr ""
 
 #: src/rip.c:949
 #, c-format
 msgid "Enc: %6.2f%%"
-msgstr "Enc : %6.2f%%"
+msgstr ""
 
 #: src/rip.c:959
 #, c-format
 msgid "Finished encoding on cpu %d\n"
-msgstr "Encodage terminé sur le CPU %d\n"
+msgstr ""
 
 #: src/rip.c:970
 #, c-format
 msgid "Deleting [%s]\n"
-msgstr "Destruction [%s]\n"
+msgstr ""
 
 #: src/rip.c:1024
 msgid "Ripping is finished\n"
-msgstr "Extraction terminée\n"
+msgstr ""
 
 #: src/rip.c:1120 src/rip.c:1126
 msgid "NoArtist"
-msgstr "SansArtiste"
+msgstr ""
 
 #: src/rip.c:1131
 msgid "NoTitle"
-msgstr "SansTitre"
+msgstr ""
 
 #: src/rip.c:1219
 msgid ""
 "Invalid rip executable\n"
 "Check your rip config"
 msgstr ""
-"Programme d'extraction invalide\n"
-"Vérifier la configuration"
 
 #: src/rip.c:1226
 msgid ""
 "Invalid encoder executable\n"
 "Check your encoder config"
 msgstr ""
-"Programme d'encodage invalide\n"
-"Vérifier la configuration"
 
 #: src/rip.c:1259
 msgid ""
 "No tracks selected.\n"
 "Rip whole CD?\n"
 msgstr ""
-"Pas de piste sélectionnée.\n"
-"Extraction de tout le CD ?\n"
 
 #: src/rip.c:1278
 msgid "Ripping whole CD\n"
-msgstr "Extraction de tout le CD\n"
+msgstr ""
 
 #: src/rip.c:1314
 msgid "In RipNextTrack\n"
-msgstr "Dans ExtractionPisteSuivante\n"
+msgstr ""
 
 #: src/rip.c:1321
 #, c-format
 msgid "First checked track is %d\n"
-msgstr "La première piste choisie est la %d\n"
+msgstr ""
 
 #: src/rip.c:1331
 msgid "Ripping away!\n"
-msgstr "Extraction !\n"
+msgstr ""
 
 #: src/rip.c:1367
 msgid "No write access to write wav file"
-msgstr "Pas d'accès en écriture au fichier WAV"
+msgstr ""
 
 #: src/rip.c:1376
 #, c-format
 msgid "Ripping track %d to %s\n"
-msgstr "Extraction piste %d vers %s\n"
+msgstr ""
 
 #: src/rip.c:1380
 #, c-format
 msgid "Rip: Trk %d (0.0x)"
-msgstr "Extr : Piste %d (0.0x)"
+msgstr ""
 
 #: src/rip.c:1385
 #, c-format
 msgid "File %s has already been ripped. Skipping...\n"
-msgstr "Le fichier %s est déjà extrait. On passe au suivant...\n"
+msgstr ""
 
 #: src/rip.c:1400 src/rip.c:1625
 msgid "Out of space in output directory"
-msgstr "Plus d'espace disponible dans le répertoire destination"
+msgstr ""
 
 #: src/rip.c:1472
 msgid "Calling CDPRip\n"
-msgstr "Appel à CDPRip\n"
+msgstr ""
 
 #: src/rip.c:1554
 #, c-format
 msgid "Added track %d to encode list\n"
-msgstr "Ajout de la piste %d dans la liste à encoder\n"
+msgstr ""
 
 #: src/rip.c:1577
 msgid "No free cpus\n"
-msgstr "Pas de CPU disponible\n"
+msgstr ""
 
 #: src/rip.c:1593
 #, c-format
 msgid "Enc track %d\n"
-msgstr "Enc piste %d\n"
+msgstr ""
 
 #: src/rip.c:1607
 msgid "No write access to write encoded file"
-msgstr "Pas d'accès en écriture au encodé"
+msgstr ""
 
 #: src/rip.c:1613
 #, c-format
 msgid "%i: Encoding to %s\n"
-msgstr "%i : encodage vers %s\n"
+msgstr ""
 
 #: src/rip.c:1615
 #, c-format
 msgid "Enc: Trk %d (0.0x)"
-msgstr "Enc : Piste %d (0.0x)"
+msgstr ""
 
 #: src/rip.c:1676
 msgid "In CalculateAll\n"
-msgstr "Dans CalculeTout\n"
+msgstr ""
 
 #: src/rip.c:1682
 msgid "We aren't ripping now, so let's zero encoding values\n"
-msgstr "Pas d'extraction en cours, on met à zéro les valeurs d'encodage\n"
+msgstr ""
 
 #: src/rip.c:1698
 #, c-format
 msgid "Total rip size is: %d\n"
-msgstr "Taille total extraction : %d\n"
+msgstr ""
 
 #: src/rip.c:1699
 #, c-format
 msgid "Total enc size is: %d\n"
-msgstr "Taille totale encodage : %d\n"
-
-#~ msgid "Could not parse geometry string `%s'"
-#~ msgstr "Impossible d'analyser la chaine de géometrie «%s»"
-
-#~ msgid "Aborted\n"
-#~ msgstr "Annulé\n"
-
-#~ msgid "PL"
-#~ msgstr "Liste de lecture"
-
-#~ msgid "Column/Button: %d/%d\n"
-#~ msgstr "Colonne/Bouton: %d/%d\n"
-
-#~ msgid "Exit GCD"
-#~ msgstr "Sortir de GCD"
+msgstr ""
