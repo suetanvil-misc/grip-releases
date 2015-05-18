@@ -1,3 +1,9 @@
+2002-01-26  Mike Oliphant  <oliphant@gtk.org>
+
+	* rip.c: fixed a nasty crashing bug related to the disc filter
+	  command (thanks to Goetz Waschk for finding it)
+	* configure.in/grip.spec: upped version to 2.98.5
+	
 2002-01-23  Mike Oliphant  <oliphant@gtk.org>
 
 	* rip.c/rip.h/gripcfg.c: don't include gain analysis stuff if

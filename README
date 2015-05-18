@@ -50,6 +50,9 @@ Grip adds the following options that can be specified to configure:
 
   --disable-shared-cdpar  -- This will force Grip to link statically, rather
                              than dynamically with cdparanoia
+
+  --disable-cdpar         -- This disable linking with cdparanoia entirely
+
   --disable-shared-id3    -- This will force Grip to link statically, rather
                              than dynamically with id3lib
 

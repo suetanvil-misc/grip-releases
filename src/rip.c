@@ -1090,7 +1090,7 @@ static gboolean RipNextTrack(GripInfo *ginfo)
     }
 #endif
 
-    if(ginfo->disc_filter_cmd)
+    if(*ginfo->disc_filter_cmd)
       DoDiscFilter(ginfo);
 
     return FALSE;
