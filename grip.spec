@@ -1,5 +1,5 @@
 %define name grip
-%define version 2.95
+%define version 2.96
 %define release 1
 
 Summary: Grip, a CD player and ripper/MP3-encoder front-end
@@ -59,9 +59,9 @@ rm -rf $RPM_BUILD_ROOT
 %files
 %doc README CHANGES CREDITS LICENSE TODO gripicon.tif
 /usr/bin/grip
-/usr/man/man1/grip.1
+/usr/man/man1/grip.1.gz
 
 %files -n gcd
 %doc README CHANGES CREDITS LICENSE TODO gcdicon.tif
 /usr/bin/gcd
-/usr/man/man1/gcd.1
+/usr/man/man1/gcd.1.gz

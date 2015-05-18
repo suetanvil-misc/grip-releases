@@ -26,7 +26,7 @@
 
 #define MP3DB
 
-#define VERSION "2.95"
+#define VERSION "2.96"
 
 #ifdef GRIPCD
 #define PROGRAM "GCD"
@@ -221,10 +221,10 @@ typedef struct _encode_track {
   int track_num;
   int start_frame;
   int end_frame;
-  char song_name[80];
-  char song_artist[80];
-  char disc_name[80];
-  char disc_artist[80];
+  char song_name[256];
+  char song_artist[256];
+  char disc_name[256];
+  char disc_artist[256];
   int song_year;
   int id3_genre;
   int mins;

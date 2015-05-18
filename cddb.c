@@ -717,7 +717,7 @@ int CDDBWriteDiscData(int cd_desc,DiscData *ddata,FILE *outfile,
   fprintf(cddb_data,"# Disc length: %d seconds\n",disc.disc_length.minutes *
 	  60 + disc.disc_length.seconds);
   fputs("# \n",cddb_data);
-  fprintf(cddb_data,"# Revision: %s\n",GRIP_CDDB_LEVEL);
+  fprintf(cddb_data,"# Revision: %s\n","0");
   fprintf(cddb_data,"# Submitted via: %s %s\n",Program,Version);
   fputs("# \n",cddb_data);
   fprintf(cddb_data,"DISCID=%08x\n",ddata->data_id);
@@ -738,8 +738,8 @@ int CDDBWriteDiscData(int cd_desc,DiscData *ddata,FILE *outfile,
     }
     else {
       fprintf(cddb_data,"TTITLE%d=%s / %s\n",track,
-	      ddata->data_track[track].track_name,
-	      ddata->data_track[track].track_artist);
+	      ddata->data_track[track].track_artist,
+	      ddata->data_track[track].track_name);
     }
 
     if(gripext&&*(ddata->data_track[track].track_artist))

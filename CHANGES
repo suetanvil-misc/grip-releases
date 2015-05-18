@@ -1,3 +1,18 @@
+v2.96 -- July 15th, 2001
+------------------------
+
+ o detach threads (thanks to James LewisMoss for the patch)
+ o fixed a crashing problem with relative paths (thanks to Antti Siipola)
+ o fixed problem causing ripping to hang waiting on encoding (thanks to Alan
+   Eldridge for this)
+ o fixed problem with mp3 filenames being limited to 80 characters
+ o fixed crash on failed disc lookup
+ o changed the cddb revision number to '0' until revisions get implemented
+   properly
+ o write multi-artist tracks in artist / title format
+ o added '.gz' to man entries in the spec file so newer versions of RPM
+   don't get confused (thanks to John Aldrich for this)
+
 v2.95 -- October 18th, 2000
 ---------------------------
 

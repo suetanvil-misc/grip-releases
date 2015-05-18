@@ -31,6 +31,7 @@
 #include <sys/types.h>
 #include <sys/wait.h>
 #include <sys/stat.h>
+#include <sys/param.h>
 #ifdef SOLARIS
 #include <sys/statvfs.h>
 #endif
@@ -1711,6 +1712,7 @@ void LookupDisc(gboolean manual)
       looking_up=TRUE;
       
       pthread_create(&cddb_thread,NULL,(void *)&DoLookup,NULL);
+      pthread_detach(cddb_thread);
     }
   }
 }
@@ -1732,7 +1734,7 @@ void DoLookup(void)
   }
 
   if(!cddb_found) {
-    DisplayMsg("CDDB query failed\n");
+    printf("CDDB query failed\n");
   }
 
   looking_up=FALSE;
@@ -2784,7 +2786,7 @@ void MakeAboutPage(void)
   gtk_box_pack_start(GTK_BOX(vbox2),label,FALSE,FALSE,0);
   gtk_widget_show(label);
 
-  label=gtk_label_new("Copyright (c) 1998-1999, Mike Oliphant");
+  label=gtk_label_new("Copyright (c) 1998-2001, Mike Oliphant");
   gtk_widget_set_style(label,style_wb);
   gtk_box_pack_start(GTK_BOX(vbox2),label,FALSE,FALSE,0);
   gtk_widget_show(label);
@@ -3644,18 +3646,18 @@ void ParseArgs(int numargs,char *args[])
 void SeparateFields(char *buf,char *field1,char *field2,char *sep)
 {
   char *tmp;
-  char spare[80];
+  char spare[256];
 
   tmp=strtok(buf,sep);
 
   if(!tmp) return;
 
-  strncpy(spare,ChopWhite(tmp),80);
+  strncpy(spare,ChopWhite(tmp),sizeof(spare));
 
   tmp=strtok(NULL,"");
 
   if(tmp) {
-    strncpy(field2,ChopWhite(tmp),80);
+    strncpy(field2,ChopWhite(tmp),sizeof(spare));
   }
   else *field2='\0';
 
@@ -3929,7 +3931,8 @@ void ParseEncFileFmt(char *instr,char *outstr,EncodeTrack *enc_track)
 /* Make file1 relative to file2 */
 char *MakeRelative(char *file1,char *file2)
 {
-  int pos, pos2, slashcnt, i;
+  /* Initialise pos2 in case file1 and file2 don't match at all */
+  int pos, pos2 = 0, slashcnt, i;
   char *rel=file1;
   char tem[PATH_MAX]="";
 
@@ -4463,8 +4466,9 @@ void RedirectIO(gboolean redirect_output)
     dup2(fd,2);
   }
 
-  close(fd); 
-  close(cd_desc);
+  for (fd = 3; fd < NOFILE; fd++) {
+    close(fd);
+  }
 }
 
 void ID3Add(char *file,EncodeTrack *enc_track)
@@ -4489,10 +4493,10 @@ void FillInEncode(int track,EncodeTrack *new_track)
   new_track->mins=info.track[track].track_length.minutes;
   new_track->secs=info.track[track].track_length.seconds;
   new_track->song_year=ddata.data_year;
-  strncpy(new_track->song_name,ddata.data_track[track].track_name,80);
-  strncpy(new_track->song_artist,ddata.data_track[track].track_artist,80);
-  strncpy(new_track->disc_name,ddata.data_title,80);
-  strncpy(new_track->disc_artist,ddata.data_artist,80);
+  strncpy(new_track->song_name,ddata.data_track[track].track_name,256);
+  strncpy(new_track->song_artist,ddata.data_track[track].track_artist,258);
+  strncpy(new_track->disc_name,ddata.data_title,256);
+  strncpy(new_track->disc_artist,ddata.data_artist,256);
   new_track->id3_genre=id3_genre_number;
   new_track->discid=CDDBDiscid(cd_desc);
 }
@@ -4809,6 +4813,7 @@ gboolean RipNextTrack(void)
       in_rip_thread=TRUE;
       rip_smile_level=0;
       pthread_create(&cdp_thread,NULL,(void *)ThreadRip,(void *)&cdp);
+      pthread_detach(cdp_thread);
     }
     else {
 #endif

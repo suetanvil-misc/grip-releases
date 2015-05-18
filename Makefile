@@ -39,7 +39,7 @@ INSTALL  = /usr/bin/install -o $(OWNER) -g $(GROUP)
 
 # ----------- You shouldn't need to make changes below here. -------------
 
-VERSION= 2.95
+VERSION= 2.96
 
 OBJS=	cddb.o cd.o id3.o bug.o parsecfg.o dialog/input.o dialog/message.o
 
@@ -122,7 +122,7 @@ srcdist:	grip.1
 	tar -czf grip-$(VERSION).tgz grip-$(VERSION)
 
 pardist: srcdist
-	cd cdparanoia && make clean
+	-cd cdparanoia && make distclean
 	cd grip-$(VERSION) && ln -sf ../cdparanoia
 	tar -czhf grip-$(VERSION).tgz grip-$(VERSION)
 	rm grip-$(VERSION)/cdparanoia
