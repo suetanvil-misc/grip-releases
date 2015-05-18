@@ -284,8 +284,9 @@ gboolean CDStat(DiscInfo *disc,gboolean read_toc)
       frame[readtracks]=cdte.data[readtracks].addr.msf.frame;
 
       /* I'm just guessing about this based on cdio.h -- should be tested */
-      disc->track[readtracks].flags=(cdte.addr_type << 4) |
-	(cdte.control & 0x0f);
+      /* This compiles on freebsd, does it work? */
+      disc->track[readtracks].flags=(cdte.data[readtracks].addr_type << 4) |
+	(cdte.data[readtracks].control & 0x0f);
     }
 #endif
 #ifdef CDROMREADTOCENTRY

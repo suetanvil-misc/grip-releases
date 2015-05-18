@@ -130,6 +130,8 @@ int main(int argc, char* argv[])
 
   GnomeClient *client;
 
+  /* setup locale, i18n */
+  gtk_set_locale();
   bindtextdomain(PACKAGE,GNOMELOCALEDIR);  
   textdomain(PACKAGE);
 

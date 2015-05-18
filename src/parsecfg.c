@@ -127,7 +127,7 @@ gboolean SaveConfig(char *filename,char *name,int ver,CFGEntry *cfg)
       fprintf(cfp,"%d\n",*((int *)cfg[cfgent].destvar));
       break;
     case CFG_ENTRY_BOOL:
-      fprintf(cfp,"%d\n",*((int *)cfg[cfgent].destvar)==1);
+      fprintf(cfp,"%d\n",*((gboolean *)cfg[cfgent].destvar)==1);
       break;
     default:
       break;

@@ -167,7 +167,10 @@ void MakeConfigPage(GripInfo *ginfo)
     rip++;
   }
 
+  /* Make sure the selected ripper is active */
   gtk_menu_set_active(GTK_MENU(menu),ginfo->selected_ripper);
+  if(ginfo->selected_ripper==0) ginfo->using_builtin_cdp=TRUE;
+  else ginfo->using_builtin_cdp=FALSE;
 
   optmenu=gtk_option_menu_new();
   gtk_option_menu_set_menu(GTK_OPTION_MENU(optmenu),menu);
@@ -226,12 +229,10 @@ void MakeConfigPage(GripInfo *ginfo)
   gtk_box_pack_start(GTK_BOX(uinfo->rip_builtin_box),hbox,FALSE,FALSE,0);
   gtk_widget_show(hbox);
   
-#ifdef CDPAR
   check=MakeCheckButton(NULL,&ginfo->calc_gain,
 			_("Calculate gain adjustment"));
   gtk_box_pack_start(GTK_BOX(uinfo->rip_builtin_box),check,FALSE,FALSE,0);
   gtk_widget_show(check);
-#endif
 
   entry=MakeStrEntry(NULL,ginfo->force_scsi,_("Generic SCSI device"),
 		     255,TRUE);

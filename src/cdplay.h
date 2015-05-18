@@ -50,7 +50,6 @@ void PlaySegment(GripInfo *ginfo,int track);
 void FastFwd(GripInfo *ginfo);
 void Rewind(GripInfo *ginfo);
 void LookupDisc(GripInfo *ginfo,gboolean manual);
-void DoLookup(void *data);
 gboolean DiscDBLookupDisc(GripInfo *ginfo,DiscDBServer *server);
 GtkWidget *MakePlayOpts(GripInfo *ginfo);
 GtkWidget *MakeControls(GripInfo *ginfo);

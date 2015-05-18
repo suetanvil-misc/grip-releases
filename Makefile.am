@@ -1,4 +1,4 @@
-SUBDIRS = macros po intl src pixmaps doc
+SUBDIRS = macros po src intl pixmaps doc
 
 EXTRA_DIST = \
         grip.desktop \

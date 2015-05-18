@@ -27,6 +27,10 @@
 #if defined(__linux__)
 #include <sys/vfs.h>
 #endif
+#if defined(__FreeBSD__)
+#include <sys/param.h>
+#include <sys/mount.h>
+#endif
 #include <unistd.h>
 #include <sys/types.h>
 #include <signal.h>
@@ -851,6 +855,15 @@ static void RipIsFinished(GripInfo *ginfo)
 
   if(ginfo->beep_after_rip) printf("%c%c",7,7);
   
+#ifdef CDPAR
+  if(ginfo->using_builtin_cdp && ginfo->calc_gain) {
+    ginfo->disc_gain_adjustment=GetAlbumGain();
+  }
+#endif
+  
+  if(*ginfo->disc_filter_cmd)
+    DoDiscFilter(ginfo);
+  
   if(ginfo->eject_after_rip) {
     EjectDisc(NULL,ginfo);
 
@@ -1084,15 +1097,6 @@ static gboolean RipNextTrack(GripInfo *ginfo)
 
   /* See if we are finished ripping */
   if(ginfo->rip_track==ginfo->disc.num_tracks) {
-#ifdef CDPAR
-    if(ginfo->using_builtin_cdp && ginfo->calc_gain) {
-      ginfo->disc_gain_adjustment=GetAlbumGain();
-    }
-#endif
-
-    if(*ginfo->disc_filter_cmd)
-      DoDiscFilter(ginfo);
-
     return FALSE;
   }
 

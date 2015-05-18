@@ -33,6 +33,7 @@
 
 static void ShutDownCB(GtkWidget *widget,gpointer data);
 static void DiscDBToggle(GtkWidget *widget,gpointer data);
+static void DoLookup(void *data);
 static void SetCurrentTrack(GripInfo *ginfo,int track);
 static void ToggleChecked(GripGUI *uinfo,int track);
 static void ClickColumn(GtkWidget *widget,gint column,gpointer data);
@@ -160,7 +161,7 @@ void LookupDisc(GripInfo *ginfo,gboolean manual)
   }
 }
 
-void DoLookup(void *data)
+static void DoLookup(void *data)
 {
   GripInfo *ginfo;
   gboolean discdb_found=FALSE;

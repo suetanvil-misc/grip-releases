@@ -24,6 +24,7 @@
 #ifndef GRIP_H
 #define GRIP_H
 
+#include "config.h"
 #include <gnome.h>
 #include "cddev.h"
 #include "discdb.h"

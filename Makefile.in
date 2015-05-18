@@ -120,7 +120,7 @@ ZVT_LIBS = @ZVT_LIBS@
 cflags_set = @cflags_set@
 cxxflags_set = @cxxflags_set@
 
-SUBDIRS = macros po intl src pixmaps doc
+SUBDIRS = macros po src intl pixmaps doc
 
 EXTRA_DIST = \
         grip.desktop \

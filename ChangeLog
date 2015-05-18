@@ -1,3 +1,23 @@
+2002-02-10  Mike Oliphant  <oliphant@gtk.org>
+
+	* gripcfg.c: fixed a bug keeping rip config options from
+	  reflecting whether builin cdparanoia was being used or not
+	  (thanks to Marc Williams for pointing the problem out)
+	* configure.in: added an option to disable compiling with id3lib
+	  (thanks to Thierry Vignaud for this)
+	* fr.po: added (thanks to Eric Lassauge for the translation)
+	* rip.c: move where disc filter was being not (cosmetic, not
+	  functional change)
+	* parsecfg.c: cast boolean values as gboolean instead of int
+	  (thanks to Didier Malenfant for this)
+	* configure.in: use '.' instead of 'source' in id3 compile check
+	  for portability (thanks to Alan Eldridge for this)
+	* cddev.c: fix to data track detection when using cdio.h (thanks
+	  to Alan Eldridge for this)
+	* rip.c: includes for freebsd to compile (thanks to Alan Eldridge
+	  for this)
+	* configure.in/grip.spec: upped version to 2.98.6
+	
 2002-01-26  Mike Oliphant  <oliphant@gtk.org>
 
 	* rip.c: fixed a nasty crashing bug related to the disc filter

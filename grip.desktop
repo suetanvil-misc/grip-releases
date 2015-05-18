@@ -1,6 +1,7 @@
 [Desktop Entry]
-Name=grip
+Name=Grip
 Comment=CD player/ripper
+Comment[fr]=Lecteur/extracteur de CD audio
 Exec=grip
 Icon=gripicon.png
 Type=Application
