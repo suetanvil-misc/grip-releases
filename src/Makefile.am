@@ -26,6 +26,7 @@ grip_SOURCES =         \
 	rip.c \
 	rip.h \
 	cdpar.c \
+	cdpar.h \
 	id3.c \
 	grip_id3.h \
 	discdb.c \

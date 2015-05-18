@@ -209,6 +209,11 @@ gboolean DiscDBLookupDisc(GripInfo *ginfo,DiscDBServer *server)
 
   strncpy(hello.hello_program,"Grip",256);
   strncpy(hello.hello_version,VERSION,256);
+
+  if(ginfo->db_use_freedb)
+    hello.proto_version=6;
+  else
+    hello.proto_version=5;
 	
   if(!DiscDBDoQuery(disc,server,&hello,&query)) {
     ginfo->update_required=TRUE;
@@ -1865,10 +1870,17 @@ void SubmitEntry(gint reply,gpointer data)
     DisplayMsg(_("Error: Unable to create temporary file"));
   }
   else {
-    fprintf(efp,"To: %s\nFrom: %s\nSubject: cddb %s %02x\n\n",
-	    ginfo->discdb_submit_email,ginfo->user_email,
+    fprintf(efp,"To: %s\nFrom: %s\nSubject: cddb %s %02x\n",
+	    ginfo->discdb_submit_email,
+	    ginfo->user_email,
 	    DiscDBGenre(ginfo->ddata.data_genre),
 	    ginfo->ddata.data_id);
+
+    if(ginfo->db_use_freedb) {
+      fprintf(efp,
+	      "MIME-Version: 1.0\nContent-type: text/plain; charset=%s\n\n",
+	      ginfo->discdb_encoding);
+    }
 
     if(DiscDBWriteDiscData(&(ginfo->disc),&(ginfo->ddata),efp,FALSE,
 			   ginfo->db_use_freedb)<0) {

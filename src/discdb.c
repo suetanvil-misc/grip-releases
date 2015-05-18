@@ -156,7 +156,8 @@ static GString *DiscDBMakeURI(DiscDBServer *server,DiscDBHello *hello,
   g_string_sprintf(uri,"http://%s/%s?cmd=%s&hello=private+free.the.cddb+%s+%s"
 		   "&proto=%d",
 		   server->name,server->cgi_prog,cmd,
-		   hello->hello_program,hello->hello_version,5);
+		   hello->hello_program,hello->hello_version,
+		   hello->proto_version);
 
   return uri;
 }

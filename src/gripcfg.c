@@ -46,14 +46,17 @@ static Ripper ripper_defaults[]={
   {"",""}
 };
 
-static MP3Encoder encoder_defaults[]={{"bladeenc","-%b -QUIT %w %m"},
-				      {"lame","-h -b %b %w %m"},
-				      {"l3enc","-br %b %w %m"},
-				      {"xingmp3enc","-B %b -Q %w"},
-				      {"mp3encode","-p 2 -l 3 -b %b %w %m"},
-				      {"gogo","-b %b %w %m"},
-				      {"oggenc","-o %m -a %a -l %d -t %n -b %b %w"},
-				      {"flac","-V -o %m %w"},
+static MP3Encoder encoder_defaults[]={{"bladeenc","-%b -QUIT %w %m","mp3"},
+				      {"lame","-h -b %b %w %m","mp3"},
+				      {"l3enc","-br %b %w %m","mp3"},
+				      {"xingmp3enc","-B %b -Q %w","mp3"},
+				      {"mp3encode","-p 2 -l 3 -b %b %w %m",
+				       "mp3"},
+				      {"gogo","-b %b %w %m","mp3"},
+				      {"oggenc",
+				       "-o %m -a %a -l %d -t %n -b %b %w",
+				       "ogg"},
+				      {"flac","-V -o %m %w","flac"},
 				      {"other",""},
 				      {"",""}
 };
@@ -408,6 +411,12 @@ void MakeConfigPage(GripInfo *ginfo)
   gtk_box_pack_start(GTK_BOX(vbox),entry,FALSE,FALSE,0);
   gtk_widget_show(entry);
 
+  entry=MakeStrEntry(&(uinfo->mp3extension_entry),ginfo->mp3extension,
+		     _("Encode file extension"),
+		     10,TRUE);
+  gtk_box_pack_start(GTK_BOX(vbox),entry,FALSE,FALSE,0);
+  gtk_widget_show(entry);
+  
   entry=MakeStrEntry(NULL,ginfo->mp3fileformat,_("Encode file format"),
 		     255,TRUE);
   gtk_box_pack_start(GTK_BOX(vbox),entry,FALSE,FALSE,0);
@@ -766,6 +775,7 @@ static void EncoderSelected(GtkWidget *widget,gpointer data)
   else gtk_entry_set_text(GTK_ENTRY(uinfo->mp3exename_entry),"");
 
   gtk_entry_set_text(GTK_ENTRY(uinfo->mp3cmdline_entry),enc->cmdline);
+  gtk_entry_set_text(GTK_ENTRY(uinfo->mp3extension_entry),enc->extension);
 
   ginfo->selected_encoder=enc-encoder_defaults;
 }

@@ -9,6 +9,12 @@
 /* Define to 1 if you have the `bind_textdomain_codeset' function. */
 #undef HAVE_BIND_TEXTDOMAIN_CODESET
 
+/* Define to 1 if you have the <cdda/cdda_interface.h> header file. */
+#undef HAVE_CDDA_CDDA_INTERFACE_H
+
+/* Define to 1 if you have the <cdda/cdda_paranoia.h> header file. */
+#undef HAVE_CDDA_CDDA_PARANOIA_H
+
 /* Define to 1 if you have the <cdda_interface.h> header file. */
 #undef HAVE_CDDA_INTERFACE_H
 

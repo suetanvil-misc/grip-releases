@@ -53,6 +53,7 @@ static void DoLoadConfig(GripInfo *ginfo);
 void DoSaveConfig(GripInfo *ginfo);
 
 #define BASE_CFG_ENTRIES \
+{"grip_version",CFG_ENTRY_STRING,256,ginfo->version},\
 {"cd_device",CFG_ENTRY_STRING,256,ginfo->cd_device},\
 {"force_scsi",CFG_ENTRY_STRING,256,ginfo->force_scsi},\
 {"ripexename",CFG_ENTRY_STRING,256,ginfo->ripexename},\
@@ -64,6 +65,7 @@ void DoSaveConfig(GripInfo *ginfo);
 {"dbserver",CFG_ENTRY_STRING,256,ginfo->dbserver.name},\
 {"ripfileformat",CFG_ENTRY_STRING,256,ginfo->ripfileformat},\
 {"mp3fileformat",CFG_ENTRY_STRING,256,ginfo->mp3fileformat},\
+{"mp3extension",CFG_ENTRY_STRING,10,ginfo->mp3extension},\
 {"m3ufileformat",CFG_ENTRY_STRING,256,ginfo->m3ufileformat},\
 {"delete_wavs",CFG_ENTRY_BOOL,0,&ginfo->delete_wavs},\
 {"add_m3u",CFG_ENTRY_BOOL,0,&ginfo->add_m3u},\
@@ -144,6 +146,7 @@ GtkWidget *GripNew(const gchar* geometry,char *device,char *scsi_device,
   GtkWidget *app;
   GripInfo *ginfo;
   GripGUI *uinfo;
+  int major,minor,point;
 
   gnome_window_icon_set_default_from_file(GNOME_ICONDIR"/gripicon.png");
 
@@ -256,6 +259,18 @@ GtkWidget *GripNew(const gchar* geometry,char *device,char *scsi_device,
   gtk_widget_show(uinfo->winbox);
 
   CheckNewDisc(ginfo,FALSE);
+
+  /* Check if we're running this version for the first time */
+  if(strcmp(VERSION,ginfo->version)!=0) {
+    strcpy(ginfo->version,VERSION);
+
+    sscanf(VERSION,"%d.%d.%d",&major,&minor,&point);
+
+    /* Check if we have a dev release */
+    if(minor%2) {
+      DisplayMsg(_("This is a development version of Grip. If you encounter problems, you are encouraged to revert to the latest stable version."));
+    }
+  }
 
   LogStatus(ginfo,"Grip started successfully\n");
 
@@ -690,6 +705,8 @@ static void DoLoadConfig(GripInfo *ginfo)
 
   uinfo->id3_genre_item_list=NULL;
 
+  *ginfo->version='\0';
+
   strcpy(ginfo->cd_device,"/dev/cdrom");
   *ginfo->force_scsi='\0';
 
@@ -817,7 +834,8 @@ static void DoLoadConfig(GripInfo *ginfo)
   ginfo->selected_encoder=1;
   strcpy(ginfo->mp3cmdline,"-h -b %b %w %m");
   FindExeInPath("lame", ginfo->mp3exename, sizeof(ginfo->mp3exename));
-  strcpy(ginfo->mp3fileformat,"~/mp3/%A/%d/%n.mp3");
+  strcpy(ginfo->mp3fileformat,"~/mp3/%A/%d/%n.%x");
+  strcpy(ginfo->mp3extension,"mp3");
   ginfo->mp3nice=0;
   *ginfo->mp3_filter_cmd='\0';
   ginfo->delete_wavs=TRUE;

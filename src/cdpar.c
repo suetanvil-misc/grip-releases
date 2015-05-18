@@ -3,7 +3,7 @@
  * Based on main.c from the cdparanoia distribution
  *  (C) 1998 Monty <xiphmont@mit.edu>
  *
- * All changes Copyright (c) 1999-2002 by Mike Oliphant (oliphant@gtk.org)
+ * All changes Copyright 1999-2004 by Mike Oliphant (grip@nostatic.org)
  *
  *   http://www.nostatic.org/grip
  *
@@ -25,7 +25,7 @@
 
 #include "grip.h"
 
-#ifdef HAVE_CDDA_INTERFACE_H
+#ifdef CDPAR
 
 #include <stdio.h>
 #include <stdarg.h>
@@ -41,11 +41,7 @@
 #include <glib.h>
 #include "gain_analysis.h"
 
-#define size16 short
-#define size32 int
-
-#include <cdda/cdda_interface.h>
-#include <cdda/cdda_paranoia.h>
+#include "cdpar.h"
 
 static void PutNum(long num,int f,int endianness,int bytes);
 static void WriteWav(int f,long bytes);
@@ -494,4 +490,4 @@ gboolean CDPRip(char *device,char *generic_scsi_device,int track,
   return TRUE;
 }
 
-#endif /* HAVE_CDDA_INTERFACE_H */
+#endif /* CDPAR */

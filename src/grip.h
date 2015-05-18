@@ -32,7 +32,7 @@
 #include "launch.h"
 #include "status_window.h"
 
-#ifdef HAVE_CDDA_INTERFACE_H
+#if defined(HAVE_CDDA_INTERFACE_H) || defined(HAVE_CDDA_CDDA_INTERFACE_H)
 #define CDPAR
 #endif
 
@@ -127,6 +127,7 @@ typedef struct _grip_gui {
   GtkWidget *ripcmdline_entry;
   GtkWidget *mp3exename_entry;
   GtkWidget *mp3cmdline_entry;
+  GtkWidget *mp3extension_entry;
 
   /* Overall prgress */
   GtkWidget *all_label;
@@ -176,6 +177,7 @@ typedef struct _grip_gui {
 struct _encode_track;
 
 typedef struct _grip_info {
+  char version[256];
   DiscInfo disc;
   DiscData ddata;
   gboolean use_proxy;
@@ -292,6 +294,7 @@ typedef struct _grip_info {
   char disc_filter_cmd[256];
   int selected_encoder;
   char mp3cmdline[256];
+  char mp3extension[10];
   char mp3fileformat[256];
   char mp3exename[256];
   gboolean delete_wavs;

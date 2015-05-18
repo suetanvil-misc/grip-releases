@@ -1,6 +1,6 @@
-/* gripcfg.h
+/* cdpar.h
  *
- * Copyright (c) 1998-2002  Mike Oliphant <oliphant@gtk.org>
+ * Copyright 1999-2004 by Mike Oliphant (grip@nostatic.org)
  *
  *   http://www.nostatic.org/grip
  *
@@ -20,23 +20,13 @@
  * USA
  */
 
-/* Ripper default info structure */
+#define size16 short
+#define size32 int
 
-typedef struct _ripper {
-  char name[20];
-  char cmdline[256];
-} Ripper;
-
-/* Encoder default info structure */
-
-typedef struct _mp3_encoder {
-  char name[20];
-  char cmdline[256];
-  char extension[10];
-} MP3Encoder;
-
-
-void MakeConfigPage(GripInfo *ginfo);
-char *FindExe(char *exename,char **paths);
-void FindExeInPath(char *exename, char *buf, int bsize);
-gboolean FileExists(char *filename);
+#ifdef HAVE_CDDA_INTERFACE_H
+#include <cdda_interface.h>
+#include <cdda_paranoia.h>
+#else
+#include <cdda/cdda_interface.h>
+#include <cdda/cdda_paranoia.h>
+#endif

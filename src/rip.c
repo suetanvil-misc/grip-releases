@@ -48,10 +48,7 @@
 #include "common.h"
 #ifdef CDPAR
 #include "gain_analysis.h"
-#define size32 gint32
-#define size16 gint16
-#include <cdda_interface.h>
-#include <cdda_paranoia.h>
+#include "cdpar.h"
 extern int rip_smile_level;
 #endif
 
@@ -1191,6 +1188,10 @@ char *TranslateSwitch(char switch_char,void *data,gboolean *munge)
     *munge=FALSE;
     break;
 #endif
+  case 'x':
+    g_snprintf(res,PATH_MAX,"%s",enc_track->ginfo->mp3extension);
+    *munge=FALSE;
+    break;
   default:
     *res='\0';
     break;

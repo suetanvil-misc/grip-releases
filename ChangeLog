@@ -1,3 +1,19 @@
+2004-03-01  Mike Oliphant  <grip@nostatic.org>
+
+	* de.po: updated (Götz Waschk)
+	* it.po: updated (Ceoldo Costantino)
+	* fi.po: updated (Flammie Pirinen)
+	* fr.po: updated (Eric Lassauge)
+	* gripcfg.c/gripcfg.h/rip.c/rip.h/grip.c/grip.h: extension is now
+	  determined by the encode preset
+	* cdplay.c/discdb.c: support for UTF-8 when talking to discdb
+	  servers (thanks to Kevin Dalley for pioneering this)
+	* grip.c/grip.h: display a warning message when people run a dev
+	  version for the first time
+	* grip.h/rip.c/cdpar.c/cdpar.h/configure.in: check for cdparanoia
+	  includes in both the root include and the cdda subdir	
+	* configure.in: upped version to 3.1.5
+	
 2003-12-21  Mike Oliphant  <grip@nostatic.org>
 
 	* ja.po: updated (Takeshi Aihana)

@@ -46,10 +46,11 @@ typedef struct _discdb_server {
 } DiscDBServer;
 
 typedef struct _discdb_hello {
-   /* Program */
-   char hello_program[256];
-   /* Program version */
-   char hello_version[256];
+  /* Program */
+  char hello_program[256];
+  /* Program version */
+  char hello_version[256];
+  int proto_version;
 } DiscDBHello;
 
 /* DiscDB entry */
