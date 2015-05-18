@@ -184,20 +184,20 @@ static char *DiscDBMakeRequest(DiscDBServer *server,DiscDBHello *hello,
   if(curl_handle) {
     if(server->use_proxy) {
       proxy=g_string_new(NULL);
+
       g_string_sprintf(proxy,"%s:%d",server->proxy->name,
                        server->proxy->port);
       
-      curl_easy_setopt(curl_handle,CURLOPT_PROXY,proxy);
-      
-      g_string_free(proxy,TRUE);
+      curl_easy_setopt(curl_handle,CURLOPT_PROXY,proxy->str);
       
       if(*server->proxy->username) {
+
+        user=g_string_new(NULL);
+
         g_string_sprintf(user,"%s:%s",server->proxy->username,
                          server->proxy->pswd);
         
-        curl_easy_setopt(curl_handle,CURLOPT_PROXYUSERPWD,user);
-        
-        g_string_free(user,TRUE);
+        curl_easy_setopt(curl_handle,CURLOPT_PROXYUSERPWD,user->str);
       }
     }
     
@@ -238,11 +238,19 @@ static char *DiscDBMakeRequest(DiscDBServer *server,DiscDBHello *hello,
       fclose(outfile);
     }
     
-    g_string_free(uri,TRUE);
-  
     curl_slist_free_all(headers);
 
     curl_easy_cleanup(curl_handle);
+
+    g_string_free(uri,TRUE);
+
+    if(server->use_proxy) {
+      g_string_free(proxy,TRUE);
+
+      if(*server->proxy->username) {
+        g_string_free(user,TRUE);
+      }
+    }
   }
 
   curl_global_cleanup();

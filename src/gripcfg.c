@@ -55,7 +55,7 @@ static MP3Encoder encoder_defaults[]={{"bladeenc","-%b -QUIT %w %m","mp3"},
 				       "mp3"},
 				      {"gogo","-b %b %w %m","mp3"},
 				      {"oggenc",
-				       "-o %m -a %a -l %d -t %n -b %b %w -N %t -G %g -d %y",
+				       "-o %m -a %a -l %d -t %n -b %b -N %t -G %G -d %y %w",
 				       "ogg"},
 				      {"flac","-V -o %m %w","flac"},
 				      {"other","",""},
@@ -696,6 +696,11 @@ void MakeConfigPage(GripInfo *ginfo)
 		     _("Characters to not strip\nin filenames"),255,TRUE);
   gtk_box_pack_start(GTK_BOX(vbox),entry,FALSE,FALSE,0);
   gtk_widget_show(entry);
+  
+  check=MakeCheckButton(NULL,&ginfo->show_tray_icon,
+  			_("Show tray icon"));
+  gtk_box_pack_start(GTK_BOX(vbox),check,FALSE,FALSE,0);
+  gtk_widget_show(check);
 
   gtk_container_add(GTK_CONTAINER(page),vbox);
   gtk_widget_show(vbox);
@@ -805,7 +810,8 @@ void SaveRipperConfig(GripInfo *ginfo,int ripcfg)
           ripper_defaults[ripcfg].name);
 
   if(!SaveConfig(buf,"GRIP",2,rip_cfg_entries))
-    DisplayMsg(_("Error: Unable to save ripper config"));
+    gnome_app_warning((GnomeApp *)ginfo->gui_info.app,
+                      _("Error: Unable to save ripper config."));
 }
 
 static void EncoderSelected(GtkWidget *widget,gpointer data)
@@ -875,7 +881,8 @@ void SaveEncoderConfig(GripInfo *ginfo,int encodecfg)
           encoder_defaults[encodecfg].name);
 
   if(!SaveConfig(buf,"GRIP",2,encode_cfg_entries))
-    DisplayMsg(_("Error: Unable to save encoder config"));
+    gnome_app_warning((GnomeApp *)ginfo->gui_info.app,
+                      _("Error: Unable to save encoder config."));
 }
 
 void FindExeInPath(char *exename, char *buf, int bsize)

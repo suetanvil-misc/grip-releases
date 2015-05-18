@@ -1,9 +1,31 @@
+2005-01-29  Mike Oliphant  <grip@nostatic.org>
+
+	* nl.po: added (Sander Brabander)
+	* hu.po: added (Ferenc Veres)
+	* various: notification area support added
+	  (Christian Kirbach, Eoin Coffey)
+	* grip.spec: fixed email address
+	* rip.c: better error message if ripping is done with no disc in
+	  the drive (Markus Kaufhold)
+	* rip.c/cdplay.c/discedit.c/grip.c/gripcfg.c: converted some
+	  warnings to use gnome_app_warning
+	* various: notification area support added (Eoin Coffey)
+	* discdb.c: fixed a problem keeping proxy support from working
+	  (Skip Slugger, lucabon)
+	* discedit.c: do not show the multi-artist UI when no disc is
+	  present (Vladimir Petrov)
+	* discedit.c: removed stray debugging when editing disc titile
+	  (Julian C. Dunn)
+	* rip.c: fixed track number being off by one when auto-naming
+	  empty tracks (Vladimir Petrov)
+	* configure.in: upped version to 3.3.0
+
+
 2004-04-26  Mike Oliphant  <grip@nostatic.org>
 
 	* cdplay.c: fixed crash when clicking on rip column without a disc
 	  inserted (thanks to Michael Mauch for catching this)
 	* configure.in: upped version to 3.2.0
-
 
 2004-04-20  Mike Oliphant  <grip@nostatic.org>
 

@@ -31,6 +31,7 @@
 #include "pthread.h"
 #include "launch.h"
 #include "status_window.h"
+#include "eggtrayicon.h"
 
 #if defined(HAVE_CDDA_INTERFACE_H) || defined(HAVE_CDDA_CDDA_INTERFACE_H)
 #define CDPAR
@@ -68,6 +69,8 @@ typedef struct _grip_gui {
   int win_height_edit;
   int win_width_min;
   int win_height_min;
+  int x;
+  int y;
   GtkStyle *style_wb;
   GtkStyle *style_LCD;
   GtkStyle *style_dark_grey;
@@ -177,6 +180,14 @@ typedef struct _grip_gui {
   GtkWidget *smile_pix[8];
 
   GtkWidget *play_pix[3];
+  
+  /* notification area widgets */
+  EggTrayIcon *tray_icon;
+  GtkTooltips *tray_tips;
+  GtkWidget *tray_ebox;
+  GtkWidget *tray_menu;
+  GtkWidget *tray_menu_play;
+  GtkWidget *tray_menu_pause;
 } GripGUI;
 
 struct _encode_track;
@@ -318,6 +329,19 @@ typedef struct _grip_info {
   char cdupdate[256];
   StrTransPrefs sprefs;
   gboolean keep_min_size;
+  
+  /* some vars for use in TrayIconUpdate */
+  gfloat rip_percent;
+  gfloat enc_percent;
+  
+  gfloat rip_tot_percent;
+  gfloat enc_tot_percent;
+
+  gboolean app_visible;
+  
+  gboolean show_tray_icon;
+  gboolean tray_icon_made;
+  gboolean tray_menu_sensitive;
 
   /* these are for calculating ripping progress */
   size_t all_ripsize;

@@ -72,4 +72,9 @@ void UpdateDisplay(GripInfo *ginfo);
 void UpdateTracks(GripInfo *ginfo);
 void SubmitEntry(gint reply,gpointer data);
 
+void PlayTrackCB(GtkWidget *widget,gpointer data);
+void StopPlayCB(GtkWidget *widget,gpointer data);
+void NextTrackCB(GtkWidget *widget,gpointer data);
+void PrevTrackCB(GtkWidget *widget,gpointer data);
+
 #endif /* ifndef GRIP_CDPLAY_H */

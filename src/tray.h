@@ -1,4 +1,4 @@
-/* common.h
+/* tray.h
  *
  * Copyright (c) 1998-2002  Mike Oliphant <oliphant@gtk.org>
  *
@@ -20,20 +20,15 @@
  * USA
  */
 
-#include <gnome.h>
+#ifndef GRIP_TRAY_H
+#define GRIP_TRAY_H
 
-/* Routines from main.c */
-void Debug(char *fmt,...);
+#include "grip.h"
 
-/* Routines from uihelper.c */
-GtkTooltips *MakeToolTip(void);
-GdkColor *MakeColor(int red,int green,int blue);
-GtkStyle *MakeStyle(GdkColor *fg,GdkColor *bg,gboolean do_grade);
-GtkWidget *BuildMenuItemXpm(GtkWidget *xpm, gchar *text);
-GtkWidget *BuildMenuItem(gchar *impath, gchar *text, gboolean stock);
-GtkWidget *NewBlankPixmap(GtkWidget *widget);
-GtkWidget *ImageButton(GtkWidget *widget,GtkWidget *image);
-GtkWidget *Loadxpm(GtkWidget *widget,char **xpm);
-void CopyPixmap(GtkPixmap *src,GtkPixmap *dest);
-gint SizeInDubs(GdkFont *font,gint numchars);
-void UpdateGTK(void);
+void UpdateTray(GripInfo *ginfo);
+void TrayMenuShowPlay(GripInfo *ginfo);
+void TrayMenuShowPause(GripInfo *ginfo);
+void TrayUnGrayMenu(GripInfo *ginfo);
+void TrayGrayMenu(GripInfo *ginfo);
+
+#endif

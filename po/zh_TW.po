@@ -6,7 +6,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: grip 3.0.0\n"
-"POT-Creation-Date: 2004-04-23 09:26-0700\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2005-01-29 11:31-0800\n"
 "PO-Revision-Date: 2002-04-25 18:30+0800\n"
 "Last-Translator: Anthony Fok <anthony@thizlinux.com>\n"
 "Language-Team: Chinese (traditional) <zh-l10n@linux.org.tw>\n"
@@ -59,26 +60,26 @@ msgstr "不做 I/O 重定向"
 msgid "Run in verbose (debug) mode"
 msgstr "以除錯模式執行"
 
-#: src/grip.c:160
+#: src/grip.c:180
 msgid "Grip"
 msgstr "Grip"
 
-#: src/grip.c:217
+#: src/grip.c:237
 #, c-format
 msgid "Error: Unable to initialize [%s]\n"
 msgstr "錯誤: 無法初始化 [%s]\n"
 
-#: src/grip.c:300
+#: src/grip.c:323
 msgid ""
 "This is a development version of Grip. If you encounter problems, you are "
 "encouraged to revert to the latest stable version."
 msgstr ""
 
-#: src/grip.c:304
+#: src/grip.c:329
 msgid "Grip started successfully\n"
 msgstr ""
 
-#: src/grip.c:318
+#: src/grip.c:343
 msgid ""
 "Work is in progress.\n"
 "Really shut down?"
@@ -86,71 +87,71 @@ msgstr ""
 "正在工作中。\n"
 "真的要關閉嗎？"
 
-#: src/grip.c:369
+#: src/grip.c:394
 #, fuzzy
 msgid "Status"
 msgstr "抓軌狀態"
 
-#: src/grip.c:384
+#: src/grip.c:409
 msgid "General"
 msgstr ""
 
-#: src/grip.c:399 src/gripcfg.c:362 src/cdplay.c:254 src/cdplay.c:348
+#: src/grip.c:424 src/gripcfg.c:362 src/cdplay.c:251 src/cdplay.c:345
 #: src/rip.c:95
 msgid "Rip"
 msgstr "抓軌"
 
-#: src/grip.c:414 src/gripcfg.c:496
+#: src/grip.c:439 src/gripcfg.c:496
 #, fuzzy
 msgid "Encode"
 msgstr "編碼器"
 
-#: src/grip.c:459
+#: src/grip.c:484
 msgid "Help"
 msgstr "說明"
 
-#: src/grip.c:464
+#: src/grip.c:489
 msgid "Table Of Contents"
 msgstr "目錄"
 
-#: src/grip.c:470
+#: src/grip.c:495
 msgid "Playing CDs"
 msgstr "播放 CD"
 
-#: src/grip.c:476
+#: src/grip.c:501
 msgid "Ripping CDs"
 msgstr "CD 抓軌"
 
-#: src/grip.c:482
+#: src/grip.c:507
 msgid "Configuring Grip"
 msgstr "設定 Grip"
 
-#: src/grip.c:488
+#: src/grip.c:513
 msgid "FAQ"
 msgstr "常見問題解答"
 
-#: src/grip.c:494
+#: src/grip.c:519
 msgid "Getting More Help"
 msgstr "取得更多輔助"
 
-#: src/grip.c:500
+#: src/grip.c:525
 msgid "Reporting Bugs"
 msgstr "報告錯誤"
 
-#: src/grip.c:520
+#: src/grip.c:545
 msgid "About"
 msgstr "關於"
 
-#: src/grip.c:539
+#: src/grip.c:564
 #, c-format
 msgid "Version %s"
 msgstr ""
 
-#: src/grip.c:875
+#: src/grip.c:904
 msgid "Created by Grip"
 msgstr ""
 
-#: src/grip.c:889
+#: src/grip.c:920
 #, fuzzy
 msgid ""
 "Your config file is out of date -- resetting to defaults.\n"
@@ -161,13 +162,14 @@ msgstr ""
 "您可能需要重新設定 Grip。\n"
 "舊的設定檔已經被儲存為 ~/.grip-old。"
 
-#: src/grip.c:962
+#: src/grip.c:993
 #, c-format
 msgid "server is %s, port %d\n"
 msgstr "伺服器是 %s，連接埠 %d\n"
 
-#: src/grip.c:982
-msgid "Error: Unable to save config file"
+#: src/grip.c:1014
+#, fuzzy
+msgid "Error: Unable to save config file."
 msgstr "錯誤: 無法儲存設定檔"
 
 #: src/gripcfg.c:105
@@ -500,18 +502,22 @@ msgstr ""
 "檔名中不去除的字符\n"
 " "
 
-#: src/gripcfg.c:703
+#: src/gripcfg.c:701
+msgid "Show tray icon"
+msgstr ""
+
+#: src/gripcfg.c:708
 msgid "Misc"
 msgstr "雜項"
 
-#: src/gripcfg.c:808
+#: src/gripcfg.c:814
 #, fuzzy
-msgid "Error: Unable to save ripper config"
+msgid "Error: Unable to save ripper config."
 msgstr "錯誤: 無法儲存設定檔"
 
-#: src/gripcfg.c:878
+#: src/gripcfg.c:885
 #, fuzzy
-msgid "Error: Unable to save encoder config"
+msgid "Error: Unable to save encoder config."
 msgstr "錯誤: 無法儲存設定檔"
 
 #: src/cddev.c:174 src/cddev.c:601
@@ -544,31 +550,32 @@ msgstr "解鎖失敗: %d"
 msgid "CDIOCEJECT"
 msgstr ""
 
-#: src/cdplay.c:86
-msgid "Cannot do lookup while ripping"
+#: src/cdplay.c:83
+#, fuzzy
+msgid "Cannot do lookup while ripping."
 msgstr "無法在抓軌過程中查詢"
 
 #. "misc"
-#: src/cdplay.c:123
+#: src/cdplay.c:120
 msgid "Unknown Disc"
 msgstr "未知光碟"
 
-#: src/cdplay.c:127
+#: src/cdplay.c:124
 #, c-format
 msgid "Track %02d"
 msgstr "Track %02d"
 
-#: src/cdplay.c:187
+#: src/cdplay.c:184
 #, c-format
 msgid "Querying %s (through %s) for disc %02x.\n"
 msgstr "正在 (透過 %2$s) 向 %1$s 查詢光碟 %3$02x。\n"
 
-#: src/cdplay.c:192
+#: src/cdplay.c:189
 #, c-format
 msgid "Querying %s for disc %02x.\n"
 msgstr "正在向 %s 查詢光碟 %02x。\n"
 
-#: src/cdplay.c:209
+#: src/cdplay.c:206
 #, c-format
 msgid ""
 "Match for \"%s / %s\"\n"
@@ -577,166 +584,177 @@ msgstr ""
 "正在匹配 \"%s / %s\"\n"
 "正在下載資料...\n"
 
-#: src/cdplay.c:217
+#: src/cdplay.c:214
 msgid "Done\n"
 msgstr "完成\n"
 
-#: src/cdplay.c:221 src/cdplay.c:635
+#: src/cdplay.c:218
 msgid "Error saving disc data\n"
 msgstr "儲存光碟資料錯誤\n"
 
-#: src/cdplay.c:227
+#: src/cdplay.c:224
 msgid "No match\n"
 msgstr "不匹配\n"
 
-#: src/cdplay.c:245 src/cdplay.c:337
+#: src/cdplay.c:242 src/cdplay.c:334
 #, fuzzy
 msgid "Length"
 msgstr "長度"
 
-#: src/cdplay.c:302
+#: src/cdplay.c:299
 msgid "Tracks"
 msgstr "曲目"
 
-#: src/cdplay.c:326
+#: src/cdplay.c:323
 msgid "Track"
 msgstr "曲目"
 
-#: src/cdplay.c:706
+#: src/cdplay.c:633 src/discedit.c:390
+#, fuzzy
+msgid "Error saving disc data."
+msgstr "儲存光碟資訊錯誤"
+
+#: src/cdplay.c:704
 msgid "Rotate play mode"
 msgstr "循環播放模式"
 
-#: src/cdplay.c:726
+#: src/cdplay.c:724
 msgid "Toggle loop play"
 msgstr "切換循環播放"
 
-#: src/cdplay.c:804 src/rip.c:230
+#: src/cdplay.c:802 src/rip.c:230
 msgid "Rip status"
 msgstr "抓軌狀態"
 
-#: src/cdplay.c:871
+#: src/cdplay.c:869
 msgid "Play track / Pause play"
 msgstr "播放/暫停"
 
-#: src/cdplay.c:882
+#: src/cdplay.c:880
 msgid "Rewind"
 msgstr "倒退"
 
-#: src/cdplay.c:893
+#: src/cdplay.c:891
 msgid "FastForward"
 msgstr "快進"
 
-#: src/cdplay.c:903
+#: src/cdplay.c:901
 msgid "Go to previous track"
 msgstr "上一曲"
 
-#: src/cdplay.c:912
+#: src/cdplay.c:910
 msgid "Go to next track"
 msgstr "下一曲"
 
-#: src/cdplay.c:921
+#: src/cdplay.c:919
 msgid "Toggle play mode options"
 msgstr "切換播放模式選項"
 
-#: src/cdplay.c:931
+#: src/cdplay.c:929
 msgid "Next Disc"
 msgstr "下一光碟"
 
-#: src/cdplay.c:945
+#: src/cdplay.c:943
 msgid "Stop play"
 msgstr "停止播放"
 
-#: src/cdplay.c:955
+#: src/cdplay.c:953
 msgid "Eject disc"
 msgstr "彈出光碟"
 
-#: src/cdplay.c:964
+#: src/cdplay.c:962
 #, fuzzy
 msgid "Scan Disc Contents"
 msgstr "目錄"
 
-#: src/cdplay.c:972
+#: src/cdplay.c:970
 msgid "Toggle Volume Control"
 msgstr "切換音量控制"
 
-#: src/cdplay.c:981
+#: src/cdplay.c:979
 msgid "Toggle disc editor"
 msgstr "切換光碟編輯器"
 
-#: src/cdplay.c:991
+#: src/cdplay.c:989
 msgid "Initiate/abort DiscDB lookup"
 msgstr "初始化/取消光碟查詢"
 
-#: src/cdplay.c:1001
+#: src/cdplay.c:999
 msgid "Toggle track display"
 msgstr "切換曲目顯示"
 
-#: src/cdplay.c:1008
+#: src/cdplay.c:1006
 msgid "Exit Grip"
 msgstr "離開 Grip"
 
-#: src/cdplay.c:1174
-msgid "Cannot fast forward while ripping"
+#: src/cdplay.c:1173
+#, fuzzy
+msgid "Cannot fast forward while ripping."
 msgstr "抓軌過程中不能快進"
 
 #: src/cdplay.c:1204
-msgid "Cannot rewind while ripping"
+#, fuzzy
+msgid "Cannot rewind while ripping."
 msgstr "抓軌過程中不能倒退"
 
-#: src/cdplay.c:1234
-msgid "Cannot switch discs while ripping"
+#: src/cdplay.c:1235
+#, fuzzy
+msgid "Cannot switch discs while ripping."
 msgstr "抓軌過程中不能切換光碟"
 
-#: src/cdplay.c:1252
+#: src/cdplay.c:1253
 msgid "Eject disc\n"
 msgstr "彈出光碟\n"
 
-#: src/cdplay.c:1255
-msgid "Cannot eject while ripping"
+#: src/cdplay.c:1257
+#, fuzzy
+msgid "Cannot eject while ripping."
 msgstr "不能在抓軌過程中彈出光碟"
 
-#: src/cdplay.c:1265
+#: src/cdplay.c:1267
 msgid "Have disc -- ejecting\n"
 msgstr "有光碟──正在彈出\n"
 
-#: src/cdplay.c:1329
-msgid "Cannot play while ripping"
+#: src/cdplay.c:1334
+#, fuzzy
+msgid "Cannot play while ripping."
 msgstr "抓軌過程中不能播放"
 
-#: src/cdplay.c:1390 src/cdplay.c:1420
-msgid "Cannot switch tracks while ripping"
+#: src/cdplay.c:1402 src/cdplay.c:1433
+#, fuzzy
+msgid "Cannot switch tracks while ripping."
 msgstr "抓軌過程中不能改變曲目"
 
-#: src/cdplay.c:1511
+#: src/cdplay.c:1524
 msgid "Checking for a new disc\n"
 msgstr "正在檢查新光碟\n"
 
-#: src/cdplay.c:1516
+#: src/cdplay.c:1529
 msgid "CDStat found a disc, checking tracks\n"
 msgstr "CDStat 發現光碟，正在檢查曲目\n"
 
-#: src/cdplay.c:1519
+#: src/cdplay.c:1532
 msgid "We have a valid disc!\n"
 msgstr "光碟有效！\n"
 
-#: src/cdplay.c:1546
+#: src/cdplay.c:1559
 msgid "No non-zero length tracks\n"
 msgstr "沒有非零長度的曲目\n"
 
-#: src/cdplay.c:1555
+#: src/cdplay.c:1568
 msgid "CDStat said no disc\n"
 msgstr "CDStat 說無光碟\n"
 
-#: src/cdplay.c:1704 src/cdplay.c:1726
+#: src/cdplay.c:1717 src/cdplay.c:1739
 #, c-format
 msgid "Current sector: %6d"
 msgstr "當前扇區: %6d"
 
-#: src/cdplay.c:1827
+#: src/cdplay.c:1840
 msgid "No Disc"
 msgstr "無光碟"
 
-#: src/cdplay.c:1879
+#: src/cdplay.c:1892
 msgid ""
 "This disc has been found on your secondary server,\n"
 "but not on your primary server.\n"
@@ -748,15 +766,17 @@ msgstr ""
 "\n"
 "您是否想提交此光碟資訊？"
 
-#: src/cdplay.c:1906 src/cdplay.c:1914
-msgid "Error: Unable to create temporary file"
+#: src/cdplay.c:1920 src/cdplay.c:1929
+#, fuzzy
+msgid "Error: Unable to create temporary file."
 msgstr "錯誤: 無法建立暫存檔"
 
-#: src/cdplay.c:1931
-msgid "Error: Unable to write disc data"
+#: src/cdplay.c:1947
+#, fuzzy
+msgid "Error: Unable to write disc data."
 msgstr "錯誤: 無法寫入光碟資料"
 
-#: src/cdplay.c:1940
+#: src/cdplay.c:1956
 #, c-format
 msgid "Mailing entry to %s\n"
 msgstr "發送郵件到 %s\n"
@@ -770,27 +790,27 @@ msgstr "系統消息"
 msgid "URI is %s\n"
 msgstr "URI 是 %s\n"
 
-#: src/discdb.c:278
+#: src/discdb.c:286
 #, c-format
 msgid "Query is [%s]\n"
 msgstr "查詢是 [%s]\n"
 
-#: src/discdb.c:736
+#: src/discdb.c:744
 #, c-format
 msgid "Stat error %d on %s\n"
 msgstr "狀態錯誤 %d 在 %s\n"
 
-#: src/discdb.c:740
+#: src/discdb.c:748
 #, c-format
 msgid "Creating directory %s\n"
 msgstr "建立目錄 %s\n"
 
-#: src/discdb.c:745
+#: src/discdb.c:753
 #, c-format
 msgid "Error: %s exists, but is a file\n"
 msgstr "錯誤: %s 已經存在，但卻是一個檔案\n"
 
-#: src/discdb.c:752
+#: src/discdb.c:760
 #, c-format
 msgid "Error: Unable to open %s for writing\n"
 msgstr "錯誤: 無法開啟 %s 進行寫入\n"
@@ -839,43 +859,41 @@ msgstr "作者/標題"
 msgid "Split chars"
 msgstr "分割符"
 
-#: src/discedit.c:252
+#: src/discedit.c:254
 msgid "Multi-artist"
 msgstr "多作者"
 
-#: src/discedit.c:263
+#: src/discedit.c:265
 msgid "Save disc info"
 msgstr "儲存光碟資訊"
 
-#: src/discedit.c:272
+#: src/discedit.c:274
 msgid "Submit disc info"
 msgstr "提交光碟資訊"
 
-#: src/discedit.c:387
-msgid "Error saving disc data"
-msgstr "儲存光碟資訊錯誤"
-
-#: src/discedit.c:389
-msgid "No disc present"
+#: src/discedit.c:393
+#, fuzzy
+msgid "No disc present."
 msgstr "沒有光碟"
 
-#: src/discedit.c:541
-msgid ""
-"Cannot submit\n"
-"No disc is present"
+#: src/discedit.c:543
+#, fuzzy
+msgid "Cannot submit. No disc is present."
 msgstr ""
 "不能提交\n"
 "沒有光碟"
 
-#: src/discedit.c:554
-msgid "You must enter a disc title"
+#: src/discedit.c:558
+#, fuzzy
+msgid "You must enter a disc title."
 msgstr "您必須輸入光碟標題"
 
-#: src/discedit.c:560
-msgid "You must enter a disc artist"
+#: src/discedit.c:565
+#, fuzzy
+msgid "You must enter a disc artist."
 msgstr "您必須輸入一個作者"
 
-#: src/discedit.c:570
+#: src/discedit.c:575
 msgid ""
 "You are about to submit this disc information\n"
 "to a commercial CDDB server, which will then\n"
@@ -886,7 +904,7 @@ msgid ""
 "Continue?"
 msgstr ""
 
-#: src/discedit.c:579
+#: src/discedit.c:584
 msgid ""
 "You are about to submit this\n"
 "disc information via email.\n"
@@ -894,11 +912,11 @@ msgid ""
 "Continue?"
 msgstr ""
 
-#: src/discedit.c:596
+#: src/discedit.c:601
 msgid "Genre selection"
 msgstr "選擇類別"
 
-#: src/discedit.c:600
+#: src/discedit.c:605
 msgid ""
 "Submission requires a genre other than 'unknown'\n"
 "Please select a DiscDB genre below"
@@ -906,15 +924,15 @@ msgstr ""
 "您需要指定具體的音樂類別\n"
 "請從下列選擇一個 DiscDB 類別"
 
-#: src/discedit.c:610
+#: src/discedit.c:615
 msgid "DiscDB genre"
 msgstr "DiscDB 類別"
 
-#: src/discedit.c:630
+#: src/discedit.c:635
 msgid "Submit"
 msgstr "提交"
 
-#: src/discedit.c:641
+#: src/discedit.c:646
 msgid "Cancel"
 msgstr "取消"
 
@@ -928,7 +946,7 @@ msgstr "未知的 ID3 域\n"
 msgid "Error: unable to translate filename. No such user as %s\n"
 msgstr "錯誤: 無法轉換檔名。無此使用者 %s\n"
 
-#: src/launch.c:293 src/rip.c:1511
+#: src/launch.c:293 src/rip.c:1533
 msgid "Exec failed\n"
 msgstr "執行失敗\n"
 
@@ -992,8 +1010,8 @@ msgstr "播放"
 msgid "Current sector:      0"
 msgstr "目前扇區:      0"
 
-#: src/rip.c:204 src/rip.c:221 src/rip.c:269 src/rip.c:856 src/rip.c:908
-#: src/rip.c:910 src/rip.c:1053 src/rip.c:1054
+#: src/rip.c:204 src/rip.c:221 src/rip.c:269 src/rip.c:862 src/rip.c:915
+#: src/rip.c:917 src/rip.c:1065 src/rip.c:1066
 msgid "Rip: Idle"
 msgstr "抓軌: 閒置"
 
@@ -1002,7 +1020,7 @@ msgstr "抓軌: 閒置"
 msgid "Enc: Trk 99 (99.9x)"
 msgstr "編碼: 曲目 99 (99.9x)"
 
-#: src/rip.c:240 src/rip.c:282 src/rip.c:1025 src/rip.c:1038
+#: src/rip.c:240 src/rip.c:282 src/rip.c:1036 src/rip.c:1050
 #, fuzzy
 msgid "Enc: Idle"
 msgstr "編碼: 閒置"
@@ -1024,97 +1042,104 @@ msgstr "終止扇區"
 msgid "Inserting track %d into the ddj database\n"
 msgstr "把資訊插入 SQL 資料庫"
 
-#: src/rip.c:601
-msgid "Error: can't open m3u file\n"
+#: src/rip.c:602
+#, fuzzy
+msgid "Error: can't open m3u file."
 msgstr "錯誤: 不能開啟 m3u 檔案\n"
 
-#: src/rip.c:643
+#: src/rip.c:644
 msgid "In KillRip\n"
 msgstr ""
 
-#: src/rip.c:669
+#: src/rip.c:670
 #, c-format
 msgid "Now total enc size is: %d\n"
 msgstr ""
 
-#: src/rip.c:822
+#: src/rip.c:825
 #, c-format
 msgid "Rip: Trk %d (%3.1fx)"
 msgstr "抓軌: 曲目 %d (%3.1fx)"
 
-#: src/rip.c:852
+#: src/rip.c:858
 #, c-format
 msgid "Rip: %6.2f%%"
 msgstr ""
 
-#: src/rip.c:871
+#: src/rip.c:878
 msgid "Rip finished\n"
 msgstr "完成抓軌\n"
 
-#: src/rip.c:897
+#: src/rip.c:904
 #, c-format
 msgid "Rip partial %d  num wavs %d\n"
 msgstr ""
 
-#: src/rip.c:900
+#: src/rip.c:907
 #, c-format
 msgid "Next track is %d, total is %d\n"
 msgstr "下一首是 %d，總共 %d 首\n"
 
-#: src/rip.c:906
+#: src/rip.c:913
 msgid "Check if we need to rip another track\n"
 msgstr "檢查是否需要抓取其他曲目\n"
 
-#: src/rip.c:946
+#: src/rip.c:955
 #, fuzzy, c-format
 msgid "Enc: Trk %d (%3.1fx)"
 msgstr "編碼: 曲目 %d (%3.1fx)"
 
-#: src/rip.c:962
+#: src/rip.c:973
 #, c-format
 msgid "Enc: %6.2f%%"
 msgstr ""
 
-#: src/rip.c:972
+#: src/rip.c:983
 #, c-format
 msgid "Finished encoding on cpu %d\n"
 msgstr "完成編碼在處理器 %d\n"
 
-#: src/rip.c:990
+#: src/rip.c:1001
 #, c-format
 msgid "Deleting [%s]\n"
 msgstr "正在刪除 [%s]\n"
 
-#: src/rip.c:1046
+#: src/rip.c:1058
 msgid "Ripping is finished\n"
 msgstr "抓軌完成\n"
 
-#: src/rip.c:1157 src/rip.c:1163
+#: src/rip.c:1169 src/rip.c:1175
 msgid "NoArtist"
 msgstr "無作者"
 
-#: src/rip.c:1168
+#: src/rip.c:1180
 msgid "NoTitle"
 msgstr "無標題"
 
-#: src/rip.c:1260
+#: src/rip.c:1270
 msgid ""
-"Invalid rip executable\n"
-"Check your rip config"
+"No disc was detected in the drive. If you have a disc in your drive, please "
+"check your CDRom device setting under Config->CD."
 msgstr ""
-"無效的抓軌程式\n"
-"請檢查你的抓軌器設定"
 
-#: src/rip.c:1267
+#: src/rip.c:1279
+msgid ""
+"Invalid rip executable.\n"
+"Check your rip config, and ensure it specifies the full path to the ripper "
+"executable."
+msgstr ""
+
+#: src/rip.c:1287
 #, fuzzy
 msgid ""
-"Invalid encoder executable\n"
-"Check your encoder config"
+"Invalid encoder executable.\n"
+"Check your encoder config, and ensure it specifies the full path to the "
+"encoder executable."
 msgstr ""
 "無效的抓軌程式\n"
 "請檢查你的抓軌器設定"
 
-#: src/rip.c:1303
+#: src/rip.c:1323
 msgid ""
 "No tracks selected.\n"
 "Rip whole CD?\n"
@@ -1122,96 +1147,103 @@ msgstr ""
 "沒有選擇曲目。\n"
 "抓取整片光碟嗎？\n"
 
-#: src/rip.c:1326
+#: src/rip.c:1346
 msgid "Ripping whole CD\n"
 msgstr "正在抓取整片光碟\n"
 
-#: src/rip.c:1365
+#: src/rip.c:1385
 msgid "In RipNextTrack\n"
 msgstr "在抓取下一軌\n"
 
-#: src/rip.c:1372
+#: src/rip.c:1392
 #, c-format
 msgid "First checked track is %d\n"
 msgstr "第一個檢查的曲目是 %d\n"
 
-#: src/rip.c:1382
+#: src/rip.c:1402
 msgid "Ripping away!\n"
 msgstr ""
 
-#: src/rip.c:1428
+#: src/rip.c:1449
 msgid "No write access to write wav file"
 msgstr "沒有寫入 wav 檔案的權限"
 
-#: src/rip.c:1442
+#: src/rip.c:1463
 #, c-format
 msgid "Ripping track %d to %s\n"
 msgstr "正在抓取曲目 %d 到 %s\n"
 
-#: src/rip.c:1446
+#: src/rip.c:1467
 #, c-format
 msgid "Rip: Trk %d (0.0x)"
 msgstr "抓軌: 曲目 %d (0.0x)"
 
-#: src/rip.c:1451
+#: src/rip.c:1472
 #, c-format
 msgid "File %s has already been ripped. Skipping...\n"
 msgstr "檔案 %s 已經抓過。跳過...\n"
 
-#: src/rip.c:1471 src/rip.c:1719
+#: src/rip.c:1493 src/rip.c:1743
 msgid "Out of space in output directory"
 msgstr "輸出目錄空間不足"
 
-#: src/rip.c:1545
+#: src/rip.c:1567
 msgid "Calling CDPRip\n"
 msgstr "呼叫 CDPRip\n"
 
-#: src/rip.c:1631
+#: src/rip.c:1653
 #, fuzzy, c-format
 msgid "Added track %d to %s list\n"
 msgstr "添加曲目 %d 到編碼隊列\n"
 
-#: src/rip.c:1657
+#: src/rip.c:1679
 msgid "No free cpus\n"
 msgstr "沒有閒置的處理器\n"
 
-#: src/rip.c:1673
+#: src/rip.c:1695
 #, fuzzy, c-format
 msgid "Enc track %d\n"
 msgstr "MP3 曲目 %d\n"
 
-#: src/rip.c:1694
+#: src/rip.c:1717
 #, fuzzy
-msgid "No write access to write encoded file"
+msgid "No write access to write encoded file."
 msgstr "沒有寫入 mp3 檔案的權限"
 
-#: src/rip.c:1705
+#: src/rip.c:1728
 #, c-format
 msgid "%i: Encoding to %s\n"
 msgstr "%i: 編碼到 %s\n"
 
-#: src/rip.c:1709
+#: src/rip.c:1732
 #, fuzzy, c-format
 msgid "Enc: Trk %d (0.0x)"
 msgstr "抓軌: 曲目 %d (0.0x)"
 
-#: src/rip.c:1772
+#: src/rip.c:1796
 msgid "In CalculateAll\n"
 msgstr ""
 
-#: src/rip.c:1778
+#: src/rip.c:1802
 msgid "We aren't ripping now, so let's zero encoding values\n"
 msgstr ""
 
-#: src/rip.c:1794
+#: src/rip.c:1818
 #, c-format
 msgid "Total rip size is: %d\n"
 msgstr ""
 
-#: src/rip.c:1795
+#: src/rip.c:1819
 #, c-format
 msgid "Total enc size is: %d\n"
 msgstr ""
+
+#~ msgid ""
+#~ "Invalid rip executable\n"
+#~ "Check your rip config"
+#~ msgstr ""
+#~ "無效的抓軌程式\n"
+#~ "請檢查你的抓軌器設定"
 
 #~ msgid "Keep application minimum size"
 #~ msgstr "保持應用程式視窗最小尺寸"

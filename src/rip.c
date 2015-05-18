@@ -598,7 +598,8 @@ static gboolean AddM3U(GripInfo *ginfo)
 
   fp=fopen(conv_str, "w");
   if(fp==NULL) {
-    DisplayMsg(_("Error: can't open m3u file\n"));
+    gnome_app_warning((GnomeApp *)ginfo->gui_info.app,
+                      _("Error: can't open m3u file."));
     return FALSE;
   }
   g_free(conv_str);
@@ -790,7 +791,7 @@ void UpdateRipProgress(GripInfo *ginfo)
   gboolean result=FALSE;
   char *conv_str;
   gsize rb,wb;
-
+  
   uinfo=&(ginfo->gui_info);
 
   if(ginfo->ripping) {
@@ -801,6 +802,8 @@ void UpdateRipProgress(GripInfo *ginfo)
     else {
       percent=0;
     }
+   
+   	ginfo->rip_percent = percent;
    
     gtk_progress_bar_update(GTK_PROGRESS_BAR(uinfo->ripprogbar),percent);
 
@@ -820,6 +823,7 @@ void UpdateRipProgress(GripInfo *ginfo)
     }
     
     sprintf(buf,_("Rip: Trk %d (%3.1fx)"),ginfo->rip_track+1,speed);
+	
     gtk_label_set(GTK_LABEL(uinfo->rip_prog_label),buf);
 
     quarter=(int)(percent*4.0);
@@ -849,11 +853,14 @@ void UpdateRipProgress(GripInfo *ginfo)
       if(percent>1.0)
 	percent=0.0;
       
+      ginfo->rip_tot_percent = percent;
+      
       sprintf(buf,_("Rip: %6.2f%%"),percent*100.0);
       gtk_label_set(GTK_LABEL(uinfo->all_rip_label),buf);
       gtk_progress_bar_update(GTK_PROGRESS_BAR(uinfo->all_ripprogbar),percent);
     } else if (ginfo->stop_rip) {
       gtk_label_set(GTK_LABEL(uinfo->all_rip_label),_("Rip: Idle"));
+	 
       gtk_progress_bar_update(GTK_PROGRESS_BAR(uinfo->all_ripprogbar),0.0);
     }
 
@@ -905,9 +912,9 @@ void UpdateRipProgress(GripInfo *ginfo)
 	    NextTrackToRip(ginfo)==ginfo->disc.num_tracks)) {
 	  Debug(_("Check if we need to rip another track\n"));
 	  if(!RipNextTrack(ginfo)) RipIsFinished(ginfo,FALSE);
-	  else gtk_label_set(GTK_LABEL(uinfo->rip_prog_label),_("Rip: Idle"));
+	  else { gtk_label_set(GTK_LABEL(uinfo->rip_prog_label),_("Rip: Idle"));  }
 	}
-	else gtk_label_set(GTK_LABEL(uinfo->rip_prog_label),_("Rip: Idle"));
+	else { gtk_label_set(GTK_LABEL(uinfo->rip_prog_label),_("Rip: Idle"));  }
       }
       else {
 	RipIsFinished(ginfo,TRUE);
@@ -931,6 +938,8 @@ void UpdateRipProgress(GripInfo *ginfo)
         percent=0;
       } 
 
+	  ginfo->enc_percent = percent;
+	
       gtk_progress_bar_update(GTK_PROGRESS_BAR(uinfo->mp3progbar[mycpu]),
 			      percent);
        
@@ -945,6 +954,7 @@ void UpdateRipProgress(GripInfo *ginfo)
       
       sprintf(buf,_("Enc: Trk %d (%3.1fx)"),
 	      ginfo->mp3_enc_track[mycpu]+1,speed);
+	  
       gtk_label_set(GTK_LABEL(uinfo->mp3_prog_label[mycpu]),buf);
  
       quarter=(int)(percent*4.0);
@@ -959,6 +969,7 @@ void UpdateRipProgress(GripInfo *ginfo)
 	percent=(gfloat)(ginfo->all_encdone)/(gfloat)(ginfo->all_encsize);
 	if (percent>1.0)
 	  percent=1.0;
+	ginfo->enc_tot_percent = percent;
 	sprintf(buf,_("Enc: %6.2f%%"),percent*100.0);
 	gtk_label_set(GTK_LABEL(uinfo->all_enc_label),buf);
 	gtk_progress_bar_update(GTK_PROGRESS_BAR(uinfo->all_encprogbar),
@@ -1020,9 +1031,10 @@ void UpdateRipProgress(GripInfo *ginfo)
         }
 	else ginfo->stop_encode=FALSE;
 
-        if(!(ginfo->encoding&(1<<mycpu)))
+        if(!(ginfo->encoding&(1<<mycpu))) {
 	  gtk_label_set(GTK_LABEL(uinfo->mp3_prog_label[mycpu]),
 			_("Enc: Idle"));
+ 	    }
       }
     }  
   }
@@ -1146,7 +1158,7 @@ char *TranslateSwitch(char switch_char,void *data,gboolean *munge)
   case 'n':
     if(*(enc_track->song_name))
       g_snprintf(res,PATH_MAX,"%s",enc_track->song_name);
-    else g_snprintf(res,PATH_MAX,"Track%02d",enc_track->track_num);
+    else g_snprintf(res,PATH_MAX,"Track%02d",enc_track->track_num+1);
     break;
   case 'a':
     if(*(enc_track->song_artist))
@@ -1253,18 +1265,26 @@ void DoRip(GtkWidget *widget,gpointer data)
 
   ginfo=(GripInfo *)data;
 
+  if(!ginfo->have_disc) {
+    gnome_app_warning((GnomeApp *)ginfo->gui_info.app,
+                      _("No disc was detected in the drive. If you have a disc in your drive, please check your CDRom device setting under Config->CD."));
+    return;
+  }
+
   if(widget) ginfo->doencode=FALSE;
   else ginfo->doencode=TRUE;
 
   if(!ginfo->using_builtin_cdp&&!FileExists(ginfo->ripexename)) {
-    DisplayMsg(_("Invalid rip executable\nCheck your rip config"));
+    gnome_app_warning((GnomeApp *)ginfo->gui_info.app,
+                      _("Invalid rip executable.\nCheck your rip config, and ensure it specifies the full path to the ripper executable."));
 
     ginfo->doencode=FALSE;
     return;
   }
 
   if(ginfo->doencode&&!FileExists(ginfo->mp3exename)) {
-    DisplayMsg(_("Invalid encoder executable\nCheck your encoder config"));
+    gnome_app_warning((GnomeApp *)ginfo->gui_info.app,
+                      _("Invalid encoder executable.\nCheck your encoder config, and ensure it specifies the full path to the encoder executable."));
 
     ginfo->doencode=FALSE;
     return;
@@ -1425,7 +1445,8 @@ static gboolean RipNextTrack(GripInfo *ginfo)
 
     MakeDirs(ginfo->ripfile);
     if(!CanWrite(ginfo->ripfile)) {
-      DisplayMsg(_("No write access to write wav file"));
+      gnome_app_warning((GnomeApp *)ginfo->gui_info.app,
+                        _("No write access to write wav file"));
       return FALSE;
     }
 
@@ -1468,7 +1489,8 @@ static gboolean RipNextTrack(GripInfo *ginfo)
     bytesleft=BytesLeftInFS(ginfo->ripfile);
 
     if(bytesleft<(ginfo->ripsize*1.5)) {
-      DisplayMsg(_("Out of space in output directory"));
+      gnome_app_warning((GnomeApp *)ginfo->gui_info.app,
+                        _("Out of space in output directory"));
 
       return FALSE;
     }
@@ -1691,7 +1713,8 @@ static gboolean MP3Encode(GripInfo *ginfo)
 
   MakeDirs(ginfo->mp3file[cpu]);
   if(!CanWrite(ginfo->mp3file[cpu])) {
-    DisplayMsg(_("No write access to write encoded file"));
+    gnome_app_warning((GnomeApp *)ginfo->gui_info.app,
+                      _("No write access to write encoded file."));
     return FALSE;
   }
   
@@ -1716,7 +1739,8 @@ static gboolean MP3Encode(GripInfo *ginfo)
 	  (gfloat)(ginfo->kbits_per_sec*1024)/600.0);
   
   if(bytesleft<(ginfo->mp3size[cpu]*1.5)) {
-    DisplayMsg(_("Out of space in output directory"));
+    gnome_app_warning((GnomeApp *)ginfo->gui_info.app,
+                      _("Out of space in output directory"));
     
     return FALSE;
   }

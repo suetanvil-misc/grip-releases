@@ -53,11 +53,7 @@ static void SetVolume(GtkWidget *widget,gpointer data);
 static void FastFwdCB(GtkWidget *widget,gpointer data);
 static void RewindCB(GtkWidget *widget,gpointer data);
 static void NextDisc(GtkWidget *widget,gpointer data);
-static void StopPlayCB(GtkWidget *widget,gpointer data);
-static void PlayTrackCB(GtkWidget *widget,gpointer data);
 static void PlayTrack(GripInfo *ginfo,int track);
-static void NextTrackCB(GtkWidget *widget,gpointer data);
-static void PrevTrackCB(GtkWidget *widget,gpointer data);
 static void PrevTrack(GripInfo *ginfo);
 static void InitProgram(GripInfo *ginfo);
 static void ShuffleTracks(GripInfo *ginfo);
@@ -83,7 +79,8 @@ static void DiscDBToggle(GtkWidget *widget,gpointer data)
   }
   else {
     if(ginfo->ripping_a_disc) {
-      DisplayMsg(_("Cannot do lookup while ripping"));
+      gnome_app_warning((GnomeApp *)ginfo->gui_info.app,
+                        _("Cannot do lookup while ripping."));
 
       return;
     }
@@ -632,7 +629,8 @@ static void PlaylistChanged(GtkWindow *window,GtkWidget *widget,gpointer data)
 
   if(DiscDBWriteDiscData(&(ginfo->disc),&(ginfo->ddata),NULL,TRUE,FALSE,
                          "utf-8")<0)
-    DisplayMsg(_("Error saving disc data\n"));
+    gnome_app_warning((GnomeApp *)ginfo->gui_info.app,
+                      _("Error saving disc data."));
 }
 
 static void ToggleLoop(GtkWidget *widget,gpointer data)
@@ -1171,7 +1169,8 @@ static void FastFwdCB(GtkWidget *widget,gpointer data)
   ginfo=(GripInfo *)data;
 
   if(ginfo->ripping_a_disc) {
-    DisplayMsg(_("Cannot fast forward while ripping"));
+    gnome_app_warning((GnomeApp *)ginfo->gui_info.app,
+                      _("Cannot fast forward while ripping."));
 
     return;
   }
@@ -1201,7 +1200,8 @@ static void RewindCB(GtkWidget *widget,gpointer data)
   ginfo=(GripInfo *)data;
 
   if(ginfo->ripping_a_disc) {
-    DisplayMsg(_("Cannot rewind while ripping"));
+    gnome_app_warning((GnomeApp *)ginfo->gui_info.app,
+                      _("Cannot rewind while ripping."));
 
     return;
   }
@@ -1231,7 +1231,8 @@ static void NextDisc(GtkWidget *widget,gpointer data)
   ginfo=(GripInfo *)data;
 
   if(ginfo->ripping_a_disc) {
-    DisplayMsg(_("Cannot switch discs while ripping"));
+    gnome_app_warning((GnomeApp *)ginfo->gui_info.app,
+                      _("Cannot switch discs while ripping."));
 
     return;
   }
@@ -1252,7 +1253,8 @@ void EjectDisc(GtkWidget *widget,gpointer data)
   LogStatus(ginfo,_("Eject disc\n"));
 
   if(ginfo->ripping_a_disc) {
-    DisplayMsg(_("Cannot eject while ripping"));
+    gnome_app_warning((GnomeApp *)ginfo->gui_info.app,
+                      _("Cannot eject while ripping."));
 
     return;
   }
@@ -1291,7 +1293,7 @@ void EjectDisc(GtkWidget *widget,gpointer data)
   UnBusy(&(ginfo->gui_info));
 }
 
-static void StopPlayCB(GtkWidget *widget,gpointer data)
+void StopPlayCB(GtkWidget *widget,gpointer data)
 {
   GripInfo *ginfo;
 
@@ -1305,6 +1307,8 @@ static void StopPlayCB(GtkWidget *widget,gpointer data)
 
   if(ginfo->stop_first)
     SelectRow(ginfo,0);
+    
+  TrayMenuShowPlay(ginfo);
 }
 
 void PlaySegment(GripInfo *ginfo,int track)
@@ -1316,7 +1320,7 @@ void PlaySegment(GripInfo *ginfo,int track)
 
 
 
-static void PlayTrackCB(GtkWidget *widget,gpointer data)
+void PlayTrackCB(GtkWidget *widget,gpointer data)
 {
   int track;
   GripInfo *ginfo;
@@ -1326,7 +1330,8 @@ static void PlayTrackCB(GtkWidget *widget,gpointer data)
   disc=&(ginfo->disc);
 
   if(ginfo->ripping_a_disc) {
-    DisplayMsg(_("Cannot play while ripping"));
+    gnome_app_warning((GnomeApp *)ginfo->gui_info.app,
+                      _("Cannot play while ripping."));
    
     return;
   }
@@ -1348,18 +1353,24 @@ static void PlayTrackCB(GtkWidget *widget,gpointer data)
     switch(disc->disc_mode) {
     case CDAUDIO_PLAYING:
       CDPause(disc);
+      TrayMenuShowPlay(ginfo);
       return;
       break;
     case CDAUDIO_PAUSED:
       CDResume(disc);
+      TrayMenuShowPause(ginfo);
       return;
       break;
     default:
       PlayTrack(ginfo,track);
+	  TrayMenuShowPause(ginfo);
       break;
     }
   }
-  else PlayTrack(ginfo,track);
+  else {
+    PlayTrack(ginfo,track);
+    TrayMenuShowPause(ginfo);
+  }
 }
 
 static void PlayTrack(GripInfo *ginfo,int track)
@@ -1375,7 +1386,7 @@ static void PlayTrack(GripInfo *ginfo,int track)
   ginfo->playing=TRUE;
 }
 
-static void NextTrackCB(GtkWidget *widget,gpointer data)
+void NextTrackCB(GtkWidget *widget,gpointer data)
 {
   GripInfo *ginfo;
 
@@ -1387,7 +1398,8 @@ static void NextTrackCB(GtkWidget *widget,gpointer data)
 void NextTrack(GripInfo *ginfo)
 {
   if(ginfo->ripping_a_disc) {
-    DisplayMsg(_("Cannot switch tracks while ripping"));
+    gnome_app_warning((GnomeApp *)ginfo->gui_info.app,
+                      _("Cannot switch tracks while ripping."));
     return;
   }
   
@@ -1405,7 +1417,7 @@ void NextTrack(GripInfo *ginfo)
   }
 }
 
-static void PrevTrackCB(GtkWidget *widget,gpointer data)
+void PrevTrackCB(GtkWidget *widget,gpointer data)
 {
   GripInfo *ginfo;
 
@@ -1417,7 +1429,8 @@ static void PrevTrackCB(GtkWidget *widget,gpointer data)
 static void PrevTrack(GripInfo *ginfo)
 {
   if(ginfo->ripping_a_disc) {
-    DisplayMsg(_("Cannot switch tracks while ripping"));
+    gnome_app_warning((GnomeApp *)ginfo->gui_info.app,
+                      _("Cannot switch tracks while ripping."));
     return;
   }
 
@@ -1903,7 +1916,8 @@ void SubmitEntry(gint reply,gpointer data)
   fd = mkstemp(filename);
 
   if(fd == -1) {
-    DisplayMsg(_("Error: Unable to create temporary file"));
+    gnome_app_warning((GnomeApp *)ginfo->gui_info.app,
+                      _("Error: Unable to create temporary file."));
     return;
   }
 
@@ -1911,7 +1925,8 @@ void SubmitEntry(gint reply,gpointer data)
 
   if(!efp) {
     close(fd);
-    DisplayMsg(_("Error: Unable to create temporary file"));
+    gnome_app_warning((GnomeApp *)ginfo->gui_info.app,
+                      _("Error: Unable to create temporary file."));
   }
   else {
     fprintf(efp,"To: %s\nFrom: %s\nSubject: cddb %s %02x\n",
@@ -1928,7 +1943,8 @@ void SubmitEntry(gint reply,gpointer data)
 
     if(DiscDBWriteDiscData(&(ginfo->disc),&(ginfo->ddata),efp,FALSE,
 			   ginfo->db_use_freedb,ginfo->discdb_encoding)<0) {
-      DisplayMsg(_("Error: Unable to write disc data"));
+      gnome_app_warning((GnomeApp *)ginfo->gui_info.app,
+                        _("Error: Unable to write disc data."));
       fclose(efp);
     }
     else {

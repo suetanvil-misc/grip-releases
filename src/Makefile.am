@@ -44,6 +44,10 @@ grip_SOURCES =         \
 	launch.c \
 	launch.h \
 	gain_analysis.c \
-	gain_analysis.h
+	gain_analysis.h \
+	eggtrayicon.c \
+	eggtrayicon.h \
+	tray.c \
+	tray.h 
 
 grip_LDADD = @TERMINAL_WIDGET_LIBS@ $(CDPAR_LIBS) $(ID3_LIBS)

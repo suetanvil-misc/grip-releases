@@ -73,6 +73,40 @@ GtkStyle *MakeStyle(GdkColor *fg,GdkColor *bg,gboolean do_grade)
   return sty;
 }
 
+GtkWidget *BuildMenuItem(gchar *impath, gchar *text, gboolean stock)
+{
+  GtkWidget *item, *image;
+
+  if (impath != NULL) {
+    item = gtk_image_menu_item_new_with_mnemonic(text);
+	  if (!stock) {
+	    image = gtk_image_new_from_file(impath);
+		gtk_image_menu_item_set_image(GTK_IMAGE_MENU_ITEM(item), image);
+	  } else {
+		image = gtk_image_new_from_stock(impath, GTK_ICON_SIZE_MENU);
+		gtk_image_menu_item_set_image(GTK_IMAGE_MENU_ITEM(item), image);
+	  }
+  } else {
+    item = gtk_menu_item_new_with_mnemonic(text);
+  }
+	
+  gtk_widget_show_all(item);
+	
+  return item;
+}
+
+GtkWidget *BuildMenuItemXpm(GtkWidget *xpm, gchar *text)
+{
+  GtkWidget *item;
+	
+  item = gtk_image_menu_item_new_with_mnemonic(text);
+  gtk_image_menu_item_set_image(GTK_IMAGE_MENU_ITEM(item), xpm);
+	
+  gtk_widget_show_all(item);
+	
+  return item;
+}
+
 static char * empty_xpm[] = {
   "1 1 1 1",
   "       c None",

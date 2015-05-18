@@ -40,6 +40,7 @@
 #include "gripcfg.h"
 #include "xpm.h"
 #include "parsecfg.h"
+#include "tray.h"
 
 static void ReallyDie(gint reply,gpointer data);
 static void MakeStatusPage(GripInfo *ginfo);
@@ -115,6 +116,7 @@ void DoSaveConfig(GripInfo *ginfo);
 {"no_underscore",CFG_ENTRY_BOOL,0,&ginfo->sprefs.no_underscore},\
 {"allow_high_bits",CFG_ENTRY_BOOL,0,&ginfo->sprefs.allow_high_bits},\
 {"allow_these_chars",CFG_ENTRY_STRING,256,ginfo->sprefs.allow_these_chars},\
+{"show_tray_icon",CFG_ENTRY_BOOL,0,&ginfo->show_tray_icon},\
 {"num_cpu",CFG_ENTRY_INT,0,&ginfo->edit_num_cpu},\
 {"kbits_per_sec",CFG_ENTRY_INT,0,&ginfo->kbits_per_sec},\
 {"selected_encoder",CFG_ENTRY_INT,0,&ginfo->selected_encoder},\
@@ -144,6 +146,24 @@ void DoSaveConfig(GripInfo *ginfo);
 #define CFG_ENTRIES BASE_CFG_ENTRIES
 #endif
 
+gboolean AppWindowStateCB(GtkWidget *widget, GdkEventWindowState *event, gpointer data)
+{
+  GripInfo *ginfo = (GripInfo*)data;
+  GripGUI *uinfo = &(ginfo->gui_info);
+  GdkWindowState state = event->new_window_state;
+	
+  if ((state & GDK_WINDOW_STATE_WITHDRAWN) || (state & GDK_WINDOW_STATE_ICONIFIED)) {
+    ginfo->app_visible = FALSE;
+    return TRUE;
+  } else {
+    ginfo->app_visible = TRUE;
+    gtk_window_get_position(GTK_WINDOW(uinfo->app), &uinfo->x, &uinfo->y);
+    return TRUE;
+  }
+	
+  return FALSE;
+}
+
 GtkWidget *GripNew(const gchar* geometry,char *device,char *scsi_device,
 		   char *config_filename,
 		   gboolean force_small,
@@ -158,7 +178,7 @@ GtkWidget *GripNew(const gchar* geometry,char *device,char *scsi_device,
   gnome_window_icon_set_default_from_file(GNOME_ICONDIR"/gripicon.png");
 
   app=gnome_app_new(PACKAGE,_("Grip"));
-
+ 
   ginfo=g_new0(GripInfo,1);
 
   gtk_object_set_user_data(GTK_OBJECT(app),(gpointer)ginfo);
@@ -263,6 +283,8 @@ GtkWidget *GripNew(const gchar* geometry,char *device,char *scsi_device,
   MakeStatusPage(ginfo);
   MakeHelpPage(ginfo);
   MakeAboutPage(uinfo);
+  ginfo->tray_icon_made = FALSE;
+  ginfo->tray_menu_sensitive = TRUE;
 
   gtk_box_pack_start(GTK_BOX(uinfo->winbox),uinfo->notebook,TRUE,TRUE,0);
   if(!uinfo->minimized) gtk_widget_show(uinfo->notebook);
@@ -297,9 +319,12 @@ GtkWidget *GripNew(const gchar* geometry,char *device,char *scsi_device,
 
     /* Check if we have a dev release */
     if(minor%2) {
-      DisplayMsg(_("This is a development version of Grip. If you encounter problems, you are encouraged to revert to the latest stable version."));
+      gnome_app_warning((GnomeApp *)ginfo->gui_info.app,
+                        _("This is a development version of Grip. If you encounter problems, you are encouraged to revert to the latest stable version."));
     }
   }
+
+  g_signal_connect(app, "window-state-event", G_CALLBACK(AppWindowStateCB), ginfo);
 
   LogStatus(ginfo,_("Grip started successfully\n"));
 
@@ -542,7 +567,7 @@ void MakeAboutPage(GripGUI *uinfo)
   gtk_box_pack_start(GTK_BOX(vbox2),label,FALSE,FALSE,0);
   gtk_widget_show(label);
 
-  label=gtk_label_new("Copyright 1998-2004, Mike Oliphant");
+  label=gtk_label_new("Copyright 1998-2005, Mike Oliphant");
   gtk_widget_set_style(label,uinfo->style_wb);
   gtk_box_pack_start(GTK_BOX(vbox2),label,FALSE,FALSE,0);
   gtk_widget_show(label);
@@ -689,6 +714,8 @@ void GripUpdate(GtkWidget *app)
 
     UpdateDisplay(ginfo);
   }
+  
+  UpdateTray(ginfo);
 }
 
 void Busy(GripGUI *uinfo)
@@ -727,6 +754,8 @@ static void DoLoadConfig(GripInfo *ginfo)
   uinfo->track_edit_visible=FALSE;
 
   uinfo->wait_cursor=gdk_cursor_new(GDK_WATCH);
+
+  uinfo->tray_icon=NULL;
 
   uinfo->id3_genre_item_list=NULL;
 
@@ -878,6 +907,7 @@ static void DoLoadConfig(GripInfo *ginfo)
   ginfo->sprefs.allow_high_bits=FALSE;
   ginfo->sprefs.no_underscore=FALSE;
   *ginfo->sprefs.allow_these_chars='\0';
+  ginfo->show_tray_icon=TRUE;
 
   sprintf(filename,"%s/%s",getenv("HOME"),ginfo->config_filename);
 
@@ -886,10 +916,11 @@ static void DoLoadConfig(GripInfo *ginfo)
   if(confret<0) {
     /* Check if the config is out of date */
     if(confret==-2) {
-      DisplayMsg(_("Your config file is out of date -- "
-		   "resetting to defaults.\n"
-		   "You will need to re-configure Grip.\n"
-		   "Your old config file has been saved with -old appended."));
+      gnome_app_warning((GnomeApp *)ginfo->gui_info.app,
+                        _("Your config file is out of date -- "
+                          "resetting to defaults.\n"
+                          "You will need to re-configure Grip.\n"
+                          "Your old config file has been saved with -old appended."));
 
       sprintf(renamefile,"%s-old",filename);
 
@@ -979,7 +1010,8 @@ void DoSaveConfig(GripInfo *ginfo)
   g_snprintf(filename,256,"%s/%s",getenv("HOME"),ginfo->config_filename);
 
   if(!SaveConfig(filename,"GRIP",2,cfg_entries))
-    DisplayMsg(_("Error: Unable to save config file"));
+    gnome_app_warning((GnomeApp *)ginfo->gui_info.app,
+                      _("Error: Unable to save config file."));
 
   SaveRipperConfig(ginfo,ginfo->selected_ripper);
   SaveEncoderConfig(ginfo,ginfo->selected_encoder);

@@ -150,7 +150,11 @@ grip_SOURCES = \
 	launch.c \
 	launch.h \
 	gain_analysis.c \
-	gain_analysis.h
+	gain_analysis.h \
+	eggtrayicon.c \
+	eggtrayicon.h \
+	tray.c \
+	tray.h 
 
 
 grip_LDADD = @TERMINAL_WIDGET_LIBS@ $(CDPAR_LIBS) $(ID3_LIBS)
@@ -166,7 +170,7 @@ am_grip_OBJECTS = cppmain.$(OBJEXT) main.$(OBJEXT) grip.$(OBJEXT) \
 	rip.$(OBJEXT) cdpar.$(OBJEXT) id3.$(OBJEXT) discdb.$(OBJEXT) \
 	uihelper.$(OBJEXT) status_window.$(OBJEXT) dialog.$(OBJEXT) \
 	gripcfg.$(OBJEXT) parsecfg.$(OBJEXT) launch.$(OBJEXT) \
-	gain_analysis.$(OBJEXT)
+	gain_analysis.$(OBJEXT) eggtrayicon.$(OBJEXT) tray.$(OBJEXT)
 grip_OBJECTS = $(am_grip_OBJECTS)
 grip_DEPENDENCIES =
 grip_LDFLAGS =
@@ -179,12 +183,12 @@ am__depfiles_maybe = depfiles
 @AMDEP_TRUE@DEP_FILES = ./$(DEPDIR)/cddev.Po ./$(DEPDIR)/cdpar.Po \
 @AMDEP_TRUE@	./$(DEPDIR)/cdplay.Po ./$(DEPDIR)/cppmain.Po \
 @AMDEP_TRUE@	./$(DEPDIR)/dialog.Po ./$(DEPDIR)/discdb.Po \
-@AMDEP_TRUE@	./$(DEPDIR)/discedit.Po \
+@AMDEP_TRUE@	./$(DEPDIR)/discedit.Po ./$(DEPDIR)/eggtrayicon.Po \
 @AMDEP_TRUE@	./$(DEPDIR)/gain_analysis.Po ./$(DEPDIR)/grip.Po \
 @AMDEP_TRUE@	./$(DEPDIR)/gripcfg.Po ./$(DEPDIR)/id3.Po \
 @AMDEP_TRUE@	./$(DEPDIR)/launch.Po ./$(DEPDIR)/main.Po \
 @AMDEP_TRUE@	./$(DEPDIR)/parsecfg.Po ./$(DEPDIR)/rip.Po \
-@AMDEP_TRUE@	./$(DEPDIR)/status_window.Po \
+@AMDEP_TRUE@	./$(DEPDIR)/status_window.Po ./$(DEPDIR)/tray.Po \
 @AMDEP_TRUE@	./$(DEPDIR)/uihelper.Po
 COMPILE = $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) \
 	$(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS)
@@ -261,6 +265,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/dialog.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/discdb.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/discedit.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/eggtrayicon.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/gain_analysis.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/grip.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/gripcfg.Po@am__quote@
@@ -270,6 +275,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/parsecfg.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/rip.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/status_window.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/tray.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/uihelper.Po@am__quote@
 
 distclean-depend:

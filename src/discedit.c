@@ -243,7 +243,9 @@ GtkWidget *MakeEditBox(GripInfo *ginfo)
   gtk_widget_show(hbox);
 
   gtk_box_pack_start(GTK_BOX(vbox),uinfo->multi_artist_box,FALSE,FALSE,0);
-  gtk_widget_show(uinfo->multi_artist_box);
+
+  if(ginfo->ddata.data_multi_artist)
+    gtk_widget_show(uinfo->multi_artist_box);
 
   hbox=gtk_hbox_new(FALSE,0);
 
@@ -384,9 +386,11 @@ static void SaveDiscInfo(GtkWidget *widget,gpointer data)
   if(ginfo->have_disc) {
     if(DiscDBWriteDiscData(&(ginfo->disc),&(ginfo->ddata),NULL,TRUE,FALSE,
                            "utf-8")<0)
-      DisplayMsg(_("Error saving disc data"));
+      gnome_app_warning((GnomeApp *)ginfo->gui_info.app,
+                        _("Error saving disc data."));
   }
-  else DisplayMsg(_("No disc present"));
+  else gnome_app_warning((GnomeApp *)ginfo->gui_info.app,
+                         _("No disc present."));
 }
 
 static void TitleEditChanged(GtkWidget *widget,gpointer data)
@@ -394,9 +398,6 @@ static void TitleEditChanged(GtkWidget *widget,gpointer data)
   GripInfo *ginfo;
 
   ginfo=(GripInfo *)data;
-
-  printf("title edit changed [%s]\n",
-         gtk_entry_get_text(GTK_ENTRY(ginfo->gui_info.title_edit_entry)));
 
   strcpy(ginfo->ddata.data_title,
          gtk_entry_get_text(GTK_ENTRY(ginfo->gui_info.title_edit_entry)));
@@ -538,26 +539,30 @@ static void SubmitEntryCB(GtkWidget *widget,gpointer data)
   ginfo=(GripInfo *)data;
 
   if(!ginfo->have_disc) {
-    DisplayMsg(_("Cannot submit\nNo disc is present"));
+    gnome_app_warning((GnomeApp *)ginfo->gui_info.app,
+                      _("Cannot submit. No disc is present."));
 
     return;
   }
 
   if(!ginfo->ddata.data_genre) {
-    /*    DisplayMsg(_("Submission requires a genre other than 'unknown'"));*/
+    /*    gnome_app_warning((GnomeApp *)ginfo->gui_info.app,
+          _("Submission requires a genre other than 'unknown'."));*/
     GetDiscDBGenre(ginfo);
 
     return;
   }
 
   if(!*ginfo->ddata.data_title) {
-    DisplayMsg(_("You must enter a disc title"));
+    gnome_app_warning((GnomeApp *)ginfo->gui_info.app,
+                      _("You must enter a disc title."));
 
     return;
   }
 
   if(!*ginfo->ddata.data_artist) {
-    DisplayMsg(_("You must enter a disc artist"));
+    gnome_app_warning((GnomeApp *)ginfo->gui_info.app,
+                      _("You must enter a disc artist."));
     
     return;
   }
