@@ -21,7 +21,7 @@ CFLAGS=	-Wall `gtk-config --cflags` -DAUXDIR=\"$(AUXDIR)\" \
 	-DINSTALLDIR=\"$(INSTALLDIR)\" -D_REENTRANT
 
 # Link libraries
-LIBS=	`gtk-config --libs`
+LIBS=	`gtk-config --libs gthread`
 ifeq ($(OS), Linux)
 LIBS+=	-lpthread
 endif
@@ -39,7 +39,7 @@ INSTALL  = /usr/bin/install -o $(OWNER) -g $(GROUP)
 
 # ----------- You shouldn't need to make changes below here. -------------
 
-VERSION= 2.94
+VERSION= 2.95
 
 OBJS=	cddb.o cd.o id3.o bug.o parsecfg.o dialog/input.o dialog/message.o
 
@@ -131,6 +131,7 @@ pardist: srcdist
 rpm:	pardist
 	cp grip-$(VERSION).tgz /usr/src/redhat/SOURCES
 	cp gripicon.gif /usr/src/redhat/SOURCES
+	cp gcdicon.gif /usr/src/redhat/SOURCES
 	cp grip.spec grip-$(VERSION).spec
 	chown root.root grip-$(VERSION).spec
 	rpm -ba grip-$(VERSION).spec

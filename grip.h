@@ -26,7 +26,7 @@
 
 #define MP3DB
 
-#define VERSION "2.94"
+#define VERSION "2.95"
 
 #ifdef GRIPCD
 #define PROGRAM "GCD"

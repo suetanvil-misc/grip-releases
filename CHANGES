@@ -1,3 +1,25 @@
+v2.95 -- October 18th, 2000
+---------------------------
+
+ o now only one failure dialog if CDDB query fails on both primary and
+   secondary serverss
+ o use "../" in relative paths where appropriate (thanks to Jim Crumley for
+   this)
+ o switch max path length from 1024 to PATH_MAX
+ o fixed a typo in passing '%i' on the encode commandline (thanks for Steven
+   Czerwinski for this)
+ o added an option to allow 8bit characters in filenames (patch submitted
+   anonymously)
+ o added an commandline option to prevent I/O redirection (thanks to an
+   anonymous patch)
+ o added additional id3 genres (thanks to Götz Waschk for this)
+ o added speed indicators to rip/encode status (thanks to Steinar Gunderson
+   for this)
+ o fixed a segfault problem with certain cdrom drives (thanks to
+   M.E. O'Neill for this)
+ o added preliminary ogg support. lots of people submitted patches. the
+   one I applied was from Fredrik Vraalsen
+
 v2.94 -- April 18th, 2000
 -------------------------
 

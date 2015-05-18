@@ -1,5 +1,5 @@
 %define name grip
-%define version 2.94
+%define version 2.95
 %define release 1
 
 Summary: Grip, a CD player and ripper/MP3-encoder front-end

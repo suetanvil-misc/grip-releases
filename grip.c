@@ -2,7 +2,7 @@
 
   grip.c
 
-  Copyright (c) 1998, 1999 by Mike Oliphant - oliphant@gtk.org
+  Copyright (c) 1998-2000  Mike Oliphant - oliphant@gtk.org
 
     http://www.nostatic.org/grip
 
@@ -174,7 +174,7 @@ void CheckDupNames(void);
 void UpdateRipProgress(void);
 char *FindRoot(char *str);
 void MakeArgs(char *str,char **args,int maxargs);
-void ParseMP3Cmd(char *instr,char *outstr,char *ripfile,char *mp3,int cpu);
+void ParseMP3Cmd(char *instr,char *outstr,char *ripfile,char *mp3,int cpu,EncodeTrack *enc_track);
 void FillInEncode(int track,EncodeTrack *new_track);
 void AddToEncode(int track);
 gboolean MP3Encode(void);
@@ -231,6 +231,7 @@ char cddevice[80]="/dev/cdrom";
 int current_discid;
 int first_time=1;
 gboolean have_working_device=FALSE;
+gboolean do_redirect=TRUE;
 gboolean do_debug=FALSE;
 gboolean stopped=FALSE;
 gboolean playing=FALSE;
@@ -338,6 +339,7 @@ MP3Encoder encoder_defaults[]={{"bladeenc","-%b -QUIT %f"},
 			       {"xingmp3enc","-B %b -Q %f"},
 			       {"mp3encode","-p 2 -l 3 -b %b %f %o"},
 			       {"gogo","-b %b %f %o"},
+			       {"oggenc","-o %o -a \"%A\" -l \"%d\" -t \"%n\" %f"},
 			       {"other",""},
 			       {"",""}};
 gboolean disable_paranoia=FALSE;
@@ -366,6 +368,7 @@ gboolean automatic_reshuffle=TRUE;
 gboolean keep_min_size=TRUE;
 gboolean no_lower_case=FALSE;
 gboolean no_underscore=FALSE;
+gboolean allow_high_bits=FALSE;
 char allow_these_chars[256]="";
 int start_sector,end_sector;
 int max_wavs=99;
@@ -388,8 +391,11 @@ int kbits_per_sec=128;
 
 #ifndef GRIPCD
 gboolean doencode=FALSE;
+time_t rip_started;
 GtkWidget *rippage;
 GtkWidget *ripprogbar;
+time_t mp3_started[MAX_NUM_CPU];
+gint mp3_enc_track[MAX_NUM_CPU];
 GtkWidget *mp3progbar[MAX_NUM_CPU];
 GList *encode_list=NULL;
 EncodeTrack *encoded_track[MAX_NUM_CPU];
@@ -403,13 +409,13 @@ gboolean in_rip_thread=FALSE;
 gboolean using_builtin_cdp=FALSE;
 gboolean stop_thread_rip_now=FALSE;
 gfloat rip_percent_done;
-char ripfile[1024];
+char ripfile[PATH_MAX];
 int ripsize;
 int rippid;
 int rip_quarter;
 int rip_track;
-char rip_delete_file[MAX_NUM_CPU][1024];
-char mp3file[MAX_NUM_CPU][1024];
+char rip_delete_file[MAX_NUM_CPU][PATH_MAX];
+char mp3file[MAX_NUM_CPU][PATH_MAX];
 int mp3pid[MAX_NUM_CPU];
 int encoding=0;
 int mp3size[MAX_NUM_CPU];
@@ -454,6 +460,10 @@ gchar *id3_genres[] = {
   "Booty Bass", "Primus", "Porn Groove", "Satire", "Slow Jam", "Club", "Tango",
   "Samba", "Folklore", "Ballad", "Power Ballad", "Rhythmic Soul", "Freestyle",
   "Duet", "Punk Rock", "Drum Solo", "Acapella", "Euro-house", "Dance Hall",
+  "Goa", "Drum & Bass", "Club-House", "Hardcore", "Terror", "Indie", "BritPop",
+  "Negerpunk", "Polsk Punk", "Beat", "Christian Gangsta Rap", "Heavy Metal",
+  "Black Metal", "Crossover", "Contemporary Christian", "Christian Rock",
+  "Merengue", "Salsa", "Trash Metal",
   NULL
 };
 
@@ -521,6 +531,7 @@ CFGEntry cfg_entries[]={
   {"automatic_reshuffle",CFG_ENTRY_BOOL,0,&automatic_reshuffle},
   {"no_lower_case",CFG_ENTRY_BOOL,0,&no_lower_case},
   {"no_underscore",CFG_ENTRY_BOOL,0,&no_underscore},
+  {"allow_high_bits",CFG_ENTRY_BOOL,0,&allow_high_bits},
   {"allow_these_chars",CFG_ENTRY_STRING,256,allow_these_chars},
   {"keep_min_size",CFG_ENTRY_BOOL,0,&keep_min_size},
   {"num_cpu",CFG_ENTRY_INT,0,&edit_num_cpu},
@@ -880,7 +891,7 @@ void YearEditChanged(void)
 
 void TrackEditChanged(void)
 {
-  char newname[1024];
+  char newname[PATH_MAX];
 
   strcpy(ddata.data_track[CURRENT_TRACK].track_name,
 	 gtk_entry_get_text(GTK_ENTRY(track_edit_entry)));
@@ -889,11 +900,11 @@ void TrackEditChanged(void)
 	 gtk_entry_get_text(GTK_ENTRY(track_artist_edit_entry)));
 
   if(*ddata.data_track[CURRENT_TRACK].track_artist)
-    g_snprintf(newname,1024,"%02d  %s (%s)",CURRENT_TRACK+1,
+    g_snprintf(newname,PATH_MAX,"%02d  %s (%s)",CURRENT_TRACK+1,
 	     ddata.data_track[CURRENT_TRACK].track_name,
 	     ddata.data_track[CURRENT_TRACK].track_artist);
  else
-    g_snprintf(newname,1024,"%02d  %s",CURRENT_TRACK+1,
+    g_snprintf(newname,PATH_MAX,"%02d  %s",CURRENT_TRACK+1,
 	     ddata.data_track[CURRENT_TRACK].track_name);
 
   gtk_clist_set_text(GTK_CLIST(trackclist),CURRENT_TRACK,0,newname);
@@ -943,6 +954,7 @@ char *MungeString(char *str)
       if(no_underscore) *dst++=' ';
       else *dst++='_';
     }
+    else if(*src & (1<<7) && allow_high_bits) *dst++=*src;
     else if(!isalnum(*src)&&!strchr(allow_these_chars,*src)) continue;
     else {
       if(no_lower_case) *dst++=*src;
@@ -1276,10 +1288,9 @@ void CheckNewDisc(void)
   if(!looking_up) {
     Debug("Checking for a new disc\n");
 
-    CDStat(cd_desc,&info,FALSE);
-
-    if(info.disc_present) {
-      CDStat(cd_desc,&info,TRUE);
+    if( (CDStat(cd_desc,&info,FALSE) == 0) 
+	&& info.disc_present
+	&& (CDStat(cd_desc,&info,TRUE) == 0) ) {
 
       Debug("CDStat found a disc, checking tracks\n");
       
@@ -1561,12 +1572,20 @@ void ClickColumn(GtkWidget *widget,gint column,gpointer data)
 {
   int track;
   int numsel=0;
+  gboolean check;
 
   for(track=0;track<info.disc_totaltracks;track++)
     if(TrackIsChecked(track)) numsel++;
 
+  if(info.disc_totaltracks>1) {
+    check=(numsel<info.disc_totaltracks/2);
+  }
+  else {
+    check=(numsel==0);
+  }
+
   for(track=0;track<info.disc_totaltracks;track++)
-    SetChecked(track,(numsel<info.disc_totaltracks/2));
+    SetChecked(track,check);
 }
 #endif
 
@@ -1712,6 +1731,10 @@ void DoLookup(void)
     cddb_found = 1;
   }
 
+  if(!cddb_found) {
+    DisplayMsg("CDDB query failed\n");
+  }
+
   looking_up=FALSE;
   pthread_exit(0);
 }
@@ -1735,7 +1758,6 @@ gboolean CDDBLookupDisc(CDDBServer *server)
   strncpy(hello.hello_version,VERSION,256);
 	
   if(!CDDBDoQuery(cd_desc,server,&hello,&query)) {
-    DisplayMsg("Query failed\n");
     update_required=TRUE;
   } else {
     switch(query.query_match) {
@@ -1896,7 +1918,7 @@ void CheckDupNames(void)
 void UpdateTracks(void)
 {
   int track;
-  char buf[1024];
+  char buf[PATH_MAX];
   char *col_strings[3];
 
   if(have_disc) {
@@ -2651,6 +2673,11 @@ void MakeConfigPage(void)
 
   check=MakeCheckButton(NULL,&no_lower_case,
 			"Do not lowercase filenames");
+  gtk_box_pack_start(GTK_BOX(vbox),check,TRUE,TRUE,0);
+  gtk_widget_show(check);
+   
+  check=MakeCheckButton(NULL,&allow_high_bits,
+			"Allow high bits in filenames");
   gtk_box_pack_start(GTK_BOX(vbox),check,TRUE,TRUE,0);
   gtk_widget_show(check);
 
@@ -3552,6 +3579,9 @@ void Usage(void)
   printf("  -f                 Launch in \"full\" (track-display) mode\n");
 #endif
   printf("  -l                 'local' mode -- don't try to use CDDB\n");
+#ifndef GRIPCD
+  printf("  -r                 Don't do I/O redirection\n");
+#endif
   printf("  -v                 Verbose (debug) mode\n");
   printf("\n");
   printf("See the README file for more information\n\n");
@@ -3592,6 +3622,11 @@ void ParseArgs(int numargs,char *args[])
       case 'l':
 	local_mode=TRUE;
 	break;
+#ifndef GRIPCD
+      case 'r':
+	do_redirect=FALSE;
+	break;
+#endif
       case 'v':
 	do_debug=TRUE;
 	break;
@@ -3647,7 +3682,7 @@ void SplitTitleArtist(GtkWidget *widget,gpointer data)
 
 void ParseFileFmt(char *instr,char *outstr,int track,int startsec,int endsec)
 {
-  int left=1024;
+  int left=PATH_MAX;
   char *tok;
   struct passwd *pwd;
   gboolean do_munge;
@@ -3735,7 +3770,7 @@ void ParseFileFmt(char *instr,char *outstr,int track,int startsec,int endsec)
 	else strncpy(outstr,"NoTitle",left);
 	break;
       case 'i':
-	g_snprintf(outstr,1024,"%02x",CDDBDiscid(cd_desc));
+	g_snprintf(outstr,PATH_MAX,"%02x",CDDBDiscid(cd_desc));
 	break;
 #ifndef GRIPCD
       case 'g':
@@ -3774,7 +3809,7 @@ void RipPartialChanged(void)
 
 void ParseEncFileFmt(char *instr,char *outstr,EncodeTrack *enc_track)
 {
-  int left=1024;
+  int left=PATH_MAX;
   char *tok;
   struct passwd *pwd;
   gboolean do_munge;
@@ -3862,7 +3897,7 @@ void ParseEncFileFmt(char *instr,char *outstr,EncodeTrack *enc_track)
 	else strncpy(outstr,"NoTitle",left);
 	break;
       case 'i':
-	g_snprintf(outstr,1024,"%02x",CDDBDiscid(enc_track->discid));
+	g_snprintf(outstr,PATH_MAX,"%02x",enc_track->discid);
 	break;
       case 'y':
 	g_snprintf(outstr,left,"%d",enc_track->song_year);
@@ -3894,18 +3929,38 @@ void ParseEncFileFmt(char *instr,char *outstr,EncodeTrack *enc_track)
 /* Make file1 relative to file2 */
 char *MakeRelative(char *file1,char *file2)
 {
-  int pos;
+  int pos, pos2, slashcnt, i;
   char *rel=file1;
+  char tem[PATH_MAX]="";
 
+  slashcnt=0;
+
+  /* This part finds relative names assuming m3u is not branched in a
+     different directory from mp3 */
   for(pos=0;file2[pos];pos++) {
     if(pos&&(file2[pos]=='/')) {
       if(!strncmp(file1,file2,pos)) {
 	rel=file1+pos+1;
+	pos2=pos;
       }
     }
   }
 
-  return rel;
+  /* Now check to see if the m3u file branches to a different directory. */
+  for(pos2=pos2+1;file2[pos2];pos2++) {
+    if(file2[pos2]=='/'){             
+      slashcnt++;
+    }
+  } 
+
+  /* Now add correct number of "../"s to make the path relative */
+  for(i=0;i<slashcnt;i++) {
+    strcpy(tem,"../");
+    strncat(tem,rel,strlen(rel));
+    strcpy(rel,tem);
+  }
+
+  return rel; 
 }
 
 void AddM3U(void)
@@ -3913,8 +3968,8 @@ void AddM3U(void)
   int i;
   EncodeTrack et;
   FILE *fp;
-  char m3unam[1024];
-  char mp3nam[1024];
+  char m3unam[PATH_MAX];
+  char mp3nam[PATH_MAX];
   char *relnam;
   
   if(!have_disc) return;
@@ -3969,7 +4024,7 @@ void AddSQLEntry(EncodeTrack *enc_track)
   char length_str[11];
   char playtime_str[6];
   char year_str[5];
-  char filename[1024];
+  char filename[PATH_MAX];
 
   ParseEncFileFmt(mp3fileformat,filename,enc_track);
 
@@ -3983,7 +4038,7 @@ void AddSQLEntry(EncodeTrack *enc_track)
 
   if(sqlpid==0) {
     close(ConnectionNumber(GDK_DISPLAY()));
-    RedirectIO(!do_debug);
+    RedirectIO(do_redirect);
 
     if(*enc_track->song_artist)
       execl(INSTALLDIR "/mp3insert","mp3insert",
@@ -4017,7 +4072,7 @@ void UpdateRipProgress(void)
   int quarter;
   gfloat percent;
   int mycpu; 
-  char buf[1024];
+  char buf[PATH_MAX];
 
   if(ripping) {
     if(stat(ripfile,&mystat)>=0) {
@@ -4027,9 +4082,26 @@ void UpdateRipProgress(void)
     else {
       percent=0;
     }
-    
+   
     gtk_progress_bar_update(GTK_PROGRESS_BAR(ripprogbar),percent);
-	
+
+    {
+      time_t now = time(NULL);
+      gfloat elapsed = (gfloat)now - (gfloat)rip_started;
+
+      /* 1x is 44100*2*2 = 176400 bytes/sec */
+      gfloat speed = (gfloat)(mystat.st_size)/(176400.0f*elapsed);
+
+      /* startup */
+      if (speed >= 50.0f) {
+        speed = 0.0f;
+        rip_started = time(NULL);
+      }
+
+      sprintf(buf,"Rip: Trk %d (%3.1fx)",rip_track+1,speed);
+      gtk_label_set(GTK_LABEL(rip_prog_label),buf);
+    }
+
     quarter=(int)(percent*4.0);
 	
     if(quarter<4)
@@ -4105,7 +4177,17 @@ void UpdateRipProgress(void)
       } 
 
       gtk_progress_bar_update(GTK_PROGRESS_BAR(mp3progbar[mycpu]),percent);
-        
+       
+      {
+        time_t now = time(NULL);
+        gfloat elapsed = (gfloat)now - (gfloat)mp3_started[mycpu];
+
+        gfloat speed = (gfloat)mystat.st_size/((gfloat)kbits_per_sec * 128.0f * elapsed);
+
+        sprintf(buf,"MP3: Trk %d (%3.1fx)",mp3_enc_track[mycpu]+1,speed);
+        gtk_label_set(GTK_LABEL(mp3_prog_label[mycpu]),buf);
+      }
+ 
       quarter=(int)(percent*4.0);
  
       if(quarter<4)
@@ -4190,7 +4272,7 @@ void MakeArgs(char *str,char **args,int maxargs)
 void ParseRipCmd(char *instr,char *outstr,int track,int startsec,int endsec,
 		 char *filename)
 {
-  int left=1024;
+  int left=PATH_MAX;
 
   for(;*instr&&(left>0);instr++) {
     if(*instr=='%') {
@@ -4229,9 +4311,9 @@ void ParseRipCmd(char *instr,char *outstr,int track,int startsec,int endsec,
   *outstr='\0';
 }
 
-void ParseMP3Cmd(char *instr,char *outstr,char *ripfile,char *mp3,int cpu)
+void ParseMP3Cmd(char *instr,char *outstr,char *ripfile,char *mp3,int cpu,EncodeTrack *enc_track)
 {
-  int left=1024;
+  int left=PATH_MAX;
 
   for(;*instr&&(left>0);instr++) {
     if(*instr=='%') {
@@ -4251,6 +4333,46 @@ void ParseMP3Cmd(char *instr,char *outstr,char *ripfile,char *mp3,int cpu)
       case 'c':
 	g_snprintf(outstr,left,"%d",cpu);
 	break;
+
+      case 't':
+	g_snprintf(outstr,left,"%02d",enc_track->track_num+1);
+	break;
+      case 'n':
+	if(*(enc_track->song_name))
+	  g_snprintf(outstr,left,"%s",enc_track->song_name);
+	else g_snprintf(outstr,left,"Track%d",enc_track->track_num);
+	break;
+      case 'a':
+	if(*(enc_track->song_artist))
+	  g_snprintf(outstr,left,"%s",enc_track->song_artist);
+	else {
+	  if(*(enc_track->disc_artist))
+	    g_snprintf(outstr,left,"%s",enc_track->disc_artist);
+	  else strncpy(outstr,"NoArtist",left);
+	}
+	break;
+      case 'A':
+	if(*(enc_track->disc_artist))
+	  g_snprintf(outstr,left,"%s",enc_track->disc_artist);
+	else strncpy(outstr,"NoArtist",left);	
+	break;
+      case 'd':
+	if(*(enc_track->disc_name))
+	  g_snprintf(outstr,left,"%s",enc_track->disc_name);
+	else strncpy(outstr,"NoTitle",left);
+	break;
+      case 'i':
+	g_snprintf(outstr,1024,"%02x",CDDBDiscid(enc_track->discid));
+	break;
+      case 'y':
+	g_snprintf(outstr,left,"%d",enc_track->song_year);
+	break;
+      case 'g':
+	g_snprintf(outstr,left,"%d",enc_track->id3_genre);
+	break;
+      case 'G':
+	g_snprintf(outstr,left,"%s",id3_genres[enc_track->id3_genre]);
+	break;
       }
 
       left-=strlen(outstr);
@@ -4269,7 +4391,7 @@ void ParseMP3Cmd(char *instr,char *outstr,char *ripfile,char *mp3,int cpu)
 
 void ParseWavCmd(char *instr,char *outstr,char *ripfile)
 {
-  int left=1024;
+  int left=PATH_MAX;
 
   for(;*instr&&(left>0);instr++) {
     if(*instr=='%') {
@@ -4390,8 +4512,8 @@ void AddToEncode(int track)
 
 gboolean MP3Encode(void)
 {
-  char parsedstr[1024];
-  char tmp[1024];
+  char parsedstr[PATH_MAX];
+  char tmp[PATH_MAX];
   char *args[20];
   int startsec,endsec;
   int bytesleft;
@@ -4416,7 +4538,10 @@ gboolean MP3Encode(void)
 
   CopyPixmap(GTK_PIXMAP(mp3_pix[0]),GTK_PIXMAP(mp3_indicator[cpu]));
   
-  sprintf(tmp,"MP3: Trk %d",encode_track+1);
+  mp3_started[cpu] = time(NULL);
+  mp3_enc_track[cpu] = encode_track;
+
+  sprintf(tmp,"MP3: Trk %d (0.0x)",encode_track+1);
   gtk_label_set(GTK_LABEL(mp3_prog_label[cpu]),tmp);
   
   Debug("MP3 track %d\n",encode_track+1);
@@ -4447,7 +4572,7 @@ gboolean MP3Encode(void)
   /* Construct the .wav filename to encode */
   
   ParseEncFileFmt(ripfileformat,rip_delete_file[cpu],enc_track);
-  ParseMP3Cmd(mp3cmdline,parsedstr,rip_delete_file[cpu],mp3file[cpu],cpu);
+  ParseMP3Cmd(mp3cmdline,parsedstr,rip_delete_file[cpu],mp3file[cpu],cpu,enc_track);
   
   Debug("MP3 commandline is [%s]\n",parsedstr);
   
@@ -4459,7 +4584,7 @@ gboolean MP3Encode(void)
   
   if(mp3pid[cpu]==0) {
     close(ConnectionNumber(GDK_DISPLAY()));
-    RedirectIO(!do_debug);
+    RedirectIO(do_redirect);
     setsid();
     nice(mp3nice);
     execv(mp3exename,args);
@@ -4594,8 +4719,8 @@ int NextTrackToRip(void)
 
 gboolean RipNextTrack(void)
 {
-  char parsedstr[1024];
-  char tmp[1024];
+  char parsedstr[PATH_MAX];
+  char tmp[PATH_MAX];
   int startsec,endsec;
   char *args[20];
   int bytesleft;
@@ -4624,7 +4749,8 @@ gboolean RipNextTrack(void)
 
     CopyPixmap(GTK_PIXMAP(rip_pix[0]),GTK_PIXMAP(rip_indicator));
 
-    sprintf(tmp,"Rip: Trk %d",rip_track+1);
+    rip_started = time(NULL);
+    sprintf(tmp,"Rip: Trk %d (0.0x)",rip_track+1);
     gtk_label_set(GTK_LABEL(rip_prog_label),tmp);
 
     CDStop(cd_desc);
@@ -4700,11 +4826,11 @@ gboolean RipNextTrack(void)
       
       if(rippid==0) {
 	close(ConnectionNumber(GDK_DISPLAY()));
-	RedirectIO(!do_debug);
+	RedirectIO(do_redirect);
 	nice(ripnice);
 	execv(ripexename,args);
 	
-	Debug("Exec failed\n");
+	Debug("Exec failedn");
 	_exit(0);
       }
 #ifdef CDPAR
@@ -4868,13 +4994,13 @@ void MakeRipPage(void)
   hbox=gtk_hbox_new(FALSE,3);
 
   rip_prog_label=gtk_label_new("Rip: Idle");
-  gtk_widget_set_usize(rip_prog_label,WINWIDTH-215,0);
+  gtk_widget_set_usize(rip_prog_label,WINWIDTH-180,0);
   gtk_box_pack_start(GTK_BOX(hbox),rip_prog_label,FALSE,FALSE,0);
   gtk_widget_show(rip_prog_label);
 
   ripprogbar=gtk_progress_bar_new();
-  if(using_builtin_cdp) gtk_widget_set_usize(ripprogbar,WINWIDTH-110,8);
-  else gtk_widget_set_usize(ripprogbar,WINWIDTH-95,8);
+  if(using_builtin_cdp) gtk_widget_set_usize(ripprogbar,WINWIDTH-145,8);
+  else gtk_widget_set_usize(ripprogbar,WINWIDTH-130,8);
   gtk_box_pack_start(GTK_BOX(hbox),ripprogbar,FALSE,FALSE,0);
   gtk_widget_show(ripprogbar);
 
@@ -4900,12 +5026,12 @@ void MakeRipPage(void)
     hbox=gtk_hbox_new(FALSE,3);
 
     mp3_prog_label[mycpu]=gtk_label_new("MP3: Idle");
-    gtk_widget_set_usize(mp3_prog_label[mycpu],WINWIDTH-215,0);
+    gtk_widget_set_usize(mp3_prog_label[mycpu],WINWIDTH-180,0);
     gtk_box_pack_start(GTK_BOX(hbox),mp3_prog_label[mycpu],FALSE,FALSE,0);
     gtk_widget_show(mp3_prog_label[mycpu]);
 
     mp3progbar[mycpu]=gtk_progress_bar_new();
-    gtk_widget_set_usize(mp3progbar[mycpu],WINWIDTH-95,8);
+    gtk_widget_set_usize(mp3progbar[mycpu],WINWIDTH-130,8);
     gtk_box_pack_start(GTK_BOX(hbox),mp3progbar[mycpu],FALSE,FALSE,0);
     gtk_widget_show(mp3progbar[mycpu]);
 
@@ -4989,7 +5115,7 @@ void MakeStyles(void)
   gdk_color_white(gdk_window_get_colormap(window->window),&gdkwhite);
   gdk_color_black(gdk_window_get_colormap(window->window),&gdkblack);
 
-  color_LCD=MakeColor(33686,38273,29557);
+   color_LCD=MakeColor(33686,38273,29557);
   color_dark_grey=MakeColor(0x4444,0x4444,0x4444);
   
   style_wb=MakeStyle(&gdkwhite,&gdkblack,FALSE);
@@ -5009,7 +5135,7 @@ int main(int argc,char *argv[])
 
   gtk_set_locale();
   gtk_init(&argc,&argv);
-  
+
   if((GTK_MINOR_VERSION!=gtk_minor_version)) {
     printf("Warning: This program was compiled "
 	   "using gtk+ version %d.%d.%d, and you are running gtk+ "
@@ -5115,7 +5241,7 @@ int main(int argc,char *argv[])
   }
 
   UnBusy();
-  
+
   gtk_main();
 
   if(!no_interrupt)

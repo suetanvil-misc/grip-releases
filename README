@@ -74,6 +74,7 @@ Grip's usage is:
     -d <device>        Use <device> as cd-rom device
     -s                 Launch in "small" (cd-only) mode
     -l		       'local' mode -- don't try to use CDDB
+    -r                 Don't do I/O redirection
     -v                 Verbose (debug) mode
 
 GCD's usage is:

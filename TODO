@@ -1,6 +1,7 @@
  o add ability to browse for rip/encode executables
  o overall progress indicator for multi-track rips
  o abort current track from multi-track rip
+ o separate abort into rip abort and encode abort
  o command-line arguments for batch operation
  o some way to get the track name in condensed mode (perhaps a tooltip?)
  o support loading the data from multiple discs in a changer
@@ -21,9 +22,7 @@
  o delete .wav if rip is aborted
  o handle larger font sizes (esp. next to progress bars)
  o better display of cdparanoia error status
- o cut off leading "http://" if it is put in the proxy name
  o size info as tooltip on rip/encode progress bar
- o separate abort into rip abort and encode abort
  o fix problem with long song names getting truncated in filenames
  o remember previous position when smart-relocating on expand
  o support multiple cdrom drives?

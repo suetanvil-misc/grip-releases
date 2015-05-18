@@ -130,6 +130,18 @@ int CDStat(int cd_desc,struct disc_info *disc,gboolean read_toc)
 #endif
 
   int readtracks,frame[MAX_TRACKS],pos;
+  int retcode;
+
+#ifdef CDROM_DRIVE_STATUS
+  retcode = ioctl(cd_desc, CDROM_DRIVE_STATUS, CDSL_CURRENT);
+  Debug("Drive status is %d\n", retcode);
+  if (retcode < 0)
+    {
+      Debug("Drive doesn't support drive status check (assume CDS_NO_INFO)\n");
+    }
+  else if (retcode != CDS_DISC_OK && retcode != CDS_NO_INFO)
+    return -1;
+#endif
 
 #ifdef CDIOREADSUBCHANNEL
   bzero(&cdsc, sizeof(cdsc));
@@ -504,7 +516,9 @@ int TrayOpen(int cd_desc)
 #ifdef CDROM_DRIVE_STATUS
   int status;
 
-  if(ioctl(cd_desc,CDROM_DRIVE_STATUS,&status) < 0) {
+  status = ioctl(cd_desc, CDROM_DRIVE_STATUS, CDSL_CURRENT);
+  Debug("Drive status is %d\n", status);
+  if(status < 0) {
     Debug("Drive doesn't support drive status check\n");
     return -1;
   }
