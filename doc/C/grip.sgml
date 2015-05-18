@@ -1,4 +1,4 @@
-<!DOCTYPE Book PUBLIC "-//GNOME//DTD DocBook PNG Variant V1.1//EN">
+<!DOCTYPE Book PUBLIC "-//GNOME//DTD DocBook PNG Variant V1.0//EN">
 <book id="grip">
   <bookinfo>
     <title>Grip User's Guide</title>
@@ -374,6 +374,10 @@
 	</listitem>
 
       </itemizedlist>
+
+      <para>In addition to the individual track rip/encode progress bars,
+      Grip displays overall progress bars that indicate the overall progress
+      of a multi-track rip.</para>
 	    
       <para>Grip also places an indicator for both ripping and encoding the
 	the LCD display. They show progress in %25 intervals, as can be seen
@@ -407,6 +411,19 @@
       speedup. This is not recommended, however, unless you are very
       confident in the ability of your drive to do rock-solid CDDA
       extraction (or unles you enjoy having pops in your audio)</para>
+    </sect1>
+
+    <sect1 id="sect-scsi">
+      <title>Using a SCSI drive</title>
+
+      <para>If you are using a SCSI drive, or an IDE drive under SCSI
+	  emulation, Grip needs to access the generic scsi device in
+	  addition to the cdrom device. On most systems, the generic scsi
+	  device will be /dev/sgx, where 'x' is a number. Unless you have
+	  multiple scsi devices, the device would be /dev/sg0. Ensure that
+	  your user account has access to this device, and that this device
+	  is specified in your rip configuration (see <xref
+	  linkend="ripconfig">).</para>
     </sect1>
 
   </chapter>
@@ -550,9 +567,9 @@
 	<listitem>
 	  <para><guilabel>Generic SCSI device</guilabel> &mdash; If you are
 	  using a SCSI drive, or an IDE drive under SCSI emulation, you need
-	  to specify the generic SCSI device to be used. Make sure that your
-	  user account has access to this device, or Grip will not be able
-	  to rip.</para>
+	  to specify the generic SCSI device to be used. Form more
+	  information on using a SCSI drive, see <xref linkend="sect-scsi">
+	  </para>
 	</listitem>
 
       </itemizedlist>
@@ -639,6 +656,12 @@
 	  selected, grip will delay 5 seconds before starting to rip. This
 	  can help with some drives (particularly some dvd drives) that take
 	  a while to spin up.</para>
+	</listitem>
+
+	<listitem>
+	  <para><guilabel>Stop cdrom drive between tracks</guilabel> &mdash;
+	    If this is selected, grip will spin down the cdrom drive between
+	    ripping tracks.</para>
 	</listitem>
 
 	<listitem>

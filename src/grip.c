@@ -1,6 +1,6 @@
 /* grip.c
  *
- * Copyright (c) 1998-2002  Mike Oliphant <oliphant@gtk.org>
+ * Copyright (c) 1998-2003  Mike Oliphant <oliphant@gtk.org>
  *
  *   http://www.nostatic.org/grip
  *
@@ -252,7 +252,7 @@ void GripDie(GtkWidget *widget,gpointer data)
   ginfo=(GripInfo *)gtk_object_get_user_data(GTK_OBJECT(widget));
   
 #ifndef GRIPCD
-  if(ginfo->ripping || ginfo->encoding)
+  if(ginfo->ripping_a_disc || ginfo->encoding)
     gnome_app_ok_cancel_modal((GnomeApp *)ginfo->gui_info.app,
 			      _("Work is in progress.\nReally shut down?"),
 			      ReallyDie,(gpointer)ginfo);
@@ -271,7 +271,7 @@ static void ReallyDie(gint reply,gpointer data)
   ginfo=(GripInfo *)data;
 
 #ifndef GRIPCD
-  if(ginfo->ripping) KillRip(NULL,ginfo);
+  if(ginfo->ripping_a_disc) KillRip(NULL,ginfo);
   if(ginfo->encoding) KillEncode(NULL,ginfo);
 #endif
 
@@ -398,7 +398,7 @@ void MakeAboutPage(GripGUI *uinfo)
   gtk_box_pack_start(GTK_BOX(vbox2),label,FALSE,FALSE,0);
   gtk_widget_show(label);
 
-  label=gtk_label_new("Copyright (c) 1998-2002, Mike Oliphant");
+  label=gtk_label_new("Copyright (c) 1998-2003, Mike Oliphant");
   gtk_widget_set_style(label,uinfo->style_wb);
   gtk_box_pack_start(GTK_BOX(vbox2),label,FALSE,FALSE,0);
   gtk_widget_show(label);
@@ -548,7 +548,7 @@ void GripUpdate(GtkWidget *app)
 #else
   if(ginfo->ripping|ginfo->encoding) UpdateRipProgress(ginfo);
 
-  if(!ginfo->ripping) {
+  if(!ginfo->ripping_a_disc) {
     if(ginfo->poll_drive && !(secs%ginfo->poll_interval)) {
       if(!ginfo->have_disc)
 	CheckNewDisc(ginfo,FALSE);

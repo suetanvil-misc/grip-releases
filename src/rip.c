@@ -621,36 +621,39 @@ void KillRip(GtkWidget *widget,gpointer data)
   Debug(_("In KillRip\n"));
   ginfo=(GripInfo *)data;
 
-  if(!ginfo->ripping) return;
+  if(!ginfo->ripping_a_disc) return;
 
   ginfo->all_ripsize=0;
   ginfo->all_ripdone=0;
   ginfo->all_riplast=0;
 
-  /* Need to decrement num_wavs since we didn't finish ripping
-     the current track */
-  if(ginfo->num_wavs>0)
-    ginfo->num_wavs--;
-
-  /* Need to decrement all_mp3size */
-  for (track=0;track<ginfo->disc.num_tracks;++track) {
-    if ((!IsDataTrack(&(ginfo->disc),track)) &&
-	(TrackIsChecked(&(ginfo->gui_info),track))) {
-      ginfo->all_encsize-=CalculateEncSize(ginfo,track);
-    }
-  }
-  Debug(_("Now total enc size is: %d\n"),ginfo->all_encsize);
-
-  ginfo->stop_rip=TRUE;
   ginfo->ripping_a_disc=FALSE;
 
-  if(ginfo->using_builtin_cdp) {
+  ginfo->stop_rip=TRUE;
+
+  if(ginfo->ripping) {
+    /* Need to decrement num_wavs since we didn't finish ripping
+       the current track */
+    if(ginfo->doencode && ginfo->num_wavs>0)
+      ginfo->num_wavs--;
+    
+    /* Need to decrement all_mp3size */
+    for (track=0;track<ginfo->disc.num_tracks;++track) {
+      if ((!IsDataTrack(&(ginfo->disc),track)) &&
+	  (TrackIsChecked(&(ginfo->gui_info),track))) {
+	ginfo->all_encsize-=CalculateEncSize(ginfo,track);
+      }
+    }
+
+    Debug(_("Now total enc size is: %d\n"),ginfo->all_encsize);
+    
+    if(ginfo->using_builtin_cdp) {
 #ifdef CDPAR
-    ginfo->stop_thread_rip_now=TRUE;
+      ginfo->stop_thread_rip_now=TRUE;
 #endif
+    }
+    else kill(ginfo->rippid,SIGKILL);
   }
-  else kill(ginfo->rippid,SIGKILL);
-  /*    ginfo->doencode=FALSE;*/
 }
 
 void KillEncode(GtkWidget *widget,gpointer data)
@@ -884,9 +887,13 @@ void UpdateRipProgress(GripInfo *ginfo)
 	else gtk_label_set(GTK_LABEL(uinfo->rip_prog_label),_("Rip: Idle"));
       }
       else {
-	ginfo->stop_rip=FALSE;
 	RipIsFinished(ginfo,TRUE);
       }
+    }
+  }
+  else {
+    if(ginfo->stop_rip) {
+      RipIsFinished(ginfo,TRUE);
     }
   }
   
@@ -946,14 +953,14 @@ void UpdateRipProgress(GripInfo *ginfo)
         CopyPixmap(GTK_PIXMAP(uinfo->empty_image),
 		   GTK_PIXMAP(uinfo->mp3_indicator[mycpu]));
 
-        if(ginfo->delete_wavs) {
-	  Debug(_("Deleting [%s]\n"),ginfo->rip_delete_file[mycpu]);
-	  unlink(ginfo->rip_delete_file[mycpu]);
-	}
-
-        ginfo->num_wavs--;
+        if(ginfo->doencode) ginfo->num_wavs--;
 
         if(!ginfo->stop_encode) {
+	  if(ginfo->delete_wavs) {
+	    Debug(_("Deleting [%s]\n"),ginfo->rip_delete_file[mycpu]);
+	    unlink(ginfo->rip_delete_file[mycpu]);
+	  }
+
           if(ginfo->doid3 || ginfo->doid3v2)
 	    ID3Add(ginfo,ginfo->mp3file[mycpu],
 		   ginfo->encoded_track[mycpu]);
@@ -1014,6 +1021,7 @@ static void RipIsFinished(GripInfo *ginfo,gboolean aborted)
   gtk_label_set(GTK_LABEL(uinfo->all_rip_label),_("Rip: Idle"));
   gtk_progress_bar_update(GTK_PROGRESS_BAR(uinfo->all_ripprogbar),0.0);
 
+  ginfo->stop_rip=FALSE;
   ginfo->ripping=FALSE;
   ginfo->ripping_a_disc=FALSE;
   ginfo->rip_finished=time(NULL);
@@ -1364,7 +1372,7 @@ static gboolean RipNextTrack(GripInfo *ginfo)
       if(mystat.st_size == ginfo->ripsize) { 
 	Debug(_("File %s has already been ripped. Skipping...\n"),\
 	      ginfo->ripfile);
-	ginfo->num_wavs++;
+	if(ginfo->doencode) ginfo->num_wavs++;
 	ginfo->ripping=TRUE;
 	ginfo->ripping_a_disc=TRUE;
 	ginfo->all_ripdone+=CalculateWavSize(ginfo,ginfo->rip_track);
@@ -1426,7 +1434,7 @@ static gboolean RipNextTrack(GripInfo *ginfo)
     ginfo->ripping=TRUE;
     ginfo->ripping_a_disc=TRUE;
 
-    ginfo->num_wavs++;
+    if(ginfo->doencode) ginfo->num_wavs++;
 
     return TRUE;
   }

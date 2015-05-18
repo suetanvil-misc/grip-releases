@@ -210,9 +210,13 @@ gboolean DiscDBDoQuery(DiscInfo *disc,DiscDBServer *server,
   ghttp_request *request=NULL;
   GString *cmd;
   char *result,*inbuffer;
+  char *old_locale;
 
   request=ghttp_request_new();
   if(!request) return FALSE;
+
+  /* work around a bug in libghttpd */
+  old_locale = strdup(setlocale(LC_NUMERIC,"C"));
 
   query->query_matches=0;
 
@@ -231,6 +235,9 @@ gboolean DiscDBDoQuery(DiscInfo *disc,DiscDBServer *server,
   Debug(_("Query is [%s]\n"),cmd->str);
 
   result=DiscDBMakeRequest(server,hello,cmd->str,request);
+
+  setlocale(LC_NUMERIC,old_locale);
+  free(old_locale);
 
   g_string_free(cmd,TRUE);
 

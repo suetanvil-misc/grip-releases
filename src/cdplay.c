@@ -99,7 +99,7 @@ static void DiscDBToggle(GtkWidget *widget,gpointer data)
   }
   else {
 #ifndef GRIPCD
-    if(ginfo->ripping) {
+    if(ginfo->ripping_a_disc) {
       DisplayMsg(_("Cannot do lookup while ripping"));
 
       return;
@@ -1096,7 +1096,7 @@ static void FastFwdCB(GtkWidget *widget,gpointer data)
   ginfo=(GripInfo *)data;
 
 #ifndef GRIPCD
-  if(ginfo->ripping) {
+  if(ginfo->ripping_a_disc) {
     DisplayMsg(_("Cannot fast forward while ripping"));
 
     return;
@@ -1128,7 +1128,7 @@ static void RewindCB(GtkWidget *widget,gpointer data)
   ginfo=(GripInfo *)data;
 
 #ifndef GRIPCD
-  if(ginfo->ripping) {
+  if(ginfo->ripping_a_disc) {
     DisplayMsg(_("Cannot rewind while ripping"));
 
     return;
@@ -1160,7 +1160,7 @@ static void NextDisc(GtkWidget *widget,gpointer data)
   ginfo=(GripInfo *)data;
 
 #ifndef GRIPCD
-  if(ginfo->ripping) {
+  if(ginfo->ripping_a_disc) {
     DisplayMsg(_("Cannot switch discs while ripping"));
 
     return;
@@ -1183,7 +1183,7 @@ void EjectDisc(GtkWidget *widget,gpointer data)
   Debug(_("Eject disc\n"));
 
 #ifndef GRIPCD
-  if(ginfo->ripping) {
+  if(ginfo->ripping_a_disc) {
     DisplayMsg(_("Cannot eject while ripping"));
 
     return;
@@ -1231,7 +1231,7 @@ static void StopPlayCB(GtkWidget *widget,gpointer data)
   ginfo=(GripInfo *)data;
 
 #ifndef GRIPCD
-  if(ginfo->ripping) return;
+  if(ginfo->ripping_a_disc) return;
 #endif
 
   CDStop(&(ginfo->disc));
@@ -1261,7 +1261,7 @@ static void PlayTrackCB(GtkWidget *widget,gpointer data)
   disc=&(ginfo->disc);
 
 #ifndef GRIPCD
-  if(ginfo->ripping) {
+  if(ginfo->ripping_a_disc) {
     DisplayMsg(_("Cannot play while ripping"));
    
     return;
@@ -1324,7 +1324,7 @@ static void NextTrackCB(GtkWidget *widget,gpointer data)
 void NextTrack(GripInfo *ginfo)
 {
 #ifndef GRIPCD
-  if(ginfo->ripping) {
+  if(ginfo->ripping_a_disc) {
     DisplayMsg(_("Cannot switch tracks while ripping"));
     return;
   }
@@ -1358,7 +1358,7 @@ static void PrevTrackCB(GtkWidget *widget,gpointer data)
 static void PrevTrack(GripInfo *ginfo)
 {
 #ifndef GRIPCD
-  if(ginfo->ripping) {
+  if(ginfo->ripping_a_disc) {
     DisplayMsg(_("Cannot switch tracks while ripping"));
     return;
   }

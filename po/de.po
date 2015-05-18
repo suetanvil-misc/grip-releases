@@ -4,9 +4,9 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: grip 3.0.2\n"
+"Project-Id-Version: grip 3.0.4\n"
 "POT-Creation-Date: 2002-12-25 17:56-0800\n"
-"PO-Revision-Date: 2002-09-19 23:02+0200\n"
+"PO-Revision-Date: 2002-12-27 22:12+0100\n"
 "Last-Translator: Götz Waschk <waschk@informatik.uni-rostock.de>\n"
 "Language-Team: German <de@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -256,7 +256,7 @@ msgstr "Verzögerung vorm Rippen"
 
 #: src/gripcfg.c:322
 msgid "Stop cdrom drive between tracks"
-msgstr ""
+msgstr "Stoppe CD-ROM-Laufwerk zwischen den Titeln"
 
 #: src/gripcfg.c:326
 msgid "Wav filter command"
@@ -548,7 +548,7 @@ msgstr "Tracks"
 #: src/cdplay.c:487
 #, c-format
 msgid "Column/Button: %d/%d\n"
-msgstr ""
+msgstr "Zeile/Knopf: %d/%d\n"
 
 #: src/cdplay.c:635
 msgid "Rotate play mode"
@@ -972,7 +972,7 @@ msgstr "Kod: Leerlauf"
 
 #: src/rip.c:257
 msgid "Overall indicators:"
-msgstr ""
+msgstr "Gesamtanzeigen:"
 
 #: src/rip.c:320
 msgid "Start sector"
@@ -988,12 +988,12 @@ msgstr "Fehler: Kann m3u-Datei nicht öffnen\n"
 
 #: src/rip.c:621
 msgid "In KillRip\n"
-msgstr ""
+msgstr "In KillRip\n"
 
 #: src/rip.c:642
 #, c-format
 msgid "Now total enc size is: %d\n"
-msgstr ""
+msgstr "Gesamte kodierte Größe ist nun: %d\n"
 
 #: src/rip.c:796
 #, c-format
@@ -1003,7 +1003,7 @@ msgstr "Rip: Trk %d (%3.1fx)"
 #: src/rip.c:826
 #, c-format
 msgid "Rip: %6.2f%%"
-msgstr ""
+msgstr "Ripp: %6.2f%%"
 
 #: src/rip.c:845
 msgid "Rip finished\n"
@@ -1031,7 +1031,7 @@ msgstr "Kod: Trk %d (%3.1fx)"
 #: src/rip.c:932
 #, c-format
 msgid "Enc: %6.2f%%"
-msgstr ""
+msgstr "Kod: %6.2f%%"
 
 #: src/rip.c:942
 #, c-format
@@ -1153,21 +1153,21 @@ msgstr "Kod: Trk %d (0.0x)"
 
 #: src/rip.c:1636
 msgid "In CalculateAll\n"
-msgstr ""
+msgstr "In CalulateAll\n"
 
 #: src/rip.c:1642
 msgid "We aren't ripping now, so let's zero encoding values\n"
-msgstr ""
+msgstr "Wir rippen gerade nichts, also Kodierwerte auf 0 setzen\n"
 
 #: src/rip.c:1658
 #, c-format
 msgid "Total rip size is: %d\n"
-msgstr ""
+msgstr "Gesamte Rippgröße: %d\n"
 
 #: src/rip.c:1659
 #, c-format
 msgid "Total enc size is: %d\n"
-msgstr ""
+msgstr "Gesamte kodierte Größe: %d\n"
 
 #~ msgid "MP3 file format"
 #~ msgstr "MP3-Dateiformat"

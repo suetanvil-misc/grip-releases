@@ -24,7 +24,7 @@ grip.html: grip/grip.html
 	-cp grip/grip.html .
 
 grip/grip.html: $(SGML_FILES)
-	-db2html grip.sgml
+	-db2html -c /etc/sgml/catalog -V '%use-id-as-filename%' grip.sgml
 	-cp *.png grip
 
 ## when we make dist, we include the generated HTML so people don't

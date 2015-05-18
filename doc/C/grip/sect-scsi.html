@@ -2,7 +2,7 @@
 <HTML
 ><HEAD
 ><TITLE
->Acknowledgments</TITLE
+>Using a SCSI drive</TITLE
 ><META
 NAME="GENERATOR"
 CONTENT="Modular DocBook HTML Stylesheet Version 1.76b+
@@ -10,11 +10,17 @@ CONTENT="Modular DocBook HTML Stylesheet Version 1.76b+
 REL="HOME"
 TITLE="Grip User's Guide"
 HREF="grip.html"><LINK
+REL="UP"
+TITLE="Ripping CDs with Grip"
+HREF="ripping.html"><LINK
 REL="PREVIOUS"
-TITLE="License and Disclaimer"
-HREF="license.html"></HEAD
+TITLE="Increasing Ripping Performance"
+HREF="rip-perform.html"><LINK
+REL="NEXT"
+TITLE="Configuring Grip"
+HREF="configure.html"></HEAD
 ><BODY
-CLASS="CHAPTER"
+CLASS="SECT1"
 BGCOLOR="#FFFFFF"
 TEXT="#000000"
 LINK="#0000FF"
@@ -40,7 +46,7 @@ WIDTH="10%"
 ALIGN="left"
 VALIGN="bottom"
 ><A
-HREF="license.html"
+HREF="rip-perform.html"
 ACCESSKEY="P"
 >&#60;&#60;&#60; Previous</A
 ></TD
@@ -48,85 +54,44 @@ ACCESSKEY="P"
 WIDTH="80%"
 ALIGN="center"
 VALIGN="bottom"
-></TD
+>Ripping CDs with Grip</TD
 ><TD
 WIDTH="10%"
 ALIGN="right"
 VALIGN="bottom"
->&nbsp;</TD
+><A
+HREF="configure.html"
+ACCESSKEY="N"
+>Next &#62;&#62;&#62;</A
+></TD
 ></TR
 ></TABLE
 ><HR
 ALIGN="LEFT"
 WIDTH="100%"></DIV
 ><DIV
-CLASS="CHAPTER"
+CLASS="SECT1"
 ><H1
+CLASS="SECT1"
 ><A
-NAME="ACKNOWLEDGE"
+NAME="SECT-SCSI"
 ></A
->Acknowledgments</H1
+>Using a SCSI drive</H1
 ><P
->Thanks go to:</P
-><P
-></P
-><UL
-><LI
-><P
->Everyone involved in GTK development for a wonderful
-      GUI</P
-></LI
-><LI
-><P
->Tony Arcieri, for libcdaudio, which formed the basis
-	  of Grip's low-level cd control and disc database access
-	  routines</P
-></LI
-><LI
-><P
->Monty, for cdparanoia and the paranoia
-      library</P
-></LI
-><LI
-><P
->Heiko Eissfeldt for cdda2wav</P
-></LI
-><LI
-><P
->Mike Cheng, Mark Taylor and all the others who have
-      worked on LAME</P
-></LI
-><LI
-><P
->Tord Jansson for BladeEnc</P
-></LI
-><LI
-><P
->Michael Kaiser and everyone else who has helped out
-      with freedb</P
-></LI
-><LI
-><P
->Ti Kan, for the xmcd button bitmaps, many of which I
-	  use in modified form (shame on you for the cddb fiasco,
-	  however)</P
-></LI
-><LI
-><P
->mp3.com for hosting nostatic.org</P
-></LI
-><LI
-><P
->David Robinson and Glen Sawyer for
-      ReplayGain</P
-></LI
-><LI
-><P
->Everyone else who has given me feedback, contributed
-	  code, and helped test Grip (see the ChangeLog and CREDITS for
-	  specific contributions)</P
-></LI
-></UL
+>If you are using a SCSI drive, or an IDE drive under SCSI
+	  emulation, Grip needs to access the generic scsi device in
+	  addition to the cdrom device. On most systems, the generic scsi
+	  device will be /dev/sgx, where 'x' is a number. Unless you have
+	  multiple scsi devices, the device would be /dev/sg0. Ensure that
+	  your user account has access to this device, and that this device
+	  is specified in your rip configuration (see <A
+HREF="ripconfig.html"
+>the Section called <I
+>The "Rip" config tab</I
+> in the chapter called <I
+>Configuring Grip</I
+></A
+>).</P
 ></DIV
 ><DIV
 CLASS="NAVFOOTER"
@@ -144,7 +109,7 @@ WIDTH="33%"
 ALIGN="left"
 VALIGN="top"
 ><A
-HREF="license.html"
+HREF="rip-perform.html"
 ACCESSKEY="P"
 >&#60;&#60;&#60; Previous</A
 ></TD
@@ -161,24 +126,32 @@ ACCESSKEY="H"
 WIDTH="33%"
 ALIGN="right"
 VALIGN="top"
->&nbsp;</TD
+><A
+HREF="configure.html"
+ACCESSKEY="N"
+>Next &#62;&#62;&#62;</A
+></TD
 ></TR
 ><TR
 ><TD
 WIDTH="33%"
 ALIGN="left"
 VALIGN="top"
->License and Disclaimer</TD
+>Increasing Ripping Performance</TD
 ><TD
 WIDTH="34%"
 ALIGN="center"
 VALIGN="top"
->&nbsp;</TD
+><A
+HREF="ripping.html"
+ACCESSKEY="U"
+>Up</A
+></TD
 ><TD
 WIDTH="33%"
 ALIGN="right"
 VALIGN="top"
->&nbsp;</TD
+>Configuring Grip</TD
 ></TR
 ></TABLE
 ></DIV

@@ -1,3 +1,18 @@
+2003-01-12  Mike Oliphant  <oliphant@gtk.org>
+
+	* de.po: updated (Goetz Waschk)
+	* ja.po: updated (Takeshi AIHANA)
+	* ru.po: updated (Michael Shigorin)
+	* discdb.c: work around for bug in libghttp that sends "HTTP/1,1"
+	  instead of "HTTP/1.1" on some systems (Michael Mauch)
+	* rip.c/grip.c/cdplay.c: use 'ripping_a_disc' instead of 'ripping'
+	  to check if a rip is in progress
+	* doc/C: updated screenshots
+	* grip.sgml: updated
+	* rip.c: only increment num_wavs if we are encoding
+	* rip.c: don't delete wav file on aborted encode
+	* configure.in/grip.spec: upped version to 3.0.5
+	
 2002-12-25  Mike Oliphant  <oliphant@gtk.org>
 
 	* zh_CN.po: updated (Merlin Ma)
