@@ -24,7 +24,7 @@
 #include <stdio.h>
 #include <string.h>
 #include <ctype.h>
-#include <glib.h>
+#include "grip.h"
 #include "parsecfg.h"
 
 static gboolean ParseLine(char *buf,CFGEntry *cfg);
@@ -55,7 +55,7 @@ static gboolean ParseLine(char *buf,CFGEntry *cfg)
 	    *((int *)cfg[cfgent].destvar)=atoi(tok);
 	    break;
 	  default:
-	    printf("Error: Bad entry type\n");
+	    printf(_("Error: Bad entry type\n"));
 	    break;
 	  }
 	
@@ -63,8 +63,6 @@ static gboolean ParseLine(char *buf,CFGEntry *cfg)
 	break;
       }
     }
-
-  /*  if(!found) printf("Error: Unrecognized line: %s\n",buf);*/
 
   return found;
 }
@@ -83,7 +81,7 @@ gboolean LoadConfig(char *filename,char *name,int ver,int reqver,CFGEntry *cfg)
   tok=strtok(buf," ");
 
   if(!tok||(strcasecmp(tok,name))) {
-    printf("Error: Invalid config file\n");
+    printf(_("Error: Invalid config file\n"));
 
     return FALSE;
   }
@@ -91,9 +89,9 @@ gboolean LoadConfig(char *filename,char *name,int ver,int reqver,CFGEntry *cfg)
   tok=strtok(NULL,"");
 
   if(!tok||(atoi(tok)<reqver)) {
-    printf("Error: Your config file is out of date\n"
+    printf(_("Error: Your config file is out of date\n"
 	   "Resetting to defaults\n"
-	   "You will need to re-configure Grip\n");
+	   "You will need to re-configure Grip\n"));
 
     return FALSE;
   }

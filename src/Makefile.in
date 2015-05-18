@@ -87,6 +87,7 @@ GNOME_LIBS = @GNOME_LIBS@
 GNORBA_CFLAGS = @GNORBA_CFLAGS@
 GNORBA_LIBS = @GNORBA_LIBS@
 GTKXMHTML_LIBS = @GTKXMHTML_LIBS@
+ID3_LIBS = @ID3_LIBS@
 INSTOBJEXT = @INSTOBJEXT@
 INTLBISON = @INTLBISON@
 INTLLIBS = @INTLLIBS@
@@ -157,7 +158,7 @@ grip_SOURCES = \
 
 
 grip_LDADD = $(GNOMEUI_LIBS) $(GNOME_LIBDIR) $(INTLLIBS) $(PTHREAD_LIB) \
-	$(GHTTP_LIB) $(CDPAR_LIBS)
+	$(GHTTP_LIB) $(CDPAR_LIBS) $(ID3_LIBS)
 
 mkinstalldirs = $(SHELL) $(top_srcdir)/mkinstalldirs
 CONFIG_HEADER = ../config.h
@@ -348,9 +349,10 @@ grip.o: grip.c ../config.h grip.h cddev.h discdb.h launch.h cdplay.h \
 gripcfg.o: gripcfg.c grip.h cddev.h discdb.h launch.h ../config.h \
 	gripcfg.h dialog.h
 id3.o: id3.c grip_id3.h ../config.h grip.h cddev.h discdb.h launch.h
-launch.o: launch.c launch.h
+launch.o: launch.c grip.h cddev.h discdb.h launch.h ../config.h common.h
 main.o: main.c ../config.h grip.h cddev.h discdb.h launch.h
-parsecfg.o: parsecfg.c parsecfg.h
+parsecfg.o: parsecfg.c grip.h cddev.h discdb.h launch.h ../config.h \
+	parsecfg.h
 rip.o: rip.c grip.h cddev.h discdb.h launch.h ../config.h rip.h dialog.h \
 	cdplay.h gripcfg.h grip_id3.h common.h
 uihelper.o: uihelper.c common.h

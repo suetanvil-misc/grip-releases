@@ -87,6 +87,7 @@ GNOME_LIBS = @GNOME_LIBS@
 GNORBA_CFLAGS = @GNORBA_CFLAGS@
 GNORBA_LIBS = @GNORBA_LIBS@
 GTKXMHTML_LIBS = @GTKXMHTML_LIBS@
+ID3_LIBS = @ID3_LIBS@
 INSTOBJEXT = @INSTOBJEXT@
 INTLBISON = @INTLBISON@
 INTLLIBS = @INTLLIBS@
@@ -122,7 +123,9 @@ cxxflags_set = @cxxflags_set@
 SUBDIRS = macros po intl src pixmaps doc
 
 EXTRA_DIST = \
-        grip.desktop
+        grip.desktop \
+	CREDITS \
+	grip.spec
 
 
 Applicationsdir = $(datadir)/gnome/apps/Multimedia
@@ -430,8 +433,6 @@ install uninstall-am uninstall all-redirect all-am all installdirs-am \
 installdirs mostlyclean-generic distclean-generic clean-generic \
 maintainer-clean-generic clean mostlyclean distclean maintainer-clean
 
-	TODO
-	CREDITS
 
 # Tell versions [3.59,3.63) of GNU make to not export all variables.
 # Otherwise a system limit (for SysV at least) may be exceeded.

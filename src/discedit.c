@@ -62,8 +62,11 @@ GtkWidget *MakeEditBox(GripInfo *ginfo)
 
   hbox=gtk_hbox_new(FALSE,3);
 
-  label=gtk_label_new("Disc title");
-  len=gdk_string_width(label->style->font,"Track name")+5;
+  label=gtk_label_new(_("Disc title"));
+
+  /* This should be the longest string in the track edit section */
+  len=gdk_string_width(label->style->font,_("Track name"))+5;
+
   gtk_widget_set_usize(label,len,0);
   gtk_box_pack_start(GTK_BOX(hbox),label,FALSE,FALSE,0);
   gtk_widget_show(label);
@@ -80,7 +83,7 @@ GtkWidget *MakeEditBox(GripInfo *ginfo)
 
   hbox=gtk_hbox_new(FALSE,3);
 
-  label=gtk_label_new("Disc artist");
+  label=gtk_label_new(_("Disc artist"));
   gtk_widget_set_usize(label,len,0);
   gtk_box_pack_start(GTK_BOX(hbox),label,FALSE,FALSE,0);
   gtk_widget_show(label);
@@ -97,7 +100,7 @@ GtkWidget *MakeEditBox(GripInfo *ginfo)
 
   hbox=gtk_hbox_new(FALSE,3);
 
-  label=gtk_label_new("ID3 genre:");
+  label=gtk_label_new(_("ID3 genre:"));
   gtk_widget_set_usize(label,len,0);
   gtk_box_pack_start(GTK_BOX(hbox),label,FALSE,FALSE,0);
   gtk_widget_show(label);
@@ -128,7 +131,7 @@ GtkWidget *MakeEditBox(GripInfo *ginfo)
 
   hbox=gtk_hbox_new(FALSE,3);
 
-  label=gtk_label_new("Disc year");
+  label=gtk_label_new(_("Disc year"));
   gtk_widget_set_usize(label,len,0);
   gtk_box_pack_start(GTK_BOX(hbox),label,FALSE,FALSE,0);
   gtk_widget_show(label);
@@ -146,7 +149,7 @@ GtkWidget *MakeEditBox(GripInfo *ginfo)
 
   hbox=gtk_hbox_new(FALSE,3);
 
-  label=gtk_label_new("Track name");
+  label=gtk_label_new(_("Track name"));
   gtk_widget_set_usize(label,len,0);
   gtk_box_pack_start(GTK_BOX(hbox),label,FALSE,FALSE,0);
   gtk_widget_show(label);
@@ -166,7 +169,7 @@ GtkWidget *MakeEditBox(GripInfo *ginfo)
 
   hbox=gtk_hbox_new(FALSE,3);
 
-  label=gtk_label_new("Track artist");
+  label=gtk_label_new(_("Track artist"));
   gtk_widget_set_usize(label,len,0);
   gtk_box_pack_start(GTK_BOX(hbox),label,FALSE,FALSE,0);
   gtk_widget_show(label);
@@ -183,18 +186,18 @@ GtkWidget *MakeEditBox(GripInfo *ginfo)
 
   hbox=gtk_hbox_new(FALSE,3);
 
-  label=gtk_label_new("Split:");
+  label=gtk_label_new(_("Split:"));
   gtk_box_pack_start(GTK_BOX(hbox),label,FALSE,FALSE,0);
   gtk_widget_show(label);
 
-  button=gtk_button_new_with_label("Title/Artist");
+  button=gtk_button_new_with_label(_("Title/Artist"));
   gtk_object_set_user_data(GTK_OBJECT(button),(gpointer)0);
   gtk_signal_connect(GTK_OBJECT(button),"clicked",
 		     GTK_SIGNAL_FUNC(SplitTitleArtist),(gpointer)ginfo);
   gtk_box_pack_start(GTK_BOX(hbox),button,FALSE,FALSE,0);
   gtk_widget_show(button);
 
-  button=gtk_button_new_with_label("Artist/Title");
+  button=gtk_button_new_with_label(_("Artist/Title"));
   gtk_object_set_user_data(GTK_OBJECT(button),(gpointer)1);
   gtk_signal_connect(GTK_OBJECT(button),"clicked",
 		     GTK_SIGNAL_FUNC(SplitTitleArtist),(gpointer)ginfo);
@@ -202,7 +205,7 @@ GtkWidget *MakeEditBox(GripInfo *ginfo)
   gtk_widget_show(button);
 
   entry=MakeStrEntry(&uinfo->split_chars_entry,ginfo->title_split_chars,
-		     "Split chars",5,TRUE);
+		     _("Split chars"),5,TRUE);
   gtk_widget_set_usize(uinfo->split_chars_entry,
 		       5*gdk_string_width(uinfo->split_chars_entry->
 					  style->font,"W"),0);
@@ -219,7 +222,7 @@ GtkWidget *MakeEditBox(GripInfo *ginfo)
 
   check=MakeCheckButton(&uinfo->multi_artist_button,
 			&(ginfo->ddata.data_multi_artist),
-			"Multi-artist");
+			_("Multi-artist"));
   gtk_signal_connect(GTK_OBJECT(uinfo->multi_artist_button),"clicked",
 		     GTK_SIGNAL_FUNC(UpdateMultiArtist),(gpointer)ginfo);
   gtk_box_pack_start(GTK_BOX(hbox),check,TRUE,TRUE,0);
@@ -230,7 +233,7 @@ GtkWidget *MakeEditBox(GripInfo *ginfo)
   gtk_signal_connect(GTK_OBJECT(button),"clicked",
       GTK_SIGNAL_FUNC(SaveDiscInfo),(gpointer)ginfo);
   gtk_tooltips_set_tip(MakeToolTip(),button,
-		       "Save disc info",NULL);
+		       _("Save disc info"),NULL);
   gtk_box_pack_start(GTK_BOX(hbox),button,FALSE,FALSE,0);
   gtk_widget_show(button);
 
@@ -239,7 +242,7 @@ GtkWidget *MakeEditBox(GripInfo *ginfo)
   gtk_signal_connect(GTK_OBJECT(button),"clicked",
       GTK_SIGNAL_FUNC(SubmitEntryCB),(gpointer)ginfo);
   gtk_tooltips_set_tip(MakeToolTip(),button,
-		       "Submit disc info",NULL);
+		       _("Submit disc info"),NULL);
   gtk_box_pack_start(GTK_BOX(hbox),button,FALSE,FALSE,0);
   gtk_widget_show(button);
 
@@ -338,9 +341,9 @@ static void SaveDiscInfo(GtkWidget *widget,gpointer data)
 
   if(ginfo->have_disc) {
     if(DiscDBWriteDiscData(&(ginfo->disc),&(ginfo->ddata),NULL,TRUE,FALSE)<0)
-      DisplayMsg("Error saving disc data");
+      DisplayMsg(_("Error saving disc data"));
   }
-  else DisplayMsg("No disc present");
+  else DisplayMsg(_("No disc present"));
 }
 
 static void TitleEditChanged(GtkWidget *widget,gpointer data)
@@ -479,26 +482,26 @@ static void SubmitEntryCB(GtkWidget *widget,gpointer data)
   ginfo=(GripInfo *)data;
 
   if(!ginfo->have_disc) {
-    DisplayMsg("Cannot submit\nNo disc is present");
+    DisplayMsg(_("Cannot submit\nNo disc is present"));
 
     return;
   }
 
   if(!ginfo->ddata.data_genre) {
-    /*    DisplayMsg("Submission requires a genre other than 'unknown'");*/
+    /*    DisplayMsg(_("Submission requires a genre other than 'unknown'"));*/
     GetDiscDBGenre(ginfo);
 
     return;
   }
 
   if(!*ginfo->ddata.data_title) {
-    DisplayMsg("You must enter a disc title");
+    DisplayMsg(_("You must enter a disc title"));
 
     return;
   }
 
   if(!*ginfo->ddata.data_artist) {
-    DisplayMsg("You must enter a disc artist");
+    DisplayMsg(_("You must enter a disc artist"));
     
     return;
   }
@@ -508,17 +511,17 @@ static void SubmitEntryCB(GtkWidget *widget,gpointer data)
   if(!strncasecmp(ginfo->discdb_submit_email+(len-9),".cddb.com",9))
     gnome_app_ok_cancel_modal
       ((GnomeApp *)ginfo->gui_info.app,
-       "You are about to submit this disc information\n"
+       _("You are about to submit this disc information\n"
        "to a commercial CDDB server, which will then\n"
        "own the data that you submit. These servers make\n"
        "a profit out of your effort. We suggest that you\n"
-       "support free servers instead.\n\nContinue?",
+       "support free servers instead.\n\nContinue?"),
        (GnomeReplyCallback)SubmitEntry,(gpointer)ginfo);
   else
     gnome_app_ok_cancel_modal
       ((GnomeApp *)ginfo->gui_info.app,
-       "You are about to submit this\ndisc information via email.\n\n"
-       "Continue?",(GnomeReplyCallback)SubmitEntry,(gpointer)ginfo);
+       _("You are about to submit this\ndisc information via email.\n\n"
+       "Continue?"),(GnomeReplyCallback)SubmitEntry,(gpointer)ginfo);
 }
 
 /* Make the user pick a DiscDB genre on submit*/
@@ -534,12 +537,12 @@ static void GetDiscDBGenre(GripInfo *ginfo)
   int genre;
 
   dialog=gtk_dialog_new();
-  gtk_window_set_title(GTK_WINDOW(dialog),"Genre selection");
+  gtk_window_set_title(GTK_WINDOW(dialog),_("Genre selection"));
 
   gtk_container_border_width(GTK_CONTAINER(GTK_DIALOG(dialog)->vbox),5);
 
-  label=gtk_label_new("Submission requires a genre other than 'unknown'\n"
-		      "Please select a DiscDB genre below");
+  label=gtk_label_new(_("Submission requires a genre other than 'unknown'\n"
+		      "Please select a DiscDB genre below"));
   gtk_box_pack_start(GTK_BOX(GTK_DIALOG(dialog)->vbox),label,TRUE,TRUE,0);
   gtk_widget_show(label);
 
@@ -548,7 +551,7 @@ static void GetDiscDBGenre(GripInfo *ginfo)
 
   hbox=gtk_hbox_new(FALSE,3);
 
-  label=gtk_label_new("DiscDB genre");
+  label=gtk_label_new(_("DiscDB genre"));
   gtk_box_pack_start(GTK_BOX(hbox),label,FALSE,FALSE,0);
   gtk_widget_show(label);
 
@@ -568,7 +571,7 @@ static void GetDiscDBGenre(GripInfo *ginfo)
   gtk_box_pack_start(GTK_BOX(GTK_DIALOG(dialog)->vbox),hbox,TRUE,TRUE,0);
   gtk_widget_show(hbox);
 
-  submit_button=gtk_button_new_with_label("Submit");
+  submit_button=gtk_button_new_with_label(_("Submit"));
 
   gtk_signal_connect(GTK_OBJECT(submit_button),"clicked",
 		     (gpointer)SubmitEntryCB,(gpointer)ginfo);
@@ -579,7 +582,7 @@ static void GetDiscDBGenre(GripInfo *ginfo)
 		     TRUE,TRUE,0);
   gtk_widget_show(submit_button);
 
-  cancel_button=gtk_button_new_with_label("Cancel");
+  cancel_button=gtk_button_new_with_label(_("Cancel"));
 
   gtk_signal_connect_object(GTK_OBJECT(cancel_button),"clicked",
 			    GTK_SIGNAL_FUNC(gtk_widget_destroy),

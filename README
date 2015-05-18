@@ -1,27 +1,28 @@
-Grip/GCD
-========
+Grip
+====
 
 Grip is a gtk-based cd-player and cd-ripper. It has the ripping capabilities
 of cdparanoia builtin, but can also use external rippers (such as
 cdda2wav). It also provides an automated frontend for MP3 encoders, letting
-you take a disc and transform it easily straight into MP3s. The CDDB
+you take a disc and transform it easily straight into MP3s. The DiscDB
 protocol is supported for retrieving track information from disc database
 servers. Grip works with DigitalDJ to provide a unified "computerized"
-version of your music collection. GCD is the cd-player only version of Grip.
+version of your music collection.
 
-Because Grip and GCD share much of their functionality, this file documents
-both of them. If you installed only GCD, you should ignore the bits that
-talk about "ripping" and "encoding" of tracks.
+
+***
+*** Note: This documentation is out of date, and is being revised
+***
 
 
 Requirements
 ============
 
-To use Grip/GCD, you must have:
+To use Grip, you must have:
 
  o GTK+ (see http://www.gtk.org)
  o POSIX thread support (http://pauillac.inria.fr/~xleroy/linuxthreads)
- o a net connection (if you want to use CDDB lookup)
+ o a net connection (if you want to use disc database lookup)
  o a CD player (surprise, surprise)
 
 Grip is designed to work closely with DigitalDJ, my SQL-based mp3 jukebox
@@ -33,61 +34,24 @@ system (although it does not require it). DigitalDJ can be obtained from:
 Installation
 ============
 
-If you obtained Grip or GCD from the RPM distribution then they are already
+If you obtained Grip from the RPM distribution then they are already
 installed. If you have the source distribution, you need to compile it.
-Edit the Makefile and the header file config.h to correspond to your
-system. If you are compiling GCD, just type "make gcd". If you are compiling
-Grip, you need to decide whether to compile grip with cdparanoia builtin or
-not.
-
-To build with cdparanoia:
-
- o if you downloaded the grip source distribution *with* cdparanoia
-   included, you are set. if not:
-
-   o get the cdparanoia source distribution
-   o unpack it somewhere
-   o make a symbolic link "cdparanoia" in the grip source directory that
-     points to it (ie: ln -s /usr/src/cdparanoia-III-alpha9.5 cdparanoia)
-
- o cd to the cdparanoia directory
- o configure it ("./configure")
- o do "make lib"
- o cd back up to the grip directory
- o type "make" and then "make install"
 
 
-To build *without* cdparanoia:
-
- o type "make gripnopar"
- o if you want GCD compiled as well, type "make gcd"
- o type "make install"
-
-
-Running Grip/GCD
-================
+Running Grip
+============
 
 Grip's usage is:
 
-  grip [-d <device>] [-s] [-l]
+  grip [options]
 
-    -d <device>        Use <device> as cd-rom device
-    -s                 Launch in "small" (cd-only) mode
-    -l		       'local' mode -- don't try to use CDDB
-    -r                 Don't do I/O redirection
-    -v                 Verbose (debug) mode
+  where the available options are:
 
-GCD's usage is:
-
-  gcd [-d <device>] [-f] [-l]
-
-    -d <device>        Use <device> as cd-rom device
-    -f                 Launch in "full" (track-display) mode
-    -l		       'local' mode -- don't try to use CDDB
-    -v                 Verbose (debug) mode
-
-The most handy way to launch Grip/GCD is from your window manager's doc. A
-dock icon (gripicon.tif/gcdicon.tif) is included with the distribution.
+    --device <device>      Use <device> as cd-rom device
+    --small                Launch in "small" (cd-only) mode
+    --local		   'local' mode -- don't try to use DiscDB
+    --no-redirect          Do not do I/O redirection
+    --verbose              Verbose (debug) mode
 
 Grip's operation should be pretty self-explanatory. Tracks to rip are
 selected with the right mouse button. To select all tracks on the disc,
@@ -97,7 +61,7 @@ select "Rip partial track", only the current select of the current track
 will be ripped or encoded. Start/End sector values are ignored if partial
 track ripping is not enabled.
 
-Grip and GCD used to be installed as setuid root. This was for several
+Grip used to be installed as setuid root. This was for several
 reasons. First, most people have their systems configured such that their
 user accound does not have access to the cd drive. Secondly, cdparanoia
 requires access to both the cd device and (for scsi drives) the generic scsi
@@ -109,7 +73,7 @@ correctly on the appropriate devices, or run the program as root.
 ******************************** IMPORTANT! ******************************
 **************************************************************************
 
-If you have trouble with Grip or GCD, read the "Common Questions"
+If you have trouble with Grip, read the "Common Questions"
 section. I'm getting bogged down in email these days. This being said, I do
 appreciate feedback on Grip. If, after reading through this document
 carefully, you still have a question, or have a feature request, feel free
@@ -121,10 +85,10 @@ already on my list.
 **************************************************************************
 
 
-Configuring Grip/GCD
-====================
+Configuring Grip
+================
 
-The 'Config' menu allows you to configure your ripping program and your CDDB
+The 'Config' menu allows you to configure your ripping program and your DiscDB
 database. Rip/Encode/ID3 options are only available in Grip.
 
 Here are the options:
@@ -171,34 +135,10 @@ Rip Options:
                        to use to rip tracks with.
 
  o Ripping command-line: These are the arguments that will be passed to the
-                         ripping program. The '%' switches are translated as
-                         follows:
-
-                         o %t - Track to be ripped
-                         o %b - Begin sector to be ripped (0 is start of
-                                track) 
-                         o %e - End sector of track
-                         o %f - Filename to put .wav data to
+                         ripping program.
 
  o Rip file format: This specifies the format of the filename to write
-                    ripped data to. The '%' switches are translated as
-                    follows:
-
-                    o %n - Name of track being ripped
-                    o %t - Number of track being ripped
-                    o %a - Artist of current track
-		    o %A - Artist of the current disc
-                    o %d - Name of current disc
-                    o %b - Begin sector to be ripped (0 is start of
-                           track) 
-                    o %e - End sector of track
-                    o %c - cdrom device
-		    o %i - CDDB discid in hex format
-                    o %g - ID3 genre tag as a number
-                    o %G - ID3 genre tag as a word
-
-		    Adding a '*' between the '%' and the switch will cause
-		    underscoring of the field to be skipped.
+                    ripped data to.
 		    
  o Rip 'nice' value: The 'nice' (priority) level to run the rip at.
 
@@ -234,12 +174,7 @@ MP3 options:
                    to use to MP3-encode tracks with.
 
  o MP3 command-line: These are the arguments that will be passed to the
-                     MP3 encoder. The '%' switches are translated as
-                     follows:
-
-		     o %b - Encode bitrate (kbits/sec)
-                     o %f - Filename of the .wav data to be encoded
-                     o %o - Filename to save mp3 data to
+                     MP3 encoder.
 
  o MP3 file format: This specifies the format of the filename to write
                     MP3 data to. The '%' switches are the same as those
@@ -279,42 +214,26 @@ MP3 options:
 
 ID3 options:
 
- o ID3 Executable: The full path to the program that will add ID3 tags to an
-                   MP3 file
-
- o ID3 Command-line: The arguments to be passed to the ID3 program. The %
-                     switches are translated as:
-
-                    o %n - Name of track
-                    o %t - Number of track
-                    o %a - Artist of current track
-		    o %A - Artist of the current disc
-                    o %d - Name of current disc
-                    o %g - ID3 genre tag as a number
-                    o %G - ID3 genre tag as a word
-		    o %y - Year of track
-                    o %f - Name of the MP3 file
-
  o Add ID3 tags: If selected this option will cause ID3 tags to be added to
                  each MP3 file after it is encoded.
  
 
-CDDB options:
+DiscDB options:
 
- o Primary/Secondary CDDB server: These are your servers for looking up disc
+ o Primary/Secondary DiscDB server: These are your servers for looking up disc
                                   information over the net. If the disc is
                                   not found on the primary server, the
                                   secondary server will be checked.
 
-   o DB server: The address of the CDDB server you wish to use.
+   o DB server: The address of the DiscDB server you wish to use.
 
    o DB CGI path: The path to the script on the server that handles HTTP
                   requests. This is generally "~cddb/cddb.cgi" or
                   "cgi-bin/cddb.cgi".
 
-   o DB Submit email: The email address to send CDDB submissions to.
+   o DB Submit email: The email address to send DiscDB submissions to.
 
-   o Perform CDDB lookup automatically: If selected, Grip will always try
+   o Perform DiscDB lookup automatically: If selected, Grip will always try
                                          to look up an unknown disc. If not
                                          selected, lookup must be initiated
                                          manually.
@@ -322,7 +241,7 @@ CDDB options:
 
 Proxy options:
 
- o Use proxy server: If selected, CDDB requests will be sent through an
+ o Use proxy server: If selected, DiscDB requests will be sent through an
                      HTTP proxy (useful for people behind firewalls).
 
  o Get server from 'http_proxy' env. var:
@@ -338,7 +257,7 @@ Proxy options:
 Misc options:
 
  o Email address: The email address to be used as a reply address when
-                  submitting CDDB entries and bug reports.
+                  submitting DiscDB entries and bug reports.
 
  o CD update program: This program will be run whenever a disc is put in the
                       drive. All sensible '%' switches can be used. I use
@@ -356,127 +275,6 @@ Misc options:
 
  o Keep application minimum size: If selected, Grip will always try to keep
                                   its window a the minimum size possible.
-
-
-Common Questions
-================
-
- Q: When I try to rip a track, I get X I/O errors. What gives?
-
- A: This seems to be a problem with non-thread-safe systems. Make sure your
-    system is safe for threads. This often seems to be associated with libc5.
-
-
- Q: I just get a message saying that the program can't access my drive. This
-    makes it hard to do much. Help!
-
- A: Your user account must have access to the cd device. See the
-    "Running Grip/GCD" section for more information on this.
-
-
- Q: I can play cd's fine, but my ripper can't access the drive. Why not?
-
- A: Rippers (cdparanoia, at least) need access to the generic scsi device as
-    well. See the "Running Grip/GCD" section for more information on this.
-
-
- Q: The progress bar doesn't seem to be completely accurate when doing an
-    MP3 encode. Why can't it get it right?
-
- A: The progress bar is done based on the size of the output file. If you
-    have the kbits/sec set properly, Grip should estimate the size
-    properly. Note that if you use variable bitrate encoding (supported by
-    encoders like LAME and xing) Grip has no way to accurately guess the
-    file size.
-
-
- Q: When I encode tracks, the MP3 progress bar never does anything. What
-    happened to progress?
-
- A: If your MP3 encoder doesn't accept an output filename (like BladeEnc),
-    or you haven't passed it one on the command-line, then it might not be
-    outputting to the file Grip expects. Make sure that your MP3 file format
-    is set to what your encoder is actually producing.
-
-
- Q: When Grip looks up disc information, it works, but says "Error saving
-    disc data". Why?
-
- A: Grip saves local copies of disc track information in the directory
-    "~/.cddb". It must be able to create or access this directory.
-
-
- Q: How come I don't get any scrollbars in the track display?
-
- A: You are using a version of Grip compiled for gtk+ v1.0.x on a system
-    that has gtk+ v1.2.x installed. You need to either get a binary compiled
-    for the development series of gtk+, or compile Grip yourself.
-
-
- Q: When my buddy runs Grip, he gets those nifty LCD icons showing
-    rip/encode/CDDB status, but I don't. What makes him so special?
-
- A: He's using a more recent version of gtk+ than you are. Due to bugs in
-    gtk+ v1.0.x, I don't support the icons under it. Upgrade your gtk+!
-
-
- Q: I can't get Grip to rip any tracks! This makes it less than useful...
-
- A: Grip won't rip tracks unless you tell it what to rip. Use the right
-    mouse button to select tracks for ripping.
-
-
- Q: I was listening to a CD in Grip and it sounded horrible! What's up?
-
- A: Perhaps you are listening to country music...
-
-
-CDDB notes
-==========
-
-I have declined to sign a license agreement with Escient, the company who
-owns "www.cddb.com" and runs the CDDB server "us.cddb.com". Their license
-would (among other things) have required me to place advertisements in Grip
-and restrict you, the user, to use only their databases. I am against this
-commercial use of the track information submitted by users such as
-yourself. For this reason, I encourage you to use free servers, such as
-"freedb.freedb.org".
-
-
-License and Disclaimer
-======================
-
-Grip and GCD are Copyright (c) 1998 by Mike Oliphant. Grip and GCD may be
-used and distributed under the terms of the GNU General Public License. All
-other brand and product names are trademarks, registered trademarks or
-service marks of their respective holders.
-
-These programs are distributed in the hope that it will be useful, but
-WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY
-or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License for
-more details.
-
-You should have received a copy of the GNU General Public License along with
-this distribution; if not, write to the Free Software Foundation, Inc., 59
-Temple Place, Suite 330, Boston, MA 02111, USA.
-
-
-Acknowledgments
-===============
-
-Thanks go to:
-
- o Everyone involved in GTK development for a wonderful GUI
- o Tony Arcieri, for libcdaudio, which formed the basis of Grip's low-level
-   cd control and CDDB access routines
- o Monty, for cdparanoia and the paranoia library
- o Heiko Eissfeldt for cdda2wav
- o Tord Jansson for BladeEnc
- o Mike Cheng, Mark Taylor and all the others who have worked on LAME
- o Ti Kan, for the xmcd button bitmaps, many of which I use in modified form
- o Everyone has contributed code to Grip (see the CREDITS file)
- o mp3.com for hosting nostatic.org
- o Everyone else who has given me feedback and helped test Grip
 
 
 ---

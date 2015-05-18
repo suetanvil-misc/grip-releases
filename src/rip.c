@@ -21,7 +21,6 @@
  */
 
 #include <sys/stat.h>
-#include <sys/param.h>
 #ifdef SOLARIS
 #include <sys/statvfs.h>
 #endif
@@ -34,8 +33,6 @@
 #include <sys/wait.h>
 #include <fcntl.h>
 #include <pthread.h>
-#include <gdk/gdkx.h>
-#include <X11/Xlib.h>
 #include "grip.h"
 #include "rip.h"
 #include "dialog.h"
@@ -62,7 +59,6 @@ static void AddSQLEntry(GripInfo *ginfo,EncodeTrack *enc_track);
 static void DBScan(GtkWidget *widget,gpointer data);
 static char *MakeRelative(char *file1,char *file2);
 static void AddM3U(GripInfo *ginfo);
-static void RedirectIO(gboolean redirect_output);
 static void ID3Add(GripInfo *ginfo,char *file,EncodeTrack *enc_track);
 static void DoWavFilter(GripInfo *ginfo);
 static void RipIsFinished(GripInfo *ginfo);
@@ -89,7 +85,7 @@ void MakeRipPage(GripInfo *ginfo)
 
   uinfo=&(ginfo->gui_info);
 
-  rippage=MakeNewPage(uinfo->notebook,"Rip");
+  rippage=MakeNewPage(uinfo->notebook,_("Rip"));
 
   vbox=gtk_vbox_new(FALSE,2);
   gtk_container_border_width(GTK_CONTAINER(vbox),3);
@@ -98,33 +94,43 @@ void MakeRipPage(GripInfo *ginfo)
 
   vbox2=gtk_vbox_new(FALSE,0);
 
-  button=gtk_button_new_with_label("Rip+Encode");
+  button=gtk_button_new_with_label(_("Rip+Encode"));
   gtk_tooltips_set_tip(MakeToolTip(),button,
-		       "Rip and encode selected tracks",NULL);
+		       _("Rip and encode selected tracks"),NULL);
   gtk_signal_connect(GTK_OBJECT(button),"clicked",
 		     GTK_SIGNAL_FUNC(DoRipEncode),(gpointer)ginfo);
   gtk_box_pack_start(GTK_BOX(vbox2),button,FALSE,FALSE,0);
   gtk_widget_show(button);
 
-  button=gtk_button_new_with_label("Rip only");
+  button=gtk_button_new_with_label(_("Rip Only"));
   gtk_tooltips_set_tip(MakeToolTip(),button,
-		       "Rip but do not encode selected tracks",NULL);
+		       _("Rip but do not encode selected tracks"),NULL);
   gtk_signal_connect(GTK_OBJECT(button),"clicked",
 		     GTK_SIGNAL_FUNC(DoRip),(gpointer)ginfo);
   gtk_box_pack_start(GTK_BOX(vbox2),button,FALSE,FALSE,0);
   gtk_widget_show(button);
 
-  button=gtk_button_new_with_label("Abort execution");
+  button=gtk_button_new_with_label(_("Abort Rip and Encode"));
   gtk_tooltips_set_tip(MakeToolTip(),button,
-		       "Kill all active rip and encode processes",NULL);
+		       _("Kill all active rip and encode processes"),NULL);
   gtk_signal_connect(GTK_OBJECT(button),"clicked",
-		     GTK_SIGNAL_FUNC(KillChild),(gpointer)ginfo);
+		     GTK_SIGNAL_FUNC(KillRip),(gpointer)ginfo);
+  gtk_signal_connect(GTK_OBJECT(button),"clicked",
+		     GTK_SIGNAL_FUNC(KillEncode),(gpointer)ginfo);
   gtk_box_pack_start(GTK_BOX(vbox2),button,FALSE,FALSE,0);
   gtk_widget_show(button);
 
-  button=gtk_button_new_with_label("DDJ Scan");
+  button=gtk_button_new_with_label(_("Abort Ripping Only"));
   gtk_tooltips_set_tip(MakeToolTip(),button,
-		       "Insert disc information into the DigitalDJ database",
+		       _("Kill rip process"),NULL);
+  gtk_signal_connect(GTK_OBJECT(button),"clicked",
+		     GTK_SIGNAL_FUNC(KillRip),(gpointer)ginfo);
+  gtk_box_pack_start(GTK_BOX(vbox2),button,FALSE,FALSE,0);
+  gtk_widget_show(button);
+
+  button=gtk_button_new_with_label(_("DDJ Scan"));
+  gtk_tooltips_set_tip(MakeToolTip(),button,
+		       _("Insert disc information into the DigitalDJ database"),
 		       NULL);
   gtk_signal_connect(GTK_OBJECT(button),"clicked",
 		     GTK_SIGNAL_FUNC(DBScan),(gpointer)ginfo);
@@ -139,7 +145,7 @@ void MakeRipPage(GripInfo *ginfo)
   vbox2=gtk_vbox_new(FALSE,0);
   gtk_container_border_width(GTK_CONTAINER(vbox2),3);
 
-  check=MakeCheckButton(NULL,&ginfo->rip_partial,"Rip partial track");
+  check=MakeCheckButton(NULL,&ginfo->rip_partial,_("Rip partial track"));
   gtk_signal_connect(GTK_OBJECT(check),"clicked",
   		     GTK_SIGNAL_FUNC(RipPartialChanged),(gpointer)ginfo);
   gtk_box_pack_start(GTK_BOX(vbox2),check,FALSE,FALSE,0);
@@ -150,14 +156,14 @@ void MakeRipPage(GripInfo *ginfo)
 
   hbox2=gtk_hbox_new(FALSE,5);
 
-  button=gtk_button_new_with_label("Play");
+  button=gtk_button_new_with_label(_("Play"));
   gtk_signal_connect(GTK_OBJECT(button),"clicked",
   		     GTK_SIGNAL_FUNC(PlaySegmentCB),
   		     (gpointer)ginfo);
   gtk_box_pack_start(GTK_BOX(hbox2),button,TRUE,TRUE,0);
   gtk_widget_show(button);
 
-  uinfo->play_sector_label=gtk_label_new("Current sector:      0");
+  uinfo->play_sector_label=gtk_label_new(_("Current sector:      0"));
   gtk_box_pack_start(GTK_BOX(hbox2),uinfo->play_sector_label,FALSE,FALSE,0);
   gtk_widget_show(uinfo->play_sector_label);
 
@@ -188,14 +194,15 @@ void MakeRipPage(GripInfo *ginfo)
 
   hbox=gtk_hbox_new(FALSE,3);
 
-  uinfo->rip_prog_label=gtk_label_new("Rip: Idle");
+  uinfo->rip_prog_label=gtk_label_new(_("Rip: Idle"));
 
+  /* This should be the largest this string can get */
   label_width=gdk_string_width(uinfo->app->style->font,
-			       "MP3: Trk 99 (99.9x)")+20;
+			       _("MP3: Trk 99 (99.9x)"))+20;
 
   gtk_widget_set_usize(uinfo->rip_prog_label,label_width,0);
   gtk_box_pack_start(GTK_BOX(hbox),uinfo->rip_prog_label,FALSE,FALSE,0);
-  gtk_label_set(GTK_LABEL(uinfo->rip_prog_label),"Rip: Idle");
+  gtk_label_set(GTK_LABEL(uinfo->rip_prog_label),_("Rip: Idle"));
   gtk_widget_show(uinfo->rip_prog_label);
 
   uinfo->ripprogbar=gtk_progress_bar_new();
@@ -204,7 +211,7 @@ void MakeRipPage(GripInfo *ginfo)
 
   uinfo->smile_indicator=NewBlankPixmap(uinfo->app);
   gtk_tooltips_set_tip(MakeToolTip(),uinfo->smile_indicator,
-		       "Rip status",NULL);
+		       _("Rip status"),NULL);
   gtk_box_pack_start(GTK_BOX(hbox),uinfo->smile_indicator,FALSE,FALSE,0);
   gtk_widget_show(uinfo->smile_indicator);
 
@@ -214,7 +221,7 @@ void MakeRipPage(GripInfo *ginfo)
   for(mycpu=0;mycpu<ginfo->num_cpu;mycpu++){
     hbox=gtk_hbox_new(FALSE,3);
 
-    uinfo->mp3_prog_label[mycpu]=gtk_label_new("MP3: Idle");
+    uinfo->mp3_prog_label[mycpu]=gtk_label_new(_("MP3: Idle"));
     gtk_widget_set_usize(uinfo->mp3_prog_label[mycpu],label_width,0);
 
     gtk_box_pack_start(GTK_BOX(hbox),uinfo->mp3_prog_label[mycpu],
@@ -263,12 +270,12 @@ static GtkWidget *MakeRangeSelects(GripInfo *ginfo)
   vbox=gtk_vbox_new(FALSE,0);
 
   numentry=MakeNumEntry(&(ginfo->gui_info.start_sector_entry),
-			&ginfo->start_sector,"Start sector",10);
+			&ginfo->start_sector,_("Start sector"),10);
   gtk_box_pack_start(GTK_BOX(vbox),numentry,FALSE,FALSE,0);
   gtk_widget_show(numentry);
   
   numentry=MakeNumEntry(&(ginfo->gui_info.end_sector_entry),
-			&ginfo->end_sector,"End sector",10);
+			&ginfo->end_sector,_("End sector"),10);
   gtk_box_pack_start(GTK_BOX(vbox),numentry,FALSE,FALSE,0);
   gtk_widget_show(numentry);
   
@@ -319,8 +326,7 @@ static void AddSQLEntry(GripInfo *ginfo,EncodeTrack *enc_track)
   sqlpid=fork();
 
   if(sqlpid==0) {
-    close(ConnectionNumber(GDK_DISPLAY()));
-    RedirectIO(ginfo->do_redirect);
+    CloseStuff(ginfo);
 
     if(*enc_track->song_artist)
       execlp("mp3insert","mp3insert",
@@ -497,7 +503,7 @@ static void AddM3U(GripInfo *ginfo)
 
   fp=fopen(str->str, "w");
   if(fp==NULL) {
-    perror("can't open m3u file");
+    printf(_("Error: can't open m3u file\n"));
     return;
   }
   
@@ -525,7 +531,31 @@ static void AddM3U(GripInfo *ginfo)
   fclose(fp);
 }
 
-void KillChild(GtkWidget *widget,gpointer data)
+void KillRip(GtkWidget *widget,gpointer data)
+{
+  GripInfo *ginfo;
+
+  ginfo=(GripInfo *)data;
+  
+  if(!ginfo->ripping) return;
+
+  /* Need to decrement num_wavs since we didn't finish ripping
+     the current track */
+  ginfo->num_wavs--;
+
+  ginfo->stop_rip=TRUE;
+  ginfo->ripping_a_disc=FALSE;
+
+  if(ginfo->using_builtin_cdp) {
+#ifdef CDPAR
+    ginfo->stop_thread_rip_now=TRUE;
+#endif
+  }
+  else kill(ginfo->rippid,SIGKILL);
+  /*    ginfo->doencode=FALSE;*/
+}
+
+void KillEncode(GtkWidget *widget,gpointer data)
 {
   GripInfo *ginfo;
   int mycpu;
@@ -534,52 +564,24 @@ void KillChild(GtkWidget *widget,gpointer data)
 
   ginfo=(GripInfo *)data;
   
-  if(!(ginfo->ripping||ginfo->encoding)) return;
+  if(!ginfo->encoding) return;
 
-  ginfo->stop_rip=TRUE;
+  ginfo->stop_encode=TRUE;
   ginfo->num_wavs=0;
 
-  if(ginfo->ripping) {
-    if(ginfo->using_builtin_cdp) {
-#ifdef CDPAR
-      ginfo->stop_thread_rip_now=TRUE;
-#endif
-    }
-    else kill(ginfo->rippid,SIGKILL);
-    ginfo->doencode=FALSE;
+  for(mycpu=0;mycpu<ginfo->num_cpu;mycpu++){
+    if(ginfo->encoding&(1<<mycpu)) kill(ginfo->mp3pid[mycpu],SIGKILL);
   }
   
-  if(ginfo->encoding) {
-    for(mycpu=0;mycpu<ginfo->num_cpu;mycpu++){
-      if(ginfo->encoding&(1<<mycpu)) kill(ginfo->mp3pid[mycpu],SIGKILL);
-    }
+  elist=ginfo->encode_list;
+  
+  /* Remove all entries in the encode list */
+  while(elist) {
+    enc_track=(EncodeTrack *)elist->data;
+    elist=elist->next;
     
-    elist=ginfo->encode_list;
-    
-    while(elist) {
-      enc_track=(EncodeTrack *)elist->data;
-      elist=elist->next;
-      
-      ginfo->encode_list=g_list_remove(elist,enc_track);
-      g_free(enc_track);
-    }
-  }
-}
-
-static void RedirectIO(gboolean redirect_output)
-{
-  int fd;
-
-  fd=open("/dev/null",O_RDWR);
-  dup2(fd,0);
-
-  if(redirect_output) {
-    dup2(fd,1);
-    dup2(fd,2);
-  }
-
-  for(fd=3;fd<NOFILE;fd++) {
-    close(fd);
+    ginfo->encode_list=g_list_remove(elist,enc_track);
+    g_free(enc_track);
   }
 }
 
@@ -626,8 +628,8 @@ static void DoWavFilter(GripInfo *ginfo)
   FillInTrackInfo(ginfo,ginfo->rip_track,&enc_track);
   strcpy(enc_track.wav_filename,ginfo->ripfile);
 
-  TranslateAndLauch(ginfo->wav_filter_cmd,TranslateSwitch,&enc_track,
-		    &(ginfo->sprefs));
+  TranslateAndLaunch(ginfo->wav_filter_cmd,TranslateSwitch,&enc_track,
+		     &(ginfo->sprefs),CloseStuff,(void *)ginfo);
 }
 
 void UpdateRipProgress(GripInfo *ginfo)
@@ -667,7 +669,7 @@ void UpdateRipProgress(GripInfo *ginfo)
       ginfo->rip_started = now;
     }
     
-    sprintf(buf,"Rip: Trk %d (%3.1fx)",ginfo->rip_track+1,speed);
+    sprintf(buf,_("Rip: Trk %d (%3.1fx)"),ginfo->rip_track+1,speed);
     gtk_label_set(GTK_LABEL(uinfo->rip_prog_label),buf);
 
     quarter=(int)(percent*4.0);
@@ -687,6 +689,7 @@ void UpdateRipProgress(GripInfo *ginfo)
     }
 #endif
 
+    /* Check if a rip finished */
     if((ginfo->using_builtin_cdp&&!ginfo->in_rip_thread) ||
        (!ginfo->using_builtin_cdp&&waitpid(ginfo->rippid,NULL,WNOHANG))) {
       if(!ginfo->using_builtin_cdp) waitpid(ginfo->rippid,NULL,0);
@@ -697,7 +700,7 @@ void UpdateRipProgress(GripInfo *ginfo)
 		   GTK_PIXMAP(uinfo->smile_indicator));
       }
 
-      Debug("Rip finished\n");
+      Debug(_("Rip finished\n"));
 
       ginfo->ripping=FALSE;
       SetChecked(uinfo,ginfo->rip_track,FALSE);
@@ -716,27 +719,28 @@ void UpdateRipProgress(GripInfo *ginfo)
 	  MP3Encode(ginfo);
 	}
 
-	Debug("Rip partial %d  num wavs %d\n",ginfo->rip_partial,
+	Debug(_("Rip partial %d  num wavs %d\n"),ginfo->rip_partial,
 	      ginfo->num_wavs);
 
-	Debug("Next track is %d, total is %d\n",
+	Debug(_("Next track is %d, total is %d\n"),
 	      NextTrackToRip(ginfo),ginfo->disc.num_tracks);
 
 	if(!ginfo->rip_partial&&
 	   (ginfo->num_wavs<ginfo->max_wavs||
 	    NextTrackToRip(ginfo)==ginfo->disc.num_tracks)) {
-	  Debug("Check if we need to rip another track\n");
+	  Debug(_("Check if we need to rip another track\n"));
 	  if(!RipNextTrack(ginfo)) RipIsFinished(ginfo);
 	}
       }
 
       if(!ginfo->ripping) {
-	if(!ginfo->encoding) ginfo->stop_rip=FALSE;
-	gtk_label_set(GTK_LABEL(uinfo->rip_prog_label),"Rip: Idle");
+	ginfo->stop_rip=FALSE;
+	gtk_label_set(GTK_LABEL(uinfo->rip_prog_label),_("Rip: Idle"));
       }
     }
   }
   
+  /* Check if an encode finished */
   for(mycpu=0;mycpu<ginfo->num_cpu;mycpu++){
     if(ginfo->encoding&(1<<mycpu)) {
       if(stat(ginfo->mp3file[mycpu],&mystat)>=0) {
@@ -756,7 +760,8 @@ void UpdateRipProgress(GripInfo *ginfo)
       speed = (gfloat)mystat.st_size/
 	((gfloat)ginfo->kbits_per_sec * 128.0f * elapsed);
       
-      sprintf(buf,"MP3: Trk %d (%3.1fx)",ginfo->mp3_enc_track[mycpu]+1,speed);
+      sprintf(buf,_("MP3: Trk %d (%3.1fx)"),
+	      ginfo->mp3_enc_track[mycpu]+1,speed);
       gtk_label_set(GTK_LABEL(uinfo->mp3_prog_label[mycpu]),buf);
  
       quarter=(int)(percent*4.0);
@@ -769,7 +774,7 @@ void UpdateRipProgress(GripInfo *ginfo)
         waitpid(ginfo->mp3pid[mycpu],NULL,0);
         ginfo->encoding&=~(1<<mycpu);
 
-	Debug("Finished encoding on cpu %d\n",mycpu);
+	Debug(_("Finished encoding on cpu %d\n"),mycpu);
 
         gtk_progress_bar_update(GTK_PROGRESS_BAR(uinfo->mp3progbar[mycpu]),
 				0.0);
@@ -777,13 +782,13 @@ void UpdateRipProgress(GripInfo *ginfo)
 		   GTK_PIXMAP(uinfo->mp3_indicator[mycpu]));
 
         if(ginfo->delete_wavs) {
-	  Debug("Deleting [%s]\n",ginfo->rip_delete_file[mycpu]);
+	  Debug(_("Deleting [%s]\n"),ginfo->rip_delete_file[mycpu]);
 	  unlink(ginfo->rip_delete_file[mycpu]);
 	}
 
         ginfo->num_wavs--;
 
-        if(!ginfo->stop_rip) {
+        if(!ginfo->stop_encode) {
           if(ginfo->doid3) ID3Add(ginfo,ginfo->mp3file[mycpu],
 				  ginfo->encoded_track[mycpu]);
 
@@ -801,10 +806,11 @@ void UpdateRipProgress(GripInfo *ginfo)
 	    MP3Encode(ginfo);
 	  }
         }
-	else ginfo->stop_rip=FALSE;
+	else ginfo->stop_encode=FALSE;
 
         if(!(ginfo->encoding&(1<<mycpu)))
-	  gtk_label_set(GTK_LABEL(uinfo->mp3_prog_label[mycpu]),"MP3: Idle");
+	  gtk_label_set(GTK_LABEL(uinfo->mp3_prog_label[mycpu]),
+			_("MP3: Idle"));
       }
     }  
   }
@@ -812,7 +818,7 @@ void UpdateRipProgress(GripInfo *ginfo)
 
 static void RipIsFinished(GripInfo *ginfo)
 {
-  Debug("Ripping is finished\n");
+  Debug(_("Ripping is finished\n"));
 
   ginfo->ripping_a_disc=FALSE;
 
@@ -872,18 +878,18 @@ char *TranslateSwitch(char switch_char,void *data,gboolean *munge)
     else {
       if(*(enc_track->disc_artist))
 	g_snprintf(res,PATH_MAX,"%s",enc_track->disc_artist);
-      else strncpy(res,"NoArtist",PATH_MAX);
+      else strncpy(res,_("NoArtist"),PATH_MAX);
     }
     break;
   case 'A':
     if(*(enc_track->disc_artist))
       g_snprintf(res,PATH_MAX,"%s",enc_track->disc_artist);
-    else strncpy(res,"NoArtist",PATH_MAX);	
+    else strncpy(res,_("NoArtist"),PATH_MAX);	
     break;
   case 'd':
     if(*(enc_track->disc_name))
       g_snprintf(res,PATH_MAX,"%s",enc_track->disc_name);
-    else strncpy(res,"NoTitle",PATH_MAX);
+    else strncpy(res,_("NoTitle"),PATH_MAX);
     break;
   case 'i':
     g_snprintf(res,PATH_MAX,"%02x",enc_track->discid);
@@ -961,14 +967,14 @@ void DoRip(GtkWidget *widget,gpointer data)
   else ginfo->doencode=TRUE;
 
   if(!ginfo->using_builtin_cdp&&!FileExists(ginfo->ripexename)) {
-    DisplayMsg("Invalid rip executable\nCheck your rip config");
+    DisplayMsg(_("Invalid rip executable\nCheck your rip config"));
 
     ginfo->doencode=FALSE;
     return;
   }
 
   if(ginfo->doencode&&!FileExists(ginfo->mp3exename)) {
-    DisplayMsg("Invalid MP3 executable\nCheck your MP3 config");
+    DisplayMsg(_("Invalid MP3 executable\nCheck your MP3 config"));
 
     ginfo->doencode=FALSE;
     return;
@@ -997,7 +1003,7 @@ void DoRip(GtkWidget *widget,gpointer data)
   result=RipNextTrack(ginfo);
   if(!result) {
     ginfo->doencode=FALSE;
-    DisplayMsg("No tracks selected");
+    DisplayMsg(_("No tracks selected"));
   }
 }
 
@@ -1026,14 +1032,14 @@ static gboolean RipNextTrack(GripInfo *ginfo)
 
   uinfo=&(ginfo->gui_info);
 
-  Debug("In RipNextTrack\n");
+  Debug(_("In RipNextTrack\n"));
 
   if(ginfo->ripping) return FALSE;
 
   if(!ginfo->rip_partial)
     ginfo->rip_track=NextTrackToRip(ginfo);
 
-  Debug("First checked track is %d\n",ginfo->rip_track+1);
+  Debug(_("First checked track is %d\n"),ginfo->rip_track+1);
 
   if(ginfo->rip_track==ginfo->disc.num_tracks)  /* Finished ripping */
     return FALSE;
@@ -1041,7 +1047,7 @@ static gboolean RipNextTrack(GripInfo *ginfo)
   /* We have a track to rip */
 
   if(ginfo->have_disc&&ginfo->rip_track>=0) {
-    Debug("Ripping away!\n");
+    Debug(_("Ripping away!\n"));
 
     if(!ginfo->rip_partial){
       gtk_clist_select_row(GTK_CLIST(uinfo->trackclist),ginfo->rip_track,0);
@@ -1050,7 +1056,7 @@ static gboolean RipNextTrack(GripInfo *ginfo)
     CopyPixmap(GTK_PIXMAP(uinfo->rip_pix[0]),GTK_PIXMAP(uinfo->rip_indicator));
 
     ginfo->rip_started = time(NULL);
-    sprintf(tmp,"Rip: Trk %d (0.0x)",ginfo->rip_track+1);
+    sprintf(tmp,_("Rip: Trk %d (0.0x)"),ginfo->rip_track+1);
     gtk_label_set(GTK_LABEL(uinfo->rip_prog_label),tmp);
 
     CDStop(&(ginfo->disc));
@@ -1080,11 +1086,12 @@ static gboolean RipNextTrack(GripInfo *ginfo)
 
     MakeDirs(ginfo->ripfile);
 
-    Debug("Ripping track %d to %s\n",ginfo->rip_track+1,ginfo->ripfile);
+    Debug(_("Ripping track %d to %s\n"),ginfo->rip_track+1,ginfo->ripfile);
 
     if(stat(ginfo->ripfile,&mystat)>=0) {
       if(mystat.st_size == ginfo->ripsize) { 
-	Debug("File %s has already been ripped. Skipping...\n",ginfo->ripfile);
+	Debug(_("File %s has already been ripped. Skipping...\n"),\
+	      ginfo->ripfile);
 	ginfo->num_wavs++;
 	ginfo->ripping=TRUE;
 	ginfo->ripping_a_disc=TRUE;
@@ -1097,7 +1104,7 @@ static gboolean RipNextTrack(GripInfo *ginfo)
     bytesleft=BytesLeftInFS(ginfo->ripfile);
 
     if(bytesleft<(ginfo->ripsize*1.5)) {
-      DisplayMsg("Out of space in output directory");
+      DisplayMsg(_("Out of space in output directory"));
 
       return FALSE;
     }
@@ -1128,13 +1135,11 @@ static gboolean RipNextTrack(GripInfo *ginfo)
       ginfo->rippid=fork();
       
       if(ginfo->rippid==0) {
-	close(ConnectionNumber(GDK_DISPLAY()));
-	RedirectIO(ginfo->do_redirect);
-	close(ginfo->disc.cd_desc);
+	CloseStuff(ginfo);
 	nice(ginfo->ripnice);
 	execv(ginfo->ripexename,char_args);
 	
-	Debug("Exec failed\n");
+	Debug(_("Exec failed\n"));
 	_exit(0);
       }
 
@@ -1163,7 +1168,7 @@ static void ThreadRip(void *arg)
 
   ginfo=(GripInfo *)arg;
 
-  Debug("Calling CDPRip\n");
+  Debug(_("Calling CDPRip\n"));
 
   paranoia_mode=PARANOIA_MODE_FULL^PARANOIA_MODE_NEVERSKIP; 
   if(ginfo->disable_paranoia)
@@ -1233,7 +1238,7 @@ static void AddToEncode(GripInfo *ginfo,int track)
 
   ginfo->encode_list=g_list_append(ginfo->encode_list,new_track);
 
-  Debug("Added track %d to encode list\n",track+1);
+  Debug(_("Added track %d to encode list\n"),track+1);
 }
 
 static gboolean MP3Encode(GripInfo *ginfo)
@@ -1256,7 +1261,7 @@ static gboolean MP3Encode(GripInfo *ginfo)
   for(cpu=0;(cpu<ginfo->num_cpu)&&(ginfo->encoding&(1<<cpu));cpu++);
 
   if(cpu==ginfo->num_cpu) {
-    Debug("No free cpus\n");
+    Debug(_("No free cpus\n"));
     return FALSE;
   }
 
@@ -1272,10 +1277,10 @@ static gboolean MP3Encode(GripInfo *ginfo)
   ginfo->mp3_started[cpu] = time(NULL);
   ginfo->mp3_enc_track[cpu] = encode_track;
 
-  sprintf(tmp,"MP3: Trk %d (0.0x)",encode_track+1);
+  sprintf(tmp,_("MP3: Trk %d (0.0x)"),encode_track+1);
   gtk_label_set(GTK_LABEL(uinfo->mp3_prog_label[cpu]),tmp);
   
-  Debug("MP3 track %d\n",encode_track+1);
+  Debug(_("MP3 track %d\n"),encode_track+1);
 
   strcpy(ginfo->rip_delete_file[cpu],enc_track->wav_filename);
 
@@ -1291,7 +1296,7 @@ static gboolean MP3Encode(GripInfo *ginfo)
   
   bytesleft=BytesLeftInFS(ginfo->mp3file[cpu]);
   
-  Debug("%i: Encoding to %s\n",cpu+1,ginfo->mp3file[cpu]);
+  Debug(_("%i: Encoding to %s\n"),cpu+1,ginfo->mp3file[cpu]);
   
   unlink(ginfo->mp3file[cpu]);
   
@@ -1300,7 +1305,7 @@ static gboolean MP3Encode(GripInfo *ginfo)
 	  (gfloat)(ginfo->kbits_per_sec*1024)/600.0);
   
   if(bytesleft<(ginfo->mp3size[cpu]*1.5)) {
-    DisplayMsg("Out of space in output directory");
+    DisplayMsg(_("Out of space in output directory"));
     
     return FALSE;
   }
@@ -1321,9 +1326,7 @@ static gboolean MP3Encode(GripInfo *ginfo)
   ginfo->mp3pid[cpu]=fork();
   
   if(ginfo->mp3pid[cpu]==0) {
-    close(ConnectionNumber(GDK_DISPLAY()));
-    RedirectIO(ginfo->do_redirect);
-    close(ginfo->disc.cd_desc);
+    CloseStuff(ginfo);
     setsid();
     nice(ginfo->mp3nice);
     execv(ginfo->mp3exename,char_args);

@@ -25,6 +25,7 @@ grip.html: grip/grip.html
 
 grip/grip.html: $(SGML_FILES)
 	-db2html grip.sgml
+	-cp *.png grip
 
 ## when we make dist, we include the generated HTML so people don't
 ## have to have the docbook tools

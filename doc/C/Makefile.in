@@ -87,6 +87,7 @@ GNOME_LIBS = @GNOME_LIBS@
 GNORBA_CFLAGS = @GNORBA_CFLAGS@
 GNORBA_LIBS = @GNORBA_LIBS@
 GTKXMHTML_LIBS = @GTKXMHTML_LIBS@
+ID3_LIBS = @ID3_LIBS@
 INSTOBJEXT = @INSTOBJEXT@
 INTLBISON = @INTLBISON@
 INTLLIBS = @INTLLIBS@
@@ -268,6 +269,7 @@ grip.html: grip/grip.html
 
 grip/grip.html: $(SGML_FILES)
 	-db2html grip.sgml
+	-cp *.png grip
 
 dist-hook:
 	mkdir $(distdir)/grip

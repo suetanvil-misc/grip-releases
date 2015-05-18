@@ -276,7 +276,7 @@ gboolean ID3v2TagFile( char *filename, char *title, char *artist, char *album,
 
                 default:
                     /* Doh! */
-                    fprintf( stderr, "unknown ID3 field\n" );
+                    fprintf( stderr,_("unknown ID3 field\n"));
                     break;
                 }
 
@@ -318,6 +318,8 @@ gboolean ID3v2TagFile( char *filename, char *title, char *artist, char *album,
     return retval;
 }
 
+#endif /* HAVE_ID3LIB */
+
 /* Add an ID3v1 tag to a file */
 
 gboolean ID3v1TagFile(char *filename,char *title,char *artist,char *album,
@@ -338,7 +340,7 @@ gboolean ID3v1TagFile(char *filename,char *title,char *artist,char *album,
   tag.tracknum=tracknum;
   tag.genre=genre;
 
-  fwrite(&tag,sizeof(ID3Tag),1,fp);
+  fwrite(&tag,sizeof(ID3v1Tag),1,fp);
 
   fclose(fp);
 
@@ -359,8 +361,6 @@ static void ID3Put(char *dest,char *src,int len)
     else dest[pos]=0;
   }
 }
-
-#endif /* HAVE_ID3LIB */
 
 char *ID3GenreString(int genre)
 {

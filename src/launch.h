@@ -41,8 +41,9 @@ int MakeTranslatedArgs(char *str,GString **args,int maxargs,
 		       char *(*trans_func)(char,void *,gboolean *),
 		       void *user_data,
 		       StrTransPrefs *prefs);
-void TranslateAndLauch(char *cmd,char *(*trans_func)(char,void *,gboolean *),
-		       void *user_data,
-		       StrTransPrefs *prefs);
+void TranslateAndLaunch(char *cmd,char *(*trans_func)(char,void *,gboolean *),
+			void *user_data,
+			StrTransPrefs *prefs,void (*close_func)(void *),
+			void *close_user_data);
 
 #endif /* ifndef GRIP_LAUNCH_H */

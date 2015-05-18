@@ -139,12 +139,12 @@ gboolean CDStat(DiscInfo *disc,gboolean read_toc)
   int retcode;
 
   retcode=ioctl(disc->cd_desc,CDROM_DRIVE_STATUS,CDSL_CURRENT);
-  Debug("Drive status is %d\n",retcode);
+  Debug(_("Drive status is %d\n"),retcode);
   if(retcode < 0) {
-    Debug("Drive doesn't support drive status check (assume CDS_NO_INFO)\n");
+    Debug(_("Drive doesn't support drive status check (assume CDS_NO_INFO)\n"));
   }
   else if(retcode != CDS_DISC_OK && retcode != CDS_NO_INFO) {
-    Debug("No disc\n");
+    Debug(_("No disc\n"));
 
     return FALSE;
   }
@@ -245,7 +245,7 @@ gboolean CDStat(DiscInfo *disc,gboolean read_toc)
 
 #ifdef CDIOREADTOCHEADER
     if(ioctl(disc->cd_desc,CDIOREADTOCHEADER,(char *)&cdth)<0) {
-      printf("Error: Failed to read disc contents\n");
+      printf(_("Error: Failed to read disc contents\n"));
       
       return FALSE;
     }
@@ -254,7 +254,7 @@ gboolean CDStat(DiscInfo *disc,gboolean read_toc)
 #endif
 #ifdef CDROMREADTOCHDR
     if(ioctl(disc->cd_desc,CDROMREADTOCHDR,&cdth)<0) {
-      printf("Error: Failed to read disc contents\n");
+      printf(_("Error: Failed to read disc contents\n"));
 
       return FALSE;
     }
@@ -271,7 +271,7 @@ gboolean CDStat(DiscInfo *disc,gboolean read_toc)
     cdte.data_len=sizeof(toc_buffer);
     
     if(ioctl(disc->cd_desc,CDIOREADTOCENTRYS,(char *)&cdte)<0) {
-      printf("Error: Failed to read disc contents\n");
+      printf(_("Error: Failed to read disc contents\n"));
 
       return FALSE;
     }
@@ -297,7 +297,7 @@ gboolean CDStat(DiscInfo *disc,gboolean read_toc)
       
       cdte.cdte_format=CDROM_MSF;
       if(ioctl(disc->cd_desc,CDROMREADTOCENTRY,&cdte) < 0) {
-	printf("Error: Failed to read disc contents\n");
+	printf(_("Error: Failed to read disc contents\n"));
 
 	return FALSE;
       }
@@ -534,10 +534,10 @@ gboolean TrayOpen(DiscInfo *disc)
   int status;
 
   status=ioctl(disc->cd_desc,CDROM_DRIVE_STATUS,CDSL_CURRENT);
-  Debug("Drive status is %d\n", status);
+  Debug(_("Drive status is %d\n"), status);
 
   if(status < 0) {
-    Debug("Drive doesn't support drive status check\n");
+    Debug(_("Drive doesn't support drive status check\n"));
     return FALSE;
   }
 
@@ -554,15 +554,15 @@ gboolean CDEject(DiscInfo *disc)
   /*  always unlock door before an eject in case something else locked it  */
 #if defined(CDROM_LOCKDOOR)
   if(ioctl(disc->cd_desc,CDROM_LOCKDOOR,0)<0)
-    printf("Unlock failed: %d", errno);
+    printf(_("Unlock failed: %d"), errno);
 #endif
 #ifdef CDIOCALLOW
   if(ioctl(disc->cd_desc,CDIOCALLOW)<0)
-    printf("Unlock failed: %d",errno);
+    printf(_("Unlock failed: %d"),errno);
 #endif
 
   if(ioctl(disc->cd_desc,CDIOCEJECT)<0) {
-    perror("CDIOCEJECT");
+    printf(_("CDIOCEJECT"));
     return FALSE;
   }
 #endif

@@ -208,6 +208,7 @@ typedef struct _grip_info {
   gboolean ripping;
   gboolean encoding;
   gboolean stop_rip;
+  gboolean stop_encode;
   gboolean ripping_a_disc;
   int rippid;
   int num_wavs;
@@ -280,6 +281,7 @@ void GripUpdate(GtkWidget *app);
 GtkWidget *MakeNewPage(GtkWidget *notebook,char *name);
 void Busy(GripGUI *uinfo);
 void UnBusy(GripGUI *uinfo);
+void CloseStuff(void *user_data);
 
 #endif /* ifndef GRIP_H */
 

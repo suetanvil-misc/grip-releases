@@ -184,7 +184,7 @@ static char *DiscDBMakeRequest(DiscDBServer *server,DiscDBHello *hello,
 
   uri=DiscDBMakeURI(server,hello,cmd);
 
-  Debug("URI is %s\n",uri->str);
+  Debug(_("URI is %s\n"),uri->str);
 
   ghttp_set_uri(request,uri->str);
 
@@ -228,7 +228,7 @@ gboolean DiscDBDoQuery(DiscInfo *disc,DiscDBServer *server,
 
   g_string_sprintfa(cmd,"+%d",disc->length.mins*60 + disc->length.secs);
 
-  Debug("Query is [%s]\n",cmd->str);
+  Debug(_("Query is [%s]\n"),cmd->str);
 
   result=DiscDBMakeRequest(server,hello,cmd->str,request);
 
@@ -242,7 +242,7 @@ gboolean DiscDBDoQuery(DiscInfo *disc,DiscDBServer *server,
 
   inbuffer=DiscDBReadLine(&result);
 
-  Debug("Reply is [%s]\n",inbuffer);
+  Debug(_("Reply is [%s]\n"),inbuffer);
 
   switch(strtol(strtok(inbuffer," "),NULL,10)) {
     /* 200 - exact match */
@@ -367,9 +367,13 @@ static void DiscDBProcessLine(char *inbuffer,DiscData *data,
     st = strtok(NULL, "");
     if(st == NULL)
         return;
-    
-    data->data_genre=DiscDBGenreValue(g_strstrip(st));
-    data->data_id3genre=ID3GenreValue(g_strstrip(st));
+
+    st=g_strstrip(st);
+
+    if(*st) {
+      data->data_genre=DiscDBGenreValue(g_strstrip(st));
+      data->data_id3genre=ID3GenreValue(g_strstrip(st));
+    }
   }
   else if(!strncasecmp(inbuffer,"DID3",4)) {
     strtok(inbuffer,"=");
@@ -646,23 +650,23 @@ int DiscDBWriteDiscData(DiscInfo *disc,DiscData *ddata,FILE *outfile,
   
     if(stat(root_dir,&st)<0) {
       if(errno != ENOENT) {
-	Debug("Stat error %d on %s\n",errno,root_dir);
+	Debug(_("Stat error %d on %s\n"),errno,root_dir);
 	return -1;
       }
       else {
-	Debug("Creating directory %s\n",root_dir);
+	Debug(_("Creating directory %s\n"),root_dir);
 	mkdir(root_dir,0777);
       }
     } else {
       if(!S_ISDIR(st.st_mode)) {
-	Debug("Error: %s exists, but is a file\n",root_dir);
+	Debug(_("Error: %s exists, but is a file\n"),root_dir);
 	errno=ENOTDIR;
 	return -1;
       }   
     }
       
     if((discdb_data=fopen(file,"w"))==NULL) {
-      Debug("Error: Unable to open %s for writing\n",file);
+      Debug(_("Error: Unable to open %s for writing\n"),file);
       return -1;
     }
   }
@@ -689,11 +693,7 @@ int DiscDBWriteDiscData(DiscInfo *disc,DiscData *ddata,FILE *outfile,
   if(gripext) fprintf(discdb_data,"# Revision: %d\n",ddata->revision);
   else fprintf(discdb_data,"# Revision: %d\n",ddata->revision+1);
 
-#ifndef GRIPCD
   fprintf(discdb_data,"# Submitted via: Grip %s\n",VERSION);
-#else
-  fprintf(discdb_data,"# Submitted via: GCD %s\n"VERSION);
-#endif
   fputs("# \n",discdb_data);
   fprintf(discdb_data,"DISCID=%08x\n",ddata->data_id);
 

@@ -41,7 +41,7 @@ void BoolDialog(char *question,char *yes,GtkSignalFunc yesfunc,
   GtkWidget *nobutton;
 
   dialog=gtk_dialog_new();
-  gtk_window_set_title(GTK_WINDOW(dialog),"System Message");
+  gtk_window_set_title(GTK_WINDOW(dialog),_("System Message"));
 
   gtk_container_border_width(GTK_CONTAINER(GTK_DIALOG(dialog)->vbox),5);
 

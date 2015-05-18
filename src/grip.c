@@ -22,6 +22,11 @@
 
 #include <pthread.h>
 #include <config.h>
+#include <fcntl.h>
+#include <unistd.h>
+#include <sys/param.h>
+#include <gdk/gdkx.h>
+#include <X11/Xlib.h>
 #include "grip.h"
 #include <libgnomeui/gnome-window-icon.h>
 #include "discdb.h"
@@ -47,7 +52,8 @@ void DoSaveConfig(GripInfo *ginfo);
 static GnomeHelpMenuEntry main_help_entry={"grip","grip.html"};
 static GnomeHelpMenuEntry cdplay_help_entry={"grip","cdplayer.html"};
 static GnomeHelpMenuEntry rip_help_entry={"grip","ripping.html"};
-static GnomeHelpMenuEntry faq_help_entry={"grip","grip.html"};
+static GnomeHelpMenuEntry configure_help_entry={"grip","configure.html"};
+static GnomeHelpMenuEntry faq_help_entry={"grip","faq.html"};
 static GnomeHelpMenuEntry bug_help_entry={"grip","grip.html"};
 
 #define BASE_CFG_ENTRIES \
@@ -146,7 +152,7 @@ GtkWidget *GripNew(const gchar* geometry,char *device,gboolean force_small,
   ginfo->do_redirect=!no_redirect;
 
   if(!CDInitDevice(ginfo->cd_device,&(ginfo->disc))) {
-    printf("Error: Unable to initialize [%s]\n",ginfo->cd_device);
+    printf(_("Error: Unable to initialize [%s]\n"),ginfo->cd_device);
     exit(0);
   }
 
@@ -222,7 +228,7 @@ void GripDie(GtkWidget *widget,gpointer data)
 #ifndef GRIPCD
   if(ginfo->ripping || ginfo->encoding)
     gnome_app_ok_cancel_modal((GnomeApp *)ginfo->gui_info.app,
-			      "Work is in progress.\nReally shut down?",
+			      _("Work is in progress.\nReally shut down?"),
 			      ReallyDie,(gpointer)ginfo);
   else ReallyDie(0,ginfo);
 #else
@@ -239,7 +245,8 @@ static void ReallyDie(gint reply,gpointer data)
   ginfo=(GripInfo *)data;
 
 #ifndef GRIPCD
-  if(ginfo->ripping||ginfo->encoding) KillChild(NULL,ginfo);
+  if(ginfo->ripping) KillRip(NULL,ginfo);
+  if(ginfo->encoding) KillEncode(NULL,ginfo);
 #endif
 
   if(!ginfo->no_interrupt)
@@ -279,36 +286,42 @@ static void MakeHelpPage(GripInfo *ginfo)
   GtkWidget *button;
   GtkWidget *vbox;
 
-  help_page=MakeNewPage(ginfo->gui_info.notebook,"Help");
+  help_page=MakeNewPage(ginfo->gui_info.notebook,_("Help"));
 
   vbox=gtk_vbox_new(FALSE,0);
   gtk_container_border_width(GTK_CONTAINER(vbox),3);
 
-  button=gtk_button_new_with_label("Table Of Contents");
+  button=gtk_button_new_with_label(_("Table Of Contents"));
   gtk_signal_connect(GTK_OBJECT(button),"clicked",
 		     GTK_SIGNAL_FUNC(DoHelp),(gpointer)&main_help_entry);
   gtk_box_pack_start(GTK_BOX(vbox),button,FALSE,FALSE,0);
   gtk_widget_show(button);
 
-  button=gtk_button_new_with_label("Playing CDs");
+  button=gtk_button_new_with_label(_("Playing CDs"));
   gtk_signal_connect(GTK_OBJECT(button),"clicked",
 		     GTK_SIGNAL_FUNC(DoHelp),(gpointer)&cdplay_help_entry);
   gtk_box_pack_start(GTK_BOX(vbox),button,FALSE,FALSE,0);
   gtk_widget_show(button);
 
-  button=gtk_button_new_with_label("Ripping CDs");
+  button=gtk_button_new_with_label(_("Ripping CDs"));
   gtk_signal_connect(GTK_OBJECT(button),"clicked",
 		     GTK_SIGNAL_FUNC(DoHelp),(gpointer)&rip_help_entry);
   gtk_box_pack_start(GTK_BOX(vbox),button,FALSE,FALSE,0);
   gtk_widget_show(button);
 
-  button=gtk_button_new_with_label("FAQ");
+  button=gtk_button_new_with_label(_("Configuring Grip"));
+  gtk_signal_connect(GTK_OBJECT(button),"clicked",
+		     GTK_SIGNAL_FUNC(DoHelp),(gpointer)&configure_help_entry);
+  gtk_box_pack_start(GTK_BOX(vbox),button,FALSE,FALSE,0);
+  gtk_widget_show(button);
+
+  button=gtk_button_new_with_label(_("FAQ"));
   gtk_signal_connect(GTK_OBJECT(button),"clicked",
 		     GTK_SIGNAL_FUNC(DoHelp),(gpointer)&faq_help_entry);
   gtk_box_pack_start(GTK_BOX(vbox),button,FALSE,FALSE,0);
   gtk_widget_show(button);
 
-  button=gtk_button_new_with_label("Reporting Bugs");
+  button=gtk_button_new_with_label(_("Reporting Bugs"));
   gtk_signal_connect(GTK_OBJECT(button),"clicked",
 		     GTK_SIGNAL_FUNC(DoHelp),(gpointer)&bug_help_entry);
   gtk_box_pack_start(GTK_BOX(vbox),button,FALSE,FALSE,0);
@@ -328,7 +341,7 @@ void MakeAboutPage(GripGUI *uinfo)
   GtkWidget *button;
   char versionbuf[20];
 
-  aboutpage=MakeNewPage(uinfo->notebook,"About");
+  aboutpage=MakeNewPage(uinfo->notebook,_("About"));
 
   ebox=gtk_event_box_new();
   gtk_widget_set_style(ebox,uinfo->style_wb);
@@ -604,6 +617,7 @@ static void DoLoadConfig(GripInfo *ginfo)
   ginfo->encoding=FALSE;
   ginfo->rip_partial=FALSE;
   ginfo->stop_rip=FALSE;
+  ginfo->stop_encode=FALSE;
   ginfo->num_wavs=0;
   ginfo->doencode=FALSE;
   ginfo->encode_list=NULL;
@@ -704,7 +718,7 @@ static void DoLoadConfig(GripInfo *ginfo)
       tok=strtok(NULL,"/");
       if(tok) ginfo->proxy_server.port=atoi(tok);
       
-      Debug("server is %s, port %d\n",ginfo->proxy_server.name,
+      Debug(_("server is %s, port %d\n"),ginfo->proxy_server.name,
 	    ginfo->proxy_server.port);
     }
   }
@@ -724,5 +738,30 @@ void DoSaveConfig(GripInfo *ginfo)
   g_snprintf(filename,256,"%s/.grip",getenv("HOME"));
 
   if(!SaveConfig(filename,"GRIP",2,cfg_entries))
-    DisplayMsg("Error: Unable to save config file");
+    DisplayMsg(_("Error: Unable to save config file"));
+}
+
+/* Shut down stuff (generally before an exec) */
+void CloseStuff(void *user_data)
+{
+  GripInfo *ginfo;
+  int fd;
+
+  ginfo=(GripInfo *)user_data;
+
+  close(ConnectionNumber(GDK_DISPLAY()));
+  close(ginfo->disc.cd_desc);
+
+  fd=open("/dev/null",O_RDWR);
+  dup2(fd,0);
+
+  if(ginfo->do_redirect) {
+    dup2(fd,1);
+    dup2(fd,2);
+  }
+
+  /* Close any other filehandles that might be around */
+  for(fd=3;fd<NOFILE;fd++) {
+    close(fd);
+  }
 }

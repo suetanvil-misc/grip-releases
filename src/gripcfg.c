@@ -93,7 +93,7 @@ void MakeConfigPage(GripInfo *ginfo)
 
   uinfo=&(ginfo->gui_info);
 
-  configpage=MakeNewPage(uinfo->notebook,"Config");
+  configpage=MakeNewPage(uinfo->notebook,_("Config"));
 
   vbox2=gtk_vbox_new(FALSE,0);
   config_notebook=gtk_notebook_new();
@@ -101,37 +101,38 @@ void MakeConfigPage(GripInfo *ginfo)
   page=gtk_frame_new(NULL);
   vbox=gtk_vbox_new(FALSE,2);
 
-  entry=MakeStrEntry(NULL,ginfo->cd_device,"CDRom device",255,TRUE);
+  entry=MakeStrEntry(NULL,ginfo->cd_device,_("CDRom device"),255,TRUE);
   gtk_box_pack_start(GTK_BOX(vbox),entry,FALSE,FALSE,0);
   gtk_widget_show(entry);
 
   check=MakeCheckButton(NULL,&ginfo->no_interrupt,
-			"Don't interrupt playback on exit/startup");
+			_("Don't interrupt playback on exit/startup"));
   gtk_box_pack_start(GTK_BOX(vbox),check,FALSE,FALSE,0);
   gtk_widget_show(check);
  
-  check=MakeCheckButton(NULL,&ginfo->stop_first,"Rewind when stopped");
+  check=MakeCheckButton(NULL,&ginfo->stop_first,_("Rewind when stopped"));
   gtk_box_pack_start(GTK_BOX(vbox),check,FALSE,FALSE,0);
   gtk_widget_show(check);
 
   check=MakeCheckButton(NULL,&ginfo->play_first,
-			"Startup with first track if not playing");
+			_("Startup with first track if not playing"));
   gtk_box_pack_start(GTK_BOX(vbox),check,FALSE,FALSE,0);
   gtk_widget_show(check);
 
   check=MakeCheckButton(NULL,&ginfo->automatic_reshuffle,
-			"Reshuffle before each playback");
+			_("Reshuffle before each playback"));
   gtk_box_pack_start(GTK_BOX(vbox),check,FALSE,FALSE,0);
   gtk_widget_show(check);
 
-  check=MakeCheckButton(NULL,&ginfo->faulty_eject,"Work around faulty eject");
+  check=MakeCheckButton(NULL,&ginfo->faulty_eject,
+			_("Work around faulty eject"));
   gtk_box_pack_start(GTK_BOX(vbox),check,FALSE,FALSE,0);
   gtk_widget_show(check);
 
   gtk_container_add(GTK_CONTAINER(page),vbox);
   gtk_widget_show(vbox);
 
-  label=gtk_label_new("CD");
+  label=gtk_label_new(_("CD"));
   gtk_notebook_append_page(GTK_NOTEBOOK(config_notebook),page,label);
   gtk_widget_show(page);
 
@@ -147,7 +148,7 @@ void MakeConfigPage(GripInfo *ginfo)
 
   hbox=gtk_hbox_new(FALSE,3);
 
-  label=gtk_label_new("Ripper:");
+  label=gtk_label_new(_("Ripper:"));
   gtk_box_pack_start(GTK_BOX(hbox),label,TRUE,TRUE,0);
   gtk_widget_show(label);
 
@@ -184,12 +185,12 @@ void MakeConfigPage(GripInfo *ginfo)
   uinfo->rip_exe_box=gtk_vbox_new(FALSE,2);
 
   entry=MakeStrEntry(&(uinfo->ripexename_entry),ginfo->ripexename,
-		     "Ripping executable",255,TRUE);
+		     _("Ripping executable"),255,TRUE);
   gtk_box_pack_start(GTK_BOX(uinfo->rip_exe_box),entry,FALSE,FALSE,0);
   gtk_widget_show(entry);
 
   entry=MakeStrEntry(&(uinfo->ripcmdline_entry),ginfo->ripcmdline,
-		     "Rip command-line",255,TRUE);
+		     _("Rip command-line"),255,TRUE);
   gtk_box_pack_start(GTK_BOX(uinfo->rip_exe_box),entry,FALSE,FALSE,0);
   gtk_widget_show(entry);
 
@@ -199,33 +200,33 @@ void MakeConfigPage(GripInfo *ginfo)
 #ifdef CDPAR
   uinfo->rip_builtin_box=gtk_vbox_new(FALSE,2);
 
-  check=MakeCheckButton(NULL,&ginfo->disable_paranoia,"Disable paranoia");
+  check=MakeCheckButton(NULL,&ginfo->disable_paranoia,_("Disable paranoia"));
   gtk_box_pack_start(GTK_BOX(uinfo->rip_builtin_box),check,FALSE,FALSE,0);
   gtk_widget_show(check);
 
   check=MakeCheckButton(NULL,&ginfo->disable_extra_paranoia,
-			"Disable extra paranoia");
+			_("Disable extra paranoia"));
   gtk_box_pack_start(GTK_BOX(uinfo->rip_builtin_box),check,FALSE,FALSE,0);
   gtk_widget_show(check);
 
   hbox=gtk_hbox_new(FALSE,3);
 
-  label=gtk_label_new("Disable scratch");
+  label=gtk_label_new(_("Disable scratch"));
   gtk_box_pack_start(GTK_BOX(hbox),label,TRUE,TRUE,0);
   gtk_widget_show(label);
   
-  check=MakeCheckButton(NULL,&ginfo->disable_scratch_detect,"detection");
+  check=MakeCheckButton(NULL,&ginfo->disable_scratch_detect,_("detection"));
   gtk_box_pack_start(GTK_BOX(hbox),check,TRUE,TRUE,0);
   gtk_widget_show(check);
 
-  check=MakeCheckButton(NULL,&ginfo->disable_scratch_repair,"repair");
+  check=MakeCheckButton(NULL,&ginfo->disable_scratch_repair,_("repair"));
   gtk_box_pack_start(GTK_BOX(hbox),check,TRUE,TRUE,0);
   gtk_widget_show(check);
 
   gtk_box_pack_start(GTK_BOX(uinfo->rip_builtin_box),hbox,FALSE,FALSE,0);
   gtk_widget_show(hbox);
   
-  entry=MakeStrEntry(NULL,ginfo->force_scsi,"Generic SCSI device",
+  entry=MakeStrEntry(NULL,ginfo->force_scsi,_("Generic SCSI device"),
 		     255,TRUE);
   gtk_box_pack_start(GTK_BOX(uinfo->rip_builtin_box),entry,FALSE,FALSE,0);
   gtk_widget_show(entry);
@@ -234,14 +235,14 @@ void MakeConfigPage(GripInfo *ginfo)
   if(ginfo->using_builtin_cdp) gtk_widget_show(uinfo->rip_builtin_box);
 #endif
 
-  entry=MakeStrEntry(NULL,ginfo->ripfileformat,"Rip file format",255,TRUE);
+  entry=MakeStrEntry(NULL,ginfo->ripfileformat,_("Rip file format"),255,TRUE);
   gtk_box_pack_start(GTK_BOX(vbox),entry,FALSE,FALSE,0);
   gtk_widget_show(entry);
 
   gtk_container_add(GTK_CONTAINER(page2),vbox);
   gtk_widget_show(vbox);
 
-  label=gtk_label_new("Ripper");
+  label=gtk_label_new(_("Ripper"));
   gtk_notebook_append_page(GTK_NOTEBOOK(notebook),page2,label);
   gtk_widget_show(page2);
 
@@ -250,45 +251,47 @@ void MakeConfigPage(GripInfo *ginfo)
   vbox=gtk_vbox_new(FALSE,2);
   gtk_container_border_width(GTK_CONTAINER(vbox),3);
 
-  entry=MakeNumEntry(NULL,&ginfo->ripnice,"Rip 'nice' value",3);
+  entry=MakeNumEntry(NULL,&ginfo->ripnice,_("Rip 'nice' value"),3);
   gtk_box_pack_start(GTK_BOX(vbox),entry,FALSE,FALSE,0);
   gtk_widget_show(entry);
   
-  entry=MakeNumEntry(NULL,&ginfo->max_wavs,"Max non-encoded .wav's",3);
+  entry=MakeNumEntry(NULL,&ginfo->max_wavs,_("Max non-encoded .wav's"),3);
   gtk_box_pack_start(GTK_BOX(vbox),entry,FALSE,FALSE,0);
   gtk_widget_show(entry);
 
-  check=MakeCheckButton(NULL,&ginfo->auto_rip,"Auto-rip on insert");
+  check=MakeCheckButton(NULL,&ginfo->auto_rip,_("Auto-rip on insert"));
   gtk_box_pack_start(GTK_BOX(vbox),check,FALSE,FALSE,0);
   gtk_widget_show(check);
 
-  check=MakeCheckButton(NULL,&ginfo->beep_after_rip,"Beep after rip");
+  check=MakeCheckButton(NULL,&ginfo->beep_after_rip,_("Beep after rip"));
   gtk_box_pack_start(GTK_BOX(vbox),check,FALSE,FALSE,0);
   gtk_widget_show(check);
 
-  check=MakeCheckButton(NULL,&ginfo->eject_after_rip,"Auto-eject after rip");
+  check=MakeCheckButton(NULL,&ginfo->eject_after_rip,
+			_("Auto-eject after rip"));
   gtk_box_pack_start(GTK_BOX(vbox),check,FALSE,FALSE,0);
   gtk_widget_show(check);
 
-  entry=MakeNumEntry(NULL,&ginfo->eject_delay,"Auto-eject delay",3);
+  entry=MakeNumEntry(NULL,&ginfo->eject_delay,_("Auto-eject delay"),3);
   gtk_box_pack_start(GTK_BOX(vbox),entry,FALSE,FALSE,0);
   gtk_widget_show(entry);
 
-  entry=MakeStrEntry(NULL,ginfo->wav_filter_cmd,"Wav filter command",255,TRUE);
+  entry=MakeStrEntry(NULL,ginfo->wav_filter_cmd,_("Wav filter command"),
+						  255,TRUE);
   gtk_box_pack_start(GTK_BOX(vbox),entry,FALSE,FALSE,0);
   gtk_widget_show(entry);
   
   gtk_container_add(GTK_CONTAINER(page2),vbox);
   gtk_widget_show(vbox);
 
-  label=gtk_label_new("Options");
+  label=gtk_label_new(_("Options"));
   gtk_notebook_append_page(GTK_NOTEBOOK(notebook),page2,label);
   gtk_widget_show(page2);
 
   gtk_container_add(GTK_CONTAINER(page),notebook);
   gtk_widget_show(notebook);
 
-  label=gtk_label_new("Rip");
+  label=gtk_label_new(_("Rip"));
   gtk_notebook_append_page(GTK_NOTEBOOK(config_notebook),page,label);
   gtk_widget_show(page);
 
@@ -303,7 +306,7 @@ void MakeConfigPage(GripInfo *ginfo)
 
   hbox=gtk_hbox_new(FALSE,3);
 
-  label=gtk_label_new("Encoder:");
+  label=gtk_label_new(_("Encoder:"));
   gtk_box_pack_start(GTK_BOX(hbox),label,TRUE,TRUE,0);
   gtk_widget_show(label);
 
@@ -338,24 +341,24 @@ void MakeConfigPage(GripInfo *ginfo)
   gtk_widget_show(hsep);
 
   entry=MakeStrEntry(&(uinfo->mp3exename_entry),ginfo->mp3exename,
-		     "MP3 executable",255,TRUE);
+		     _("MP3 executable"),255,TRUE);
   gtk_box_pack_start(GTK_BOX(vbox),entry,FALSE,FALSE,0);
   gtk_widget_show(entry);
 
   entry=MakeStrEntry(&(uinfo->mp3cmdline_entry),ginfo->mp3cmdline,
-		     "MP3 command-line",
+		     _("MP3 command-line"),
 		     255,TRUE);
   gtk_box_pack_start(GTK_BOX(vbox),entry,FALSE,FALSE,0);
   gtk_widget_show(entry);
 
-  entry=MakeStrEntry(NULL,ginfo->mp3fileformat,"MP3 file format",255,TRUE);
+  entry=MakeStrEntry(NULL,ginfo->mp3fileformat,_("MP3 file format"),255,TRUE);
   gtk_box_pack_start(GTK_BOX(vbox),entry,FALSE,FALSE,0);
   gtk_widget_show(entry);
 
   gtk_container_add(GTK_CONTAINER(page2),vbox);
   gtk_widget_show(vbox);
 
-  label=gtk_label_new("Encoder");
+  label=gtk_label_new(_("Encoder"));
   gtk_notebook_append_page(GTK_NOTEBOOK(notebook),page2,label);
   gtk_widget_show(page2);
 
@@ -365,52 +368,52 @@ void MakeConfigPage(GripInfo *ginfo)
   gtk_container_border_width(GTK_CONTAINER(vbox),3);
 
   check=MakeCheckButton(NULL,&ginfo->delete_wavs,
-			"Delete .wav after encoding");
+			_("Delete .wav after encoding"));
   gtk_box_pack_start(GTK_BOX(vbox),check,FALSE,FALSE,0);
   gtk_widget_show(check);
 
   check=MakeCheckButton(NULL,&ginfo->add_to_db,
-			"Insert info into SQL database");
+			_("Insert info into SQL database"));
   gtk_box_pack_start(GTK_BOX(vbox),check,FALSE,FALSE,0);
   gtk_widget_show(check);
 
-  check=MakeCheckButton(NULL,&ginfo->add_m3u,"Create .m3u files");
+  check=MakeCheckButton(NULL,&ginfo->add_m3u,_("Create .m3u files"));
   gtk_box_pack_start(GTK_BOX(vbox),check,FALSE,FALSE,0);
   gtk_widget_show(check);
 
   check=MakeCheckButton(NULL,&ginfo->rel_m3u,
-			"Use relative paths in .m3u files");
+			_("Use relative paths in .m3u files"));
   gtk_box_pack_start(GTK_BOX(vbox),check,FALSE,FALSE,0);
   gtk_widget_show(check);
 
-  entry=MakeStrEntry(NULL,ginfo->m3ufileformat,"M3U file format",255,TRUE);
+  entry=MakeStrEntry(NULL,ginfo->m3ufileformat,_("M3U file format"),255,TRUE);
   gtk_box_pack_start(GTK_BOX(vbox),entry,FALSE,FALSE,0);
   gtk_widget_show(entry);
 
   entry=MakeNumEntry(NULL,&ginfo->kbits_per_sec,
-		     "Encoding bitrate (kbits/sec)",3);
+		     _("Encoding bitrate (kbits/sec)"),3);
   gtk_box_pack_start(GTK_BOX(vbox),entry,FALSE,FALSE,0);
   gtk_widget_show(entry);
   
-  entry=MakeNumEntry(NULL,&ginfo->edit_num_cpu,"Number of CPUs to use",3);
+  entry=MakeNumEntry(NULL,&ginfo->edit_num_cpu,_("Number of CPUs to use"),3);
   gtk_box_pack_start(GTK_BOX(vbox),entry,FALSE,FALSE,0);
   gtk_widget_show(entry);
   
-  entry=MakeNumEntry(NULL,&ginfo->mp3nice,"Mp3 'nice' value",3);
+  entry=MakeNumEntry(NULL,&ginfo->mp3nice,_("MP3 'nice' value"),3);
   gtk_box_pack_start(GTK_BOX(vbox),entry,FALSE,FALSE,0);
   gtk_widget_show(entry);
   
   gtk_container_add(GTK_CONTAINER(page2),vbox);
   gtk_widget_show(vbox);
 
-  label=gtk_label_new("Options");
+  label=gtk_label_new(_("Options"));
   gtk_notebook_append_page(GTK_NOTEBOOK(notebook),page2,label);
   gtk_widget_show(page2);
 
   gtk_container_add(GTK_CONTAINER(page),notebook);
   gtk_widget_show(notebook);
 
-  label=gtk_label_new("MP3");
+  label=gtk_label_new(_("MP3"));
   gtk_notebook_append_page(GTK_NOTEBOOK(config_notebook),page,label);
   gtk_widget_show(page);
 
@@ -419,24 +422,25 @@ void MakeConfigPage(GripInfo *ginfo)
   vbox=gtk_vbox_new(FALSE,2);
   gtk_container_border_width(GTK_CONTAINER(vbox),3);
 
-  check=MakeCheckButton(NULL,&ginfo->doid3,"Add ID3 tags to MP3 files");
+  check=MakeCheckButton(NULL,&ginfo->doid3,_("Add ID3 tags to MP3 files"));
   gtk_box_pack_start(GTK_BOX(vbox),check,FALSE,FALSE,0);
   gtk_widget_show(check);
 
 #ifdef HAVE_ID3LIB
-  check=MakeCheckButton(NULL,&ginfo->doid3v2,"Add ID3v2 tags to MP3 files");
+  check=MakeCheckButton(NULL,&ginfo->doid3v2,
+			_("Add ID3v2 tags to MP3 files"));
   gtk_box_pack_start(GTK_BOX(vbox),check,FALSE,FALSE,0);
   gtk_widget_show(check);
 #endif
 
-  entry=MakeStrEntry(NULL,ginfo->id3_comment,"ID3 comment field",29,TRUE);
+  entry=MakeStrEntry(NULL,ginfo->id3_comment,_("ID3 comment field"),29,TRUE);
   gtk_box_pack_start(GTK_BOX(vbox),entry,FALSE,FALSE,0);
   gtk_widget_show(entry);
 
   gtk_container_add(GTK_CONTAINER(page),vbox);
   gtk_widget_show(vbox);
 
-  label = gtk_label_new("ID3");
+  label = gtk_label_new(_("ID3"));
   gtk_notebook_append_page(GTK_NOTEBOOK(config_notebook),page,label);
   gtk_widget_show(page);
 #endif
@@ -453,18 +457,18 @@ void MakeConfigPage(GripInfo *ginfo)
   vbox=gtk_vbox_new(FALSE,2);
   gtk_container_border_width(GTK_CONTAINER(vbox),3);
 
-  entry=MakeStrEntry(NULL,ginfo->dbserver.name,"DB server",255,TRUE);
+  entry=MakeStrEntry(NULL,ginfo->dbserver.name,_("DB server"),255,TRUE);
   gtk_box_pack_start(GTK_BOX(vbox),entry,FALSE,FALSE,0);
   gtk_widget_show(entry);
 
-  entry=MakeStrEntry(NULL,ginfo->dbserver.cgi_prog,"CGI path",255,TRUE);
+  entry=MakeStrEntry(NULL,ginfo->dbserver.cgi_prog,_("CGI path"),255,TRUE);
   gtk_box_pack_start(GTK_BOX(vbox),entry,FALSE,FALSE,0);
   gtk_widget_show(entry);
 
   gtk_container_add(GTK_CONTAINER(page2),vbox);
   gtk_widget_show(vbox);
 
-  label=gtk_label_new("Primary Server");
+  label=gtk_label_new(_("Primary Server"));
   gtk_notebook_append_page(GTK_NOTEBOOK(notebook),page2,label);
   gtk_widget_show(page2);
 
@@ -473,18 +477,18 @@ void MakeConfigPage(GripInfo *ginfo)
   vbox=gtk_vbox_new(FALSE,2);
   gtk_container_border_width(GTK_CONTAINER(vbox),3);
 
-  entry=MakeStrEntry(NULL,ginfo->dbserver2.name,"DB server",255,TRUE);
+  entry=MakeStrEntry(NULL,ginfo->dbserver2.name,_("DB server"),255,TRUE);
   gtk_box_pack_start(GTK_BOX(vbox),entry,FALSE,FALSE,0);
   gtk_widget_show(entry);
 
-  entry=MakeStrEntry(NULL,ginfo->dbserver2.cgi_prog,"CGI path",255,TRUE);
+  entry=MakeStrEntry(NULL,ginfo->dbserver2.cgi_prog,_("CGI path"),255,TRUE);
   gtk_box_pack_start(GTK_BOX(vbox),entry,FALSE,FALSE,0);
   gtk_widget_show(entry);
 
   gtk_container_add(GTK_CONTAINER(page2),vbox);
   gtk_widget_show(vbox);
 
-  label=gtk_label_new("Secondary Server");
+  label=gtk_label_new(_("Secondary Server"));
   gtk_notebook_append_page(GTK_NOTEBOOK(notebook),page2,label);
   gtk_widget_show(page2);
 
@@ -494,17 +498,17 @@ void MakeConfigPage(GripInfo *ginfo)
 
 
   entry=MakeStrEntry(NULL,ginfo->discdb_submit_email,
-		     "DB Submit email",255,TRUE);
+		     _("DB Submit email"),255,TRUE);
   gtk_box_pack_start(GTK_BOX(dbvbox),entry,FALSE,FALSE,0);
   gtk_widget_show(entry);
 
   check=MakeCheckButton(NULL,&ginfo->db_use_freedb,
-			"Use freedb extensions");
+			_("Use freedb extensions"));
   gtk_box_pack_start(GTK_BOX(dbvbox),check,FALSE,FALSE,0);
   gtk_widget_show(check);
 
   check=MakeCheckButton(NULL,&ginfo->automatic_discdb,
-			"Perform disc lookups automatically");
+			_("Perform disc lookups automatically"));
   gtk_box_pack_start(GTK_BOX(dbvbox),check,FALSE,FALSE,0);
   gtk_widget_show(check);
 
@@ -512,7 +516,7 @@ void MakeConfigPage(GripInfo *ginfo)
   gtk_widget_show(dbvbox);
 
 
-  label=gtk_label_new("DiscDB");
+  label=gtk_label_new(_("DiscDB"));
   gtk_notebook_append_page(GTK_NOTEBOOK(config_notebook),page,label);
   gtk_widget_show(page);
 
@@ -521,32 +525,32 @@ void MakeConfigPage(GripInfo *ginfo)
   vbox=gtk_vbox_new(FALSE,2);
   gtk_container_border_width(GTK_CONTAINER(vbox),3);
 
-  check=MakeCheckButton(&button,&ginfo->use_proxy,"Use proxy server");
+  check=MakeCheckButton(&button,&ginfo->use_proxy,_("Use proxy server"));
   gtk_signal_connect(GTK_OBJECT(button),"clicked",
   		     GTK_SIGNAL_FUNC(UseProxyChanged),(gpointer)ginfo);
   gtk_box_pack_start(GTK_BOX(vbox),check,FALSE,FALSE,0);
   gtk_widget_show(check);
 
   check=MakeCheckButton(NULL,&ginfo->use_proxy_env,
-			"Get server from 'http_proxy' env. var");
+			_("Get server from 'http_proxy' env. var"));
   gtk_box_pack_start(GTK_BOX(vbox),check,FALSE,FALSE,0);
   gtk_widget_show(check);
 
-  entry=MakeStrEntry(NULL,ginfo->proxy_server.name,"Proxy server",255,TRUE);
+  entry=MakeStrEntry(NULL,ginfo->proxy_server.name,_("Proxy server"),255,TRUE);
   gtk_box_pack_start(GTK_BOX(vbox),entry,FALSE,FALSE,0);
   gtk_widget_show(entry);
 
-  entry=MakeNumEntry(NULL,&(ginfo->proxy_server.port),"Proxy port",5);
+  entry=MakeNumEntry(NULL,&(ginfo->proxy_server.port),_("Proxy port"),5);
   gtk_box_pack_start(GTK_BOX(vbox),entry,FALSE,FALSE,0);
   gtk_widget_show(entry);
 
-  entry=MakeStrEntry(NULL,ginfo->proxy_server.username,"Proxy username",
+  entry=MakeStrEntry(NULL,ginfo->proxy_server.username,_("Proxy username"),
 		     80,TRUE);
   gtk_box_pack_start(GTK_BOX(vbox),entry,FALSE,FALSE,0);
   gtk_widget_show(entry);
 
   entry=MakeStrEntry(&realentry,ginfo->proxy_server.pswd,
-		     "Proxy password",80,TRUE);
+		     _("Proxy password"),80,TRUE);
   gtk_entry_set_visibility(GTK_ENTRY(realentry),FALSE);
   gtk_box_pack_start(GTK_BOX(vbox),entry,FALSE,FALSE,0);
   gtk_widget_show(entry);
@@ -554,7 +558,7 @@ void MakeConfigPage(GripInfo *ginfo)
   gtk_container_add(GTK_CONTAINER(page),vbox);
   gtk_widget_show(vbox);
 
-  label=gtk_label_new("Proxy");
+  label=gtk_label_new(_("Proxy"));
   gtk_notebook_append_page(GTK_NOTEBOOK(config_notebook),page,label);
   gtk_widget_show(page);
 
@@ -563,43 +567,43 @@ void MakeConfigPage(GripInfo *ginfo)
   vbox=gtk_vbox_new(FALSE,2);
   gtk_container_border_width(GTK_CONTAINER(vbox),3);
 
-  entry=MakeStrEntry(NULL,ginfo->user_email,"Email address",255,TRUE);
+  entry=MakeStrEntry(NULL,ginfo->user_email,_("Email address"),255,TRUE);
   gtk_box_pack_start(GTK_BOX(vbox),entry,FALSE,FALSE,0);
   gtk_widget_show(entry);
 
-  entry=MakeStrEntry(NULL,ginfo->cdupdate,"CD update program",255,TRUE);
+  entry=MakeStrEntry(NULL,ginfo->cdupdate,_("CD update program"),255,TRUE);
   gtk_box_pack_start(GTK_BOX(vbox),entry,FALSE,FALSE,0);
   gtk_widget_show(entry);
 
   check=MakeCheckButton(NULL,&ginfo->sprefs.no_lower_case,
-			"Do not lowercase filenames");
+			_("Do not lowercase filenames"));
   gtk_box_pack_start(GTK_BOX(vbox),check,FALSE,FALSE,0);
   gtk_widget_show(check);
    
   check=MakeCheckButton(NULL,&ginfo->sprefs.allow_high_bits,
-			"Allow high bits in filenames");
+			_("Allow high bits in filenames"));
   gtk_box_pack_start(GTK_BOX(vbox),check,FALSE,FALSE,0);
   gtk_widget_show(check);
 
   check=MakeCheckButton(NULL,&ginfo->sprefs.no_underscore,
-			"Do not change spaces to underscores");
+			_("Do not change spaces to underscores"));
   gtk_box_pack_start(GTK_BOX(vbox),check,FALSE,FALSE,0);
   gtk_widget_show(check);
 
   entry=MakeStrEntry(NULL,ginfo->sprefs.allow_these_chars,
-		     "Characters to not strip\nin filenames",255,TRUE);
+		     _("Characters to not strip\nin filenames"),255,TRUE);
   gtk_box_pack_start(GTK_BOX(vbox),entry,FALSE,FALSE,0);
   gtk_widget_show(entry);
 
   check=MakeCheckButton(NULL,&(ginfo->gui_info.keep_min_size),
-			"Keep application minimum size");
+			_("Keep application minimum size"));
   gtk_box_pack_start(GTK_BOX(vbox),check,FALSE,FALSE,0);
   gtk_widget_show(check);
 
   gtk_container_add(GTK_CONTAINER(page),vbox);
   gtk_widget_show(vbox);
 
-  label=gtk_label_new("Misc");
+  label=gtk_label_new(_("Misc"));
   gtk_notebook_append_page(GTK_NOTEBOOK(config_notebook),page,label);
   gtk_widget_show(page);
 

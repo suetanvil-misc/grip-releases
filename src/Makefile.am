@@ -35,4 +35,4 @@ grip_SOURCES =         \
 	launch.h
 
 grip_LDADD = $(GNOMEUI_LIBS) $(GNOME_LIBDIR) $(INTLLIBS) $(PTHREAD_LIB) \
-	$(GHTTP_LIB) $(CDPAR_LIBS)
+	$(GHTTP_LIB) $(CDPAR_LIBS) $(ID3_LIBS)

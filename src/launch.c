@@ -20,7 +20,6 @@
  * USA
  */
 
-#include <glib.h>
 #include <string.h>
 #include <ctype.h>
 #include <stdlib.h>
@@ -29,7 +28,8 @@
 #include <sys/types.h>
 #include <sys/wait.h>
 #include <unistd.h>
-
+#include "grip.h"
+#include "common.h"
 #include "launch.h"
 
 /* Split a string into an array of arguments */
@@ -117,7 +117,7 @@ void TranslateString(char *instr,GString *outstr,
       }
 
       if(!pwd)
-	printf("Error: unable to translate filename. No such user as %s\n",
+	printf(_("Error: unable to translate filename. No such user as %s\n"),
 	       tok);
       else {
 	g_string_sprintf(outstr,"%s",pwd->pw_dir);
@@ -200,41 +200,37 @@ int MakeTranslatedArgs(char *str,GString **args,int maxargs,
 
 extern char *FindRoot(char *);
 
-void TranslateAndLauch(char *cmd,char *(*trans_func)(char,void *,gboolean *),
-		       void *user_data,
-		       StrTransPrefs *prefs)
+void TranslateAndLaunch(char *cmd,char *(*trans_func)(char,void *,gboolean *),
+			void *user_data,
+			StrTransPrefs *prefs,void (*close_func)(void *),
+			void *close_user_data)
 {
   GString *str;
-  GString *args[20];
+  GString *args[100];
   char *char_args[21];
   int pid;
   int arg;
 
   str=g_string_new(NULL);
 
-  MakeTranslatedArgs(cmd,args,20,trans_func,user_data,prefs);
+  MakeTranslatedArgs(cmd,args,100,trans_func,user_data,prefs);
 
   for(arg=1;args[arg];arg++) {
-    printf("arg is [%s]\n",args[arg]->str);
     char_args[arg]=args[arg]->str;
   }
 
-  printf("Exe is [%s]\n",args[0]->str);
-  
-  char_args[arg+1]=NULL;
+  char_args[arg]=NULL;
   
   char_args[0]=FindRoot(args[0]->str);
 
   pid=fork();
   
   if(pid==0) {
-    /*    close(ConnectionNumber(GDK_DISPLAY()));
-    RedirectIO(ginfo->do_redirect);
-    close(ginfo->disc.cd_desc);*/
+    if(close_func) close_func(close_user_data);
 
     execv(args[0]->str,char_args);
     
-    printf("Exec failed\n");
+    Debug(_("Exec failed\n"));
     _exit(0);
   }
   

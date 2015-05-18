@@ -40,8 +40,14 @@
   <toc></toc>
   
   <chapter id="intro">
-    <title>Introduction.</title>
-    <para>This is the Grip user's guide.</para>
+    <title>Introduction.</title> <para>Grip is a gtk-based cd-player and
+    cd-ripper. It has the ripping capabilities of cdparanoia builtin, but
+    can also use external rippers (such as cdda2wav). It also provides an
+    automated frontend for MP3 encoders, letting you take a disc and
+    transform it easily straight into MP3s. The DiscDB protocol is supported
+    for retrieving track information from disc database servers. Grip works
+    with DigitalDJ to provide a unified "computerized" version of your music
+    collection.</para>
   </chapter>
   
   <chapter id="cdplayer">
@@ -112,7 +118,7 @@
 	  <para><graphic format="png" fileref="progtrack.png">
 	    </graphic>
 	    <guilabel>Track Mode</guilabel> &mdash; This brings up the track
-	    mode interface, described in <xref linkend="sect_trackmode">.
+	    mode interface, described in <xref linkend="sect-trackmode">.
 	  </para>
 	</listitem>
 
@@ -179,7 +185,7 @@
       </itemizedlist>
     </sect1>
 
-    <sect1 id="sect_trackmode">
+    <sect1 id="sect-trackmode">
       <title>Track Mode Selector</title>
       <para>
 	<figure id="modeinterface">
@@ -241,6 +247,231 @@
     <title>Ripping CDs with Grip</title>
     <para>Insert brilliant documentation here.</para>
   </chapter>
+
+  <chapter id="configure">
+    <title>Configuring Grip</title>
+
+    <para>Much work needs to be done in this section, but for now, here is a
+    list of the '%' switches used in command-lines.</para>
+
+    <sect1>
+      <title>Configuration (%) switches</title>
+
+      <itemizedlist>
+	<listitem><para><guilabel>b</guilabel> &mdash; The bitrate that mp3s
+	  are being encoded at.  </para></listitem>
+
+	<listitem><para><guilabel>c</guilabel> &mdash; The CDrom device
+	    being used.  </para></listitem>
+
+	<listitem><para><guilabel>w</guilabel> &mdash; The filename of the
+	    wave file being ripped.  </para></listitem>
+
+	<listitem><para><guilabel>m</guilabel> &mdash; The filename of the
+	    MP3 file being encoded.  </para></listitem>
+
+	<listitem><para><guilabel>t</guilabel> &mdash; The track
+	    number,beginning at 1, and zero-filled (ie: '03' for the third
+	    track).  </para></listitem>
+
+	<listitem><para><guilabel>s</guilabel> &mdash; The start sector of
+	    the track.  </para></listitem>
+
+	<listitem><para><guilabel>e</guilabel> &mdash; The end sector of the
+	    track.  </para></listitem>
+
+	<listitem><para><guilabel>n</guilabel> &mdash; The name of the
+	    track.  </para></listitem>
+
+	<listitem><para><guilabel>a</guilabel> &mdash; The artist name for
+	    the track.  </para></listitem>
+
+	<listitem><para><guilabel>A</guilabel> &mdash; The artist name for
+	    the disc.  </para></listitem>
+
+	<listitem><para><guilabel>d</guilabel> &mdash; The name of the disc.
+	    </para></listitem>
+	
+	<listitem><para><guilabel>i</guilabel> &mdash; The disc database id
+	    (in hex) for the disc.  </para></listitem>
+	
+	<listitem><para><guilabel>y</guilabel> &mdash; The year of the disc.
+	  </para></listitem>
+	
+	<listitem><para><guilabel>g</guilabel> &mdash; The ID3 genre id of
+	    the disc.  </para></listitem>
+	
+	<listitem><para><guilabel>G</guilabel> &mdash; The ID3 genre string
+	    of the disc.  </para></listitem>
+	
+      </itemizedlist>
+      
+      <para>Any of the '%' switches can optionally be preceded by a '*' (for
+	example, '%*a'). This prevent Grip from doing any stripping of
+	characters from the string. Generally, this option should be used
+	when the switch is being used in something other than a
+	filename.</para>
+    </sect1>
+  </chapter>
+  
+  <chapter id="faq">
+    <title>First Asked Questions</title>
+
+    <itemizedlist>
+      <listitem><para>Q: When I try to rip a track, I get X I/O errors. What
+	  gives?</para>
+	
+	<para>A: This seems to be a problem with non-thread-safe
+	  systems. Make sure your system is safe for threads. This often
+	  seems to be associated with libc5.</para></listitem>
+      
+      
+      <listitem><para>Q: I just get a message saying that the program can't
+	  access my drive. This makes it hard to do much. Help!</para>
+	
+	<para>A: Your user account must have access to the cdrom device.
+	</para></listitem>
+      
+      
+      <listitem><para>Q: I can play cd's fine, but my ripper can't access
+	  the drive. Why not?</para>
+	
+	<para>A: On scsi systems, rippers (cdparanoia, at least) need access
+	  to the generic scsi device as well.</para></listitem>
+      
+      
+      <listitem><para>Q: The progress bar doesn't seem to be completely
+	  accurate when doing an MP3 encode. Why can't it get it
+	  right?</para>
+	
+	<para>A: The progress bar is done based on the size of the output
+	  file. If you have the kbits/sec set properly, Grip should estimate
+	  the size properly. Note that if you use variable bitrate encoding
+	  (supported by encoders like LAME and xing) Grip has no way to
+	  accurately guess the file size.</para></listitem>
+      
+      <listitem><para>Q: When I encode tracks, the MP3 progress bar never
+	  does anything. What happened to progress?</para>
+	
+	<para>A: If your MP3 encoder doesn't accept an output filename (like
+	  BladeEnc), or you haven't passed it one on the command-line, then
+	  it might not be outputting to the file Grip expects. Make sure
+	  that your MP3 file format is set to what your encoder is actually
+	  producing.</para></listitem>
+      
+      
+      <listitem><para>Q: When Grip looks up disc information, it works, but
+	  says "Error saving disc data". Why?</para>
+	
+	<para>A: Grip saves local copies of disc track information in the
+	  directory "~/.cddb". It must be able to create or access this
+	  directory.</para></listitem>
+      
+      
+      <listitem><para>Q: How come I don't get any scrollbars in the track
+	  display?</para>
+	
+	<para>A: You are using a version of Grip compiled for gtk+ v1.0.x on
+	  a system that has gtk+ v1.2.x installed. You need to either get a
+	  binary compiled for the development series of gtk+, or compile
+	  Grip yourself.</para></listitem>
+      
+      
+      <listitem><para>Q: When my buddy runs Grip, he gets those nifty LCD
+	  icons showing rip/encode/CDDB status, but I don't. What makes him
+	  so special?</para>
+	
+	<para>A: He's using a more recent version of gtk+ than you are. Due
+	  to bugs in gtk+ v1.0.x, I don't support the icons under
+	  it. Upgrade your gtk+!</para></listitem>
+      
+      
+      <listitem><para>Q: I can't get Grip to rip any tracks! This makes it
+	  less than useful...</para>
+	
+	<para>A: Grip won't rip tracks unless you tell it what to rip. Use
+	  the right mouse button to select tracks for
+	  ripping.</para></listitem>
+      
+      
+      <listitem><para>Q: I was listening to a CD in Grip and it sounded
+	  horrible! What's up?</para>
+	
+	<para>A: Perhaps you are listening to country
+	music...</para></listitem>
+    </itemizedlist>
+    
+  </chapter>
+
+  <chapter id="cddb">
+    <title>CDDB notes</title> <para>I have declined to sign a license
+      agreement with Escient, the company who owns "www.cddb.com" and runs
+      the CDDB server "us.cddb.com". Their license would (among other
+      things) have required me to place advertisements in Grip and restrict
+      you, the user, to use only their databases. I am against this
+      commercial use of the track information submitted by users such as
+      yourself. For this reason, I encourage you to use free servers, such
+      as freedb.org.</para>
+  </chapter>
+
+  <chapter id="license">
+    <title>License and Disclaimer</title> <para>Grip is Copyright
+    &copy 2002 by Mike Oliphant. Grip may be used and distributed
+    under the terms of the GNU General Public License. All other brand and
+    product names are trademarks, registered trademarks or service marks of
+    their respective holders.</para>
+    
+    <para>These programs are distributed in the hope that it will be useful,
+      but WITHOUT ANY WARRANTY; without even the implied warranty of
+      MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+      General Public License for more details.</para>
+    
+    <para>You should have received a copy of the GNU General Public License
+      along with this distribution; if not, write to the Free Software
+      Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111,
+      USA.</para>
+  </chapter>    
+
+  <chapter id="acknowledge">
+    <title>Acknowledgments</title>
+
+    <para>Thanks go to:</para>
+    
+    <itemizedlist>
+
+      <listitem><para>Everyone involved in GTK development for a wonderful
+      GUI</para></listitem>
+
+      <listitem><para>Tony Arcieri, for libcdaudio, which formed the basis
+	  of Grip's low-level cd control and CDDB access
+	  routines</para></listitem>
+
+      <listitem><para>Monty, for cdparanoia and the paranoia
+      library</para></listitem>
+
+      <listitem><para>Heiko Eissfeldt for cdda2wav</para></listitem>
+
+      <listitem><para>Mike Cheng, Mark Taylor and all the others who have
+      worked on LAME</para></listitem>
+
+      <listitem><para>Tord Jansson for BladeEnc</para></listitem>
+
+      <listitem><para>Ti Kan, for the xmcd button bitmaps, many of which I
+	  use in modified form (shame on you for the cddb fiasco,
+	  however)</para></listitem>
+
+      <listitem><para>Everyone has contributed code to Grip (see the CREDITS
+      file)</para></listitem>
+
+      <listitem><para>mp3.com for hosting nostatic.org</para></listitem>
+
+      <listitem><para>Everyone else who has given me feedback, contributed
+	  code, and helped test Grip (see the ChangeLog for specific
+	  contributions)</para></listitem>
+
+    </itemizedlist>
+
+    </chapter>
 
 </book>
 

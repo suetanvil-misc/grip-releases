@@ -1,3 +1,24 @@
+2002-01-13  Mike Oliphant  <oliphant@gtk.org>
+
+	* discdb.c: don't overwrite with blank genre on lookup
+	* configure.in: added option to link id3lib statically
+	* gripcfg.c: gettextized
+	* cddev.c: gettextized
+	* cdplay.c: gettextized
+	* dialog.c: gettextized
+	* discdb.c: gettextized
+	* discedit.c: gettextized
+	* grip.c: gettextized
+	* id3.c: gettextized
+	* launch.c: gettextized
+	* parsecfg.c: gettextized
+	* rip.c: gettextized
+	* launch.c: fixed TranslateAndLaunch (cd update program now works)
+	* launch.c/rip.c/cdplay.c/grip.c: changed how IO redirect works
+	* rip.c: Added option to kill just the rip process
+	* configure.in/grip.spec: upped version to 2.98.0 (not 2.9.8 -- to
+	  make it sequence after 2.96 in rpms/debs)
+	
 2002-01-08  Mike Oliphant  <oliphant@gtk.org>
 
 	* discedit.c: fixed a crashing problem on track edit focus out
@@ -20,7 +41,7 @@
 	* discdb.c: changed protocol level to 5
 	* discdb.c/id3.c: added grabbing id3 genre from DGENRE
 	* configure.in: added configure switch for linking static
-	  cdparanoi libs
+	  cdparanoia libs
 	* doc/C: added some more docs
 	
 2002-01-04  Mike Oliphant  <oliphant@gtk.org>

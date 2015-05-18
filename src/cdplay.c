@@ -91,7 +91,7 @@ static void DiscDBToggle(GtkWidget *widget,gpointer data)
 #else
     pthread_kill_other_threads_np();
 #endif
-    Debug("Aborted\n");
+    Debug(_("Aborted\n"));
 
     ginfo->looking_up=FALSE;
     ginfo->update_required=TRUE;
@@ -99,7 +99,7 @@ static void DiscDBToggle(GtkWidget *widget,gpointer data)
   else {
 #ifndef GRIPCD
     if(ginfo->ripping) {
-      DisplayMsg("Cannot do lookup while ripping");
+      DisplayMsg(_("Cannot do lookup while ripping"));
 
       return;
     }
@@ -135,11 +135,11 @@ void LookupDisc(GripInfo *ginfo,gboolean manual)
     if(!manual) {
       ddata->data_id=DiscDBDiscid(disc);
       ddata->data_genre=7; /* "misc" */
-      strcpy(ddata->data_title,"Unknown Disc");
+      strcpy(ddata->data_title,_("Unknown Disc"));
       strcpy(ddata->data_artist,"");
       
       for(track=0;track<disc->num_tracks;track++) {
-	sprintf(ddata->data_track[track].track_name,"Track %02d",track+1);
+	sprintf(ddata->data_track[track].track_name,_("Track %02d"),track+1);
 	*(ddata->data_track[track].track_artist)='\0';
 	*(ddata->data_track[track].track_extended)='\0';
 	*(ddata->data_playlist)='\0';
@@ -184,7 +184,7 @@ void DoLookup(void *data)
 
   /* Deleted this since we aren't in the main thread */
   /*  if(!discdb_found)
-      DisplayMsg("Disc database query failed\n");*/
+      DisplayMsg(_("Disc database query failed\n"));*/
 
   ginfo->looking_up=FALSE;
   pthread_exit(0);
@@ -203,18 +203,14 @@ gboolean DiscDBLookupDisc(GripInfo *ginfo,DiscDBServer *server)
   ddata=&(ginfo->ddata);
 
   if(server->use_proxy)
-    Debug("Querying %s (through %s) for disc %02x.\n",server->name,
+    Debug(_("Querying %s (through %s) for disc %02x.\n"),server->name,
 	   server->proxy->name,
 	   DiscDBDiscid(disc));
   else
-    Debug("Querying %s for disc %02x.\n",server->name,
+    Debug(_("Querying %s for disc %02x.\n"),server->name,
 	   DiscDBDiscid(disc));
 
-#ifndef GRIPCD
   strncpy(hello.hello_program,"Grip",256);
-#else
-  strncpy(hello.hello_program,"GCD",256);
-#endif
   strncpy(hello.hello_version,VERSION,256);
 	
   if(!DiscDBDoQuery(disc,server,&hello,&query)) {
@@ -223,24 +219,24 @@ gboolean DiscDBLookupDisc(GripInfo *ginfo,DiscDBServer *server)
     switch(query.query_match) {
     case MATCH_INEXACT:
     case MATCH_EXACT:
-      Debug("Match for \"%s / %s\"\nDownloading data...\n",
+      Debug(_("Match for \"%s / %s\"\nDownloading data...\n"),
 	     query.query_list[0].list_artist,
 	     query.query_list[0].list_title);
       entry.entry_genre = query.query_list[0].list_genre;
       entry.entry_id = query.query_list[0].list_id;
       DiscDBRead(disc,server,&hello,&entry,ddata);
 
-      Debug("Done\n");
+      Debug(_("Done\n"));
       success=TRUE;
 		
       if(DiscDBWriteDiscData(disc,ddata,NULL,TRUE,FALSE)<0)
-	printf("Error saving disc data\n");
+	printf(_("Error saving disc data\n"));
 
       ginfo->update_required=TRUE;
       ginfo->is_new_disc=TRUE;
       break;
     case MATCH_NOMATCH:
-      Debug("No match\n");
+      Debug(_("No match\n"));
       break;
     }
   }
@@ -258,14 +254,14 @@ void MakeTrackPage(GripInfo *ginfo)
   GtkWidget *scroll;
 #endif
 #ifndef GRIPCD
-  gchar *titles[3]={"Track","Length ","Rip"};
+  gchar *titles[3]={_("Track"),_("Length "),_("Rip")};
 #else
-  gchar *titles[3]={"Track","Length ","PL"};
+  gchar *titles[3]={_("Track"),_("Length "),_("PL")};
 #endif
   
   uinfo=&(ginfo->gui_info);
 
-  trackpage=MakeNewPage(uinfo->notebook,"Tracks");
+  trackpage=MakeNewPage(uinfo->notebook,_("Tracks"));
 
   vbox=gtk_vbox_new(FALSE,0);
   gtk_container_border_width(GTK_CONTAINER(vbox),3);
@@ -558,7 +554,7 @@ static void PlaylistChanged(GtkWindow *window,GtkWidget *widget,gpointer data)
   InitProgram(ginfo);
 
   if(DiscDBWriteDiscData(&(ginfo->disc),&(ginfo->ddata),NULL,TRUE,FALSE)<0)
-    DisplayMsg("Error saving disc data\n");
+    DisplayMsg(_("Error saving disc data\n"));
 }
 
 static void ToggleLoop(GtkWidget *widget,gpointer data)
@@ -629,7 +625,7 @@ GtkWidget *MakePlayOpts(GripInfo *ginfo)
   gtk_signal_connect(GTK_OBJECT(button),"clicked",
   		     GTK_SIGNAL_FUNC(ChangePlayMode),(gpointer)ginfo);
   gtk_tooltips_set_tip(MakeToolTip(),button,
-		       "Rotate play mode",NULL);
+		       _("Rotate play mode"),NULL);
   gtk_widget_show(button);
 
   uinfo->loop_indicator=NewBlankPixmap(uinfo->app);
@@ -649,7 +645,7 @@ GtkWidget *MakePlayOpts(GripInfo *ginfo)
   gtk_signal_connect(GTK_OBJECT(button),"clicked",
   		     GTK_SIGNAL_FUNC(ToggleLoop),(gpointer)ginfo);
   gtk_tooltips_set_tip(MakeToolTip(),button,
-		       "Toggle loop play",NULL);
+		       _("Toggle loop play"),NULL);
   gtk_widget_show(button);
 
   gtk_container_add(GTK_CONTAINER(ebox),hbox);
@@ -733,7 +729,7 @@ GtkWidget *MakeControls(GripInfo *ginfo)
 #ifndef GRIPCD
   uinfo->lcd_smile_indicator=NewBlankPixmap(GTK_WIDGET(uinfo->app));
   gtk_tooltips_set_tip(MakeToolTip(),uinfo->lcd_smile_indicator,
-		       "Rip status",NULL);
+		       _("Rip status"),NULL);
   gtk_box_pack_start(GTK_BOX(indicator_box),uinfo->lcd_smile_indicator,
 		     TRUE,TRUE,0);
   gtk_widget_show(uinfo->lcd_smile_indicator);
@@ -805,7 +801,7 @@ GtkWidget *MakeControls(GripInfo *ginfo)
   gtk_signal_connect(GTK_OBJECT(button),"clicked",
   		     GTK_SIGNAL_FUNC(PlayTrackCB),(gpointer)ginfo);
   gtk_tooltips_set_tip(MakeToolTip(),button,
-		       "Play track / Pause play",NULL);
+		       _("Play track / Pause play"),NULL);
   gtk_box_pack_start(GTK_BOX(hbox),button,TRUE,TRUE,0);
   gtk_widget_show(button);
 
@@ -816,7 +812,7 @@ GtkWidget *MakeControls(GripInfo *ginfo)
   gtk_signal_connect(GTK_OBJECT(button),"released",
   		     GTK_SIGNAL_FUNC(RewindCB),(gpointer)ginfo);
   gtk_tooltips_set_tip(MakeToolTip(),button,
-		       "Rewind",NULL);
+		       _("Rewind"),NULL);
   gtk_box_pack_start(GTK_BOX(hbox),button,TRUE,TRUE,0);
   gtk_widget_show(button);
 
@@ -827,7 +823,7 @@ GtkWidget *MakeControls(GripInfo *ginfo)
   gtk_signal_connect(GTK_OBJECT(button),"released",
   		     GTK_SIGNAL_FUNC(FastFwdCB),(gpointer)ginfo);
   gtk_tooltips_set_tip(MakeToolTip(),button,
-		       "FastForward",NULL);
+		       _("FastForward"),NULL);
   gtk_box_pack_start(GTK_BOX(hbox),button,TRUE,TRUE,0);
   gtk_widget_show(button);
 
@@ -837,7 +833,7 @@ GtkWidget *MakeControls(GripInfo *ginfo)
   gtk_signal_connect(GTK_OBJECT(button),"clicked",
   		     GTK_SIGNAL_FUNC(PrevTrackCB),(gpointer)ginfo);
   gtk_tooltips_set_tip(MakeToolTip(),button,
-		       "Go to previous track",NULL);
+		       _("Go to previous track"),NULL);
   gtk_widget_show(button);
 
   button=ImageButton(GTK_WIDGET(uinfo->app),uinfo->nexttrk_image);
@@ -846,7 +842,7 @@ GtkWidget *MakeControls(GripInfo *ginfo)
   gtk_signal_connect(GTK_OBJECT(button),"clicked",
   		     GTK_SIGNAL_FUNC(NextTrackCB),(gpointer)ginfo);
   gtk_tooltips_set_tip(MakeToolTip(),button,
-		       "Go to next track",NULL);
+		       _("Go to next track"),NULL);
   gtk_widget_show(button);
 
   button=ImageButton(GTK_WIDGET(uinfo->app),uinfo->progtrack_image);
@@ -855,7 +851,7 @@ GtkWidget *MakeControls(GripInfo *ginfo)
   gtk_signal_connect(GTK_OBJECT(button),"clicked",
     		     GTK_SIGNAL_FUNC(ToggleProg),(gpointer)uinfo);
   gtk_tooltips_set_tip(MakeToolTip(),button,
-		       "Toggle play mode options",NULL);
+		       _("Toggle play mode options"),NULL);
   gtk_widget_show(button);
 
   if(ginfo->changer_slots>1) {
@@ -865,7 +861,7 @@ GtkWidget *MakeControls(GripInfo *ginfo)
     gtk_signal_connect(GTK_OBJECT(button),"clicked",
     		       GTK_SIGNAL_FUNC(NextDisc),(gpointer)ginfo);
     gtk_tooltips_set_tip(MakeToolTip(),button,
-			 "Next Disc",NULL);
+			 _("Next Disc"),NULL);
     gtk_widget_show(button);
   }
 
@@ -879,7 +875,7 @@ GtkWidget *MakeControls(GripInfo *ginfo)
   gtk_signal_connect(GTK_OBJECT(button),"clicked",
   		     GTK_SIGNAL_FUNC(StopPlayCB),(gpointer)ginfo);
   gtk_tooltips_set_tip(MakeToolTip(),button,
-		       "Stop play",NULL);
+		       _("Stop play"),NULL);
   gtk_box_pack_start(GTK_BOX(hbox),button,TRUE,TRUE,0);
   gtk_widget_show(button);
 
@@ -889,7 +885,7 @@ GtkWidget *MakeControls(GripInfo *ginfo)
   gtk_signal_connect(GTK_OBJECT(button),"clicked",
   		     GTK_SIGNAL_FUNC(EjectDisc),(gpointer)ginfo);
   gtk_tooltips_set_tip(MakeToolTip(),button,
-		       "Eject disc",NULL);
+		       _("Eject disc"),NULL);
   gtk_widget_show(button);
 
   button=ImageButton(GTK_WIDGET(uinfo->app),uinfo->vol_image);
@@ -897,7 +893,7 @@ GtkWidget *MakeControls(GripInfo *ginfo)
   gtk_signal_connect(GTK_OBJECT(button),"clicked",
   		     GTK_SIGNAL_FUNC(ToggleVol),(gpointer)uinfo);
   gtk_tooltips_set_tip(MakeToolTip(),button,
-		       "Toggle Volume Control",NULL);
+		       _("Toggle Volume Control"),NULL);
   gtk_box_pack_start(GTK_BOX(hbox),button,TRUE,TRUE,0);
   gtk_widget_show(button);
 
@@ -906,7 +902,7 @@ GtkWidget *MakeControls(GripInfo *ginfo)
   gtk_signal_connect(GTK_OBJECT(button),"clicked",
   		     GTK_SIGNAL_FUNC(ToggleTrackEdit),(gpointer)ginfo);
   gtk_tooltips_set_tip(MakeToolTip(),button,
-		       "Toggle disc editor",NULL);
+		       _("Toggle disc editor"),NULL);
   gtk_box_pack_start(GTK_BOX(hbox),button,TRUE,TRUE,0);
   gtk_widget_show(button);
 
@@ -916,7 +912,7 @@ GtkWidget *MakeControls(GripInfo *ginfo)
     gtk_signal_connect(GTK_OBJECT(button),"clicked",
     		       GTK_SIGNAL_FUNC(DiscDBToggle),(gpointer)ginfo);
     gtk_tooltips_set_tip(MakeToolTip(),button,
-			 "Initiate/abort DiscDB lookup",NULL);
+			 _("Initiate/abort DiscDB lookup"),NULL);
     gtk_box_pack_start(GTK_BOX(hbox),button,TRUE,TRUE,0);
     gtk_widget_show(button);
   }
@@ -926,7 +922,7 @@ GtkWidget *MakeControls(GripInfo *ginfo)
   gtk_signal_connect(GTK_OBJECT(button),"clicked",
   		     GTK_SIGNAL_FUNC(MinMax),(gpointer)uinfo);
   gtk_tooltips_set_tip(MakeToolTip(),button,
-		       "Toggle track display",NULL);
+		       _("Toggle track display"),NULL);
   gtk_box_pack_start(GTK_BOX(hbox),button,TRUE,TRUE,0);
   gtk_widget_show(button);
 
@@ -934,10 +930,10 @@ GtkWidget *MakeControls(GripInfo *ginfo)
   gtk_widget_set_style(button,uinfo->style_dark_grey);
 #ifndef GRIPCD
   gtk_tooltips_set_tip(MakeToolTip(),button,
-		       "Exit Grip",NULL);
+		       _("Exit Grip"),NULL);
 #else
   gtk_tooltips_set_tip(MakeToolTip(),button,
-		       "Exit GCD",NULL);
+		       _("Exit GCD"),NULL);
 #endif
   gtk_box_pack_start(GTK_BOX(hbox),button,TRUE,TRUE,0);
   gtk_signal_connect(GTK_OBJECT(button),"clicked",
@@ -1085,7 +1081,7 @@ static void FastFwdCB(GtkWidget *widget,gpointer data)
 
 #ifndef GRIPCD
   if(ginfo->ripping) {
-    DisplayMsg("Cannot fast forward while ripping");
+    DisplayMsg(_("Cannot fast forward while ripping"));
 
     return;
   }
@@ -1117,7 +1113,7 @@ static void RewindCB(GtkWidget *widget,gpointer data)
 
 #ifndef GRIPCD
   if(ginfo->ripping) {
-    DisplayMsg("Cannot rewind while ripping");
+    DisplayMsg(_("Cannot rewind while ripping"));
 
     return;
   }
@@ -1149,7 +1145,7 @@ static void NextDisc(GtkWidget *widget,gpointer data)
 
 #ifndef GRIPCD
   if(ginfo->ripping) {
-    DisplayMsg("Cannot switch discs while ripping");
+    DisplayMsg(_("Cannot switch discs while ripping"));
 
     return;
   }
@@ -1168,11 +1164,11 @@ void EjectDisc(GtkWidget *widget,gpointer data)
 
   ginfo=(GripInfo *)data;
 
-  Debug("Eject disc\n");
+  Debug(_("Eject disc\n"));
 
 #ifndef GRIPCD
   if(ginfo->ripping) {
-    DisplayMsg("Cannot eject while ripping");
+    DisplayMsg(_("Cannot eject while ripping"));
 
     return;
   }
@@ -1183,7 +1179,7 @@ void EjectDisc(GtkWidget *widget,gpointer data)
   Busy(&(ginfo->gui_info));
 
   if(ginfo->have_disc) {
-    Debug("Have disc -- ejecting\n");
+    Debug(_("Have disc -- ejecting\n"));
 
     CDStop(&(ginfo->disc));
     CDEject(&(ginfo->disc));
@@ -1247,7 +1243,7 @@ static void PlayTrackCB(GtkWidget *widget,gpointer data)
 
 #ifndef GRIPCD
   if(ginfo->ripping) {
-    DisplayMsg("Cannot play while ripping");
+    DisplayMsg(_("Cannot play while ripping"));
    
     return;
   }
@@ -1310,7 +1306,7 @@ void NextTrack(GripInfo *ginfo)
 {
 #ifndef GRIPCD
   if(ginfo->ripping) {
-    DisplayMsg("Cannot switch tracks while ripping");
+    DisplayMsg(_("Cannot switch tracks while ripping"));
     return;
   }
 #endif
@@ -1343,7 +1339,7 @@ static void PrevTrack(GripInfo *ginfo)
 {
 #ifndef GRIPCD
   if(ginfo->ripping) {
-    DisplayMsg("Cannot switch tracks while ripping");
+    DisplayMsg(_("Cannot switch tracks while ripping"));
     return;
   }
 #endif
@@ -1429,15 +1425,15 @@ void CheckNewDisc(GripInfo *ginfo)
   disc=&(ginfo->disc);
 
   if(!ginfo->looking_up) {
-    Debug("Checking for a new disc\n");
+    Debug(_("Checking for a new disc\n"));
 
     if(CDStat(disc,FALSE) 
        && disc->disc_present
        && CDStat(disc,TRUE)) {
-      Debug("CDStat found a disc, checking tracks\n");
+      Debug(_("CDStat found a disc, checking tracks\n"));
       
       if(CheckTracks(disc)) {
-	Debug("We have a valid disc!\n");
+	Debug(_("We have a valid disc!\n"));
 	
 	new_id=DiscDBDiscid(disc);
 
@@ -1455,9 +1451,9 @@ void CheckNewDisc(GripInfo *ginfo)
 	  LookupDisc(ginfo,FALSE);
 	}
       }
-      else Debug("No non-zero length tracks\n");
+      else Debug(_("No non-zero length tracks\n"));
     }
-    else Debug("CDStat said no disc\n");
+    else Debug(_("CDStat said no disc\n"));
   }
 }
 
@@ -1554,7 +1550,7 @@ void UpdateDisplay(GripInfo *ginfo)
 	  }
 	  
 #ifndef GRIPCD
-	  g_snprintf(buf,80,"Current sector: %6d",frames);
+	  g_snprintf(buf,80,_("Current sector: %6d"),frames);
 	  gtk_label_set(GTK_LABEL(uinfo->play_sector_label),buf);
 #endif
           if(uinfo->time_display_mode == TIME_MODE_LEFT_TRACK ||
@@ -1576,7 +1572,7 @@ void UpdateDisplay(GripInfo *ginfo)
 	  CDStop(disc);
 #ifndef GRIPCD
 	  frames=secs=mins=0;
-	  g_snprintf(buf,80,"Current sector: %6d",frames);
+	  g_snprintf(buf,80,_("Current sector: %6d"),frames);
 	  gtk_label_set(GTK_LABEL(uinfo->play_sector_label),buf);
 #endif
 	  
@@ -1640,7 +1636,6 @@ void UpdateDisplay(GripInfo *ginfo)
 void UpdateTracks(GripInfo *ginfo)
 {
   int track;
-  char buf[PATH_MAX];
   char *col_strings[3];
   gboolean multi_artist_backup;
   GripGUI *uinfo;
@@ -1679,14 +1674,12 @@ void UpdateTracks(GripInfo *ginfo)
     if(*(ginfo->cdupdate)) {
       FillInTrackInfo(ginfo,0,&enc_track);
 
-      TranslateAndLauch(ginfo->cdupdate,TranslateSwitch,&enc_track,
-			&(ginfo->sprefs));
-
-      Debug("CD update program is [%s]\n",buf);
+      TranslateAndLaunch(ginfo->cdupdate,TranslateSwitch,&enc_track,
+			 &(ginfo->sprefs),CloseStuff,(void *)ginfo);
     }
   }
   else {
-    SetTitle(ginfo,"No Disc");
+    SetTitle(ginfo,_("No Disc"));
     SetArtist(ginfo,"");
     SetYear(ginfo,0);
     SetID3Genre(ginfo,17);
@@ -1741,9 +1734,9 @@ void UpdateTracks(GripInfo *ginfo)
   if(ginfo->ask_submit) {
     gnome_app_ok_cancel_modal
       ((GnomeApp *)uinfo->app,
-       "This disc has been found on your secondary server,\n"
+       _("This disc has been found on your secondary server,\n"
        "but not on your primary server.\n\n"
-       "Do you wish to submit this disc information?",
+       "Do you wish to submit this disc information?"),
        SubmitEntry,(gpointer)ginfo);
     
     ginfo->ask_submit=FALSE;
@@ -1769,7 +1762,7 @@ void SubmitEntry(gint reply,gpointer data)
   fd = mkstemp(filename);
 
   if(fd == -1) {
-    DisplayMsg("Error: Unable to create temporary file");
+    DisplayMsg(_("Error: Unable to create temporary file"));
     return;
   }
 
@@ -1777,7 +1770,7 @@ void SubmitEntry(gint reply,gpointer data)
 
   if(!efp) {
     close(fd);
-    DisplayMsg("Error: Unable to create temporary file");
+    DisplayMsg(_("Error: Unable to create temporary file"));
   }
   else {
     fprintf(efp,"To: %s\nFrom: %s\nSubject: cddb %s %02x\n\n",
@@ -1787,7 +1780,7 @@ void SubmitEntry(gint reply,gpointer data)
 
     if(DiscDBWriteDiscData(&(ginfo->disc),&(ginfo->ddata),efp,FALSE,
 			   ginfo->db_use_freedb)<0) {
-      DisplayMsg("Error: Unable to write disc data");
+      DisplayMsg(_("Error: Unable to write disc data"));
       fclose(efp);
     }
     else {
@@ -1796,7 +1789,7 @@ void SubmitEntry(gint reply,gpointer data)
 
       g_snprintf(mailcmd,256,"%s < %s",MAILER,filename);
 
-      Debug("Mailing entry to %s\n",ginfo->discdb_submit_email);
+      Debug(_("Mailing entry to %s\n"),ginfo->discdb_submit_email);
 
       system(mailcmd);
 
