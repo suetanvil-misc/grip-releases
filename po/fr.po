@@ -1,11 +1,11 @@
 # French translation file for grip
-# Copyright (c) E. Lassauge, 2002.
+# Copyright (c) E. Lassauge, 2003.
 #
 # mailto:lassauge@mail.dotcom.fr
 # http://lassauge.free.fr/
 msgid ""
 msgstr ""
-"Project-Id-Version: grip 3.0.3\n"
+"Project-Id-Version: grip 3.0.6\n"
 "POT-Creation-Date: 2002-12-25 17:56-0800\n"
 "PO-Revision-Date: 2002-03-07 14:37+0100\n"
 "Last-Translator: Eric Lassauge <lassauge@mail.dotcom.fr>\n"
@@ -260,7 +260,7 @@ msgstr "Délai avant l'extraction"
 
 #: src/gripcfg.c:322
 msgid "Stop cdrom drive between tracks"
-msgstr ""
+msgstr "Arrête le CDROM entre les pistes"
 
 #: src/gripcfg.c:326
 msgid "Wav filter command"
@@ -554,7 +554,7 @@ msgstr "Pistes"
 #: src/cdplay.c:487
 #, c-format
 msgid "Column/Button: %d/%d\n"
-msgstr ""
+msgstr "Colonne/Bouton: %d/%d\n"
 
 #: src/cdplay.c:635
 msgid "Rotate play mode"
@@ -976,7 +976,7 @@ msgstr "Enc : Repos"
 
 #: src/rip.c:257
 msgid "Overall indicators:"
-msgstr ""
+msgstr "Indicateurs généraux :"
 
 #: src/rip.c:320
 msgid "Start sector"
@@ -992,12 +992,12 @@ msgstr "Erreur : impossible d'ouvrir le fichier M3U\n"
 
 #: src/rip.c:621
 msgid "In KillRip\n"
-msgstr ""
+msgstr "Dans ArrêtExtr\n"
 
 #: src/rip.c:642
 #, c-format
 msgid "Now total enc size is: %d\n"
-msgstr ""
+msgstr "Taille totale encodage en cours : %d\n"
 
 #: src/rip.c:796
 #, c-format
@@ -1007,7 +1007,7 @@ msgstr "Extr : Piste %d (%3.1fx)"
 #: src/rip.c:826
 #, c-format
 msgid "Rip: %6.2f%%"
-msgstr ""
+msgstr "Extr : %6.2f%%"
 
 #: src/rip.c:845
 msgid "Rip finished\n"
@@ -1035,7 +1035,7 @@ msgstr "Enc : Piste %d (%3.1fx)"
 #: src/rip.c:932
 #, c-format
 msgid "Enc: %6.2f%%"
-msgstr ""
+msgstr "Enc : %6.2f%%"
 
 #: src/rip.c:942
 #, c-format
@@ -1157,18 +1157,18 @@ msgstr "Enc : Piste %d (0.0x)"
 
 #: src/rip.c:1636
 msgid "In CalculateAll\n"
-msgstr ""
+msgstr "Dans CalculeTout\n"
 
 #: src/rip.c:1642
 msgid "We aren't ripping now, so let's zero encoding values\n"
-msgstr ""
+msgstr "Pas d'extraction en cours, on met à zéro les valeurs d'encodage\n"
 
 #: src/rip.c:1658
 #, c-format
 msgid "Total rip size is: %d\n"
-msgstr ""
+msgstr "Taille total extraction : %d\n"
 
 #: src/rip.c:1659
 #, c-format
 msgid "Total enc size is: %d\n"
-msgstr ""
+msgstr "Taille totale encodage : %d\n"

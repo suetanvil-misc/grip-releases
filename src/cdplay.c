@@ -78,24 +78,11 @@ static void ShutDownCB(GtkWidget *widget,gpointer data)
 static void DiscDBToggle(GtkWidget *widget,gpointer data)
 {
   GripInfo *ginfo;
-#if defined(__sun__)
-  void    *status;
-#endif
 
   ginfo=(GripInfo *)data;
   
   if(ginfo->looking_up) {
-#if defined(__sun__)
-    pthread_exit(&status);
-#elif defined(__FreeBSD__)
-    pthread_kill(ginfo->discdb_thread,0);
-#else
-    pthread_kill_other_threads_np();
-#endif
-    Debug(_("Aborted\n"));
-
-    ginfo->looking_up=FALSE;
-    ginfo->update_required=TRUE;
+    return;
   }
   else {
 #ifndef GRIPCD
