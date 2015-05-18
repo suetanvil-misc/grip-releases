@@ -1,3 +1,27 @@
+2002-09-18  Mike Oliphant  <oliphant@gtk.org>
+
+	* ca.po: added (Jordi Mallach)
+	* ja.po: updated (Takeshi AIHANA)
+	* README: some additional notes about the configure process
+	* rip.c: changed '%i' tranlation from %02x to %08x (thanks to Alan
+	  Eldridge for this)
+	* id3.c: reset files to obey the user's umask after v2 tagging
+	  munges them (thanks to David J. MacKenzie for this)
+	* grip.c: set poll interval to 15 on freebsd and moved force_scsi
+	  out of the cdparanoia-specific config section (thanks to Alan
+	  Eldridge for this)
+	* grip.h/grip.c/rip.c/gripcfg.c: added option do delay before
+	  ripping (thanks to Jeremiah Stanley for suggesting this)
+	* grip.spec: Requires/BuildRequires entries (thanks to Thomas
+	  Vander Stichele for this)
+	* grip.c/grip.h/main.c: added --config option allowing you to
+	  specify a configuration file to allow for multiple
+	  configurations (thanks to Thomas Vander Stichele for this)
+	* gripcfg.c/rip.c: changed "mp3" to "encode" to placate ogg
+	  fanatics :-)  (thanks to Steve Fox for guilt tripping me by
+	  actually submitting a patch)
+	* configure.in/grip.spec: upped version to 3.0.2
+	
 2002-06-17  Mike Oliphant  <oliphant@gtk.org>
 
 	* pt_BR.po: added (thanks to Wellington Terumi Uemura for this)

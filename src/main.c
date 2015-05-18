@@ -37,6 +37,7 @@ GtkWidget* grip_app;
 
 /* popt table */
 static char *geometry=NULL;
+static char *config_filename=NULL;
 static char *device=NULL;
 static char *scsi_device=NULL;
 static int force_small=FALSE;
@@ -53,6 +54,15 @@ struct poptOption options[] = {
     0,
     N_("Specify the geometry of the main window"),
     N_("GEOMETRY")
+  },
+  {
+    "config",
+    '\0',
+    POPT_ARG_STRING,
+    &config_filename,
+    0,
+    N_("Specify the config file to use (in your home dir)"),
+    N_("CONFIG")
   },
   { 
     "device",
@@ -169,7 +179,8 @@ int Cmain(int argc, char* argv[])
   if(scsi_device) printf("scsi=[%s]\n",scsi_device);
 
   /* Start a new Grip app */
-  grip_app=GripNew(geometry,device,scsi_device,force_small,local_mode,
+  grip_app=GripNew(geometry,device,scsi_device,config_filename,
+		   force_small,local_mode,
 		   no_redirect);
 
   gtk_widget_show(grip_app);

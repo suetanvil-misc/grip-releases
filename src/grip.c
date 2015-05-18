@@ -61,6 +61,7 @@ static GnomeHelpMenuEntry bug_help_entry={"grip","bugs.html"};
 
 #define BASE_CFG_ENTRIES \
 {"cd_device",CFG_ENTRY_STRING,256,ginfo->cd_device},\
+{"force_scsi",CFG_ENTRY_STRING,256,ginfo->force_scsi},\
 {"ripexename",CFG_ENTRY_STRING,256,ginfo->ripexename},\
 {"ripcmdline",CFG_ENTRY_STRING,256,ginfo->ripcmdline},\
 {"wav_filter_cmd",CFG_ENTRY_STRING,256,ginfo->wav_filter_cmd},\
@@ -87,11 +88,13 @@ static GnomeHelpMenuEntry bug_help_entry={"grip","bugs.html"};
 {"mp3_filter_cmd",CFG_ENTRY_STRING,256,ginfo->mp3_filter_cmd},\
 {"doid3",CFG_ENTRY_BOOL,0,&ginfo->doid3},\
 {"doid3v2",CFG_ENTRY_BOOL,0,&ginfo->doid3v2},\
+{"tag_mp3_only",CFG_ENTRY_BOOL,0,&ginfo->tag_mp3_only},\
 {"id3_comment",CFG_ENTRY_STRING,30,ginfo->id3_comment},\
 {"max_wavs",CFG_ENTRY_INT,0,&ginfo->max_wavs},\
 {"auto_rip",CFG_ENTRY_BOOL,0,&ginfo->auto_rip},\
 {"eject_after_rip",CFG_ENTRY_BOOL,0,&ginfo->eject_after_rip},\
 {"eject_delay",CFG_ENTRY_INT,0,&ginfo->eject_delay},\
+{"delay_before_rip",CFG_ENTRY_BOOL,0,&ginfo->delay_before_rip},\
 {"beep_after_rip",CFG_ENTRY_BOOL,0,&ginfo->beep_after_rip},\
 {"faulty_eject",CFG_ENTRY_BOOL,0,&ginfo->faulty_eject},\
 {"poll_drive",CFG_ENTRY_BOOL,0,&ginfo->poll_drive},\
@@ -126,8 +129,7 @@ static GnomeHelpMenuEntry bug_help_entry={"grip","bugs.html"};
 {"disable_extra_paranoia",CFG_ENTRY_BOOL,0,&ginfo->disable_extra_paranoia},\
 {"disable_scratch_detect",CFG_ENTRY_BOOL,0,&ginfo->disable_scratch_detect},\
 {"disable_scratch_repair",CFG_ENTRY_BOOL,0,&ginfo->disable_scratch_repair},\
-{"calc_gain",CFG_ENTRY_BOOL,0,&ginfo->calc_gain},\
-{"force_scsi",CFG_ENTRY_STRING,256,ginfo->force_scsi},
+{"calc_gain",CFG_ENTRY_BOOL,0,&ginfo->calc_gain},
 
 #ifdef CDPAR
 #define CFG_ENTRIES BASE_CFG_ENTRIES CDPAR_CFG_ENTRIES
@@ -136,6 +138,7 @@ static GnomeHelpMenuEntry bug_help_entry={"grip","bugs.html"};
 #endif
 
 GtkWidget *GripNew(const gchar* geometry,char *device,char *scsi_device,
+		   char *config_filename,
 		   gboolean force_small,
 		   gboolean local_mode,gboolean no_redirect)
 {
@@ -153,6 +156,14 @@ GtkWidget *GripNew(const gchar* geometry,char *device,char *scsi_device,
 
   uinfo=&(ginfo->gui_info);
   uinfo->app=app;
+  
+  if(config_filename && *config_filename)
+    g_snprintf(ginfo->config_filename,256,"%s",config_filename);
+  else {
+    strcpy(ginfo->config_filename,".grip");
+  }
+
+  Debug("Using config file [%s]\n",ginfo->config_filename);
 
   DoLoadConfig(ginfo);
 
@@ -607,10 +618,11 @@ static void DoLoadConfig(GripInfo *ginfo)
   ginfo->volume=255;
 #if defined(__FreeBSD__)
   ginfo->poll_drive=FALSE;
+  ginfo->poll_interval=15;
 #else
   ginfo->poll_drive=TRUE;
-#endif
   ginfo->poll_interval=1;
+#endif
 
   ginfo->changer_slots=0;
   ginfo->current_disc=0;
@@ -696,6 +708,7 @@ static void DoLoadConfig(GripInfo *ginfo)
   ginfo->beep_after_rip=TRUE;
   ginfo->eject_after_rip=TRUE;
   ginfo->eject_delay=0;
+  ginfo->delay_before_rip=FALSE;
   *ginfo->wav_filter_cmd='\0';
   *ginfo->disc_filter_cmd='\0';
   ginfo->selected_encoder=1;
@@ -713,6 +726,7 @@ static void DoLoadConfig(GripInfo *ginfo)
   ginfo->edit_num_cpu=1;
   ginfo->doid3=TRUE;
   ginfo->doid3=FALSE;
+  ginfo->tag_mp3_only=TRUE;
   strcpy(ginfo->id3_comment,"Created by Grip");
   *ginfo->cdupdate='\0';
   ginfo->sprefs.no_lower_case=FALSE;
@@ -720,7 +734,7 @@ static void DoLoadConfig(GripInfo *ginfo)
   ginfo->sprefs.no_underscore=FALSE;
   *ginfo->sprefs.allow_these_chars='\0';
 
-  sprintf(filename,"%s/.grip",getenv("HOME"));
+  sprintf(filename,"%s/%s",getenv("HOME"),ginfo->config_filename);
 
   confret=LoadConfig(filename,"GRIP",2,2,cfg_entries);
 
@@ -730,7 +744,7 @@ static void DoLoadConfig(GripInfo *ginfo)
       DisplayMsg(_("Your config file is out of date -- "
 		   "resetting to defaults.\n"
 		   "You will need to re-configure Grip.\n"
-		   "Your old config file has been saved in ~/.grip-old."));
+		   "Your old config file has been saved with -old appended."));
 
       sprintf(renamefile,"%s-old",filename);
 
@@ -814,7 +828,7 @@ void DoSaveConfig(GripInfo *ginfo)
 
   if(ginfo->edit_num_cpu>MAX_NUM_CPU) ginfo->edit_num_cpu=MAX_NUM_CPU;
 
-  g_snprintf(filename,256,"%s/.grip",getenv("HOME"));
+  g_snprintf(filename,256,"%s/%s",getenv("HOME"),ginfo->config_filename);
 
   if(!SaveConfig(filename,"GRIP",2,cfg_entries))
     DisplayMsg(_("Error: Unable to save config file"));

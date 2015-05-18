@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: grip 2.98.7\n"
-"POT-Creation-Date: 2002-06-17 19:46-0700\n"
+"POT-Creation-Date: 2002-09-18 20:23-0700\n"
 "PO-Revision-Date: 2002-03-07 14:37+0100\n"
 "Last-Translator: Eric Lassauge <lassauge@mail.dotcom.fr>\n"
 "Language-Team: Gözer le maudit <gozer@mailoman.com>\n"
@@ -14,59 +14,68 @@ msgstr ""
 "Content-Type: text/plain; charset=iso-8859-1\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: src/main.c:54
+#: src/main.c:55
 msgid "Specify the geometry of the main window"
 msgstr "Spécifiez la geométrie de la fenêtre principale"
 
-#: src/main.c:55
+#: src/main.c:56
 msgid "GEOMETRY"
 msgstr "GEOMETRIE"
 
-#: src/main.c:63
+#: src/main.c:64
+#, fuzzy
+msgid "Specify the config file to use (in your home dir)"
+msgstr "Spécifier le périphérique CDROM à utiliser"
+
+#: src/main.c:65
+msgid "CONFIG"
+msgstr ""
+
+#: src/main.c:73
 msgid "Specify the cdrom device to use"
 msgstr "Spécifier le périphérique CDROM à utiliser"
 
-#: src/main.c:64 src/main.c:73
+#: src/main.c:74 src/main.c:83
 msgid "DEVICE"
 msgstr "PERIPHERIQUE"
 
-#: src/main.c:72
+#: src/main.c:82
 #, fuzzy
 msgid "Specify the generic scsi device to use"
 msgstr "Spécifier le périphérique CDROM à utiliser"
 
-#: src/main.c:81
+#: src/main.c:91
 msgid "Launch in \"small\" (cd-only) mode"
 msgstr "Lancer en mode «small» (uniquement CD)"
 
-#: src/main.c:90
+#: src/main.c:100
 msgid "\"Local\" mode -- do not look up disc info on the net"
 msgstr ""
 "Mode «local» -- pas de recherche des informations du disque sur le réseau"
 
-#: src/main.c:99
+#: src/main.c:109
 msgid "Do not do I/O redirection"
 msgstr "Ne pas faire de redirection d'E/S"
 
-#: src/main.c:108
+#: src/main.c:118
 msgid "Run in verbose (debug) mode"
 msgstr "Lancer en mode verbeux (debug)"
 
-#: src/grip.c:148
+#: src/grip.c:151
 msgid "Grip"
 msgstr ""
 
-#: src/grip.c:167
+#: src/grip.c:178
 #, c-format
 msgid "Error: Unable to initialize [%s]\n"
 msgstr "Erreur: impossible d'initialiser [%s]\n"
 
-#: src/grip.c:193
+#: src/grip.c:204
 #, c-format
 msgid "Could not parse geometry string `%s'"
 msgstr "Impossible d'analyser la chaine de géometrie «%s»"
 
-#: src/grip.c:245
+#: src/grip.c:256
 msgid ""
 "Work is in progress.\n"
 "Really shut down?"
@@ -74,59 +83,59 @@ msgstr ""
 "Travail en cours.\n"
 "Voulez vous vraiment arrêter ?"
 
-#: src/grip.c:303
+#: src/grip.c:314
 msgid "Help"
 msgstr "Aide"
 
-#: src/grip.c:308
+#: src/grip.c:319
 msgid "Table Of Contents"
 msgstr "Table des Matières"
 
-#: src/grip.c:314
+#: src/grip.c:325
 msgid "Playing CDs"
 msgstr "Lecture CDs"
 
-#: src/grip.c:320
+#: src/grip.c:331
 msgid "Ripping CDs"
 msgstr "Extraction CDs"
 
-#: src/grip.c:326
+#: src/grip.c:337
 msgid "Configuring Grip"
 msgstr "Configuration de Grip"
 
-#: src/grip.c:332
+#: src/grip.c:343
 msgid "FAQ"
 msgstr ""
 
-#: src/grip.c:338
+#: src/grip.c:349
 msgid "Getting More Help"
 msgstr "Plus d'aide"
 
-#: src/grip.c:344
+#: src/grip.c:355
 msgid "Reporting Bugs"
 msgstr "Signaler les erreurs"
 
-#: src/grip.c:364
+#: src/grip.c:375
 msgid "About"
 msgstr "A propos"
 
-#: src/grip.c:730
+#: src/grip.c:744
 #, fuzzy
 msgid ""
 "Your config file is out of date -- resetting to defaults.\n"
 "You will need to re-configure Grip.\n"
-"Your old config file has been saved in ~/.grip-old."
+"Your old config file has been saved with -old appended."
 msgstr ""
 "Erreur: votre fichier de configuration est trop vieux\n"
 "Utilisation des valeurs par défaut\n"
 "Re-configurer Grip\n"
 
-#: src/grip.c:800
+#: src/grip.c:814
 #, c-format
 msgid "server is %s, port %d\n"
 msgstr "Le serveur est %s, port %d\n"
 
-#: src/grip.c:820
+#: src/grip.c:834
 msgid "Error: Unable to save config file"
 msgstr "Erreur: impossible de sauver le fichier de configuration"
 
@@ -231,195 +240,211 @@ msgstr "Valeur de 'nice' pour l'extraction"
 msgid "Max non-encoded .wav's"
 msgstr "Nombre max de fichiers WAV non encodés"
 
-#: src/gripcfg.c:289
+#: src/gripcfg.c:291
 msgid "Auto-rip on insert"
 msgstr "Extraction automatique à l'insertion"
 
-#: src/gripcfg.c:293
+#: src/gripcfg.c:295
 msgid "Beep after rip"
 msgstr "Biper après l'extraction"
 
-#: src/gripcfg.c:298
+#: src/gripcfg.c:305
 msgid "Auto-eject after rip"
 msgstr "Ejection automatique après l'extraction"
 
-#: src/gripcfg.c:302
+#: src/gripcfg.c:309
 msgid "Auto-eject delay"
 msgstr "Délai d'éjection automatique"
 
-#: src/gripcfg.c:306
+#: src/gripcfg.c:317
+msgid "Delay before ripping"
+msgstr ""
+
+#: src/gripcfg.c:321
 msgid "Wav filter command"
 msgstr "Commande du filtre de fichier WAV"
 
-#: src/gripcfg.c:311
+#: src/gripcfg.c:326
 msgid "Disc filter command"
 msgstr "Commande du filtre pour le disque"
 
-#: src/gripcfg.c:319 src/gripcfg.c:446
+#: src/gripcfg.c:334 src/gripcfg.c:462
 msgid "Options"
 msgstr ""
 
-#: src/cdplay.c:259 src/gripcfg.c:326 src/rip.c:95
+#: src/cdplay.c:259 src/gripcfg.c:341 src/rip.c:95
 msgid "Rip"
 msgstr "Extr."
 
-#: src/gripcfg.c:341
+#: src/gripcfg.c:356
 msgid "Encoder:"
 msgstr "Encodeur:"
 
-#: src/gripcfg.c:376
-msgid "MP3 executable"
+#: src/gripcfg.c:391
+#, fuzzy
+msgid "Encoder executable"
 msgstr "Programme d'encodage MP3"
 
-#: src/gripcfg.c:381
-msgid "MP3 command-line"
+#: src/gripcfg.c:396
+#, fuzzy
+msgid "Encoder command-line"
 msgstr "Ligne de commande du programme d'encodage MP3"
 
-#: src/gripcfg.c:386
-msgid "MP3 file format"
-msgstr "Format des fichiers MP3"
+#: src/gripcfg.c:401
+#, fuzzy
+msgid "Encode file format"
+msgstr "Format du fichier extrait"
 
-#: src/gripcfg.c:393
+#: src/gripcfg.c:409
 msgid "Encoder"
 msgstr "Encodeur"
 
-#: src/gripcfg.c:403
+#: src/gripcfg.c:419
 msgid "Delete .wav after encoding"
 msgstr "Effacer les fichiers WAV après l'encodage"
 
-#: src/gripcfg.c:408
+#: src/gripcfg.c:424
 msgid "Insert info into SQL database"
 msgstr "Insérer les informations dans la base de données SQL"
 
-#: src/gripcfg.c:412
+#: src/gripcfg.c:428
 msgid "Create .m3u files"
 msgstr "Créer des fichiers M3U"
 
-#: src/gripcfg.c:417
+#: src/gripcfg.c:433
 msgid "Use relative paths in .m3u files"
 msgstr "Utiliser un chemin relatif dans les fichiers M3U"
 
-#: src/gripcfg.c:421
+#: src/gripcfg.c:437
 msgid "M3U file format"
 msgstr "Format des fichiers M3U"
 
-#: src/gripcfg.c:426
+#: src/gripcfg.c:442
 msgid "Encoding bitrate (kbits/sec)"
 msgstr "Bitrate de l'encodage (kbits/sec)"
 
-#: src/gripcfg.c:430
+#: src/gripcfg.c:446
 msgid "Number of CPUs to use"
 msgstr "Nombre de CPUs à utiliser"
 
-#: src/gripcfg.c:434
-msgid "MP3 'nice' value"
-msgstr "Valeur de 'nice' pour l'encodage MP3"
+#: src/gripcfg.c:450
+#, fuzzy
+msgid "Encode 'nice' value"
+msgstr "Valeur de 'nice' pour l'extraction"
 
-#: src/gripcfg.c:438
-msgid "MP3 filter command"
-msgstr "Commande du filtre de fichier MP3"
+#: src/gripcfg.c:454
+#, fuzzy
+msgid "Encode filter command"
+msgstr "Commande du filtre pour le disque"
 
-#: src/gripcfg.c:453
-msgid "MP3"
-msgstr ""
+#: src/gripcfg.c:469
+#, fuzzy
+msgid "Encode"
+msgstr "Encodeur"
 
-#: src/gripcfg.c:462
-msgid "Add ID3 tags to MP3 files"
+#: src/gripcfg.c:478
+#, fuzzy
+msgid "Add ID3 tags to encoded files"
 msgstr "Ajouter les étiquettes ID3 aux fichiers MP3"
 
-#: src/gripcfg.c:468
-msgid "Add ID3v2 tags to MP3 files"
+#: src/gripcfg.c:484
+#, fuzzy
+msgid "Add ID3v2 tags to encoded files"
 msgstr "Ajouter les étiquettes ID3v2 aux fichiers MP3"
 
-#: src/gripcfg.c:473
+#: src/gripcfg.c:490
+msgid "Only tag files ending in '.mp3'"
+msgstr ""
+
+#: src/gripcfg.c:494
 msgid "ID3 comment field"
 msgstr "Champ commentaire ID3"
 
-#: src/gripcfg.c:480
+#: src/gripcfg.c:501
 msgid "ID3"
 msgstr ""
 
-#: src/gripcfg.c:497 src/gripcfg.c:517
+#: src/gripcfg.c:518 src/gripcfg.c:538
 msgid "DB server"
 msgstr "Serveur DB"
 
-#: src/gripcfg.c:501 src/gripcfg.c:521
+#: src/gripcfg.c:522 src/gripcfg.c:542
 msgid "CGI path"
 msgstr "Chemin du script CGI"
 
-#: src/gripcfg.c:508
+#: src/gripcfg.c:529
 msgid "Primary Server"
 msgstr "Serveur primaire"
 
-#: src/gripcfg.c:528
+#: src/gripcfg.c:549
 msgid "Secondary Server"
 msgstr "Serveur secondaire"
 
-#: src/gripcfg.c:538
+#: src/gripcfg.c:559
 msgid "DB Submit email"
 msgstr "mel pour la sousmission DB"
 
-#: src/gripcfg.c:543
+#: src/gripcfg.c:564
 msgid "Use freedb extensions"
 msgstr "Utiliser les extensions freedb"
 
-#: src/gripcfg.c:548
+#: src/gripcfg.c:569
 msgid "Perform disc lookups automatically"
 msgstr "Lancer la recherche de disque automatiquement"
 
-#: src/gripcfg.c:556
+#: src/gripcfg.c:577
 msgid "DiscDB"
 msgstr ""
 
-#: src/gripcfg.c:565
+#: src/gripcfg.c:586
 msgid "Use proxy server"
 msgstr "Utiliser un serveur proxy"
 
-#: src/gripcfg.c:572
+#: src/gripcfg.c:593
 msgid "Get server from 'http_proxy' env. var"
 msgstr "Récupérer le serveur depuis la variable d'environnement 'http_proxy'"
 
-#: src/gripcfg.c:576
+#: src/gripcfg.c:597
 msgid "Proxy server"
 msgstr "Serveur proxy"
 
-#: src/gripcfg.c:580
+#: src/gripcfg.c:601
 msgid "Proxy port"
 msgstr "Port du proxy"
 
-#: src/gripcfg.c:584
+#: src/gripcfg.c:605
 msgid "Proxy username"
 msgstr "Nom d'utilisateur du proxy"
 
-#: src/gripcfg.c:590
+#: src/gripcfg.c:611
 msgid "Proxy password"
 msgstr "Mot de passe du proxy"
 
-#: src/gripcfg.c:598
+#: src/gripcfg.c:619
 msgid "Proxy"
 msgstr ""
 
-#: src/gripcfg.c:607
+#: src/gripcfg.c:628
 msgid "Email address"
 msgstr "Adresse mel"
 
-#: src/gripcfg.c:611
+#: src/gripcfg.c:632
 msgid "CD update program"
 msgstr "Programme de mise à jour de CD"
 
-#: src/gripcfg.c:616
+#: src/gripcfg.c:637
 msgid "Do not lowercase filenames"
 msgstr "Ne pas passer les fichiers en minuscules"
 
-#: src/gripcfg.c:621
+#: src/gripcfg.c:642
 msgid "Allow high bits in filenames"
 msgstr "Autoriser les caractères 8 bits dans les noms de fichiers"
 
-#: src/gripcfg.c:626
+#: src/gripcfg.c:647
 msgid "Do not change spaces to underscores"
 msgstr "Ne pas changer les espaces en blancs soulignés"
 
-#: src/gripcfg.c:631
+#: src/gripcfg.c:652
 msgid ""
 "Characters to not strip\n"
 "in filenames"
@@ -427,11 +452,11 @@ msgstr ""
 "Caractères à ne pas enlever\n"
 "dans les noms de fichiers"
 
-#: src/gripcfg.c:636
+#: src/gripcfg.c:657
 msgid "Keep application minimum size"
 msgstr "Garder à l'application sa taille minimale"
 
-#: src/gripcfg.c:643
+#: src/gripcfg.c:664
 msgid "Misc"
 msgstr "Divers"
 
@@ -864,7 +889,7 @@ msgid "Cancel"
 msgstr "Annuler"
 
 #. Doh!
-#: src/id3.c:281
+#: src/id3.c:282
 msgid "unknown ID3 field\n"
 msgstr "Champ ID3 inconnu\n"
 
@@ -874,7 +899,7 @@ msgid "Error: unable to translate filename. No such user as %s\n"
 msgstr ""
 "Erreur: impossible de changer le nom de fichier. Utilisateur %s inconnu\n"
 
-#: src/launch.c:239 src/rip.c:1273
+#: src/launch.c:239 src/rip.c:1290
 msgid "Exec failed\n"
 msgstr "L'exécution a échoué\n"
 
@@ -938,16 +963,18 @@ msgstr "Jouer"
 msgid "Current sector:      0"
 msgstr "Secteur courant:      0"
 
-#: src/rip.c:204 src/rip.c:212 src/rip.c:798
+#: src/rip.c:204 src/rip.c:212 src/rip.c:810
 msgid "Rip: Idle"
 msgstr "Extraction: Repos"
 
 #: src/rip.c:208
-msgid "MP3: Trk 99 (99.9x)"
+#, fuzzy
+msgid "Enc: Trk 99 (99.9x)"
 msgstr "Encodage  : Piste 99 (99.9x)"
 
-#: src/rip.c:231 src/rip.c:883
-msgid "MP3: Idle"
+#: src/rip.c:231 src/rip.c:895
+#, fuzzy
+msgid "Enc: Idle"
 msgstr "Encodage  : Repos"
 
 #: src/rip.c:280
@@ -958,61 +985,61 @@ msgstr "Secteur de début"
 msgid "End sector"
 msgstr "Secteur de fin"
 
-#: src/rip.c:544
+#: src/rip.c:546
 msgid "Error: can't open m3u file\n"
 msgstr "Erreur: impossible d'ouvrir le fichier M3U\n"
 
-#: src/rip.c:725
+#: src/rip.c:737
 #, c-format
 msgid "Rip: Trk %d (%3.1fx)"
 msgstr "Extraction: Piste %d (%3.1fx)"
 
-#: src/rip.c:756
+#: src/rip.c:768
 msgid "Rip finished\n"
 msgstr "Extraction terminée\n"
 
-#: src/rip.c:782
+#: src/rip.c:794
 #, c-format
 msgid "Rip partial %d  num wavs %d\n"
 msgstr "Extraction partielle %d nombre de WAV %d\n"
 
-#: src/rip.c:785
+#: src/rip.c:797
 #, c-format
 msgid "Next track is %d, total is %d\n"
 msgstr "La piste suivante est la %d, le total est de %d\n"
 
-#: src/rip.c:791
+#: src/rip.c:803
 msgid "Check if we need to rip another track\n"
 msgstr "Cocher si vous avez besoin d'extraire une autre piste\n"
 
-#: src/rip.c:826
-#, c-format
-msgid "MP3: Trk %d (%3.1fx)"
+#: src/rip.c:838
+#, fuzzy, c-format
+msgid "Enc: Trk %d (%3.1fx)"
 msgstr "Encodage  : Piste %d (%3.1fx)"
 
-#: src/rip.c:840
+#: src/rip.c:852
 #, c-format
 msgid "Finished encoding on cpu %d\n"
 msgstr "Encodage terminé sur le CPU %d\n"
 
-#: src/rip.c:848
+#: src/rip.c:860
 #, c-format
 msgid "Deleting [%s]\n"
 msgstr "Destruction [%s]\n"
 
-#: src/rip.c:891
+#: src/rip.c:903
 msgid "Ripping is finished\n"
 msgstr "Extraction terminée\n"
 
-#: src/rip.c:969 src/rip.c:975
+#: src/rip.c:981 src/rip.c:987
 msgid "NoArtist"
 msgstr "SansArtiste"
 
-#: src/rip.c:980
+#: src/rip.c:992
 msgid "NoTitle"
 msgstr "SansTitre"
 
-#: src/rip.c:1068
+#: src/rip.c:1080
 msgid ""
 "Invalid rip executable\n"
 "Check your rip config"
@@ -1020,15 +1047,16 @@ msgstr ""
 "Programme d'extraction invalide\n"
 "Vérifier la configuration"
 
-#: src/rip.c:1075
+#: src/rip.c:1087
+#, fuzzy
 msgid ""
-"Invalid MP3 executable\n"
-"Check your MP3 config"
+"Invalid encoder executable\n"
+"Check your encoder config"
 msgstr ""
-"Programme d'encodage invalide\n"
+"Programme d'extraction invalide\n"
 "Vérifier la configuration"
 
-#: src/rip.c:1108
+#: src/rip.c:1120
 msgid ""
 "No tracks selected.\n"
 "Rip whole CD?\n"
@@ -1036,74 +1064,93 @@ msgstr ""
 "Pas de piste sélectionnée.\n"
 "Extraction de tout le CD?\n"
 
-#: src/rip.c:1125
+#: src/rip.c:1137
 msgid "Ripping whole CD\n"
 msgstr "Extraction de tout le CD\n"
 
-#: src/rip.c:1160
+#: src/rip.c:1172
 msgid "In RipNextTrack\n"
 msgstr "Dans ExtractionPisteSuivante\n"
 
-#: src/rip.c:1167
+#: src/rip.c:1179
 #, c-format
 msgid "First checked track is %d\n"
 msgstr "La première piste choisie est la %d\n"
 
-#: src/rip.c:1177
+#: src/rip.c:1189
 msgid "Ripping away!\n"
 msgstr "Extraction !\n"
 
-#: src/rip.c:1212
+#: src/rip.c:1224
 msgid "No write access to write wav file"
 msgstr ""
 
-#: src/rip.c:1216
+#: src/rip.c:1233
 #, c-format
 msgid "Ripping track %d to %s\n"
 msgstr "Extraction piste %d vers %s\n"
 
-#: src/rip.c:1219
+#: src/rip.c:1236
 #, c-format
 msgid "Rip: Trk %d (0.0x)"
 msgstr "Extraction: Piste %d (0.0x)"
 
-#: src/rip.c:1224
+#: src/rip.c:1241
 #, c-format
 msgid "File %s has already been ripped. Skipping...\n"
 msgstr "Le fichier %s est déjà extrait. On passe au suivant...\n"
 
-#: src/rip.c:1238 src/rip.c:1449
+#: src/rip.c:1255 src/rip.c:1466
 msgid "Out of space in output directory"
 msgstr "Plus d'espace disponible dans le répertoire destination"
 
-#: src/rip.c:1302
+#: src/rip.c:1319
 msgid "Calling CDPRip\n"
 msgstr "Appel à CDPRip\n"
 
-#: src/rip.c:1378
+#: src/rip.c:1395
 #, c-format
 msgid "Added track %d to encode list\n"
 msgstr "Ajout de la piste %d dans la liste à encoder\n"
 
-#: src/rip.c:1401
+#: src/rip.c:1418
 msgid "No free cpus\n"
 msgstr "Pas de CPU disponible\n"
 
-#: src/rip.c:1417
-#, c-format
-msgid "MP3 track %d\n"
+#: src/rip.c:1434
+#, fuzzy, c-format
+msgid "Enc track %d\n"
 msgstr "Piste MP3 %d\n"
 
-#: src/rip.c:1431
-msgid "No write access to write mp3 file"
+#: src/rip.c:1448
+msgid "No write access to write encoded file"
 msgstr ""
 
-#: src/rip.c:1437
+#: src/rip.c:1454
 #, c-format
 msgid "%i: Encoding to %s\n"
 msgstr "%i: encodage vers %s\n"
 
-#: src/rip.c:1439
-#, c-format
-msgid "MP3: Trk %d (0.0x)"
-msgstr "Encodage  : Piste %d (0.0x)"
+#: src/rip.c:1456
+#, fuzzy, c-format
+msgid "Enc: Trk %d (0.0x)"
+msgstr "Extraction: Piste %d (0.0x)"
+
+#~ msgid "MP3 file format"
+#~ msgstr "Format des fichiers MP3"
+
+#~ msgid "MP3 'nice' value"
+#~ msgstr "Valeur de 'nice' pour l'encodage MP3"
+
+#~ msgid "MP3 filter command"
+#~ msgstr "Commande du filtre de fichier MP3"
+
+#~ msgid ""
+#~ "Invalid MP3 executable\n"
+#~ "Check your MP3 config"
+#~ msgstr ""
+#~ "Programme d'encodage invalide\n"
+#~ "Vérifier la configuration"
+
+#~ msgid "MP3: Trk %d (0.0x)"
+#~ msgstr "Encodage  : Piste %d (0.0x)"

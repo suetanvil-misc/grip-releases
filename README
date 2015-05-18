@@ -53,6 +53,10 @@ To install Grip, simply go through the following steps:
  o become root if you are installing in a non-user directory
  o 'make install'
 
+For information on options to the configure process, run:
+
+  ./configure --help
+
 Grip adds the following options that can be specified to configure:
 
   --disable-shared-cdpar  -- This will force Grip to link statically, rather
@@ -62,6 +66,10 @@ Grip adds the following options that can be specified to configure:
 
   --disable-shared-id3    -- This will force Grip to link statically, rather
                              than dynamically with id3lib
+
+Note that if Gnome is installed in a non-standard place (such as /opt), you
+may need to use the '--with-gnome' configure option for all libraries to be
+found correctly.
 
 
 Running Grip
@@ -73,6 +81,8 @@ Grip's usage is:
 
   where the available options are:
 
+    --config=CONFIG             Specify the configuration file to use
+                                (defaults to .grip, relative to home dir)
     --device=DEVICE             Specify the cdrom device to use
     --scsi-device=DEVICE        Specify the generic scsi device to use
     --small                     Launch in "small" (cd-only) mode

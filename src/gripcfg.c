@@ -286,22 +286,37 @@ void MakeConfigPage(GripInfo *ginfo)
   gtk_box_pack_start(GTK_BOX(vbox),entry,FALSE,FALSE,0);
   gtk_widget_show(entry);
 
+  hbox=gtk_hbox_new(FALSE,3);
+
   check=MakeCheckButton(NULL,&ginfo->auto_rip,_("Auto-rip on insert"));
-  gtk_box_pack_start(GTK_BOX(vbox),check,FALSE,FALSE,0);
+  gtk_box_pack_start(GTK_BOX(hbox),check,TRUE,TRUE,0);
   gtk_widget_show(check);
 
   check=MakeCheckButton(NULL,&ginfo->beep_after_rip,_("Beep after rip"));
-  gtk_box_pack_start(GTK_BOX(vbox),check,FALSE,FALSE,0);
+  gtk_box_pack_start(GTK_BOX(hbox),check,TRUE,TRUE,0);
   gtk_widget_show(check);
+
+  gtk_box_pack_start(GTK_BOX(vbox),hbox,FALSE,FALSE,0);
+  gtk_widget_show(hbox);
+
+  hbox=gtk_hbox_new(FALSE,3);
 
   check=MakeCheckButton(NULL,&ginfo->eject_after_rip,
 			_("Auto-eject after rip"));
-  gtk_box_pack_start(GTK_BOX(vbox),check,FALSE,FALSE,0);
+  gtk_box_pack_start(GTK_BOX(hbox),check,TRUE,TRUE,0);
   gtk_widget_show(check);
 
   entry=MakeNumEntry(NULL,&ginfo->eject_delay,_("Auto-eject delay"),3);
-  gtk_box_pack_start(GTK_BOX(vbox),entry,FALSE,FALSE,0);
+  gtk_box_pack_start(GTK_BOX(hbox),entry,TRUE,TRUE,0);
   gtk_widget_show(entry);
+
+  gtk_box_pack_start(GTK_BOX(vbox),hbox,FALSE,FALSE,0);
+  gtk_widget_show(hbox);
+
+  check=MakeCheckButton(NULL,&ginfo->delay_before_rip,
+			_("Delay before ripping"));
+  gtk_box_pack_start(GTK_BOX(vbox),check,FALSE,FALSE,0);
+  gtk_widget_show(check);
 
   entry=MakeStrEntry(NULL,ginfo->wav_filter_cmd,_("Wav filter command"),
 						  255,TRUE);
@@ -373,17 +388,18 @@ void MakeConfigPage(GripInfo *ginfo)
   gtk_widget_show(hsep);
 
   entry=MakeStrEntry(&(uinfo->mp3exename_entry),ginfo->mp3exename,
-		     _("MP3 executable"),255,TRUE);
+		     _("Encoder executable"),255,TRUE);
   gtk_box_pack_start(GTK_BOX(vbox),entry,FALSE,FALSE,0);
   gtk_widget_show(entry);
 
   entry=MakeStrEntry(&(uinfo->mp3cmdline_entry),ginfo->mp3cmdline,
-		     _("MP3 command-line"),
+		     _("Encoder command-line"),
 		     255,TRUE);
   gtk_box_pack_start(GTK_BOX(vbox),entry,FALSE,FALSE,0);
   gtk_widget_show(entry);
 
-  entry=MakeStrEntry(NULL,ginfo->mp3fileformat,_("MP3 file format"),255,TRUE);
+  entry=MakeStrEntry(NULL,ginfo->mp3fileformat,_("Encode file format"),
+		     255,TRUE);
   gtk_box_pack_start(GTK_BOX(vbox),entry,FALSE,FALSE,0);
   gtk_widget_show(entry);
 
@@ -431,11 +447,11 @@ void MakeConfigPage(GripInfo *ginfo)
   gtk_box_pack_start(GTK_BOX(vbox),entry,FALSE,FALSE,0);
   gtk_widget_show(entry);
   
-  entry=MakeNumEntry(NULL,&ginfo->mp3nice,_("MP3 'nice' value"),3);
+  entry=MakeNumEntry(NULL,&ginfo->mp3nice,_("Encode 'nice' value"),3);
   gtk_box_pack_start(GTK_BOX(vbox),entry,FALSE,FALSE,0);
   gtk_widget_show(entry);
   
-  entry=MakeStrEntry(NULL,ginfo->mp3_filter_cmd,_("MP3 filter command"),
+  entry=MakeStrEntry(NULL,ginfo->mp3_filter_cmd,_("Encode filter command"),
 		     255,TRUE);
   gtk_box_pack_start(GTK_BOX(vbox),entry,FALSE,FALSE,0);
   gtk_widget_show(entry);
@@ -450,7 +466,7 @@ void MakeConfigPage(GripInfo *ginfo)
   gtk_container_add(GTK_CONTAINER(page),notebook);
   gtk_widget_show(notebook);
 
-  label=gtk_label_new(_("MP3"));
+  label=gtk_label_new(_("Encode"));
   gtk_notebook_append_page(GTK_NOTEBOOK(config_notebook),page,label);
   gtk_widget_show(page);
 
@@ -459,16 +475,21 @@ void MakeConfigPage(GripInfo *ginfo)
   vbox=gtk_vbox_new(FALSE,2);
   gtk_container_border_width(GTK_CONTAINER(vbox),3);
 
-  check=MakeCheckButton(NULL,&ginfo->doid3,_("Add ID3 tags to MP3 files"));
+  check=MakeCheckButton(NULL,&ginfo->doid3,_("Add ID3 tags to encoded files"));
   gtk_box_pack_start(GTK_BOX(vbox),check,FALSE,FALSE,0);
   gtk_widget_show(check);
 
 #ifdef HAVE_ID3LIB
   check=MakeCheckButton(NULL,&ginfo->doid3v2,
-			_("Add ID3v2 tags to MP3 files"));
+			_("Add ID3v2 tags to encoded files"));
   gtk_box_pack_start(GTK_BOX(vbox),check,FALSE,FALSE,0);
   gtk_widget_show(check);
 #endif
+
+  check=MakeCheckButton(NULL,&ginfo->tag_mp3_only,
+			_("Only tag files ending in '.mp3'"));
+  gtk_box_pack_start(GTK_BOX(vbox),check,FALSE,FALSE,0);
+  gtk_widget_show(check);
 
   entry=MakeStrEntry(NULL,ginfo->id3_comment,_("ID3 comment field"),29,TRUE);
   gtk_box_pack_start(GTK_BOX(vbox),entry,FALSE,FALSE,0);

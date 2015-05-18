@@ -230,7 +230,8 @@ gboolean ID3v2TagFile( char *filename, char *title, char *artist, char *album,
   int i;
   gboolean retval = TRUE;
   luint frm_offset;
-  
+  mode_t mask;
+
   tag = ID3Tag_New();
 
   if(tag) {
@@ -313,6 +314,13 @@ gboolean ID3v2TagFile( char *filename, char *title, char *artist, char *album,
     }
     
     ID3Tag_Delete( tag );
+
+    /* Reset permissions based on users umask to work around a bug in the
+       id3v2 library */
+    mask = umask(0);
+    umask(mask);
+    chmod(filename, 0666 & ~mask);
+
   } else { /* Tag -> new() failed */
     retval = FALSE;
   }

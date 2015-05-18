@@ -205,7 +205,7 @@ void MakeRipPage(GripInfo *ginfo)
 
   /* This should be the largest this string can get */
   label_width=gdk_string_width(uinfo->app->style->font,
-			       _("MP3: Trk 99 (99.9x)"))+20;
+			       _("Enc: Trk 99 (99.9x)"))+20;
 
   gtk_widget_set_usize(uinfo->rip_prog_label,label_width,0);
   gtk_box_pack_start(GTK_BOX(hbox),uinfo->rip_prog_label,FALSE,FALSE,0);
@@ -228,7 +228,7 @@ void MakeRipPage(GripInfo *ginfo)
   for(mycpu=0;mycpu<ginfo->num_cpu;mycpu++){
     hbox=gtk_hbox_new(FALSE,3);
 
-    uinfo->mp3_prog_label[mycpu]=gtk_label_new(_("MP3: Idle"));
+    uinfo->mp3_prog_label[mycpu]=gtk_label_new(_("Enc: Idle"));
     gtk_widget_set_usize(uinfo->mp3_prog_label[mycpu],label_width,0);
 
     gtk_box_pack_start(GTK_BOX(hbox),uinfo->mp3_prog_label[mycpu],
@@ -329,6 +329,8 @@ static void AddSQLEntry(GripInfo *ginfo,EncodeTrack *enc_track)
   g_snprintf(length_str,11,"%d",enc_track->end_frame-enc_track->start_frame);
   g_snprintf(playtime_str,6,"%d:%d",enc_track->mins,enc_track->secs);
   g_snprintf(year_str,5,"%d",enc_track->song_year);
+
+  Debug("Inserting track %d into the ddj database\n",enc_track->track_num);
 
   sqlpid=fork();
 
@@ -630,6 +632,16 @@ static void ID3Add(GripInfo *ginfo,char *file,EncodeTrack *enc_track)
 {
   char year[5];
   GString *comment;
+  int len;
+
+  /* If we only want to tag mp3 files, look for the correct extension */
+  if(ginfo->tag_mp3_only) {
+    len=strlen(file);
+
+    if(len<4 || strcasecmp(file+(len-4),".mp3")) {
+      return;
+    }
+  }
 
   comment=g_string_new(NULL);
   TranslateString(ginfo->id3_comment,comment,TranslateSwitch,enc_track,
@@ -823,7 +835,7 @@ void UpdateRipProgress(GripInfo *ginfo)
 	speed=(gfloat)mystat.st_size/
 	  ((gfloat)ginfo->kbits_per_sec * 128.0f * elapsed);
       
-      sprintf(buf,_("MP3: Trk %d (%3.1fx)"),
+      sprintf(buf,_("Enc: Trk %d (%3.1fx)"),
 	      ginfo->mp3_enc_track[mycpu]+1,speed);
       gtk_label_set(GTK_LABEL(uinfo->mp3_prog_label[mycpu]),buf);
  
@@ -880,7 +892,7 @@ void UpdateRipProgress(GripInfo *ginfo)
 
         if(!(ginfo->encoding&(1<<mycpu)))
 	  gtk_label_set(GTK_LABEL(uinfo->mp3_prog_label[mycpu]),
-			_("MP3: Idle"));
+			_("Enc: Idle"));
       }
     }  
   }
@@ -980,7 +992,7 @@ char *TranslateSwitch(char switch_char,void *data,gboolean *munge)
     else strncpy(res,_("NoTitle"),PATH_MAX);
     break;
   case 'i':
-    g_snprintf(res,PATH_MAX,"%02x",enc_track->discid);
+    g_snprintf(res,PATH_MAX,"%08x",enc_track->discid);
     *munge=FALSE;
     break;
   case 'y':
@@ -1072,7 +1084,7 @@ void DoRip(GtkWidget *widget,gpointer data)
   }
 
   if(ginfo->doencode&&!FileExists(ginfo->mp3exename)) {
-    DisplayMsg(_("Invalid MP3 executable\nCheck your MP3 config"));
+    DisplayMsg(_("Invalid encoder executable\nCheck your encoder config"));
 
     ginfo->doencode=FALSE;
     return;
@@ -1211,6 +1223,11 @@ static gboolean RipNextTrack(GripInfo *ginfo)
     if(!CanWrite(ginfo->ripfile)) {
       DisplayMsg(_("No write access to write wav file"));
       return FALSE;
+    }
+
+    /* Workaround for drives that spin up slowly */
+    if(ginfo->delay_before_rip) {
+      sleep(5);
     }
 
     Debug(_("Ripping track %d to %s\n"),ginfo->rip_track+1,ginfo->ripfile);
@@ -1414,7 +1431,7 @@ static gboolean MP3Encode(GripInfo *ginfo)
   ginfo->mp3_started[cpu] = time(NULL);
   ginfo->mp3_enc_track[cpu] = encode_track;
 
-  Debug(_("MP3 track %d\n"),encode_track+1);
+  Debug(_("Enc track %d\n"),encode_track+1);
 
   strcpy(ginfo->rip_delete_file[cpu],enc_track->wav_filename);
 
@@ -1428,7 +1445,7 @@ static gboolean MP3Encode(GripInfo *ginfo)
 
   MakeDirs(ginfo->mp3file[cpu]);
   if(!CanWrite(ginfo->mp3file[cpu])) {
-    DisplayMsg(_("No write access to write mp3 file"));
+    DisplayMsg(_("No write access to write encoded file"));
     return FALSE;
   }
   
@@ -1436,7 +1453,7 @@ static gboolean MP3Encode(GripInfo *ginfo)
   
   Debug(_("%i: Encoding to %s\n"),cpu+1,ginfo->mp3file[cpu]);
   
-  sprintf(tmp,_("MP3: Trk %d (0.0x)"),encode_track+1);
+  sprintf(tmp,_("Enc: Trk %d (0.0x)"),encode_track+1);
   gtk_label_set(GTK_LABEL(uinfo->mp3_prog_label[cpu]),tmp);
   
   unlink(ginfo->mp3file[cpu]);

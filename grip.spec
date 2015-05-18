@@ -1,5 +1,5 @@
 %define name grip
-%define version 3.0.1
+%define version 3.0.2
 %define release 1
 %define prefix /usr
 
@@ -18,6 +18,11 @@ URL: http://www.nostatic.org/grip
 Packager: Mike Oliphant <oliphant@gtk.org>
 Icon: gripicon.gif
 Buildroot: /var/tmp/%{name}-%{version}-root
+Requires: gnome-libs
+Requires: libghttp
+BuildRequires: gnome-libs-devel
+BuildRequires: gcc-c++
+BuildRequires: libghttp-devel
 Epoch: 1
 
 %description
@@ -89,6 +94,8 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/locale/*/LC_MESSAGES/grip.mo
 
 %changelog
+* Fri May 24 2002 Thomas Vander Stichele <thomas@apestaart.org>
+- added Requires: and BuildRequires:
 * Thu Apr 25 2002 Anthony Fok <anthony@thizlinux.com>
 - Added Traditional Chinese translations (based on Merlin's translations)
 

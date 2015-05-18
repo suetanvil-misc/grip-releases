@@ -166,6 +166,7 @@ typedef struct _grip_info {
   ProxyServer proxy_server;
   DiscDBServer dbserver;
   DiscDBServer dbserver2;
+  char config_filename[256];
   char cd_device[256];
   char force_scsi[256];
   char discdb_submit_email[256];
@@ -259,6 +260,7 @@ typedef struct _grip_info {
   gboolean eject_after_rip;
   gboolean rip_partial;
   int eject_delay;
+  gboolean delay_before_rip;
   char wav_filter_cmd[256];
   char disc_filter_cmd[256];
   int selected_encoder;
@@ -276,6 +278,7 @@ typedef struct _grip_info {
   char mp3_filter_cmd[256];
   gboolean doid3;
   gboolean doid3v2;
+  gboolean tag_mp3_only;
   char id3_comment[30];
   char cdupdate[256];
   StrTransPrefs sprefs;
@@ -284,7 +287,7 @@ typedef struct _grip_info {
 } GripInfo;
 
 GtkWidget *GripNew(const gchar* geometry,char *device,char *scsi_device,
-		   gboolean force_small,
+		   char *config_filename, gboolean force_small,
 		   gboolean local_mode,gboolean no_redirect);
 void GripDie(GtkWidget *widget,gpointer data);
 void GripUpdate(GtkWidget *app);
