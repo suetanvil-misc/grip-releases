@@ -118,7 +118,7 @@ gboolean DiscDBRead(DiscInfo *disc,DiscDBServer *server,
 		    DiscDBHello *hello,DiscDBEntry *entry,
 		    DiscData *data,char *encoding);
 gboolean DiscDBStatDiscData(DiscInfo *disc);
-int DiscDBReadDiscData(DiscInfo *disc, DiscData *outdata);
+int DiscDBReadDiscData(DiscInfo *disc, DiscData *ddata, const char *encoding);
 int DiscDBWriteDiscData(DiscInfo *disc,DiscData *ddata,FILE *outfile,
                         gboolean gripext,gboolean freedbext,char *encoding);
 void DiscDBParseTitle(char *buf,char *title,char *artist,char *sep);

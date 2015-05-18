@@ -1,78 +1,78 @@
 # translation of it.po to Italiano
 # translation of grip_it.po to Italiano
 # This file is distributed under the same license as the PACKAGE package.
-# Ceoldo Costantino <inverness1ATvirgilio.it>, 2004.
+# Kostantino <inverness1ATvirgilio.it>, 2005.
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER.
-# Kostantino <inverness1ATvirgilio.it>, 2004.
+# Kostantino <inverness1ATvirgilio.it>, 2005.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: it\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-01-29 11:31-0800\n"
-"PO-Revision-Date: 2004-04-16 09:16+0200\n"
+"POT-Creation-Date: 2005-06-25 11:23-0700\n"
+"PO-Revision-Date: 2005-03-02 10:02+0100\n"
 "Last-Translator: Kostantino <inverness1ATvirgilio.it>\n"
-"Language-Team: Italiano <it@li.org>\n"
+"Language-Team: Italiano <tp@lists.linux.it>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: KBabel 1.3\n"
+"X-Generator: KBabel 1.9.1\n"
 
-#: src/main.c:55
+#: src/main.c:56
 msgid "Specify the geometry of the main window"
 msgstr "Specifica la geometria della finestra principale"
 
-#: src/main.c:56
+#: src/main.c:57
 msgid "GEOMETRY"
 msgstr "GEOMETRIA"
 
-#: src/main.c:64
+#: src/main.c:65
 msgid "Specify the config file to use (in your home dir)"
 msgstr "Specifica il file di configurazione da usare (nella tua cartella home)"
 
-#: src/main.c:65
+#: src/main.c:66
 msgid "CONFIG"
 msgstr "CONFIGURAZIONE"
 
-#: src/main.c:73
+#: src/main.c:74
 msgid "Specify the cdrom device to use"
 msgstr "Specifica il dispositivo cdrom da usare"
 
-#: src/main.c:74 src/main.c:83
+#: src/main.c:75 src/main.c:84
 msgid "DEVICE"
 msgstr "DISPOSITIVO"
 
-#: src/main.c:82
+#: src/main.c:83
 msgid "Specify the generic scsi device to use"
 msgstr "Specifica il dispositivo scsi generico da usare"
 
-#: src/main.c:91
+#: src/main.c:92
 msgid "Launch in \"small\" (cd-only) mode"
 msgstr "Lancia in modalità \"ridotto\" (solo cd)"
 
-#: src/main.c:100
+#: src/main.c:101
 msgid "\"Local\" mode -- do not look up disc info on the net"
 msgstr ""
 "Modalità \"locale\" -- non cercare su internet le informazioni sul disco"
 
-#: src/main.c:109
+#: src/main.c:110
 msgid "Do not do I/O redirection"
 msgstr "Non fare la ridirezione I/O"
 
-#: src/main.c:118
+#: src/main.c:119
 msgid "Run in verbose (debug) mode"
 msgstr "Avvia in modo prolisso (correzione)"
 
-#: src/grip.c:180
+#: src/grip.c:181
 msgid "Grip"
 msgstr "Grip"
 
-#: src/grip.c:237
+#: src/grip.c:238
 #, c-format
 msgid "Error: Unable to initialize [%s]\n"
 msgstr "Errore: non è possibile inizializzare [%s]\n"
 
-#: src/grip.c:323
+#: src/grip.c:324
 msgid ""
 "This is a development version of Grip. If you encounter problems, you are "
 "encouraged to revert to the latest stable version."
@@ -80,11 +80,11 @@ msgstr ""
 "Questa è una versione di sviluppo di Grip. Sei incoraggiato a ritornare "
 "all'ultima più stabile versione se incontri dei problemi."
 
-#: src/grip.c:329
+#: src/grip.c:330
 msgid "Grip started successfully\n"
 msgstr "Grip è stato avviato con successo!\n"
 
-#: src/grip.c:343
+#: src/grip.c:344
 msgid ""
 "Work is in progress.\n"
 "Really shut down?"
@@ -92,69 +92,69 @@ msgstr ""
 "Sto svolgendo il lavoro richiesto!\n"
 "Vuoi davvero chiudere tutto?"
 
-#: src/grip.c:394
+#: src/grip.c:395
 msgid "Status"
 msgstr "Status"
 
-#: src/grip.c:409
+#: src/grip.c:410
 msgid "General"
 msgstr "Generale"
 
-#: src/grip.c:424 src/gripcfg.c:362 src/cdplay.c:251 src/cdplay.c:345
+#: src/grip.c:425 src/gripcfg.c:362 src/cdplay.c:251 src/cdplay.c:345
 #: src/rip.c:95
 msgid "Rip"
 msgstr "Estrazione"
 
-#: src/grip.c:439 src/gripcfg.c:496
+#: src/grip.c:440 src/gripcfg.c:496
 msgid "Encode"
 msgstr "Codifica"
 
-#: src/grip.c:484
+#: src/grip.c:485
 msgid "Help"
 msgstr "Aiuto"
 
-#: src/grip.c:489
+#: src/grip.c:490
 msgid "Table Of Contents"
 msgstr "Indice generale"
 
-#: src/grip.c:495
+#: src/grip.c:496
 msgid "Playing CDs"
 msgstr "Riproduzione del CD"
 
-#: src/grip.c:501
+#: src/grip.c:502
 msgid "Ripping CDs"
 msgstr "Estrazione del CD"
 
-#: src/grip.c:507
+#: src/grip.c:508
 msgid "Configuring Grip"
 msgstr "Configura Grip"
 
-#: src/grip.c:513
+#: src/grip.c:514
 msgid "FAQ"
 msgstr "FAQ"
 
-#: src/grip.c:519
+#: src/grip.c:520
 msgid "Getting More Help"
 msgstr "Ottieni più aiuto"
 
-#: src/grip.c:525
+#: src/grip.c:526
 msgid "Reporting Bugs"
 msgstr "Riporta gli errori"
 
-#: src/grip.c:545
+#: src/grip.c:546
 msgid "About"
 msgstr "Riguardo"
 
-#: src/grip.c:564
+#: src/grip.c:565
 #, c-format
 msgid "Version %s"
 msgstr "Versione %s"
 
-#: src/grip.c:904
+#: src/grip.c:905
 msgid "Created by Grip"
 msgstr "Creato con Grip"
 
-#: src/grip.c:920
+#: src/grip.c:922
 msgid ""
 "Your config file is out of date -- resetting to defaults.\n"
 "You will need to re-configure Grip.\n"
@@ -165,15 +165,14 @@ msgstr ""
 "Avrai bisogno di configurare Grip di nuovo.\n"
 "Il tuo vecchio file di configurazione è stato salvato con l'estensione 'old'."
 
-#: src/grip.c:993
+#: src/grip.c:995
 #, c-format
 msgid "server is %s, port %d\n"
 msgstr "Il server è %s, la porta è %d\n"
 
-#: src/grip.c:1014
-#, fuzzy
+#: src/grip.c:1016
 msgid "Error: Unable to save config file."
-msgstr "Errore: non è possibile salvare il file di configurazione"
+msgstr "Errore: non è possibile salvare il file di configurazione."
 
 #: src/gripcfg.c:105
 msgid "Config"
@@ -484,10 +483,14 @@ msgid "Allow high bits in filenames"
 msgstr "Abilita il bit alto nei nomi dei file"
 
 #: src/gripcfg.c:691
+msgid "Replace incompatible characters by hexadecimal numbers"
+msgstr ""
+
+#: src/gripcfg.c:696
 msgid "Do not change spaces to underscores"
 msgstr "Non cambiare gli spazi in trattini"
 
-#: src/gripcfg.c:696
+#: src/gripcfg.c:701
 msgid ""
 "Characters to not strip\n"
 "in filenames"
@@ -495,25 +498,23 @@ msgstr ""
 "Caratteri da non ridurre\n"
 "nei nomi di file"
 
-#: src/gripcfg.c:701
+#: src/gripcfg.c:706
 msgid "Show tray icon"
-msgstr ""
+msgstr "Mostra l'icona del cassetto"
 
-#: src/gripcfg.c:708
+#: src/gripcfg.c:713
 msgid "Misc"
 msgstr "Varie"
 
-#: src/gripcfg.c:814
-#, fuzzy
+#: src/gripcfg.c:819
 msgid "Error: Unable to save ripper config."
 msgstr ""
-"Errore: non è possibile salvare il file di configurazione dell'estrattore"
+"Errore: non è possibile salvare il file di configurazione dell'estrattore."
 
-#: src/gripcfg.c:885
-#, fuzzy
+#: src/gripcfg.c:890
 msgid "Error: Unable to save encoder config."
 msgstr ""
-"Errore: non è possibile salvare il file di configurazione del codificatore"
+"Errore: non è possibile salvare il file di configurazione del codificatore."
 
 #: src/cddev.c:174 src/cddev.c:601
 #, c-format
@@ -548,9 +549,8 @@ msgid "CDIOCEJECT"
 msgstr "CDIOCEJECT"
 
 #: src/cdplay.c:83
-#, fuzzy
 msgid "Cannot do lookup while ripping."
-msgstr "Non posso compiere ricerche durante un'estrazione"
+msgstr "Non posso compiere alcuna ricerca durante un'estrazione."
 
 #. "misc"
 #: src/cdplay.c:120
@@ -606,9 +606,8 @@ msgid "Track"
 msgstr "Traccia"
 
 #: src/cdplay.c:633 src/discedit.c:390
-#, fuzzy
 msgid "Error saving disc data."
-msgstr "Si è verificato un errore salvando i dati del disco"
+msgstr "Si è verificato un errore mentre salvavo i dati del disco."
 
 #: src/cdplay.c:704
 msgid "Rotate play mode"
@@ -683,42 +682,36 @@ msgid "Exit Grip"
 msgstr "Esci da Grip"
 
 #: src/cdplay.c:1173
-#, fuzzy
 msgid "Cannot fast forward while ripping."
-msgstr "Con posso fare l'avanzamento veloce durante un'estrazione"
+msgstr "Con posso fare l'avanzamento veloce durante un'estrazione."
 
 #: src/cdplay.c:1204
-#, fuzzy
 msgid "Cannot rewind while ripping."
-msgstr "Non posso riavvolgere durante un'estrazione"
+msgstr "Non posso riavvolgere durante un'estrazione."
 
 #: src/cdplay.c:1235
-#, fuzzy
 msgid "Cannot switch discs while ripping."
-msgstr "Non posso cambiare dischi durante un'estrazione"
+msgstr "Non posso cambiare dischi durante un'estrazione."
 
 #: src/cdplay.c:1253
 msgid "Eject disc\n"
 msgstr "Espelli il disco\n"
 
 #: src/cdplay.c:1257
-#, fuzzy
 msgid "Cannot eject while ripping."
-msgstr "Non posso espellere durante un'estrazione"
+msgstr "Non posso espellere alcun disco durante un'estrazione."
 
 #: src/cdplay.c:1267
 msgid "Have disc -- ejecting\n"
 msgstr "Ecco il disco... in espulsione\n"
 
 #: src/cdplay.c:1334
-#, fuzzy
 msgid "Cannot play while ripping."
-msgstr "Non posso riprodurre nulla durante un'estrazione"
+msgstr "Non posso riprodurre nulla durante un'estrazione."
 
 #: src/cdplay.c:1402 src/cdplay.c:1433
-#, fuzzy
 msgid "Cannot switch tracks while ripping."
-msgstr "Non posso cambiare traccia durante un'estrazione"
+msgstr "Non posso cambiare traccia durante un'estrazione."
 
 #: src/cdplay.c:1524
 msgid "Checking for a new disc\n"
@@ -762,14 +755,12 @@ msgstr ""
 "Vuoi davvero inviare questa informazione riguardo il disco?"
 
 #: src/cdplay.c:1920 src/cdplay.c:1929
-#, fuzzy
 msgid "Error: Unable to create temporary file."
-msgstr "Errore: non è possibile creare un file temporaneo"
+msgstr "Errore: non è possibile creare alcun file temporaneo."
 
 #: src/cdplay.c:1947
-#, fuzzy
 msgid "Error: Unable to write disc data."
-msgstr "Errore: non è possibile scrivere i dati del disco"
+msgstr "Errore: non è possibile scrivere i dati del disco."
 
 #: src/cdplay.c:1956
 #, c-format
@@ -780,32 +771,32 @@ msgstr "Notifica l'immissione a %s\n"
 msgid "System Message"
 msgstr "Messaggio di sistema"
 
-#: src/discdb.c:206
+#: src/discdb.c:207
 #, c-format
 msgid "URI is %s\n"
 msgstr "URI è %s\n"
 
-#: src/discdb.c:286
+#: src/discdb.c:287
 #, c-format
 msgid "Query is [%s]\n"
 msgstr "La domanda è [%s]\n"
 
-#: src/discdb.c:744
+#: src/discdb.c:788
 #, c-format
 msgid "Stat error %d on %s\n"
 msgstr "Errore di stato %d su %s\n"
 
-#: src/discdb.c:748
+#: src/discdb.c:792
 #, c-format
 msgid "Creating directory %s\n"
 msgstr "Sto creando la cartella %s\n"
 
-#: src/discdb.c:753
+#: src/discdb.c:797
 #, c-format
 msgid "Error: %s exists, but is a file\n"
 msgstr "Errore: %s esiste, ma è un file\n"
 
-#: src/discdb.c:760
+#: src/discdb.c:804
 #, c-format
 msgid "Error: Unable to open %s for writing\n"
 msgstr "Errore: non è possibile aprire %s in scrittura\n"
@@ -867,26 +858,20 @@ msgid "Submit disc info"
 msgstr "Invia le informazioni del disco"
 
 #: src/discedit.c:393
-#, fuzzy
 msgid "No disc present."
-msgstr "Non è presente alcun disco"
+msgstr "Non è presente alcun disco."
 
 #: src/discedit.c:543
-#, fuzzy
 msgid "Cannot submit. No disc is present."
-msgstr ""
-"Non posso inviare nulla!\n"
-"Non è presente alcun disco"
+msgstr "Non posso inviare nulla! Non è presente alcun disco."
 
 #: src/discedit.c:558
-#, fuzzy
 msgid "You must enter a disc title."
-msgstr "Devi immettere il titolo di un disco"
+msgstr "Devi immettere il titolo di un disco."
 
 #: src/discedit.c:565
-#, fuzzy
 msgid "You must enter a disc artist."
-msgstr "Devi immettere l'artista di un disco"
+msgstr "Devi immettere un'artista. "
 
 #: src/discedit.c:575
 msgid ""
@@ -943,7 +928,7 @@ msgid "Cancel"
 msgstr "Cancella"
 
 #. Doh!
-#: src/id3.c:290
+#: src/id3.c:291
 msgid "unknown ID3 field\n"
 msgstr "Il campo ID3 è sconosciuto\n"
 
@@ -954,7 +939,7 @@ msgstr ""
 "Errore: non posso tradurre il nome del file. \n"
 "Nessun utente come %s\n"
 
-#: src/launch.c:293 src/rip.c:1533
+#: src/launch.c:315 src/rip.c:1535
 msgid "Exec failed\n"
 msgstr "L'esecuzione è fallita\n"
 
@@ -1046,12 +1031,11 @@ msgstr "Fine del settore"
 #: src/rip.c:380
 #, c-format
 msgid "Inserting track %d into the ddj database\n"
-msgstr "Sto inserendo la  traccia %d nell'archivio ddj\n"
+msgstr "Sto inserendo la  traccia %d nell'archivio DDJ\n"
 
 #: src/rip.c:602
-#, fuzzy
 msgid "Error: can't open m3u file."
-msgstr "Errore: non posso aprire il file m3u\n"
+msgstr "Errore: non posso aprire il file m3u."
 
 #: src/rip.c:644
 msgid "In KillRip\n"
@@ -1127,6 +1111,9 @@ msgid ""
 "No disc was detected in the drive. If you have a disc in your drive, please "
 "check your CDRom device setting under Config->CD."
 msgstr ""
+"Non è stato rilevato alcun disco nel lettore. Per favore, controlla le "
+"impostazioni del tuo lettore CDRom in Config->CD se è presente un disco nel "
+"dispositivo."
 
 #: src/rip.c:1279
 msgid ""
@@ -1134,16 +1121,19 @@ msgid ""
 "Check your rip config, and ensure it specifies the full path to the ripper "
 "executable."
 msgstr ""
+"L'eseguibile dell'estrattore non è valido.\n"
+"Controlla la tua configurazione  ed assicurati che specifichi il percorso "
+"completo all'eseguibile dell'estrattore."
 
 #: src/rip.c:1287
-#, fuzzy
 msgid ""
 "Invalid encoder executable.\n"
 "Check your encoder config, and ensure it specifies the full path to the "
 "encoder executable."
 msgstr ""
-"L'eseguibile del codificatore non è valido\n"
-"Controlla il file suo file di configurazione"
+"L'eseguibile del codificatore non è valido.\n"
+"Controlla la tua configurazione  ed assicurati che specifichi il percorso "
+"completo all'eseguibile del codificatore."
 
 #: src/rip.c:1323
 msgid ""
@@ -1189,77 +1179,57 @@ msgstr "Estrai: Trc %d (0.0x)"
 msgid "File %s has already been ripped. Skipping...\n"
 msgstr "File %s è già stato estratto. Lo salto...\n"
 
-#: src/rip.c:1493 src/rip.c:1743
+#: src/rip.c:1493 src/rip.c:1745
 msgid "Out of space in output directory"
 msgstr "Non c'è più spazio nella cartella d'uscita"
 
-#: src/rip.c:1567
+#: src/rip.c:1569
 msgid "Calling CDPRip\n"
 msgstr "Sto richiamando CDPRip\n"
 
-#: src/rip.c:1653
+#: src/rip.c:1655
 #, c-format
 msgid "Added track %d to %s list\n"
 msgstr "La traccia %d è stata aggiunta alla lista %s\n"
 
-#: src/rip.c:1679
+#: src/rip.c:1681
 msgid "No free cpus\n"
 msgstr "Non è disponibile nessuna cpu\n"
 
-#: src/rip.c:1695
+#: src/rip.c:1697
 #, c-format
 msgid "Enc track %d\n"
 msgstr "Codifica la traccia %d\n"
 
-#: src/rip.c:1717
-#, fuzzy
+#: src/rip.c:1719
 msgid "No write access to write encoded file."
-msgstr "Non vi sono accessi in scrittura al file codificato"
+msgstr "Non vi sono accessi in scrittura al file codificato."
 
-#: src/rip.c:1728
+#: src/rip.c:1730
 #, c-format
 msgid "%i: Encoding to %s\n"
 msgstr "%i: Codifica su %s\n"
 
-#: src/rip.c:1732
+#: src/rip.c:1734
 #, c-format
 msgid "Enc: Trk %d (0.0x)"
 msgstr "Codifica: Trc %d (0.0x)"
 
-#: src/rip.c:1796
+#: src/rip.c:1800
 msgid "In CalculateAll\n"
 msgstr "In Calcola Tutto\n"
 
-#: src/rip.c:1802
+#: src/rip.c:1806
 msgid "We aren't ripping now, so let's zero encoding values\n"
 msgstr ""
 "Non stiamo estraendo nulla adesso, così azzeriamo i valori di codifica\n"
 
-#: src/rip.c:1818
+#: src/rip.c:1822
 #, c-format
 msgid "Total rip size is: %d\n"
 msgstr "La dimensione del totale estratto è: %d\n"
 
-#: src/rip.c:1819
+#: src/rip.c:1823
 #, c-format
 msgid "Total enc size is: %d\n"
 msgstr "La dimensione del totale codificato è: %d\n"
-
-#~ msgid ""
-#~ "Invalid rip executable\n"
-#~ "Check your rip config"
-#~ msgstr ""
-#~ "L'eseguibile dell'estrattore non è valido\n"
-#~ "Controlla il suo file di configurazione"
-
-#~ msgid "Keep application minimum size"
-#~ msgstr "Mantieni l'applicazione a dimensione minima"
-
-#~ msgid "Reply is [%s]\n"
-#~ msgstr "La risposta è [%s]\n"
-
-#~ msgid "Write tags in unicode"
-#~ msgstr "Scrivi i tag in codifica Unicode"
-
-#~ msgid "File System Character set encoding"
-#~ msgstr "Codifica dei caratteri del file system"

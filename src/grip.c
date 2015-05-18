@@ -115,6 +115,7 @@ void DoSaveConfig(GripInfo *ginfo);
 {"no_lower_case",CFG_ENTRY_BOOL,0,&ginfo->sprefs.no_lower_case},\
 {"no_underscore",CFG_ENTRY_BOOL,0,&ginfo->sprefs.no_underscore},\
 {"allow_high_bits",CFG_ENTRY_BOOL,0,&ginfo->sprefs.allow_high_bits},\
+{"escape",CFG_ENTRY_BOOL,0,&ginfo->sprefs.escape},\
 {"allow_these_chars",CFG_ENTRY_STRING,256,ginfo->sprefs.allow_these_chars},\
 {"show_tray_icon",CFG_ENTRY_BOOL,0,&ginfo->show_tray_icon},\
 {"num_cpu",CFG_ENTRY_INT,0,&ginfo->edit_num_cpu},\
@@ -905,6 +906,7 @@ static void DoLoadConfig(GripInfo *ginfo)
   *ginfo->cdupdate='\0';
   ginfo->sprefs.no_lower_case=FALSE;
   ginfo->sprefs.allow_high_bits=FALSE;
+  ginfo->sprefs.escape=FALSE;
   ginfo->sprefs.no_underscore=FALSE;
   *ginfo->sprefs.allow_these_chars='\0';
   ginfo->show_tray_icon=TRUE;

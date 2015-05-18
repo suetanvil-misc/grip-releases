@@ -163,52 +163,69 @@ void TranslateString(char *instr,GString *outstr,
 }
 
 /*
+  Concatenate two strings with reallocation
+*/
+
+char *ReallocStrcat(char *dest, const char *src)
+{
+  if(src) {
+    dest = g_realloc (dest, strlen(dest)+strlen(src)+sizeof(char));
+    if (dest) {
+      strcat(dest,src);
+    }
+  }
+  return dest;
+}
+
+/*
   Munge a string to be suitable for filenames
-  We only support strings that can be converted to ISO-8859-1
 */
 
 char *MungeString(char *str,StrTransPrefs *prefs)
 {
-  unsigned char *src,*dst;
-  char *iso_str;
-  char *utf8_str;
+  gunichar *src, *c;
+  gchar *filename_char;
+  char *dst;
+  glong ri,wi;
   gsize rb,wb;
+  char escape[11];
+  char utf8_char[7];
+  gint utf8_char_len;
 
-  iso_str=g_convert(str,strlen(str),"ISO-8859-1","UTF-8",
-                    &rb,&wb,NULL);
-
-  if(!iso_str) {
+  src=g_utf8_to_ucs4(str,strlen(str),&ri,&wi,NULL);
+  if(!src) {
     return NULL;
   }
-
-  for(src=dst=iso_str;*src;src++) {
-    if((*src==' ')) {
-      if(prefs->no_underscore) *dst++=' ';
-      else *dst++='_';
+  
+  dst=g_strdup("");
+  for(c=src;*c;c++) {
+    utf8_char_len=g_unichar_to_utf8(prefs->no_lower_case?
+				    *c:g_unichar_tolower(*c),utf8_char);
+    utf8_char[utf8_char_len]='\0';
+    filename_char=g_filename_from_utf8(utf8_char,-1,&rb,&wb,NULL);
+    g_free(filename_char);
+    if (!filename_char || !prefs->allow_high_bits && *c >> 7) {
+      if (prefs->escape) {
+	g_snprintf(escape,11,"(%x)",*c);
+	dst=ReallocStrcat(dst,escape);
+      }
     }
-    else if(*src & (1<<7)) {
-      if(prefs->allow_high_bits) *dst++=*src;
-      else continue;
+    else if(*c==' ') {
+      dst=ReallocStrcat(dst,prefs->no_underscore?" ":"_");
     }
-    else if(!isalnum(*src)&&!strchr(prefs->allow_these_chars,*src)) continue;
+    else if(!g_unichar_isalnum(*c)&&
+	    !g_utf8_strchr(prefs->allow_these_chars,
+	    strlen(prefs->allow_these_chars),*c)) {
+      continue;
+    }
     else {
-      if(prefs->no_lower_case) *dst++=*src;
-      else *dst++=tolower(*src);
+      dst=ReallocStrcat(dst,utf8_char);
     }
   }
-
-  *dst='\0';
-
-  utf8_str=g_convert(iso_str,strlen(iso_str),"UTF-8","ISO-8859-1",
-                     &rb,&wb,NULL);
-
-  free(iso_str);
-
-  if(!utf8_str) {
-    return NULL;
-  }
-
-  return utf8_str;
+  
+  g_free(src);
+  
+  return dst;
 }
 
 int MakeTranslatedArgs(char *str,GString **args,int maxargs,
@@ -238,6 +255,7 @@ int MakeTranslatedArgs(char *str,GString **args,int maxargs,
 
 extern char *FindRoot(char *);
 
+/*
 void ArgsToLocale(GString **args)
 {
   char *new_str;
@@ -255,8 +273,10 @@ void ArgsToLocale(GString **args)
       
       args[pos]=new_arg;
     }
+    g_free(new_str);
   }
 }
+*/
 
 void TranslateAndLaunch(char *cmd,char *(*trans_func)(char,void *,gboolean *),
 			void *user_data,gboolean do_munge_default,
@@ -273,7 +293,9 @@ void TranslateAndLaunch(char *cmd,char *(*trans_func)(char,void *,gboolean *),
 
   MakeTranslatedArgs(cmd,args,100,trans_func,user_data,do_munge_default,prefs);
 
+/*
   ArgsToLocale(args);
+*/
 
   for(arg=1;args[arg];arg++) {
     char_args[arg]=args[arg]->str;

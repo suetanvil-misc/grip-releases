@@ -1,3 +1,24 @@
+2005-06-25  Mike Oliphant  <grip@nostatic.org>
+
+	* de.po: updated (Götz Waschk)
+	* it.po: updated (Ceoldo Costantino)
+	* fr.po: updated (Eric Lassauge)
+	* pl_PL.po: added (Piotr Adamocha)
+	* id3.c: put a zero byte before the id3v1 track number (Vladimir
+	  Petrov)
+	* discdb.c: string parsing fixes to support i18n (Vladimir Petrov)
+	* discdb.c: better handling of non-UTF-8 local discdb files
+	  (Vladimir Petrov) 
+	* various: tweaks to filesystem-safe character escaping (Vladimir
+	  Petrov)
+	* cdplay.c: allow retrieving of non-UTF-8 discdb entries (Vladimir
+	  Petrov)
+	* discdb.c: fixed a possible buffer overflow crash (Dean Brettle)
+	* grip.spec.in: added some missing BuildRequires (Stephen
+	  E. Dudek)
+	* configure.in: upped version to 3.3.1
+		
+	
 2005-01-29  Mike Oliphant  <grip@nostatic.org>
 
 	* nl.po: added (Sander Brabander)

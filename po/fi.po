@@ -13,7 +13,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: grip 3.1.8\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-01-29 11:31-0800\n"
+"POT-Creation-Date: 2005-06-25 11:23-0700\n"
 "PO-Revision-Date: 2004-03-30 12:00+0300\n"
 "Last-Translator: Flammie Pirinen <flammie@gnome-fi.org>\n"
 "Language-Team: Finnish <lokalisointi-laatu@lists.linux-aktivaattori.org>\n"
@@ -22,60 +22,60 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: src/main.c:55
+#: src/main.c:56
 msgid "Specify the geometry of the main window"
 msgstr "Määrittele pääikkunan sijainti ja mitat"
 
-#: src/main.c:56
+#: src/main.c:57
 msgid "GEOMETRY"
 msgstr "MITAT"
 
-#: src/main.c:64
+#: src/main.c:65
 msgid "Specify the config file to use (in your home dir)"
 msgstr "Määrittele käytettävä asetustiedosto (kotihakemistossasi)"
 
-#: src/main.c:65
+#: src/main.c:66
 msgid "CONFIG"
 msgstr "ASETUKSET"
 
-#: src/main.c:73
+#: src/main.c:74
 msgid "Specify the cdrom device to use"
 msgstr "Määrittele käytettävä CD-aseman laitetiedosto"
 
-#: src/main.c:74 src/main.c:83
+#: src/main.c:75 src/main.c:84
 msgid "DEVICE"
 msgstr "LAITE"
 
-#: src/main.c:82
+#: src/main.c:83
 msgid "Specify the generic scsi device to use"
 msgstr "Määrittele käytettävä SCSI-laitetiedosto"
 
-#: src/main.c:91
+#: src/main.c:92
 msgid "Launch in \"small\" (cd-only) mode"
 msgstr "Käynnistä \"pienessä\" (CD-soitin)-tilassa"
 
-#: src/main.c:100
+#: src/main.c:101
 msgid "\"Local\" mode -- do not look up disc info on the net"
 msgstr "\"Paikallinen\" tila -- älä hae levyn tietoja verkosta"
 
-#: src/main.c:109
+#: src/main.c:110
 msgid "Do not do I/O redirection"
 msgstr "Älä käytä I/O-uudelleenohjausta"
 
-#: src/main.c:118
+#: src/main.c:119
 msgid "Run in verbose (debug) mode"
 msgstr "Suorita yksityiskohtaisessa vianetsintätilassa"
 
-#: src/grip.c:180
+#: src/grip.c:181
 msgid "Grip"
 msgstr "Grip"
 
-#: src/grip.c:237
+#: src/grip.c:238
 #, c-format
 msgid "Error: Unable to initialize [%s]\n"
 msgstr "Virhe: Alustus ei onnistunut [%s]\n"
 
-#: src/grip.c:323
+#: src/grip.c:324
 msgid ""
 "This is a development version of Grip. If you encounter problems, you are "
 "encouraged to revert to the latest stable version."
@@ -83,11 +83,11 @@ msgstr ""
 "Tämä on Gripin kehitysversio. Jos kohtaat ongelmia suositellaan että "
 "käyttäisit viimeisintä vakaata versiota"
 
-#: src/grip.c:329
+#: src/grip.c:330
 msgid "Grip started successfully\n"
 msgstr "Grip käynnistyi onnistuneesti\n"
 
-#: src/grip.c:343
+#: src/grip.c:344
 msgid ""
 "Work is in progress.\n"
 "Really shut down?"
@@ -95,69 +95,69 @@ msgstr ""
 "Työ on kesken\n"
 "Haluatko varmasti lopettaa?"
 
-#: src/grip.c:394
+#: src/grip.c:395
 msgid "Status"
 msgstr "Tila"
 
-#: src/grip.c:409
+#: src/grip.c:410
 msgid "General"
 msgstr "Yleiset"
 
-#: src/grip.c:424 src/gripcfg.c:362 src/cdplay.c:251 src/cdplay.c:345
+#: src/grip.c:425 src/gripcfg.c:362 src/cdplay.c:251 src/cdplay.c:345
 #: src/rip.c:95
 msgid "Rip"
 msgstr "Kopiointi"
 
-#: src/grip.c:439 src/gripcfg.c:496
+#: src/grip.c:440 src/gripcfg.c:496
 msgid "Encode"
 msgstr "Koodaus"
 
-#: src/grip.c:484
+#: src/grip.c:485
 msgid "Help"
 msgstr "Ohje"
 
-#: src/grip.c:489
+#: src/grip.c:490
 msgid "Table Of Contents"
 msgstr "Sisällysluettelo"
 
-#: src/grip.c:495
+#: src/grip.c:496
 msgid "Playing CDs"
 msgstr "CD-levyjen soitto"
 
-#: src/grip.c:501
+#: src/grip.c:502
 msgid "Ripping CDs"
 msgstr "CD-levyjen kopiointi"
 
-#: src/grip.c:507
+#: src/grip.c:508
 msgid "Configuring Grip"
 msgstr "Gripin asetusten tekeminen"
 
-#: src/grip.c:513
+#: src/grip.c:514
 msgid "FAQ"
 msgstr "VUKK"
 
-#: src/grip.c:519
+#: src/grip.c:520
 msgid "Getting More Help"
 msgstr "Lisäohjeiden hakeminen"
 
-#: src/grip.c:525
+#: src/grip.c:526
 msgid "Reporting Bugs"
 msgstr "Ohjelmavirheiden raportointi"
 
-#: src/grip.c:545
+#: src/grip.c:546
 msgid "About"
 msgstr "Tietoja"
 
-#: src/grip.c:564
+#: src/grip.c:565
 #, c-format
 msgid "Version %s"
 msgstr "Versio %s"
 
-#: src/grip.c:904
+#: src/grip.c:905
 msgid "Created by Grip"
 msgstr "Tehty Gripillä"
 
-#: src/grip.c:920
+#: src/grip.c:922
 msgid ""
 "Your config file is out of date -- resetting to defaults.\n"
 "You will need to re-configure Grip.\n"
@@ -167,12 +167,12 @@ msgstr ""
 "Gripin asetukset täytyy tehdä uudelleen.\n"
 "Vanha asetustiedostosi tallennettiin -old-päätteellä."
 
-#: src/grip.c:993
+#: src/grip.c:995
 #, c-format
 msgid "server is %s, port %d\n"
 msgstr "palvelin on %s, portti %d\n"
 
-#: src/grip.c:1014
+#: src/grip.c:1016
 #, fuzzy
 msgid "Error: Unable to save config file."
 msgstr "Virhe: Asetustiedostoa ei voitu tallentaa"
@@ -486,10 +486,14 @@ msgid "Allow high bits in filenames"
 msgstr "Hyväksy korkeat bitit tiedostonimissä"
 
 #: src/gripcfg.c:691
+msgid "Replace incompatible characters by hexadecimal numbers"
+msgstr ""
+
+#: src/gripcfg.c:696
 msgid "Do not change spaces to underscores"
 msgstr "Älä muuta välilyöntejä alaviivoiksi"
 
-#: src/gripcfg.c:696
+#: src/gripcfg.c:701
 msgid ""
 "Characters to not strip\n"
 "in filenames"
@@ -497,20 +501,20 @@ msgstr ""
 "Merkit joita ei poisteta\n"
 "tiedostonimistä"
 
-#: src/gripcfg.c:701
+#: src/gripcfg.c:706
 msgid "Show tray icon"
 msgstr ""
 
-#: src/gripcfg.c:708
+#: src/gripcfg.c:713
 msgid "Misc"
 msgstr "Muut"
 
-#: src/gripcfg.c:814
+#: src/gripcfg.c:819
 #, fuzzy
 msgid "Error: Unable to save ripper config."
 msgstr "Virhe: Kopioijan asetustiedostoa ei voitu tallentaa"
 
-#: src/gripcfg.c:885
+#: src/gripcfg.c:890
 #, fuzzy
 msgid "Error: Unable to save encoder config."
 msgstr "Virhe: Koodaajan asetustiedostoa ei voitu tallentaa"
@@ -778,32 +782,32 @@ msgstr "Postitetaan tiedot osoitteeseen %s\n"
 msgid "System Message"
 msgstr "Järjestelmäviesti"
 
-#: src/discdb.c:206
+#: src/discdb.c:207
 #, c-format
 msgid "URI is %s\n"
 msgstr "URI on %s\n"
 
-#: src/discdb.c:286
+#: src/discdb.c:287
 #, c-format
 msgid "Query is [%s]\n"
 msgstr "Haku on [%s]\n"
 
-#: src/discdb.c:744
+#: src/discdb.c:788
 #, c-format
 msgid "Stat error %d on %s\n"
 msgstr "Hakuvirhe %d %s\n"
 
-#: src/discdb.c:748
+#: src/discdb.c:792
 #, c-format
 msgid "Creating directory %s\n"
 msgstr "Luodaan hakemisto %s\n"
 
-#: src/discdb.c:753
+#: src/discdb.c:797
 #, c-format
 msgid "Error: %s exists, but is a file\n"
 msgstr "Virhe: %s on olemassa mutta tiedostona\n"
 
-#: src/discdb.c:760
+#: src/discdb.c:804
 #, c-format
 msgid "Error: Unable to open %s for writing\n"
 msgstr "Virhe: kohdetta %s ei voitu avata kirjoittamista varten\n"
@@ -941,7 +945,7 @@ msgid "Cancel"
 msgstr "Peruuta"
 
 #. Doh!
-#: src/id3.c:290
+#: src/id3.c:291
 msgid "unknown ID3 field\n"
 msgstr "tuntematon ID3-kenttä\n"
 
@@ -950,7 +954,7 @@ msgstr "tuntematon ID3-kenttä\n"
 msgid "Error: unable to translate filename. No such user as %s\n"
 msgstr "Virhe: Tiedostonimeä ei voitu kääntää. Käyttäjää %s ei ole\n"
 
-#: src/launch.c:293 src/rip.c:1533
+#: src/launch.c:315 src/rip.c:1535
 msgid "Exec failed\n"
 msgstr "Suoritus epäonnistui\n"
 
@@ -1186,57 +1190,57 @@ msgstr "Kopiointi: Raita %d (0,0x)"
 msgid "File %s has already been ripped. Skipping...\n"
 msgstr "Tiedosto %s on jo kopioitu, ohitamme... \n"
 
-#: src/rip.c:1493 src/rip.c:1743
+#: src/rip.c:1493 src/rip.c:1745
 msgid "Out of space in output directory"
 msgstr "Tila loppui hakemistossa"
 
-#: src/rip.c:1567
+#: src/rip.c:1569
 msgid "Calling CDPRip\n"
 msgstr "Kutsutaan komentoa CDPRip\n"
 
-#: src/rip.c:1653
+#: src/rip.c:1655
 #, c-format
 msgid "Added track %d to %s list\n"
 msgstr "Lisättiin raita %d listaan %s\n"
 
-#: src/rip.c:1679
+#: src/rip.c:1681
 msgid "No free cpus\n"
 msgstr "Ei vapaita prosessoreja\n"
 
-#: src/rip.c:1695
+#: src/rip.c:1697
 #, c-format
 msgid "Enc track %d\n"
 msgstr "Koodaataan raitaa %d\n"
 
-#: src/rip.c:1717
+#: src/rip.c:1719
 #, fuzzy
 msgid "No write access to write encoded file."
 msgstr "Ei kirjoitusoikeutta koodattuun tiedostoon"
 
-#: src/rip.c:1728
+#: src/rip.c:1730
 #, c-format
 msgid "%i: Encoding to %s\n"
 msgstr "%i: Koodataan kohteeseen %s\n"
 
-#: src/rip.c:1732
+#: src/rip.c:1734
 #, c-format
 msgid "Enc: Trk %d (0.0x)"
 msgstr "Koodaus: Raita %d (0,0x)"
 
-#: src/rip.c:1796
+#: src/rip.c:1800
 msgid "In CalculateAll\n"
 msgstr "Komennossa CalculateAll:\n"
 
-#: src/rip.c:1802
+#: src/rip.c:1806
 msgid "We aren't ripping now, so let's zero encoding values\n"
 msgstr "Emme kopioi nyt joten nollatkaamme koodausarvoja\n"
 
-#: src/rip.c:1818
+#: src/rip.c:1822
 #, c-format
 msgid "Total rip size is: %d\n"
 msgstr "Kopion kokonaiskoko: %d\n"
 
-#: src/rip.c:1819
+#: src/rip.c:1823
 #, c-format
 msgid "Total enc size is: %d\n"
 msgstr "Koodauksen kokonaiskoko: %d\n"

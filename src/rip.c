@@ -1510,7 +1510,9 @@ static gboolean RipNextTrack(GripInfo *ginfo)
       MakeTranslatedArgs(ginfo->ripcmdline,args,100,TranslateSwitch,
 			 &enc_track,FALSE,&(ginfo->sprefs));
 
+/*
       ArgsToLocale(args);
+*/
 
       for(arg=0;args[arg];arg++) {
 	char_args[arg+1]=args[arg]->str;
@@ -1750,7 +1752,9 @@ static gboolean MP3Encode(GripInfo *ginfo)
   MakeTranslatedArgs(ginfo->mp3cmdline,args,100,TranslateSwitch,
 		     enc_track,FALSE,&(ginfo->sprefs));
 
+/*
   ArgsToLocale(args);
+*/
   
   for(arg=0;args[arg];arg++) {
     char_args[arg+1]=args[arg]->str;

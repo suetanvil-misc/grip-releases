@@ -106,7 +106,7 @@ void LookupDisc(GripInfo *ginfo,gboolean manual)
   present=DiscDBStatDiscData(disc);
 
   if(!manual&&present) {
-    DiscDBReadDiscData(disc,ddata);
+    DiscDBReadDiscData(disc,ddata,ginfo->discdb_encoding);
     if(ginfo->ddata.data_id3genre==-1)
       ginfo->ddata.data_id3genre=DiscDB2ID3(ginfo->ddata.data_genre);
 
@@ -192,7 +192,7 @@ gboolean DiscDBLookupDisc(GripInfo *ginfo,DiscDBServer *server)
   strncpy(hello.hello_program,"Grip",256);
   strncpy(hello.hello_version,VERSION,256);
 
-  if(ginfo->db_use_freedb)
+  if(ginfo->db_use_freedb && !strcasecmp(ginfo->discdb_encoding,"UTF-8"))
     hello.proto_version=6;
   else
     hello.proto_version=5;
@@ -1937,12 +1937,12 @@ void SubmitEntry(gint reply,gpointer data)
 
     if(ginfo->db_use_freedb) {
       fprintf(efp,
-	      "MIME-Version: 1.0\nContent-type: text/plain; charset=%s\n\n",
-	      ginfo->discdb_encoding);
+	      "MIME-Version: 1.0\nContent-type: text/plain; charset=UTF-8\n\n");
     }
 
     if(DiscDBWriteDiscData(&(ginfo->disc),&(ginfo->ddata),efp,FALSE,
-			   ginfo->db_use_freedb,ginfo->discdb_encoding)<0) {
+			   ginfo->db_use_freedb,ginfo->db_use_freedb?
+			   "UTF-8":ginfo->discdb_encoding)<0) {
       gnome_app_warning((GnomeApp *)ginfo->gui_info.app,
                         _("Error: Unable to write disc data."));
       fclose(efp);

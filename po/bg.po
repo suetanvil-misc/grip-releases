@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 3.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-01-29 11:31-0800\n"
+"POT-Creation-Date: 2005-06-25 11:23-0700\n"
 "PO-Revision-Date: 2004-02-08 14:03+0200\n"
 "Last-Translator: Vladimir \"Kaladan\" Petkov <vpetkov@i-space.org>\n"
 "Language-Team: Bulgarian <dict@linux.zonebg.com>\n"
@@ -16,70 +16,70 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: src/main.c:55
+#: src/main.c:56
 msgid "Specify the geometry of the main window"
 msgstr "Определя размерите на основния прозорец"
 
-#: src/main.c:56
+#: src/main.c:57
 msgid "GEOMETRY"
 msgstr "РАЗМЕРИ"
 
-#: src/main.c:64
+#: src/main.c:65
 msgid "Specify the config file to use (in your home dir)"
 msgstr "Определя конфигурационния файл в употреба (в домашната директория)"
 
-#: src/main.c:65
+#: src/main.c:66
 msgid "CONFIG"
 msgstr "КОНФИГУРАЦИЯ"
 
-#: src/main.c:73
+#: src/main.c:74
 msgid "Specify the cdrom device to use"
 msgstr "Определя CD ROM устройството"
 
-#: src/main.c:74 src/main.c:83
+#: src/main.c:75 src/main.c:84
 msgid "DEVICE"
 msgstr "УСТРОЙСТВО"
 
-#: src/main.c:82
+#: src/main.c:83
 msgid "Specify the generic scsi device to use"
 msgstr "Упределя SCSI устройството в употреба"
 
-#: src/main.c:91
+#: src/main.c:92
 msgid "Launch in \"small\" (cd-only) mode"
 msgstr "Зарежда в \"ограничен\" (CD-ROM само) режим"
 
-#: src/main.c:100
+#: src/main.c:101
 msgid "\"Local\" mode -- do not look up disc info on the net"
 msgstr "\"Локален\"·режим·--·не се търси информация за диска в интернет"
 
-#: src/main.c:109
+#: src/main.c:110
 msgid "Do not do I/O redirection"
 msgstr "Не прави I/O пренасочване"
 
-#: src/main.c:118
+#: src/main.c:119
 msgid "Run in verbose (debug) mode"
 msgstr "Стартира в режим за докладване на грешки"
 
-#: src/grip.c:180
+#: src/grip.c:181
 msgid "Grip"
 msgstr "Grip"
 
-#: src/grip.c:237
+#: src/grip.c:238
 #, c-format
 msgid "Error: Unable to initialize [%s]\n"
 msgstr "Грешка: Разпознаването е невъзможно [%s]\n"
 
-#: src/grip.c:323
+#: src/grip.c:324
 msgid ""
 "This is a development version of Grip. If you encounter problems, you are "
 "encouraged to revert to the latest stable version."
 msgstr ""
 
-#: src/grip.c:329
+#: src/grip.c:330
 msgid "Grip started successfully\n"
 msgstr ""
 
-#: src/grip.c:343
+#: src/grip.c:344
 msgid ""
 "Work is in progress.\n"
 "Really shut down?"
@@ -87,69 +87,69 @@ msgstr ""
 "Извършва се работа.\n"
 "Да изгася програмата?"
 
-#: src/grip.c:394
+#: src/grip.c:395
 msgid "Status"
 msgstr "Статус"
 
-#: src/grip.c:409
+#: src/grip.c:410
 msgid "General"
 msgstr "Основен"
 
-#: src/grip.c:424 src/gripcfg.c:362 src/cdplay.c:251 src/cdplay.c:345
+#: src/grip.c:425 src/gripcfg.c:362 src/cdplay.c:251 src/cdplay.c:345
 #: src/rip.c:95
 msgid "Rip"
 msgstr "Извличане"
 
-#: src/grip.c:439 src/gripcfg.c:496
+#: src/grip.c:440 src/gripcfg.c:496
 msgid "Encode"
 msgstr "Кодиране"
 
-#: src/grip.c:484
+#: src/grip.c:485
 msgid "Help"
 msgstr "Помощ"
 
-#: src/grip.c:489
+#: src/grip.c:490
 msgid "Table Of Contents"
 msgstr "Съдържание"
 
-#: src/grip.c:495
+#: src/grip.c:496
 msgid "Playing CDs"
 msgstr "Изпълняващи се CD-та"
 
-#: src/grip.c:501
+#: src/grip.c:502
 msgid "Ripping CDs"
 msgstr "Извличащи се CD-та"
 
-#: src/grip.c:507
+#: src/grip.c:508
 msgid "Configuring Grip"
 msgstr "Конфигурация"
 
-#: src/grip.c:513
+#: src/grip.c:514
 msgid "FAQ"
 msgstr "Често Задавани Въпроси"
 
-#: src/grip.c:519
+#: src/grip.c:520
 msgid "Getting More Help"
 msgstr "Допълнителна помощ"
 
-#: src/grip.c:525
+#: src/grip.c:526
 msgid "Reporting Bugs"
 msgstr "Докладване за грешки"
 
-#: src/grip.c:545
+#: src/grip.c:546
 msgid "About"
 msgstr "Относно"
 
-#: src/grip.c:564
+#: src/grip.c:565
 #, c-format
 msgid "Version %s"
 msgstr ""
 
-#: src/grip.c:904
+#: src/grip.c:905
 msgid "Created by Grip"
 msgstr ""
 
-#: src/grip.c:920
+#: src/grip.c:922
 msgid ""
 "Your config file is out of date -- resetting to defaults.\n"
 "You will need to re-configure Grip.\n"
@@ -160,12 +160,12 @@ msgstr ""
 "Grip трябва да бъде пренастроен.\n"
 "Старият конфигурационен фал е запазен с -old·в края."
 
-#: src/grip.c:993
+#: src/grip.c:995
 #, c-format
 msgid "server is %s, port %d\n"
 msgstr "сървър е·%s,·порт·%d\n"
 
-#: src/grip.c:1014
+#: src/grip.c:1016
 #, fuzzy
 msgid "Error: Unable to save config file."
 msgstr "Грешка: Запазването на конфигурационния файл е невъзможно"
@@ -481,29 +481,33 @@ msgid "Allow high bits in filenames"
 msgstr ""
 
 #: src/gripcfg.c:691
+msgid "Replace incompatible characters by hexadecimal numbers"
+msgstr ""
+
+#: src/gripcfg.c:696
 msgid "Do not change spaces to underscores"
 msgstr "Не променя интервалите в долни черти"
 
-#: src/gripcfg.c:696
+#: src/gripcfg.c:701
 msgid ""
 "Characters to not strip\n"
 "in filenames"
 msgstr ""
 
-#: src/gripcfg.c:701
+#: src/gripcfg.c:706
 msgid "Show tray icon"
 msgstr ""
 
-#: src/gripcfg.c:708
+#: src/gripcfg.c:713
 msgid "Misc"
 msgstr "Допълнителни"
 
-#: src/gripcfg.c:814
+#: src/gripcfg.c:819
 #, fuzzy
 msgid "Error: Unable to save ripper config."
 msgstr "Грешка: Запазването на конфигурационния файл е невъзможно"
 
-#: src/gripcfg.c:885
+#: src/gripcfg.c:890
 #, fuzzy
 msgid "Error: Unable to save encoder config."
 msgstr "Грешка: Запазването на конфигурационния файл е невъзможно"
@@ -773,32 +777,32 @@ msgstr "Изпраща запис чрез Ел. Поща към %s\n"
 msgid "System Message"
 msgstr "Системно Съобщение"
 
-#: src/discdb.c:206
+#: src/discdb.c:207
 #, c-format
 msgid "URI is %s\n"
 msgstr "Адресът е %s\n"
 
-#: src/discdb.c:286
+#: src/discdb.c:287
 #, c-format
 msgid "Query is [%s]\n"
 msgstr "Заявката е [%s]\n"
 
-#: src/discdb.c:744
+#: src/discdb.c:788
 #, c-format
 msgid "Stat error %d on %s\n"
 msgstr ""
 
-#: src/discdb.c:748
+#: src/discdb.c:792
 #, c-format
 msgid "Creating directory %s\n"
 msgstr "Създава директория %s\n"
 
-#: src/discdb.c:753
+#: src/discdb.c:797
 #, c-format
 msgid "Error: %s exists, but is a file\n"
 msgstr "Грешка: %s съществува, но е файл\n"
 
-#: src/discdb.c:760
+#: src/discdb.c:804
 #, c-format
 msgid "Error: Unable to open %s for writing\n"
 msgstr "Грешка: Не мога да отворя %s за да записвам\n"
@@ -936,7 +940,7 @@ msgid "Cancel"
 msgstr "Отказва"
 
 #. Doh!
-#: src/id3.c:290
+#: src/id3.c:291
 msgid "unknown ID3 field\n"
 msgstr "непознато ID3 поле\n"
 
@@ -946,7 +950,7 @@ msgid "Error: unable to translate filename. No such user as %s\n"
 msgstr ""
 "Грешка: не мога да преведа името на файла. Потребителят %s не същесвува\n"
 
-#: src/launch.c:293 src/rip.c:1533
+#: src/launch.c:315 src/rip.c:1535
 msgid "Exec failed\n"
 msgstr "Стартирането се провали\n"
 
@@ -1178,58 +1182,58 @@ msgstr "Извлича: Песен %d·(0.0x)"
 msgid "File %s has already been ripped. Skipping...\n"
 msgstr "Файлът %s вече е извлечен. Пропуска...\n"
 
-#: src/rip.c:1493 src/rip.c:1743
+#: src/rip.c:1493 src/rip.c:1745
 msgid "Out of space in output directory"
 msgstr "Няма достатъчно място на твърдия диск"
 
-#: src/rip.c:1567
+#: src/rip.c:1569
 msgid "Calling CDPRip\n"
 msgstr "Обръща се към CDPRip\n"
 
-#: src/rip.c:1653
+#: src/rip.c:1655
 #, c-format
 msgid "Added track %d to %s list\n"
 msgstr "Песента %d е добавена към списъка %s\n"
 
-#: src/rip.c:1679
+#: src/rip.c:1681
 msgid "No free cpus\n"
 msgstr "Няма свободни процесори\n"
 
-#: src/rip.c:1695
+#: src/rip.c:1697
 #, c-format
 msgid "Enc track %d\n"
 msgstr "Кодира песен %d\n"
 
-#: src/rip.c:1717
+#: src/rip.c:1719
 #, fuzzy
 msgid "No write access to write encoded file."
 msgstr "Няма права за запис на кодирания файл"
 
-#: src/rip.c:1728
+#: src/rip.c:1730
 #, c-format
 msgid "%i: Encoding to %s\n"
 msgstr ""
 
-#: src/rip.c:1732
+#: src/rip.c:1734
 #, c-format
 msgid "Enc: Trk %d (0.0x)"
 msgstr "Кодира: Песен %d·(0.0x)"
 
-#: src/rip.c:1796
+#: src/rip.c:1800
 msgid "In CalculateAll\n"
 msgstr ""
 
-#: src/rip.c:1802
+#: src/rip.c:1806
 msgid "We aren't ripping now, so let's zero encoding values\n"
 msgstr ""
 "Не се извлича нищо в момента, нека да занулим стойностите на кодиране\n"
 
-#: src/rip.c:1818
+#: src/rip.c:1822
 #, c-format
 msgid "Total rip size is: %d\n"
 msgstr "Общ размер на извлечената информация: %d\n"
 
-#: src/rip.c:1819
+#: src/rip.c:1823
 #, c-format
 msgid "Total enc size is: %d\n"
 msgstr "Общ размер на кодираната информация: %d\n"

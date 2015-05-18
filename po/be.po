@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: grip.be\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-01-29 11:31-0800\n"
+"POT-Creation-Date: 2005-06-25 11:23-0700\n"
 "PO-Revision-Date: 2003-06-29 14:38+0300\n"
 "Last-Translator: Vital Khilko <dojlid@mova.org>\n"
 "Language-Team: Belarusian <i18n@mova.org>\n"
@@ -18,70 +18,70 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: KBabel 1.0\n"
 
-#: src/main.c:55
+#: src/main.c:56
 msgid "Specify the geometry of the main window"
 msgstr "Пазначце геамэтрыю асноўнага акна"
 
-#: src/main.c:56
+#: src/main.c:57
 msgid "GEOMETRY"
 msgstr "ГЭАМЭТРЫЯ"
 
-#: src/main.c:64
+#: src/main.c:65
 msgid "Specify the config file to use (in your home dir)"
 msgstr "Пазначце файл канфігурацыі для выкарыстаньня (у вашай хатняй тэчцы)"
 
-#: src/main.c:65
+#: src/main.c:66
 msgid "CONFIG"
 msgstr "КАНФІГУРАЦЫЯ"
 
-#: src/main.c:73
+#: src/main.c:74
 msgid "Specify the cdrom device to use"
 msgstr "Пазначце прыладу cdrom"
 
-#: src/main.c:74 src/main.c:83
+#: src/main.c:75 src/main.c:84
 msgid "DEVICE"
 msgstr "ПРЫЛАДА"
 
-#: src/main.c:82
+#: src/main.c:83
 msgid "Specify the generic scsi device to use"
 msgstr "Пазначце прыладу scsi"
 
-#: src/main.c:91
+#: src/main.c:92
 msgid "Launch in \"small\" (cd-only) mode"
 msgstr "Загружаць у \"паменшаным\" рэжыме (толькі прайгравальнік)"
 
-#: src/main.c:100
+#: src/main.c:101
 msgid "\"Local\" mode -- do not look up disc info on the net"
 msgstr "\"Мясцовы\" рэжым - не праглядаць інфармацыю аб дыске ў сеціве"
 
-#: src/main.c:109
+#: src/main.c:110
 msgid "Do not do I/O redirection"
 msgstr ""
 
-#: src/main.c:118
+#: src/main.c:119
 msgid "Run in verbose (debug) mode"
 msgstr "Запусьціць у рэжыме адладкі"
 
-#: src/grip.c:180
+#: src/grip.c:181
 msgid "Grip"
 msgstr "Grip"
 
-#: src/grip.c:237
+#: src/grip.c:238
 #, c-format
 msgid "Error: Unable to initialize [%s]\n"
 msgstr "Памылка: Немагчыма ініцыялізаваць [%s]\n"
 
-#: src/grip.c:323
+#: src/grip.c:324
 msgid ""
 "This is a development version of Grip. If you encounter problems, you are "
 "encouraged to revert to the latest stable version."
 msgstr ""
 
-#: src/grip.c:329
+#: src/grip.c:330
 msgid "Grip started successfully\n"
 msgstr ""
 
-#: src/grip.c:343
+#: src/grip.c:344
 msgid ""
 "Work is in progress.\n"
 "Really shut down?"
@@ -89,70 +89,70 @@ msgstr ""
 "Праца ў прагрэсе.\n"
 "Сапраўды выйсьці?"
 
-#: src/grip.c:394
+#: src/grip.c:395
 #, fuzzy
 msgid "Status"
 msgstr "Стан запісу"
 
-#: src/grip.c:409
+#: src/grip.c:410
 msgid "General"
 msgstr ""
 
-#: src/grip.c:424 src/gripcfg.c:362 src/cdplay.c:251 src/cdplay.c:345
+#: src/grip.c:425 src/gripcfg.c:362 src/cdplay.c:251 src/cdplay.c:345
 #: src/rip.c:95
 msgid "Rip"
 msgstr "Запіс"
 
-#: src/grip.c:439 src/gripcfg.c:496
+#: src/grip.c:440 src/gripcfg.c:496
 msgid "Encode"
 msgstr "Кадаваньне"
 
-#: src/grip.c:484
+#: src/grip.c:485
 msgid "Help"
 msgstr "Дапамога"
 
-#: src/grip.c:489
+#: src/grip.c:490
 msgid "Table Of Contents"
 msgstr "Зьмест"
 
-#: src/grip.c:495
+#: src/grip.c:496
 msgid "Playing CDs"
 msgstr "Прайграваньне дыскаў"
 
-#: src/grip.c:501
+#: src/grip.c:502
 msgid "Ripping CDs"
 msgstr "Запіс з дыскаў"
 
-#: src/grip.c:507
+#: src/grip.c:508
 msgid "Configuring Grip"
 msgstr "Канфігураваньне Grip"
 
-#: src/grip.c:513
+#: src/grip.c:514
 msgid "FAQ"
 msgstr "FAQ"
 
-#: src/grip.c:519
+#: src/grip.c:520
 msgid "Getting More Help"
 msgstr "Атрыманьне дадатковых зьвестак"
 
-#: src/grip.c:525
+#: src/grip.c:526
 msgid "Reporting Bugs"
 msgstr "Дасланьне паведамленьняў аб памылках"
 
-#: src/grip.c:545
+#: src/grip.c:546
 msgid "About"
 msgstr "Пра праграму"
 
-#: src/grip.c:564
+#: src/grip.c:565
 #, c-format
 msgid "Version %s"
 msgstr ""
 
-#: src/grip.c:904
+#: src/grip.c:905
 msgid "Created by Grip"
 msgstr ""
 
-#: src/grip.c:920
+#: src/grip.c:922
 msgid ""
 "Your config file is out of date -- resetting to defaults.\n"
 "You will need to re-configure Grip.\n"
@@ -162,12 +162,12 @@ msgstr ""
 "Вы мусіце пераканфігураваць Grip.\n"
 "Ваш стары файл канфігурацыі будзе захаваны з канчаткам -old."
 
-#: src/grip.c:993
+#: src/grip.c:995
 #, c-format
 msgid "server is %s, port %d\n"
 msgstr "паслужнік %s, порт %d\n"
 
-#: src/grip.c:1014
+#: src/grip.c:1016
 #, fuzzy
 msgid "Error: Unable to save config file."
 msgstr "Памылка: Немагчыма захаваць файл канфігурацыі"
@@ -490,29 +490,33 @@ msgid "Allow high bits in filenames"
 msgstr ""
 
 #: src/gripcfg.c:691
-msgid "Do not change spaces to underscores"
+msgid "Replace incompatible characters by hexadecimal numbers"
 msgstr ""
 
 #: src/gripcfg.c:696
+msgid "Do not change spaces to underscores"
+msgstr ""
+
+#: src/gripcfg.c:701
 msgid ""
 "Characters to not strip\n"
 "in filenames"
 msgstr ""
 
-#: src/gripcfg.c:701
+#: src/gripcfg.c:706
 msgid "Show tray icon"
 msgstr ""
 
-#: src/gripcfg.c:708
+#: src/gripcfg.c:713
 msgid "Misc"
 msgstr "Рознае"
 
-#: src/gripcfg.c:814
+#: src/gripcfg.c:819
 #, fuzzy
 msgid "Error: Unable to save ripper config."
 msgstr "Памылка: Немагчыма захаваць файл канфігурацыі"
 
-#: src/gripcfg.c:885
+#: src/gripcfg.c:890
 #, fuzzy
 msgid "Error: Unable to save encoder config."
 msgstr "Памылка: Немагчыма захаваць файл канфігурацыі"
@@ -781,32 +785,32 @@ msgstr ""
 msgid "System Message"
 msgstr "Сыстэмнае паведамленьне"
 
-#: src/discdb.c:206
+#: src/discdb.c:207
 #, c-format
 msgid "URI is %s\n"
 msgstr "URI %s\n"
 
-#: src/discdb.c:286
+#: src/discdb.c:287
 #, c-format
 msgid "Query is [%s]\n"
 msgstr "Запыт [%s]\n"
 
-#: src/discdb.c:744
+#: src/discdb.c:788
 #, c-format
 msgid "Stat error %d on %s\n"
 msgstr "Памылка стану %d на %s\n"
 
-#: src/discdb.c:748
+#: src/discdb.c:792
 #, c-format
 msgid "Creating directory %s\n"
 msgstr "Стварэньне каталёга %s\n"
 
-#: src/discdb.c:753
+#: src/discdb.c:797
 #, c-format
 msgid "Error: %s exists, but is a file\n"
 msgstr "Памылка: %s існуе, але гэта файл\n"
 
-#: src/discdb.c:760
+#: src/discdb.c:804
 #, c-format
 msgid "Error: Unable to open %s for writing\n"
 msgstr "Памылка: Немагчыма адкрыць %s для запісу\n"
@@ -937,7 +941,7 @@ msgid "Cancel"
 msgstr "Адмяніць"
 
 #. Doh!
-#: src/id3.c:290
+#: src/id3.c:291
 msgid "unknown ID3 field\n"
 msgstr "невядомае поле ID3\n"
 
@@ -947,7 +951,7 @@ msgid "Error: unable to translate filename. No such user as %s\n"
 msgstr ""
 "Памылка: Немагчыма перакласьці назву файла. Адсутнічае карыстальнік як %s\n"
 
-#: src/launch.c:293 src/rip.c:1533
+#: src/launch.c:315 src/rip.c:1535
 msgid "Exec failed\n"
 msgstr "Збой выкананьня\n"
 
@@ -1184,57 +1188,57 @@ msgstr "Запіс: Трк %d (0.0x)"
 msgid "File %s has already been ripped. Skipping...\n"
 msgstr "Файл %s ужо быў запісаны. Прапускаецца...\n"
 
-#: src/rip.c:1493 src/rip.c:1743
+#: src/rip.c:1493 src/rip.c:1745
 msgid "Out of space in output directory"
 msgstr "Недахоп прасторы ў каталёге для вываду"
 
-#: src/rip.c:1567
+#: src/rip.c:1569
 msgid "Calling CDPRip\n"
 msgstr "Выклік CDPRip\n"
 
-#: src/rip.c:1653
+#: src/rip.c:1655
 #, fuzzy, c-format
 msgid "Added track %d to %s list\n"
 msgstr "Даданьне трэка %d да сьпіса кадаваньня\n"
 
-#: src/rip.c:1679
+#: src/rip.c:1681
 msgid "No free cpus\n"
 msgstr "Няма вольных працэсараў\n"
 
-#: src/rip.c:1695
+#: src/rip.c:1697
 #, c-format
 msgid "Enc track %d\n"
 msgstr "Кадаваньне трэка %d\n"
 
-#: src/rip.c:1717
+#: src/rip.c:1719
 #, fuzzy
 msgid "No write access to write encoded file."
 msgstr "Недахоп правоў для запісу кадаванага файла"
 
-#: src/rip.c:1728
+#: src/rip.c:1730
 #, c-format
 msgid "%i: Encoding to %s\n"
 msgstr "%i: Кадаваньне ў %s\n"
 
-#: src/rip.c:1732
+#: src/rip.c:1734
 #, c-format
 msgid "Enc: Trk %d (0.0x)"
 msgstr "Кадаваньне: Трк %d (0.0x)"
 
-#: src/rip.c:1796
+#: src/rip.c:1800
 msgid "In CalculateAll\n"
 msgstr ""
 
-#: src/rip.c:1802
+#: src/rip.c:1806
 msgid "We aren't ripping now, so let's zero encoding values\n"
 msgstr ""
 
-#: src/rip.c:1818
+#: src/rip.c:1822
 #, c-format
 msgid "Total rip size is: %d\n"
 msgstr "Агульны памер запісанага: %d\n"
 
-#: src/rip.c:1819
+#: src/rip.c:1823
 #, c-format
 msgid "Total enc size is: %d\n"
 msgstr "Агульны памер кадаванага: %d\n"

@@ -208,7 +208,8 @@ typedef struct _id3_tag {
   char artist[30];
   char album[30];
   char year[4];
-  char comment[29];
+  char comment[28];
+  unsigned char id3v1_1_mark;
   unsigned char tracknum;
   unsigned char genre;
 } ID3v1Tag;
@@ -303,8 +304,8 @@ gboolean ID3v2TagFile(char *filename, char *title, char *artist, char *album,
 
             /* Always encode pretending it is ascii */
             
-            conv_str=g_convert(c_data,strlen(c_data),id3v2_encoding,
-                               "utf-8",&rb,&wb,NULL);
+            conv_str=g_convert_with_fallback(c_data,strlen(c_data),id3v2_encoding,
+                               "utf-8",NULL,&rb,&wb,NULL);
             
             if(!conv_str) {
               printf("***convert failed\n");
@@ -379,7 +380,9 @@ gboolean ID3v1TagFile(char *filename,char *title,char *artist,char *album,
 
   ID3Put(tag.year,year,4,NULL);
 
-  ID3Put(tag.comment,comment,29,id3_encoding);
+  ID3Put(tag.comment,comment,28,id3_encoding);
+
+  tag.id3v1_1_mark = 0U;
 
   tag.tracknum=tracknum;
   tag.genre=genre;
@@ -401,7 +404,7 @@ static void ID3Put(char *dest,char *src,int len,char *encoding)
   gsize rb,wb;
 
   if(encoding&&strcasecmp(encoding,"utf-8")) {
-    conv_str=g_convert(src,strlen(src),encoding,"utf-8",&rb,&wb,NULL);
+    conv_str=g_convert_with_fallback(src,strlen(src),encoding,"utf-8",NULL,&rb,&wb,NULL);
 
     if(!conv_str) conv_str=strdup(src);
   }

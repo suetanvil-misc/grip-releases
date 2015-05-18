@@ -46,6 +46,7 @@
 
 extern char *Program;
 static char *StrConvertEncoding(char *str,char *from,char *to,int max_len);
+gboolean DiscDBUTF8Validate(const DiscInfo *disc,const DiscData *data);
 static void DiscDBConvertEncoding(DiscInfo *disc,DiscData *data,
                                   char *from,char *to);
 static int DiscDBSum(int val);
@@ -319,7 +320,9 @@ gboolean DiscDBDoQuery(DiscInfo *disc,DiscDBServer *server,
     query->query_match=MATCH_EXACT;
     query->query_matches=0;
 
-    while((inbuffer=DiscDBReadLine(&dataptr))) {
+
+    while(query->query_matches < MAX_INEXACT_MATCHES &&
+          (inbuffer=DiscDBReadLine(&dataptr))) {
       query->query_list[query->query_matches].list_genre=
 	DiscDBGenreValue(g_strstrip(strtok(inbuffer," ")));
       
@@ -339,7 +342,8 @@ gboolean DiscDBDoQuery(DiscInfo *disc,DiscDBServer *server,
     query->query_match=MATCH_INEXACT;
     query->query_matches=0;
 
-    while((inbuffer=DiscDBReadLine(&dataptr))) {
+    while(query->query_matches < MAX_INEXACT_MATCHES &&
+          (inbuffer=DiscDBReadLine(&dataptr))) {
       query->query_list[query->query_matches].list_genre=
 	DiscDBGenreValue(g_strstrip(strtok(inbuffer," ")));
       
@@ -397,13 +401,15 @@ static void DiscDBProcessLine(char *inbuffer,DiscData *data,
   int len=0;
   char *st;
 
+  strtok(inbuffer,"\n\r");
+
   if(!strncasecmp(inbuffer,"# Revision: ",12)) {
     data->revision=atoi(inbuffer+12);
   }
   else if(!strncasecmp(inbuffer,"DTITLE",6)) {
     len=strlen(data->data_title);
 
-    g_snprintf(data->data_title+len,256-len,"%s",g_strstrip(inbuffer+7));
+    g_snprintf(data->data_title+len,256-len,"%s",inbuffer+7);
   }
   else if(!strncasecmp(inbuffer,"DYEAR",5)) {
     strtok(inbuffer,"=");
@@ -424,8 +430,8 @@ static void DiscDBProcessLine(char *inbuffer,DiscData *data,
     st=g_strstrip(st);
 
     if(*st) {
-      data->data_genre=DiscDBGenreValue(g_strstrip(st));
-      data->data_id3genre=ID3GenreValue(g_strstrip(st));
+      data->data_genre=DiscDBGenreValue(st);
+      data->data_id3genre=ID3GenreValue(st);
     }
   }
   else if(!strncasecmp(inbuffer,"DID3",4)) {
@@ -443,8 +449,12 @@ static void DiscDBProcessLine(char *inbuffer,DiscData *data,
     if(track<numtracks)
       len=strlen(data->data_track[track].track_name);
 
+    st = strtok(NULL, "");
+    if(st == NULL)
+        return;    
+    
     g_snprintf(data->data_track[track].track_name+len,256-len,"%s",
-	    g_strstrip(strtok(NULL,"")));
+	    st);
   }
   else if(!strncasecmp(inbuffer,"TARTIST",7)) {
     data->data_multi_artist=TRUE;
@@ -459,12 +469,12 @@ static void DiscDBProcessLine(char *inbuffer,DiscData *data,
         return;    
     
     g_snprintf(data->data_track[track].track_artist+len,256-len,"%s",
-	    g_strstrip(st));
+	    st);
   }
   else if(!strncasecmp(inbuffer,"EXTD",4)) {
     len=strlen(data->data_extended);
 
-    g_snprintf(data->data_extended+len,4096-len,"%s",g_strstrip(inbuffer+5));
+    g_snprintf(data->data_extended+len,4096-len,"%s",inbuffer+5);
   }
   else if(!strncasecmp(inbuffer,"EXTT",4)) {
     track=atoi(strtok(inbuffer+4,"="));
@@ -477,12 +487,12 @@ static void DiscDBProcessLine(char *inbuffer,DiscData *data,
         return;
     
     g_snprintf(data->data_track[track].track_extended+len,4096-len,"%s",
-	    g_strstrip(st));
+	    st);
   }
   else if(!strncasecmp(inbuffer,"PLAYORDER",5)) {
     len=strlen(data->data_playlist);
 
-    g_snprintf(data->data_playlist+len,256-len,"%s",g_strstrip(inbuffer+10));
+    g_snprintf(data->data_playlist+len,256-len,"%s",inbuffer+10);
   }
 }
 
@@ -493,7 +503,7 @@ static char *StrConvertEncoding(char *str,char *from,char *to,int max_len)
 
   if(!str) return NULL;
 
-  conv_str=g_convert(str,strlen(str),to,from,&rb,&wb,NULL);
+  conv_str=g_convert_with_fallback(str,strlen(str),to,from,NULL,&rb,&wb,NULL);
 
   if(!conv_str) return str;
 
@@ -503,6 +513,32 @@ static char *StrConvertEncoding(char *str,char *from,char *to,int max_len)
 
   return str;
 }
+
+gboolean DiscDBUTF8Validate(const DiscInfo *disc,const DiscData *data)
+{
+  int track;
+
+  if(data->data_title && !g_utf8_validate(data->data_title,-1,NULL))
+    return FALSE;
+  if(data->data_artist && !g_utf8_validate(data->data_artist,-1,NULL))
+    return FALSE;
+  if(data->data_extended && !g_utf8_validate(data->data_extended,-1,NULL))
+    return FALSE;
+
+  for(track=0;track<disc->num_tracks;track++) {
+  if(data->data_track[track].track_name
+     && !g_utf8_validate(data->data_track[track].track_name,-1,NULL))
+    return FALSE;
+  if(data->data_track[track].track_artist
+     && !g_utf8_validate(data->data_track[track].track_artist,-1,NULL))
+    return FALSE;
+  if(data->data_track[track].track_extended
+     && !g_utf8_validate(data->data_track[track].track_extended,-1,NULL))
+    return FALSE;
+  }
+  return TRUE;
+}
+
 
 static void DiscDBConvertEncoding(DiscInfo *disc,DiscData *data,
                                   char *from,char *to)
@@ -622,7 +658,7 @@ gboolean DiscDBStatDiscData(DiscInfo *disc)
 
 /* Read from the local database */
 
-int DiscDBReadDiscData(DiscInfo *disc,DiscData *ddata)
+int DiscDBReadDiscData(DiscInfo *disc,DiscData *ddata, const char *encoding)
 {
   FILE *discdb_data=NULL;
   int index,genre;
@@ -687,6 +723,11 @@ int DiscDBReadDiscData(DiscInfo *disc,DiscData *ddata)
 
   DiscDBParseTitle(ddata->data_title,ddata->data_title,ddata->data_artist,"/");
 
+  if(!DiscDBUTF8Validate(disc,ddata)) {
+    DiscDBConvertEncoding(disc,ddata,strcasecmp(encoding,"UTF-8")?
+				     encoding:"ISO-8859-1","UTF-8");
+  }
+
   fclose(discdb_data);
   
   return 0;
@@ -695,31 +736,34 @@ int DiscDBReadDiscData(DiscInfo *disc,DiscData *ddata)
 static void DiscDBWriteLine(char *header,int num,char *data,FILE *outfile,
                             char *encoding)
 {
-  int len;
-  char *offset;
+  char *offset, *next, *chunk;
 
   if(strcasecmp(encoding,"utf-8")) {
     StrConvertEncoding(data,"utf-8",encoding,512);
   }
 
-  len=strlen(data);
   offset=data;
 
-  for(;;) {
-    if(len>70) {
-      if(num==-1)
-	fprintf(outfile,"%s=%.70s\n",header,offset);
-      else fprintf(outfile,"%s%d=%.70s\n",header,num,offset);
-
-      offset+=70;
-      len-=70;
+  do {
+    for(next=offset; next-offset<65&&*next; ) {
+      if (*next=='\\'&&*(next+1)) {
+	next+=2;
+      }
+      else if(!strcasecmp(encoding,"utf-8")) {
+	next=g_utf8_find_next_char(next,NULL);
+      }
+      else {
+	next++;
+      }
     }
-    else {
-      if(num==-1) fprintf(outfile,"%s=%s\n",header,offset);
-      else fprintf(outfile,"%s%d=%s\n",header,num,offset);
-      break;
-    }
-  }
+    chunk=g_strndup(offset,(gsize)(next-offset));
+    if(num==-1)
+      fprintf(outfile,"%s=%s\n",header,chunk);
+    else
+      fprintf(outfile,"%s%d=%s\n",header,num,chunk);
+    g_free(chunk);
+    offset=next;
+  } while (*offset);
 }
 
 

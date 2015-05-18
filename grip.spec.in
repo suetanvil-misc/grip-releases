@@ -24,6 +24,9 @@ Requires: libghttp
 BuildRequires: gnome-libs-devel
 BuildRequires: gcc-c++
 BuildRequires: libghttp-devel
+BuildRequires: libgnomeui-devel
+BuildRequires: vte-devel
+BuildRequires: cdparanoia-devel
 Epoch: 1
 
 %description

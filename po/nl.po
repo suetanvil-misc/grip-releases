@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: nl\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-01-29 11:31-0800\n"
+"POT-Creation-Date: 2005-06-25 11:23-0700\n"
 "PO-Revision-Date: 2004-07-29 11:16+0200\n"
 "Last-Translator: Sander Brabander <sanderfox@quicknet.nl>\n"
 "Language-Team: Dutch\n"
@@ -16,60 +16,60 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: src/main.c:55
+#: src/main.c:56
 msgid "Specify the geometry of the main window"
 msgstr "Geef de afmetingen van het hoofdscherm op"
 
-#: src/main.c:56
+#: src/main.c:57
 msgid "GEOMETRY"
 msgstr "AFMETINGEN"
 
-#: src/main.c:64
+#: src/main.c:65
 msgid "Specify the config file to use (in your home dir)"
 msgstr "Geef het configuratiebestand op dat u wilt gebruiken (in uw home map)"
 
-#: src/main.c:65
+#: src/main.c:66
 msgid "CONFIG"
 msgstr "CONFIGURATIE"
 
-#: src/main.c:73
+#: src/main.c:74
 msgid "Specify the cdrom device to use"
 msgstr "Geef het cdrom apparaat op dat u wilt gebuiken"
 
-#: src/main.c:74 src/main.c:83
+#: src/main.c:75 src/main.c:84
 msgid "DEVICE"
 msgstr "APPARAAT"
 
-#: src/main.c:82
+#: src/main.c:83
 msgid "Specify the generic scsi device to use"
 msgstr "Geef het algemene scsi apparaat op dat u wilt gebruiken"
 
-#: src/main.c:91
+#: src/main.c:92
 msgid "Launch in \"small\" (cd-only) mode"
 msgstr "Start in \"kleine\" (alleen cd) modus"
 
-#: src/main.c:100
+#: src/main.c:101
 msgid "\"Local\" mode -- do not look up disc info on the net"
 msgstr "\"Locale\" modus -- zoek geen schijf info op het internet op"
 
-#: src/main.c:109
+#: src/main.c:110
 msgid "Do not do I/O redirection"
 msgstr "Gebruik geen I/O omleiding"
 
-#: src/main.c:118
+#: src/main.c:119
 msgid "Run in verbose (debug) mode"
 msgstr "Draai in verbale (debug) modus"
 
-#: src/grip.c:180
+#: src/grip.c:181
 msgid "Grip"
 msgstr "Grip"
 
-#: src/grip.c:237
+#: src/grip.c:238
 #, c-format
 msgid "Error: Unable to initialize [%s]\n"
 msgstr "Fout: Niet in staat om [%s] te starten\n"
 
-#: src/grip.c:323
+#: src/grip.c:324
 msgid ""
 "This is a development version of Grip. If you encounter problems, you are "
 "encouraged to revert to the latest stable version."
@@ -77,11 +77,11 @@ msgstr ""
 "Dit is een ontwikkelingsversie van Grip, als u problemen tegenkomt, word u "
 "aangemoedigd om terug te vallen op de laatste stabiele versie."
 
-#: src/grip.c:329
+#: src/grip.c:330
 msgid "Grip started successfully\n"
 msgstr "Grip is succesvol gestart\n"
 
-#: src/grip.c:343
+#: src/grip.c:344
 msgid ""
 "Work is in progress.\n"
 "Really shut down?"
@@ -89,69 +89,69 @@ msgstr ""
 "Werk is in uitvoering.\n"
 "Weet u zeker dat u wilt afsluiten?"
 
-#: src/grip.c:394
+#: src/grip.c:395
 msgid "Status"
 msgstr "Status"
 
-#: src/grip.c:409
+#: src/grip.c:410
 msgid "General"
 msgstr "Algemeen"
 
-#: src/grip.c:424 src/gripcfg.c:362 src/cdplay.c:251 src/cdplay.c:345
+#: src/grip.c:425 src/gripcfg.c:362 src/cdplay.c:251 src/cdplay.c:345
 #: src/rip.c:95
 msgid "Rip"
 msgstr "Rippen"
 
-#: src/grip.c:439 src/gripcfg.c:496
+#: src/grip.c:440 src/gripcfg.c:496
 msgid "Encode"
 msgstr "Coderen"
 
-#: src/grip.c:484
+#: src/grip.c:485
 msgid "Help"
 msgstr "Help"
 
-#: src/grip.c:489
+#: src/grip.c:490
 msgid "Table Of Contents"
 msgstr "Inhoudsopgave"
 
-#: src/grip.c:495
+#: src/grip.c:496
 msgid "Playing CDs"
 msgstr "CD's afspelen"
 
-#: src/grip.c:501
+#: src/grip.c:502
 msgid "Ripping CDs"
 msgstr "CD's rippen"
 
-#: src/grip.c:507
+#: src/grip.c:508
 msgid "Configuring Grip"
 msgstr "Grip configureren"
 
-#: src/grip.c:513
+#: src/grip.c:514
 msgid "FAQ"
 msgstr "FAQ"
 
-#: src/grip.c:519
+#: src/grip.c:520
 msgid "Getting More Help"
 msgstr "Meer hulp krijgen"
 
-#: src/grip.c:525
+#: src/grip.c:526
 msgid "Reporting Bugs"
 msgstr "Bugs rapporteren"
 
-#: src/grip.c:545
+#: src/grip.c:546
 msgid "About"
 msgstr "Over"
 
-#: src/grip.c:564
+#: src/grip.c:565
 #, c-format
 msgid "Version %s"
 msgstr "Versie %s"
 
-#: src/grip.c:904
+#: src/grip.c:905
 msgid "Created by Grip"
 msgstr "Gemaakt door Grip"
 
-#: src/grip.c:920
+#: src/grip.c:922
 msgid ""
 "Your config file is out of date -- resetting to defaults.\n"
 "You will need to re-configure Grip.\n"
@@ -162,12 +162,12 @@ msgstr ""
 "U zal Grip opnieuw moeten configureren.\n"
 "Uw oude configuratie bestand is opgeslagen met -old eraan toegevoegd."
 
-#: src/grip.c:993
+#: src/grip.c:995
 #, c-format
 msgid "server is %s, port %d\n"
 msgstr "server is %s, poort %d\n"
 
-#: src/grip.c:1014
+#: src/grip.c:1016
 #, fuzzy
 msgid "Error: Unable to save config file."
 msgstr "Fout: Niet in staat om het configuratie bestand op te slaan"
@@ -481,10 +481,14 @@ msgid "Allow high bits in filenames"
 msgstr "Sta hoge bits in bestandsnamen toe"
 
 #: src/gripcfg.c:691
+msgid "Replace incompatible characters by hexadecimal numbers"
+msgstr ""
+
+#: src/gripcfg.c:696
 msgid "Do not change spaces to underscores"
 msgstr "Verander spaties niet naar lage streepjes"
 
-#: src/gripcfg.c:696
+#: src/gripcfg.c:701
 msgid ""
 "Characters to not strip\n"
 "in filenames"
@@ -492,20 +496,20 @@ msgstr ""
 "Tekens om niet te strippen\n"
 "in bestandsnamen"
 
-#: src/gripcfg.c:701
+#: src/gripcfg.c:706
 msgid "Show tray icon"
 msgstr ""
 
-#: src/gripcfg.c:708
+#: src/gripcfg.c:713
 msgid "Misc"
 msgstr "Diversen"
 
-#: src/gripcfg.c:814
+#: src/gripcfg.c:819
 #, fuzzy
 msgid "Error: Unable to save ripper config."
 msgstr "Fout: Niet in staat om ripper configuratie op te slaan"
 
-#: src/gripcfg.c:885
+#: src/gripcfg.c:890
 #, fuzzy
 msgid "Error: Unable to save encoder config."
 msgstr "Fout: Niet in staat om coderingsconfiguratie op te slaan"
@@ -775,32 +779,32 @@ msgstr "Bezig het item te mailen naar %s\n"
 msgid "System Message"
 msgstr "Systeemmelding"
 
-#: src/discdb.c:206
+#: src/discdb.c:207
 #, c-format
 msgid "URI is %s\n"
 msgstr "URI is %s\n"
 
-#: src/discdb.c:286
+#: src/discdb.c:287
 #, c-format
 msgid "Query is [%s]\n"
 msgstr "Verzoek is [%s]\n"
 
-#: src/discdb.c:744
+#: src/discdb.c:788
 #, c-format
 msgid "Stat error %d on %s\n"
 msgstr "Stat fout %d op %s\n"
 
-#: src/discdb.c:748
+#: src/discdb.c:792
 #, c-format
 msgid "Creating directory %s\n"
 msgstr "Bezig met het maken van map %s\n"
 
-#: src/discdb.c:753
+#: src/discdb.c:797
 #, c-format
 msgid "Error: %s exists, but is a file\n"
 msgstr "Fout: %s bestaat, maar is een bestand\n"
 
-#: src/discdb.c:760
+#: src/discdb.c:804
 #, c-format
 msgid "Error: Unable to open %s for writing\n"
 msgstr "Fout: Niet in staat %s te openen om te schrijven\n"
@@ -938,7 +942,7 @@ msgid "Cancel"
 msgstr "Annuleer"
 
 #. Doh!
-#: src/id3.c:290
+#: src/id3.c:291
 msgid "unknown ID3 field\n"
 msgstr "onbekend ID3 veld\n"
 
@@ -948,7 +952,7 @@ msgid "Error: unable to translate filename. No such user as %s\n"
 msgstr ""
 "Fout: niet in staat om bestandsnaam te vertalen. Geen gebruiker als %s\n"
 
-#: src/launch.c:293 src/rip.c:1533
+#: src/launch.c:315 src/rip.c:1535
 msgid "Exec failed\n"
 msgstr "Uitvoering mislukt\n"
 
@@ -1183,58 +1187,58 @@ msgstr "Rip: Nr %d (0.0x)"
 msgid "File %s has already been ripped. Skipping...\n"
 msgstr "Bestand %s is al geript. Aan het overslaan...\n"
 
-#: src/rip.c:1493 src/rip.c:1743
+#: src/rip.c:1493 src/rip.c:1745
 msgid "Out of space in output directory"
 msgstr "Geen ruimte meer in uitvoer map"
 
-#: src/rip.c:1567
+#: src/rip.c:1569
 msgid "Calling CDPRip\n"
 msgstr "Bezig met aanroepen van CDPRip\n"
 
-#: src/rip.c:1653
+#: src/rip.c:1655
 #, c-format
 msgid "Added track %d to %s list\n"
 msgstr "Nummer %d toegevoegd aan %s lijst\n"
 
-#: src/rip.c:1679
+#: src/rip.c:1681
 msgid "No free cpus\n"
 msgstr "Geen vrije cpu's\n"
 
-#: src/rip.c:1695
+#: src/rip.c:1697
 #, c-format
 msgid "Enc track %d\n"
 msgstr "Codeer nummer %d\n"
 
-#: src/rip.c:1717
+#: src/rip.c:1719
 #, fuzzy
 msgid "No write access to write encoded file."
 msgstr "Geen schrijf toegang om gecodeerde bestand te schrijven"
 
-#: src/rip.c:1728
+#: src/rip.c:1730
 #, c-format
 msgid "%i: Encoding to %s\n"
 msgstr "%i: Bezig met coderen naar %s\n"
 
-#: src/rip.c:1732
+#: src/rip.c:1734
 #, c-format
 msgid "Enc: Trk %d (0.0x)"
 msgstr "Cod: Nr %d (0.0x)"
 
-#: src/rip.c:1796
+#: src/rip.c:1800
 msgid "In CalculateAll\n"
 msgstr "In BerekenAlles\n"
 
-#: src/rip.c:1802
+#: src/rip.c:1806
 msgid "We aren't ripping now, so let's zero encoding values\n"
 msgstr ""
 "We rippen nu niet, dus laten we de codeer waarden maar naar nul zetten\n"
 
-#: src/rip.c:1818
+#: src/rip.c:1822
 #, c-format
 msgid "Total rip size is: %d\n"
 msgstr "Totale rip grootte is: %d\n"
 
-#: src/rip.c:1819
+#: src/rip.c:1823
 #, c-format
 msgid "Total enc size is: %d\n"
 msgstr "Totale codeer grootte is: %d\n"

@@ -22,6 +22,7 @@
 
 #include <config.h>
 #include <gnome.h>
+#include <stdlib.h>
 
 #include "grip.h"
 
@@ -164,6 +165,7 @@ int Cmain(int argc, char* argv[])
 		     GNOME_PROGRAM_STANDARD_PROPERTIES,NULL);
 
   bind_textdomain_codeset(GETTEXT_PACKAGE, "UTF8");
+  setenv("CHARSET","UTF-8",1);
 
   /* Session Management */
   

@@ -27,6 +27,7 @@
 typedef struct {
   gboolean no_underscore;
   gboolean allow_high_bits;
+  gboolean escape;
   gboolean no_lower_case;
   char allow_these_chars[256];
 } StrTransPrefs;
@@ -36,12 +37,15 @@ void TranslateString(char *instr,GString *outstr,
 		     char *(*trans_func)(char,void *,gboolean *),
 		     void *user_data,gboolean do_munge_default,
 		     StrTransPrefs *prefs);
+char *ReallocStrcat(char *dest, const char *src);
 char *MungeString(char *str,StrTransPrefs *prefs);
 int MakeTranslatedArgs(char *str,GString **args,int maxargs,
 		       char *(*trans_func)(char,void *,gboolean *),
 		       void *user_data,gboolean do_munge_default,
 		       StrTransPrefs *prefs);
+/*
 void ArgsToLocale(GString **args);
+*/
 void TranslateAndLaunch(char *cmd,char *(*trans_func)(char,void *,gboolean *),
 			void *user_data,gboolean do_munge_default,
 			StrTransPrefs *prefs,void (*close_func)(void *),
