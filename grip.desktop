@@ -17,3 +17,4 @@ Comment[zh_TW.Big5]=Grip è®<93>æ<82>¨è¼<95>é¬<86>è£½ä½<9C> MP3 æª<94>
 Exec=grip
 Icon=gripicon.png
 Type=Application
+Categories=Application;AudioVideo;

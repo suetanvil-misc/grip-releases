@@ -44,8 +44,8 @@
 #define size16 short
 #define size32 int
 
-#include <cdda_interface.h>
-#include <cdda_paranoia.h>
+#include <cdda/cdda_interface.h>
+#include <cdda/cdda_paranoia.h>
 
 static void PutNum(long num,int f,int endianness,int bytes);
 static void WriteWav(int f,long bytes);
@@ -281,8 +281,6 @@ gboolean CDPRip(char *device,char *generic_scsi_device,int track,
 
   global_rip_smile_level=rip_smile_level;
   global_output_fp=output_fp;
-
-  fprintf(output_fp,"Here\n");
 
   /* Query the cdrom/disc; */
 

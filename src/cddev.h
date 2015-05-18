@@ -85,6 +85,7 @@ typedef struct _disc_volume {
 
 
 gboolean CDInitDevice(char *device_name,DiscInfo *disc);
+gboolean CDCloseDevice(DiscInfo *disc);
 gboolean CDStat(DiscInfo *disc,gboolean read_toc);
 gboolean IsDataTrack(DiscInfo *disc,int track);
 gboolean CDPlayFrames(DiscInfo *disc,int startframe,int endframe);

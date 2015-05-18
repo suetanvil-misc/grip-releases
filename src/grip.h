@@ -46,7 +46,7 @@
 
 #define RRand(range) (random()%(range))
 
-#if defined(__linux__) || defined(__FreeBSD__) || defined(__osf__)  /* __osf__ ?? */
+#if defined(__linux__) || defined(__FreeBSD__) || defined(__NetBSD__) || defined(__osf__)  /* __osf__ ?? */
 
 #define MAILER "/usr/sbin/sendmail -i -t"
 
@@ -306,6 +306,7 @@ typedef struct _grip_info {
   gboolean doid3;
   gboolean doid3v2;
   gboolean tag_mp3_only;
+  gboolean tag_unicode;
   char id3_comment[30];
   char cdupdate[256];
   StrTransPrefs sprefs;

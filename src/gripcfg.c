@@ -505,6 +505,11 @@ void MakeConfigPage(GripInfo *ginfo)
   gtk_box_pack_start(GTK_BOX(vbox),entry,FALSE,FALSE,0);
   gtk_widget_show(entry);
 
+  check=MakeCheckButton(NULL,&ginfo->tag_unicode,
+			_("Write tags in unicode"));
+  gtk_box_pack_start(GTK_BOX(vbox),check,FALSE,FALSE,0);
+  gtk_widget_show(check);
+
   entry=MakeStrEntry(NULL,ginfo->id3_encoding,
 		     _("ID3v1 Character set encoding"),16,TRUE);
   gtk_box_pack_start(GTK_BOX(vbox),entry,FALSE,FALSE,0);

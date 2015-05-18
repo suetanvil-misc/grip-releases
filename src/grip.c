@@ -82,6 +82,7 @@ void DoSaveConfig(GripInfo *ginfo);
 {"doid3",CFG_ENTRY_BOOL,0,&ginfo->doid3},\
 {"doid3v2",CFG_ENTRY_BOOL,0,&ginfo->doid3v2},\
 {"tag_mp3_only",CFG_ENTRY_BOOL,0,&ginfo->tag_mp3_only},\
+{"tag_unicode",CFG_ENTRY_BOOL,0,&ginfo->tag_unicode},\
 {"id3_comment",CFG_ENTRY_STRING,30,ginfo->id3_comment},\
 {"max_wavs",CFG_ENTRY_INT,0,&ginfo->max_wavs},\
 {"auto_rip",CFG_ENTRY_BOOL,0,&ginfo->auto_rip},\
@@ -707,7 +708,7 @@ static void DoLoadConfig(GripInfo *ginfo)
   ginfo->auto_eject_countdown=0;
   ginfo->current_discid=0;
   ginfo->volume=255;
-#if defined(__FreeBSD__)
+#if defined(__FreeBSD__) || defined(__NetBSD__)
   ginfo->poll_drive=FALSE;
   ginfo->poll_interval=15;
 #else
@@ -829,6 +830,7 @@ static void DoLoadConfig(GripInfo *ginfo)
   ginfo->doid3=TRUE;
   ginfo->doid3=FALSE;
   ginfo->tag_mp3_only=TRUE;
+  ginfo->tag_unicode=FALSE;
   strcpy(ginfo->id3_comment,"Created by Grip");
   *ginfo->cdupdate='\0';
   ginfo->sprefs.no_lower_case=FALSE;

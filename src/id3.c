@@ -223,9 +223,9 @@ static ID3_FrameID frameids[ NUM_FRAMES ] = {
 };
 /* End of the section you're supposed to mess with */
 
-gboolean ID3v2TagFile( char *filename, char *title, char *artist, char *album,
-		       char *year, char *comment, unsigned char genre, unsigned
-		       char tracknum, char *discdb_encoding)
+gboolean ID3v2TagFile(char *filename, char *title, char *artist, char *album,
+		      char *year, char *comment, unsigned char genre, unsigned
+		      char tracknum,gboolean do_unicode,char *discdb_encoding)
 {
   ID3Tag *tag;
   ID3Field *field;
@@ -288,15 +288,23 @@ gboolean ID3v2TagFile( char *filename, char *title, char *artist, char *album,
 	  break;
 	}
 	
-	if ( c_data != NULL ) {
+	if(c_data != NULL) {
 	  field = ID3Frame_GetField( frames[i], ID3FN_TEXT );
-	  if ( field ) {
-  	    conv_str=g_convert(c_data,strlen(c_data),
-      		               "utf-8",discdb_encoding,&rb,&wb,NULL);
-    	    if(!conv_str)
-      	      conv_str=g_strdup(c_data);
-            ID3Field_SetUNICODE( field, conv_str );
-            g_free(conv_str);
+
+	  if(field) {
+	    if(do_unicode) {
+	      conv_str=g_convert(c_data,strlen(c_data),
+				 "utf-8",discdb_encoding,&rb,&wb,NULL);
+	      if(!conv_str)
+		conv_str=g_strdup(c_data);
+
+	      ID3Field_SetUNICODE( field, conv_str );
+
+	      g_free(conv_str);
+	    }
+	    else {
+	      ID3Field_SetASCII(field,c_data);
+	    }
 	  } else {
 	    retval = FALSE;
 	  }
@@ -345,7 +353,7 @@ gboolean ID3v2TagFile( char *filename, char *title, char *artist, char *album,
 gboolean ID3v1TagFile(char *filename,char *title,char *artist,char *album,
 		      char *year,char *comment,unsigned char genre,
 		      unsigned char tracknum, char *id3_encoding,
- 		      char *discdb_encoding)
+ 		      gboolean do_unicode,char *discdb_encoding)
 {
   FILE *fp;
   ID3v1Tag tag;
@@ -355,31 +363,56 @@ gboolean ID3v1TagFile(char *filename,char *title,char *artist,char *album,
   fp=fopen(filename,"a");
 
   ID3Put(tag.tag,"TAG",3);
-  conv_str=g_convert(title,strlen(title),
-                     id3_encoding,discdb_encoding,&rb,&wb,NULL);
-  if(!conv_str)
-    conv_str=g_strdup(title);
-  ID3Put(tag.title,conv_str,30);
-  g_free(conv_str);
-  conv_str=g_convert(artist,strlen(artist),
-                     id3_encoding,discdb_encoding,&rb,&wb,NULL);
-  if(!conv_str)
-    conv_str=g_strdup(artist);
-  ID3Put(tag.artist,conv_str,30);
-  g_free(conv_str);
-  conv_str=g_convert(album,strlen(album),
-                     id3_encoding,discdb_encoding,&rb,&wb,NULL);
-  if(!conv_str)
-    conv_str=g_strdup(album);
-  ID3Put(tag.album,conv_str,30);
-  g_free(conv_str);
+
+  if(do_unicode) {
+    conv_str=g_convert(title,strlen(title),
+		       id3_encoding,discdb_encoding,&rb,&wb,NULL);
+    if(!conv_str)
+      conv_str=g_strdup(title);
+    
+    ID3Put(tag.title,conv_str,30);
+    g_free(conv_str);
+  }
+  else ID3Put(tag.title,title,30);
+
+  if(do_unicode) {
+    conv_str=g_convert(artist,strlen(artist),
+		       id3_encoding,discdb_encoding,&rb,&wb,NULL);
+    if(!conv_str)
+      conv_str=g_strdup(artist);
+
+    ID3Put(tag.artist,conv_str,30);
+    
+    g_free(conv_str);
+  }
+  else ID3Put(tag.artist,artist,30);
+
+  if(do_unicode) {
+    conv_str=g_convert(album,strlen(album),
+		       id3_encoding,discdb_encoding,&rb,&wb,NULL);
+    if(!conv_str)
+      conv_str=g_strdup(album);
+
+    ID3Put(tag.album,conv_str,30);
+
+    g_free(conv_str);
+  }
+  else ID3Put(tag.album,album,30);
+
   ID3Put(tag.year,year,4);
-  conv_str=g_convert(comment,strlen(comment),
-                     id3_encoding,"utf-8",&rb,&wb,NULL);
-  if(!conv_str)
-    conv_str=g_strdup(comment);
-  ID3Put(tag.comment,conv_str,29);
-  g_free(conv_str);
+
+  if(do_unicode) {
+    conv_str=g_convert(comment,strlen(comment),
+		       id3_encoding,"utf-8",&rb,&wb,NULL);
+    if(!conv_str)
+      conv_str=g_strdup(comment);
+
+    ID3Put(tag.comment,conv_str,29);
+
+    g_free(conv_str);
+  }
+  else ID3Put(tag.comment,comment,29);
+
   tag.tracknum=tracknum;
   tag.genre=genre;
 

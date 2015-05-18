@@ -52,7 +52,7 @@
 #define NON_BLOCKING
 #endif
 
-#if defined(__FreeBSD__)
+#if defined(__FreeBSD__) || defined(__NetBSD__)
     #define CDIOREADSUBCHANNEL CDIOCREADSUBCHANNEL
 #endif
 
@@ -113,6 +113,14 @@ gboolean CDInitDevice(char *device_name,DiscInfo *disc)
   }
 
   disc->cd_desc=open(device_name, OPEN_MODE);
+
+  return TRUE;
+}
+
+gboolean CDCloseDevice(DiscInfo *disc)
+{
+  close(disc->cd_desc);
+  disc->cd_desc = -1;
 
   return TRUE;
 }

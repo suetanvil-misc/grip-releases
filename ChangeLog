@@ -1,3 +1,15 @@
+2003-12-21  Mike Oliphant  <grip@nostatic.org>
+
+	* ja.po: updated (Takeshi Aihana)
+	* it.po: updated (Ceoldo Costantino)
+	* grip.h/grip.c/rip.c/cddev.c: NetBSD support
+	* cdpar.c: changed cdparanoia include location
+	* rip.c/cddev.c/cddev.h: close cdrom device before ripping to
+	  avoid conflicts (thanks to John Thacker for tracking this down)
+	* id3.c/id3.h/gripcfg.c/grip.c/grip.h: made unicode in ID3 tags
+	  optional (it doesn't seem to work properly for id3v2)
+	* configure.in: upped version to 3.1.4
+	
 2003-11-03  Mike Oliphant  <oliphant@gtk.org>
 
 	* de.po: updated (Götz Waschk)

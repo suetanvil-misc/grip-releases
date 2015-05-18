@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: grip 3.0.0\n"
-"POT-Creation-Date: 2003-11-03 16:12-0800\n"
+"POT-Creation-Date: 2003-12-21 12:41-0800\n"
 "PO-Revision-Date: 2002-04-25 18:30+0800\n"
 "Last-Translator: Anthony Fok <anthony@thizlinux.com>\n"
 "Language-Team: Chinese (traditional) <zh-l10n@linux.org.tw>\n"
@@ -59,16 +59,16 @@ msgstr "不做 I/O 重定向"
 msgid "Run in verbose (debug) mode"
 msgstr "以除錯模式執行"
 
-#: src/grip.c:149
+#: src/grip.c:150
 msgid "Grip"
 msgstr "Grip"
 
-#: src/grip.c:180
+#: src/grip.c:181
 #, c-format
 msgid "Error: Unable to initialize [%s]\n"
 msgstr "錯誤: 無法初始化 [%s]\n"
 
-#: src/grip.c:273
+#: src/grip.c:274
 msgid ""
 "Work is in progress.\n"
 "Really shut down?"
@@ -76,61 +76,61 @@ msgstr ""
 "正在工作中。\n"
 "真的要關閉嗎？"
 
-#: src/grip.c:324
+#: src/grip.c:325
 #, fuzzy
 msgid "Status"
 msgstr "抓軌狀態"
 
-#: src/grip.c:339
+#: src/grip.c:340
 msgid "General"
 msgstr ""
 
-#: src/grip.c:354 src/gripcfg.c:351 src/cdplay.c:276 src/rip.c:98
+#: src/grip.c:355 src/gripcfg.c:351 src/cdplay.c:276 src/rip.c:98
 msgid "Rip"
 msgstr "抓軌"
 
-#: src/grip.c:369 src/gripcfg.c:479
+#: src/grip.c:370 src/gripcfg.c:479
 #, fuzzy
 msgid "Encode"
 msgstr "編碼器"
 
-#: src/grip.c:414
+#: src/grip.c:415
 msgid "Help"
 msgstr "說明"
 
-#: src/grip.c:419
+#: src/grip.c:420
 msgid "Table Of Contents"
 msgstr "目錄"
 
-#: src/grip.c:425
+#: src/grip.c:426
 msgid "Playing CDs"
 msgstr "播放 CD"
 
-#: src/grip.c:431
+#: src/grip.c:432
 msgid "Ripping CDs"
 msgstr "CD 抓軌"
 
-#: src/grip.c:437
+#: src/grip.c:438
 msgid "Configuring Grip"
 msgstr "設定 Grip"
 
-#: src/grip.c:443
+#: src/grip.c:444
 msgid "FAQ"
 msgstr "常見問題解答"
 
-#: src/grip.c:449
+#: src/grip.c:450
 msgid "Getting More Help"
 msgstr "取得更多輔助"
 
-#: src/grip.c:455
+#: src/grip.c:456
 msgid "Reporting Bugs"
 msgstr "報告錯誤"
 
-#: src/grip.c:475
+#: src/grip.c:476
 msgid "About"
 msgstr "關於"
 
-#: src/grip.c:846
+#: src/grip.c:848
 #, fuzzy
 msgid ""
 "Your config file is out of date -- resetting to defaults.\n"
@@ -141,12 +141,12 @@ msgstr ""
 "您可能需要重新設定 Grip。\n"
 "舊的設定檔已經被儲存為 ~/.grip-old。"
 
-#: src/grip.c:916
+#: src/grip.c:918
 #, c-format
 msgid "server is %s, port %d\n"
 msgstr "伺服器是 %s，連接埠 %d\n"
 
-#: src/grip.c:936
+#: src/grip.c:938
 msgid "Error: Unable to save config file"
 msgstr "錯誤: 無法儲存設定檔"
 
@@ -370,104 +370,108 @@ msgid "ID3 comment field"
 msgstr "ID3 註釋資訊"
 
 #: src/gripcfg.c:509
+msgid "Write tags in unicode"
+msgstr ""
+
+#: src/gripcfg.c:514
 msgid "ID3v1 Character set encoding"
 msgstr ""
 
-#: src/gripcfg.c:516
+#: src/gripcfg.c:521
 msgid "ID3"
 msgstr "標籤"
 
-#: src/gripcfg.c:533 src/gripcfg.c:553
+#: src/gripcfg.c:538 src/gripcfg.c:558
 msgid "DB server"
 msgstr "資料庫伺服器"
 
-#: src/gripcfg.c:537 src/gripcfg.c:557
+#: src/gripcfg.c:542 src/gripcfg.c:562
 msgid "CGI path"
 msgstr "CGI 路徑"
 
-#: src/gripcfg.c:544
+#: src/gripcfg.c:549
 msgid "Primary Server"
 msgstr "主伺服器"
 
-#: src/gripcfg.c:564
+#: src/gripcfg.c:569
 msgid "Secondary Server"
 msgstr "次伺服器"
 
-#: src/gripcfg.c:574
+#: src/gripcfg.c:579
 msgid "DB Submit email"
 msgstr "DB 提交電子郵件"
 
-#: src/gripcfg.c:579
+#: src/gripcfg.c:584
 #, fuzzy
 msgid "DB Character set encoding"
 msgstr "編碼後刪除 .wav 檔案"
 
-#: src/gripcfg.c:584
+#: src/gripcfg.c:589
 msgid "Use freedb extensions"
 msgstr "使用 FreeDB 擴展"
 
-#: src/gripcfg.c:589
+#: src/gripcfg.c:594
 msgid "Perform disc lookups automatically"
 msgstr "自動進行光碟查詢"
 
-#: src/gripcfg.c:597
+#: src/gripcfg.c:602
 msgid "DiscDB"
 msgstr "CD資料庫"
 
-#: src/gripcfg.c:606
+#: src/gripcfg.c:611
 msgid "Use proxy server"
 msgstr "使用代理伺服器"
 
-#: src/gripcfg.c:613
+#: src/gripcfg.c:618
 msgid "Get server from 'http_proxy' env. var"
 msgstr "從 'http_proxy' 環境變數指定代理伺服器"
 
-#: src/gripcfg.c:617
+#: src/gripcfg.c:622
 msgid "Proxy server"
 msgstr "代理伺服器"
 
-#: src/gripcfg.c:621
+#: src/gripcfg.c:626
 msgid "Proxy port"
 msgstr "代理伺服器連接埠"
 
-#: src/gripcfg.c:625
+#: src/gripcfg.c:630
 msgid "Proxy username"
 msgstr "代理伺服器使用者名稱"
 
-#: src/gripcfg.c:631
+#: src/gripcfg.c:636
 msgid "Proxy password"
 msgstr "代理伺服器密碼"
 
-#: src/gripcfg.c:639
+#: src/gripcfg.c:644
 msgid "Proxy"
 msgstr "代理伺服器"
 
-#: src/gripcfg.c:648
+#: src/gripcfg.c:653
 msgid "Email address"
 msgstr "電子郵件"
 
-#: src/gripcfg.c:652
+#: src/gripcfg.c:657
 msgid "CD update program"
 msgstr "CD 更新程式"
 
-#: src/gripcfg.c:656
+#: src/gripcfg.c:661
 #, fuzzy
 msgid "File System Character set encoding"
 msgstr "編碼後刪除 .wav 檔案"
 
-#: src/gripcfg.c:661
+#: src/gripcfg.c:666
 msgid "Do not lowercase filenames"
 msgstr "不要將檔案名轉換成小寫字母"
 
-#: src/gripcfg.c:666
+#: src/gripcfg.c:671
 msgid "Allow high bits in filenames"
 msgstr "允許檔名含高 8 位字元"
 
-#: src/gripcfg.c:671
+#: src/gripcfg.c:676
 msgid "Do not change spaces to underscores"
 msgstr "不要將空格轉換成底線"
 
-#: src/gripcfg.c:676
+#: src/gripcfg.c:681
 msgid ""
 "Characters to not strip\n"
 "in filenames"
@@ -475,41 +479,41 @@ msgstr ""
 "檔名中不去除的字符\n"
 " "
 
-#: src/gripcfg.c:681
+#: src/gripcfg.c:686
 msgid "Keep application minimum size"
 msgstr "保持應用程式視窗最小尺寸"
 
-#: src/gripcfg.c:688
+#: src/gripcfg.c:693
 msgid "Misc"
 msgstr "雜項"
 
-#: src/cddev.c:164 src/cddev.c:591
+#: src/cddev.c:172 src/cddev.c:599
 #, c-format
 msgid "Drive status is %d\n"
 msgstr "驅動器狀態是 %d\n"
 
-#: src/cddev.c:166
+#: src/cddev.c:174
 msgid "Drive doesn't support drive status check (assume CDS_NO_INFO)\n"
 msgstr "驅動器不支援狀態檢測 (假定 CDS_NO_INFO)\n"
 
-#: src/cddev.c:169
+#: src/cddev.c:177
 msgid "No disc\n"
 msgstr "無光碟\n"
 
-#: src/cddev.c:271 src/cddev.c:280 src/cddev.c:297 src/cddev.c:324
+#: src/cddev.c:279 src/cddev.c:288 src/cddev.c:305 src/cddev.c:332
 msgid "Error: Failed to read disc contents\n"
 msgstr "錯誤: 讀取光碟目錄失敗\n"
 
-#: src/cddev.c:594
+#: src/cddev.c:602
 msgid "Drive doesn't support drive status check\n"
 msgstr "驅動器不支持狀態檢測\n"
 
-#: src/cddev.c:615 src/cddev.c:619
+#: src/cddev.c:623 src/cddev.c:627
 #, c-format
 msgid "Unlock failed: %d"
 msgstr "解鎖失敗: %d"
 
-#: src/cddev.c:623
+#: src/cddev.c:631
 msgid "CDIOCEJECT"
 msgstr ""
 
@@ -901,7 +905,7 @@ msgstr "未知的 ID3 域\n"
 msgid "Error: unable to translate filename. No such user as %s\n"
 msgstr "錯誤: 無法轉換檔名。無此使用者 %s\n"
 
-#: src/launch.c:239 src/rip.c:1495
+#: src/launch.c:239 src/rip.c:1502
 msgid "Exec failed\n"
 msgstr "執行失敗\n"
 
@@ -965,8 +969,8 @@ msgstr "播放"
 msgid "Current sector:      0"
 msgstr "目前扇區:      0"
 
-#: src/rip.c:207 src/rip.c:224 src/rip.c:272 src/rip.c:858 src/rip.c:910
-#: src/rip.c:912 src/rip.c:1048 src/rip.c:1049
+#: src/rip.c:207 src/rip.c:224 src/rip.c:272 src/rip.c:859 src/rip.c:911
+#: src/rip.c:913 src/rip.c:1049 src/rip.c:1050
 msgid "Rip: Idle"
 msgstr "抓軌: 閒置"
 
@@ -975,7 +979,7 @@ msgstr "抓軌: 閒置"
 msgid "Enc: Trk 99 (99.9x)"
 msgstr "編碼: 曲目 99 (99.9x)"
 
-#: src/rip.c:243 src/rip.c:285 src/rip.c:1020 src/rip.c:1033
+#: src/rip.c:243 src/rip.c:285 src/rip.c:1021 src/rip.c:1034
 #, fuzzy
 msgid "Enc: Idle"
 msgstr "編碼: 閒置"
@@ -1005,67 +1009,67 @@ msgstr ""
 msgid "Now total enc size is: %d\n"
 msgstr ""
 
-#: src/rip.c:824
+#: src/rip.c:825
 #, c-format
 msgid "Rip: Trk %d (%3.1fx)"
 msgstr "抓軌: 曲目 %d (%3.1fx)"
 
-#: src/rip.c:854
+#: src/rip.c:855
 #, c-format
 msgid "Rip: %6.2f%%"
 msgstr ""
 
-#: src/rip.c:873
+#: src/rip.c:874
 msgid "Rip finished\n"
 msgstr "完成抓軌\n"
 
-#: src/rip.c:899
+#: src/rip.c:900
 #, c-format
 msgid "Rip partial %d  num wavs %d\n"
 msgstr ""
 
-#: src/rip.c:902
+#: src/rip.c:903
 #, c-format
 msgid "Next track is %d, total is %d\n"
 msgstr "下一首是 %d，總共 %d 首\n"
 
-#: src/rip.c:908
+#: src/rip.c:909
 msgid "Check if we need to rip another track\n"
 msgstr "檢查是否需要抓取其他曲目\n"
 
-#: src/rip.c:948
+#: src/rip.c:949
 #, fuzzy, c-format
 msgid "Enc: Trk %d (%3.1fx)"
 msgstr "編碼: 曲目 %d (%3.1fx)"
 
-#: src/rip.c:964
+#: src/rip.c:965
 #, c-format
 msgid "Enc: %6.2f%%"
 msgstr ""
 
-#: src/rip.c:974
+#: src/rip.c:975
 #, c-format
 msgid "Finished encoding on cpu %d\n"
 msgstr "完成編碼在處理器 %d\n"
 
-#: src/rip.c:987
+#: src/rip.c:988
 #, c-format
 msgid "Deleting [%s]\n"
 msgstr "正在刪除 [%s]\n"
 
-#: src/rip.c:1041
+#: src/rip.c:1042
 msgid "Ripping is finished\n"
 msgstr "抓軌完成\n"
 
-#: src/rip.c:1150 src/rip.c:1157
+#: src/rip.c:1154 src/rip.c:1161
 msgid "NoArtist"
 msgstr "無作者"
 
-#: src/rip.c:1163
+#: src/rip.c:1167
 msgid "NoTitle"
 msgstr "無標題"
 
-#: src/rip.c:1261
+#: src/rip.c:1265
 msgid ""
 "Invalid rip executable\n"
 "Check your rip config"
@@ -1073,7 +1077,7 @@ msgstr ""
 "無效的抓軌程式\n"
 "請檢查你的抓軌器設定"
 
-#: src/rip.c:1268
+#: src/rip.c:1272
 #, fuzzy
 msgid ""
 "Invalid encoder executable\n"
@@ -1082,7 +1086,7 @@ msgstr ""
 "無效的抓軌程式\n"
 "請檢查你的抓軌器設定"
 
-#: src/rip.c:1301
+#: src/rip.c:1308
 msgid ""
 "No tracks selected.\n"
 "Rip whole CD?\n"
@@ -1090,93 +1094,93 @@ msgstr ""
 "沒有選擇曲目。\n"
 "抓取整片光碟嗎？\n"
 
-#: src/rip.c:1324
+#: src/rip.c:1331
 msgid "Ripping whole CD\n"
 msgstr "正在抓取整片光碟\n"
 
-#: src/rip.c:1362
+#: src/rip.c:1369
 msgid "In RipNextTrack\n"
 msgstr "在抓取下一軌\n"
 
-#: src/rip.c:1369
+#: src/rip.c:1376
 #, c-format
 msgid "First checked track is %d\n"
 msgstr "第一個檢查的曲目是 %d\n"
 
-#: src/rip.c:1379
+#: src/rip.c:1386
 msgid "Ripping away!\n"
 msgstr ""
 
-#: src/rip.c:1420
+#: src/rip.c:1427
 msgid "No write access to write wav file"
 msgstr "沒有寫入 wav 檔案的權限"
 
-#: src/rip.c:1431
+#: src/rip.c:1438
 #, c-format
 msgid "Ripping track %d to %s\n"
 msgstr "正在抓取曲目 %d 到 %s\n"
 
-#: src/rip.c:1435
+#: src/rip.c:1442
 #, c-format
 msgid "Rip: Trk %d (0.0x)"
 msgstr "抓軌: 曲目 %d (0.0x)"
 
-#: src/rip.c:1440
+#: src/rip.c:1447
 #, c-format
 msgid "File %s has already been ripped. Skipping...\n"
 msgstr "檔案 %s 已經抓過。跳過...\n"
 
-#: src/rip.c:1457 src/rip.c:1697
+#: src/rip.c:1464 src/rip.c:1704
 msgid "Out of space in output directory"
 msgstr "輸出目錄空間不足"
 
-#: src/rip.c:1529
+#: src/rip.c:1536
 msgid "Calling CDPRip\n"
 msgstr "呼叫 CDPRip\n"
 
-#: src/rip.c:1615
+#: src/rip.c:1622
 #, fuzzy, c-format
 msgid "Added track %d to %s list\n"
 msgstr "添加曲目 %d 到編碼隊列\n"
 
-#: src/rip.c:1641
+#: src/rip.c:1648
 msgid "No free cpus\n"
 msgstr "沒有閒置的處理器\n"
 
-#: src/rip.c:1657
+#: src/rip.c:1664
 #, fuzzy, c-format
 msgid "Enc track %d\n"
 msgstr "MP3 曲目 %d\n"
 
-#: src/rip.c:1676
+#: src/rip.c:1683
 #, fuzzy
 msgid "No write access to write encoded file"
 msgstr "沒有寫入 mp3 檔案的權限"
 
-#: src/rip.c:1684
+#: src/rip.c:1691
 #, c-format
 msgid "%i: Encoding to %s\n"
 msgstr "%i: 編碼到 %s\n"
 
-#: src/rip.c:1687
+#: src/rip.c:1694
 #, fuzzy, c-format
 msgid "Enc: Trk %d (0.0x)"
 msgstr "抓軌: 曲目 %d (0.0x)"
 
-#: src/rip.c:1748
+#: src/rip.c:1755
 msgid "In CalculateAll\n"
 msgstr ""
 
-#: src/rip.c:1754
+#: src/rip.c:1761
 msgid "We aren't ripping now, so let's zero encoding values\n"
 msgstr ""
 
-#: src/rip.c:1770
+#: src/rip.c:1777
 #, c-format
 msgid "Total rip size is: %d\n"
 msgstr ""
 
-#: src/rip.c:1771
+#: src/rip.c:1778
 #, c-format
 msgid "Total enc size is: %d\n"
 msgstr ""

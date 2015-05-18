@@ -27,7 +27,7 @@
 #elif defined (HAVE_SYS_VFS_H)
 #include <sys/vfs.h>
 #endif
-#if defined(__FreeBSD__)
+#if defined(__FreeBSD__) || defined(__NetBSD__)
 #include <sys/param.h>
 #include <sys/mount.h>
 #endif
@@ -741,7 +741,8 @@ static void ID3Add(GripInfo *ginfo,char *file,EncodeTrack *enc_track)
 		 (*(enc_track->disc_artist))?enc_track->disc_artist:"Unknown",
 		 (*(enc_track->disc_name))?enc_track->disc_name:"Unknown",
 		 year,comment->str,enc_track->id3_genre,
-		 enc_track->track_num+1,ginfo->discdb_encoding);
+		 enc_track->track_num+1,ginfo->tag_unicode,
+		 ginfo->discdb_encoding);
   }
 #endif
   if(ginfo->doid3) {
@@ -751,7 +752,7 @@ static void ID3Add(GripInfo *ginfo,char *file,EncodeTrack *enc_track)
 		 (*(enc_track->disc_name))?enc_track->disc_name:"Unknown",
 		 year,comment->str,enc_track->id3_genre,
 		 enc_track->track_num+1,ginfo->id3_encoding,
-                 ginfo->discdb_encoding);
+                 ginfo->tag_unicode,ginfo->discdb_encoding);
   }
 
   g_string_free(comment,TRUE);
@@ -1054,6 +1055,9 @@ static void RipIsFinished(GripInfo *ginfo,gboolean aborted)
   ginfo->ripping_a_disc=FALSE;
   ginfo->rip_finished=time(NULL);
 
+  /* Re-open the cdrom device if it was closed */
+  if(ginfo->disc.cd_desc<0) CDInitDevice(ginfo->disc.devname,&(ginfo->disc));
+
   /* Do post-rip stuff only if we weren't explicitly aborted */
   if(!aborted) {
     if(ginfo->beep_after_rip) printf("%c%c",7,7);
@@ -1273,6 +1277,9 @@ void DoRip(GtkWidget *widget,gpointer data)
 
   CDStop(&(ginfo->disc));
   ginfo->stopped=TRUE;
+
+  /* Close the device so as not to conflict with ripping */
+  CDCloseDevice(&(ginfo->disc));
     
   if(ginfo->ripping) {
     ginfo->doencode=FALSE;

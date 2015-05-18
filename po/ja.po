@@ -6,18 +6,19 @@
 # 
 msgid ""
 msgstr ""
-"Project-Id-Version: grip 3.0.5\n"
-"POT-Creation-Date: 2003-11-03 16:12-0800\n"
-"PO-Revision-Date: 2003-02-06 01:30+0900\n"
-"Last-Translator: Takeshi Aihana <aihana@gnome.gr.jp>\n"
+"Project-Id-Version: grip 3.1.3\n"
+"POT-Creation-Date: 2003-12-21 12:41-0800\n"
+"PO-Revision-Date: 2003-11-08 15:40+0900\n"
+"Last-Translator: Takeshi AIHANA <aihana@gnome.gr.jp>\n"
 "Language-Team: Japanese <gnome-translation@gnome.gr.jp>\n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=euc-jp\n"
+"Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Report-Msgid-Bugs-To: \n"
 
 #: src/main.c:55
 msgid "Specify the geometry of the main window"
-msgstr "¥á¥¤¥ó¥¦¥£¥ó¥É¥¦¤Î°ÌÃÖ¤ò»ØÄê¤¹¤ë"
+msgstr "ãƒ¡ã‚¤ãƒ³ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã®ä½ç½®ã‚’æŒ‡å®šã™ã‚‹"
 
 #: src/main.c:56
 msgid "GEOMETRY"
@@ -25,7 +26,7 @@ msgstr "GEOMETRY"
 
 #: src/main.c:64
 msgid "Specify the config file to use (in your home dir)"
-msgstr "»ÈÍÑ¤¹¤ë (${HOME}ÇÛ²¼¤Ë¤¢¤ë) ÀßÄê¥Õ¥¡¥¤¥ë¤ò»ØÄê¤¹¤ë"
+msgstr "ä½¿ç”¨ã™ã‚‹ (${HOME}é…ä¸‹ã«ã‚ã‚‹) è¨­å®šãƒ•ã‚¡ã‚¤ãƒ«ã‚’æŒ‡å®šã™ã‚‹"
 
 #: src/main.c:65
 msgid "CONFIG"
@@ -33,7 +34,7 @@ msgstr "CONFIG"
 
 #: src/main.c:73
 msgid "Specify the cdrom device to use"
-msgstr "»ÈÍÑ¤¹¤ë CD-ROM ¥Ç¥Ğ¥¤¥¹¤ò»ØÄê¤¹¤ë"
+msgstr "ä½¿ç”¨ã™ã‚‹ CD-ROM ãƒ‡ãƒã‚¤ã‚¹ã‚’æŒ‡å®šã™ã‚‹"
 
 #: src/main.c:74 src/main.c:83
 msgid "DEVICE"
@@ -41,152 +42,151 @@ msgstr "DEVICE"
 
 #: src/main.c:82
 msgid "Specify the generic scsi device to use"
-msgstr "»ÈÍÑ¤¹¤ëÈÆÍÑ SCSI ¥Ç¥Ğ¥¤¥¹¤ò»ØÄê¤¹¤ë"
+msgstr "ä½¿ç”¨ã™ã‚‹æ±ç”¨ SCSI ãƒ‡ãƒã‚¤ã‚¹ã‚’æŒ‡å®šã™ã‚‹"
 
 #: src/main.c:91
 msgid "Launch in \"small\" (cd-only) mode"
-msgstr "\"¥¹¥â¡¼¥ë\" ¥â¡¼¥É (CD-ROM ¤Î¤ß) ¤Çµ¯Æ°¤¹¤ë"
+msgstr "\"ã‚¹ãƒ¢ãƒ¼ãƒ«\" ãƒ¢ãƒ¼ãƒ‰ (CD-ROM ã®ã¿) ã§èµ·å‹•ã™ã‚‹"
 
 #: src/main.c:100
 msgid "\"Local\" mode -- do not look up disc info on the net"
-msgstr "\"¥í¡¼¥«¥ë\" ¥â¡¼¥É -- ¥¤¥ó¥¿¡¼¥Í¥Ã¥È¤«¤é¶Ê¾ğÊó¤òÌä¤¤¹ç¤ï¤»¤Ê¤¤"
+msgstr "\"ãƒ­ãƒ¼ã‚«ãƒ«\" ãƒ¢ãƒ¼ãƒ‰ -- ã‚¤ãƒ³ã‚¿ãƒ¼ãƒãƒƒãƒˆã‹ã‚‰æ›²æƒ…å ±ã‚’å•ã„åˆã‚ã›ãªã„"
 
 #: src/main.c:109
 msgid "Do not do I/O redirection"
-msgstr "ÆşÎÏ/½ĞÎÏ¤ÎÀÚÂØ¤ò¹Ô¤ï¤Ê¤¤"
+msgstr "å…¥åŠ›/å‡ºåŠ›ã®åˆ‡æ›¿ã‚’è¡Œã‚ãªã„"
 
 #: src/main.c:118
 msgid "Run in verbose (debug) mode"
-msgstr "¾ÜºÙ¥â¡¼¥É (¥Ç¥Ğ¥Ã¥°ÍÑ) ¥â¡¼¥É¤Çµ¯Æ°¤¹¤ë"
+msgstr "è©³ç´°ãƒ¢ãƒ¼ãƒ‰ (ãƒ‡ãƒãƒƒã‚°ç”¨) ãƒ¢ãƒ¼ãƒ‰ã§èµ·å‹•ã™ã‚‹"
 
-#: src/grip.c:149
+#: src/grip.c:150
 msgid "Grip"
 msgstr "Grip"
 
-#: src/grip.c:180
+#: src/grip.c:181
 #, c-format
 msgid "Error: Unable to initialize [%s]\n"
-msgstr "¥¨¥é¡¼: [%s] ¤ò½é´ü²½¤Ç¤­¤Ş¤»¤ó\n"
+msgstr "ã‚¨ãƒ©ãƒ¼: [%s] ã‚’åˆæœŸåŒ–ã§ãã¾ã›ã‚“\n"
 
-#: src/grip.c:273
+#: src/grip.c:274
 msgid ""
 "Work is in progress.\n"
 "Really shut down?"
 msgstr ""
-"½èÍıÃæ¤Ç¤¹¡£\n"
-"ËÜÅö¤Ë½ªÎ»¤·¤Ş¤¹¤«¡©"
+"å‡¦ç†ä¸­ã§ã™ã€‚\n"
+"æœ¬å½“ã«çµ‚äº†ã—ã¾ã™ã‹ï¼Ÿ"
 
-#: src/grip.c:324
-#, fuzzy
+#: src/grip.c:325
 msgid "Status"
-msgstr "ÀÚ¤ê½Ğ¤·¾õ¶·"
+msgstr "ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹"
 
-#: src/grip.c:339
+#: src/grip.c:340
 msgid "General"
-msgstr ""
+msgstr "å…¨èˆ¬"
 
-#: src/grip.c:354 src/gripcfg.c:351 src/cdplay.c:276 src/rip.c:98
+#: src/grip.c:355 src/gripcfg.c:351 src/cdplay.c:276 src/rip.c:98
 msgid "Rip"
-msgstr "ÀÚ¤ê½Ğ¤·"
+msgstr "åˆ‡ã‚Šå‡ºã—"
 
-#: src/grip.c:369 src/gripcfg.c:479
+#: src/grip.c:370 src/gripcfg.c:479
 msgid "Encode"
-msgstr "¥¨¥ó¥³¡¼¥À"
+msgstr "ã‚¨ãƒ³ã‚³ãƒ¼ãƒ€"
 
-#: src/grip.c:414
+#: src/grip.c:415
 msgid "Help"
-msgstr "¥Ø¥ë¥×"
+msgstr "ãƒ˜ãƒ«ãƒ—"
 
-#: src/grip.c:419
+#: src/grip.c:420
 msgid "Table Of Contents"
-msgstr "ÌÜ¼¡"
+msgstr "ç›®æ¬¡"
 
-#: src/grip.c:425
+#: src/grip.c:426
 msgid "Playing CDs"
-msgstr "²»³Ú CD ¤Î±éÁÕ"
+msgstr "éŸ³æ¥½ CD ã®æ¼”å¥"
 
-#: src/grip.c:431
+#: src/grip.c:432
 msgid "Ripping CDs"
-msgstr "²»³Ú CD ¤ÎÀÚ¤ê½Ğ¤·"
+msgstr "éŸ³æ¥½ CD ã®åˆ‡ã‚Šå‡ºã—"
 
-#: src/grip.c:437
+#: src/grip.c:438
 msgid "Configuring Grip"
-msgstr "Grip ¤ÎÀßÄê"
+msgstr "Grip ã®è¨­å®š"
 
-#: src/grip.c:443
+#: src/grip.c:444
 msgid "FAQ"
 msgstr "FAQ"
 
-#: src/grip.c:449
+#: src/grip.c:450
 msgid "Getting More Help"
-msgstr "¾ÜºÙ¤Ê¥Ø¥ë¥×"
+msgstr "è©³ç´°ãªãƒ˜ãƒ«ãƒ—"
 
-#: src/grip.c:455
+#: src/grip.c:456
 msgid "Reporting Bugs"
-msgstr "¥Ğ¥°¤ÎÊó¹ğ"
+msgstr "ãƒã‚°ã®å ±å‘Š"
 
-#: src/grip.c:475
+#: src/grip.c:476
 msgid "About"
-msgstr "¾ğÊó"
+msgstr "æƒ…å ±"
 
-#: src/grip.c:846
+#: src/grip.c:848
 msgid ""
 "Your config file is out of date -- resetting to defaults.\n"
 "You will need to re-configure Grip.\n"
 "Your old config file has been saved with -old appended."
 msgstr ""
-"ÀßÄê¥Õ¥¡¥¤¥ë¤ÎÍ­¸ú´ü¸Â¤¬²á¤®¤Æ¤¤¤Ş¤¹ -- ¥Ç¥Õ¥©¥ë¥È¤ËÌá¤·¤Ş¤¹¡£\n"
-"Grip ¤òºÆÀßÄê¤¹¤ëÉ¬Í×¤¬¤¢¤ê¤Ş¤¹¡£\n"
-"¸Å¤¤ÀßÄê¥Õ¥¡¥¤¥ë¤Ë '-old' ¤òÉÕ¤±¤ÆÊİÂ¸¤·¤Ş¤·¤¿¡£"
+"è¨­å®šãƒ•ã‚¡ã‚¤ãƒ«ã®æœ‰åŠ¹æœŸé™ãŒéãã¦ã„ã¾ã™ -- ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆã«æˆ»ã—ã¾ã™ã€‚\n"
+"Grip ã‚’å†è¨­å®šã™ã‚‹å¿…è¦ãŒã‚ã‚Šã¾ã™ã€‚\n"
+"å¤ã„è¨­å®šãƒ•ã‚¡ã‚¤ãƒ«ã« '-old' ã‚’ä»˜ã‘ã¦ä¿å­˜ã—ã¾ã—ãŸã€‚"
 
-#: src/grip.c:916
+#: src/grip.c:918
 #, c-format
 msgid "server is %s, port %d\n"
-msgstr "¥µ¡¼¥Ğ: %s  ¥İ¡¼¥ÈÈÖ¹æ: %d\n"
+msgstr "ã‚µãƒ¼ãƒ: %s  ãƒãƒ¼ãƒˆç•ªå·: %d\n"
 
-#: src/grip.c:936
+#: src/grip.c:938
 msgid "Error: Unable to save config file"
-msgstr "¥¨¥é¡¼: ÀßÄê¥Õ¥¡¥¤¥ë¤òÊİÂ¸¤Ç¤­¤Ş¤»¤ó"
+msgstr "ã‚¨ãƒ©ãƒ¼: è¨­å®šãƒ•ã‚¡ã‚¤ãƒ«ã‚’ä¿å­˜ã§ãã¾ã›ã‚“"
 
 #: src/gripcfg.c:94
 msgid "Config"
-msgstr "ÀßÄê"
+msgstr "è¨­å®š"
 
 #: src/gripcfg.c:102
 msgid "CDRom device"
-msgstr "CD-ROM ¥Ç¥Ğ¥¤¥¹"
+msgstr "CD-ROM ãƒ‡ãƒã‚¤ã‚¹"
 
 #: src/gripcfg.c:107
 msgid "Don't interrupt playback on exit/startup"
-msgstr "½ªÎ»»ş/µ¯Æ°»ş¤ËºÆÀ¸³ä¤ê¹ş¤ß¤ò¤·¤Ê¤¤"
+msgstr "çµ‚äº†æ™‚/èµ·å‹•æ™‚ã«å†ç”Ÿå‰²ã‚Šè¾¼ã¿ã‚’ã—ãªã„"
 
 #: src/gripcfg.c:111
 msgid "Rewind when stopped"
-msgstr "½ªÎ»»ş¤Ë´¬¤­Ìá¤¹"
+msgstr "çµ‚äº†æ™‚ã«å·»ãæˆ»ã™"
 
 #: src/gripcfg.c:116
 msgid "Startup with first track if not playing"
-msgstr "ºÆÀ¸¤·¤Ê¤¤»ş¤ËºÇ½é¤Î¥È¥é¥Ã¥¯¤«¤é³«»Ï¤¹¤ë"
+msgstr "å†ç”Ÿã—ãªã„æ™‚ã«æœ€åˆã®ãƒˆãƒ©ãƒƒã‚¯ã‹ã‚‰é–‹å§‹ã™ã‚‹"
 
 #: src/gripcfg.c:121
 msgid "Auto-play on disc insert"
-msgstr "¥Ç¥£¥¹¥¯ÁŞÆş»ş¤Ë¼«Æ°Åª¤Ë±éÁÕ¤¹¤ë"
+msgstr "ãƒ‡ã‚£ã‚¹ã‚¯æŒ¿å…¥æ™‚ã«è‡ªå‹•çš„ã«æ¼”å¥ã™ã‚‹"
 
 #: src/gripcfg.c:126
 msgid "Reshuffle before each playback"
-msgstr "ºÆÀ¸¤¹¤ëÅÙ¤Ë¥·¥ã¥Ã¥Õ¥ë¤¹¤ë"
+msgstr "å†ç”Ÿã™ã‚‹åº¦ã«ã‚·ãƒ£ãƒƒãƒ•ãƒ«ã™ã‚‹"
 
 #: src/gripcfg.c:131
 msgid "Work around faulty eject"
-msgstr "ÉÔÎÉ»ş¤Ë¥¤¥¸¥§¥¯¥È¤¹¤ë"
+msgstr "ä¸è‰¯æ™‚ã«ã‚¤ã‚¸ã‚§ã‚¯ãƒˆã™ã‚‹"
 
 #: src/gripcfg.c:136
 msgid "Poll disc drive for new disc"
-msgstr "¥Ç¥£¥¹¥¯¡¦¥É¥é¥¤¥Ö¤òÄê´üÅª¤Ë³ÎÇ§¤¹¤ë"
+msgstr "ãƒ‡ã‚£ã‚¹ã‚¯ãƒ»ãƒ‰ãƒ©ã‚¤ãƒ–ã‚’å®šæœŸçš„ã«ç¢ºèªã™ã‚‹"
 
 #: src/gripcfg.c:140
 msgid "Poll interval (seconds)"
-msgstr "³ÎÇ§¤¹¤ë´Ö³Ö (ÉÃ)"
+msgstr "ç¢ºèªã™ã‚‹é–“éš” (ç§’)"
 
 #: src/gripcfg.c:148
 msgid "CD"
@@ -194,340 +194,342 @@ msgstr "CD"
 
 #: src/gripcfg.c:164
 msgid "Ripper:"
-msgstr "ÀÚ¤ê½Ğ¤·¥Ä¡¼¥ë:"
+msgstr "åˆ‡ã‚Šå‡ºã—ãƒ„ãƒ¼ãƒ«:"
 
 #: src/gripcfg.c:209
 msgid "Ripping executable"
-msgstr "¼Â¹Ô¥Õ¥¡¥¤¥ë"
+msgstr "å®Ÿè¡Œãƒ•ã‚¡ã‚¤ãƒ«"
 
 #: src/gripcfg.c:214
 msgid "Rip command-line"
-msgstr "¥ª¥×¥·¥ç¥ó"
+msgstr "ã‚ªãƒ—ã‚·ãƒ§ãƒ³"
 
 #: src/gripcfg.c:225
 msgid "Disable paranoia"
-msgstr "Paranoia »ÈÍÑÉÔ²Ä"
+msgstr "Paranoia ä½¿ç”¨ä¸å¯"
 
 #: src/gripcfg.c:230
 msgid "Disable extra paranoia"
-msgstr "³ÈÄ¥ Paranoia »ÈÍÑÉÔ²Ä"
+msgstr "æ‹¡å¼µ Paranoia ä½¿ç”¨ä¸å¯"
 
 #: src/gripcfg.c:236
 msgid "Disable scratch"
-msgstr "Scratch »ÈÍÑÉÔ²Ä"
+msgstr "Scratch ä½¿ç”¨ä¸å¯"
 
 #: src/gripcfg.c:240
 msgid "detection"
-msgstr "¸¡½Ğ"
+msgstr "æ¤œå‡º"
 
 #: src/gripcfg.c:244
 msgid "repair"
-msgstr "½¤Éü"
+msgstr "ä¿®å¾©"
 
 #: src/gripcfg.c:252
 msgid "Calculate gain adjustment"
-msgstr "Ä´À°¤¹¤ë¥²¥¤¥ó¤Î·×»»"
+msgstr "èª¿æ•´ã™ã‚‹ã‚²ã‚¤ãƒ³ã®è¨ˆç®—"
 
 #: src/gripcfg.c:260
 msgid "Rip file format"
-msgstr "ÀÚ¤ê½Ğ¤·¥Õ¥¡¥¤¥ë¥Õ¥©¡¼¥Ş¥Ã¥È"
+msgstr "åˆ‡ã‚Šå‡ºã—ãƒ•ã‚¡ã‚¤ãƒ«ãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆ"
 
 #: src/gripcfg.c:264
 msgid "Generic SCSI device"
-msgstr "°ìÈÌÅª¤Ê SCSI ¥Ç¥Ğ¥¤¥¹"
+msgstr "ä¸€èˆ¬çš„ãª SCSI ãƒ‡ãƒã‚¤ã‚¹"
 
 #: src/gripcfg.c:272
 msgid "Ripper"
-msgstr "ÀÚ¤ê½Ğ¤·"
+msgstr "åˆ‡ã‚Šå‡ºã—"
 
 #: src/gripcfg.c:281
 msgid "Rip 'nice' value"
-msgstr "Í¥ÀèÅÙ (nice ÃÍ)"
+msgstr "å„ªå…ˆåº¦ (nice å€¤)"
 
 #: src/gripcfg.c:285
 msgid "Max non-encoded .wav's"
-msgstr "¥¨¥ó¥³¡¼¥Ç¥£¥ó¥°¤·¤Ê¤¤ºÇÂç¥Õ¥¡¥¤¥ë¿ô"
+msgstr "ã‚¨ãƒ³ã‚³ãƒ¼ãƒ‡ã‚£ãƒ³ã‚°ã—ãªã„æœ€å¤§ãƒ•ã‚¡ã‚¤ãƒ«æ•°"
 
 #: src/gripcfg.c:291
 msgid "Auto-rip on insert"
-msgstr "ÁŞÆş»ş¤Ë¼«Æ°Åª¤ËÀÚ¤ê½Ğ¤¹"
+msgstr "æŒ¿å…¥æ™‚ã«è‡ªå‹•çš„ã«åˆ‡ã‚Šå‡ºã™"
 
 #: src/gripcfg.c:295
 msgid "Beep after rip"
-msgstr "´°Î»¤·¤¿¤é¥Ó¡¼¥×²»¤òÌÄ¤é¤¹"
+msgstr "å®Œäº†ã—ãŸã‚‰ãƒ“ãƒ¼ãƒ—éŸ³ã‚’é³´ã‚‰ã™"
 
 #: src/gripcfg.c:305
 msgid "Auto-eject after rip"
-msgstr "´°Î»¤·¤¿¤é¼«Æ°Åª¤Ë¥¤¥¸¥§¥¯¥È¤¹¤ë"
+msgstr "å®Œäº†ã—ãŸã‚‰è‡ªå‹•çš„ã«ã‚¤ã‚¸ã‚§ã‚¯ãƒˆã™ã‚‹"
 
 #: src/gripcfg.c:309
 msgid "Auto-eject delay"
-msgstr "¼«Æ°¥¤¥¸¥§¥¯¥È¤Ş¤Ç¤ÎÂÔµ¡»ş´Ö"
+msgstr "è‡ªå‹•ã‚¤ã‚¸ã‚§ã‚¯ãƒˆã¾ã§ã®å¾…æ©Ÿæ™‚é–“"
 
 #: src/gripcfg.c:317
 msgid "Delay before ripping"
-msgstr "ÀÚ¤ê½Ğ¤¹Á°¤ËÃÙ±ä¤¹¤ë"
+msgstr "åˆ‡ã‚Šå‡ºã™å‰ã«é…å»¶ã™ã‚‹"
 
 #: src/gripcfg.c:322
 msgid "Delay encoding until disc is ripped"
-msgstr ""
+msgstr "åˆ‡ã‚Šå‡ºã—ãŒå®Œäº†ã™ã‚‹ã¾ã§ã‚¨ãƒ³ã‚³ãƒ¼ãƒ‡ã‚£ãƒ³ã‚°ã‚’é…ã‚‰ã›ã‚‹"
 
 #: src/gripcfg.c:327
 msgid "Stop cdrom drive between tracks"
-msgstr "¼¡¤Î¥È¥é¥Ã¥¯¤Ë°ÜÆ°¤¹¤ëºİ¤Ë CD-ROM ¤òÄä»ß¤¹¤ë"
+msgstr "æ¬¡ã®ãƒˆãƒ©ãƒƒã‚¯ã«ç§»å‹•ã™ã‚‹éš›ã« CD-ROM ã‚’åœæ­¢ã™ã‚‹"
 
 #: src/gripcfg.c:331
 msgid "Wav filter command"
-msgstr "¥Õ¥£¥ë¥¿¥³¥Ş¥ó¥É(WAV)"
+msgstr "ãƒ•ã‚£ãƒ«ã‚¿ã‚³ãƒãƒ³ãƒ‰(WAV)"
 
 #: src/gripcfg.c:336
 msgid "Disc filter command"
-msgstr "¥Õ¥£¥ë¥¿¥³¥Ş¥ó¥É(DISK)"
+msgstr "ãƒ•ã‚£ãƒ«ã‚¿ã‚³ãƒãƒ³ãƒ‰(DISK)"
 
 #: src/gripcfg.c:344 src/gripcfg.c:472
 msgid "Options"
-msgstr "¥ª¥×¥·¥ç¥ó"
+msgstr "ã‚ªãƒ—ã‚·ãƒ§ãƒ³"
 
 #: src/gripcfg.c:366
 msgid "Encoder:"
-msgstr "¥¨¥ó¥³¡¼¥À:"
+msgstr "ã‚¨ãƒ³ã‚³ãƒ¼ãƒ€:"
 
 #: src/gripcfg.c:401
 msgid "Encoder executable"
-msgstr "¼Â¹Ô·¿¼°"
+msgstr "å®Ÿè¡Œå‹å¼"
 
 #: src/gripcfg.c:406
 msgid "Encoder command-line"
-msgstr "¥³¥Ş¥ó¥É¥é¥¤¥ó°ú¿ô"
+msgstr "ã‚³ãƒãƒ³ãƒ‰ãƒ©ã‚¤ãƒ³å¼•æ•°"
 
 #: src/gripcfg.c:411
 msgid "Encode file format"
-msgstr "½ñ¼°"
+msgstr "æ›¸å¼"
 
 #: src/gripcfg.c:419
 msgid "Encoder"
-msgstr "¥¨¥ó¥³¡¼¥À"
+msgstr "ã‚¨ãƒ³ã‚³ãƒ¼ãƒ€"
 
 #: src/gripcfg.c:429
 msgid "Delete .wav after encoding"
-msgstr "´°Î»¸å¤Ë .wav ¥Õ¥¡¥¤¥ë¤òºï½ü¤¹¤ë"
+msgstr "å®Œäº†å¾Œã« .wav ãƒ•ã‚¡ã‚¤ãƒ«ã‚’å‰Šé™¤ã™ã‚‹"
 
 #: src/gripcfg.c:434
 msgid "Insert info into SQL database"
-msgstr "SQL¥Ç¡¼¥¿¥Ù¡¼¥¹¤ËÄÉ²Ã¤¹¤ë"
+msgstr "SQLãƒ‡ãƒ¼ã‚¿ãƒ™ãƒ¼ã‚¹ã«è¿½åŠ ã™ã‚‹"
 
 #: src/gripcfg.c:438
 msgid "Create .m3u files"
-msgstr ".m3u¥Õ¥¡¥¤¥ë¤òºîÀ®¤¹¤ë"
+msgstr ".m3uãƒ•ã‚¡ã‚¤ãƒ«ã‚’ä½œæˆã™ã‚‹"
 
 #: src/gripcfg.c:443
 msgid "Use relative paths in .m3u files"
-msgstr ".m3u¥Õ¥¡¥¤¥ë¤ÎÃæ¤Ë´Ø·¸¤¹¤ë¥Ç¥£¥ì¥¯¥È¥ê¤ò»ÈÍÑ¤¹¤ë"
+msgstr ".m3uãƒ•ã‚¡ã‚¤ãƒ«ã®ä¸­ã«é–¢ä¿‚ã™ã‚‹ãƒ‡ã‚£ãƒ¬ã‚¯ãƒˆãƒªã‚’ä½¿ç”¨ã™ã‚‹"
 
 #: src/gripcfg.c:447
 msgid "M3U file format"
-msgstr "m3u ¥Õ¥¡¥¤¥ë½ñ¼°"
+msgstr "m3u ãƒ•ã‚¡ã‚¤ãƒ«æ›¸å¼"
 
 #: src/gripcfg.c:452
 msgid "Encoding bitrate (kbits/sec)"
-msgstr "¥Ó¥Ã¥È¥ì¡¼¥È (kbits/ÉÃ)"
+msgstr "ãƒ“ãƒƒãƒˆãƒ¬ãƒ¼ãƒˆ (kbits/ç§’)"
 
 #: src/gripcfg.c:456
 msgid "Number of CPUs to use"
-msgstr "»ÈÍÑ¤¹¤ë CPU ¤Î¿ô"
+msgstr "ä½¿ç”¨ã™ã‚‹ CPU ã®æ•°"
 
 #: src/gripcfg.c:460
 msgid "Encode 'nice' value"
-msgstr "Í¥ÀèÅÙ (nice ÃÍ)"
+msgstr "å„ªå…ˆåº¦ (nice å€¤)"
 
 #: src/gripcfg.c:464
 msgid "Encode filter command"
-msgstr "¥Õ¥£¥ë¥¿¡¦¥³¥Ş¥ó¥É"
+msgstr "ãƒ•ã‚£ãƒ«ã‚¿ãƒ»ã‚³ãƒãƒ³ãƒ‰"
 
 #: src/gripcfg.c:488
 msgid "Add ID3 tags to encoded files"
-msgstr "ID3 ¥¿¥°¤òÄÉ²Ã¤¹¤ë"
+msgstr "ID3 ã‚¿ã‚°ã‚’è¿½åŠ ã™ã‚‹"
 
 #: src/gripcfg.c:494
 msgid "Add ID3v2 tags to encoded files"
-msgstr "ID3v2 ¥¿¥°¤òÄÉ²Ã¤¹¤ë"
+msgstr "ID3v2 ã‚¿ã‚°ã‚’è¿½åŠ ã™ã‚‹"
 
 #: src/gripcfg.c:500
 msgid "Only tag files ending in '.mp3'"
-msgstr "³ÈÄ¥»Ò¤¬ '.mp3' ¤Î¾ì¹ç¤Ë¤Î¤ß¥¿¥°¤òÉÕ¤±¤ë"
+msgstr "æ‹¡å¼µå­ãŒ '.mp3' ã®å ´åˆã«ã®ã¿ã‚¿ã‚°ã‚’ä»˜ã‘ã‚‹"
 
 #: src/gripcfg.c:504
 msgid "ID3 comment field"
-msgstr "ID3 ¥³¥á¥ó¥È"
+msgstr "ID3 ã‚³ãƒ¡ãƒ³ãƒˆ"
 
 #: src/gripcfg.c:509
-msgid "ID3v1 Character set encoding"
+msgid "Write tags in unicode"
 msgstr ""
 
-#: src/gripcfg.c:516
+#: src/gripcfg.c:514
+msgid "ID3v1 Character set encoding"
+msgstr "ID3v1 ã®æ–‡å­—ã‚¨ãƒ³ã‚³ãƒ¼ãƒ‡ã‚£ãƒ³ã‚°"
+
+#: src/gripcfg.c:521
 msgid "ID3"
 msgstr "ID3"
 
-#: src/gripcfg.c:533 src/gripcfg.c:553
+#: src/gripcfg.c:538 src/gripcfg.c:558
 msgid "DB server"
-msgstr "DB ¥µ¡¼¥Ğ"
+msgstr "DB ã‚µãƒ¼ãƒ"
 
-#: src/gripcfg.c:537 src/gripcfg.c:557
+#: src/gripcfg.c:542 src/gripcfg.c:562
 msgid "CGI path"
-msgstr "CGI ¤Î¥Ñ¥¹"
+msgstr "CGI ã®ãƒ‘ã‚¹"
 
-#: src/gripcfg.c:544
+#: src/gripcfg.c:549
 msgid "Primary Server"
-msgstr "¥×¥é¥¤¥Ş¥ê"
+msgstr "ãƒ—ãƒ©ã‚¤ãƒãƒª"
 
-#: src/gripcfg.c:564
+#: src/gripcfg.c:569
 msgid "Secondary Server"
-msgstr "¥»¥«¥ó¥À¥ê"
-
-#: src/gripcfg.c:574
-msgid "DB Submit email"
-msgstr "DB ³ÎÇ§¥á¡¼¥ë"
+msgstr "ã‚»ã‚«ãƒ³ãƒ€ãƒª"
 
 #: src/gripcfg.c:579
-#, fuzzy
-msgid "DB Character set encoding"
-msgstr "´°Î»¸å¤Ë .wav ¥Õ¥¡¥¤¥ë¤òºï½ü¤¹¤ë"
+msgid "DB Submit email"
+msgstr "DB ç¢ºèªãƒ¡ãƒ¼ãƒ«"
 
 #: src/gripcfg.c:584
-msgid "Use freedb extensions"
-msgstr "FreeDB ¤ò»ÈÍÑ¤¹¤ë"
+msgid "DB Character set encoding"
+msgstr "DB ã®æ–‡å­—ã‚¨ãƒ³ã‚³ãƒ¼ãƒ‡ã‚£ãƒ³ã‚°"
 
 #: src/gripcfg.c:589
-msgid "Perform disc lookups automatically"
-msgstr "¥Ç¥£¥¹¥¯¾ğÊó¤ò¼«Æ°Åª¤Ë¼èÆÀ¤¹¤ë"
+msgid "Use freedb extensions"
+msgstr "FreeDB ã‚’ä½¿ç”¨ã™ã‚‹"
 
-#: src/gripcfg.c:597
+#: src/gripcfg.c:594
+msgid "Perform disc lookups automatically"
+msgstr "ãƒ‡ã‚£ã‚¹ã‚¯æƒ…å ±ã‚’è‡ªå‹•çš„ã«å–å¾—ã™ã‚‹"
+
+#: src/gripcfg.c:602
 msgid "DiscDB"
 msgstr "DiscDB"
 
-#: src/gripcfg.c:606
+#: src/gripcfg.c:611
 msgid "Use proxy server"
-msgstr "¥×¥í¥­¥·¥µ¡¼¥Ğ¤ò»È¤¦"
+msgstr "ãƒ—ãƒ­ã‚­ã‚·ã‚µãƒ¼ãƒã‚’ä½¿ã†"
 
-#: src/gripcfg.c:613
+#: src/gripcfg.c:618
 msgid "Get server from 'http_proxy' env. var"
-msgstr "´Ä¶­ÊÑ¿ô $http_proxy ¤«¤é¥µ¡¼¥Ğ¤ò¼èÆÀ¤¹¤ë"
+msgstr "ç’°å¢ƒå¤‰æ•° $http_proxy ã‹ã‚‰ã‚µãƒ¼ãƒã‚’å–å¾—ã™ã‚‹"
 
-#: src/gripcfg.c:617
+#: src/gripcfg.c:622
 msgid "Proxy server"
-msgstr "¥×¥í¥­¥·¥µ¡¼¥Ğ"
+msgstr "ãƒ—ãƒ­ã‚­ã‚·ã‚µãƒ¼ãƒ"
 
-#: src/gripcfg.c:621
+#: src/gripcfg.c:626
 msgid "Proxy port"
-msgstr "¥×¥í¥­¥·¥İ¡¼¥È"
+msgstr "ãƒ—ãƒ­ã‚­ã‚·ãƒãƒ¼ãƒˆ"
 
-#: src/gripcfg.c:625
+#: src/gripcfg.c:630
 msgid "Proxy username"
-msgstr "¥æ¡¼¥¶Ì¾"
+msgstr "ãƒ¦ãƒ¼ã‚¶å"
 
-#: src/gripcfg.c:631
+#: src/gripcfg.c:636
 msgid "Proxy password"
-msgstr "¥Ñ¥¹¥ï¡¼¥É"
+msgstr "ãƒ‘ã‚¹ãƒ¯ãƒ¼ãƒ‰"
 
-#: src/gripcfg.c:639
+#: src/gripcfg.c:644
 msgid "Proxy"
-msgstr "¥×¥í¥­¥·"
+msgstr "ãƒ—ãƒ­ã‚­ã‚·"
 
-#: src/gripcfg.c:648
+#: src/gripcfg.c:653
 msgid "Email address"
-msgstr "E-Mail ¥¢¥É¥ì¥¹"
+msgstr "E-Mail ã‚¢ãƒ‰ãƒ¬ã‚¹"
 
-#: src/gripcfg.c:652
+#: src/gripcfg.c:657
 msgid "CD update program"
-msgstr "CD ¹¹¿·¥×¥í¥°¥é¥à"
-
-#: src/gripcfg.c:656
-#, fuzzy
-msgid "File System Character set encoding"
-msgstr "´°Î»¸å¤Ë .wav ¥Õ¥¡¥¤¥ë¤òºï½ü¤¹¤ë"
+msgstr "CD æ›´æ–°ãƒ—ãƒ­ã‚°ãƒ©ãƒ "
 
 #: src/gripcfg.c:661
-msgid "Do not lowercase filenames"
-msgstr "¥Õ¥¡¥¤¥ëÌ¾¤ÎÈ¾³Ñ±Ñ»ú¤ò¾®Ê¸»ú¤Ë¤·¤Ê¤¤"
+msgid "File System Character set encoding"
+msgstr "ãƒ•ã‚¡ã‚¤ãƒ«ã‚·ã‚¹ãƒ†ãƒ ã®æ–‡å­—ã‚¨ãƒ³ã‚³ãƒ¼ãƒ‡ã‚£ãƒ³ã‚°"
 
 #: src/gripcfg.c:666
-msgid "Allow high bits in filenames"
-msgstr "¥Õ¥¡¥¤¥ëÌ¾¤ËÆüËÜ¸ì (EUC-JP) ¤ò»ÈÍÑ¤¹¤ë"
+msgid "Do not lowercase filenames"
+msgstr "ãƒ•ã‚¡ã‚¤ãƒ«åã®åŠè§’è‹±å­—ã‚’å°æ–‡å­—ã«ã—ãªã„"
 
 #: src/gripcfg.c:671
-msgid "Do not change spaces to underscores"
-msgstr "¶õÇò¤ò¥¢¥ó¥À¡¼¥¹¥³¥¢ (_) ¤ËÊÑ´¹¤·¤Ê¤¤"
+msgid "Allow high bits in filenames"
+msgstr "ãƒ•ã‚¡ã‚¤ãƒ«åã«æ—¥æœ¬èª (EUC-JP) ã‚’ä½¿ç”¨ã™ã‚‹"
 
 #: src/gripcfg.c:676
+msgid "Do not change spaces to underscores"
+msgstr "ç©ºç™½ã‚’ã‚¢ãƒ³ãƒ€ãƒ¼ã‚¹ã‚³ã‚¢ (_) ã«å¤‰æ›ã—ãªã„"
+
+#: src/gripcfg.c:681
 msgid ""
 "Characters to not strip\n"
 "in filenames"
 msgstr ""
-"¥Õ¥¡¥¤¥ëÌ¾¤È¤·¤Æ\n"
-"µö²Ä¤¹¤ëÈ¾³Ñµ­¹æ"
+"ãƒ•ã‚¡ã‚¤ãƒ«åã¨ã—ã¦\n"
+"è¨±å¯ã™ã‚‹åŠè§’è¨˜å·"
 
-#: src/gripcfg.c:681
+#: src/gripcfg.c:686
 msgid "Keep application minimum size"
-msgstr "¥¢¥×¥ê¥±¡¼¥·¥ç¥ó¤òºÇ¾®¥µ¥¤¥º¤Ë¤¹¤ë"
+msgstr "ã‚¢ãƒ—ãƒªã‚±ãƒ¼ã‚·ãƒ§ãƒ³ã‚’æœ€å°ã‚µã‚¤ã‚ºã«ã™ã‚‹"
 
-#: src/gripcfg.c:688
+#: src/gripcfg.c:693
 msgid "Misc"
-msgstr "¤½¤ÎÂ¾"
+msgstr "ãã®ä»–"
 
-#: src/cddev.c:164 src/cddev.c:591
+#: src/cddev.c:172 src/cddev.c:599
 #, c-format
 msgid "Drive status is %d\n"
-msgstr "¥É¥é¥¤¥Ö¤Î¾õÂÖ¤Ï %d ¤Ç¤¹\n"
+msgstr "ãƒ‰ãƒ©ã‚¤ãƒ–ã®çŠ¶æ…‹ã¯ %d ã§ã™\n"
 
-#: src/cddev.c:166
+#: src/cddev.c:174
 msgid "Drive doesn't support drive status check (assume CDS_NO_INFO)\n"
 msgstr ""
-"¥É¥é¥¤¥Ö¤Ï¾õÂÖ¥Á¥§¥Ã¥¯¤ò¥µ¥İ¡¼¥È¤·¤Æ¤¤¤Ş¤»¤ó (CDE_NO_INFO¤È»×¤ï¤ì¤Ş¤¹)\n"
+"ãƒ‰ãƒ©ã‚¤ãƒ–ã¯çŠ¶æ…‹ãƒã‚§ãƒƒã‚¯ã‚’ã‚µãƒãƒ¼ãƒˆã—ã¦ã„ã¾ã›ã‚“ (CDE_NO_INFOã¨æ€ã‚ã‚Œã¾ã™)\n"
 
-#: src/cddev.c:169
+#: src/cddev.c:177
 msgid "No disc\n"
-msgstr "¥Ç¥£¥¹¥¯¤¬¤¢¤ê¤Ş¤»¤ó\n"
+msgstr "ãƒ‡ã‚£ã‚¹ã‚¯ãŒã‚ã‚Šã¾ã›ã‚“\n"
 
-#: src/cddev.c:271 src/cddev.c:280 src/cddev.c:297 src/cddev.c:324
+#: src/cddev.c:279 src/cddev.c:288 src/cddev.c:305 src/cddev.c:332
 msgid "Error: Failed to read disc contents\n"
-msgstr "¥¨¥é¡¼: ¥Ç¥£¥¹¥¯¤ÎÌÜ¼¡¤ÎÆÉ¤ß¼è¤ê¤Ë¼ºÇÔ¤·¤Ş¤·¤¿\n"
+msgstr "ã‚¨ãƒ©ãƒ¼: ãƒ‡ã‚£ã‚¹ã‚¯ã®ç›®æ¬¡ã®èª­ã¿å–ã‚Šã«å¤±æ•—ã—ã¾ã—ãŸ\n"
 
-#: src/cddev.c:594
+#: src/cddev.c:602
 msgid "Drive doesn't support drive status check\n"
-msgstr "¥É¥é¥¤¥Ö¤Ï¥Ç¥Ğ¥¤¥¹¤Î¾õÂÖ¥Á¥§¥Ã¥¯¤ò¥µ¥İ¡¼¥È¤·¤Æ¤¤¤Ş¤»¤ó\n"
+msgstr "ãƒ‰ãƒ©ã‚¤ãƒ–ã¯ãƒ‡ãƒã‚¤ã‚¹ã®çŠ¶æ…‹ãƒã‚§ãƒƒã‚¯ã‚’ã‚µãƒãƒ¼ãƒˆã—ã¦ã„ã¾ã›ã‚“\n"
 
-#: src/cddev.c:615 src/cddev.c:619
+#: src/cddev.c:623 src/cddev.c:627
 #, c-format
 msgid "Unlock failed: %d"
-msgstr "¥¢¥ó¥í¥Ã¥¯¤Ë¼ºÇÔ: %d"
+msgstr "ã‚¢ãƒ³ãƒ­ãƒƒã‚¯ã«å¤±æ•—: %d"
 
-#: src/cddev.c:623
+#: src/cddev.c:631
 msgid "CDIOCEJECT"
 msgstr "CDIOCEJECT"
 
 #: src/cdplay.c:87
 msgid "Cannot do lookup while ripping"
-msgstr "ÀÚ¤ê½Ğ¤·Ãæ¤Ë¸¡º÷¤Ï¤Ç¤­¤Ş¤»¤ó"
+msgstr "åˆ‡ã‚Šå‡ºã—ä¸­ã«æ¤œç´¢ã¯ã§ãã¾ã›ã‚“"
 
 #. "misc"
 #: src/cdplay.c:126
 msgid "Unknown Disc"
-msgstr "ÉÔÌÀ¤Ê¥Ç¥£¥¹¥¯"
+msgstr "ä¸æ˜ãªãƒ‡ã‚£ã‚¹ã‚¯"
 
 #: src/cdplay.c:135
 #, c-format
 msgid "Track %02d"
-msgstr "¥È¥é¥Ã¥¯ %02d"
+msgstr "ãƒˆãƒ©ãƒƒã‚¯ %02d"
 
 #: src/cdplay.c:202
 #, c-format
 msgid "Querying %s (through %s) for disc %02x.\n"
-msgstr "%s (%s ¤ò·ĞÍ³ : ¥Ç¥£¥¹¥¯ %02x) ¤ÎÌä¤¤¹ç¤ï¤»Ãæ¤Ç¤¹\n"
+msgstr "%s (%s ã‚’çµŒç”± : ãƒ‡ã‚£ã‚¹ã‚¯ %02x) ã®å•ã„åˆã‚ã›ä¸­ã§ã™\n"
 
 #: src/cdplay.c:207
 #, c-format
 msgid "Querying %s for disc %02x.\n"
-msgstr "%s (DISC %02x) ¤ÎÌä¤¤¹ç¤ï¤»Ãæ¤Ç¤¹\n"
+msgstr "%s (DISC %02x) ã®å•ã„åˆã‚ã›ä¸­ã§ã™\n"
 
 #: src/cdplay.c:223
 #, c-format
@@ -535,165 +537,165 @@ msgid ""
 "Match for \"%s / %s\"\n"
 "Downloading data...\n"
 msgstr ""
-"\"%s / %s\" ¤¬°ìÃ×¤·¤Ş¤·¤¿\n"
-"¥Ç¡¼¥¿¤Î¥À¥¦¥ó¥í¡¼¥ÉÃæ...\n"
+"\"%s / %s\" ãŒä¸€è‡´ã—ã¾ã—ãŸ\n"
+"ãƒ‡ãƒ¼ã‚¿ã®ãƒ€ã‚¦ãƒ³ãƒ­ãƒ¼ãƒ‰ä¸­...\n"
 
 #: src/cdplay.c:231
 msgid "Done\n"
-msgstr "´°Î»\n"
+msgstr "å®Œäº†\n"
 
 #: src/cdplay.c:235 src/cdplay.c:607
 msgid "Error saving disc data\n"
-msgstr "¥Ç¥£¥¹¥¯¥Ç¡¼¥¿ÊİÂ¸Ãæ¤Î¥¨¥é¡¼\n"
+msgstr "ãƒ‡ã‚£ã‚¹ã‚¯ãƒ‡ãƒ¼ã‚¿ä¿å­˜ä¸­ã®ã‚¨ãƒ©ãƒ¼\n"
 
 #: src/cdplay.c:241
 msgid "No match\n"
-msgstr "°ìÃ×¤·¤Ş¤»¤ó¤Ç¤·¤¿\n"
+msgstr "ä¸€è‡´ã—ã¾ã›ã‚“ã§ã—ãŸ\n"
 
 #: src/cdplay.c:276
 msgid "Track"
-msgstr "¥È¥é¥Ã¥¯"
+msgstr "ãƒˆãƒ©ãƒƒã‚¯"
 
 #: src/cdplay.c:276
 msgid "Length "
-msgstr "±éÁÕ»ş´Ö"
+msgstr "æ¼”å¥æ™‚é–“"
 
 #: src/cdplay.c:280
 msgid "Tracks"
-msgstr "¥È¥é¥Ã¥¯"
+msgstr "ãƒˆãƒ©ãƒƒã‚¯"
 
 #: src/cdplay.c:678
 msgid "Rotate play mode"
-msgstr "ºÆÀ¸¥â¡¼¥É¤ÎÀÚ¤êÂØ¤¨"
+msgstr "å†ç”Ÿãƒ¢ãƒ¼ãƒ‰ã®åˆ‡ã‚Šæ›¿ãˆ"
 
 #: src/cdplay.c:698
 msgid "Toggle loop play"
-msgstr "¥ë¡¼¥×ºÆÀ¸¤ÎÀÚ¤êÂØ¤¨"
+msgstr "ãƒ«ãƒ¼ãƒ—å†ç”Ÿã®åˆ‡ã‚Šæ›¿ãˆ"
 
 #: src/cdplay.c:776 src/rip.c:233
 msgid "Rip status"
-msgstr "ÀÚ¤ê½Ğ¤·¾õ¶·"
+msgstr "åˆ‡ã‚Šå‡ºã—çŠ¶æ³"
 
 #: src/cdplay.c:843
 msgid "Play track / Pause play"
-msgstr "¥È¥é¥Ã¥¯¤ÎºÆÀ¸ / Ää»ß"
+msgstr "ãƒˆãƒ©ãƒƒã‚¯ã®å†ç”Ÿ / åœæ­¢"
 
 #: src/cdplay.c:854
 msgid "Rewind"
-msgstr "´¬¤­Ìá¤·"
+msgstr "å·»ãæˆ»ã—"
 
 #: src/cdplay.c:865
 msgid "FastForward"
-msgstr "ÁáÁ÷¤ê"
+msgstr "æ—©é€ã‚Š"
 
 #: src/cdplay.c:875
 msgid "Go to previous track"
-msgstr "Á°¤Î¥È¥é¥Ã¥¯¤Ë"
+msgstr "å‰ã®ãƒˆãƒ©ãƒƒã‚¯ã«"
 
 #: src/cdplay.c:884
 msgid "Go to next track"
-msgstr "¼¡¤Î¥È¥é¥Ã¥¯¤Ë"
+msgstr "æ¬¡ã®ãƒˆãƒ©ãƒƒã‚¯ã«"
 
 #: src/cdplay.c:893
 msgid "Toggle play mode options"
-msgstr "ºÆÀ¸¥ª¥×¥·¥ç¥ó¤ÎÀÚ¤êÂØ¤¨"
+msgstr "å†ç”Ÿã‚ªãƒ—ã‚·ãƒ§ãƒ³ã®åˆ‡ã‚Šæ›¿ãˆ"
 
 #: src/cdplay.c:903
 msgid "Next Disc"
-msgstr "¼¡¤Î¥Ç¥£¥¹¥¯"
+msgstr "æ¬¡ã®ãƒ‡ã‚£ã‚¹ã‚¯"
 
 #: src/cdplay.c:917
 msgid "Stop play"
-msgstr "Ää»ß"
+msgstr "åœæ­¢"
 
 #: src/cdplay.c:927
 msgid "Eject disc"
-msgstr "¥Ç¥£¥¹¥¯¤ò¥¤¥¸¥§¥¯¥È"
+msgstr "ãƒ‡ã‚£ã‚¹ã‚¯ã‚’ã‚¤ã‚¸ã‚§ã‚¯ãƒˆ"
 
 #: src/cdplay.c:936
 msgid "Scan Disc Contents"
-msgstr "¥Ç¥£¥¹¥¯¤ÎÆâÍÆ¤ò¥¹¥­¥ã¥ó¤¹¤ë"
+msgstr "ãƒ‡ã‚£ã‚¹ã‚¯ã®å†…å®¹ã‚’ã‚¹ã‚­ãƒ£ãƒ³ã™ã‚‹"
 
 #: src/cdplay.c:944
 msgid "Toggle Volume Control"
-msgstr "¥Ü¥ê¥å¡¼¥àÄ´À°¤ÎÀÚ¤êÂØ¤¨"
+msgstr "ãƒœãƒªãƒ¥ãƒ¼ãƒ èª¿æ•´ã®åˆ‡ã‚Šæ›¿ãˆ"
 
 #: src/cdplay.c:953
 msgid "Toggle disc editor"
-msgstr "¥Ç¥£¥¹¥¯¥¨¥Ç¥£¥¿¤ÎÀÚ¤êÂØ¤¨"
+msgstr "ãƒ‡ã‚£ã‚¹ã‚¯ã‚¨ãƒ‡ã‚£ã‚¿ã®åˆ‡ã‚Šæ›¿ãˆ"
 
 #: src/cdplay.c:963
 msgid "Initiate/abort DiscDB lookup"
-msgstr "DiscDB ¸¡º÷¤Îµö²Ä/¶Ø»ß"
+msgstr "DiscDB æ¤œç´¢ã®è¨±å¯/ç¦æ­¢"
 
 #: src/cdplay.c:973
 msgid "Toggle track display"
-msgstr "¥È¥é¥Ã¥¯ÈÖ¹æÉ½¼¨¤ÎÀÚ¤êÂØ¤¨"
+msgstr "ãƒˆãƒ©ãƒƒã‚¯ç•ªå·è¡¨ç¤ºã®åˆ‡ã‚Šæ›¿ãˆ"
 
 #: src/cdplay.c:980
 msgid "Exit Grip"
-msgstr "Grip ¤Î½ªÎ»"
+msgstr "Grip ã®çµ‚äº†"
 
 #: src/cdplay.c:1127
 msgid "Cannot fast forward while ripping"
-msgstr "ÀÚ¤ê½Ğ¤·Ãæ¤ËÁáÁ÷¤ê¤Ï¤Ç¤­¤Ş¤»¤ó"
+msgstr "åˆ‡ã‚Šå‡ºã—ä¸­ã«æ—©é€ã‚Šã¯ã§ãã¾ã›ã‚“"
 
 #: src/cdplay.c:1157
 msgid "Cannot rewind while ripping"
-msgstr "ÀÚ¤ê½Ğ¤·Ãæ¤Ë´¬¤­Ìá¤·¤Ï¤Ç¤­¤Ş¤»¤ó"
+msgstr "åˆ‡ã‚Šå‡ºã—ä¸­ã«å·»ãæˆ»ã—ã¯ã§ãã¾ã›ã‚“"
 
 #: src/cdplay.c:1187
 msgid "Cannot switch discs while ripping"
-msgstr "ÀÚ¤ê½Ğ¤·Ãæ¤Ë¥Ç¥£¥¹¥¯¤Î¸ò´¹¤Ï¤Ç¤­¤Ş¤»¤ó"
+msgstr "åˆ‡ã‚Šå‡ºã—ä¸­ã«ãƒ‡ã‚£ã‚¹ã‚¯ã®äº¤æ›ã¯ã§ãã¾ã›ã‚“"
 
 #: src/cdplay.c:1205
 msgid "Eject disc\n"
-msgstr "¥Ç¥£¥¹¥¯¤ò¥¤¥¸¥§¥¯¥È¤·¤Æ¤¯¤À¤µ¤¤\n"
+msgstr "ãƒ‡ã‚£ã‚¹ã‚¯ã‚’ã‚¤ã‚¸ã‚§ã‚¯ãƒˆã—ã¦ãã ã•ã„\n"
 
 #: src/cdplay.c:1208
 msgid "Cannot eject while ripping"
-msgstr "ÀÚ¤ê½Ğ¤·Ãæ¤Ë¥¤¥¸¥§¥¯¥È¤Ç¤­¤Ş¤»¤ó"
+msgstr "åˆ‡ã‚Šå‡ºã—ä¸­ã«ã‚¤ã‚¸ã‚§ã‚¯ãƒˆã§ãã¾ã›ã‚“"
 
 #: src/cdplay.c:1218
 msgid "Have disc -- ejecting\n"
-msgstr "¥Ç¥£¥¹¥¯¤¬¤¢¤ê¤Ş¤¹ -- ¥¤¥¸¥§¥¯¥ÈÃæ\n"
+msgstr "ãƒ‡ã‚£ã‚¹ã‚¯ãŒã‚ã‚Šã¾ã™ -- ã‚¤ã‚¸ã‚§ã‚¯ãƒˆä¸­\n"
 
 #: src/cdplay.c:1282
 msgid "Cannot play while ripping"
-msgstr "ÀÚ¤ê½Ğ¤·Ãæ¤ËºÆÀ¸¤Ï¤Ç¤­¤Ş¤»¤ó"
+msgstr "åˆ‡ã‚Šå‡ºã—ä¸­ã«å†ç”Ÿã¯ã§ãã¾ã›ã‚“"
 
 #: src/cdplay.c:1343 src/cdplay.c:1373
 msgid "Cannot switch tracks while ripping"
-msgstr "ÀÚ¤ê½Ğ¤·Ãæ¤Ë¥È¥é¥Ã¥¯¤Î¸ò´¹¤Ï¤Ç¤­¤Ş¤»¤ó"
+msgstr "åˆ‡ã‚Šå‡ºã—ä¸­ã«ãƒˆãƒ©ãƒƒã‚¯ã®äº¤æ›ã¯ã§ãã¾ã›ã‚“"
 
 #: src/cdplay.c:1455
 msgid "Checking for a new disc\n"
-msgstr "¿·¤·¤¤¥Ç¥£¥¹¥¯¤ò¥Á¥§¥Ã¥¯¤¹¤ë\n"
+msgstr "æ–°ã—ã„ãƒ‡ã‚£ã‚¹ã‚¯ã‚’ãƒã‚§ãƒƒã‚¯ã™ã‚‹\n"
 
 #: src/cdplay.c:1460
 msgid "CDStat found a disc, checking tracks\n"
-msgstr "CDStat ¤Ï¥Ç¥£¥¹¥¯¤ò¸«¤Ä¤±¤Ş¤·¤¿¡£¥È¥é¥Ã¥¯¤ò¥Á¥§¥Ã¥¯¤·¤Ş¤¹\n"
+msgstr "CDStat ã¯ãƒ‡ã‚£ã‚¹ã‚¯ã‚’è¦‹ã¤ã‘ã¾ã—ãŸã€‚ãƒˆãƒ©ãƒƒã‚¯ã‚’ãƒã‚§ãƒƒã‚¯ã—ã¾ã™\n"
 
 #: src/cdplay.c:1463
 msgid "We have a valid disc!\n"
-msgstr "¤ª¤«¤·¤Ê¥Ç¥£¥¹¥¯¤¬¤¢¤ê¤Ş¤¹¡ª\n"
+msgstr "ãŠã‹ã—ãªãƒ‡ã‚£ã‚¹ã‚¯ãŒã‚ã‚Šã¾ã™ï¼\n"
 
 #: src/cdplay.c:1490
 msgid "No non-zero length tracks\n"
-msgstr "Ä¹¤µ¤¬ 0 ¤Ç¤Ê¤¤¥È¥é¥Ã¥¯¤¬¤¢¤ê¤Ş¤»¤ó\n"
+msgstr "é•·ã•ãŒ 0 ã§ãªã„ãƒˆãƒ©ãƒƒã‚¯ãŒã‚ã‚Šã¾ã›ã‚“\n"
 
 #: src/cdplay.c:1499
 msgid "CDStat said no disc\n"
-msgstr "CDStat ¤è¤ê¥Ç¥£¥¹¥¯¤¬Ìµ¤¤¤È¤ÎÊó¹ğ¤Ç¤¹\n"
+msgstr "CDStat ã‚ˆã‚Šãƒ‡ã‚£ã‚¹ã‚¯ãŒç„¡ã„ã¨ã®å ±å‘Šã§ã™\n"
 
 #: src/cdplay.c:1634 src/cdplay.c:1656
 #, c-format
 msgid "Current sector: %6d"
-msgstr "¸½ºß¤Î¥»¥¯¥¿: %6d"
+msgstr "ç¾åœ¨ã®ã‚»ã‚¯ã‚¿: %6d"
 
 #: src/cdplay.c:1759
 msgid "No Disc"
-msgstr "¥Ç¥£¥¹¥¯¤¬¤¢¤ê¤Ş¤»¤ó"
+msgstr "ãƒ‡ã‚£ã‚¹ã‚¯ãŒã‚ã‚Šã¾ã›ã‚“"
 
 #: src/cdplay.c:1828
 msgid ""
@@ -702,27 +704,27 @@ msgid ""
 "\n"
 "Do you wish to submit this disc information?"
 msgstr ""
-"¤³¤Î¥Ç¥£¥¹¥¯¤Ï¥×¥é¥¤¥Ş¥ê¥µ¡¼¥Ğ¤Ç¤Ï¤Ê¤¯¡¢\n"
-"¥»¥«¥ó¥À¥ê¥µ¡¼¥Ğ¤«¤é¸«¤Ä¤«¤ê¤Ş¤·¤¿¡£\n"
+"ã“ã®ãƒ‡ã‚£ã‚¹ã‚¯ã¯ãƒ—ãƒ©ã‚¤ãƒãƒªã‚µãƒ¼ãƒã§ã¯ãªãã€\n"
+"ã‚»ã‚«ãƒ³ãƒ€ãƒªã‚µãƒ¼ãƒã‹ã‚‰è¦‹ã¤ã‹ã‚Šã¾ã—ãŸã€‚\n"
 "\n"
-"¤³¤Î¥Ç¥£¥¹¥¯¾ğÊó¤òÁ÷¿®¤·¤Ş¤¹¤«¡©"
+"ã“ã®ãƒ‡ã‚£ã‚¹ã‚¯æƒ…å ±ã‚’é€ä¿¡ã—ã¾ã™ã‹ï¼Ÿ"
 
 #: src/cdplay.c:1857 src/cdplay.c:1865
 msgid "Error: Unable to create temporary file"
-msgstr "¥¨¥é¡¼: ºî¶ÈÍÑ¥Õ¥¡¥¤¥ë¤¬ºîÀ®¤Ç¤­¤Ş¤»¤ó"
+msgstr "ã‚¨ãƒ©ãƒ¼: ä½œæ¥­ç”¨ãƒ•ã‚¡ã‚¤ãƒ«ãŒä½œæˆã§ãã¾ã›ã‚“"
 
 #: src/cdplay.c:1875
 msgid "Error: Unable to write disc data"
-msgstr "¥¨¥é¡¼: ¥Ç¥£¥¹¥¯¥Ç¡¼¥¿¤ò½ñ¤­¹ş¤á¤Ş¤»¤ó"
+msgstr "ã‚¨ãƒ©ãƒ¼: ãƒ‡ã‚£ã‚¹ã‚¯ãƒ‡ãƒ¼ã‚¿ã‚’æ›¸ãè¾¼ã‚ã¾ã›ã‚“"
 
 #: src/cdplay.c:1884
 #, c-format
 msgid "Mailing entry to %s\n"
-msgstr "¥¨¥ó¥È¥ê %s ¤ò¥á¡¼¥ëÃæ¤Ç¤¹\n"
+msgstr "ã‚¨ãƒ³ãƒˆãƒª %s ã‚’ãƒ¡ãƒ¼ãƒ«ä¸­ã§ã™\n"
 
 #: src/dialog.c:44
 msgid "System Message"
-msgstr "¥·¥¹¥Æ¥à¡¦¥á¥Ã¥»¡¼¥¸"
+msgstr "ã‚·ã‚¹ãƒ†ãƒ ãƒ»ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸"
 
 #: src/discdb.c:188
 #, c-format
@@ -732,112 +734,112 @@ msgstr "URI = %s\n"
 #: src/discdb.c:236
 #, c-format
 msgid "Query is [%s]\n"
-msgstr "[%s] ¤Ç¸¡º÷\n"
+msgstr "[%s] ã§æ¤œç´¢\n"
 
 #: src/discdb.c:253
 #, c-format
 msgid "Reply is [%s]\n"
-msgstr "[%s] ¤ÏºÆÀ¸\n"
+msgstr "[%s] ã¯å†ç”Ÿ\n"
 
 #: src/discdb.c:661
 #, c-format
 msgid "Stat error %d on %s\n"
-msgstr "%d (%s) ¤Î Stat ¥¨¥é¡¼\n"
+msgstr "%d (%s) ã® Stat ã‚¨ãƒ©ãƒ¼\n"
 
 #: src/discdb.c:665
 #, c-format
 msgid "Creating directory %s\n"
-msgstr "¥Ç¥£¥ì¥¯¥È¥ê %s ¤¬ºîÀ®¤µ¤ì¤Ş¤·¤¿\n"
+msgstr "ãƒ‡ã‚£ãƒ¬ã‚¯ãƒˆãƒª %s ãŒä½œæˆã•ã‚Œã¾ã—ãŸ\n"
 
 #: src/discdb.c:670
 #, c-format
 msgid "Error: %s exists, but is a file\n"
-msgstr "¥¨¥é¡¼: %s ¤¬Â¸ºß¤·¤Æ¤¤¤Ş¤¹¤¬¡¢¤³¤ì¤Ï¥Õ¥¡¥¤¥ë¤Ç¤¹\n"
+msgstr "ã‚¨ãƒ©ãƒ¼: %s ãŒå­˜åœ¨ã—ã¦ã„ã¾ã™ãŒã€ã“ã‚Œã¯ãƒ•ã‚¡ã‚¤ãƒ«ã§ã™\n"
 
 #: src/discdb.c:677
 #, c-format
 msgid "Error: Unable to open %s for writing\n"
-msgstr "¥¨¥é¡¼: ½ñ¤­¹ş¤ß¥â¡¼¥É¤Ç %s ¥Õ¥¡¥¤¥ë¤ò³«¤±¤Ş¤»¤ó\n"
+msgstr "ã‚¨ãƒ©ãƒ¼: æ›¸ãè¾¼ã¿ãƒ¢ãƒ¼ãƒ‰ã§ %s ãƒ•ã‚¡ã‚¤ãƒ«ã‚’é–‹ã‘ã¾ã›ã‚“\n"
 
 #: src/discedit.c:67
 msgid "Disc title"
-msgstr "¥¿¥¤¥È¥ë"
+msgstr "ã‚¿ã‚¤ãƒˆãƒ«"
 
 #: src/discedit.c:74 src/discedit.c:176
 msgid "Track name"
-msgstr "¥È¥é¥Ã¥¯Ì¾"
+msgstr "ãƒˆãƒ©ãƒƒã‚¯å"
 
 #: src/discedit.c:84
 msgid "W"
-msgstr ""
+msgstr "W"
 
 #: src/discedit.c:110
 msgid "Disc artist"
-msgstr "±éÁÕ¼Ô"
+msgstr "æ¼”å¥è€…"
 
 #: src/discedit.c:127
 msgid "ID3 genre:"
-msgstr "¥¸¥ã¥ó¥ë:"
+msgstr "ã‚¸ãƒ£ãƒ³ãƒ«:"
 
 #: src/discedit.c:158
 msgid "Disc year"
-msgstr "À©ºîÇ¯"
+msgstr "åˆ¶ä½œå¹´"
 
 #: src/discedit.c:196
 msgid "Track artist"
-msgstr "±éÁÕ¼Ô"
+msgstr "æ¼”å¥è€…"
 
 #: src/discedit.c:213
 msgid "Split:"
-msgstr "Ê¬³ä:"
+msgstr "åˆ†å‰²:"
 
 #: src/discedit.c:217
 msgid "Title/Artist"
-msgstr "¥¿¥¤¥È¥ë/±éÁÕ¼Ô"
+msgstr "ã‚¿ã‚¤ãƒˆãƒ«/æ¼”å¥è€…"
 
 #: src/discedit.c:224
 msgid "Artist/Title"
-msgstr "±éÁÕ²È/¥¿¥¤¥È¥ë"
+msgstr "æ¼”å¥å®¶/ã‚¿ã‚¤ãƒˆãƒ«"
 
 #: src/discedit.c:232
 msgid "Split chars"
-msgstr "Ê¬³äÊ¸»ú"
+msgstr "åˆ†å‰²æ–‡å­—"
 
 #: src/discedit.c:252
 msgid "Multi-artist"
-msgstr "Ê£¿ô¤Î±éÁÕ¼Ô"
+msgstr "è¤‡æ•°ã®æ¼”å¥è€…"
 
 #: src/discedit.c:263
 msgid "Save disc info"
-msgstr "¥Ç¥£¥¹¥¯¾ğÊó¤ÎÊİÂ¸"
+msgstr "ãƒ‡ã‚£ã‚¹ã‚¯æƒ…å ±ã®ä¿å­˜"
 
 #: src/discedit.c:272
 msgid "Submit disc info"
-msgstr "¥Ç¥£¥¹¥¯¾ğÊó¤òÁ÷¿®"
+msgstr "ãƒ‡ã‚£ã‚¹ã‚¯æƒ…å ±ã‚’é€ä¿¡"
 
 #: src/discedit.c:385
 msgid "Error saving disc data"
-msgstr "¥Ç¥£¥¹¥¯¥Ç¡¼¥¿¤ÎÊİÂ¸Ãæ¤Ë¥¨¥é¡¼"
+msgstr "ãƒ‡ã‚£ã‚¹ã‚¯ãƒ‡ãƒ¼ã‚¿ã®ä¿å­˜ä¸­ã«ã‚¨ãƒ©ãƒ¼"
 
 #: src/discedit.c:387
 msgid "No disc present"
-msgstr "¥Ç¥£¥¹¥¯¤¬¤¢¤ê¤Ş¤»¤ó"
+msgstr "ãƒ‡ã‚£ã‚¹ã‚¯ãŒã‚ã‚Šã¾ã›ã‚“"
 
 #: src/discedit.c:562
 msgid ""
 "Cannot submit\n"
 "No disc is present"
 msgstr ""
-"Á÷¿®¤Ç¤­¤Ş¤»¤ó\n"
-"¸½ºß¡¢¥Ç¥£¥¹¥¯¤Ï¤¢¤ê¤Ş¤»¤ó"
+"é€ä¿¡ã§ãã¾ã›ã‚“\n"
+"ç¾åœ¨ã€ãƒ‡ã‚£ã‚¹ã‚¯ã¯ã‚ã‚Šã¾ã›ã‚“"
 
 #: src/discedit.c:575
 msgid "You must enter a disc title"
-msgstr "¤³¤Î¥Ç¥£¥¹¥¯¤Î¥¿¥¤¥È¥ë¤òÆşÎÏ¤·¤Æ²¼¤µ¤¤"
+msgstr "ã“ã®ãƒ‡ã‚£ã‚¹ã‚¯ã®ã‚¿ã‚¤ãƒˆãƒ«ã‚’å…¥åŠ›ã—ã¦ä¸‹ã•ã„"
 
 #: src/discedit.c:581
 msgid "You must enter a disc artist"
-msgstr "¤³¤Î¥Ç¥£¥¹¥¯¤Î±éÁÕ¼Ô¤òÆşÎÏ¤·¤Æ²¼¤µ¤¤"
+msgstr "ã“ã®ãƒ‡ã‚£ã‚¹ã‚¯ã®æ¼”å¥è€…ã‚’å…¥åŠ›ã—ã¦ä¸‹ã•ã„"
 
 #: src/discedit.c:591
 msgid ""
@@ -849,13 +851,13 @@ msgid ""
 "\n"
 "Continue?"
 msgstr ""
-"¾¦ÍÑ¤Î CDDB ¥µ¡¼¥Ğ¤Ë¥Ç¥£¥¹¥¯¾ğÊó¤òÁ÷¿®¤¹¤ë¤È\n"
-"¤½¤ì¤é¤Î¥µ¡¼¥Ğ¤ËÍø±×¤òÍ¿¤¨¤ë¤³¤È¤Ë¤Ê¤ê¤Ş¤¹¡£\n"
+"å•†ç”¨ã® CDDB ã‚µãƒ¼ãƒã«ãƒ‡ã‚£ã‚¹ã‚¯æƒ…å ±ã‚’é€ä¿¡ã™ã‚‹ã¨\n"
+"ãã‚Œã‚‰ã®ã‚µãƒ¼ãƒã«åˆ©ç›Šã‚’ä¸ãˆã‚‹ã“ã¨ã«ãªã‚Šã¾ã™ã€‚\n"
 "\n"
-"¤½¤ÎÂå¤ï¤ê¤Ë¥Õ¥ê¡¼¤Ê CDDB ¥µ¡¼¥Ğ¤ò¹½ÃÛ¤¹¤ë¤³¤È¤ò\n"
-"¤ª´«¤á¤·¤Ş¤¹¡£\n"
+"ãã®ä»£ã‚ã‚Šã«ãƒ•ãƒªãƒ¼ãª CDDB ã‚µãƒ¼ãƒã‚’æ§‹ç¯‰ã™ã‚‹ã“ã¨ã‚’\n"
+"ãŠå‹§ã‚ã—ã¾ã™ã€‚\n"
 "\n"
-"Â³¤±¤Ş¤¹¤«¡©"
+"ç¶šã‘ã¾ã™ã‹ï¼Ÿ"
 
 #: src/discedit.c:600
 msgid ""
@@ -864,332 +866,317 @@ msgid ""
 "\n"
 "Continue?"
 msgstr ""
-"E-Mail¤ò»È¤Ã¤Æ¤³¤Î¥Ç¥£¥¹¥¯¾ğÊó¤ò\n"
-"Á÷¿®¤Ç¤­¤Ş¤¹\n"
+"E-Mailã‚’ä½¿ã£ã¦ã“ã®ãƒ‡ã‚£ã‚¹ã‚¯æƒ…å ±ã‚’\n"
+"é€ä¿¡ã§ãã¾ã™\n"
 "\n"
-"Â³¤±¤Ş¤¹¤«¡©"
+"ç¶šã‘ã¾ã™ã‹ï¼Ÿ"
 
 #: src/discedit.c:617
 msgid "Genre selection"
-msgstr "¥¸¥ã¥ó¥ë¤ÎÁªÂò"
+msgstr "ã‚¸ãƒ£ãƒ³ãƒ«ã®é¸æŠ"
 
 #: src/discedit.c:621
 msgid ""
 "Submission requires a genre other than 'unknown'\n"
 "Please select a DiscDB genre below"
 msgstr ""
-"'ÉÔÌÀ' °Ê³°¤Î¥¸¥ã¥ó¥ë¤ò»ØÄê¤·¤Æ²¼¤µ¤¤\n"
-"°Ê²¼¤Î DiscDB ¥¸¥ã¥ó¥ë¤ò°ì¤ÄÁªÂò¤·¤Æ²¼¤µ¤¤"
+"'ä¸æ˜' ä»¥å¤–ã®ã‚¸ãƒ£ãƒ³ãƒ«ã‚’æŒ‡å®šã—ã¦ä¸‹ã•ã„\n"
+"ä»¥ä¸‹ã® DiscDB ã‚¸ãƒ£ãƒ³ãƒ«ã‚’ä¸€ã¤é¸æŠã—ã¦ä¸‹ã•ã„"
 
 #: src/discedit.c:631
 msgid "DiscDB genre"
-msgstr "DiscDB ¥¸¥ã¥ó¥ë"
+msgstr "DiscDB ã‚¸ãƒ£ãƒ³ãƒ«"
 
 #: src/discedit.c:651
 msgid "Submit"
-msgstr "Á÷¿®"
+msgstr "é€ä¿¡"
 
 #: src/discedit.c:662
 msgid "Cancel"
-msgstr "¥­¥ã¥ó¥»¥ë"
+msgstr "ã‚­ãƒ£ãƒ³ã‚»ãƒ«"
 
 #. Doh!
 #: src/id3.c:287
 msgid "unknown ID3 field\n"
-msgstr "ÉÔÌÀ¤Ê ID3 ¥Õ¥£¡¼¥ë¥É\n"
+msgstr "ä¸æ˜ãª ID3 ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰\n"
 
 #: src/launch.c:120
 #, c-format
 msgid "Error: unable to translate filename. No such user as %s\n"
-msgstr "¥¨¥é¡¼: ¥Õ¥¡¥¤¥ëÌ¾¤òÊÑ´¹¤Ç¤­¤Ş¤»¤ó¡£ %s ¤È¤¤¤¦¥æ¡¼¥¶¤Ï¤¢¤ê¤Ş¤»¤ó\n"
+msgstr "ã‚¨ãƒ©ãƒ¼: ãƒ•ã‚¡ã‚¤ãƒ«åã‚’å¤‰æ›ã§ãã¾ã›ã‚“ã€‚ %s ã¨ã„ã†ãƒ¦ãƒ¼ã‚¶ã¯ã‚ã‚Šã¾ã›ã‚“\n"
 
-#: src/launch.c:239 src/rip.c:1495
+#: src/launch.c:239 src/rip.c:1502
 msgid "Exec failed\n"
-msgstr "¼Â¹Ô¤Ë¼ºÇÔ¤·¤Ş¤·¤¿\n"
+msgstr "å®Ÿè¡Œã«å¤±æ•—ã—ã¾ã—ãŸ\n"
 
 #: src/parsecfg.c:58
 msgid "Error: Bad entry type\n"
-msgstr "¥¨¥é¡¼: ¥¨¥ó¥È¥ê¤Î¼ïÎà¤¬ÉÔÀµ¤Ç¤¹\n"
+msgstr "ã‚¨ãƒ©ãƒ¼: ã‚¨ãƒ³ãƒˆãƒªã®ç¨®é¡ãŒä¸æ­£ã§ã™\n"
 
 #: src/parsecfg.c:84
 msgid "Error: Invalid config file\n"
-msgstr "¥¨¥é¡¼: ÀßÄê¥Õ¥¡¥¤¥ë¤¬Àµ¤·¤¯¤¢¤ê¤Ş¤»¤ó\n"
+msgstr "ã‚¨ãƒ©ãƒ¼: è¨­å®šãƒ•ã‚¡ã‚¤ãƒ«ãŒæ­£ã—ãã‚ã‚Šã¾ã›ã‚“\n"
 
 #: src/rip.c:107
 msgid "Rip+Encode"
-msgstr "°ì³çºîÀ®"
+msgstr "ä¸€æ‹¬ä½œæˆ"
 
 #: src/rip.c:109
 msgid "Rip and encode selected tracks"
-msgstr "ÁªÂò¤·¤¿¥È¥é¥Ã¥¯¤ÎÀÚ¤ê½Ğ¤·¤È¥¨¥ó¥³¡¼¥Ç¥£¥ó¥°¤ÎÎ¾Êı¤ò¼Â¹Ô¤·¤Ş¤¹"
+msgstr "é¸æŠã—ãŸãƒˆãƒ©ãƒƒã‚¯ã®åˆ‡ã‚Šå‡ºã—ã¨ã‚¨ãƒ³ã‚³ãƒ¼ãƒ‡ã‚£ãƒ³ã‚°ã®ä¸¡æ–¹ã‚’å®Ÿè¡Œã—ã¾ã™"
 
 #: src/rip.c:115
 msgid "Rip Only"
-msgstr "ÀÚ¤ê½Ğ¤·¤Î¤ß¼Â¹Ô"
+msgstr "åˆ‡ã‚Šå‡ºã—ã®ã¿å®Ÿè¡Œ"
 
 #: src/rip.c:117
 msgid "Rip but do not encode selected tracks"
-msgstr "ÁªÂò¤·¤¿¥È¥é¥Ã¥¯¤ÎÀÚ¤ê½Ğ¤·¤Î¤ß¼Â¹Ô¤·¤Ş¤¹"
+msgstr "é¸æŠã—ãŸãƒˆãƒ©ãƒƒã‚¯ã®åˆ‡ã‚Šå‡ºã—ã®ã¿å®Ÿè¡Œã—ã¾ã™"
 
 #: src/rip.c:123
 msgid "Abort Rip and Encode"
-msgstr "°ì³çºîÀ®¤ÎÃæ»ß"
+msgstr "ä¸€æ‹¬ä½œæˆã®ä¸­æ­¢"
 
 #: src/rip.c:125
 msgid "Kill all active rip and encode processes"
-msgstr "ÀÚ¤ê½Ğ¤·¤È¥¨¥ó¥³¡¼¥Ç¥£¥ó¥°¤ÎÎ¾Êı¤Î½èÍı¤ò¶¯À©½ªÎ»¤·¤Ş¤¹"
+msgstr "åˆ‡ã‚Šå‡ºã—ã¨ã‚¨ãƒ³ã‚³ãƒ¼ãƒ‡ã‚£ãƒ³ã‚°ã®ä¸¡æ–¹ã®å‡¦ç†ã‚’å¼·åˆ¶çµ‚äº†ã—ã¾ã™"
 
 #: src/rip.c:133
 msgid "Abort Ripping Only"
-msgstr "ÀÚ¤ê½Ğ¤·½èÍı¤ÎÃæ»ß"
+msgstr "åˆ‡ã‚Šå‡ºã—å‡¦ç†ã®ä¸­æ­¢"
 
 #: src/rip.c:135
 msgid "Kill rip process"
-msgstr "ÀÚ¤ê½Ğ¤·½èÍı¤Î¤ß¶¯À©½ªÎ»¤·¤Ş¤¹"
+msgstr "åˆ‡ã‚Šå‡ºã—å‡¦ç†ã®ã¿å¼·åˆ¶çµ‚äº†ã—ã¾ã™"
 
 #: src/rip.c:141
 msgid "DDJ Scan"
-msgstr "DDJ ¥¹¥­¥ã¥ó¼Â¹Ô"
+msgstr "DDJ ã‚¹ã‚­ãƒ£ãƒ³å®Ÿè¡Œ"
 
 #: src/rip.c:143
 msgid "Insert disc information into the DigitalDJ database"
-msgstr "¥Ç¥£¥¹¥¯¾ğÊó¤ò DigitalDJ ¥Ç¡¼¥¿¥Ù¡¼¥¹¤ËÄÉ²Ã¤·¤Ş¤¹"
+msgstr "ãƒ‡ã‚£ã‚¹ã‚¯æƒ…å ±ã‚’ DigitalDJ ãƒ‡ãƒ¼ã‚¿ãƒ™ãƒ¼ã‚¹ã«è¿½åŠ ã—ã¾ã™"
 
 #: src/rip.c:158
 msgid "Rip partial track"
-msgstr "¥È¥é¥Ã¥¯¤òÊ¬³ä¤·¤ÆÀÚ¤ê½Ğ¤¹"
+msgstr "ãƒˆãƒ©ãƒƒã‚¯ã‚’åˆ†å‰²ã—ã¦åˆ‡ã‚Šå‡ºã™"
 
 #: src/rip.c:169
 msgid "Play"
-msgstr "ºÆÀ¸"
+msgstr "å†ç”Ÿ"
 
 #: src/rip.c:176
 msgid "Current sector:      0"
-msgstr "¸½ºß¤Î¥»¥¯¥¿:     0"
+msgstr "ç¾åœ¨ã®ã‚»ã‚¯ã‚¿:     0"
 
-#: src/rip.c:207 src/rip.c:224 src/rip.c:272 src/rip.c:858 src/rip.c:910
-#: src/rip.c:912 src/rip.c:1048 src/rip.c:1049
+#: src/rip.c:207 src/rip.c:224 src/rip.c:272 src/rip.c:859 src/rip.c:911
+#: src/rip.c:913 src/rip.c:1049 src/rip.c:1050
 msgid "Rip: Idle"
-msgstr "ÀÚ¤ê½Ğ¤·: ÂÔµ¡Ãæ"
+msgstr "åˆ‡ã‚Šå‡ºã—: å¾…æ©Ÿä¸­"
 
 #: src/rip.c:212
 msgid "Enc: Trk 99 (99.9x)"
-msgstr "¥¨¥ó¥³¡¼¥Ç¥£¥ó¥°: 99¶ÊÌÜ (99.9x)"
+msgstr "ã‚¨ãƒ³ã‚³ãƒ¼ãƒ‡ã‚£ãƒ³ã‚°: 99æ›²ç›® (99.9x)"
 
-#: src/rip.c:243 src/rip.c:285 src/rip.c:1020 src/rip.c:1033
+#: src/rip.c:243 src/rip.c:285 src/rip.c:1021 src/rip.c:1034
 msgid "Enc: Idle"
-msgstr "¥¨¥ó¥³¡¼¥Ç¥£¥ó¥°: ÂÔµ¡Ãæ"
+msgstr "ã‚¨ãƒ³ã‚³ãƒ¼ãƒ‡ã‚£ãƒ³ã‚°: å¾…æ©Ÿä¸­"
 
 #: src/rip.c:267
 msgid "Overall indicators:"
-msgstr "Á´¥È¥é¥Ã¥¯¤Î¿ÊÄ½:"
+msgstr "å…¨ãƒˆãƒ©ãƒƒã‚¯ã®é€²æ—:"
 
 #: src/rip.c:330
 msgid "Start sector"
-msgstr "³«»Ï¥»¥¯¥¿"
+msgstr "é–‹å§‹ã‚»ã‚¯ã‚¿"
 
 #: src/rip.c:335
 msgid "End sector"
-msgstr "½ªÎ»¥»¥¯¥¿"
+msgstr "çµ‚äº†ã‚»ã‚¯ã‚¿"
 
 #: src/rip.c:603
 msgid "Error: can't open m3u file\n"
-msgstr "¥¨¥é¡¼: m3u ¥Õ¥¡¥¤¥ë¤ò³«¤±¤Ş¤»¤ó\n"
+msgstr "ã‚¨ãƒ©ãƒ¼: m3u ãƒ•ã‚¡ã‚¤ãƒ«ã‚’é–‹ã‘ã¾ã›ã‚“\n"
 
 #: src/rip.c:645
 msgid "In KillRip\n"
-msgstr "ÀÚ¤ê½Ğ¤·¤ÎÄä»ßÃæ\n"
+msgstr "åˆ‡ã‚Šå‡ºã—ã®åœæ­¢ä¸­\n"
 
 #: src/rip.c:671
 #, c-format
 msgid "Now total enc size is: %d\n"
-msgstr "¸½ºß¤Î¥¨¥ó¥³¡¼¥Ç¥£¥ó¥°¹ç·×¥µ¥¤¥º: %d\n"
+msgstr "ç¾åœ¨ã®ã‚¨ãƒ³ã‚³ãƒ¼ãƒ‡ã‚£ãƒ³ã‚°åˆè¨ˆã‚µã‚¤ã‚º: %d\n"
 
-#: src/rip.c:824
+#: src/rip.c:825
 #, c-format
 msgid "Rip: Trk %d (%3.1fx)"
-msgstr "ÀÚ¤ê½Ğ¤·: %d¶ÊÌÜ (%3.1fx)"
+msgstr "åˆ‡ã‚Šå‡ºã—: %dæ›²ç›® (%3.1fx)"
 
-#: src/rip.c:854
+#: src/rip.c:855
 #, c-format
 msgid "Rip: %6.2f%%"
-msgstr "ÀÚ¤ê½Ğ¤·: %6.2f%%"
+msgstr "åˆ‡ã‚Šå‡ºã—: %6.2f%%"
 
-#: src/rip.c:873
+#: src/rip.c:874
 msgid "Rip finished\n"
-msgstr "ÀÚ¤ê½Ğ¤·½ªÎ»\n"
+msgstr "åˆ‡ã‚Šå‡ºã—çµ‚äº†\n"
 
-#: src/rip.c:899
+#: src/rip.c:900
 #, c-format
 msgid "Rip partial %d  num wavs %d\n"
-msgstr "%d Ê¬³ä¤Ç %d¸Ä¤Îwav¤ËÀÚ¤ê½Ğ¤·\n"
+msgstr "%d åˆ†å‰²ã§ %då€‹ã®wavã«åˆ‡ã‚Šå‡ºã—\n"
 
-#: src/rip.c:902
+#: src/rip.c:903
 #, c-format
 msgid "Next track is %d, total is %d\n"
-msgstr "¼¡¤Î¥È¥é¥Ã¥¯¤Ï %d Á´Éô¤Ç %d ¤Ç¤¹\n"
+msgstr "æ¬¡ã®ãƒˆãƒ©ãƒƒã‚¯ã¯ %d å…¨éƒ¨ã§ %d ã§ã™\n"
 
-#: src/rip.c:908
+#: src/rip.c:909
 msgid "Check if we need to rip another track\n"
-msgstr "Â¾¤Î¥È¥é¥Ã¥¯¤òÀÚ¤ê½Ğ¤¹É¬Í×¤¬¤¢¤ë¤«³ÎÇ§¤·¤Æ¤¯¤À¤µ¤¤\n"
+msgstr "ä»–ã®ãƒˆãƒ©ãƒƒã‚¯ã‚’åˆ‡ã‚Šå‡ºã™å¿…è¦ãŒã‚ã‚‹ã‹ç¢ºèªã—ã¦ãã ã•ã„\n"
 
-#: src/rip.c:948
+#: src/rip.c:949
 #, c-format
 msgid "Enc: Trk %d (%3.1fx)"
-msgstr "¥¨¥ó¥³¡¼¥Ç¥£¥ó¥°: %d¶ÊÌÜ (%3.1fx)"
+msgstr "ã‚¨ãƒ³ã‚³ãƒ¼ãƒ‡ã‚£ãƒ³ã‚°: %dæ›²ç›® (%3.1fx)"
 
-#: src/rip.c:964
+#: src/rip.c:965
 #, c-format
 msgid "Enc: %6.2f%%"
-msgstr "¥¨¥ó¥³¡¼¥Ç¥£¥ó¥°: %6.2f%%"
+msgstr "ã‚¨ãƒ³ã‚³ãƒ¼ãƒ‡ã‚£ãƒ³ã‚°: %6.2f%%"
 
-#: src/rip.c:974
+#: src/rip.c:975
 #, c-format
 msgid "Finished encoding on cpu %d\n"
-msgstr "CPU %d ¤Ç¤Î¥¨¥ó¥³¡¼¥Ç¥£¥ó¥°¤¬½ªÎ»¤·¤Ş¤·¤¿\n"
+msgstr "CPU %d ã§ã®ã‚¨ãƒ³ã‚³ãƒ¼ãƒ‡ã‚£ãƒ³ã‚°ãŒçµ‚äº†ã—ã¾ã—ãŸ\n"
 
-#: src/rip.c:987
+#: src/rip.c:988
 #, c-format
 msgid "Deleting [%s]\n"
-msgstr "[%s] ¤òºï½üÃæ¤Ç¤¹\n"
+msgstr "[%s] ã‚’å‰Šé™¤ä¸­ã§ã™\n"
 
-#: src/rip.c:1041
+#: src/rip.c:1042
 msgid "Ripping is finished\n"
-msgstr "ÀÚ¤ê½Ğ¤·½ªÎ»\n"
+msgstr "åˆ‡ã‚Šå‡ºã—çµ‚äº†\n"
 
-#: src/rip.c:1150 src/rip.c:1157
+#: src/rip.c:1154 src/rip.c:1161
 msgid "NoArtist"
-msgstr "±éÁÕ¼Ô¤Ê¤·"
+msgstr "æ¼”å¥è€…ãªã—"
 
-#: src/rip.c:1163
+#: src/rip.c:1167
 msgid "NoTitle"
-msgstr "¥¿¥¤¥È¥ë¤Ê¤·"
+msgstr "ã‚¿ã‚¤ãƒˆãƒ«ãªã—"
 
-#: src/rip.c:1261
+#: src/rip.c:1265
 msgid ""
 "Invalid rip executable\n"
 "Check your rip config"
 msgstr ""
-"ÀÚ¤ê½Ğ¤·¥Ä¡¼¥ë¤¬Àµ¤·¤¯¤¢¤ê¤Ş¤»¤ó¡£\n"
-"ÀÚ¤ê½Ğ¤·¤ÎÀßÄê¤ò³ÎÇ§¤·¤Æ²¼¤µ¤¤¡£"
+"åˆ‡ã‚Šå‡ºã—ãƒ„ãƒ¼ãƒ«ãŒæ­£ã—ãã‚ã‚Šã¾ã›ã‚“ã€‚\n"
+"åˆ‡ã‚Šå‡ºã—ã®è¨­å®šã‚’ç¢ºèªã—ã¦ä¸‹ã•ã„ã€‚"
 
-#: src/rip.c:1268
+#: src/rip.c:1272
 msgid ""
 "Invalid encoder executable\n"
 "Check your encoder config"
 msgstr ""
-"¥¨¥ó¥³¡¼¥À¤¬Àµ¤·¤¯¤¢¤ê¤Ş¤»¤ó¡£\n"
-"ÀÚ¤ê½Ğ¤·¤ÎÀßÄê¤ò³ÎÇ§¤·¤Æ²¼¤µ¤¤¡£"
+"ã‚¨ãƒ³ã‚³ãƒ¼ãƒ€ãŒæ­£ã—ãã‚ã‚Šã¾ã›ã‚“ã€‚\n"
+"åˆ‡ã‚Šå‡ºã—ã®è¨­å®šã‚’ç¢ºèªã—ã¦ä¸‹ã•ã„ã€‚"
 
-#: src/rip.c:1301
+#: src/rip.c:1308
 msgid ""
 "No tracks selected.\n"
 "Rip whole CD?\n"
 msgstr ""
-"¥È¥é¥Ã¥¯¤¬»ØÄê¤µ¤ì¤Æ¤¤¤Ş¤»¤ó¡£\n"
-"²»³Ú CD Á´ÂÎ¤òÀÚ¤ê½Ğ¤·¤Ş¤¹¤«¡©\n"
+"ãƒˆãƒ©ãƒƒã‚¯ãŒæŒ‡å®šã•ã‚Œã¦ã„ã¾ã›ã‚“ã€‚\n"
+"éŸ³æ¥½ CD å…¨ä½“ã‚’åˆ‡ã‚Šå‡ºã—ã¾ã™ã‹ï¼Ÿ\n"
 
-#: src/rip.c:1324
+#: src/rip.c:1331
 msgid "Ripping whole CD\n"
-msgstr "²»³Ú CD Á´ÂÎ¤ÎÀÚ¤ê½Ğ¤·\n"
-
-#: src/rip.c:1362
-msgid "In RipNextTrack\n"
-msgstr "¼¡¤Î¥È¥é¥Ã¥¯¤òÀÚ¤ê½Ğ¤·Ãæ\n"
+msgstr "éŸ³æ¥½ CD å…¨ä½“ã®åˆ‡ã‚Šå‡ºã—\n"
 
 #: src/rip.c:1369
+msgid "In RipNextTrack\n"
+msgstr "æ¬¡ã®ãƒˆãƒ©ãƒƒã‚¯ã‚’åˆ‡ã‚Šå‡ºã—ä¸­\n"
+
+#: src/rip.c:1376
 #, c-format
 msgid "First checked track is %d\n"
-msgstr "ºÇ½é¤Ë¥Á¥§¥Ã¥¯¤·¤¿¥È¥é¥Ã¥¯¤Ï %d ¤Ç¤¹\n"
+msgstr "æœ€åˆã«ãƒã‚§ãƒƒã‚¯ã—ãŸãƒˆãƒ©ãƒƒã‚¯ã¯ %d ã§ã™\n"
 
-#: src/rip.c:1379
+#: src/rip.c:1386
 msgid "Ripping away!\n"
-msgstr "ÀÚ¤ê½Ğ¤·Ãæ»ß¡ª\n"
+msgstr "åˆ‡ã‚Šå‡ºã—ä¸­æ­¢ï¼\n"
 
-#: src/rip.c:1420
+#: src/rip.c:1427
 msgid "No write access to write wav file"
-msgstr "WAV ¥Õ¥¡¥¤¥ë¤ËÂĞ¤¹¤ë½ñ¤­¹ş¤ß¸¢¸Â¤¬¤¢¤ê¤Ş¤»¤ó"
+msgstr "WAV ãƒ•ã‚¡ã‚¤ãƒ«ã«å¯¾ã™ã‚‹æ›¸ãè¾¼ã¿æ¨©é™ãŒã‚ã‚Šã¾ã›ã‚“"
 
-#: src/rip.c:1431
+#: src/rip.c:1438
 #, c-format
 msgid "Ripping track %d to %s\n"
-msgstr "¥È¥é¥Ã¥¯ %d ¤ò %s ¤ËÀÚ¤ê½Ğ¤·Ãæ\n"
+msgstr "ãƒˆãƒ©ãƒƒã‚¯ %d ã‚’ %s ã«åˆ‡ã‚Šå‡ºã—ä¸­\n"
 
-#: src/rip.c:1435
+#: src/rip.c:1442
 #, c-format
 msgid "Rip: Trk %d (0.0x)"
-msgstr "ÀÚ¤ê½Ğ¤·: %d¶ÊÌÜ (0.0x)"
+msgstr "åˆ‡ã‚Šå‡ºã—: %dæ›²ç›® (0.0x)"
 
-#: src/rip.c:1440
+#: src/rip.c:1447
 #, c-format
 msgid "File %s has already been ripped. Skipping...\n"
-msgstr "¥Õ¥¡¥¤¥ë %s ¤Ï´û¤ËÀÚ¤ê½Ğ¤·ºÑ¤ß¤Ç¤¹¡£¥¹¥­¥Ã¥×¤·¤Ş¤¹...\n"
+msgstr "ãƒ•ã‚¡ã‚¤ãƒ« %s ã¯æ—¢ã«åˆ‡ã‚Šå‡ºã—æ¸ˆã¿ã§ã™ã€‚ã‚¹ã‚­ãƒƒãƒ—ã—ã¾ã™...\n"
 
-#: src/rip.c:1457 src/rip.c:1697
+#: src/rip.c:1464 src/rip.c:1704
 msgid "Out of space in output directory"
-msgstr "½ĞÎÏ¤¹¤ë¤¿¤á¤ËÉ¬Í×¤Ê¶õ¤­ÍÆÎÌ¤¬¤¢¤ê¤Ş¤»¤ó"
+msgstr "å‡ºåŠ›ã™ã‚‹ãŸã‚ã«å¿…è¦ãªç©ºãå®¹é‡ãŒã‚ã‚Šã¾ã›ã‚“"
 
-#: src/rip.c:1529
+#: src/rip.c:1536
 msgid "Calling CDPRip\n"
-msgstr "CDPRip¤ò¸Æ¤Ó½Ğ¤·¤Æ¤¤¤Ş¤¹¡£\n"
+msgstr "CDPRipã‚’å‘¼ã³å‡ºã—ã¦ã„ã¾ã™ã€‚\n"
 
-#: src/rip.c:1615
-#, fuzzy, c-format
+#: src/rip.c:1622
+#, c-format
 msgid "Added track %d to %s list\n"
-msgstr "%d ¥È¥é¥Ã¥¯¤ò¥¨¥ó¥³¡¼¥É¥ê¥¹¥È¤ËÄÉ²Ã¤·¤Ş¤·¤¿\n"
+msgstr "%d ãƒˆãƒ©ãƒƒã‚¯ã‚’ %s ãƒªã‚¹ãƒˆã«è¿½åŠ ã—ã¾ã—ãŸ\n"
 
-#: src/rip.c:1641
+#: src/rip.c:1648
 msgid "No free cpus\n"
-msgstr "CPU¤Ë¶õ¤­¤¬¤¢¤ê¤Ş¤»¤ó\n"
+msgstr "CPUã«ç©ºããŒã‚ã‚Šã¾ã›ã‚“\n"
 
-#: src/rip.c:1657
+#: src/rip.c:1664
 #, c-format
 msgid "Enc track %d\n"
-msgstr "¥¨¥ó¥³¡¼¥Ç¥£¥ó¥°¤Î¥È¥é¥Ã¥¯ %d\n"
+msgstr "ã‚¨ãƒ³ã‚³ãƒ¼ãƒ‡ã‚£ãƒ³ã‚°ã®ãƒˆãƒ©ãƒƒã‚¯ %d\n"
 
-#: src/rip.c:1676
+#: src/rip.c:1683
 msgid "No write access to write encoded file"
-msgstr "¥¨¥ó¥³¡¼¥Ç¥£¥ó¥°¡¦¥Õ¥¡¥¤¥ë¤ËÂĞ¤¹¤ë½ñ¤­¹ş¤ß¸¢¸Â¤¬¤¢¤ê¤Ş¤»¤ó"
+msgstr "ã‚¨ãƒ³ã‚³ãƒ¼ãƒ‡ã‚£ãƒ³ã‚°ãƒ»ãƒ•ã‚¡ã‚¤ãƒ«ã«å¯¾ã™ã‚‹æ›¸ãè¾¼ã¿æ¨©é™ãŒã‚ã‚Šã¾ã›ã‚“"
 
-#: src/rip.c:1684
+#: src/rip.c:1691
 #, c-format
 msgid "%i: Encoding to %s\n"
-msgstr "%i: %s ¤Ø¥¨¥ó¥³¡¼¥Ç¥£¥ó¥°Ãæ\n"
+msgstr "%i: %s ã¸ã‚¨ãƒ³ã‚³ãƒ¼ãƒ‡ã‚£ãƒ³ã‚°ä¸­\n"
 
-#: src/rip.c:1687
+#: src/rip.c:1694
 #, c-format
 msgid "Enc: Trk %d (0.0x)"
-msgstr "¥¨¥ó¥³¡¼¥Ç¥£¥ó¥°: %d¶ÊÌÜ (0.0x)"
+msgstr "ã‚¨ãƒ³ã‚³ãƒ¼ãƒ‡ã‚£ãƒ³ã‚°: %dæ›²ç›® (0.0x)"
 
-#: src/rip.c:1748
+#: src/rip.c:1755
 msgid "In CalculateAll\n"
-msgstr "Á´¤Æ·×»»Ãæ\n"
+msgstr "å…¨ã¦è¨ˆç®—ä¸­\n"
 
-#: src/rip.c:1754
+#: src/rip.c:1761
 msgid "We aren't ripping now, so let's zero encoding values\n"
-msgstr "¸½ºß¡¢ÀÚ¤ê½Ğ¤·¤·¤Æ¤¤¤Ê¤¤¤Î¤Ç¡¢¥¨¥ó¥³¡¼¥Ç¥£¥ó¥°ÃÍ¤ò 0¤Ë¤·¤Æ²¼¤µ¤¤¡£\n"
+msgstr "ç¾åœ¨ã€åˆ‡ã‚Šå‡ºã—ã—ã¦ã„ãªã„ã®ã§ã€ã‚¨ãƒ³ã‚³ãƒ¼ãƒ‡ã‚£ãƒ³ã‚°å€¤ã‚’ 0ã«ã—ã¦ä¸‹ã•ã„ã€‚\n"
 
-#: src/rip.c:1770
+#: src/rip.c:1777
 #, c-format
 msgid "Total rip size is: %d\n"
-msgstr "ÀÚ¤ê½Ğ¤·¤Î¹ç·×¥µ¥¤¥º: %d\n"
+msgstr "åˆ‡ã‚Šå‡ºã—ã®åˆè¨ˆã‚µã‚¤ã‚º: %d\n"
 
-#: src/rip.c:1771
+#: src/rip.c:1778
 #, c-format
 msgid "Total enc size is: %d\n"
-msgstr "¥¨¥ó¥³¡¼¥Ç¥£¥ó¥°¤Î¹ç·×¥µ¥¤¥º: %d\n"
-
-#~ msgid "Could not parse geometry string `%s'"
-#~ msgstr "»ØÄê¤·¤¿°ÌÃÖ '%s' ¤ò²ò¼á¤Ç¤­¤Ş¤»¤ó¤Ç¤·¤¿"
-
-#~ msgid "Aborted\n"
-#~ msgstr "Ãæ»ß¤·¤Ş¤·¤¿\n"
-
-#~ msgid "PL"
-#~ msgstr "PL"
-
-#~ msgid "Column/Button: %d/%d\n"
-#~ msgstr "¥«¥é¥à/¥Ü¥¿¥ó: %d/%d\n"
-
-#~ msgid "Exit GCD"
-#~ msgstr "GCD ¤Î½ªÎ»"
+msgstr "ã‚¨ãƒ³ã‚³ãƒ¼ãƒ‡ã‚£ãƒ³ã‚°ã®åˆè¨ˆã‚µã‚¤ã‚º: %d\n"
